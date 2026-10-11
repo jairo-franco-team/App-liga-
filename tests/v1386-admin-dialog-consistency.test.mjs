@@ -17,9 +17,17 @@ test('V1386: paleta de los cuadros administrativos antes de la capa exclusiva V1
  }
  const following=html.slice(html.indexOf(href)+href.length);
  const laterStyles=[...following.matchAll(/<link\s+rel="stylesheet"\s+href="([^"]+)"/g)].map(m=>m[1]);
- assert.deepEqual(laterStyles,
-  ['./src/v1387-notification-buttons-consistent.css?v=20261010-v1387-notice-uniform'],
-  'Solo la capa exclusiva de Avisos puede cargarse después de V1386');
+ assert.equal(laterStyles[0],
+  './src/v1387-notification-buttons-consistent.css?v=20261010-v1387-notice-uniform',
+  'V1387 debe seguir inmediatamente después de V1386');
+ assert.ok(laterStyles.slice(1).every(href=>href.endsWith('.css')||/\.css\?/.test(href)),
+  'Las capas posteriores deben ser únicamente hojas CSS, sin scripts');
+ assert.ok(laterStyles.slice(1).every(href=>/admin|visual-harmony|v1391/.test(href)),
+  'Las capas posteriores solo pueden armonizar el aspecto administrativo');
+ const visual1391=read('src/v1391-android-admin-visual-harmony.css');
+ assert.ok(visual1391.includes('.v1212-csv-modal')&&visual1391.includes('.v875-meeting-modal'),
+  'La capa visual final debe cubrir CSV y Juntas');
+ assert.doesNotMatch(visual1391,/<script|javascript:|pointer-events\s*:\s*none/i);
  const notice=read('src/v1387-notification-buttons-consistent.css');
  for(const token of ['.v920-registration-modal','.v920-register-actions .v105-btn',
   '.v1210-alert-tools-row > button','.v1210-official-link','min-height:52px',
