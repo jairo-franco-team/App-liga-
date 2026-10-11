@@ -1,0 +1,160 @@
+/* V1407 · Junta y Calendarios: AZUL REY INTERMEDIO.
+   Mismo rango V1406 que la barra superior: #225BB8 / #2763BB / #2B68C0.
+   Ni fondos marino oscuros ni azul pastel/fosforescente ni acentos dorados.
+   Exclusivamente estilos: conserva controles, datos, permisos y cierre.
+   Las reducciones de huecos del archivo V1398 siguen vigentes. */
+html body > .v105-modal.v875-meeting-modal,
+html body > .v105-modal.v1130-calendar-pro{
+  --v1398-panel:#2763BB;
+  --v1398-card:#2B68C0;
+  --v1398-card-high:#3272CA;
+  --v1398-field:#1C52A8;
+  --v1398-border:rgba(185,218,255,.68);
+  --v1398-text:#FFFFFF;
+  --v1398-muted:#E5EEFF;
+  --v1398-gold:#EAF4FF;
+  --v1398-peach:#C9E5FF;
+  --v1398-active:linear-gradient(140deg,#3474CB,#2661BA);
+  --v1398-buttons:linear-gradient(140deg,#3070C8,#245DB5);
+  --v1398-surface:linear-gradient(145deg,#3070C7,#2762B9 52%,#2259B0);
+  color-scheme:dark!important;
+}
+html body > .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro){
+  background:rgba(12,43,98,.71)!important;
+}
+html body > .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro) > .v105-dialog{
+  background-color:#225BB8!important;
+  background-image:linear-gradient(164deg,#2E69C2 0%,#2763BA 37%,#225BB8 76%,#2057AE 100%)!important;
+  border-color:var(--v1398-border)!important;
+  color:#fff!important;
+  box-shadow:0 17px 36px rgba(10,43,103,.23),inset 0 1px rgba(240,248,255,.14)!important;
+}
+html body > .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro)
+ :is(.v105-close,.v1130-bar button:not(.is-active),.v1130-source-actions button,
+ .v1130-card-actions button,.v1130-exports .v105-btn,.v1240-buttons button){
+  background:var(--v1398-buttons)!important;
+  background-image:var(--v1398-buttons)!important;
+  border-color:var(--v1398-border)!important;
+  color:#fff!important;
+}
+html body > .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro)
+ :is(input,textarea,select,button,summary):focus-visible{
+  outline:2px solid #E4F2FF!important;
+  outline-offset:2px!important;
+}
+/* Junta: encabezado, próximo martes, fecha, asistencia, agenda y actas. */
+html body > .v105-modal.v875-meeting-modal
+ :is(.v919-meeting-hero,.ljr-meeting-hub .mh-header){
+  background:linear-gradient(140deg,#3170C7,#245BB4)!important;
+  border-color:var(--v1398-border)!important;
+  color:#fff!important;
+}
+html body > .v105-modal.v875-meeting-modal .v919-hero-day{
+  background:linear-gradient(140deg,#3575CE,#2863BC)!important;
+  border:1px solid #BDDEFF!important;
+  color:#fff!important;
+}
+html body > .v105-modal.v875-meeting-modal
+ :is(.v105-meeting-notice,.v105-meeting-form>label,.v875-meeting-options>label,
+ .ljr-meeting-hub .mh-stats>div,.ljr-meeting-hub .mh-record,
+ .ljr-meeting-hub .mh-proposal,.ljr-meeting-hub .mh-overview,.ljr-meeting-hub .mh-tip){
+  background:linear-gradient(145deg,#2E6BC2,#255DB5)!important;
+  border-color:var(--v1398-border)!important;
+  color:#fff!important;
+}
+html body > .v105-modal.v875-meeting-modal
+ :is(.v105-meeting-form input:not([type=checkbox]):not([type=radio]):not([type=file]),
+ .v105-meeting-form textarea,.v105-meeting-form select,
+ .ljr-meeting-hub input:not([type=checkbox]):not([type=radio]):not([type=file]),
+ .ljr-meeting-hub textarea,.ljr-meeting-hub select){
+  background:#1C52A8!important;
+  background-image:none!important;
+  border-color:#BBD9FC!important;
+  color:#fff!important;
+}
+html body > .v105-modal.v875-meeting-modal :is(input,textarea)::placeholder{
+  color:#DFEDFF!important;opacity:1!important;
+}
+html body > .v105-modal.v875-meeting-modal
+ :is(.v919-field-label,.v919-topic-head span,.v105-meeting-form label>span,
+ .v919-hero-copy small,.ljr-meeting-hub .mh-header small){
+  color:#EAF4FF!important;
+}
+html body > .v105-modal.v875-meeting-modal
+ :is(.v919-field-label svg,.v875-agenda-chips button>span){
+  color:#C9E5FF!important;
+}
+html body > .v105-modal.v875-meeting-modal
+ :is(.v875-agenda-chips button,.v919-action,.ljr-meeting-hub button:not([aria-selected=true])){
+  background:var(--v1398-buttons)!important;
+  background-image:var(--v1398-buttons)!important;
+  border-color:var(--v1398-border)!important;
+  color:#fff!important;
+}
+html body > .v105-modal.v875-meeting-modal
+ :is(.v919-action.is-save,.ljr-meeting-hub .mh-tabs>button[aria-selected=true]){
+  background:var(--v1398-active)!important;
+  background-image:var(--v1398-active)!important;
+  border-color:#CDE8FF!important;
+  color:#fff!important;
+}
+/* Calendario y asistente local: misma saturación azul rey intermedia. */
+html body > .v105-modal.v1130-calendar-pro{
+  --calendar-night:#2159B2;
+  --calendar-base:#255FB7;
+  --calendar-card:#2B68C0;
+  --calendar-card2:#3472C8;
+  --calendar-line:rgba(185,218,255,.68);
+}
+html body > .v105-modal.v1130-calendar-pro
+ :is(.v105-form.v1130-filters,.v1107-calendar-output,
+ .v1130-local-source:not([hidden]),.v1240-local){
+  background:linear-gradient(145deg,#2E6BC2,#2762BA 72%,#225AB2)!important;
+  border-color:var(--v1398-border)!important;
+  color:#fff!important;
+}
+html body > .v105-modal.v1130-calendar-pro
+ :is(.v1130-summary span,.v1130-day h4,.v1130-state,.v1107-fixture-top strong,
+ .v1240-kpis>div){
+  background:linear-gradient(145deg,#3070C8,#265FB7)!important;
+  border-color:var(--v1398-border)!important;
+  color:#fff!important;
+}
+html body > .v105-modal.v1130-calendar-pro
+ :is(.v1130-summary b,.v1240-kpis b,.v1240-head small){
+  color:#EBF6FF!important;
+}
+html body > .v105-modal.v1130-calendar-pro
+ :is(.v1130-bar button.is-active,.v1130-exports .v105-btn[data-open]){
+  background:var(--v1398-active)!important;
+  background-image:var(--v1398-active)!important;
+  border-color:#CDE8FF!important;
+  color:#fff!important;
+}
+html body > .v105-modal.v1130-calendar-pro
+ .v105-form.v1130-filters :is(input,select){
+  background:#1C52A8!important;
+  background-image:none!important;
+  border-color:#BBD9FC!important;
+  color:#fff!important;
+}
+html body > .v105-modal.v1130-calendar-pro .v1107-fixture.v1130-fixture{
+  background:linear-gradient(145deg,#3070C7,#265FB7)!important;
+  border-color:var(--v1398-border)!important;
+}
+html body > .v105-modal.v1130-calendar-pro .v1240-head>span{
+  background:#245BB4!important;
+  border-color:var(--v1398-border)!important;
+  color:#EAF4FF!important;
+}
+html body > .v105-modal.v1130-calendar-pro .v1240-warnings p{
+  background:#2864BB!important;
+  border-color:var(--v1398-border)!important;
+  color:#fff!important;
+}
+html body > .v105-modal.v1130-calendar-pro
+ :is(.v1130-notice,.v1240-notice,.v1240-ai-result,.v1240-kpis small,
+ .v1130-source){
+  color:#E5EEFF!important;
+}
+/* No alterar display/alturas/márgenes, ocultación ni lógica del arreglo V1398. */
