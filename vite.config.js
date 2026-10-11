@@ -21,6 +21,8 @@ function copyStaticReferences() {
         ['assets/reference/predictor-v36/liga-crest-white.webp', 'dist/assets/reference/predictor-v36/liga-crest-white.webp'],
         ['assets/moments/moments-original-a.png', 'dist/assets/moments/moments-original-a.png'],
         ['assets/moments/moments-original-b.png', 'dist/assets/moments/moments-original-b.png'],
+        // CSS propio de la portada PC independiente: index se empaqueta, pero el iframe necesita su URL literal.
+        ['src/desktop-browser-editorial-20261011.css', 'dist/src/desktop-browser-editorial-20261011.css'],
         // Portada PC original: los HTML fuera de index no son emitidos por Vite.
         ['pc-exact-original-20261011.html', 'dist/pc-exact-original-20261011.html'],
         // Fotografías de Liga Juventino usadas solo dentro del HTML PC.
