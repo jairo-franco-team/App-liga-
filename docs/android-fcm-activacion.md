@@ -29,6 +29,8 @@ El módulo `server/notifications/fcm-delivery.mjs` prepara solicitudes FCM con O
 
 **Importante:** este archivo **todavía no está conectado** a `server/notifications/index.mjs`, no se han creado rutas públicas, no existe alta de tokens Android nativos ni se ha configurado la cuenta de servicio de Railway. Por tanto, **no envía Push FCM real**. El diagnóstico no considerará completa la integración simplemente por detectar el archivo.
 
+**Condiciones necesarias antes de conectar el transporte:** el despachador debe leer de PostgreSQL el aviso que fue aprobado por Presidencia, confirmar su revisión y estado vigentes, seleccionar únicamente tokens FCM asociados a suscripciones consentidas, permitir retirar el consentimiento y eliminar los tokens revocados. Si falta cualquiera de esas condiciones, se debe impedir el envío. La respuesta `accepted:true` solo indica aceptación del proveedor, **no entrega al dispositivo**.
+
 La futura cuenta de servicio Firebase debe configurarse **solo en variables privadas de Railway** (no en GitHub Pages, APK ni repositorio). `FIREBASE_ANDROID_CONFIG_B64` identifica la app Android en Actions, **no autoriza** al servidor a enviar mensajes.
 
 ## 3. Integración técnica que aún falta
