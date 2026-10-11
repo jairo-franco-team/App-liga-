@@ -1285,7 +1285,10 @@
             "away": "NAPOLI",
             "date": "2026-10-11",
             "time": "08:00",
-            "field": "Campo 3"
+            "field": "Campo 3",
+            "status": "SUSPENDIDO",
+            "suspended": true,
+            "note": "Jornada suspendida por aviso del usuario para el 11/10/2026; no es un resultado ni default."
           },
           {
             "home": "GALACTICOS",
@@ -1293,33 +1296,44 @@
             "date": "2026-10-11",
             "time": "09:00",
             "field": "Pozos",
-            "status": "GANA LINCES",
+            "status": "SUSPENDIDO",
             "decision": {
               "winner": "LINCES",
               "type": "administrative",
               "score": null
-            }
+            },
+            "suspended": true,
+            "note": "Jornada suspendida por aviso del usuario para el 11/10/2026; no es un resultado ni default."
           },
           {
             "home": "HERMANOS",
             "away": "LOBOS CDG",
             "date": "2026-10-11",
             "time": "10:00",
-            "field": "Campo 3"
+            "field": "Campo 3",
+            "status": "SUSPENDIDO",
+            "suspended": true,
+            "note": "Jornada suspendida por aviso del usuario para el 11/10/2026; no es un resultado ni default."
           },
           {
             "home": "ABEJAS",
             "away": "HERRERAS FC",
             "date": "2026-10-11",
             "time": "10:00",
-            "field": "Pozos"
+            "field": "Pozos",
+            "status": "SUSPENDIDO",
+            "suspended": true,
+            "note": "Jornada suspendida por aviso del usuario para el 11/10/2026; no es un resultado ni default."
           },
           {
             "home": "SAN JOSE FC",
             "away": "FRANCO FC",
             "date": "2026-10-11",
             "time": "12:00",
-            "field": "San Jose  de la Montaña"
+            "field": "San Jose  de la Montaña",
+            "status": "SUSPENDIDO",
+            "suspended": true,
+            "note": "Jornada suspendida por aviso del usuario para el 11/10/2026; no es un resultado ni default."
           },
           {
             "rest": "Juventus"
@@ -1865,42 +1879,60 @@
             "away": "POPULARES",
             "date": "2026-10-11",
             "time": "08:00",
-            "field": "Campo 1 (Empastado)"
+            "field": "Campo 1 (Empastado)",
+            "status": "SUSPENDIDO",
+            "suspended": true,
+            "note": "Jornada suspendida por aviso del usuario para el 11/10/2026; no es un resultado ni default."
           },
           {
             "home": "LA CUADRILLA",
             "away": "MAZACOTES FC",
             "date": "2026-10-11",
             "time": "08:00",
-            "field": "Fraccionamiento"
+            "field": "Fraccionamiento",
+            "status": "SUSPENDIDO",
+            "suspended": true,
+            "note": "Jornada suspendida por aviso del usuario para el 11/10/2026; no es un resultado ni default."
           },
           {
             "home": "MALVINAS",
             "away": "LA CANCHITA DEPORTES",
             "date": "2026-10-11",
             "time": "10:00",
-            "field": "Campo 1 (Empastado)"
+            "field": "Campo 1 (Empastado)",
+            "status": "SUSPENDIDO",
+            "suspended": true,
+            "note": "Jornada suspendida por aviso del usuario para el 11/10/2026; no es un resultado ni default."
           },
           {
             "home": "SAN ANTONIO JRS",
             "away": "CAPIBARAS",
             "date": "2026-10-11",
             "time": "10:00",
-            "field": "Romerillo"
+            "field": "Romerillo",
+            "status": "SUSPENDIDO",
+            "suspended": true,
+            "note": "Jornada suspendida por aviso del usuario para el 11/10/2026; no es un resultado ni default."
           },
           {
             "home": "PROMESAS FC",
             "away": "LA HUERTA",
             "date": "2026-10-11",
             "time": "10:00",
-            "field": "Fraccionamiento"
+            "field": "Fraccionamiento",
+            "status": "SUSPENDIDO",
+            "suspended": true,
+            "note": "Jornada suspendida por aviso del usuario para el 11/10/2026; no es un resultado ni default."
           },
           {
             "home": "DEP. MARAVILLAS",
             "away": "ATL. GALEANA",
             "date": "2026-10-11",
             "time": "12:00",
-            "field": "Campo 3"
+            "field": "Campo 3",
+            "status": "SUSPENDIDO",
+            "suspended": true,
+            "note": "Jornada suspendida por aviso del usuario para el 11/10/2026; no es un resultado ni default."
           },
           {
             "rest": "Aldama FC"
@@ -2581,42 +2613,60 @@
             "away": "TAPATIO",
             "date": "2026-10-11",
             "time": "08:00",
-            "field": "Campo 2"
+            "field": "Campo 2",
+            "status": "SUSPENDIDO",
+            "suspended": true,
+            "note": "Jornada suspendida por aviso del usuario para el 11/10/2026; no es un resultado ni default."
           },
           {
             "home": "TAVERA FC",
             "away": "SAN JULIAN",
             "date": "2026-10-11",
             "time": "10:00",
-            "field": "San Julian"
+            "field": "San Julian",
+            "status": "SUSPENDIDO",
+            "suspended": true,
+            "note": "Jornada suspendida por aviso del usuario para el 11/10/2026; no es un resultado ni default."
           },
           {
             "home": "DEP. NOPALERO",
             "away": "SAN ANTONIO FC",
             "date": "2026-10-11",
             "time": "10:00",
-            "field": "Campo 2"
+            "field": "Campo 2",
+            "status": "SUSPENDIDO",
+            "suspended": true,
+            "note": "Jornada suspendida por aviso del usuario para el 11/10/2026; no es un resultado ni default."
           },
           {
             "home": "SAN JOSE JRS",
             "away": "SAN JUAN FC",
             "date": "2026-10-11",
             "time": "10:00",
-            "field": "San Jose de la Montaña"
+            "field": "San Jose de la Montaña",
+            "status": "SUSPENDIDO",
+            "suspended": true,
+            "note": "Jornada suspendida por aviso del usuario para el 11/10/2026; no es un resultado ni default."
           },
           {
             "home": "BARZA",
             "away": "DEP. ZAPATA",
             "date": "2026-10-11",
             "time": "12:00",
-            "field": "Campo 2"
+            "field": "Campo 2",
+            "status": "SUSPENDIDO",
+            "suspended": true,
+            "note": "Jornada suspendida por aviso del usuario para el 11/10/2026; no es un resultado ni default."
           },
           {
             "home": "CELTICOS",
             "away": "DEP. LA LUZ",
             "date": "2026-10-11",
             "time": "12:00",
-            "field": "Campo 1 (Empastado)"
+            "field": "Campo 1 (Empastado)",
+            "status": "SUSPENDIDO",
+            "suspended": true,
+            "note": "Jornada suspendida por aviso del usuario para el 11/10/2026; no es un resultado ni default."
           }
         ],
         "J8": [],
@@ -2942,5 +2992,18 @@
       "34"
     ],
     "standings_recalculation": "Pendiente de confirmación de la tabla oficial"
+  },
+  "weekend_suspension_2026_10_11": {
+    "date": "2026-10-11",
+    "affected_categories": [
+      "Primera Fuerza",
+      "Intermedia",
+      "Segunda Fuerza",
+      "Veteranos 35+"
+    ],
+    "exempt_category": "Veteranos 50+",
+    "source_type": "user_notice",
+    "status": "SUSPENDIDO",
+    "note": "No convertir en partidos disputados ni resultados ni default. Los 3 pendientes de 10/10 siguen como programación separada hasta confirmar su disputa."
   }
 }
