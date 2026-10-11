@@ -20,6 +20,8 @@ const sections=[
  ['Revisar avisos','<div class="liga-media-modal"><section class="ljr-editor-dialog">','ljr-review-card'],
  ['Junta de la Liga','<div class="v105-modal v875-meeting-modal"><section class="v105-dialog">','v105-meeting-notice'],
  ['Árbitros y oficiales','<div class="v105-modal v1125-officials-modal"><section class="v105-dialog">','v1125-editor'],
+ ['Nueva sanción','<div class="v105-modal v639-sanction-modal v1130-sanction-pro"><section class="v105-dialog v1130-dialog">','v1130-summary'],
+ ['Auditoría de herramientas','<div class="v105-modal v1107-admin-modal v1212-audit-modal"><section class="v105-dialog">','v1212-item'],
  ['Ajustes de la aplicación','<div class="liga-media-modal"><section aria-label="Ajustes de la aplicación">','ljr-simple-intro']
 ];
 const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_EXECUTABLE_PATH||undefined,args:['--no-sandbox','--disable-dev-shm-usage','--disable-gpu']});
@@ -64,6 +66,6 @@ try {
    assert.equal(await page.locator('section').count(),0,title+' close handler preserved');
   }
   await page.close();
-  console.log(`PASS ${width}px: six dialog families, native selects, editable inputs, submit/close, disabled/hidden states, icons and viewport bounds.`);
+  console.log(`PASS ${width}px: ${sections.length} dialog families, native selects, editable inputs, submit/close, disabled/hidden states, icons and viewport bounds.`);
  }
 }finally{await browser.close();}
