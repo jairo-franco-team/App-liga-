@@ -362,3 +362,83 @@ html body[data-app-route="profile"] #screen#screen#screen >.ljr-cms-entry{
   background-image:linear-gradient(155deg,#2C68C6,#2459B5)!important;
   border-color:rgba(180,211,255,.55)!important;
 }
+
+/* V1415 | Fijación final del aspecto de la PRIMERA captura: Perfil, no subpantallas de Cuenta. */
+/* El antiguo repintado claro de la tarjeta y las filas seguía ganando a V1411.
+   Se refuerza únicamente el selector real #screen; nada de JS ni permisos. */
+html body[data-app-route="profile"] #screen#screen#screen#screen{
+ background-color:#0b1655!important;
+ background-image:linear-gradient(180deg,#142665 0%,#0d1850 48%,#090f39 100%)!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen .v12-profile-card[data-v569-owned],
+html body[data-app-route="profile"] #screen#screen#screen#screen .v12-profile-card:has(.v569-profile-hero){
+ background-color:#233f81!important;
+ background-image:linear-gradient(143deg,#2956a0 0%,#284a88 52%,#101e57 100%)!important;
+ border:1px solid rgba(171,196,243,.70)!important;
+ border-radius:25px!important;
+ box-shadow:0 13px 28px rgba(3,12,49,.22),inset 0 1px rgba(255,255,255,.12)!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen .v12-profile-card[data-v569-owned] .v569-profile-hero{
+ background:transparent!important;
+ background-image:none!important;
+ border:0!important;
+ box-shadow:none!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen .v569-profile-copy small{
+ color:#efd2a3!important;-webkit-text-fill-color:#efd2a3!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen .v569-profile-copy p{
+ color:#c6d3ed!important;-webkit-text-fill-color:#c6d3ed!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen .v569-profile-avatar{
+ border-color:#e9c48e!important;
+ box-shadow:0 0 0 3px rgba(233,196,142,.15)!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen .v569-profile-buttons>button{
+ background-color:#1b357a!important;
+ background-image:linear-gradient(165deg,#3157a3,#172c69)!important;
+ border:1px solid rgba(154,183,244,.65)!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+ box-shadow:none!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen .v569-profile-buttons>button:first-child{
+ background-color:#3469b4!important;
+ background-image:linear-gradient(151deg,#3a70bd,#274e91)!important;
+ border-color:#e1c28f!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen .v569-profile-account-menu,
+html body[data-app-route="profile"] #screen#screen#screen#screen .v12-profile-menu{
+ background:transparent!important;
+ background-image:none!important;
+ border:0!important;
+ box-shadow:none!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen .v569-profile-account-menu>button,
+html body[data-app-route="profile"] #screen#screen#screen#screen .v12-profile-menu>.v12-profile-row,
+html body[data-app-route="profile"] #screen#screen#screen#screen .v12-profile-menu>.ljr-profile-action-row{
+ background-color:#1a306b!important;
+ background-image:linear-gradient(180deg,#23417c,#152854)!important;
+ border:0!important;
+ border-bottom:1px solid rgba(170,197,243,.4)!important;
+ border-radius:0!important;
+ box-shadow:none!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen .v569-profile-account-menu>button>span,
+html body[data-app-route="profile"] #screen#screen#screen#screen .v12-profile-menu .v12-profile-row-icon{
+ background-color:rgba(124,152,205,.32)!important;
+ background-image:none!important;
+ border:0!important;
+ border-radius:2px!important;
+ color:#cbdfff!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen .v569-profile-account-menu>button>span svg,
+html body[data-app-route="profile"] #screen#screen#screen#screen .v12-profile-menu .v12-profile-row-icon svg{
+ color:#d4e1ff!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen >.ljr-cms-entry{
+ background-color:#10225e!important;
+ background-image:linear-gradient(155deg,#172f73,#091747)!important;
+ border:1px solid rgba(107,153,240,.45)!important;
+}
