@@ -73,16 +73,16 @@
     const green=up.getBoundingClientRect(),red=down.getBoundingClientRect();
     if(!first||!second||!frame.width||!green.width||!red.width)return;
 
-    // 6–12 px de aire entre trazos coloreados y caracteres blancos.
-    const spacing=clamp(frame.width*.018,6,12);
+    // V1382: separación corta para que ambas flechas acompañen las letras compactas.
+    const spacing=clamp(frame.width*.010,3,6);
     // SVG verde: trazo visible empieza en 25% de la anchura.
-    const greenLeft=first.right+spacing-green.width*.25-frame.left;
+    const greenLeft=first.right+spacing-green.width*.30-frame.left;
     const greenTop=first.top-green.height*.52-frame.top+18; // V1005: flecha verde 18 px más abajo
 
     // SVG rojo girado: trazo termina aproximadamente en 75% del ancho.
     // Respeta también la O situada a la izquierda de MENOS.
     const textLeft=Math.min(second.left,connector?.left??second.left);
-    const redLeft=textLeft-spacing-red.width*.78-frame.left;
+    const redLeft=textLeft-spacing-red.width*.73-frame.left;
     const redTop=second.top+second.height*.04-frame.top-10; // V1006: flecha roja 10 px arriba
 
     // Un mínimo margen evita recortes en pantallas muy estrechas.
