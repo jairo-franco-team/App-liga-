@@ -53,7 +53,7 @@ const home=String(r?.[2]||'').trim(),away=String(r?.[6]||'').trim(),time=stamp(r
 if(!home||!away||!Number.isFinite(time))continue;
 const id=[catId,r?.[8],norm(home),norm(away)].join('|');
 if(seen.has(id))continue;seen.add(id);
-items.push({id,catId,category:String(cat.name||'Categoría'),round:String(r?.[1]||''),home,away,venue:String(r?.[7]||''),date:String(r?.[8]||''),time,status:String(r?.[10]||''),homeScore:String(r?.[3]??'').trim(),awayScore:String(r?.[5]??'').trim()});
+items.push({id,officialKey:catId+':'+String(r?.[0]||''),catId,category:String(cat.name||'Categoría'),round:String(r?.[1]||''),home,away,venue:String(r?.[7]||''),date:String(r?.[8]||''),time,status:String(r?.[10]||''),homeScore:String(r?.[3]??'').trim(),awayScore:String(r?.[5]??'').trim()});
 }}
 return items.sort((a,b)=>a.time-b.time||a.id.localeCompare(b.id));
 }
@@ -86,14 +86,77 @@ function crest(name,category){
  return '<span class="md1132-crest" data-md1132-team="'+esc(name)+'"><span class="md1132-crest-fallback">'+esc(initials||'EQ')+'</span>'+
   (src?'<img src="'+esc(src)+'" alt="Escudo de '+esc(name)+'" loading="lazy" decoding="async">':'')+'</span>';
 }
-function status(g){
-if(!g)return {name:'Sin partidos',type:'pending'};
-const state=norm(g.status),scored=/^\d+$/.test(g.homeScore)&&/^\d+$/.test(g.awayScore),passed=Date.now()>=g.time;
-if(/suspend|cancel|aplaz|pospuest/.test(state))return {name:'Suspendido / aplazado',type:'pending'};
-if(/en vivo|jugando|primer tiempo|segundo tiempo/.test(state))return {name:'En vivo · oficial',type:'live'};
-if(scored&&passed)return {name:g.homeScore+' - '+g.awayScore+' · publicado',type:'final'};
-if(!passed)return {name:'Próximo',type:'next'};
-return {name:'Horario iniciado · sin confirmar',type:'pending'};
+/* V1453: cronometraje por partido. Nunca convertir la hora del rol en un silbatazo oficial. */
+function liveSignal(g,at=Date.now()){
+  if(!g?.officialKey)return null;
+  try{
+    const s=JSON.parse(localStorage.getItem('ljr-match-live-v144:'+g.officialKey)||'null');
+    if(!s||!['first','halftime','second','final'].includes(s.phase))return null;
+    const confirmed=Array.isArray(s.events)&&s.events.some(e=>e?.type==='phase-'+s.phase&&e.confirmed!==false);
+    const sourceFresh=!!(s.source?.connected&&Number(s.source.lastSync)>0&&at-Number(s.source.lastSync)<30000&&at>=Number(s.source.lastSync));
+    if(!confirmed&&!sourceFresh)return null;
+    if(!Number.isFinite(g.time)||at<g.time-15*60000||at>g.time+180*60000)return null;
+    return s;
+  }catch(_){return null}
+}
+function status(g,at=Date.now()){
+  if(!g)return {name:'Sin partidos',type:'pending'};
+  const state=norm(g.status),scored=/^\d+$/.test(g.homeScore)&&/^\d+$/.test(g.awayScore);
+  if(/suspend|cancel|aplaz|pospuest/.test(state))return {name:'Suspendido / aplazado',type:'pending'};
+  if(scored)return {name:g.homeScore+' - '+g.awayScore+' · oficial',type:'final'};
+  const signal=liveSignal(g,at);
+  if(signal?.phase==='final'||/finaliz|terminad/.test(state))return {name:'Final · acta pendiente',type:'final'};
+  if(signal&&['first','halftime','second'].includes(signal.phase))return {name:signal.phase==='halftime'?'Descanso · confirmado':'EN VIVO · confirmado',type:'live'};
+  if(/en vivo|jugando|primer tiempo|segundo tiempo|medio tiempo/.test(state))return {name:'EN VIVO · oficial',type:'live'};
+  if(at<g.time)return {name:'Próximo',type:'next'};
+  return {name:'Inicio sin confirmar',type:'pending'};
+}
+function mmss(milliseconds){
+  const n=Math.max(0,Math.floor(milliseconds/1000)),m=Math.floor(n/60),sec=n%60;
+  return String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0');
+}
+function playClock(phase,firstStarted,secondStarted,at){
+  const elapsed=Math.max(0,at-(phase==='second'?secondStarted:firstStarted));
+  if(phase==='first'){
+    if(elapsed>=45*60000)return '45+'+mmss(elapsed-45*60000);
+    return mmss(elapsed);
+  }
+  if(elapsed>=45*60000)return '90+'+mmss(elapsed-45*60000);
+  return mmss(elapsed+45*60000);
+}
+function clockFor(g,at=Date.now()){
+  if(!g)return {text:'--:--',period:'SIN PARTIDO',note:'Sin programación disponible',step:'pre',progress:0};
+  const st=status(g,at),raw=norm(g.status);
+  if(/suspend|cancel|aplaz|pospuest/.test(raw))return {text:'SUSPENDIDO',period:'SIN CRONÓMETRO',note:'Partido suspendido o aplazado',step:'final',progress:0};
+  if(st.type==='final'&&/^\d+$/.test(g.homeScore)&&/^\d+$/.test(g.awayScore))return {text:g.homeScore+' – '+g.awayScore,period:'RESULTADO FINAL',note:'Marcador oficial publicado',step:'final',progress:100};
+  const signal=liveSignal(g,at);
+  if(signal?.phase==='final')return {text:'FINAL',period:'PARTIDO TERMINADO',note:'Esperando resultado oficial',step:'final',progress:100};
+  if(signal&&['first','halftime','second'].includes(signal.phase)){
+    if(signal.phase==='halftime'){
+      const start=(signal.events||[]).filter(e=>e?.type==='phase-halftime'&&e.confirmed!==false).sort((a,b)=>Number(b.ts||0)-Number(a.ts||0))[0]?.ts;
+      const elapsed=start?at-Number(start):0;
+      return {text:mmss(elapsed),period:'DESCANSO · 15 MIN',note:'Descanso confirmado por operador',step:'break',progress:50};
+    }
+    const begun=Number(signal.phase==='first'?signal.firstStartedAt:signal.secondStartedAt);
+    const elapsed=begun>0?Math.max(0,at-begun):0;
+    const secondsInPeriod=Math.min(elapsed/60000,45);
+    return {text:begun?playClock(signal.phase,begun,begun,at):'—',
+      period:signal.phase==='first'?'PRIMER TIEMPO · 1T':'SEGUNDO TIEMPO · 2T',
+      note:begun?'Cronómetro iniciado por operador · tiempo de juego confirmado':'Período confirmado · esperando marca de inicio',
+      step:signal.phase,progress:signal.phase==='first'?secondsInPeriod/45*50:50+secondsInPeriod/45*50};
+  }
+  if(/finaliz|terminad/.test(raw))return {text:'FINAL',period:'PARTIDO TERMINADO',note:'Esperando acta oficial',step:'final',progress:100};
+  if(at<g.time){
+    const sec=Math.max(0,Math.floor((g.time-at)/1000)),days=Math.floor(sec/86400);
+    const secondsOfDay=sec%86400;
+    return {text:(days?days+' d · ':'')+String(Math.floor(secondsOfDay/3600)).padStart(2,'0')+':'+String(Math.floor(secondsOfDay%3600/60)).padStart(2,'0')+':'+String(secondsOfDay%60).padStart(2,'0'),
+      period:'CUENTA REGRESIVA',note:'Hasta la hora programada del partido',step:'pre',progress:0};
+  }
+  const elapsed=at-g.time;
+  if(elapsed<45*60000)return {text:mmss(elapsed),period:'1T · HORARIO ESTIMADO',note:'Inicio sin confirmar · no es un directo verificado',step:'first',estimated:true,progress:elapsed/(45*60000)*50};
+  if(elapsed<60*60000)return {text:mmss(elapsed-45*60000),period:'DESCANSO · ESTIMADO',note:'Descanso estimado · sin confirmación oficial',step:'break',estimated:true,progress:50};
+  if(elapsed<105*60000)return {text:mmss(elapsed-60*60000+45*60000),period:'2T · HORARIO ESTIMADO',note:'Inicio sin confirmar · no es un directo verificado',step:'second',estimated:true,progress:50+(elapsed-60*60000)/(45*60000)*50};
+  return {text:'—',period:'HORARIO TERMINADO',note:'Resultado oficial pendiente',step:'final',progress:100};
 }
 function match(){return all.find(g=>g.id===current)||null;}
 const SLOT_MS=(45+15+45)*60*1000;
@@ -134,7 +197,13 @@ if(!g)return '<div class="md1132-empty">Aún no hay partidos oficiales con fecha
 const state=status(g);
 return '<div class="md1132-cardtop"><span class="md1132-caption">PARTIDO DE LA JORNADA</span><span class="md1132-status '+state.type+'">'+esc(state.name)+'</span></div>'+
 '<div class="md1132-versus"><button type="button" class="md1132-team" data-md-team="'+esc(g.home)+'" aria-label="Ver equipo '+esc(g.home)+'">'+crest(g.home,g.category)+'<b>'+esc(g.home)+'</b></button><div class="md1132-mid"><strong>VS</strong><small>'+esc(g.category)+'</small></div><button type="button" class="md1132-team" data-md-team="'+esc(g.away)+'" aria-label="Ver equipo '+esc(g.away)+'">'+crest(g.away,g.category)+'<b>'+esc(g.away)+'</b></button></div>'+
-'<div class="md1132-clock" data-md-clock aria-live="off">--:--:--</div>'+
+'<div class="md1132-chrono" data-md-chrono data-phase="pre">'+
+    '<div class="md1132-period" data-md-period>CUENTA REGRESIVA</div>'+
+    '<div class="md1132-clock" data-md-clock aria-live="off">--:--:--</div>'+
+    '<div class="md1132-time-note" data-md-clock-note>Hora oficial programada</div>'+
+    '<div class="md1132-time-track" aria-hidden="true"><span data-md-progress></span></div>'+
+    '<div class="md1132-period-labels" aria-hidden="true"><span>1T · 45 min</span><span>Descanso · 15 min</span><span>2T · 45 min</span></div>'+
+  '</div>'+
 '<p class="md1132-meta">'+esc([g.round?'Jornada '+g.round:'',g.venue||'Campo por confirmar',g.date].filter(Boolean).join(' · '))+'</p>'+
 '<div class="md1132-actions">'+
 [['bell','Avisos','alerts'],['calendar','Agenda','calendar'],['map','Campo','map'],['share','Compartir','share']].map(x=>'<button type="button" data-md-action="'+x[2]+'">'+icon(x[0])+'<span>'+x[1]+'</span></button>').join('')+
@@ -166,9 +235,15 @@ if(route()!=='matchday'||!host?.isConnected)return;
 const now=Date.now();
 if(now-lastAdvanceCheck>=5000){lastAdvanceCheck=now;if(advanceGame(now))return;}
 const clock=$('[data-md-clock]',host),g=match();if(!clock||!g)return;
-const remaining=g.time-Date.now();
-if(remaining>0){const sec=Math.floor(remaining/1000),days=Math.floor(sec/86400),hours=Math.floor((sec%86400)/3600),mins=Math.floor(sec%3600/60),seconds=sec%60;clock.textContent=(days?days+' d · ':'')+[hours,mins,seconds].map(n=>String(n).padStart(2,'0')).join(':');}
-else clock.textContent=status(g).type==='final'?'MARCADOR PUBLICADO':'HORARIO PROGRAMADO';
+const time=clockFor(g,now),state=status(g,now),wrapper=$('[data-md-chrono]',host);
+clock.textContent=time.text;
+const period=$('[data-md-period]',host),note=$('[data-md-clock-note]',host),progress=$('[data-md-progress]',host);
+if(period)period.textContent=time.period;
+if(note)note.textContent=time.note;
+if(progress)progress.style.width=Math.max(0,Math.min(100,time.progress||0))+'%';
+if(wrapper){wrapper.dataset.phase=time.step;wrapper.classList.toggle('is-estimated',!!time.estimated)}
+const pill=$('.md1132-cardtop .md1132-status',host);
+if(pill){pill.textContent=state.name;pill.className='md1132-status '+state.type;}
 }
 function toast(value){let el=$('[data-md1132-toast]');if(!el){el=document.createElement('div');el.dataset.md1132Toast='';document.body.append(el);}el.textContent=value;el.hidden=false;clearTimeout(el._t);el._t=setTimeout(()=>el.hidden=true,3600);}
 function calendar(g){
@@ -200,7 +275,7 @@ function v1171MatchdayMaps(venue){
 function onClick(e){
 if(route()!=='matchday'||!host?.contains(e.target))return;
 const team=e.target.closest('[data-md-team]');if(team){const name=team.dataset.mdTeam;localStorage.setItem('v62-team-name',name);localStorage.setItem('v42-team-tab','summary');if(window.LJR_OFFICIAL_API?.openTeam)window.LJR_OFFICIAL_API.openTeam(name);else go('teamDetail');return;}
-const filter=e.target.closest('[data-md-filter]');if(filter){category=filter.dataset.mdFilter;const a=all.filter(g=>category==='all'||g.catId===category);if(!a.some(g=>g.id===current))current=(a.find(g=>g.time>Date.now())||a[0])?.id||'';render();return;}
+const filter=e.target.closest('[data-md-filter]');if(filter){category=filter.dataset.mdFilter;const a=all.filter(g=>category==='all'||g.catId===category);if(!a.some(g=>g.id===current))current=chooseAutomaticGame()?.id||'';manualUntil=0;render();return;}
 const select=e.target.closest('[data-md-select]');if(select){current=select.dataset.mdSelect;manualUntil=Date.now()+30000;const g=match();if(g){history.replaceState(null,'',location.pathname+location.search+'#/matchday?game='+encodeURIComponent(g.id));}render();return;}
 const action=e.target.closest('[data-md-action]');if(!action)return;
 const g=match();if(!g)return;
@@ -231,6 +306,8 @@ render();
 document.addEventListener('click',onClick);
 window.addEventListener('hashchange',()=>setTimeout(()=>activate(true),100));
 window.addEventListener('ljr:official-data',()=>activate(true));
+window.addEventListener('ljr:match-live-feed',()=>{if(route()==='matchday')tick()});
+window.addEventListener('storage',e=>{if(route()==='matchday'&&e.key?.startsWith('ljr-match-live-v144:'))tick()});
 function start(){
 const screen=$('#screen');
 if(screen)new MutationObserver(()=>activate()).observe(screen,{childList:true,subtree:true});
