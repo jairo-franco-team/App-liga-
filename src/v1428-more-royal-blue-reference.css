@@ -1,0 +1,117 @@
+/* Restauracion cromatica 2026-10-11.
+ * Referencia: primera captura de Más, azul rey profundo continuo (#020473 -> #0716b9).
+ * Solo colores/superficies: no cambiar dimensiones, rutas, estados, iconos, imagen de Más,
+ * scroll, pestañas, formularios ni botones funcionales.
+ * En la misma capa de prioridad que v1420 para vencer !important heredados.
+ */
+@layer ljr-reference-surfaces {
+@media screen {
+  /* Una sola base azul rey: el fondo de Más (la referencia) queda intacto. */
+  html body[data-app-route="leagueTools"] #screen,
+  html body[data-app-route="notifications"] #screen {
+    --ljr1420-page:#040579!important;
+    --ljr1420-panel:#0b168d!important;
+    --ljr1420-card:#1237aa!important;
+    --ljr1420-field:#0b1982!important;
+    --ljr1420-canvas:linear-gradient(180deg,#030575 0%,#050888 30%,#06109f 64%,#0815bb 100%)!important;
+    --ljr1420-surface:linear-gradient(180deg,#1540b2,#101d93 55%,#0a0e76)!important;
+    --ljr1420-button:linear-gradient(180deg,#2354c7,#142c9d)!important;
+    background-color:#040579!important;
+    background-image:var(--ljr1420-canvas)!important;
+    background-repeat:no-repeat!important;
+    background-position:center top!important;
+    background-size:100% 100%!important;
+  }
+  html body[data-app-route="leagueTools"] :is(.v726-tools-page,.v60-tool-page) {
+    background:transparent!important;
+  }
+  html body[data-app-route="leagueTools"] :is(.v726-tools-hero,.v726-quick-section,.v726-tool-section,.v726-admin-section) {
+    background-color:#0a148c!important;
+    background-image:linear-gradient(165deg,#163bb1 0%,#0e1e97 50%,#070b77 100%)!important;
+    border-color:rgba(106,151,255,.32)!important;
+  }
+  html body[data-app-route="leagueTools"] :is(.v726-quick-card,.v726-tool-card,.v612-tools-entry.v726-admin-entry,.v734-tool-card) {
+    background-color:#1235a3!important;
+    background-image:linear-gradient(180deg,#2151be 0%,#1537a4 54%,#101e8c 100%)!important;
+    border-color:rgba(129,171,255,.33)!important;
+  }
+  /* Tarjeta y boton usan la misma familia de azul, sin fondo gris ni morado. */
+  html body[data-app-route="leagueTools"] :is(.v734-tool-top,.v734-tool-main,.v734-tool-head,.v734-tool-details,.v734-tool-details-button,.v734-tool-detail-button,[data-v734-tool-details]) {
+    background-color:#1538aa!important;
+    background-image:linear-gradient(180deg,#2254bd,#142e9b)!important;
+    border-color:rgba(133,168,255,.35)!important;
+  }
+  html body[data-app-route="leagueTools"] :is(.v726-tool-icon,.v726-quick-icon,.v726-section-icon,.v726-admin-entry>span) {
+    background-color:#1642ae!important;
+    background-image:linear-gradient(155deg,#1b50bd,#103195)!important;
+    border-color:rgba(114,164,255,.34)!important;
+  }
+  html body[data-app-route="leagueTools"] :is(.v726-hero-pills span,.v726-tool-tag) {
+    background-color:#0c238e!important;
+    background-image:linear-gradient(160deg,#1a42b4,#0b2082)!important;
+  }
+  /* Notificaciones y participación: quitar el corte violeta/negro y dejar continuidad. */
+  html body .v105-bottom[data-v105-route="notifications"] {
+    background-color:#050783!important;
+    background-image:linear-gradient(180deg,#030575 0%,#05098c 50%,#0711b0 100%)!important;
+    border-top-color:#061088!important;
+  }
+  html body .v105-bottom[data-v105-route="notifications"] .v105-head,
+  html body .v105-bottom[data-v105-route="notifications"] .v105-grid {
+    background:transparent!important;
+    background-image:none!important;
+  }
+  html body .v105-bottom[data-v105-route="notifications"] .v105-card {
+    background-color:#1136ac!important;
+    background-image:linear-gradient(180deg,#1e4abd,#1538a9 55%,#102d97)!important;
+    border-color:rgba(173,197,255,.20)!important;
+  }
+  html body .v105-bottom[data-v105-route="notifications"] .v105-copy :is(b,small) {
+    background:transparent!important;
+  }
+  /* El panel real de preferencias, por dentro, conserva una sola familia azul rey. */
+  html body[data-app-route="notifications"] :is(.v46-notifications,.v46-ref-notifications-main) {
+    background-color:#060883!important;
+    background-image:linear-gradient(180deg,#060883,#070d9a 65%,#0914b4)!important;
+  }
+  html body[data-app-route="notifications"] :is(.v46-ref-device,.v46-ref-master,.v46-ref-settings,.v46-ref-categories,.v46-ref-setting,.v46-ref-category,.v46-ref-category-panel,.v1082-push,.v840-match-feed) {
+    background-color:#101f97!important;
+    background-image:linear-gradient(165deg,#1941ae,#0b1989)!important;
+  }
+  /* Administración de la Liga: restaura el azul rey de las tarjetas sin perder la jerarquia. */
+  html body .liga-media-modal > section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog) {
+    --ljr1310-bg:#05077b!important;
+    --ljr1310-surface:#0e1e95!important;
+    --ljr1310-card:#153cad!important;
+    --ljr1310-input:#0c2288!important;
+    --ljr1420-page:#05077b!important;
+    --ljr1420-panel:#0e1e95!important;
+    --ljr1420-card:#153cad!important;
+    --ljr1420-field:#0c2288!important;
+    --ljr1420-surface:linear-gradient(165deg,#1944b8,#102c9e 55%,#08187f)!important;
+    --ljr1420-button:linear-gradient(180deg,#2554c5,#1534a2)!important;
+    background-color:#05077b!important;
+    background-image:linear-gradient(180deg,#0d289e 0%,#071387 50%,#050774 100%)!important;
+    color:#fff!important;
+  }
+  html body .liga-media-modal > section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog) > header {
+    background-color:#132f9c!important;
+    background-image:linear-gradient(180deg,#2054be 0%,#0c248c 100%)!important;
+  }
+  html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-editor-dialog) :is(.ljr-admin-area,.ljr-admin-intro,.ljr-simple-intro,.ljr-guide,.ljr-admin-howto,.ljr-admin-section,.ljr-editor-hub,.ljr-editor-note,.ljr-review-card,.ljr-review-insights,.ljr-review-empty,.ljr-admin-results) {
+    background-color:#102a98!important;
+    background-image:linear-gradient(170deg,#1944b4,#0c208b)!important;
+    border-color:rgba(137,170,252,.30)!important;
+  }
+  html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly) :is(.ljr-admin-tile:not(.ljr-admin-tile-danger),.ljr-admin-action-grid>button:not(.ljr-admin-tile-danger),.ljr-editor-hub-grid>button,.cms-kind-grid>button) {
+    background-color:#153caa!important;
+    background-image:linear-gradient(180deg,#2552be,#183aa8 60%,#122c91)!important;
+    border-color:rgba(143,178,252,.35)!important;
+  }
+  html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly) :is(.ljr-admin-tile-icon,.ljr-editor-hub-grid>button>b,.ljr-simple-icon) {
+    background-color:#1a43ad!important;
+    background-image:linear-gradient(145deg,#2757c4,#14369a)!important;
+    border-color:rgba(136,185,255,.39)!important;
+  }
+}
+}
