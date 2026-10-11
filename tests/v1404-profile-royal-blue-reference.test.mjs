@@ -33,12 +33,15 @@ test('V1404: incluye ajustes, registro y modales; mantiene contrastes y acciones
  assert.ok(!/pointer-events:\s*none!important/i.test(theme));
 });
 
-test('V1405: hoja azul rey final publicada con cache nueva para Android',()=>{
- const last='src/v1402-account-admin-royal-blue.css?v=20261010-v1405-royal-blue-4169e1';
- assert.ok(html.includes(last),'Missing V1405 link');
+test('V1407: hoja azul rey intermedia final publicada con cache nueva para Android',()=>{
+ const last='src/v1402-account-admin-royal-blue.css?v=20261010-v1407-barra-azul-rey-medio';
+ assert.ok(html.includes(last),'Missing V1407 link');
  assert.equal(html.split('src/v1402-account-admin-royal-blue.css?v=').length,2);
  for(const older of ['src/v1387-profile-account-night-polish.css','src/v1396-profile-visual-harmony.css','src/account-bright-blue-unified-20261010.css'])
  assert.ok(html.indexOf(older)>=0 && html.indexOf(older)<html.indexOf(last),'Style order '+older);
+ const tail=html.slice(html.indexOf(last)+last.length);
+ assert.doesNotMatch(tail,/<link\s+rel="stylesheet"/, 'V1407 debe ser la paleta final cargada');
+ assert.match(theme,/--ljr-royal-mid-base:#235EBE/, 'Debe utilizar azul rey medio similar a la barra superior');
 });
 
 test('V1405: Mi cuenta usa azul rey real #4169E1 sin cambios funcionales',()=>{
