@@ -13,6 +13,8 @@ on:
       - 'src/v1232-suspension-official-blue.css'
       - 'tests/v1385-admin-palette-regression.test.mjs'
       - 'tests/admin-palette-android-v1353.mjs'
+      - 'src/v1420-reference-blue-surfaces.css'
+      - 'tests/v1420-reference-blue-mobile.mjs'
       - '.github/workflows/admin-mobile-palette-check.yml'
   workflow_dispatch:
 
@@ -40,11 +42,15 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Check Android viewport colors and controls
         run: node tests/admin-palette-android-v1353.mjs
+      - name: Check reference blue dialogs and preserved controls
+        run: node tests/v1420-reference-blue-mobile.mjs
       - name: Keep mobile screenshots
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: admin-mobile-v1353
-          path: artifacts/admin-mobile-v1353/*.png
+          path: |
+            artifacts/admin-mobile-v1353/*.png
+            artifacts/v1420-reference-blue/*.png
           if-no-files-found: ignore
           retention-days: 14

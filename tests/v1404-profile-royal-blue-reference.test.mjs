@@ -48,6 +48,11 @@ test('V1413: hoja azul rey media adaptada a la barra superior y cache actualizad
    // Restore exactly the old #/profile view without changing other account screens.
    assert.match(content,/html body\[data-app-route="profile"\]/);
    assert.doesNotMatch(content,/data-app-route\^="account"|data-app-route="competition"|pointer-events\s*:\s*none/);
+  }else if(path==='src/v1420-reference-blue-surfaces.css'){
+   // Nueva petición: Cuenta y cuadros del ZIP adoptan la referencia azul/cyan;
+   // la composición de Perfil sigue protegida por sus hojas propias.
+   assert.match(content,/@layer ljr-reference-surfaces/);
+   assert.doesNotMatch(content,/data-app-route="profile"|data-app-route="competition"|pointer-events\s*:\s*none/);
   }else{
    assert.doesNotMatch(content,/data-app-route="profile"|data-app-route\^="account"/,
     'Una hoja posterior no debe alterar paleta Cuenta: '+path);
