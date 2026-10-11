@@ -21985,8 +21985,11 @@
       "2"
     ],
     "exempt_category": "1",
-    "source_type": "user_notice",
+    "source_type": "official_facebook_post_screenshot",
     "status": "SUSPENDED",
-    "note": "No modificar resultados históricos ni jornadas futuras; partidos pendientes del 10/10 se mantienen distintos."
+    "note": "No modificar resultados históricos ni jornadas futuras; partidos pendientes del 10/10 se mantienen distintos.",
+    "source_label": "Juventino Rosas Liga — SE SUSPENDE LA JORNADA DOMINICAL",
+    "source_url": "",
+    "pending_2026_10_10": "Solo los tres partidos pendientes anunciados para Campo 1; no deben convertirse automáticamente en resultados."
   }
 }
