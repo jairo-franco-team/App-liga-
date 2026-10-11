@@ -1126,7 +1126,8 @@
           "JUAN CAMPOS AGUILAR",
           "SAUL GUZMAN NORIA",
           "MARTIN MONTOYA MARTINEZ",
-          "FRANCISCO HERRERA MANTERO"
+          "FRANCISCO HERRERA MANTERO",
+          "Nicolas Muñoz Barajas"
         ],
         "MANCHESTER": [
           "Bruno Rubi Garcia",
@@ -2501,6 +2502,12 @@
             "position": "Defensa",
             "dorsal": "—",
             "photo": "https://res.cloudinary.com/rdk7ndhb/image/upload/v1/jugadores/Jose_Manuel_Vargas_Palacios_ah3pph"
+          },
+          {
+            "name": "Nicolas Muñoz Barajas",
+            "position": "Defensa",
+            "dorsal": "—",
+            "photo": "https://res.cloudinary.com/rdk7ndhb/image/upload/v1/jugadores/Nicolas_Mu%C3%B1oz_Barajas_hlsaah"
           }
         ]
       },
