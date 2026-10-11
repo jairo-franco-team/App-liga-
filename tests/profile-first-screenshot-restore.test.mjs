@@ -35,3 +35,21 @@ test('Perfil clásico: sin alteraciones funcionales ni de otras rutas',()=>{
  assert.doesNotMatch(css,/<script|javascript:|pointer-events\s*:\s*none|display\s*:\s*none/i);
  assert.doesNotMatch(css,/\.topbar\s*\{|\.bottom-nav\s*\{/);
 });
+
+test('V1417: muestra el Perfil azul noche de la captura y no las filas azules sólidas',()=>{
+ assert.match(html,/profile-first-screenshot-restore\.css\?v=20261011-v1417-captura-perfil-azul-noche/);
+ assert.ok(css.includes('background-color:#05075e!important'),'Fondo superior de Perfil original');
+ assert.ok(css.includes('linear-gradient(180deg,#070967 0%,#05075e 43%,#02044f 100%)'),'Fondo nocturno completo');
+ assert.ok(css.includes('background-color:#101778!important'),'Tarjeta Mi cuenta azul profundo');
+ assert.ok(css.includes('background-color:#2455af!important'),'Boton principal original');
+ assert.ok(css.includes('border:2px solid #38d9e8!important'),'Avatar turquesa');
+ const rows=css.slice(css.indexOf('/* Opciones: FILAS TRANSPARENTES'));
+ assert.ok(rows.includes('.v569-profile-account-menu>button'));
+ assert.ok(rows.includes('.v12-profile-menu>.v12-profile-row'));
+ assert.ok(rows.includes('background-color:transparent!important'));
+ assert.ok(rows.includes('border-bottom:1px solid rgba(120,139,207,.18)!important'));
+ assert.ok(rows.includes('border-radius:0!important'));
+ const icons=rows.slice(rows.indexOf('.v569-profile-account-menu>button>span'));
+ assert.ok(icons.includes('background:transparent!important'),'Iconos sin bloque de color');
+ assert.doesNotMatch(css,/data-app-route\^="account"|data-app-route="home"|pointer-events\s*:/);
+});
