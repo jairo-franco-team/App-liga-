@@ -43,7 +43,20 @@
   '</nav><button type="button" class="ljr-uefa-return" data-v569-route="profile">← Volver a mi perfil</button>';
   return aside;
  }
+ function desktopOnly(){
+  const mode=new URLSearchParams(location.search).get('mode');
+  return mode==='desktop'||(!['mobile','apk'].includes(mode)&&window.innerWidth>=1024);
+ }
  function mount(){
+  if(!desktopOnly()){
+    // Keep the original account node and its handlers when switching to mobile.
+    for(const shell of document.querySelectorAll?.('#screen .ljr-uefa-layout')||[]){
+      const page=shell.querySelector('.v569-page');
+      if(page)shell.replaceWith(page);else shell.remove();
+    }
+    document.querySelector('#screen .ljr-uefa-guest')?.classList.remove('ljr-uefa-guest');
+    return;
+  }
   const r=route();
   if(r==='accountLogin'||r==='accountRegister'){
     document.querySelector('#screen .v569-page[data-v569-page]')?.classList.add('ljr-uefa-guest');
@@ -81,6 +94,7 @@
   if(screen)new MutationObserver(schedule).observe(screen,{childList:true,subtree:false});
   window.addEventListener('hashchange',()=>{schedule();setTimeout(schedule,120)});
   window.addEventListener('ljr:profile-updated',schedule);
+  window.addEventListener('resize',schedule);
   schedule();setTimeout(schedule,450);setTimeout(schedule,1400);
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});

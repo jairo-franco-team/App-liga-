@@ -9,14 +9,31 @@
  const html=document.documentElement;
  const where=()=>String(location.hash||'#/home');
  let target=where(),token=0,started=0,lastChange=0,staging=false;
- let quietTimer=0,hardTimer=0;
+ let quietTimer=0,hardTimer=0,animation=null;
  const MIN_MS=120,QUIET_MS=115,MAX_MS=720;
 
+ function reducedMotion(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches||document.body?.dataset.v1300Reduced==='true')return true;
+  // The account preference can already be stored before its page applies the body flag.
+  try{
+   const account=window.LJR_V569_AUTH?.currentAccount?.()||null;
+   const prefs=window.LJR_PROFILE_V1300?.readPrefs?.(account)||JSON.parse(localStorage.getItem('ljr-profile-prefs-v1300-'+String(account?.id||'guest'))||'{}');
+   return prefs.reduceMotion===true;
+  }catch(_){return false}
+ }
  function stop(){
   if(!staging)return;
   staging=false;
   clearTimeout(quietTimer);clearTimeout(hardTimer);
   html.classList.remove('ljr-route-staging');
+  const screen=document.getElementById('screen');
+  const mobile=new URLSearchParams(location.search).get('mode')!=='desktop'&&matchMedia('(max-width: 760px)').matches;
+  if(mobile&&!reducedMotion()&&screen?.animate){
+   animation?.cancel();
+   const from=window.LJR_NAVIGATION?.direction?.()==='back'?'-100%':'100%';
+   // Independent translate survives legacy #screen transform:none!important scroll rules.
+   animation=screen.animate([{translate:from+' 0'},{translate:'0 0'}],{duration:280,easing:'cubic-bezier(.22,.61,.36,1)'});
+  }
  }
  function check(id){
   if(!staging||token!==id)return;
@@ -36,6 +53,7 @@
   const url=String(next||where());
   if(staging&&target===url)return;
   if(!staging&&target===url)return;
+  animation?.cancel();
   target=url;
   started=lastChange=performance.now();
   staging=true;
