@@ -1,0 +1,179 @@
+/* Unified PC chrome modeled on user's Clasificación reference (first screenshot).
+   Strictly scoped: zero impact to mode=mobile and mode=apk. */
+html.ljpc-unified-pc body #app{
+ --ljpc-u-navy:#030b28;--ljpc-u-blue:#104bea;--ljpc-u-cyan:#16e0ea;
+ --ljpc-u-green:#28ea86;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header{
+ position:relative;z-index:140;width:100%;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+ background:#030b28;color:#f6faff;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header *,
+html.ljpc-unified-pc body #ljpc-unified-pc-footer *{box-sizing:border-box}
+html.ljpc-unified-pc body .ljpc-u-wrap{
+ width:min(1120px,calc(100% - 42px));margin:0 auto;max-width:1120px;
+}
+html.ljpc-unified-pc body .ljpc-u-nav{
+ background:linear-gradient(100deg,#104afa 0%,#092eaf 50%,#07135e 100%);
+ box-shadow:0 1px #345abf66,0 8px 22px #01092c36;
+}
+html.ljpc-unified-pc body .ljpc-u-nav>.ljpc-u-wrap{
+ height:61px;min-height:61px;display:flex;align-items:center;gap:16px;
+}
+html.ljpc-unified-pc body .ljpc-u-brand{
+ flex:0 0 auto;display:flex;align-items:center;gap:7px;
+ border:0;padding:0;background:transparent;color:white;cursor:pointer;text-align:left;
+}
+html.ljpc-unified-pc body .ljpc-u-brand img{
+ width:38px;height:38px;object-fit:contain;background:transparent;border:0
+}
+html.ljpc-unified-pc body .ljpc-u-brand span{
+ font-weight:900;letter-spacing:.06em;font-size:9px;line-height:1.04;color:white
+}
+html.ljpc-unified-pc body .ljpc-u-links{
+ display:flex;flex:1;align-items:center;gap:2px;min-width:0;white-space:nowrap;
+ overflow:visible;
+}
+html.ljpc-unified-pc body .ljpc-u-links>button,
+html.ljpc-unified-pc body .ljpc-u-links>details>summary{
+ display:inline-flex;justify-content:center;align-items:center;gap:4px;
+ border:0;border-radius:13px;background:transparent;color:#f5f9ff;
+ font-family:inherit;font-size:10.2px;font-weight:740;line-height:1.2;
+ height:33px;min-height:33px;padding:0 8px;cursor:pointer;list-style:none;
+ text-decoration:none;white-space:nowrap;transition:background .15s;
+}
+html.ljpc-unified-pc body .ljpc-u-links>button:hover,
+html.ljpc-unified-pc body .ljpc-u-links>details>summary:hover{background:#1644c2}
+html.ljpc-unified-pc body .ljpc-u-links>button.active,
+html.ljpc-unified-pc body .ljpc-u-links>details>summary.active{
+ background:#17dce9;color:#061447;font-weight:850
+}
+html.ljpc-unified-pc body .ljpc-u-links details summary::-webkit-details-marker{display:none}
+html.ljpc-unified-pc body .ljpc-u-links>details{position:relative;flex:0 0 auto}
+html.ljpc-unified-pc body .ljpc-u-links>details>summary>span{font-size:12px;opacity:.85}
+html.ljpc-unified-pc body .ljpc-u-dropdown{
+ position:absolute;z-index:1000;top:calc(100% + 7px);left:0;
+ width:215px;padding:6px;background:#071252;border:1px solid #3159a5;
+ border-radius:8px;box-shadow:0 14px 35px #00092da6;
+ display:flex;flex-direction:column;gap:2px
+}
+html.ljpc-unified-pc body .ljpc-u-dropdown button{
+ padding:10px;text-align:left;border:0;border-radius:5px;background:transparent;
+ color:#f0f6ff;font-size:11px;font-weight:650;cursor:pointer
+}
+html.ljpc-unified-pc body .ljpc-u-dropdown button:hover{background:#1947a3;color:#43efa5}
+html.ljpc-unified-pc body .ljpc-u-login{
+ flex:0 0 auto;min-height:31px;padding:0 9px;border:1px solid #a9caff59;
+ background:#10448d99;border-radius:7px;color:#fff;font:750 9px Inter,Arial,sans-serif;
+ cursor:pointer;white-space:nowrap
+}
+html.ljpc-unified-pc body .ljpc-u-login:hover{background:#135bc2}
+html.ljpc-unified-pc body #ljpc-unified-pc-header button:focus-visible,
+html.ljpc-unified-pc body #ljpc-unified-pc-header summary:focus-visible,
+html.ljpc-unified-pc body #ljpc-unified-pc-footer button:focus-visible{
+ outline:2px solid #20e7fa;outline-offset:2px
+}
+html.ljpc-unified-pc body .ljpc-u-scorebar{
+ background:#071638;border-top:1px solid #ffffff16;border-bottom:1px solid #476cba44;
+}
+html.ljpc-unified-pc body .ljpc-u-score-wrap{
+ display:flex;align-items:center;gap:10px;padding-top:8px;padding-bottom:9px;
+}
+html.ljpc-unified-pc body .ljpc-u-matchlist{
+ display:flex;align-items:stretch;gap:7px;flex:1;min-width:0;
+ overflow-x:auto;overflow-y:hidden;scrollbar-width:none
+}
+html.ljpc-unified-pc body .ljpc-u-matchlist::-webkit-scrollbar{display:none}
+html.ljpc-unified-pc body .ljpc-u-match{
+ flex:0 0 128px;min-height:54px;border:1px solid #294d89;border-radius:6px;
+ background:linear-gradient(130deg,#0d234d,#0a1533);padding:6px 7px;
+ display:flex;flex-direction:column;justify-content:center;gap:3px;
+ text-align:left;color:#f2f6ff;cursor:pointer;font-family:inherit;
+}
+html.ljpc-unified-pc body .ljpc-u-match small{
+ display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+ color:#a7bcda;font-size:7.5px;font-weight:500;line-height:1.1
+}
+html.ljpc-unified-pc body .ljpc-u-match>span{
+ display:flex;align-items:center;gap:5px;min-width:0;line-height:1.1
+}
+html.ljpc-unified-pc body .ljpc-u-match>span>b{
+ flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
+ font-weight:750;font-size:8.8px
+}
+html.ljpc-unified-pc body .ljpc-u-team-logo,
+html.ljpc-unified-pc body .ljpc-u-team-fallback{
+ width:16px;height:16px;object-fit:contain;flex:0 0 16px;display:grid;
+ place-items:center;font-size:10px;background:transparent;border-radius:50%
+}
+html.ljpc-unified-pc body .ljpc-u-match:hover{border-color:#28d5e8}
+html.ljpc-unified-pc body .ljpc-u-all{
+ flex:0 0 auto;border:1px solid #28e69d88;background:transparent;
+ color:#3af4ab;border-radius:6px;min-height:31px;padding:0 10px;
+ font-size:9px;font-weight:800;cursor:pointer;white-space:nowrap
+}
+html.ljpc-unified-pc body .ljpc-u-all:hover{background:#0e6847}
+html.ljpc-unified-pc body #ljpc-unified-pc-footer{
+ background:#030a20;width:100%;position:relative;z-index:2;
+ font-family:Inter,system-ui,"Segoe UI",Arial,sans-serif;color:#d7e7ff
+}
+html.ljpc-unified-pc body .ljpc-u-sponsor{
+ background:#fff;color:#8a94a8;text-align:center;padding:17px 12px 15px;
+ font-size:8px;font-weight:750;letter-spacing:.045em
+}
+html.ljpc-unified-pc body .ljpc-u-sponsor span{
+ color:#67778e;font-size:9px;font-weight:650;display:block;margin-top:5px
+}
+html.ljpc-unified-pc body .ljpc-u-footer{
+ background:linear-gradient(180deg,#061234,#030919);padding:26px 0 12px;
+}
+html.ljpc-unified-pc body .ljpc-u-footer-columns{
+ display:grid;grid-template-columns:1.55fr repeat(4,minmax(0,1fr));gap:19px
+}
+html.ljpc-unified-pc body .ljpc-u-footer-columns section{
+ display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0
+}
+html.ljpc-unified-pc body .ljpc-u-footer-brand img{height:33px;width:33px;object-fit:contain}
+html.ljpc-unified-pc body .ljpc-u-footer-brand strong{font-size:9px}
+html.ljpc-unified-pc body .ljpc-u-footer-columns h3{
+ font-size:8px;letter-spacing:.1em;color:#b1c5e4;font-weight:900;
+ margin:0 0 4px
+}
+html.ljpc-unified-pc body .ljpc-u-footer-columns p{
+ margin:0;color:#acbbd2;font-size:8px;line-height:1.6;max-width:210px
+}
+html.ljpc-unified-pc body .ljpc-u-footer-columns button{
+ border:0;background:transparent;color:#e5efff;font-size:8.5px;
+ font-weight:550;cursor:pointer;padding:0;text-align:left
+}
+html.ljpc-unified-pc body .ljpc-u-footer-columns button:hover{color:#2deaa7}
+html.ljpc-unified-pc body .ljpc-u-footnote{
+ border-top:1px solid #344e8055;margin-top:23px;padding-top:12px;
+ text-align:center;color:#b3c6e1;font-size:8px
+}
+/* Suppress duplicate route-specific chrome, leaving each page's own content.
+   Header/footer of original iframe are hidden only in that iframe by JS. */
+html.ljpc-unified-pc body #screen :is(.ds-nav,.ds-scorebar,.desk-nav,.desk-fixtures),
+html.ljpc-unified-pc body #screen :is(.ds-sponsors,.ds-footer,.desk-footer){
+ display:none!important
+}
+html.ljpc-unified-pc body #ljpc-pc-top :is(.ljpc-pc-mini,.ljpc-pc-navigation),
+html.ljpc-unified-pc body #ljpc-pc-bottom,
+html.ljpc-unified-pc body #ljpc-native-toolbar{display:none!important}
+/* Content-specific titles and game subtabs are retained below shared navigation. */
+html.ljpc-unified-pc body #ljpc-pc-top{background:transparent!important}
+html.ljpc-unified-pc body #screen .ds-page{min-height:0!important}
+html.ljpc-unified-pc body #screen :is(.ds-content,.desktop-page-shell){min-height:0!important}
+/* Keep consistency between the navy lower section of Inicio and the white
+   league tables: typography and shared navigation remain identical. */
+@media(max-width:1190px){
+ html.ljpc-unified-pc body .ljpc-u-links{gap:0}
+ html.ljpc-unified-pc body .ljpc-u-links>button,
+ html.ljpc-unified-pc body .ljpc-u-links>details>summary{padding:0 6px;font-size:9.5px}
+ html.ljpc-unified-pc body .ljpc-u-nav>.ljpc-u-wrap{gap:9px}
+}
+@media(max-width:1050px){
+ html.ljpc-unified-pc body .ljpc-u-links{overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
+ html.ljpc-unified-pc body .ljpc-u-nav>.ljpc-u-wrap{min-height:57px}
+ html.ljpc-unified-pc body .ljpc-u-login{font-size:8px}
+}
