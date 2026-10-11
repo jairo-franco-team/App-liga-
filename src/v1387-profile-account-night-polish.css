@@ -1,0 +1,380 @@
+/* V1387 · Perfil, Cuenta y Ajustes: mismo sistema visual que el exterior nocturno.
+   Cambio EXCLUSIVAMENTE visual. No modifica eventos, datos, seguridad ni navegación. */
+:root{
+ --ljr-account-outer:#060c34;--ljr-account-panel:#0e204e;--ljr-account-raised:#152f66;
+ --ljr-account-deep:#0a183d;--ljr-account-outline:rgba(124,157,213,.35);
+ --ljr-account-ink:#f6f8ff;--ljr-account-muted:#c4d0e6;
+ --ljr-account-royal:#2357a8;--ljr-account-gold:#f3c978;
+ --ljr-account-mint:#84dbc0;--ljr-account-coral:#efa8aa;
+}
+/* Páginas de Perfil y Cuenta. Nada global sobre partidos, juegos o CMS. */
+html body[data-app-route^="account"] #screen{
+ background:linear-gradient(180deg,#0a1c56 0%,#07143e 33%,#050b2b 100%)!important;
+ color:var(--ljr-account-ink)!important;
+}
+html body[data-app-route^="account"] #screen .v569-page{
+ width:min(100%,590px);padding:12px 0 30px;color:var(--ljr-account-ink);
+}
+html body[data-app-route^="account"] #screen .v569-page-head{padding:8px 5px 16px}
+html body[data-app-route^="account"] #screen .v569-page-head small{
+ color:#a7c4f5!important;font-size:11px!important;letter-spacing:.10em;
+}
+html body[data-app-route^="account"] #screen .v569-page-head h1{
+ font-size:clamp(25px,6vw,32px)!important;line-height:1.13!important;letter-spacing:-.025em;
+}
+html body[data-app-route^="account"] #screen .v569-page-head p{
+ font-size:clamp(12px,3.15vw,14px)!important;line-height:1.5!important;
+ color:var(--ljr-account-muted)!important;
+}
+html body[data-app-route^="account"] #screen .v569-card,
+html body[data-app-route^="account"] #screen .v1300-panel{
+ background:linear-gradient(154deg,#132c60 0%,#0e204d 43%,#0b183f 100%)!important;
+ border:1px solid var(--ljr-account-outline)!important;border-radius:19px!important;
+ box-shadow:0 12px 24px rgba(0,3,24,.18),inset 0 1px rgba(255,255,255,.05)!important;
+ color:var(--ljr-account-ink)!important;
+}
+html body[data-app-route^="account"] #screen .v569-card{padding:clamp(14px,3.6vw,20px)!important}
+html body[data-app-route^="account"] #screen .v569-form{gap:14px!important}
+html body[data-app-route^="account"] #screen .v569-field>span{
+ color:#c5d3ed!important;font-size:clamp(10px,2.8vw,12px)!important;letter-spacing:.05em!important;
+}
+html body[data-app-route^="account"] #screen .v569-field>small,
+html body[data-app-route^="account"] #screen .v569-note{
+ font-size:clamp(11px,2.9vw,12px)!important;line-height:1.55!important;color:#b6c6e2!important;
+}
+html body[data-app-route^="account"] #screen :is(.v569-field input,.v1300-cloud-form input,.v1300-select select){
+ color:#f8fbff!important;
+ background:#09193e!important;background-image:none!important;
+ border:1px solid rgba(136,164,213,.53)!important;border-radius:13px!important;
+ min-height:48px!important;box-shadow:inset 0 1px 2px rgba(0,0,0,.14)!important;
+ font-size:clamp(13px,3.35vw,15px)!important;color-scheme:dark;
+}
+html body[data-app-route^="account"] #screen :is(.v569-field input,.v1300-cloud-form input)::placeholder{
+ color:#b7c5de!important;opacity:1!important;
+}
+html body[data-app-route^="account"] #screen :is(input,select,button):focus-visible{
+ outline:2px solid #bad4ff!important;outline-offset:3px!important;
+}
+html body[data-app-route^="account"] #screen :is(.v569-primary,.v1300-primary){
+ background:linear-gradient(146deg,#2863b9,#18447e)!important;
+ border:1px solid #658fc7!important;border-radius:13px!important;
+ color:#fff!important;box-shadow:0 6px 15px rgba(0,8,35,.18),inset 0 1px rgba(255,255,255,.12)!important;
+ min-height:48px!important;font-size:clamp(12px,3.3vw,14px)!important;letter-spacing:0!important;
+}
+html body[data-app-route^="account"] #screen :is(.v569-secondary,.v1300-actions button,.v1300-link,.v1300-permission button,.v1300-pass-help button){
+ background:linear-gradient(150deg,#1a376d,#11254f)!important;
+ border:1px solid rgba(137,171,226,.5)!important;border-radius:12px!important;
+ color:#f7f9ff!important;min-height:44px!important;
+ font-size:clamp(12px,3.1vw,14px)!important;
+ box-shadow:inset 0 1px rgba(255,255,255,.05)!important;
+}
+html body[data-app-route^="account"] #screen .v569-danger{
+ background:linear-gradient(150deg,#432b49,#261f40)!important;
+ border:1px solid rgba(234,136,160,.52)!important;color:#ffd6df!important;
+ border-radius:13px!important;min-height:47px!important;
+ font-size:clamp(12px,3.3vw,14px)!important;
+}
+html body[data-app-route^="account"] #screen :is(.v569-primary,.v569-secondary,.v569-danger,.v1300-primary,.v1300-actions button):not(:disabled):active{
+ transform:scale(.985);
+}
+/* El icono del dispositivo y su marca de verificación son gráficos vectoriales estables. */
+html body[data-app-route^="account"] #screen :is(.v577-device-summary,.v569-devices article){
+ background:linear-gradient(135deg,#152f5e,#0b1b43)!important;
+ border:1px solid rgba(117,156,216,.43)!important;
+ border-radius:15px!important;min-width:0!important;
+}
+html body[data-app-route^="account"] #screen .v569-devices{gap:11px!important}
+html body[data-app-route^="account"] #screen .v569-devices article{
+ grid-template-columns:42px minmax(0,1fr) 24px!important;gap:10px!important;padding:13px!important;
+}
+html body[data-app-route^="account"] #screen .v569-devices article>span{
+ display:grid!important;place-items:center!important;width:40px;height:40px;
+ border:1px solid rgba(141,178,229,.27);border-radius:12px;background:#19355e;
+ font-size:0!important;line-height:0!important;
+}
+html body[data-app-route^="account"] #screen .v569-devices article>span::before{
+ content:"";display:block;width:23px;height:23px;background-size:contain;background-position:center;background-repeat:no-repeat;
+}
+html body[data-app-route^="account"] #screen .v569-devices article b,
+html body[data-app-route^="account"] #screen .v577-device-summary b{
+ color:#fff!important;font-size:clamp(12px,3.4vw,14px)!important;line-height:1.35!important;
+}
+html body[data-app-route^="account"] #screen .v569-devices :is(small,em),
+html body[data-app-route^="account"] #screen .v577-device-summary small{
+ color:#c0cee7!important;font-size:clamp(10px,2.7vw,12px)!important;
+ line-height:1.5!important;overflow-wrap:anywhere;
+}
+html body[data-app-route^="account"] #screen :is(.v569-devices article.current,.v577-device-summary.trusted){
+ border-color:rgba(132,219,192,.62)!important;
+}
+html body[data-app-route^="account"] #screen :is(.v569-devices article i,.v577-device-summary.trusted>span){
+ color:var(--ljr-account-mint)!important;
+}
+/* Preferencias, IA local y Cuenta en la nube. */
+html body[data-app-route^="account"] #screen .v1300-page{
+ color:var(--ljr-account-ink)!important;
+ font-size:clamp(13px,3.2vw,15px);
+}
+html body[data-app-route^="account"] #screen .v1300-detail{
+ background:linear-gradient(145deg,#1b3d78,#142f62)!important;
+ border:1px solid rgba(137,175,229,.39)!important;border-radius:17px!important;
+ padding:15px!important;grid-template-columns:45px minmax(0,1fr)!important;
+}
+html body[data-app-route^="account"] #screen .v1300-mark{
+ display:grid;place-items:center;width:44px;height:44px;
+ border-radius:13px;background:rgba(243,201,120,.12)!important;color:var(--ljr-account-gold)!important;
+}
+html body[data-app-route^="account"] #screen .v1300-mark svg{
+ display:block;width:24px;height:24px;margin:auto;
+}
+html body[data-app-route^="account"] #screen .v1300-detail strong{
+ font-size:clamp(14px,3.8vw,17px)!important;
+}
+html body[data-app-route^="account"] #screen .v1300-detail p,
+html body[data-app-route^="account"] #screen :is(.v1300-explain,.v1300-footnote,.v1300-panel>p){
+ color:#c4d1e6!important;font-size:clamp(12px,3.1vw,14px)!important;line-height:1.55!important;
+}
+html body[data-app-route^="account"] #screen .v1300-panel{
+ padding:clamp(13px,3.6vw,19px)!important;
+}
+html body[data-app-route^="account"] #screen .v1300-panel h2{
+ font-size:clamp(16px,4.1vw,19px)!important;line-height:1.25!important;
+}
+html body[data-app-route^="account"] #screen :is(.v1300-choice strong,.v1300-select strong,.v1300-permission b){
+ font-size:clamp(13px,3.4vw,15px)!important;
+}
+html body[data-app-route^="account"] #screen :is(.v1300-choice small,.v1300-permission small){
+ font-size:clamp(11px,2.95vw,13px)!important;color:#c3d0e8!important;
+}
+html body[data-app-route^="account"] #screen .v1300-choice{
+ min-height:60px!important;gap:12px!important;padding:12px 0!important;
+}
+html body[data-app-route^="account"] #screen .v1300-choice input[type=checkbox]{
+ appearance:none!important;-webkit-appearance:none!important;
+ width:44px!important;height:26px!important;flex:0 0 44px!important;
+ border:1px solid rgba(158,179,214,.52)!important;border-radius:999px!important;
+ background:#2a3856!important;position:relative!important;margin:0!important;
+ cursor:pointer;transition:background .18s ease,border-color .18s ease;
+}
+html body[data-app-route^="account"] #screen .v1300-choice input[type=checkbox]::before{
+ content:"";position:absolute;width:18px;height:18px;left:3px;top:3px;
+ border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.24);transition:transform .18s ease;
+}
+html body[data-app-route^="account"] #screen .v1300-choice input[type=checkbox]:checked{
+ background:#3979bb!important;border-color:#86b2e7!important;
+}
+html body[data-app-route^="account"] #screen .v1300-choice input[type=checkbox]:checked::before{
+ transform:translateX(18px);
+}
+html body[data-app-route^="account"] #screen :is(.v1300-findings article,.v1300-ai-status,.v1300-ai-answer,.v1300-cloud-state,.v1300-cloud-output,.v1300-pass-help){
+ background:linear-gradient(154deg,#142b57,#0c1c42)!important;
+ border:1px solid rgba(125,159,214,.4)!important;border-radius:14px!important;
+ color:#d8e4f5!important;padding:13px!important;
+ font-size:clamp(12px,3.1vw,14px)!important;line-height:1.5!important;
+}
+html body[data-app-route^="account"] #screen .v1300-findings article:nth-child(3n+1){
+ border-left:3px solid var(--ljr-account-gold)!important;
+}
+html body[data-app-route^="account"] #screen .v1300-findings article:nth-child(3n+2){
+ border-left:3px solid var(--ljr-account-mint)!important;
+}
+html body[data-app-route^="account"] #screen .v1300-findings article:nth-child(3n){
+ border-left:3px solid #a7bafa!important;
+}
+html body[data-app-route^="account"] #screen .v1300-findings strong{font-size:clamp(13px,3.4vw,15px)!important}
+html body[data-app-route^="account"] #screen .v1300-findings p{
+ font-size:clamp(12px,3.1vw,14px)!important;color:#c6d3e9!important;
+}
+html body[data-app-route^="account"] #screen .v1300-actions{gap:10px!important}
+html body[data-app-route^="account"] #screen [disabled]{cursor:not-allowed}
+
+/* Seis modales nativos de Ajustes: títulos exactos evitan invadir CMS o editor. */
+html body .liga-media-modal:has(>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"]
+)){
+ background:rgba(1,5,22,.83)!important;padding:12px!important;backdrop-filter:blur(10px);
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"]
+){
+ --settings-outline:rgba(139,172,219,.5);
+ width:min(100%,510px)!important;max-width:510px!important;max-height:min(89dvh,800px)!important;
+ overflow-y:auto!important;overflow-x:hidden!important;box-sizing:border-box!important;
+ background:linear-gradient(158deg,#152e62 0%,#0e204d 34%,#081537 100%)!important;
+ background-color:#0c1b43!important;
+ border:1px solid var(--settings-outline)!important;border-radius:22px!important;
+ padding:clamp(17px,4vw,25px)!important;box-shadow:0 25px 60px rgba(0,4,24,.54),inset 0 1px rgba(255,255,255,.07)!important;
+ color:#f6f8ff!important;color-scheme:dark;
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"]
+)>header{display:flex!important;align-items:flex-start!important;gap:12px!important;margin:0 0 18px!important}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"]
+)>header h2{
+ flex:1;min-width:0!important;color:#fff!important;font-weight:800!important;
+ font-size:clamp(20px,5.4vw,25px)!important;line-height:1.2!important;
+ letter-spacing:-.025em!important;overflow-wrap:break-word;
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"]
+)>header [data-close]{
+ flex:0 0 42px!important;width:42px!important;height:42px!important;
+ display:grid!important;place-items:center!important;padding:0!important;margin:0!important;
+ border-radius:13px!important;border:1px solid rgba(142,176,230,.46)!important;
+ background:#1a3264!important;color:#f9fbff!important;
+ font-size:23px!important;line-height:1!important;box-shadow:none!important;
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"]
+) .cms-form{display:grid!important;gap:11px!important;margin:0!important}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"]
+) :is(p,label,small){
+ color:#cdd9ed!important;font-size:clamp(13px,3.55vw,15px)!important;
+ line-height:1.5!important;overflow-wrap:anywhere;
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"]
+) :is(select,input:not([type=checkbox]),textarea){
+ min-height:46px!important;width:100%!important;max-width:100%!important;
+ box-sizing:border-box!important;border-radius:12px!important;
+ border:1px solid rgba(136,170,224,.55)!important;
+ background:#0b1a3e!important;color:#fff!important;
+ padding:11px 14px!important;font-size:clamp(13px,3.5vw,15px)!important;
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"]
+) :is(input,select,textarea,button):focus-visible{
+ outline:2px solid #bfd7ff!important;outline-offset:2px!important;
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"]
+) [data-status]:empty{display:none!important}
+/* Ajustes principales en lista con iconos distintivos, no ocho píldoras cyan iguales. */
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button{
+ position:relative!important;display:flex!important;align-items:center!important;
+ width:100%!important;min-height:56px!important;max-width:100%!important;
+ padding:11px 31px 11px 60px!important;text-align:left!important;
+ border:1px solid rgba(130,162,215,.38)!important;border-radius:15px!important;
+ background:linear-gradient(145deg,#193362,#11234a)!important;color:#f6f8ff!important;
+ font-size:clamp(13px,3.45vw,15px)!important;font-weight:650!important;line-height:1.28!important;
+ box-shadow:inset 0 1px rgba(255,255,255,.055)!important;
+ overflow-wrap:anywhere!important;white-space:normal!important;
+}
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button::before{
+ content:"";position:absolute!important;left:12px;top:50%;transform:translateY(-50%);
+ width:36px;height:36px;box-sizing:border-box;display:block;
+ border:1px solid var(--item-stroke,rgba(154,189,240,.35));
+ border-radius:11px;background-color:var(--item-bg,rgba(122,170,240,.13));
+ background-position:center;background-repeat:no-repeat;background-size:21px 21px;
+}
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button::after{
+ content:"›";position:absolute;right:12px;top:50%;transform:translateY(-53%);
+ font-size:21px;line-height:1;color:#c7d6ee;
+}
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button:active{
+ background:#244475!important;transform:scale(.99);
+}
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button:is([data-lang],[data-terms]){
+ --item-bg:rgba(245,205,129,.12);--item-stroke:rgba(245,205,129,.38);
+}
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button:is([data-access],[data-browser]){
+ --item-bg:rgba(146,182,244,.14);--item-stroke:rgba(146,182,244,.37);
+}
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button:is([data-privacy],[data-copy]){
+ --item-bg:rgba(132,219,192,.12);--item-stroke:rgba(132,219,192,.36);
+}
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button:is([data-help],[data-notify]){
+ --item-bg:rgba(239,168,170,.12);--item-stroke:rgba(239,168,170,.35);
+}
+/* Toggles con pistas y foco; input real intacto y pulsable. */
+html body .liga-media-modal>section[aria-label="Accesibilidad y pantalla"] .v5-toggle-row,
+html body .liga-media-modal>section[aria-label="Ajustes de privacidad"] .cms-form>label:has([data-personalization]){
+ display:flex!important;align-items:center!important;justify-content:space-between!important;
+ gap:16px!important;min-height:68px!important;padding:15px 2px!important;
+ border-bottom:1px solid rgba(145,175,220,.22)!important;
+ color:#edf4ff!important;
+}
+html body .liga-media-modal>section:is([aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"])
+ input[type=checkbox]{
+ -webkit-appearance:none!important;appearance:none!important;position:relative!important;
+ display:block!important;flex:0 0 46px!important;width:46px!important;height:27px!important;
+ min-width:46px!important;min-height:27px!important;margin:0!important;padding:0!important;
+ background:#35415e!important;border:1px solid rgba(172,185,208,.52)!important;
+ border-radius:999px!important;cursor:pointer!important;outline-offset:3px!important;
+}
+html body .liga-media-modal>section:is([aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"])
+ input[type=checkbox]::before{
+ content:"";position:absolute;top:3px;left:3px;width:19px;height:19px;
+ border-radius:50%;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,.25);
+ transition:transform .18s ease;
+}
+html body .liga-media-modal>section:is([aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"])
+ input[type=checkbox]:checked{background:#3476b3!important;border-color:#80b3e3!important}
+html body .liga-media-modal>section:is([aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"])
+ input[type=checkbox]:checked::before{transform:translateX(19px)}
+html body .liga-media-modal>section[aria-label="Ajustes de privacidad"] .cms-form>button,
+html body .liga-media-modal>section[aria-label="Ayúdanos a mejorar"] .cms-form>button{
+ width:100%;min-height:46px!important;padding:10px 14px!important;
+ border-radius:13px!important;border:1px solid rgba(132,168,219,.55)!important;
+ background:linear-gradient(140deg,#214985,#162e61)!important;
+ color:#fff!important;font-size:clamp(12px,3.25vw,14px)!important;
+}
+html body .liga-media-modal>section[aria-label="Ajustes de privacidad"] .cms-form>button[data-clear]{
+ background:#202c4d!important;color:#ffdfdf!important;border-color:rgba(235,159,167,.45)!important;
+}
+@media(max-width:390px){
+ html body[data-app-route^="account"] #screen .v1300-actions{grid-template-columns:minmax(0,1fr)!important}
+ html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button{
+  min-height:53px!important;padding-left:55px!important;
+ }
+ html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button::before{
+  width:33px;height:33px;background-size:20px 20px;
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ html body[data-app-route^="account"] #screen .v1300-choice input::before,
+ html body .liga-media-modal>section:is([aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"])
+ input[type=checkbox]::before{transition:none!important}
+}
+body.ljr-reduce-motion[data-app-route^="account"] #screen :is(button,input),
+body.ljr-reduce-motion .liga-media-modal button{transition:none!important;animation:none!important}
+
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button[data-lang]::before{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23f3c978%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M4%205h12M10%203v3m4%200c-.8%205-3.5%208.8M5%209c1.3%202.6%203.2%204.5%206%205M14%2018l3.4-8%203.4%208M15%2015.7h5%22%2F%3E%3C%2Fsvg%3E")!important}
+
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button[data-notify]::before{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23f2b6b5%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M18%208a6%206%200%200%200-12%200c0%208-3%208-3%2010h18c0-2-3-2-3-10ZM10%2021h4%22%2F%3E%3C%2Fsvg%3E")!important}
+
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button[data-access]::before{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23b4cafa%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%203a2%202%200%201%200%200%20.01M4%208l8%202%208-2M12%2010v11M12%2014l-5%207M12%2014l5%207%22%2F%3E%3C%2Fsvg%3E")!important}
+
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button[data-help]::before{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23f2b6b5%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M4%205h16v11H9l-5%204V5Z%20M8%209h8M8%2012h5%22%2F%3E%3C%2Fsvg%3E")!important}
+
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button[data-privacy]::before{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2392debc%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%202%204%205v7c0%205%203%208%208%2010%205-2%208-5%208-10V5l-8-3Zm-3%209%202%202%204-4%22%2F%3E%3C%2Fsvg%3E")!important}
+
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button[data-terms]::before{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23f3c978%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M6%203h9l4%204v14H6V3Zm9%200v5h4M9%2012h7M9%2016h7%22%2F%3E%3C%2Fsvg%3E")!important}
+
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button[data-copy]::before{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2392debc%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M8%207h12v14H8V7ZM4%2017H3V3h12v1%22%2F%3E%3C%2Fsvg%3E")!important}
+
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button[data-browser]::before{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23b4cafa%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M3%205h18v14H3V5Zm0%204h18M6%207h.01M9%207h.01M13%2014l3-3m0%200v3m0-3h-3%22%2F%3E%3C%2Fsvg%3E")!important}
+
+html body[data-app-route^="account"] #screen .v569-devices article>span::before{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23aacaf0%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%226%22%20y%3D%222%22%20width%3D%2212%22%20height%3D%2220%22%20rx%3D%222%22%2F%3E%3Cpath%20d%3D%22M10%2018h4%22%2F%3E%3C%2Fsvg%3E")!important}
