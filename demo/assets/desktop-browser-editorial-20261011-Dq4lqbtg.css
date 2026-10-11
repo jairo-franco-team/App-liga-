@@ -1,0 +1,549 @@
+/* Liga Juventino Rosas · Browser PC editorial 2026-10-11
+   ONLY the standalone desktop homepage iframe and confirmed desktop shells.
+   Presentation only: no routing, game data, click handlers or mobile overrides. */
+
+/* Desktop landing page lives in pc-exact-original-20261011.html, never in mobile UI. */
+#root .ucl {
+  --navy:#040b31;
+  --navy2:#081948;
+  --card:#0b1b47;
+  --line:#2b477b;
+  --green:#34d9ee;
+  --blue:#1452ee;
+  --text:#f4f7ff;
+  --muted:#a6b6d6;
+  background:#f1f4fa !important;
+}
+#root .ucl [data-name="hero and content section"] {
+  background:
+    radial-gradient(750px 360px at 4% 47%,rgba(25,85,247,.26),transparent 78%),
+    radial-gradient(700px 370px at 98% 52%,rgba(24,135,222,.19),transparent 75%),
+    linear-gradient(180deg,#081d73 0%,#080c4d 30%,#081044 100%);
+  color:#f7faff;
+}
+#root .ucl [data-name="header navigation wrapper"] {
+  background:linear-gradient(100deg,#1554fa 0%,#0b38c6 48%,#07145e 100%);
+  border-top:1px solid rgba(255,255,255,.14);
+  border-bottom:1px solid rgba(110,182,255,.29);
+  box-shadow:0 4px 22px rgba(1,12,68,.16);
+}
+#root .ucl [data-name="navigation layout container"],
+#root .ucl [data-name="fixtures strip container"],
+#root .ucl [data-name="hero section container"],
+#root .ucl [data-name="moments section container"],
+#root .ucl [data-name="news section container"],
+#root .ucl [data-name="video highlights section"],
+#root .ucl [data-name="spotlight videos section"],
+#root .ucl [data-name="footer content container"] {
+  max-width:1210px !important;
+}
+#root .ucl [data-name="navigation layout container"] {min-height:62px;gap:clamp(12px,1.4vw,22px)}
+#root .ucl [data-name="main menu navigation"] {gap:clamp(10px,1.3vw,22px);white-space:nowrap;min-width:0}
+#root .ucl [data-name="main menu navigation"] > a {
+  font-weight:650;line-height:1.3;font-size:11px;
+  padding:8px 3px;border-bottom:2px solid transparent;transition:color .16s,border-color .16s;
+}
+#root .ucl [data-name="main menu navigation"] > a:hover,
+#root .ucl [data-name="main menu navigation"] > a:focus-visible {
+  color:#e8fdff;border-bottom-color:#6deafa;
+}
+#root .ucl [data-name="fixtures strip container"] {margin-top:10px}
+#root .ucl [data-name="match cards list"] {min-width:0;overflow-x:auto;scrollbar-width:thin;scrollbar-color:#4c76c2 transparent;padding-bottom:3px}
+#root .ucl [data-name^="match card "] {
+  min-height:66px;border-color:rgba(87,158,255,.36);
+  background:rgba(6,21,89,.83);transition:border-color .17s,background .17s;
+}
+#root .ucl [data-name^="match card "]:hover,
+#root .ucl [data-name^="match card "]:focus-visible {
+  background:#123a9d;border-color:#73b9ff;
+}
+#root .ucl [data-name="stories wrapper"] a {transition:transform .18s}
+#root .ucl [data-name="stories wrapper"] a:hover {transform:translateY(-2px)}
+#root .ucl [data-name="story ring"] {background:linear-gradient(140deg,#20dfe9,#1269f3,#57d6ff) !important}
+#root .ucl [data-name="hero section container"] {gap:18px;padding-bottom:42px}
+#root .ucl [data-name="featured hero article card"] {
+  border-radius:10px;isolation:isolate;min-height:340px;
+  box-shadow:0 10px 28px rgba(0,5,32,.24);
+}
+#root .ucl [data-name="featured hero article card"] .img {
+  object-fit:cover;object-position:50% 45%;
+}
+#root .ucl [data-name="highlighted articles sidebar"] {
+  border-radius:10px;background:rgba(5,12,61,.93);
+  border-color:rgba(107,164,255,.26);
+  box-shadow:0 12px 32px rgba(0,8,42,.16);
+}
+/* UEFA-like light editorial middle: preserve card DOM and clickable routes. */
+#root .ucl [data-name="moments section container"],
+#root .ucl [data-name="news section container"] {
+  color:#182441;position:relative;
+}
+#root .ucl [data-name="moments section container"] {padding-top:34px}
+#root .ucl [data-name="news section container"] {padding-top:28px;padding-bottom:23px}
+#root .ucl [data-name="moments section container"] [data-name="section title"],
+#root .ucl [data-name="news section container"] > [data-name="section title"] {
+  font-size:18px;font-weight:800;color:#1a2947;letter-spacing:-.015em;
+}
+#root .ucl [data-name="moments section container"] [data-name="view all link"] {color:#1256d7;font-weight:700}
+#root .ucl [data-name="moments grid container"] {gap:11px}
+#root .ucl [data-name^="moment card "] {
+  height:190px;border:1px solid #dee3f0;border-radius:8px;
+  box-shadow:0 2px 7px rgba(13,31,81,.08);
+  transition:transform .2s,box-shadow .2s;
+}
+#root .ucl [data-name^="moment card "]:hover {transform:translateY(-3px);box-shadow:0 8px 18px rgba(13,31,81,.12)}
+#root .ucl [data-name="news row 1 container"],
+#root .ucl [data-name="news row 2 container"] {gap:14px}
+#root .ucl [data-name="news section container"] [data-name^="news card "],
+#root .ucl [data-name="news section container"] [data-name="featured news card 2"] {
+  background:#fff!important;border-color:#dde3ef!important;
+  color:#23314e;border-radius:9px;
+  box-shadow:0 2px 9px rgba(18,37,75,.06);
+  transition:transform .2s,border-color .2s,box-shadow .2s;
+}
+#root .ucl [data-name="news section container"] a[data-pc-route]:hover {
+  border-color:#89a9e8!important;box-shadow:0 7px 18px rgba(12,46,110,.1);
+}
+#root .ucl [data-name="news section container"] [data-name="featured news card"],
+#root .ucl [data-name="news section container"] [data-name="featured news card 2"] {color:#fff!important}
+#root .ucl [data-name="news section container"] [data-name="news card content"],
+#root .ucl [data-name="news section container"] [data-name="news card bottom container"] {
+  color:#24334e;background:#fff;
+}
+#root .ucl [data-name="news section container"] [data-name="view all news link"] {
+  color:#1455d5;border-color:#6393ef;background:#fff;
+  font-weight:750;border-radius:5px;
+}
+#root .ucl [data-name="video section container"] {
+  margin-top:28px;
+  color:#f9fbff;
+  background:linear-gradient(112deg,#114af0 0%,#102fb8 45%,#07145b 100%);
+}
+#root .ucl [data-name="video highlights section"],
+#root .ucl [data-name="spotlight videos section"] {padding-top:36px}
+#root .ucl [data-name="video section container"] [data-name="section title"] {
+  font-size:18px;font-weight:800;letter-spacing:-.015em;
+}
+#root .ucl [data-name="video highlights grid"],
+#root .ucl [data-name="spotlight videos grid"] {gap:15px}
+#root .ucl [data-name^="video highlight card"],
+#root .ucl [data-name^="spotlight video card"] {
+  border-color:rgba(170,196,253,.35);border-radius:9px;
+  background:#081b59;color:#f5f8ff;
+}
+#root .ucl [data-name^="video highlight card"]:hover,
+#root .ucl [data-name^="spotlight video card"]:hover {border-color:#59dce8}
+#root .ucl [data-name="sponsors band"] {
+  background:#eef2f8!important;color:#5d6e86;border-color:#e0e7f2!important;
+}
+#root .ucl [data-name="sponsors label"] {color:#65758d}
+#root .ucl [data-name="footer"] {
+  background:linear-gradient(150deg,#030a31,#07175d 56%,#020822)!important;
+}
+#root .ucl [data-pc-route]:focus-visible {outline:2px solid #6eefff;outline-offset:3px}
+#root .ucl .img {object-fit:cover;object-position:center;max-width:100%}
+#root .ucl [data-name="logo icon container"] .ljpc-original-crest {object-fit:contain}
+@media (max-width:1160px) {
+ #root .ucl [data-name="main menu navigation"] {gap:10px;font-size:10px}
+ #root .ucl [data-name="navigation layout container"] {gap:12px}
+ #root .ucl [data-name="moments grid container"] {gap:7px}
+}
+/* Only native routes with confirmed desktop mode. Mobile/APK never match. */
+@media screen and (min-width:1024px) {
+ html.ljpc-pc-native-mode body.ljpc-native-route {
+  --ljpc-accent:#32d9e9;
+  background:linear-gradient(180deg,#050b36,#061049 52%,#030920)!important;
+ }
+ html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-wide {
+  width:min(1210px,calc(100% - 48px));
+ }
+ html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-navigation {
+  background:linear-gradient(105deg,#1454f7 0%,#0b39b7 52%,#071252 100%);
+  box-shadow:0 4px 20px rgba(0,8,37,.17);
+ }
+ html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-navigation .ljpc-pc-wide {min-height:66px;gap:20px}
+ html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-navigation nav button {
+  border-radius:6px;transition:color .15s,background .15s;
+ }
+ html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-navigation nav button:hover {
+  background:#194fca;color:#fff;
+ }
+ html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-navigation nav button.active {
+  background:#e9f8ff!important;color:#0a2b86!important;
+ }
+ html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-hero {
+  background:radial-gradient(640px 240px at 95% 0%,#2674f544,transparent 75%),
+             linear-gradient(110deg,#16429c,#081b58 68%,#071039);
+ }
+ html.ljpc-pc-native-mode body.ljpc-native-route #screen {
+  width:min(1240px,calc(100% - 48px))!important;max-width:1240px!important;
+  padding:27px 20px 48px!important;
+ }
+ html.ljpc-pc-native-mode body.ljpc-native-route #screen :is(.news-row,.section,.team-card,.match-card) {
+  box-sizing:border-box;
+ }
+ html.ljpc-pc-native-mode body.ljpc-native-route #screen :is(.news-row,.team-card,.match-card):hover {
+  border-color:#4c90ee;
+ }
+ html.ljpc-pc-native-mode body.ljpc-native-route #ljpc-pc-bottom {
+  background:linear-gradient(145deg,#030a28,#081858 70%,#030922);
+ }
+ body.lj-desktop .ds-page .ds-wrap {width:min(1210px,calc(100vw - 48px))}
+ body.lj-desktop .ds-page .ds-section-title h2 {font-size:20px;letter-spacing:-.02em}
+ body.lj-desktop .ds-page .ds-news {border-radius:9px}
+ body.lj-desktop .ds-page .ds-card {border-radius:9px;border-color:#dfe5f1}
+ body.lj-desktop .ds-page .ds-nav {background:linear-gradient(105deg,#1555f4,#082b9b 60%,#06154b)}
+}
+@media (prefers-reduced-motion:reduce) {
+ #root .ucl [data-name^="moment card "],
+ #root .ucl [data-name^="news card "],
+ #root .ucl [data-name="main menu navigation"] > a {transition:none!important}
+}
+
+
+/* LJR PC COMPACT GREEN BLUE 2026-10-11 | desktop only | screenshots 16:14-16:15 */
+/*
+ * Objetivo: que los cuadros inferiores se lean como un mismo bloque visual
+ * verde-azul, con menos distancia y dimensiones de navegador PC.
+ * CSS únicamente: conserva vídeos, botones, favoritos, calendarios y rutas.
+ * En móvil normal no se aplica porque falta body.lj-desktop.
+ */
+
+/* Portada PC encapsulada en iframe. El fondo verde/azul continúa en Momentos,
+   noticias, vídeos y zona inferior, evitando cortes marinos muy grandes. */
+#root .ucl {
+ --navy:#051449;--navy2:#0c285e;--card:#0b2765;
+ --line:#34639a;--green:#38e5ca;--blue:#1759e9;--muted:#bad1ec;
+ background:
+   radial-gradient(900px 630px at -9% 12%,rgba(5,154,98,.49),transparent 76%),
+   radial-gradient(950px 610px at 105% 27%,rgba(24,91,219,.45),transparent 80%),
+   linear-gradient(180deg,#07184d 0%,#071a4d 65%,#06143c 100%)!important;
+ color:#f2f8ff!important;
+}
+#root .ucl [data-name="hero and content section"] {
+ background:
+  radial-gradient(710px 440px at -4% 38%,rgba(4,174,103,.44),transparent 75%),
+  radial-gradient(720px 480px at 104% 54%,rgba(29,101,229,.53),transparent 78%),
+  linear-gradient(115deg,#051d5c 0%,#071757 68%,#050e38 100%)!important;
+}
+#root .ucl [data-name="moments section container"],
+#root .ucl [data-name="news section container"] {
+ background:transparent!important;color:#f5faff!important;
+}
+#root .ucl [data-name="moments section container"] [data-name="section title"],
+#root .ucl [data-name="news section container"] > [data-name="section title"]{
+ color:#f7fbff!important;font-size:17px!important;
+}
+#root .ucl [data-name="moments section container"] [data-name="view all link"] {color:#53eaf0!important}
+#root .ucl [data-name="moments section container"] {padding-top:18px!important}
+#root .ucl [data-name="news section container"] {padding-top:16px!important;padding-bottom:12px!important}
+#root .ucl [data-name="moments grid container"] {gap:9px!important}
+#root .ucl [data-name^="moment card "] {
+ height:151px!important;border-color:#2ca7be!important;border-width:1px!important;
+ border-radius:7px!important;box-shadow:0 4px 12px rgba(0,9,38,.16)!important;
+}
+#root .ucl [data-name="hero section container"] {margin-top:13px!important;padding-bottom:20px!important}
+#root .ucl [data-name="featured hero article card"] {height:298px!important;min-height:298px!important}
+#root .ucl [data-name="highlighted articles sidebar"] {height:298px!important}
+#root .ucl [data-name="news row 1 container"],
+#root .ucl [data-name="news row 2 container"] {gap:10px!important}
+#root .ucl [data-name="featured news card"] {height:223px!important}
+#root .ucl [data-name="news section container"] [data-name^="news card "],
+#root .ucl [data-name="news section container"] [data-name="featured news card 2"] {
+ background:#0b2562!important;border-color:#2a5594!important;
+ box-shadow:0 4px 13px rgba(0,8,38,.18)!important;
+ color:#f5faff!important;
+}
+#root .ucl [data-name="news section container"] [data-name="news card content"],
+#root .ucl [data-name="news section container"] [data-name="news card bottom container"] {
+ background:#0c235e!important;color:#f1f8ff!important;
+}
+#root .ucl [data-name="news section container"] [data-name="view all news link"] {
+ border-color:#42cbd8!important;color:#8df3fa!important;
+ background:#07265d!important;
+}
+#root .ucl [data-name="video section container"] {
+ margin-top:14px!important;
+ background:
+ radial-gradient(510px 310px at 4% 40%,rgba(3,152,102,.46),transparent 85%),
+ linear-gradient(106deg,#0b40a9 0%,#0b2f9a 47%,#061752 100%)!important;
+}
+#root .ucl [data-name="video highlights section"] {padding-top:20px!important}
+#root .ucl [data-name="spotlight videos section"] {padding-top:22px!important;padding-bottom:25px!important}
+#root .ucl [data-name="video section container"] [data-name="section title"] {font-size:17px!important}
+#root .ucl [data-name="sponsors band"] {height:54px!important;background:#0a3254!important;border-color:#167d8e!important}
+#root .ucl [data-name="sponsors label"] {color:#bde8ed!important}
+#root .ucl [data-name="footer content container"] {padding-top:21px!important;padding-bottom:15px!important}
+#root .ucl [data-name="footer links"] {margin-top:30px!important}
+/* Mantener contenido dentro de las tarjetas y sin estirar las imágenes. */
+#root .ucl [data-name^="moment card "] img,
+#root .ucl [data-name="news section container"] img,
+#root .ucl [data-name="video section container"] img {object-fit:cover;max-width:100%}
+#root .ucl [data-name="highlighted articles sidebar"] img {object-fit:cover}
+#root .ucl [data-name="match cards list"] {gap:7px!important}
+
+/* La app nativa de Inicio agrega módulos funcionales luego del iframe;
+   se integran visualmente en el mismo lienzo sin mover sus nodos/eventos. */
+body.lj-desktop[data-app-route="home"] #screen {
+ background:
+  radial-gradient(850px 700px at -9% 1%,rgba(5,154,98,.35),transparent 78%),
+  radial-gradient(830px 740px at 106% 30%,rgba(22,104,214,.38),transparent 80%),
+  linear-gradient(180deg,#061849,#071a50 55%,#040e39 100%)!important;
+ min-height:0!important;
+ padding-bottom:10px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen > #safeHomeExtra,
+body.lj-desktop[data-app-route="home"] #screen > #v105-bottom {
+ box-sizing:border-box!important;
+ width:min(1210px,calc(100% - 34px))!important;
+ max-width:1210px!important;
+ min-width:0!important;
+ margin-left:auto!important;margin-right:auto!important;
+}
+/* No dejar cientos de píxeles entre la portada de navegador y los módulos. */
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra {
+ margin-top:0!important;margin-bottom:12px!important;
+ padding:14px 12px 5px!important;
+ border:1px solid rgba(49,172,186,.3)!important;
+ border-radius:12px!important;
+ background:
+  radial-gradient(600px 240px at 0% 0%,rgba(5,151,100,.2),transparent),
+  linear-gradient(126deg,rgba(5,49,91,.74),rgba(8,29,87,.89))!important;
+ color:#f6faff!important;
+ display:grid!important;
+ grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:12px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra > .v6-section {
+ width:100%!important;min-width:0!important;
+ margin:0!important;padding:12px!important;
+ border:1px solid rgba(108,164,229,.19)!important;
+ border-radius:8px!important;
+ background:rgba(8,29,91,.43)!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra > .v6-quick,
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra > .v6-section:has(.v6-video-list),
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra > .v6-section:has(.v6-table-card),
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra > .v6-section:has(.v6-scorers),
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra > .v73-home-interleaved {
+ grid-column:1 / -1!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-section-head {
+ margin-bottom:8px!important;gap:8px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-section-head h2 {
+ font-size:17px!important;line-height:1.25!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-action-grid {
+ grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:8px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-action-card {
+ padding:9px!important;min-height:59px!important;
+ border-radius:7px!important;gap:7px!important;
+ grid-template-columns:30px minmax(0,1fr) 10px!important;
+ background:linear-gradient(115deg,#12439b,#0a2463)!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-action-icon{
+ width:30px!important;height:30px!important;border-radius:7px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-action-icon svg{
+ width:18px!important;height:18px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-video-list {
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ gap:9px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-video-card {
+ min-height:73px!important;padding:9px!important;border-radius:7px!important;
+ grid-template-columns:33px minmax(0,1fr)!important;gap:5px 9px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-play {
+ width:33px!important;height:33px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-video-card b {font-size:12px!important}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-week-player {
+ padding:12px!important;border-radius:8px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-week-row {margin:8px 0!important;gap:8px!important}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-week-row h3 {font-size:17px!important}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-table-head,
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-table-row {padding:6px 9px!important}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-stat-card {
+ min-width:0!important;flex:1!important;padding:10px!important;border-radius:8px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-big {font-size:27px!important;margin-top:4px!important}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-scorers > button{
+ min-height:34px!important;padding:7px 10px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-calendar-card > div{
+ border-radius:7px!important;padding:8px 5px!important;
+}
+
+/* Los tres paneles de PARTIDOS, EQUIPOS y RENDIMIENTO conservan sus controles,
+   pero pasan de banners de 430-470px a tarjetas horizontales compactas. */
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra > .v73-home-interleaved {
+ min-height:170px!important;height:auto!important;
+ margin:0!important;border-radius:9px!important;
+ border-color:rgba(67,192,195,.38)!important;
+ box-shadow:none!important;
+ background:linear-gradient(115deg,#063a54,#123c83 58%,#071e60)!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra > .v73-home-interleaved .v73-motion-inner {
+ min-height:170px!important;height:auto!important;
+ padding:14px 19px!important;display:grid!important;
+ grid-template-columns:minmax(215px,1.2fr) minmax(190px,1fr)!important;
+ gap:5px 18px!important;align-content:center!important;
+ align-items:center!important;justify-content:stretch!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra > .v73-home-interleaved .v73-motion-kicker{
+ grid-column:1!important;font-size:9px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra > .v73-home-interleaved h2{
+ grid-column:1!important;max-width:none!important;
+ font-size:clamp(20px,2.5vw,31px)!important;line-height:1!important;
+ letter-spacing:-.02em!important;margin:2px 0!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra > .v73-home-interleaved p{
+ grid-column:1!important;max-width:95%!important;font-size:11px!important;
+ line-height:1.35!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra > .v73-home-interleaved .v73-motion-pills {
+ grid-column:2!important;grid-row:1 / span 3!important;
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ gap:7px!important;margin:0!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra > .v73-home-interleaved .v73-motion-pills button{
+ height:38px!important;min-width:0!important;
+ padding:0 5px!important;font-size:10px!important;border-radius:7px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra > .v73-home-interleaved .v73-motion-toggle{
+ grid-column:2!important;grid-row:4!important;justify-self:end!important;
+ margin:0!important;
+}
+
+/* Inferior V105: compacto, con vídeo horizontal y accesos cuatro por fila. */
+body.lj-desktop[data-app-route="home"] #screen > #v105-bottom[data-v105-route="home"] {
+ padding:14px!important;margin-top:0!important;margin-bottom:10px!important;
+ border-radius:12px!important;
+ background:linear-gradient(124deg,rgba(4,63,90,.87),rgba(9,34,110,.95))!important;
+ border-color:rgba(68,200,216,.32)!important;
+ box-shadow:none!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #v105-bottom[data-v105-route="home"] .v105-head{
+ margin-bottom:9px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #v105-bottom[data-v105-route="home"] .v105-head h2 {
+ font-size:19px!important;margin:4px 0!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #v105-bottom[data-v105-route="home"] .v105-motion,
+body.lj-desktop[data-app-route="home"] #screen #v105-bottom[data-v105-route="home"] .v105-motion-copy {
+ min-height:102px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #v105-bottom[data-v105-route="home"] .v105-motion {
+ margin-bottom:10px!important;border-radius:8px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #v105-bottom[data-v105-route="home"] .v105-motion-copy {
+ padding:13px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #v105-bottom[data-v105-route="home"] .v105-motion-copy b {
+ font-size:19px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #v105-bottom[data-v105-route="home"] .v105-final {
+ display:grid!important;grid-template-columns:minmax(0,1.15fr) minmax(220px,.85fr)!important;
+ align-items:center!important;margin-bottom:11px!important;
+ border-radius:9px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #v105-bottom[data-v105-route="home"] .v105-final video {
+ width:100%!important;max-height:230px!important;height:auto!important;
+ object-fit:contain!important;background:#03092b!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #v105-bottom[data-v105-route="home"] .v105-final-copy {
+ padding:13px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #v105-bottom[data-v105-route="home"] .v105-final-copy b {
+ font-size:17px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #v105-bottom[data-v105-route="home"] .v105-grid {
+ grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:8px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #v105-bottom[data-v105-route="home"] .v105-card {
+ min-height:60px!important;padding:9px!important;
+ border-radius:8px!important;grid-template-columns:29px minmax(0,1fr) 12px!important;gap:7px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #v105-bottom[data-v105-route="home"] .v105-icon{
+ width:29px!important;height:29px!important;border-radius:7px!important;
+}
+body.lj-desktop[data-app-route="home"] #screen #v105-bottom[data-v105-route="home"] .v105-copy b {font-size:11px!important}
+body.lj-desktop[data-app-route="home"] #screen #v105-bottom[data-v105-route="home"] .v105-copy small {font-size:9px!important;margin-top:2px!important}
+body.lj-desktop[data-app-route="home"] #screen :is(#safeHomeExtra,#v105-bottom) :is(button,a,select,input):focus-visible {
+ outline:2px solid #58e9f0!important;outline-offset:2px!important;
+}
+
+/* PC forzado en Chrome Android: dos columnas si el ancho real es estrecho. */
+@media (max-width:900px) {
+ body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra {grid-template-columns:1fr!important}
+ body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra > :is(.v6-section,.v73-home-interleaved) {grid-column:1/-1!important}
+ body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-action-grid {grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-video-list {grid-template-columns:1fr!important}
+ body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra > .v73-home-interleaved .v73-motion-inner {grid-template-columns:1fr!important}
+ body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra > .v73-home-interleaved .v73-motion-pills {grid-column:1!important;grid-row:auto!important}
+ body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra > .v73-home-interleaved .v73-motion-toggle {grid-column:1!important;grid-row:auto!important}
+ body.lj-desktop[data-app-route="home"] #screen #v105-bottom[data-v105-route="home"] .v105-final {grid-template-columns:1fr!important}
+ body.lj-desktop[data-app-route="home"] #screen #v105-bottom[data-v105-route="home"] .v105-grid {grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+
+/* LJR PC bottom integration footer | native modules before footer | 2026-10-11 */
+/* Sólo se oculta el footer original del iframe cuando hay módulos funcionales
+   adicionales. El footer navegable se crea después de #screen, no dentro,
+   para evitar conflictos con observadores de los módulos originales. */
+body.ljpc-supplements-active #root .ucl [data-name="footer"] {display:none!important}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer {
+ box-sizing:border-box;width:100%;margin:0!important;padding:19px 20px 12px!important;
+ background:linear-gradient(145deg,#07143c,#08194e 66%,#040b27);
+ border-top:1px solid rgba(45,211,200,.35);color:#f1f7ff;
+ font-family:Inter,"Segoe UI",Arial,sans-serif;
+}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer .ljpc-home-footer-inner {
+ box-sizing:border-box;width:min(1210px,100%);margin:0 auto;
+ display:grid;grid-template-columns:minmax(230px,1.6fr) repeat(3,minmax(135px,1fr));
+ align-items:start;gap:22px;
+}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer .ljpc-home-footer-title {
+ display:flex;align-items:center;gap:12px;
+}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer .ljpc-home-footer-title img {
+ display:block;width:47px;height:47px;object-fit:contain;flex:0 0 47px;
+}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer .ljpc-home-footer-title b{
+ display:block;font-size:12px;letter-spacing:.02em;
+}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer .ljpc-home-footer-title small{
+ display:block;color:#bad2ed;font-size:10px;line-height:1.5;max-width:300px;margin-top:5px;
+}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer nav{
+ display:flex;flex-direction:column;align-items:flex-start;gap:7px;min-width:0;
+}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer nav strong{
+ color:#79dce9;font-size:10px;letter-spacing:.08em;margin-bottom:3px;
+}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer nav button{
+ border:0;background:transparent;color:#d5e2f5;text-align:left;
+ padding:3px 0;font:600 11px Inter,"Segoe UI",Arial,sans-serif;
+ cursor:pointer;min-height:25px;
+}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer nav button:hover{
+ color:#66e8ec;text-decoration:underline;
+}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer nav button:focus-visible{
+ outline:2px solid #63edf5;outline-offset:3px;
+}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer .ljpc-home-footer-legal{
+ width:min(1210px,100%);margin:14px auto 0;padding-top:9px;
+ border-top:1px solid rgba(128,167,224,.16);color:#95afce;
+ text-align:center;font-size:9px;
+}
+@media(max-width:900px){
+ body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer .ljpc-home-footer-inner{
+  grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;
+ }
+}
