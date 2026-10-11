@@ -53,3 +53,34 @@
      flechas, compartir, Play-off cian, tarjetas de equipos ni eventos. */
  }
 }
+
+/* V1427 · Arreglo del fondo que se ve REALMENTE detrás de Clasificación y Cuadro.
+   Muestra proporcionada: RGB(0,0,64) = #000040. Los contenedores interiores
+   también tienen fondo propio y antes tapaban #screen.
+   No cambiar colores, tamaño ni funcionamiento de los botones y tarjetas. */
+@layer ljr-reference-surfaces {
+ @media screen {
+  html body[data-app-route="competition"] {
+    background-color:#000040!important;
+  }
+  html body[data-app-route="competition"] #screen#screen#screen,
+  html body.v40-standings-master[data-app-route="competition"] #screen#screen#screen {
+    background-color:#000040!important;
+    background-image:none!important;
+  }
+  html body[data-app-route="competition"] #screen#screen#screen > .tabs,
+  html body[data-app-route="competition"] #screen#screen#screen > .v40-standings-host,
+  html body[data-app-route="competition"] #screen#screen#screen .v40-standings,
+  html body[data-app-route="competition"] #screen#screen#screen .v40-content,
+  html body[data-app-route="competition"] #screen#screen#screen .v12-bracket-reference,
+  html body[data-app-route="competition"] #screen#screen#screen .v12-bracket-stage-tabs,
+  html body[data-app-route="competition"] #screen#screen#screen .v12-bracket-board,
+  html body[data-app-route="competition"] #screen#screen#screen .v12-bracket-brackets,
+  html body[data-app-route="competition"] #screen#screen#screen .v12-bracket-scroll,
+  html body[data-app-route="competition"] #screen#screen#screen .v12-bracket-route,
+  html body[data-app-route="competition"] #screen#screen#screen .ljr-knockout {
+    background-color:#000040!important;
+    background-image:none!important;
+  }
+ }
+}
