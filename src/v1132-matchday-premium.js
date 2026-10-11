@@ -183,7 +183,8 @@ const SLOT_MS=(45+15+45)*60*1000;
 function chooseAutomaticGame(now=Date.now()){
   const choices=all.filter(g=>(category==='all'||g.catId===category)&&
     !/suspend|cancel|aplaz|pospuest/.test(norm(g.status))&&
-    !(/^\d+$/.test(g.homeScore)&&/^\d+$/.test(g.awayScore)));
+    !(/^\d+$/.test(g.homeScore)&&/^\d+$/.test(g.awayScore))&&
+    status(g,now).type!=='final');
   const order=(a,b)=>a.time-b.time||a.id.localeCompare(b.id);
   const confirmed=choices.filter(g=>/en vivo|jugando|primer tiempo|segundo tiempo/.test(norm(g.status))&&
     g.time<=now&&now<g.time+180*60000).sort(order);
