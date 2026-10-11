@@ -7,6 +7,14 @@ const REMOTE='https://raw.githubusercontent.com/jairofrancog7-star/Liga_Futbol/m
 const SRC='https://raw.githubusercontent.com/jairofrancog7-star/Liga_Futbol/main/';
 let db=window.LJR_OFFICIAL_DATA||null;
 let loading=null;
+const CATEGORIES=[
+ {id:'3',name:'Primera Fuerza',logo:'assets/branding/primera-fuerza-hd.png'},
+ {id:'5',name:'Intermedia',logo:'assets/categories/intermedia.webp'},
+ {id:'4',name:'Segunda Fuerza',logo:'assets/categories/segunda-fuerza.webp'},
+ {id:'2',name:'Veteranos 35+',logo:'assets/categories/veteranos-35-user.png'},
+ {id:'1',name:'Veteranos 50+',logo:'assets/categories/veteranos-50.webp'}
+];
+let categoryId=localStorage.getItem('v62-category')||'3';
 let activeTab=localStorage.getItem('v33-data-tab')||'general';
 try{
   if(localStorage.getItem('v542-stats-layout-restored')!=='1'){
@@ -16,7 +24,7 @@ try{
   }
 }catch(_){activeTab='general'}
 
-function route(){return location.hash.replace('#/','')||'home'}
+function route(){return location.hash.replace('#/','').split('?')[0]||'home'}
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]))}
 function norm(v){return String(v??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim()}
 function same(a,b){return norm(a)===norm(b)}
@@ -31,7 +39,12 @@ async function load(){
   })();
   return loading;
 }
-function current(){return db?.categories?.['3']||null}
+function current(){return db?.categories?.[categoryId]||null}
+function categoryName(){return CATEGORIES.find(c=>c.id===categoryId)?.name||current()?.name||'Categoría'}
+function categorySelector(){
+ return '<section class="v33-category-section" data-v33-category-selector aria-label="Seleccionar categoría"><h2>Selecciona categoría</h2><div class="v33-category-grid">'+
+ CATEGORIES.map(c=>'<button type="button" data-v33-category="'+c.id+'" aria-pressed="'+(c.id===categoryId)+'"><img src="./'+c.logo+'" alt="Escudo de '+c.name+'" loading="lazy" decoding="async"><span>'+c.name+'</span></button>').join('')+'</div></section>';
+}
 function logoFor(name){
   const v=Object.entries(db?.team_logos||{}).find(([k])=>same(k,name))?.[1];
   if(v?.local)return SRC+String(v.local).replace(/^\.\//,'');
@@ -52,7 +65,7 @@ function playerAvatar(name,team,cls='v33-player-avatar'){
   const p=(Array.isArray(entry?.[1])?entry[1]:[]).find(x=>same(x?.name,name));
   src=String(p?.photo||'').trim();
   if(!src){
-    try{src=window.LJR_PLAYER_MEDIA?.photo?.(name,team,'3')||window.LJR_PLAYER_PHOTOS?.get?.(name,team,'3')||''}catch(_){}
+    try{src=window.LJR_PLAYER_MEDIA?.photo?.(name,team,categoryId)||window.LJR_PLAYER_PHOTOS?.get?.(name,team,categoryId)||''}catch(_){}
   }
   return src
     ?'<span class="'+cls+' v576-has-photo" data-v579-player-photo><img src="'+esc(src)+'" alt="'+esc(name)+'" loading="lazy" decoding="async" referrerpolicy="no-referrer"></span>'
@@ -74,7 +87,16 @@ function header(){
  '</header>';
 }
 function standings(){
- return current()?.standings?.[0]?.rows||[];
+ const c=current(),rows=c?.standings?.[0]?.rows||[];
+ if(rows.length)return rows;
+ // Before the first match, show the actual scheduled teams with zero totals.
+ // Missing results after play has started remain unknown.
+ const teams=[];
+ const add=name=>{if(name&&!teams.some(t=>same(t,name)))teams.push(name)};
+ (c?.fixtures?.[0]?.rows||[]).forEach(r=>{add(r[2]);add(r[6])});
+ Object.keys(c?.rosters||{}).forEach(add);
+ const emptySeason=c?.counts?.['Partidos Jugados']===0;
+ return teams.map(team=>['—',team,...Array(8).fill(emptySeason?'0':null)]);
 }
 function num(v){
  const n=Number(String(v??'').replace('+',''));
@@ -89,15 +111,16 @@ function metricRows(index,order='desc',limit=5){
  return rows.slice(0,limit);
 }
 function metricLabel(index,value){
- const v=String(value??'');
+ if(value==null)return '—';
+ const v=String(value);
  if(index===8&&num(v)>0)return '+'+num(v);
  return v;
 }
 function teamMetricRow(r,index,metricIndex,rows){
- const rank=rows?rows.findIndex(x=>num(x[metricIndex])===num(r[metricIndex]))+1:index+1;
+ const rank=r[metricIndex]==null?'—':rows?rows.findIndex(x=>num(x[metricIndex])===num(r[metricIndex]))+1:index+1;
  return '<button type="button" class="v33-stat-row" data-v33-team="'+esc(r[1])+'">'+
    '<span class="v33-rank">'+rank+'</span>'+teamLogo(r[1])+
-   '<span class="v33-row-copy"><b>'+esc(r[1])+'</b><small>Primera Fuerza</small></span>'+
+   '<span class="v33-row-copy"><b>'+esc(r[1])+'</b><small>'+esc(categoryName())+'</small></span>'+
    '<strong>'+esc(metricLabel(metricIndex,r[metricIndex]))+'</strong>'+
  '</button>';
 }
@@ -126,7 +149,7 @@ function playerRow(p,index){
  const goals=Object.prototype.hasOwnProperty.call(p,'value')?p.value:p.goals??scorer?.goals;
  const valueLabel=goals==null?metric+' no publicados':goals+' '+metric.toLowerCase();
  const detail=p.team+(position?' · '+position:'');
- return '<button type="button" class="v33-stat-row player" data-v33-player="'+esc(p.name)+'" data-v33-player-team="'+esc(p.team)+'" title="'+esc(p.name+' · '+detail+' · '+valueLabel)+'">'+
+ return '<button type="button" class="v33-stat-row player" data-v33-player="'+esc(p.name)+'" data-v33-player-team="'+esc(p.team)+'" data-v33-player-cat="'+categoryId+'" title="'+esc(p.name+' · '+detail+' · '+valueLabel)+'">'+
    '<span class="v33-rank">'+esc(p.rank??(index+1))+'</span>'+playerAvatar(p.name,p.team,'v33-player-team-logo v576-player-avatar')+
    '<span class="v33-row-copy"><b>'+esc(p.name)+'</b><small data-v33-player-detail>'+teamLogo(p.team,'v33-inline-team-logo')+esc(detail)+'</small></span>'+
    '<strong aria-label="'+esc(valueLabel)+'">'+esc(goals??'—')+'</strong>'+
@@ -189,12 +212,21 @@ function playerMetricEntries(metric){
  // The source has no minutes, shots, passes or keeper statistics. Keep the
  // official roster visible, with explicit unknown values rather than zeros.
  players=rosterEntries();
- if(metric==='conceded'||metric==='saves')players=players.filter(p=>same(playerProfile(p.name,p.team)?.position,'Portero'));
+ if(metric==='conceded'||metric==='saves'){
+   // Include substitutes from the same team and official goalkeeper profiles
+   // not yet included in the roster snapshot, without duplicating identities.
+   players=[];
+   for(const [team,profiles] of Object.entries(current()?.player_profiles||{})){
+     for(const p of (Array.isArray(profiles)?profiles:[])){
+       if(p.name&&same(p.position,'Portero')&&!players.some(x=>same(x.name,p.name)&&same(x.team,team)))players.push({name:p.name,team});
+     }
+   }
+ }
  return {published:false,players:players.map(p=>({...p,value:null,rank:'—',metricTitle:title}))};
 }
-function playerMetricCard(metric){
+function playerMetricCard(metric,visibleRows=5){
  const {published,players}=playerMetricEntries(metric),title=PLAYER_METRICS[metric];
- return '<article class="v33-stat-card" data-v33-metric="'+metric+'" data-v33-published="'+published+'"><h3>'+esc(title)+(published?'':'<small class="v33-unpublished">Datos no publicados</small>')+'</h3><div class="v33-stat-list">'+
+ return '<article class="v33-stat-card" data-v33-metric="'+metric+'" data-v33-published="'+published+'" style="--v33-card-rows:'+visibleRows+'"><h3>'+esc(title)+(published?'':'<small class="v33-unpublished">Datos no publicados</small>')+'</h3><div class="v33-stat-list">'+
    players.slice(0,5).map(playerRow).join('')+
    '</div><button type="button" class="v33-see-all" data-v33-expand-metric="'+metric+'" aria-expanded="false">Ver todos los jugadores <span>›</span></button></article>';
 }
@@ -214,7 +246,7 @@ function playerDetailedView(){
  return '<main class="v33-data-content v33-detailed v593-detail-horizontal">'+
    playerSections().map(([title,metrics])=>'<section class="v33-general-section v593-detail-section" data-v33-player-section>'+
      '<div class="v33-general-title"><h2>'+esc(title)+'</h2></div>'+
-     '<div class="v33-carousel v593-detail-carousel">'+metrics.map(playerMetricCard).join('')+'</div>'+
+     '<div class="v33-carousel v593-detail-carousel">'+metrics.map(metric=>playerMetricCard(metric,Math.max(1,...metrics.map(m=>Math.min(5,playerMetricEntries(m).players.length))))).join('')+'</div>'+
    '</section>').join('')+
  '</main>';
 }
@@ -299,8 +331,8 @@ function markup(){
  /* V872 — leagueData/Estadísticas vuelve al diseño histórico V33.
     El bloque V446/V509 se había quedado sin su CSS histórico y provocaba
     el logo gigante, fondo negro y botones grises de la captura. */
- return '<section class="v33-data-page" data-v33-data data-v1350-reference data-v33-mode="'+activeTab+'">'+header()+
-   (activeTab==='general'?generalView():activeTab==='team'?teamDetailedView():playerDetailedView())+'</section>';
+ return '<section class="v33-data-page" data-v33-data data-v1350-reference data-v33-mode="'+activeTab+'" data-v33-current-category="'+categoryId+'">'+header()+
+   (activeTab==='general'?generalView():activeTab==='team'?teamDetailedView():playerDetailedView()).replace('</main>',categorySelector()+'</main>')+'</section>';
 }
 function toast(msg){const old=document.querySelector('.v33-toast');if(old)old.remove();const n=document.createElement('div');n.className='v33-toast';n.textContent=msg;document.body.appendChild(n);setTimeout(()=>n.remove(),1500)}
 function setBottomNav(){/* Global nav active state is owned by V34. */}
@@ -316,6 +348,15 @@ function setTab(tab){
  const out=render();
  (document.body.classList.contains('v768-scroll-root')?document.querySelector('#screen'):window)?.scrollTo({top:0,behavior:'auto'});
  return out;
+}
+async function setCategory(id){
+ id=String(id);
+ if(!CATEGORIES.some(c=>c.id===id))return;
+ await load();if(!db?.categories?.[id])return;
+ categoryId=id;localStorage.setItem('v62-category',id);
+ window.LJR_OFFICIAL_API?.setCategory?.(id);
+ (document.body.classList.contains('v768-scroll-root')?document.querySelector('#screen'):window)?.scrollTo({top:0,behavior:'auto'});
+ return render();
 }
 function setRefView(mode){
  const next=mode==='team'?'team':'player';
@@ -368,11 +409,12 @@ function bind(){
    bind();fitRowText();
  });
 
+ document.querySelectorAll('[data-v33-category]').forEach(b=>b.onclick=e=>{e.preventDefault();setCategory(b.dataset.v33Category)});
  document.querySelectorAll('[data-v33-tab]').forEach(b=>b.onclick=e=>{e.preventDefault();setTab(b.dataset.v33Tab)});
  document.querySelectorAll('[data-v33-back]').forEach(b=>b.onclick=e=>{e.preventDefault();if(window.LJR_APP_BACK)window.LJR_APP_BACK();else goRoute('more')});
  document.querySelectorAll('[data-v33-share]').forEach(b=>b.onclick=e=>{e.preventDefault();share()});
  document.querySelectorAll('[data-v33-team]').forEach(b=>b.onclick=()=>{if(window.LJR_OFFICIAL_API?.openTeam)window.LJR_OFFICIAL_API.openTeam(b.dataset.v33Team);else toast(b.dataset.v33Team)});
- document.querySelectorAll('[data-v33-player]').forEach(b=>b.onclick=()=>{if(window.LJR_PLAYER_PROFILE_API?.open)window.LJR_PLAYER_PROFILE_API.open({name:b.dataset.v33Player,cat:'3'});else goRoute('players')});
+ document.querySelectorAll('[data-v33-player]').forEach(b=>b.onclick=()=>{if(window.LJR_PLAYER_PROFILE_API?.open)window.LJR_PLAYER_PROFILE_API.open({name:b.dataset.v33Player,cat:categoryId});else goRoute('players')});
  document.querySelectorAll('[data-v33-route]').forEach(b=>b.onclick=e=>{e.preventDefault();goRoute(b.dataset.v33Route||'leagueData')});
  document.querySelectorAll('[data-v33-ref-view]').forEach(b=>b.onclick=e=>{e.preventDefault();setRefView(b.dataset.v33RefView||'player')});
  document.querySelectorAll('[data-v33-jump-table]').forEach(b=>b.onclick=e=>{e.preventDefault();document.querySelector('[data-v33-unified-table]')?.scrollIntoView({behavior:'smooth',block:'start'})});
@@ -467,6 +509,8 @@ document.addEventListener('scroll',onScroll,{passive:true,capture:true});
 async function render(){
  const active=isDataRoute();document.body.classList.toggle('v33-data-active',active);if(!active)return;
  await load();if(!db||!isDataRoute())return;
+ const stored=localStorage.getItem('v62-category');
+ categoryId=db.categories?.[stored]?stored:db.categories?.[categoryId]?categoryId:'3';
  const screen=document.querySelector('#screen');if(!screen)return;screen.innerHTML=markup();setBottomNav();bind();applyHeaderScroll();fitRowText();alignContentOrigin();scheduleContentOrigin();
  // Keep the active label visible without changing vertical scroll position.
  const tabsNode=screen.querySelector('.v33-tabs');
@@ -482,5 +526,5 @@ if(target){
 }
 if(document.body)new MutationObserver(scheduleContentOrigin).observe(document.body,{attributes:true,attributeFilter:['class','data-app-route','data-mobile-layout']});
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',schedule,{once:true});else schedule();
-window.LJR_V33_STATS={setTab,setRefView,goRoute,share,render};
+window.LJR_V33_STATS={setCategory,getCategory:()=>categoryId,setTab,setRefView,goRoute,share,render};
 })();

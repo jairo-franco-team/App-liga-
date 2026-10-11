@@ -140,7 +140,8 @@ function categoryTeams(c){
   return out;
 }
 function teamContext(name){
-  for(const id of CAT_ORDER){
+  // A club can belong to several categories: preserve the selected category.
+  for(const id of [categoryId,...CAT_ORDER.filter(id=>id!==categoryId)]){
     const c=cat(id);if(!c)continue;
     const n=categoryTeams(c).find(t=>same(t,name));
     if(n)return {id,c,name:n};

@@ -13,7 +13,7 @@ test('player statistics shows the official goal ranking with compact official pl
  assert.ok(!screen.innerHTML.includes('✓'),'no registration checkmarks in statistics');
  assert.ok(!screen.innerHTML.includes(' · Jugador registrado'),'only team and position in the secondary line');
  assert.match(screen.innerHTML,/<h2>Goles<\/h2>/);
- assert.deepEqual([...screen.innerHTML.matchAll(/<h2>([^<]+)<\/h2>/g)].map(m=>m[1]),['Datos clave','Goles','Remates','Ataque','Distribución','Defensa','Portería','Información disciplinaria']);
+ assert.deepEqual([...screen.innerHTML.matchAll(/<h2>([^<]+)<\/h2>/g)].map(m=>m[1]),['Datos clave','Goles','Remates','Ataque','Distribución','Defensa','Portería','Información disciplinaria','Selecciona categoría']);
  const [first]=data.categories['3'].scorers[0].rows;
  const goalsCard=screen.innerHTML.split('data-v33-metric="goals"')[1]?.split('</article>')[0]||'';
  assert.ok(goalsCard.includes(first[1]),'official top scorer appears in the goals card');

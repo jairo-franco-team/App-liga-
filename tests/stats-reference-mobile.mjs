@@ -67,10 +67,10 @@ const rect=e=>{const r=e.getBoundingClientRect();return {top:r.top,bottom:r.bott
    const modeHeading=await page.locator('.v33-general-title').first().evaluate(rect);
    const modeTabs=await page.locator('.v33-tabs').evaluate(rect);
    assert.ok(modeHeading.top-modeTabs.bottom>=0&&modeHeading.top-modeTabs.bottom<35,'no empty band after changing '+tab);
-   const geometry=await page.locator('.v33-stat-card').evaluateAll(es=>es.map(e=>({width:e.getBoundingClientRect().width,height:e.getBoundingClientRect().height,rows:[...e.querySelectorAll('.v33-stat-row')].map(r=>r.getBoundingClientRect().height)})));
+   const geometry=await page.locator('.v33-stat-card').evaluateAll(es=>es.map(e=>({width:e.getBoundingClientRect().width,height:e.getBoundingClientRect().height,slots:Number(e.style.getPropertyValue('--v33-card-rows')||5),rows:[...e.querySelectorAll('.v33-stat-row')].map(r=>r.getBoundingClientRect().height)})));
    for(const card of geometry){
     assert.ok(Math.abs(card.width-width*.765)<1,'same reference card width in '+tab);
-    assert.ok(Math.abs(card.height-width*1.22)<2,'same reference card height in '+tab+': '+card.height);
+    assert.ok(Math.abs(card.height-width*(.295+card.slots*.185))<2,'same reference card height in '+tab+': '+card.height);
     for(const height of card.rows)assert.ok(Math.abs(height-width*.185)<1,'same fixed row height in '+tab);
    }
    const overflowing=await page.locator('.v33-row-copy').evaluateAll(es=>es.filter(e=>{
@@ -117,6 +117,44 @@ const rect=e=>{const r=e.getBoundingClientRect();return {top:r.top,bottom:r.bott
     assert.equal(await goals.locator('..').locator('.v33-stat-row').count(),before,'official goals collapses');
    }
   }
+
+  // Every category owns its data and identity, and can be chosen below all cards.
+  await page.evaluate(()=>window.LJR_V33_STATS.setTab('player'));
+  const data=JSON.parse(fs.readFileSync(path.join(root,'data/official-live.json')));
+  for(const id of ['5','4','2','1','3']){
+   const selector=page.locator('[data-v33-category-selector]');
+   assert.equal(await selector.locator('button').count(),5);
+   const lastSection=await page.locator('[data-v33-player-section]').last().evaluate(rect);
+   assert.ok((await selector.evaluate(rect)).top>=lastSection.bottom,'selector follows every statistics section');
+   await page.locator(`[data-v33-category="${id}"]`).click({noWaitAfter:true});
+   await page.waitForFunction(id=>document.querySelector('[data-v33-current-category]')?.dataset.v33CurrentCategory===id,id);
+   await page.waitForTimeout(250);
+   assert.equal(await page.locator(`[data-v33-category="${id}"]`).getAttribute('aria-pressed'),'true');
+   assert.equal(await page.evaluate(()=>localStorage.getItem('v62-category')),id);
+   const photos=await page.locator('[data-v33-category-selector] img').evaluateAll(es=>es.map(e=>({loaded:e.complete&&e.naturalWidth>0,width:e.getBoundingClientRect().width,height:e.getBoundingClientRect().height})));
+   assert.ok(photos.every(p=>p.loaded&&Math.abs(p.width-width*.118)<1&&Math.abs(p.height-width*.118)<1),'all five original category logos load at the reference icon size');
+   const keepers=page.locator('[data-v33-metric="saves"]');
+   const actualKeepers=Object.values(data.categories[id].player_profiles).flat().filter(p=>p.position==='Portero');
+   assert.equal(await keepers.locator('.v33-stat-row').count(),Math.min(5,actualKeepers.length));
+   const blank=await keepers.evaluate(e=>{const rows=e.querySelectorAll('.v33-stat-row');return e.querySelector('.v33-see-all').getBoundingClientRect().top-rows[rows.length-1].getBoundingClientRect().bottom});
+   assert.ok(blank<2,'no empty band below the final goalkeeper');
+   const pair=await page.locator('[data-v33-metric="saves"],[data-v33-metric="conceded"]').evaluateAll(es=>es.map(e=>e.getBoundingClientRect().height));
+   assert.ok(Math.abs(pair[0]-pair[1])<1,'goalkeeper cards have identical heights');
+   assert.ok(await page.locator('[data-v33-player-cat]').evaluateAll((es,id)=>es.every(e=>e.dataset.v33PlayerCat===id),id),'every row opens the selected category profile');
+   const firstGoal=(data.categories[id].scorers?.[0]?.rows||[]).find(r=>r[1]&&r[2]&&!/goles en temporada/i.test(r[2])&&/^\d+$/.test(r[3]));
+   if(firstGoal)assert.equal(await page.locator('[data-v33-metric="goals"] .v33-row-copy b').first().textContent(),firstGoal[1]);
+   else assert.match(await page.locator('[data-v33-metric="goals"] h3').textContent(),/Datos no publicados/);
+   await page.evaluate(()=>window.LJR_V33_STATS.setTab('team'));
+   assert.ok(await page.locator('.v33-stat-row').count()>0,'scheduled or classified teams appear even before the season starts');
+   const firstTeam=data.categories[id].standings?.[0]?.rows?.[0]?.[1]||data.categories[id].fixtures[0].rows[0][2];
+   assert.equal(await page.locator('.v33-row-copy b').first().textContent(),firstTeam);
+   await page.evaluate(()=>window.LJR_V33_STATS.setTab('player'));
+  }
+  await page.locator('[data-v33-metric="saves"]').scrollIntoViewIfNeeded();
+  await page.screenshot({path:`/tmp/stats-${width}-keepers.png`});
+  await page.locator('[data-v33-category-selector]').scrollIntoViewIfNeeded();
+  await page.screenshot({path:`/tmp/stats-${width}-categories.png`});
+
   // Exercise the real route boundary and Android-like changes in usable height.
   await page.evaluate(()=>{location.hash='#/more'});
   await page.waitForTimeout(400);
@@ -126,6 +164,10 @@ const rect=e=>{const r=e.getBoundingClientRect();return {top:r.top,bottom:r.bott
   await page.evaluate(()=>window.scrollTo(0,0));
   await page.setViewportSize({width,height:780});
   await page.waitForTimeout(400);
+  // Navigation restores the previous deep scroll position; measure the top
+  // only after that restoration and the viewport resize have completed.
+  await page.evaluate(()=>window.scrollTo(0,0));
+  await page.waitForTimeout(300);
   const returnedHeading=await page.locator('.v33-general-title').first().evaluate(rect);
   const returnedTabs=await page.locator('.v33-tabs').evaluate(rect);
   assert.ok(returnedHeading.top-returnedTabs.bottom>=0&&returnedHeading.top-returnedTabs.bottom<35,'no second spacer after entering from More or browser bar resize');

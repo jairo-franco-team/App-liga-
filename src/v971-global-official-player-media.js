@@ -93,7 +93,7 @@ function patchRows(root){
   ['.v391-rank-row[data-v194-player]','data-v194-player','data-v194-team','','.v576-player-avatar','.v391-rank-copy',true],
   ['.v462-rank-row[data-v194-player]','data-v194-player','data-v194-team','','.v576-player-avatar','.v462-rank-copy',true],
   ['.v194-player-row','data-v194-player','data-v194-team','','.v576-player-avatar','.v194-player-name',false],
-  ['.v33-stat-row.player[data-v33-player]','data-v33-player','data-v33-player-team','','.v33-player-team-logo','.v33-row-copy',true],
+  ['.v33-stat-row.player[data-v33-player]','data-v33-player','data-v33-player-team','data-v33-player-cat','.v33-player-team-logo','.v33-row-copy',true],
   ['.v446-stat-ref-row[data-v33-player]:not(.is-team)','data-v33-player','','','.v446-stat-ref-avatar','.v446-stat-ref-copy',false],
   ['.v66-player-row[data-v66-player]','data-v66-player','data-v66-player-team','data-v66-cat-id','.v66-player-avatar','.v66-player-copy',false],
   ['.v371-player[data-v42-player]','data-v42-player','data-v66-player-team','data-v66-cat-id','.v371-player-avatar','span:nth-child(2)',false],
