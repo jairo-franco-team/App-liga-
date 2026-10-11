@@ -160,7 +160,7 @@ function selectedFixture(){
   const notSuspended=m=>!/suspend|cancel|aplaz|pospuest/i.test(String(m.r?.[10]||''));
   const unfinished=m=>notSuspended(m)&&!publishedScore(m.r)&&!officialDecision(m);
   // Permite consultar un resultado anterior sin interrumpir la consulta.
-  if(reviewKey&&selectedKey===reviewKey){
+  if(typeof reviewKey!=='undefined'&&reviewKey&&selectedKey===reviewKey){
     const archived=list.find(m=>m.key===reviewKey);
     if(archived)return archived;
     reviewKey='';
