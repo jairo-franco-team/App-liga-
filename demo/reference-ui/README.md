@@ -23,3 +23,7 @@ V1440 adds distinct original illustrations to the captured administration sectio
 - league-trophy.png: https://drive.google.com/file/d/1OYoy6R1LhK1F2efjqaShz7brPHzC3v53/view — original PNG artwork inside expanded publication instructions; does not change generated posters.
 
 All assets retain their original bytes. Public pages and their upper bars are not changed by V1440. Gradients remain on canvases, while buttons/selectors use flat fills.
+
+## Mejorar.zip · V1441
+
+Las ocho imágenes `captured-*` (excepto points) son archivos WebP originales adjuntos por el usuario junto a las 52 capturas de Mejorar.zip el 11 de octubre de 2026; se conservan sus bytes. `captured-points.webp` proviene de https://drive.google.com/file/d/1QVXAnv_wTAMXPS7tKRmq8cAnfljQUqMO/view (`uclbracket_bg_points_breakdown.webp`). Fondos sólo decorativos en secciones autorizadas; los documentos, controles, QR y datos conservan sus funciones.
