@@ -59,3 +59,71 @@ body[data-app-route="matchday"] #v160-matchday-extra .v160-matchday-bar h3{font-
 [data-md1132-toast][hidden]{display:none}
 @media(max-width:360px){body[data-app-route="matchday"] #v160-matchday-extra .md1132-game em{flex-basis:56px;font-size:9px}body[data-app-route="matchday"] #v160-matchday-extra .md1132-crest{width:52px;height:52px}}
 @media(prefers-reduced-motion:reduce){body[data-app-route="matchday"] #v160-matchday-extra *{scroll-behavior:auto!important;transition:none!important}}
+
+/* V1453 · Reloj deportivo en Match Day; estilos limitados a esta pantalla. */
+body[data-app-route="matchday"] #v160-matchday-extra .md1132-chrono{
+  box-sizing:border-box;
+  margin:14px 0 12px;
+  padding:12px 12px 10px;
+  border:1px solid rgba(63,148,245,.38);
+  border-radius:16px;
+  background:linear-gradient(155deg,rgba(24,77,174,.40),rgba(5,15,74,.42));
+  text-align:center;
+  color:#f8fcff;
+}
+body[data-app-route="matchday"] #v160-matchday-extra .md1132-chrono .md1132-period{
+  color:#68dfff;
+  font:800 11px/1.3 Inter,Arial,sans-serif;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+}
+body[data-app-route="matchday"] #v160-matchday-extra .md1132-chrono .md1132-clock{
+  margin:5px 0 6px;
+  font:900 clamp(26px,7vw,43px)/1.18 ui-monospace,Consolas,monospace;
+  color:#3ae9ff;
+  letter-spacing:.015em;
+  overflow-wrap:anywhere;
+  font-variant-numeric:tabular-nums;
+}
+body[data-app-route="matchday"] #v160-matchday-extra .md1132-time-note{
+  color:#c2d4f5;
+  font:600 10px/1.4 Inter,Arial,sans-serif;
+  padding:0 4px;
+}
+body[data-app-route="matchday"] #v160-matchday-extra .md1132-chrono.is-estimated .md1132-period{color:#e2c88b}
+body[data-app-route="matchday"] #v160-matchday-extra .md1132-time-track{
+  width:100%;
+  height:4px;
+  margin:11px 0 7px;
+  border-radius:99px;
+  background:#1d3373;
+  overflow:hidden;
+}
+body[data-app-route="matchday"] #v160-matchday-extra .md1132-time-track span{
+  display:block;
+  height:100%;
+  width:0;
+  border-radius:99px;
+  background:linear-gradient(90deg,#1689ff,#35e6f7);
+  transition:width .35s linear;
+}
+body[data-app-route="matchday"] #v160-matchday-extra .md1132-period-labels{
+  display:grid;
+  grid-template-columns:1fr 1.15fr 1fr;
+  gap:3px;
+  align-items:center;
+  color:#aac5e8;
+  font:650 clamp(8px,2.25vw,10px)/1.3 Inter,Arial,sans-serif;
+}
+body[data-app-route="matchday"] #v160-matchday-extra .md1132-chrono[data-phase="break"] .md1132-clock{
+  color:#e5d69a;
+}
+body[data-app-route="matchday"] #v160-matchday-extra .md1132-chrono[data-phase="final"] .md1132-clock{
+  color:#bceaff;
+}
+@media (min-width:650px){
+ body[data-app-route="matchday"] #v160-matchday-extra .md1132-chrono{
+   max-width:580px;
+   margin:17px auto 13px;
+ }
+}
