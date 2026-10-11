@@ -25,8 +25,16 @@ test('La franja PC usa encuentros oficiales sin clubes inventados',()=>{
   const games=pc.games(25),rows=pc.standings();
   assert.ok(games.length>=20);
   assert.equal(rows[0][1],'SAN JOSE FC');
-  assert.equal(games[0].home,'LA ESPERANZA');
-  assert.equal(games[0].away,'MANCHESTER');
+  // El primer encuentro cambia con resultados, suspensiones y nuevas jornadas.
+  // Cada tarjeta debe conservar equipos, horario y sede de una fila oficial.
+  for(const game of games){
+    const category=db.categories[game.id];
+    assert.equal(game.category,category.name);
+    assert.ok(category.fixtures.some(group=>group.rows.some(row=>
+      row[2]===game.home && row[6]===game.away && row[7]===game.field &&
+      String(row[8]).endsWith(' '+game.time))), 'Tarjeta con procedencia oficial');
+  }
+  assert.ok(games.every((game,i)=>!i||games[i-1].sort<=game.sort),'Orden cronológico');
   assert.ok(games.every(g=>g.sort>='2026-10-08'));
   assert.ok(games.every(g=>!/(?:SAN PEDRO|MORALES)/i.test(g.home+' '+g.away)));
   assert.ok(games.every(g=>!g.sort.endsWith('00:00')));

@@ -37,8 +37,9 @@ test('modo PC separa próximos y resultados, sin inventar goles',async()=>{
  const results=pc.desktopFixtureRows('4','results',new Date(2026,9,10));
  assert.ok(upcoming.every(x=>!x.played&&x.date>=new Date(2026,9,10)));
  assert.ok(results.every(x=>x.played));
- assert.equal(upcoming[0].round,'7');
- assert.equal(upcoming[0].rawDate,'11/10/2026 08:00');
+ // Otros partidos pendientes pueden preceder a J7 en el registro actualizado.
+ assert.ok(upcoming.some(x=>x.round==='7'&&x.rawDate==='11/10/2026 08:00'));
+ assert.ok(upcoming.every((x,i)=>!i||upcoming[i-1].date<=x.date),'Próximos en orden cronológico');
 });
 test('PC conserva modos móvil y APK y muestra horarios, categorías y calendario',()=>{
  const bridge=load('desktop-mobile-function-bridge.js');
