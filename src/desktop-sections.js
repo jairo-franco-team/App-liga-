@@ -52,7 +52,8 @@ function logoFor(name){
   }
   const src=String(typeof raw==='string'?raw:raw?.local||raw?.app||raw?.source||raw?.url||'').trim();
   if(!src)return '';
-  if(src.startsWith('assets/')||src.startsWith('public/'))return './'+src.replace(/^public\//,'');
+  if(src.startsWith('assets/'))return 'https://raw.githubusercontent.com/jairofrancog7-star/Liga_Futbol/main/'+src;
+  if(src.startsWith('public/'))return './'+src.slice(7);
   return /^(https?:\/\/|\.\/|\/)/i.test(src)?src:'';
  }catch(_){return ''}
 }
