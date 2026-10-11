@@ -115,3 +115,125 @@
   }
 }
 }
+
+
+/* V1436 — Quitar capas internas duplicadas en TODAS las secciones JR Control
+   (incluidos los modales CMS y generador de diseños) y Más > Herramientas.
+   Solo afecta presentación en pantalla; conserva datos, estados y controles. */
+@layer ljr-reference-surfaces {
+@media screen {
+  /* JR Control: un único fondo por tarjeta, aunque la lista tenga otro envoltorio. */
+  html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"])
+    #screen .v562-page[data-v563-control] .v562-panel:has(.v562-list),
+  html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"])
+    #screen .v562-page[data-v563-control] :is(.v562-list,.v563-admin-direct,.v563-tool-search > span) {
+    background:transparent!important;
+    background-image:none!important;
+    box-shadow:none!important;
+  }
+  html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"])
+    #screen .v562-page[data-v563-control] .v562-panel:has(.v562-list) {
+    border-color:transparent!important;
+  }
+
+  /* Más: las secciones son contenedores, las tarjetas son las superficies. */
+  html body[data-app-route="leagueTools"] #screen
+    :is(.v726-tool-card,.v734-tool-card,.v726-quick-card,.v612-tools-entry.v726-admin-entry) {
+    background:linear-gradient(180deg,#2452c2 0%,#173997 55%,#102577 100%)!important;
+    border-color:rgba(147,182,255,.32)!important;
+    box-shadow:none!important;
+  }
+  html body[data-app-route="leagueTools"] #screen
+    :is(.v726-tools-content,.v726-tool-grid,.v726-quick-grid,.v726-section-head,
+    .v734-tool-open,.v734-tool-details,.v734-tool-detail-panel,[data-v734-tool-details],
+    .v726-hero-pills span,.v726-tool-tag) {
+    background:transparent!important;
+    background-image:none!important;
+    box-shadow:none!important;
+  }
+
+  /* Administración se monta fuera de #screen. La corrección anterior no llegaba
+     a estas ventanas: la guía y la búsqueda de la captura recibían dos fondos. */
+  html body .liga-media-modal > section:is(
+    .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+    .ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,
+    .ljr-admin-v1081,.v1081-dialog
+  ) :is(
+    .ljr-admin-area,.ljr-admin-intro,.ljr-admin-section,.ljr-admin-action-grid,
+    .ljr-admin-preset-tools,.cms-design-intro,.cms-design-form,.cms-design-presets,
+    .cms-kind-grid,.ljr-smart-hub,.ljr-smart-tasks,.ljr-editor-hub,
+    .ljr-editor-section-info,.ljr-editor-row,.ljr-editor-note,
+    .ljr-review-body,.ljr-review-feedback,.ljr-admin-results
+  ) {
+    background:transparent!important;
+    background-image:none!important;
+    box-shadow:none!important;
+  }
+
+  /* Un solo recuadro para los desplegables; el summary no dibuja otro rectángulo. */
+  html body .liga-media-modal > section:is(
+    .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+    .ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,
+    .ljr-admin-v1081,.v1081-dialog
+  ) :is(details.ljr-admin-howto,details.ljr-guide) {
+    background:linear-gradient(170deg,#1944b4,#0c208b)!important;
+    background-image:linear-gradient(170deg,#1944b4,#0c208b)!important;
+    border-color:rgba(140,184,255,.3)!important;
+    box-shadow:none!important;
+  }
+  html body .liga-media-modal > section:is(
+    .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+    .ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,
+    .ljr-admin-v1081,.v1081-dialog
+  ) :is(.ljr-admin-howto,.ljr-guide) > summary {
+    background:transparent!important;
+    background-image:none!important;
+    box-shadow:none!important;
+    border-color:transparent!important;
+  }
+  html body .liga-media-modal > section:is(
+    .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+    .ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,
+    .ljr-admin-v1081,.v1081-dialog
+  ) :is(.ljr-admin-howto,.ljr-guide) > :is(.cms-design-intro,.ljr-admin-intro,p,div:not(.cms-design-presets)) {
+    background:transparent!important;
+    background-image:none!important;
+    box-shadow:none!important;
+  }
+
+  /* El buscador conserva SU único campo; sin panel extra debajo del contador. */
+  html body .liga-media-modal :is(.ljr-admin-cms,.ljr-admin-v1081,.v1081-dialog)
+    :is(.ljr-admin-preset-tools,.ljr-admin-preset-count) {
+    background:transparent!important;
+    background-image:none!important;
+    box-shadow:none!important;
+  }
+  html body .liga-media-modal :is(.ljr-admin-cms,.ljr-admin-v1081,.v1081-dialog)
+    .ljr-admin-preset-tools > input {
+    background:#102876!important;
+    background-image:none!important;
+    border-color:rgba(121,172,249,.37)!important;
+    box-shadow:none!important;
+  }
+
+  /* Iconos, títulos y textos no deben formar una segunda placa de color. */
+  html body .liga-media-modal > section:is(
+    .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+    .ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,
+    .ljr-admin-v1081,.v1081-dialog
+  ) :is(.ljr-admin-tile-icon,.ljr-simple-icon,.ljr-editor-option-icon,
+    .ljr-admin-section-title,.ljr-admin-section-sub,.ljr-admin-greeting,
+    .ljr-admin-preset-count,.ljr-editor-note) {
+    background:transparent!important;
+    background-image:none!important;
+    box-shadow:none!important;
+  }
+
+  /* Los campos administrativos V105 también usan solamente su propio fondo. */
+  html body > .v105-modal.v1107-admin-modal .v105-form {
+    background:transparent!important;
+    background-image:none!important;
+    box-shadow:none!important;
+  }
+}
+}
