@@ -218,9 +218,8 @@ html body .liga-media-modal>section:is(
   background:#214ba6!important;background-image:none!important;
   border:1px solid #bad7ff!important;color:#fff!important;
 }
-html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] :is(
- .ljr-save-profile,.ljr-photo-upload input::file-selector-button
-){
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-save-profile,
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-photo-upload input::file-selector-button{
   background:linear-gradient(135deg,#3870d4,#2b5cbe)!important;
   border:1px solid #d1e6ff!important;color:#fff!important;
 }
