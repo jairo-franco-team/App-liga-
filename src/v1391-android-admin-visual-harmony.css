@@ -1,0 +1,317 @@
+/* V1391 — armonización visual de las capturas Android, 10-oct-2026.
+   CSS exclusivamente: NO cambia APIs, botones, listeners, rutas o permisos.
+   Cargar al final de index.html para ganar a las capas V1340–V1387.
+   Paleta: lienzo azul nocturno de App-liga-, tarjetas marino y acentos suaves. */
+:root {
+  --ljr1391-bg:#060b31;
+  --ljr1391-panel:#0b1744;
+  --ljr1391-card:#102456;
+  --ljr1391-field:#081639;
+  --ljr1391-line:rgba(136,166,232,.39);
+  --ljr1391-ink:#f7f9ff;
+  --ljr1391-muted:#c5d3ed;
+  --ljr1391-primary:#2766b7;
+  --ljr1391-gold:#f5d187;
+  --ljr1391-mint:#85e0c8;
+  --ljr1391-lilac:#c8b9ff;
+  --ljr1391-coral:#ffadab;
+}
+
+/* Superficie oscura sobre el lienzo original (sin placas azul eléctrico). */
+html body .liga-media-modal > section:is(
+  .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+  .ljr-admin-studio,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
+) {
+  --ljr1310-bg:var(--ljr1391-bg);
+  --ljr1310-surface:var(--ljr1391-panel);
+  --ljr1310-card:var(--ljr1391-card);
+  --ljr1310-input:var(--ljr1391-field);
+  --ljr1310-edge:var(--ljr1391-line);
+  background:linear-gradient(159deg,#132357 0%,#0b1744 33%,#060b31 100%)!important;
+  border:1px solid var(--ljr1391-line)!important;
+  border-radius:19px!important;
+  color:var(--ljr1391-ink)!important;
+  box-shadow:0 23px 66px rgba(0,3,22,.5),inset 0 1px rgba(255,255,255,.045)!important;
+}
+html body .liga-media-modal > section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+ .ljr-admin-studio,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
+) > header {
+  background:linear-gradient(125deg,#172b64 0%,#0c1948 74%,#0a143b 100%)!important;
+  border-bottom:1px solid var(--ljr1391-line)!important;
+  color:#fff!important;
+}
+html body .liga-media-modal > section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+ .ljr-admin-studio,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
+) > header [data-close] {
+  width:44px!important;height:44px!important;min-width:44px!important;
+  border-radius:13px!important;border:1px solid rgba(166,190,241,.48)!important;
+  background:linear-gradient(145deg,#172b60,#0d1b4a)!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.07)!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-editor-dialog)
+ :is(.ljr-admin-area,.ljr-simple-intro,.ljr-guide,.ljr-editor-hub,
+ .ljr-editor-section-info,.ljr-editor-preview,.ljr-editor-row,
+ .ljr-review-card,.ljr-review-body,.ljr-review-insights,.ljr-review-stats>div,
+ .ljr-editor-autofill,.ljr-smart-hub,.ljr-smart-tasks) {
+  background:linear-gradient(155deg,#132657,#0c1b49)!important;
+  border-color:var(--ljr1391-line)!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.035)!important;
+  color:#f8faff!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-editor-dialog)
+ :is(.ljr-admin-intro,.ljr-admin-eyebrow,.ljr-editor-intro,.ljr-editor-security,.ljr-editor-note) {
+  background:transparent!important;background-image:none!important;box-shadow:none!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-editor-dialog)
+ :is(.ljr-admin-greeting,.ljr-editor-security,.ljr-editor-note,.ljr-review-meta,.ljr-review-stats small) {
+  color:var(--ljr1391-muted)!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-editor-dialog)
+ :is(input:not([type=checkbox]):not([type=radio]):not([type=file]),textarea,select) {
+  background:var(--ljr1391-field)!important;background-image:none!important;
+  border:1px solid rgba(132,162,228,.52)!important;
+  border-radius:12px!important;color:#fff!important;
+  max-width:100%!important;min-width:0!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-editor-dialog)
+ :is(.ljr-admin-tile:not(.ljr-admin-tile-danger),
+ .ljr-editor-two-choice>button,.ljr-editor-extra-actions>button,
+ .ljr-editor-hub-grid>button,.ljr-editor-tools>button,
+ .ljr-editor-bottom>button,.ljr-review-tabs>button) {
+  background:linear-gradient(155deg,#1a346c,#10224f)!important;
+  border-color:rgba(133,165,233,.45)!important;color:#f6f9ff!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.055)!important;
+  border-radius:13px!important;
+}
+html body .liga-media-modal .ljr-editor-dialog :is(
+  [data-editor-publish],.ljr-review-tabs>button[aria-pressed=true]
+) {
+  background:linear-gradient(143deg,#286ab9,#154789)!important;
+  border-color:#88b0ed!important;color:#fff!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-editor-dialog)
+ :is(button,select,input,textarea):focus-visible {
+  outline:2px solid #b2d0ff!important;outline-offset:2px!important;
+}
+
+/* Iconos ópticamente centrados, nítidos, sin tocar fotos ni escudos reales. */
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-editor-dialog)
+ :is(.ljr-admin-tile-icon,.ljr-simple-icon) {
+  display:grid!important;place-items:center!important;
+  flex-shrink:0!important;box-sizing:border-box!important;
+  border-radius:12px!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-editor-dialog)
+ :is(.ljr-admin-tile-icon,.ljr-simple-icon) > svg {
+  display:block!important;width:23px!important;height:23px!important;
+  max-width:70%!important;max-height:70%!important;margin:auto!important;
+}
+html body .liga-media-modal .ljr-editor-two-choice>button:first-child b svg {color:var(--ljr1391-gold)!important}
+html body .liga-media-modal .ljr-editor-two-choice>button:nth-child(2) b svg {color:var(--ljr1391-mint)!important}
+html body .liga-media-modal .ljr-editor-extra-actions>button:nth-child(3n+1) svg {color:var(--ljr1391-lilac)!important}
+html body .liga-media-modal .ljr-editor-extra-actions>button:nth-child(3n+2) svg {color:var(--ljr1391-gold)!important}
+
+/* Formularios en modal (Juntas, Delegados, CSV y administración). */
+html body > .v105-modal:is(.v1107-admin-modal,.v1212-csv-modal,.v1126-delegate-modal,.v875-meeting-modal)
+ > .v105-dialog {
+  box-sizing:border-box!important;
+  background:linear-gradient(162deg,#14285b 0%,#0b1949 40%,#060b31 100%)!important;
+  border:1px solid rgba(138,173,239,.5)!important;
+  border-radius:19px!important;
+  color:#f8faff!important;
+  box-shadow:0 24px 65px rgba(0,2,22,.56)!important;
+  max-width:min(760px,calc(100vw - 18px))!important;
+  max-height:calc(100dvh - 24px)!important;
+  overflow-y:auto!important;overflow-x:hidden!important;
+  overscroll-behavior:contain;
+  scrollbar-color:#5076b5 #0a153e;
+}
+html body > .v105-modal:is(.v1107-admin-modal,.v1212-csv-modal,.v1126-delegate-modal,.v875-meeting-modal)
+ .v105-close {
+  border:1px solid rgba(151,180,237,.55)!important;
+  background:linear-gradient(145deg,#192e64,#10204d)!important;
+  color:#fff!important;width:43px!important;height:43px!important;
+  border-radius:13px!important;
+}
+html body > .v105-modal:is(.v1107-admin-modal,.v1212-csv-modal,.v1126-delegate-modal,.v875-meeting-modal)
+ :is(input:not([type=checkbox]):not([type=radio]):not([type=file]),select,textarea) {
+  box-sizing:border-box!important;min-width:0!important;max-width:100%!important;
+  background:var(--ljr1391-field)!important;background-image:none!important;
+  border:1px solid rgba(136,170,239,.57)!important;
+  color:#f7faff!important;border-radius:12px!important;
+  color-scheme:dark!important;
+}
+html body > .v105-modal:is(.v1107-admin-modal,.v1212-csv-modal,.v1126-delegate-modal,.v875-meeting-modal)
+ :is(.v105-btn,.csvpro-button,.v919-action,.v875-agenda-chips button,.mh-tabs>button:not([aria-selected=true])) {
+  background:linear-gradient(151deg,#1b376e,#102550)!important;
+  border-color:rgba(141,174,239,.51)!important;
+  color:#f8faff!important;border-radius:12px!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.045)!important;
+}
+html body > .v105-modal:is(.v1107-admin-modal,.v1212-csv-modal,.v1126-delegate-modal,.v875-meeting-modal)
+ :is(.csvpro-primary,.v105-btn:not(.alt),.mh-tabs>button[aria-selected=true]) {
+  background:linear-gradient(140deg,#286bb8,#184884)!important;
+  border-color:rgba(161,196,255,.64)!important;
+  color:#fff!important;
+}
+html body > .v105-modal:is(.v1107-admin-modal,.v1212-csv-modal,.v1126-delegate-modal,.v875-meeting-modal)
+ :is(button,input,select,textarea):focus-visible {
+  outline:2px solid #b2d0ff!important;outline-offset:2px!important;
+}
+html body > .v105-modal:is(.v1107-admin-modal,.v1212-csv-modal,.v1126-delegate-modal,.v875-meeting-modal)
+ :is(input,textarea)::placeholder {color:#b9c9e7!important;opacity:1!important}
+
+/* Junta de la Liga: evita los distintos azules del hero y cuadros anidados. */
+html body > .v105-modal.v875-meeting-modal :is(.v919-meeting-hero,.v875-meeting-options>label,.ljr-meeting-hub .mh-header) {
+  background:linear-gradient(149deg,#182e64,#0c1f4d)!important;
+  border-color:var(--ljr1391-line)!important;
+}
+html body > .v105-modal.v875-meeting-modal :is(
+ .v105-meeting-notice,.ljr-meeting-hub .mh-tip,.ljr-meeting-hub .mh-record,
+ .ljr-meeting-hub .mh-stats>div,.v105-meeting-form>label) {
+  background:linear-gradient(153deg,#102655,#0a1943)!important;
+  border-color:var(--ljr1391-line)!important;
+  color:#f8faff!important;
+}
+html body > .v105-modal.v875-meeting-modal .v919-hero-day {
+  background:#174e99!important;border:1px solid #9dc2ff!important;color:#fff!important;
+}
+
+/* Delegados: estadísticas, filtros y editor mantienen la misma jerarquía. */
+html body > .v105-modal.v1126-delegate-modal :is(
+ .v1126-metrics>*,.v1126-editor,.v1126-extra,.v1126-directory>article,
+ .v1126-toolbar,.v1126-directory-title) {
+  border-color:var(--ljr1391-line)!important;
+  background:linear-gradient(153deg,#112759,#0b1b44)!important;
+  color:#f8faff!important;
+}
+html body > .v105-modal.v1126-delegate-modal :is(.v1126-editor,.v1126-extra) {
+  border-radius:15px!important;
+}
+html body > .v105-modal.v1126-delegate-modal .v1126-tools {
+  gap:9px!important;
+}
+html body > .v105-modal.v1126-delegate-modal .v1126-tools button {
+  min-width:0!important;overflow-wrap:anywhere!important;
+}
+
+/* CSV: superficie tenue y asistente sin azul claro que salte del resto. */
+html body > .v105-modal.v1212-csv-modal :is(
+ .csvpro-aiintro,.csvpro-drop,.csvpro-section,.csvpro-map-item,
+ .csvpro-status,.csvpro-aireport,.csvpro-summary>div,.csvpro-warnings,.csvpro-note
+) {
+  background:linear-gradient(150deg,#142956,#0a1c44)!important;
+  border-color:rgba(141,174,239,.46)!important;
+  color:#f8faff!important;
+}
+html body > .v105-modal.v1212-csv-modal .csvpro-upload {
+  display:grid!important;place-items:center!important;
+  background:linear-gradient(141deg,#1c4f8b,#173064)!important;
+  border-color:#8aaff0!important;color:#f7faff!important;
+}
+html body > .v105-modal.v1212-csv-modal .csvpro-aiicon {
+  display:grid!important;place-items:center!important;
+  background:#193764!important;color:var(--ljr1391-lilac)!important;
+}
+html body > .v105-modal.v1212-csv-modal .csvpro-drop {
+  border-style:dashed!important;border-width:2px!important;
+}
+html body > .v105-modal.v1212-csv-modal .csvpro-step>span {
+  color:var(--ljr1391-gold)!important;
+}
+
+/* Cuenta y asistente local: son páginas, no diálogos. */
+html body[data-app-route^="account"] #screen {
+  background:linear-gradient(180deg,#0b1851 0%,#070e35 45%,#050a2b 100%)!important;
+}
+html body[data-app-route^="account"] .v569-page .v569-card,
+html body[data-app-route^="account"] .v1300-panel,
+html body[data-app-route^="account"] .v1300-detail {
+  background:linear-gradient(155deg,#132b60 0%,#0c1e4a 62%,#08143a 100%)!important;
+  border:1px solid var(--ljr1391-line)!important;
+  border-radius:16px!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.04)!important;
+  color:#f7faff!important;
+}
+html body[data-app-route^="account"] :is(
+ .v1300-ai-status,.v1300-ai-answer,.v1300-cloud-state,
+ .v1300-cloud-output,.v1300-findings article,.v1300-pass-help
+) {
+  background:#0b1c45!important;
+  border-color:var(--ljr1391-line)!important;
+  color:var(--ljr1391-muted)!important;
+}
+html body[data-app-route^="account"] :is(.v1300-mark,.v1300-link) {
+  color:var(--ljr1391-mint)!important;
+}
+html body[data-app-route^="account"] :is(
+ .v1300-primary,.v1300-actions button,.v1300-permission button,
+ .v1300-pass-help button
+) {
+  background:linear-gradient(144deg,#1c3972,#102651)!important;
+  border-color:var(--ljr1391-line)!important;
+  color:#fff!important;border-radius:12px!important;
+}
+html body[data-app-route^="account"] .v1300-primary {
+  background:linear-gradient(141deg,#296ab7,#174787)!important;
+  border-color:#83aeee!important;
+}
+html body[data-app-route^="account"] :is(
+ .v1300-select select,.v1300-cloud-form input,.v569-field input
+) {
+  background:#081639!important;border-color:rgba(137,174,239,.56)!important;
+  color:#fff!important;border-radius:12px!important;
+}
+
+/* Quiniela: conserva logos y partidos; oscurece solo marcos/controles. */
+html body[data-app-route="quiniela"] :is(
+ .v618-q-cat,.v970-jornada-progress,.v970-preview-panel,
+ .v970-pre-match,.v973-suggestion
+) {
+  background:linear-gradient(156deg,#142c63 0%,#0a1b49 100%)!important;
+  border-color:rgba(136,170,238,.46)!important;
+  color:#f7faff!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.04)!important;
+}
+html body[data-app-route="quiniela"] .v618-q-cat:is(.active,[aria-selected=true]),
+html body[data-app-route="quiniela"] .v973-game-filter-row>button.active {
+  background:linear-gradient(145deg,#2465ac,#143c77)!important;
+  border-color:#99c1ff!important;color:#fff!important;
+}
+html body[data-app-route="quiniela"] :is(
+ .v973-game-filter-row>button,.v970-progress-footer button,
+ .v970-quick-buttons button,.v970-preview-toggle
+) {
+  border-color:rgba(141,176,241,.48)!important;
+  border-radius:11px!important;color:#f7faff!important;
+}
+html body[data-app-route="quiniela"] .v973-game-filter-row>button:not(.active),
+html body[data-app-route="quiniela"] .v970-progress-footer button {
+  background:linear-gradient(152deg,#193565,#0f2352)!important;
+}
+html body[data-app-route="quiniela"] .v970-progress-head {color:var(--ljr1391-mint)!important}
+html body[data-app-route="quiniela"] .v970-progress-track {background:rgba(180,198,239,.17)!important}
+html body[data-app-route="quiniela"] .v970-progress-track i {
+  background:linear-gradient(90deg,#5da3f6,#83ddcc)!important;
+}
+
+/* Estados reales: el CSS no debe revivir elementos ocultos o acciones bloqueadas. */
+html body :is(.liga-media-modal,.v105-modal,.v1300-page) [hidden]{display:none!important}
+html body :is(.liga-media-modal,.v105-modal,.v1300-page) button:disabled {
+  opacity:.52!important;cursor:not-allowed!important;
+}
+@media (max-width:420px) {
+  html body > .v105-modal:is(.v1107-admin-modal,.v1212-csv-modal,.v1126-delegate-modal,.v875-meeting-modal)
+   > .v105-dialog {padding-inline:clamp(11px,3vw,16px)!important}
+  html body > .v105-modal.v1126-delegate-modal .v1126-tools button {
+    font-size:clamp(11px,3vw,13px)!important;
+  }
+  html body .liga-media-modal .ljr-editor-two-choice>button {
+    min-width:0!important;overflow-wrap:anywhere!important;
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  html body :is(.liga-media-modal,.v105-modal,.v1300-page) button {transition:none!important}
+}
