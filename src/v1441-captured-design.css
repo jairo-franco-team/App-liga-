@@ -9,7 +9,8 @@
   --captured-ink:#f8fbff;
   background-color:#000040!important;
   background-image:linear-gradient(180deg,rgba(1,7,155,.16) 0%,rgba(0,0,64,.92) 85%),var(--captured-art)!important;
-  background-size:cover,100% 100%!important;
+  /* The artwork keeps its ratio; its edges may crop against a navy canvas. */
+  background-size:100% 100%,auto 100dvh!important;
   background-position:center top!important;
   background-repeat:no-repeat!important;
   background-attachment:fixed!important;
@@ -24,7 +25,7 @@
   position:relative!important;isolation:isolate;
   background-color:#000040!important;
   background-image:linear-gradient(180deg,#000040 12%,rgba(0,0,64,.58)),url('../public/reference-ui/captured-prism-lines.webp')!important;
-  background-size:100% auto!important;background-position:center bottom!important;background-repeat:no-repeat!important;
+  background-size:100% 100%,100% auto!important;background-position:center bottom!important;background-repeat:no-repeat!important;
   border:1px solid var(--captured-line,rgba(124,168,255,.28))!important;
   border-radius:24px!important;box-shadow:0 14px 32px rgba(0,0,32,.2)!important;
  }
@@ -48,7 +49,7 @@
  }
  :is([data-captured-design],[data-captured-dialog],[data-captured-block]) :is(button,select,input:not([type="checkbox"]):not([type="radio"]):not([type="color"]):not([type="range"]),textarea):not([data-design-paper]):not([data-design-paper] *) {
   background-color:#000040!important;background-image:none!important;
-  border-color:rgba(124,168,255,.38)!important;color:#f8fbff!important;box-shadow:none!important;
+  border-color:rgba(124,168,255,.38)!important;color:#f8fbff!important;-webkit-text-fill-color:currentColor!important;box-shadow:none!important;
  }
  :is([data-captured-design],[data-captured-dialog],[data-captured-block]) :is(a.v60-link,a.v60-btn,.v921-field-card a,[role="button"]):not([data-design-paper] *) {
   background-color:#000040!important;background-image:none!important;border-color:rgba(124,168,255,.38)!important;color:#f8fbff!important;box-shadow:none!important;
@@ -56,7 +57,7 @@
  :is([data-captured-design],[data-captured-dialog],[data-captured-block]) :is(button,select,textarea,input):focus-visible {
   outline:2px solid #41e1f0!important;outline-offset:3px!important;
  }
- :is([data-captured-design],[data-captured-dialog],[data-captured-block]) :is(button[aria-selected="true"],button.is-active,button.active,.v713-auto-primary,.ljr-bc-primary,.v569-primary):not([data-design-paper] *) {
+ :is([data-captured-design],[data-captured-dialog],[data-captured-block]) :is(button[aria-selected="true"],button.is-active,button.active,.v713-auto-primary,.ljr-bc-primary):not([data-design-paper] *) {
   background:#00d7ea!important;color:#000040!important;border-color:#00d7ea!important;
  }
  :is([data-captured-design],[data-captured-dialog],[data-captured-block]) :is(h1,h2,h3,h4,.ljr-cms-quick-title,.v562-player-copy,.v562-player-info,.v562-team-copy,.v638-cedula-title,.v553-week-title,.v635-form-title) {
@@ -77,7 +78,7 @@
  }
  :is([data-captured-design],[data-captured-dialog],[data-captured-block]) .ljr-cms-quick-icon svg {width:28px!important;height:28px!important;}
  :is([data-captured-design],[data-captured-dialog],[data-captured-block]) .ljr-cms-entry [data-cms-story]::after {content:none!important;}
- [data-captured-dialog] {background-size:auto 100dvh,100% 100%!important;}
+ [data-captured-dialog] {background-size:100% 100%,auto 100dvh!important;}
  [data-captured-design] :is(.v562-sync-grid,.v562-sync-grid>article) {background:transparent!important;border:0!important;box-shadow:none!important;}
  [data-captured-design] :is(.v562-filter-row,.v562-registry-toolbar,.v12-profile-card,.v569-profile-copy,.v66-player-list,.v553-week-actions,.v651-section,.v92-section-body,.v618-q-teams,.v164-matchday-center,.v1082-types) {
   background:transparent!important;box-shadow:none!important;
@@ -90,6 +91,69 @@
  .ljr-captured-heading-icon {display:inline-block!important;width:20px!important;height:20px!important;vertical-align:middle;margin-right:8px;color:#48dfec!important;}
  [data-captured-design] .v12-profile-row-icon {background:transparent!important;border:0!important;color:#48dfec!important;}
  [data-captured-design] .v12-profile-row-icon svg {width:22px!important;height:22px!important;}
+ /* Corregr.zip: neutral ink overrides legacy WebKit fills as well as color. */
+ :is([data-captured-design],[data-captured-dialog],[data-captured-block]) :is(button,select,[role="button"]) :is(span,b,strong,small):not(.ljr-design-edge):not([data-design-paper] *) {
+  color:inherit!important;-webkit-text-fill-color:currentColor!important;
+  background-color:transparent!important;background-image:none!important;
+ }
+ :is([data-captured-design],[data-captured-dialog],[data-captured-block]) :is(button,select,[role="button"],a.v60-btn,a.v60-link):not([data-design-paper] *) {
+  -webkit-text-fill-color:currentColor!important;white-space:normal!important;
+  overflow-wrap:break-word!important;line-height:1.35!important;
+ }
+ [data-captured-design] :is(.v1063-filter,.v726-tool-tag,.v726-hero-pills span) {
+  color:#fff!important;-webkit-text-fill-color:currentColor!important;
+ }
+ [data-captured-design] .v1063-tools-filters {background:transparent!important;box-shadow:none!important;border:0!important;}
+ .ljr-cms-entry[data-captured-block] {background:transparent!important;box-shadow:none!important;border:0!important;}
+ [data-captured-design] .v1063-filter {padding:9px 13px!important;height:auto!important;min-height:40px!important;}
+ [data-captured-design] .v562-panel:has(.v562-sync-grid) {
+  background-image:url('../public/reference-ui/fantasy-card.webp')!important;
+  background-size:cover!important;background-position:center bottom!important;
+  border:0!important;overflow:hidden!important;
+ }
+ [data-captured-design] .v562-panel:has(.v562-sync-grid)>.ljr-design-edge {display:none!important;}
+ [data-captured-design] [data-design-card="table"] {
+  position:relative!important;min-width:0!important;width:100%!important;
+  box-sizing:border-box!important;padding:0!important;
+  border:0!important;border-radius:0!important;background:transparent!important;
+  background-image:none!important;box-shadow:none!important;overflow:visible!important;
+ }
+ [data-captured-design] [data-design-card="table"]>.ljr-design-edge {display:none!important;}
+ [data-captured-design] .v553-week-scroll {
+  width:100%!important;max-width:100%!important;min-width:0!important;
+  box-sizing:border-box!important;overflow-x:auto!important;
+  padding:0 0 8px!important;border:0!important;border-radius:0!important;
+  background:transparent!important;overscroll-behavior-x:contain;
+ }
+ [data-captured-design] .v553-week-scroll table {
+  width:100%!important;min-width:760px!important;border-collapse:collapse!important;
+  background:#080e42!important;color:#fff!important;
+ }
+ [data-captured-design] .v553-week-scroll :is(th,td) {padding:12px!important;font-size:12px!important;line-height:1.45!important;}
+ [data-captured-design] .v553-week-scroll th {background:#173a78!important;color:#fff!important;}
+ [data-captured-design] .v553-week-title {padding:12px 0!important;gap:10px!important;}
+ [data-captured-design] .v553-week-title b {flex:none!important;font-size:11px!important;}
+ /* Keep the native select on its own row; no fixed-height label can overlap it. */
+ [data-captured-design] .v64-form-grid>label {
+  display:flex!important;flex-direction:column!important;gap:8px!important;
+  height:auto!important;min-height:0!important;max-height:none!important;
+  min-width:0!important;align-self:start!important;position:relative!important;
+ }
+ [data-captured-design] .v64-form-grid>label>b {position:static!important;display:block!important;height:auto!important;line-height:1.4!important;}
+ [data-captured-design] .v64-form-grid>label>select {
+  position:relative!important;display:block!important;flex:none!important;
+  height:48px!important;min-height:48px!important;max-height:none!important;
+  margin:0!important;width:100%!important;box-sizing:border-box!important;
+ }
+ [data-captured-design] .v64-form-grid>label:has(>select)>:is(.v1059-field-icon,.v1059-chevron) {display:none!important;}
+ @supports (background-clip:text) or (-webkit-background-clip:text) {
+  :is([data-captured-design],[data-captured-dialog],[data-captured-block]) .ljr-chromatic-title {
+   background-image:linear-gradient(105deg,#c0f8ff,#c4ccff 35%,#f8c9e8 64%,#fff0c1 82%,#c0f8e7)!important;
+   background-color:transparent!important;background-clip:text!important;
+   -webkit-background-clip:text!important;-webkit-text-fill-color:transparent!important;
+   color:#fff!important;
+  }
+ }
  @media (max-width:380px) {
   :is([data-captured-design],[data-captured-dialog],[data-captured-block]) .ljr-cms-entry button {grid-template-columns:30px minmax(0,1fr)!important;grid-template-rows:30px auto!important;gap:8px!important;padding:14px 12px!important;min-height:116px!important;}
   :is([data-captured-design],[data-captured-dialog],[data-captured-block]) .ljr-cms-quick-title {grid-column:1/-1!important;grid-row:2!important;font-size:14px!important;}

@@ -20,6 +20,9 @@ on:
       - 'tests/v1441-captured-design.mjs'
       - 'src/v1441-captured-design.js'
       - 'src/v1441-captured-design.css'
+      - 'src/v1442-picture-in-picture.*'
+      - 'src/reference-icons.js'
+      - 'tests/picture-in-picture-controls.test.mjs'
       - 'tests/v1420-reference-blue-mobile.mjs'
       - 'tests/v1421-royal-drive-pages.mjs'
       - 'tests/v1422-complete-sections.mjs'
@@ -55,6 +58,7 @@ jobs:
         run: node tests/v1420-reference-blue-mobile.mjs
       - name: Build and check complete captured sections and untouched screens
         run: |
+          node --test tests/picture-in-picture-controls.test.mjs tests/native-pip-playback.test.mjs
           npm run build
           # Mejorar.zip now authorizes Profile/account and varied artwork.
           # The V1441 suite supersedes the exact V1421/V1440 background assertions
