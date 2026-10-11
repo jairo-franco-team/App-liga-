@@ -491,3 +491,59 @@ body.lj-desktop[data-app-route="home"] #screen :is(#safeHomeExtra,#v105-bottom) 
  body.lj-desktop[data-app-route="home"] #screen #v105-bottom[data-v105-route="home"] .v105-final {grid-template-columns:1fr!important}
  body.lj-desktop[data-app-route="home"] #screen #v105-bottom[data-v105-route="home"] .v105-grid {grid-template-columns:repeat(2,minmax(0,1fr))!important}
 }
+
+/* LJR PC bottom integration footer | native modules before footer | 2026-10-11 */
+/* Sólo se oculta el footer original del iframe cuando hay módulos funcionales
+   adicionales. El footer navegable se crea después de #screen, no dentro,
+   para evitar conflictos con observadores de los módulos originales. */
+body.ljpc-supplements-active #root .ucl [data-name="footer"] {display:none!important}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer {
+ box-sizing:border-box;width:100%;margin:0!important;padding:19px 20px 12px!important;
+ background:linear-gradient(145deg,#07143c,#08194e 66%,#040b27);
+ border-top:1px solid rgba(45,211,200,.35);color:#f1f7ff;
+ font-family:Inter,"Segoe UI",Arial,sans-serif;
+}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer .ljpc-home-footer-inner {
+ box-sizing:border-box;width:min(1210px,100%);margin:0 auto;
+ display:grid;grid-template-columns:minmax(230px,1.6fr) repeat(3,minmax(135px,1fr));
+ align-items:start;gap:22px;
+}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer .ljpc-home-footer-title {
+ display:flex;align-items:center;gap:12px;
+}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer .ljpc-home-footer-title img {
+ display:block;width:47px;height:47px;object-fit:contain;flex:0 0 47px;
+}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer .ljpc-home-footer-title b{
+ display:block;font-size:12px;letter-spacing:.02em;
+}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer .ljpc-home-footer-title small{
+ display:block;color:#bad2ed;font-size:10px;line-height:1.5;max-width:300px;margin-top:5px;
+}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer nav{
+ display:flex;flex-direction:column;align-items:flex-start;gap:7px;min-width:0;
+}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer nav strong{
+ color:#79dce9;font-size:10px;letter-spacing:.08em;margin-bottom:3px;
+}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer nav button{
+ border:0;background:transparent;color:#d5e2f5;text-align:left;
+ padding:3px 0;font:600 11px Inter,"Segoe UI",Arial,sans-serif;
+ cursor:pointer;min-height:25px;
+}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer nav button:hover{
+ color:#66e8ec;text-decoration:underline;
+}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer nav button:focus-visible{
+ outline:2px solid #63edf5;outline-offset:3px;
+}
+body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer .ljpc-home-footer-legal{
+ width:min(1210px,100%);margin:14px auto 0;padding-top:9px;
+ border-top:1px solid rgba(128,167,224,.16);color:#95afce;
+ text-align:center;font-size:9px;
+}
+@media(max-width:900px){
+ body.lj-desktop[data-app-route="home"] #ljpc-home-integrated-footer .ljpc-home-footer-inner{
+  grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;
+ }
+}
