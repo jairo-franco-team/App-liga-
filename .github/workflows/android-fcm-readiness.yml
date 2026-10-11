@@ -9,6 +9,10 @@ on:
       - '.github/workflows/android-debug.yml'
       - 'scripts/android-fcm-preflight.mjs'
       - 'tests/android-fcm-preflight.test.mjs'
+      - 'tests/android-fcm-conditional-setup.test.mjs'
+      - 'native/android/configure-fcm.mjs'
+      - 'native/android/LigaFirebaseMessagingService.java'
+      - 'native/android/MainActivity.java'
 
 permissions:
   contents: read
@@ -27,7 +31,7 @@ jobs:
         with:
           node-version: '22'
       - name: Probar validación y evitar falsos positivos
-        run: node --test tests/android-fcm-preflight.test.mjs
+        run: node --test tests/android-fcm-preflight.test.mjs tests/android-fcm-conditional-setup.test.mjs
       - name: Confirmar disponibilidad de configuración FCM (no enviar Push)
         env:
           FIREBASE_ANDROID_CONFIG_B64: ${{ secrets.FIREBASE_ANDROID_CONFIG_B64 }}
