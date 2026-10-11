@@ -684,7 +684,7 @@ function delegates(){
   q('[data-d-stats]').innerHTML='<span><b>'+list.length+'</b><small>Contactos</small></span><span><b>'+uniqueTeams.size+'</b><small>Equipos</small></span><span><b>'+consented+'</b><small>Avisos autorizados</small></span>';
   const filtered=list.filter(x=>(!cat||x.category===cat)&&(!role||(x.role||'Delegado titular')===role)&&(!term||norm([x.name,x.team,x.phone,x.role,x.category].join(' ')).includes(term)));
   q('[data-d-count]').textContent=filtered.length+' de '+list.length;
-  q('[data-d-list]').innerHTML=filtered.length?filtered.map(x=>{
+  q('[data-d-list]').innerHTML=filtered.length?(window.LJR_MOBILE_LISTS?.page('delegates',filtered,[term,cat,role].join('|'))||filtered).map(x=>{
     const id=esc(x.id),number=phoneDigits(x.phone),wa=whatsappPhone(x.phone),enabled=!!wa;
     const roleText=x.role||'Delegado titular';
     const approved=x.consent===true;
@@ -699,6 +699,8 @@ function delegates(){
     '<button type="button" data-d-contact-vcf="'+id+'">VCF</button>'+
     '<button type="button" class="v1126-delete" data-d-delete="'+id+'">Quitar</button></div></article>';
   }).join(''):'<p class="v105-footnote">'+(list.length?'No hay contactos con estos filtros.':'Todavía no hay delegados guardados. Agrega el primero arriba.')+'</p>';
+  q('[data-d-list]').innerHTML+=(window.LJR_MOBILE_LISTS?.button('delegates',filtered.length)||'');
+  window.LJR_MOBILE_LISTS?.bind(m,'delegates',render);
   $$('[data-d-whatsapp]',m).forEach(a=>{
     const item=list.find(x=>x.id===a.dataset.dWhatsapp);
     if(!item)return;

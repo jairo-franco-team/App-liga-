@@ -508,6 +508,7 @@
   const playerNames=[];
 
   let query='';
+  window.LJR_MOBILE_LISTS?.register('team-directory-query',{capture:()=>query,restore:value=>{query=String(value||'')}});
   let detailTab='summary';
 
   function route(){return location.hash.replace('#/','').split('?')[0]||'home'}
@@ -567,8 +568,8 @@
         '<label class="v27-search">'+searchIcon()+'<input id="v27TeamSearch" type="search" autocomplete="off" placeholder="Buscar equipos" value="'+esc(query)+'"></label>'+
       '</header>'+
       '<section class="v27-section"><h2>Siguiendo</h2><div class="v27-followed-row">'+followedTeams.slice(0,4).map(function(t){return tile(t,true)}).join('')+'</div></section>'+
-      '<section class="v27-section"><h2>Veteranos 35+ y 50+ <img src="./assets/season-2026/veteranos-35.webp" alt="Veteranos 35+" width="17" height="17" style="object-fit:contain;vertical-align:middle"> <img src="./assets/season-2026/veteranos-50.webp" alt="Veteranos 50+" width="17" height="17" style="object-fit:contain;vertical-align:middle"></h2><div class="v27-grid">'+(list.length?list.map(function(t){return tile(t,false)}).join(''):'<div class="v27-empty-grid">No se encontraron equipos.</div>')+'</div></section>'+
-      '<section class="v27-section v27-libre"><h2>Primera, Segunda e Intermedia <img src="./assets/season-2026/primera.webp" alt="Primera" width="17" height="17" style="object-fit:contain;vertical-align:middle"> <img src="./assets/season-2026/segunda.webp" alt="Segunda" width="17" height="17" style="object-fit:contain;vertical-align:middle"> <img src="./assets/season-2026/intermedia.webp" alt="Intermedia" width="17" height="17" style="object-fit:contain;vertical-align:middle"></h2><div class="v27-grid">'+(libre.length?libre.map(function(t){return tile(t,false)}).join(''):'<div class="v27-empty-grid">No se encontraron equipos.</div>')+'</div></section>'+
+      '<section class="v27-section"><h2>Veteranos 35+ y 50+ <img src="./assets/season-2026/veteranos-35.webp" alt="Veteranos 35+" width="17" height="17" style="object-fit:contain;vertical-align:middle"> <img src="./assets/season-2026/veteranos-50.webp" alt="Veteranos 50+" width="17" height="17" style="object-fit:contain;vertical-align:middle"></h2><div class="v27-grid">'+(list.length?(window.LJR_MOBILE_LISTS?.page('teams-veterans',list,q)||list).map(function(t){return tile(t,false)}).join(''):'<div class="v27-empty-grid">No se encontraron equipos.</div>')+'</div>'+(window.LJR_MOBILE_LISTS?.button('teams-veterans',list.length)||'')+'</section>'+
+      '<section class="v27-section v27-libre"><h2>Primera, Segunda e Intermedia <img src="./assets/season-2026/primera.webp" alt="Primera" width="17" height="17" style="object-fit:contain;vertical-align:middle"> <img src="./assets/season-2026/segunda.webp" alt="Segunda" width="17" height="17" style="object-fit:contain;vertical-align:middle"> <img src="./assets/season-2026/intermedia.webp" alt="Intermedia" width="17" height="17" style="object-fit:contain;vertical-align:middle"></h2><div class="v27-grid">'+(libre.length?(window.LJR_MOBILE_LISTS?.page('teams-open',libre,q)||libre).map(function(t){return tile(t,false)}).join(''):'<div class="v27-empty-grid">No se encontraron equipos.</div>')+'</div>'+(window.LJR_MOBILE_LISTS?.button('teams-open',libre.length)||'')+'</section>'+
     '</section>';
   }
 
@@ -653,6 +654,7 @@
   }
 
   function bind(){
+    for(const key of ['teams-veterans','teams-open'])window.LJR_MOBILE_LISTS?.bind(document,key,render);
     document.querySelectorAll('[data-v27-back]').forEach(function(b){
       b.onclick=function(){location.hash=route()==='teamDetail'?'#/teams':'#/more'};
     });

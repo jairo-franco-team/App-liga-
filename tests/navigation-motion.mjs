@@ -28,7 +28,7 @@ try {
  await page.goto('http://app.test/?mode=apk#/competition',{waitUntil:'domcontentloaded'});await page.waitForTimeout(1300);
  await page.evaluate(()=>scrollTo(0,650));await page.waitForTimeout(150);const oldY=await page.evaluate(()=>scrollY);
  await page.evaluate(()=>{window.__entryFrames=[];const screen=document.querySelector('#screen'),animate=screen.animate.bind(screen);screen.animate=(frames,options)=>{window.__entryFrames.push(frames);return animate(frames,options)};location.hash='#/leagueData'});await page.waitForTimeout(400);
- assert.ok(await page.evaluate(()=>window.__entryFrames.some(f=>f[0].transform==='translateX(100%)')),'page slides in');
+ assert.ok(await page.evaluate(()=>window.__entryFrames.some(f=>f[0].translate==='100% 0')),'page slides in');
  await page.waitForTimeout(350);await page.locator('[data-v33-back]').click();await page.waitForTimeout(850);
  assert.equal(await page.evaluate(()=>location.hash),'#/competition');assert.ok(Math.abs(await page.evaluate(()=>scrollY)-oldY)<5,'previous scroll restored');
  await page.evaluate(()=>location.hash='#/history');await page.waitForTimeout(450);await page.evaluate(()=>location.hash='#/more');await page.waitForTimeout(750);

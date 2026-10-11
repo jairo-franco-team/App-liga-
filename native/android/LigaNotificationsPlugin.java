@@ -8,6 +8,9 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.net.Uri;
+import android.provider.Settings;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -68,28 +71,84 @@ public class LigaNotificationsPlugin extends Plugin {
         nm.createNotificationChannel(channel);
     }
 
+    private boolean notificationsAllowed() {
+        if (Build.VERSION.SDK_INT >= 33 && getPermissionState("notifications") != PermissionState.GRANTED) return false;
+        NotificationManager nm = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        if (nm == null) return false;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && !nm.areNotificationsEnabled()) return false;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = nm.getNotificationChannel(CHANNEL_ID);
+            if (channel != null) return channel.getImportance() != NotificationManager.IMPORTANCE_NONE;
+        }
+        return true;
+    }
+
+    private JSObject permissionStatus() {
+        boolean granted = notificationsAllowed();
+        boolean runtimeGranted = Build.VERSION.SDK_INT < 33 || getPermissionState("notifications") == PermissionState.GRANTED;
+        JSObject out = new JSObject();
+        out.put("granted", granted);
+        // A missing runtime permission is requestable; a disabled app/channel needs Settings.
+        out.put("blocked", runtimeGranted && !granted);
+        boolean requested = getContext().getSharedPreferences("liga_install_onboarding", Context.MODE_PRIVATE).getBoolean("permissionRequested", false);
+        out.put("state", granted ? "granted" : runtimeGranted ? "blocked" : requested ? "denied" : "default");
+        return out;
+    }
+
+    @PluginMethod
+    public void checkPermission(PluginCall call) {
+        call.resolve(permissionStatus());
+    }
+
     @PluginMethod
     public void requestPermission(PluginCall call) {
-        if (Build.VERSION.SDK_INT < 33) {
-            JSObject out = new JSObject();
-            out.put("granted", true);
-            call.resolve(out);
+        if (Build.VERSION.SDK_INT < 33 || getPermissionState("notifications") == PermissionState.GRANTED) {
+            call.resolve(permissionStatus());
             return;
         }
-        if (getPermissionState("notifications") == PermissionState.GRANTED) {
-            JSObject out = new JSObject();
-            out.put("granted", true);
-            call.resolve(out);
-            return;
-        }
+        getContext().getSharedPreferences("liga_install_onboarding", Context.MODE_PRIVATE).edit().putBoolean("permissionRequested", true).apply();
         requestPermissionForAlias("notifications", call, "notificationPermissionCallback");
     }
 
     @PermissionCallback
     private void notificationPermissionCallback(PluginCall call) {
-        JSObject out = new JSObject();
-        out.put("granted", getPermissionState("notifications") == PermissionState.GRANTED);
-        call.resolve(out);
+        call.resolve(permissionStatus());
+    }
+
+    @PluginMethod
+    public void openNotificationSettings(PluginCall call) {
+        try {
+            Intent intent;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+                intent.putExtra(Settings.EXTRA_APP_PACKAGE, getContext().getPackageName());
+            } else {
+                intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                intent.setData(Uri.parse("package:" + getContext().getPackageName()));
+            }
+            getActivity().startActivity(intent);
+            JSObject out = new JSObject(); out.put("opened", true); call.resolve(out);
+        } catch (Exception error) { call.reject("No se pudieron abrir los ajustes de Android", error); }
+    }
+
+    @PluginMethod
+    public void getInstallationState(PluginCall call) {
+        try {
+            PackageInfo info = getContext().getPackageManager().getPackageInfo(getContext().getPackageName(), 0);
+            SharedPreferences prefs = getContext().getSharedPreferences("liga_install_onboarding", Context.MODE_PRIVATE);
+            JSObject out = new JSObject();
+            out.put("firstInstall", info.firstInstallTime == info.lastUpdateTime);
+            out.put("completed", prefs.getBoolean("completed", false));
+            call.resolve(out);
+        } catch (Exception error) { call.reject("No se pudo comprobar la instalación de Android", error); }
+    }
+
+    @PluginMethod
+    public void completeOnboarding(PluginCall call) {
+        SharedPreferences prefs = getContext().getSharedPreferences("liga_install_onboarding", Context.MODE_PRIVATE);
+        boolean saved = prefs.edit().putBoolean("completed", true).commit();
+        if (!saved) { call.reject("Android no confirmó el guardado de preferencias"); return; }
+        JSObject out = new JSObject(); out.put("completed", true); call.resolve(out);
     }
 
     @PluginMethod
@@ -186,8 +245,8 @@ public class LigaNotificationsPlugin extends Plugin {
     }
 
     private boolean canNotify(PluginCall call) {
-        if (Build.VERSION.SDK_INT >= 33 && getPermissionState("notifications") != PermissionState.GRANTED) {
-            call.reject("Permiso de notificaciones no concedido");
+        if (!notificationsAllowed()) {
+            call.reject("Permiso de notificaciones no concedido o canal bloqueado en Android");
             return false;
         }
         return true;

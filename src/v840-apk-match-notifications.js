@@ -147,6 +147,10 @@ function shouldAlert(type){
   return type==='goal'?p.goal!==false:type==='final'?p.final!==false:true;
 }
 async function requestPermission(){
+  if(window.LJR_INSTALL_ONBOARDING?.requestPermission){
+    const result=await window.LJR_INSTALL_ONBOARDING.requestPermission();
+    return result.granted===true;
+  }
   if(Capacitor.isNativePlatform()){
     try{
       const r=await NativeNotifications.requestPermission();
@@ -332,7 +336,7 @@ function feedMarkup(){
   const all=inbox();
   const native=Capacitor.isNativePlatform(),permission=read(PERM,{});
   const granted=native?!!permission.granted:('Notification'in window&&Notification.permission==='granted');
-  const denied=!native&&'Notification'in window&&Notification.permission==='denied';
+  const denied=native?['denied','blocked'].includes(permission.state):'Notification'in window&&Notification.permission==='denied';
   const readSet=new Set(readIds());
   const unread=all.filter(e=>!readSet.has(e.id)).length;
   const categories=[...new Set([
@@ -352,7 +356,7 @@ function feedMarkup(){
   const filteredUnread=filtered.filter(e=>!readSet.has(e.id)).length;
   const rows=filtered.slice(0,view.more?MAX_INBOX:5);
   const filters=[['all','Todos'],['goal','Goles'],['final','Resultados'],['live','En vivo']];
-  const status=granted?'Avisos permitidos en este dispositivo':denied?'Avisos bloqueados: cambia el permiso desde el navegador.':'Activa avisos para recibir alertas del dispositivo.';
+  const status=granted?'Avisos permitidos en este dispositivo':denied?(native?'Avisos bloqueados: revisa los ajustes de Android.':'Avisos bloqueados: cambia el permiso desde el navegador.'):'Activa avisos para recibir alertas del dispositivo.';
   return '<section class="v840-match-feed" data-v840-feed aria-label="Actividad reciente de la Liga">'+
     '<div class="v840-feed-head">'+
       '<div class="v840-feed-title"><small>PARTIDOS · LIGA JUVENTINO ROSAS</small><h3>Actividad reciente</h3>'+
@@ -400,6 +404,10 @@ function renderFeed(){
   if(root)root.dataset.v840Signature=signature;
   root?.querySelector('[data-v840-permission]')?.addEventListener('click',async event=>{
     const button=event.currentTarget;
+    if(Capacitor.isNativePlatform()&&['denied','blocked'].includes(read(PERM,{}).state)&&window.LJR_INSTALL_ONBOARDING?.openSettings){
+      try{await window.LJR_INSTALL_ONBOARDING.openSettings()}catch(_){showFeedback('Abre los ajustes de notificaciones de Android para permitir los avisos.')}
+      return;
+    }
     if(!Capacitor.isNativePlatform()&&'Notification'in window&&Notification.permission==='denied'){
       showFeedback('Chrome tiene bloqueadas las notificaciones. Abre el icono junto a la dirección → Permisos → Notificaciones → Permitir. Después vuelve a esta página.');
       return;

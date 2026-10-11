@@ -1410,13 +1410,15 @@ function delegates(){
 
   const render=()=>{
     const host=$('[data-v100-delegate-list]',m);
-    host.innerHTML=list.length?list.map((d,i)=>{
+    host.innerHTML=list.length?(window.LJR_MOBILE_LISTS?.page('delegates-legacy',list,'all')||list).map((d,i)=>{
       const meta=[d.category,d.team].filter(Boolean).join(' · ');
       return '<article><span><b>'+esc(d.name)+'</b><small>'+esc(meta||d.team||'Sin equipo')+'</small></span><div>'+
         '<a href="tel:'+esc(d.phone)+'">Llamar</a>'+
         '<a target="_blank" rel="noopener" href="https://wa.me/'+esc(String(d.phone).replace(/\D/g,''))+'">WhatsApp</a>'+
         '<button data-del="'+i+'">×</button></div></article>';
     }).join(''):'<p>No hay contactos guardados en este dispositivo.</p>';
+    host.innerHTML+=(window.LJR_MOBILE_LISTS?.button('delegates-legacy',list.length)||'');
+    window.LJR_MOBILE_LISTS?.bind(m,'delegates-legacy',render);
     $$('[data-del]',host).forEach(b=>b.onclick=()=>{
       list.splice(Number(b.dataset.del),1);
       write('v100-delegates',list);

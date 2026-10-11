@@ -1,0 +1,516 @@
+[
+  {
+    "name": "Abejas",
+    "categories": [
+      "Primera Fuerza"
+    ],
+    "ids": [
+      "OFF-ABEJAS"
+    ],
+    "logo": "./assets/season-2026/abejas.webp"
+  },
+  {
+    "name": "AGUILARES",
+    "categories": [
+      "Veteranos 35+"
+    ],
+    "ids": [
+      "OFF-AGUILARES-V35"
+    ],
+    "logo": "./assets/season-2026/aguilares.webp"
+  },
+  {
+    "name": "Aldama FC",
+    "categories": [
+      "Intermedia"
+    ],
+    "ids": [
+      "OFF-ALDAMA-FC"
+    ],
+    "logo": "./assets/season-2026/aldama.webp"
+  },
+  {
+    "name": "AMERICA",
+    "categories": [
+      "Veteranos 35+"
+    ],
+    "ids": [
+      "OFF-AMERICA-V35"
+    ],
+    "logo": "./assets/season-2026/america.webp"
+  },
+  {
+    "name": "Barza",
+    "categories": [
+      "Segunda Fuerza"
+    ],
+    "ids": [
+      "OFF-BARZA"
+    ],
+    "logo": "./assets/season-2026/barza.webp"
+  },
+  {
+    "name": "BOAVISTA",
+    "categories": [
+      "Veteranos 35+",
+      "Veteranos 50+"
+    ],
+    "ids": [
+      "OFF-BOAVISTA",
+      "OFF-BOAVISTA-V35"
+    ],
+    "logo": "./assets/season-2026/boavista-v774.webp"
+  },
+  {
+    "name": "Boca Jrs",
+    "categories": [
+      "Veteranos 50+"
+    ],
+    "ids": [
+      "OFF-BOCA-JRS"
+    ],
+    "logo": "./assets/season-2026/boca-juniors.webp"
+  },
+  {
+    "name": "Capibaras",
+    "categories": [
+      "Intermedia"
+    ],
+    "ids": [
+      "OFF-CAPIBARAS"
+    ],
+    "logo": "./assets/season-2026/capibaras.webp"
+  },
+  {
+    "name": "Célticos FC",
+    "categories": [
+      "Segunda Fuerza"
+    ],
+    "ids": [
+      "OFF-CELTICOS"
+    ],
+    "logo": "./assets/season-2026/celticos.webp"
+  },
+  {
+    "name": "CUENDA",
+    "categories": [
+      "Veteranos 35+"
+    ],
+    "ids": [
+      "OFF-CUENDA-V35"
+    ],
+    "logo": "./assets/season-2026/santiago-cuenda.webp"
+  },
+  {
+    "name": "Dep. La Luz",
+    "categories": [
+      "Segunda Fuerza"
+    ],
+    "ids": [
+      "OFF-DEP-LA-LUZ"
+    ],
+    "logo": "./assets/season-2026/la-luz.webp"
+  },
+  {
+    "name": "Dep. Maravillas",
+    "categories": [
+      "Intermedia"
+    ],
+    "ids": [
+      "OFF-DEP-MARAVILLAS"
+    ],
+    "logo": "./assets/season-2026/maravillas.webp"
+  },
+  {
+    "name": "Dep. Nopalero",
+    "categories": [
+      "Segunda Fuerza"
+    ],
+    "ids": [
+      "OFF-DEP-NOPALERO"
+    ],
+    "logo": "./assets/season-2026/nopalero.webp"
+  },
+  {
+    "name": "Dep. Zapata",
+    "categories": [
+      "Segunda Fuerza"
+    ],
+    "ids": [
+      "OFF-DEP-ZAPATA"
+    ],
+    "logo": "./assets/season-2026/zapata.webp"
+  },
+  {
+    "name": "Dynamo",
+    "categories": [
+      "Veteranos 50+"
+    ],
+    "ids": [
+      "OFF-DYNAMO"
+    ],
+    "logo": "./assets/season-2026/dynamo.webp"
+  },
+  {
+    "name": "Franco FC",
+    "categories": [
+      "Primera Fuerza"
+    ],
+    "ids": [
+      "OFF-FRANCO-FC"
+    ],
+    "logo": "./assets/season-2026/franco.webp"
+  },
+  {
+    "name": "FRANCO-TAVERA-JR",
+    "categories": [
+      "Veteranos 35+"
+    ],
+    "ids": [
+      "OFF-FRANCO-TAVERA-JR-V35"
+    ],
+    "logo": "./assets/season-2026/franco-tavera.webp"
+  },
+  {
+    "name": "Galácticos",
+    "categories": [
+      "Primera Fuerza"
+    ],
+    "ids": [
+      "OFF-GALACTICOS"
+    ],
+    "logo": "./assets/season-2026/galacticos.webp"
+  },
+  {
+    "name": "Galeana",
+    "categories": [
+      "Intermedia"
+    ],
+    "ids": [
+      "OFF-GALEANA"
+    ],
+    "logo": "./assets/season-2026/galeana.webp"
+  },
+  {
+    "name": "Hermanos",
+    "categories": [
+      "Primera Fuerza"
+    ],
+    "ids": [
+      "OFF-HERMANOS"
+    ],
+    "logo": "./assets/season-2026/hermanos.webp"
+  },
+  {
+    "name": "Herreras FC",
+    "categories": [
+      "Primera Fuerza"
+    ],
+    "ids": [
+      "OFF-HERRERAS-FC"
+    ],
+    "logo": "./assets/season-2026/herrera.webp"
+  },
+  {
+    "name": "HURACAN",
+    "categories": [
+      "Veteranos 35+"
+    ],
+    "ids": [
+      "OFF-HURACAN-V35"
+    ],
+    "logo": "./assets/season-2026/huracan.webp"
+  },
+  {
+    "name": "JUVENTUS",
+    "categories": [
+      "Veteranos 35+",
+      "Primera Fuerza"
+    ],
+    "ids": [
+      "OFF-JUVENTUS-V35",
+      "OFF-JUVENTUS"
+    ],
+    "logo": "./assets/season-2026/juventus.webp"
+  },
+  {
+    "name": "La Canchita Deportes",
+    "categories": [
+      "Intermedia"
+    ],
+    "ids": [
+      "OFF-LA-CANCHITA-DEPORTES"
+    ],
+    "logo": "./assets/season-2026/la-canchita.webp"
+  },
+  {
+    "name": "La Cuadrilla",
+    "categories": [
+      "Intermedia"
+    ],
+    "ids": [
+      "OFF-LA-CUADRILLA"
+    ],
+    "logo": "./assets/season-2026/la-cuadrilla.webp"
+  },
+  {
+    "name": "La Esperanza",
+    "categories": [
+      "Veteranos 50+"
+    ],
+    "ids": [
+      "OFF-LA-ESPERANZA"
+    ],
+    "logo": "./assets/season-2026/la-esperanza.webp"
+  },
+  {
+    "name": "La Huerta",
+    "categories": [
+      "Intermedia"
+    ],
+    "ids": [
+      "OFF-LA-HUERTA"
+    ],
+    "logo": "./assets/season-2026/la-huerta.webp"
+  },
+  {
+    "name": "LA TRINIDAD",
+    "categories": [
+      "Veteranos 35+"
+    ],
+    "ids": [
+      "OFF-LA-TRINIDAD-V35"
+    ],
+    "logo": "./assets/season-2026/la-trinidad.webp"
+  },
+  {
+    "name": "LEYENDAS FC",
+    "categories": [
+      "Veteranos 35+"
+    ],
+    "ids": [
+      "OFF-LEYENDAS-FC-V35"
+    ],
+    "logo": "./assets/season-2026/leyendas.webp"
+  },
+  {
+    "name": "Linces",
+    "categories": [
+      "Primera Fuerza"
+    ],
+    "ids": [
+      "OFF-LINCES"
+    ],
+    "logo": "./assets/season-2026/linces.webp"
+  },
+  {
+    "name": "Lobos CDG",
+    "categories": [
+      "Primera Fuerza"
+    ],
+    "ids": [
+      "OFF-LOBOS-CDG"
+    ],
+    "logo": "./assets/season-2026/lobos-cdg.webp"
+  },
+  {
+    "name": "Malvinas",
+    "categories": [
+      "Intermedia"
+    ],
+    "ids": [
+      "OFF-MALVINAS"
+    ],
+    "logo": "./assets/season-2026/malvinas.webp"
+  },
+  {
+    "name": "Manchester",
+    "categories": [
+      "Veteranos 50+"
+    ],
+    "ids": [
+      "OFF-MANCHESTER"
+    ],
+    "logo": "./assets/season-2026/manchester.webp"
+  },
+  {
+    "name": "Mazacotes FC",
+    "categories": [
+      "Intermedia"
+    ],
+    "ids": [
+      "OFF-MAZACOTES-FC"
+    ],
+    "logo": "./assets/season-2026/mazacotes.webp"
+  },
+  {
+    "name": "Napoli",
+    "categories": [
+      "Primera Fuerza"
+    ],
+    "ids": [
+      "OFF-NAPOLI"
+    ],
+    "logo": "./assets/season-2026/napoli.webp"
+  },
+  {
+    "name": "Osasuna",
+    "categories": [
+      "Intermedia"
+    ],
+    "ids": [
+      "OFF-OSASUNA"
+    ],
+    "logo": "./assets/season-2026/osasuna.webp"
+  },
+  {
+    "name": "Pachangas FC",
+    "categories": [
+      "Segunda Fuerza"
+    ],
+    "ids": [
+      "OFF-PACHANGAS-FC"
+    ],
+    "logo": "./assets/season-2026/pachangas.webp"
+  },
+  {
+    "name": "Populares",
+    "categories": [
+      "Intermedia"
+    ],
+    "ids": [
+      "OFF-POPULARES"
+    ],
+    "logo": "./assets/season-2026/populares.webp"
+  },
+  {
+    "name": "POZOS FC",
+    "categories": [
+      "Veteranos 35+"
+    ],
+    "ids": [
+      "OFF-POZOS-FC-V35"
+    ],
+    "logo": "./assets/season-2026/pozos.webp"
+  },
+  {
+    "name": "Promesas FC",
+    "categories": [
+      "Intermedia"
+    ],
+    "ids": [
+      "OFF-PROMESAS-FC"
+    ],
+    "logo": "./assets/season-2026/promesas.webp"
+  },
+  {
+    "name": "PSV",
+    "categories": [
+      "Veteranos 35+"
+    ],
+    "ids": [
+      "OFF-PSV-V35"
+    ],
+    "logo": "./assets/season-2026/psv.webp"
+  },
+  {
+    "name": "San Antonio FC",
+    "categories": [
+      "Segunda Fuerza"
+    ],
+    "ids": [
+      "OFF-SAN-ANTONIO-FC"
+    ],
+    "logo": "./assets/season-2026/san-antonio.webp"
+  },
+  {
+    "name": "San Antonio Jrs",
+    "categories": [
+      "Intermedia"
+    ],
+    "ids": [
+      "OFF-SAN-ANTONIO-JRS"
+    ],
+    "logo": "./assets/season-2026/san-antonio-jrs.webp"
+  },
+  {
+    "name": "San José FC",
+    "categories": [
+      "Primera Fuerza"
+    ],
+    "ids": [
+      "OFF-SAN-JOSE-FC"
+    ],
+    "logo": "./assets/season-2026/san-jose.webp"
+  },
+  {
+    "name": "San José Jrs",
+    "categories": [
+      "Segunda Fuerza"
+    ],
+    "ids": [
+      "OFF-SAN-JOSE-JRS"
+    ],
+    "logo": "./assets/season-2026/san-jose-jr.webp"
+  },
+  {
+    "name": "San Juan FC",
+    "categories": [
+      "Segunda Fuerza"
+    ],
+    "ids": [
+      "OFF-SAN-JUAN-FC"
+    ],
+    "logo": "./assets/season-2026/san-juan.webp"
+  },
+  {
+    "name": "San Julián",
+    "categories": [
+      "Segunda Fuerza"
+    ],
+    "ids": [
+      "OFF-SAN-JULIAN"
+    ],
+    "logo": "./assets/season-2026/san-julian.webp"
+  },
+  {
+    "name": "Tapatío",
+    "categories": [
+      "Segunda Fuerza"
+    ],
+    "ids": [
+      "OFF-TAPATIO"
+    ],
+    "logo": "./assets/season-2026/tapatio.webp"
+  },
+  {
+    "name": "Tavera FC",
+    "categories": [
+      "Segunda Fuerza"
+    ],
+    "ids": [
+      "OFF-TAVERA-FC"
+    ],
+    "logo": "./assets/season-2026/tavera.webp"
+  },
+  {
+    "name": "Terrícolas",
+    "categories": [
+      "Primera Fuerza"
+    ],
+    "ids": [
+      "OFF-TERRICOLAS"
+    ],
+    "logo": "./assets/season-2026/terricolas.webp"
+  },
+  {
+    "name": "Toros de Cuenda",
+    "categories": [
+      "Veteranos 50+"
+    ],
+    "ids": [
+      "OFF-TOROS-DE-CUENDA"
+    ],
+    "logo": "./assets/season-2026/santiago-cuenda.webp"
+  }
+]

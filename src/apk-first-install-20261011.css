@@ -1,0 +1,54 @@
+/* Only the first-install dialog. Existing Liga routes/themes are unaffected. */
+#ljr-install-onboarding{position:fixed;inset:0;z-index:2147483000;overflow:auto;overscroll-behavior:contain;background:#03034b;color:#fff;font-family:Arial,Helvetica,sans-serif;line-height:1.35;isolation:isolate;-webkit-tap-highlight-color:transparent}
+#ljr-install-onboarding,#ljr-install-onboarding *{box-sizing:border-box}
+#ljr-install-onboarding .ljr-install-page{position:relative;min-height:100%;width:100%;max-width:600px;margin:0 auto;padding:max(env(safe-area-inset-top,0px),22px) 20px max(env(safe-area-inset-bottom,0px),18px);display:flex;flex-direction:column;background:#03034b}
+#ljr-install-onboarding[data-step="privacy"] .ljr-install-page,#ljr-install-onboarding[data-step="consent"] .ljr-install-page{background:#07108f url('/reference-ui/onboarding-privacy-background.webp') center/cover no-repeat}
+#ljr-install-onboarding[data-step="teams"] .ljr-install-page{background:#03034b url('/reference-ui/onboarding-team-background.webp') top center/100% auto no-repeat;padding-top:72px;padding-bottom:110px}
+#ljr-install-onboarding[data-step="notifications"] .ljr-install-page{background:#03034b url('/reference-ui/onboarding-notification-background.webp') center top/cover no-repeat;padding-top:65px}
+#ljr-install-onboarding h1{font-size:clamp(27px,7.5vw,37px);font-weight:750;line-height:1.08;letter-spacing:-.7px;color:#fff;margin:0 0 16px;max-width:520px;text-transform:none}
+#ljr-install-onboarding h1:focus{outline:none}
+#ljr-install-onboarding p{font-size:17px;line-height:1.42;color:#fff;margin:0 0 19px}
+#ljr-install-onboarding button{font-family:inherit;cursor:pointer;text-transform:none;letter-spacing:normal;box-shadow:none}
+#ljr-install-onboarding button:focus-visible,#ljr-install-onboarding input:focus-visible{outline:3px solid #fff;outline-offset:4px}
+#ljr-install-onboarding .ljr-install-brand{display:flex;flex-direction:column;align-items:center;gap:7px;margin:10px auto 0;text-align:center}
+#ljr-install-onboarding .ljr-install-brand img{width:92px;height:102px;object-fit:contain}
+#ljr-install-onboarding .ljr-install-brand span{font-size:14px;font-weight:750;max-width:150px;line-height:1.2;letter-spacing:1px}
+#ljr-install-onboarding .ljr-install-bottom{margin-top:auto;padding-top:24px}
+#ljr-install-onboarding[data-step="privacy"] .ljr-install-bottom{padding-top:30vh}
+#ljr-install-onboarding .ljr-install-button{width:100%;min-height:55px;border-radius:16px;padding:14px 16px;border:1px solid #00ddea;background:#00ddea;color:#031044;font-size:17px;font-weight:750;display:block;margin:0 0 13px;text-align:center}
+#ljr-install-onboarding .ljr-install-button.outline{background:transparent;color:#00ddea}
+#ljr-install-onboarding .ljr-install-button:disabled{opacity:.65;cursor:progress}
+#ljr-install-onboarding .ljr-install-skip{position:absolute;right:22px;top:max(env(safe-area-inset-top,0px),20px);border:0;background:transparent;color:#fff;font-size:17px;min-width:65px;min-height:44px;padding:8px}
+#ljr-install-onboarding .ljr-install-consent{margin:26px -20px 0;padding:27px 27px 22px;background:#10105f;border-radius:17px 17px 0 0;flex:1}
+#ljr-install-onboarding .ljr-install-consent h1{font-size:26px;line-height:1.2;letter-spacing:-.3px}
+#ljr-install-onboarding .ljr-install-consent-copy{max-height:32vh;overflow:auto;margin-bottom:18px}
+#ljr-install-onboarding .ljr-install-consent-copy p{color:#b9b9de;font-size:16px;line-height:1.45;margin-bottom:13px}
+#ljr-install-onboarding .ljr-install-consent-copy h2{color:#fff;font-size:21px;margin:0 0 12px}
+#ljr-install-onboarding .ljr-install-consent-toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0 24px;font-size:16px}
+#ljr-install-onboarding .ljr-install-consent-toggle input{width:25px;height:25px;accent-color:#00ddea}
+#ljr-install-onboarding .ljr-install-legal{display:flex;justify-content:center;gap:16px;margin-top:7px}
+#ljr-install-onboarding .ljr-install-legal button{font-size:12px;font-weight:400;min-height:35px;color:#b9b9de;border:0;border-radius:0;margin:0;padding:5px;width:auto}
+#ljr-install-onboarding .ljr-install-team-intro p{font-size:16px}
+#ljr-install-onboarding .ljr-install-search{width:100%;min-height:49px;border:1px solid transparent;border-radius:12px;background:#191970;color:#fff;padding:12px 17px;font-size:16px;margin:9px 0 29px}
+#ljr-install-onboarding .ljr-install-search::placeholder{color:#aaaacb}
+#ljr-install-onboarding .ljr-install-team-intro h2{font-size:21px;font-weight:700;margin:0 0 8px;color:#fff}
+#ljr-install-onboarding .ljr-install-team-intro small{font-size:12px;color:#b9b9de}
+#ljr-install-onboarding .ljr-install-team-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:9px;row-gap:27px;margin:31px -7px 0}
+#ljr-install-onboarding .ljr-install-team{position:relative;border:1px solid transparent;border-radius:9px;background:transparent;color:#fff;padding:8px 2px;min-height:107px;display:flex;align-items:center;flex-direction:column;justify-content:flex-start;gap:11px}
+#ljr-install-onboarding .ljr-install-team img{height:53px;width:60px;max-width:100%;object-fit:contain}
+#ljr-install-onboarding .ljr-install-team strong{font-size:11px;font-weight:650;line-height:1.2;overflow-wrap:anywhere;text-align:center}
+#ljr-install-onboarding .ljr-install-team[aria-pressed="true"]{border-color:#00ddea;background:#00ddea15}
+#ljr-install-onboarding .ljr-install-team-check{position:absolute;right:1px;top:1px;color:#00ddea;font-size:17px;font-weight:800}
+#ljr-install-onboarding .ljr-install-initial{height:53px;width:53px;border-radius:50%;display:grid;place-items:center;background:#191970;font-weight:700}
+#ljr-install-onboarding .ljr-install-team-footer{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,600px);padding:12px 20px max(env(safe-area-inset-bottom,0px),16px);background:linear-gradient(transparent,#03034b 30%)}
+#ljr-install-onboarding .ljr-install-team-footer button{margin:0}
+#ljr-install-onboarding .ljr-install-phone{position:relative;width:78%;height:clamp(220px,46vh,395px);flex-shrink:0;margin:20px auto 17px;background:url('/reference-ui/onboarding-phone.webp') top center/100% auto no-repeat}
+#ljr-install-onboarding .ljr-install-phone-cards{position:absolute;top:20%;left:5%;width:90%;display:grid;gap:4px}
+#ljr-install-onboarding .ljr-install-phone-cards>div{padding:11px 8px 10px;border-radius:5px;background:#fff;color:#090939;display:grid;gap:6px}
+#ljr-install-onboarding .ljr-install-phone-cards b{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500}
+#ljr-install-onboarding .ljr-install-phone-cards img{width:15px;height:17px;background:#05064e;border-radius:50%;object-fit:contain}
+#ljr-install-onboarding .ljr-install-phone-cards strong{font-size:10px}
+#ljr-install-onboarding .ljr-install-phone-cards span{font-size:10px}
+#ljr-install-onboarding .ljr-install-status{font-size:12px;color:#c9dbff;margin:0 0 16px;line-height:1.4}
+@media(min-height:780px){#ljr-install-onboarding .ljr-install-consent{margin-top:8vh}#ljr-install-onboarding .ljr-install-consent-copy{max-height:36vh}}
+@media(max-width:340px){#ljr-install-onboarding .ljr-install-page{padding-left:15px;padding-right:15px}#ljr-install-onboarding h1{font-size:27px}#ljr-install-onboarding .ljr-install-team-grid{gap:22px 5px}#ljr-install-onboarding .ljr-install-team img{width:52px;height:48px}}

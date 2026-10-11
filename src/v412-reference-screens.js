@@ -292,7 +292,7 @@ function bindSearch(root){
  const input=document.querySelector('#globalSearch');
  const nativeResults=document.querySelector('#searchResults');
  const render=()=>{
-   const q=norm(input?.value||'');let html='',title='',allLabel='Ver todos ›',allRoute='players';
+   const q=norm(input?.value||'');let html='',total=0,title='',allLabel='Ver todos ›',allRoute='players';
    if(nativeResults)nativeResults.style.display=q?'none':'';
    const cover=root.querySelector('[data-v414-player-cover]');
    const catbar=root.querySelector('[data-v414-player-catbar]');
@@ -303,22 +303,27 @@ function bindSearch(root){
    if(mode==='players'){
      allRoute='players';
      const pool=players().filter(p=>(playerCat==='all'||String(p.catId)===String(playerCat))&&(!q||norm(p.name+' '+p.team+' '+p.category).includes(q)));
-     pool.sort((a,b)=>{const A=playerStats(a),B=playerStats(b);return B.goals-A.goals||B.points-A.points||a.team.localeCompare(b.team,'es')||a.name.localeCompare(b.name,'es')});
+     const scores=new Map(pool.map(p=>[p,playerStats(p)]));
+     pool.sort((a,b)=>{const A=scores.get(a),B=scores.get(b);return B.goals-A.goals||B.points-A.points||a.team.localeCompare(b.team,'es')||a.name.localeCompare(b.name,'es')});
      title=(playerCat==='all'?'Todos los jugadores':(CAT_NAMES[playerCat]||'Jugadores'))+' · '+pool.length;
-     html=pool.map(searchPlayerRow).join('');
+     total=pool.length;
+     html=(window.LJR_MOBILE_LISTS?.page('search-official',pool,[mode,playerCat,q].join('|'))||pool).map(searchPlayerRow).join('');
    }else if(mode==='teams'){
      title='Equipos';allRoute='teams';allLabel='›';
-     html=teams().filter(t=>!q||norm(t.name+' '+t.category+' futbol').includes(q)).slice(0,30).map(searchTeamRow).join('');
+     const pool=teams().filter(t=>!q||norm(t.name+' '+t.category+' futbol').includes(q));total=pool.length;
+     html=(window.LJR_MOBILE_LISTS?.page('search-official',pool,[mode,q].join('|'),30)||pool.slice(0,30)).map(searchTeamRow).join('');
    }else if(mode==='competitions'){
      title='Competiciones';allRoute='competition';
      html=Object.entries(CAT_NAMES).filter(x=>!q||norm(x[1]).includes(q)).map(x=>compCard(x[0],x[1])).join('');
    }else{
      title='Partidos';allRoute='competition';
-     html=fixtures().filter(m=>!q||norm(m.home+' '+m.away+' '+m.category).includes(q)).slice(0,24).map(searchMatchRow).join('');
+     const pool=fixtures().filter(m=>!q||norm(m.home+' '+m.away+' '+m.category).includes(q));total=pool.length;
+     html=(window.LJR_MOBILE_LISTS?.page('search-official',pool,[mode,q].join('|'),24)||pool.slice(0,24)).map(searchMatchRow).join('');
    }
    root.querySelector('.v412-result-heading span').textContent=title;
    const all=root.querySelector('.v412-result-heading button');if(all){all.dataset.v412Go=allRoute;all.textContent=allLabel}
-   root.querySelector('[data-v412-search-results]').innerHTML=html||'<div class="v412-empty">No hay coincidencias.</div>';
+   root.querySelector('[data-v412-search-results]').innerHTML=(html||'<div class="v412-empty">No hay coincidencias.</div>')+(total?(window.LJR_MOBILE_LISTS?.button('search-official',total)||''):'');
+   window.LJR_MOBILE_LISTS?.bind(root,'search-official',render);
    bindCommon(root);
  };
  root.querySelectorAll('[data-v412-mode]').forEach(b=>b.onclick=()=>{mode=b.dataset.v412Mode;localStorage.setItem('v412-search-mode',mode);root.querySelectorAll('[data-v412-mode]').forEach(x=>x.classList.toggle('is-active',x===b));render()});

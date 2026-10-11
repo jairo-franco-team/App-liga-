@@ -6,7 +6,7 @@ window.__LJR_NAV_V924__=true;
 const STORE='ljr-navigation-v924';
 const screen=()=>document.getElementById('screen');
 const route=()=>location.hash||'#/home';
-const keys=['v62-category','v62-data-tab','v35-history-tab','v194-scorers-category','v40-category'];
+const keys=['v62-category','v62-data-tab','v35-history-tab','v194-scorers-category','v40-category','v42-team-tab','v379-player-profile-tab','v412-search-mode','v412-search-player-cat','v66-player-cat','v66-player-team','v27-category','v27-search','v32-category','v33-category'];
 const read=()=>{try{return JSON.parse(sessionStorage.getItem(STORE)||'null')}catch{return null}};
 const esc=s=>window.CSS&&CSS.escape?CSS.escape(s):String(s).replace(/[^a-zA-Z0-9_-]/g,'\\$&');
 function pathFor(el){
@@ -30,27 +30,52 @@ function surfaces(){
   return /(auto|scroll|overlay)/.test(s.overflowY+' '+s.overflowX)||el.scrollTop>0||el.scrollLeft>0;
  }).slice(0,50);
 }
+function viewState(){
+ const state=window.LJR_MAIN_ROUTE?.state;
+ return {
+  lists:window.LJR_MOBILE_LISTS?.snapshot?.(),
+  settings:Object.fromEntries(keys.map(k=>[k,localStorage.getItem(k)])),
+  main:state?{competitionTab:state.competitionTab,historyTab:state.historyTab,statsTab:state.statsTab,
+   newsFilter:state.newsFilter,searchQuery:state.searchQuery,selectedMatch:state.selectedMatch,selectedNews:state.selectedNews,selectedTeam:state.selectedTeam,selectedPlayer:state.selectedPlayer}:null
+ };
+}
 function capture(){
- const root=screen(),state=window.LJR_MAIN_ROUTE?.state;
+ const root=screen();
  return {
   url:route(),y:root?.scrollTop||0,x:root?.scrollLeft||0,
   windowY:Math.max(0,window.scrollY||document.scrollingElement?.scrollTop||0),
   windowX:window.scrollX||0,
   surfaces:surfaces().map(el=>({selector:pathFor(el),y:el.scrollTop,x:el.scrollLeft})).filter(p=>p.selector),
-  settings:Object.fromEntries(keys.map(k=>[k,localStorage.getItem(k)])),
-  main:state?{competitionTab:state.competitionTab,historyTab:state.historyTab,statsTab:state.statsTab,
-   newsFilter:state.newsFilter,selectedTeam:state.selectedTeam,selectedPlayer:state.selectedPlayer}:null
+  ...viewState()
  };
 }
 const blank=url=>({url,y:0,x:0,windowY:0,windowX:0,surfaces:[]});
 const old=read();
 let entries=Array.isArray(old?.entries)&&old.url===route()?old.entries:[],
     future=Array.isArray(old?.future)&&old.url===route()?old.future:[],
-    active=blank(route()),restoring=null,pending=null,restoreToken=0,queued=false;
-function save(){try{sessionStorage.setItem(STORE,JSON.stringify({url:active.url,entries:entries.slice(-60),future:future.slice(-30)}))}catch(_){}}
+    active=blank(route()),restoring=null,pending=null,restoreToken=0,direction='forward';
+function save(){
+ try{sessionStorage.setItem(STORE,JSON.stringify({url:active.url,entries:entries.slice(-60),future:future.slice(-30)}))}catch(_){}
+ // Tag only the mounted entry. New hashes get their own browser entry; app back
+ // can then traverse it instead of replacing it with a duplicate prior page.
+ if(route()===active.url&&history.state?.ljrNavigationUrl!==active.url){
+  try{history.replaceState({...history.state,ljrNavigationUrl:active.url},'',location.pathname+location.search+active.url)}catch(_){}
+ }
+}
 try{history.scrollRestoration='manual'}catch(_){}
 function remember(){if(!restoring&&route()===active.url)active=capture()}
-function track(){if(queued||restoring)return;queued=true;setTimeout(()=>{queued=false;remember()},90)}
+function track(event){
+ if(restoring||route()!==active.url)return;
+ // Offsets must be synchronous: a hash swap can happen before a debounce fires.
+ const root=screen();active.y=root?.scrollTop||0;active.x=root?.scrollLeft||0;
+ active.windowY=Math.max(0,window.scrollY||document.scrollingElement?.scrollTop||0);active.windowX=window.scrollX||0;
+ Object.assign(active,viewState());
+ const target=event?.target;
+ if(target?.nodeType===1&&target!==root&&root?.contains?.(target)){
+  const selector=pathFor(target);const item={selector,y:target.scrollTop||0,x:target.scrollLeft||0};
+  active.surfaces=(active.surfaces||[]).filter(p=>p.selector!==selector);active.surfaces.push(item);
+ }
+}
 function apply(entry){
  if(!entry||route()!==entry.url)return;
  const el=screen();if(el){el.scrollTop=entry.y||0;el.scrollLeft=entry.x||0}
@@ -68,6 +93,7 @@ function restore(entry){
   if(value===null||value===undefined)localStorage.removeItem(key);
   else localStorage.setItem(key,value);
  }
+ window.LJR_MOBILE_LISTS?.restore?.(entry.lists);
  if(entry.main&&window.LJR_MAIN_ROUTE?.state)Object.assign(window.LJR_MAIN_ROUTE.state,entry.main);
  const attempt=()=>{
   if(!restoring||token!==restoreToken||route()!==entry.url)return;
@@ -82,6 +108,7 @@ function leaving(page,push=true){
  if(destination===route()||destination===active.url)return;
  if(restoring)cancelRestore();
  remember();
+ direction='forward';
  if(push){entries.push(active);entries=entries.slice(-60);future=[]}
  active=blank(destination);pending=destination;save();
 }
@@ -90,11 +117,11 @@ function changed(url){
  if(restoring)cancelRestore();
  if(pending===url){active=blank(url);return}
  if(entries.length&&entries[entries.length-1].url===url){
-  future.push(active);active=entries.pop();restore(active);
+  direction='back';future.push(active);active=entries.pop();restore(active);
  }else if(future.length&&future[future.length-1].url===url){
-  entries.push(active);active=future.pop();restore(active);
+  direction='forward';entries.push(active);active=future.pop();restore(active);
  }else{
-  entries.push(active);entries=entries.slice(-60);future=[];
+  direction='forward';entries.push(active);entries=entries.slice(-60);future=[];
   active=blank(url);pending=url;
  }
  save();
@@ -113,12 +140,16 @@ function rendered(){
 function back(){
  remember();
  if(restoring)cancelRestore();
+ const mobile=!location.search.includes('mode=desktop')&&(location.search.includes('mode=apk')||window.matchMedia?.('(max-width: 760px)').matches);
+ if(mobile&&entries.length&&history.state?.ljrNavigationUrl===active.url&&typeof history.back==='function'&&history.length>1){
+  direction='back';history.back();return;
+ }
  const entry=entries.pop();
  if(!entry){
   if(route()!=='#/home')window.LJR_MAIN_ROUTE?.go?.('home',false);
   return;
  }
- future.push(active);active=entry;
+ direction='back';future.push(active);active=entry;
  const oldUrl=location.href;
  // Never add a new browser history entry when pressing the app's back arrow.
  history.replaceState(history.state,'',location.pathname+location.search+entry.url);
@@ -158,5 +189,5 @@ const observer=new MutationObserver(()=>{
 const watch=()=>{if(screen())observer.observe(screen(),{childList:true,subtree:true})};
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',watch,{once:true});else watch();
 window.addEventListener('beforeunload',()=>{remember();save()});
-window.LJR_NAVIGATION={leaving,rendered,back,remember};
+window.LJR_NAVIGATION={leaving,rendered,back,remember,direction:()=>direction};
 })();

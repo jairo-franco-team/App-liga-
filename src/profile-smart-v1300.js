@@ -40,7 +40,9 @@ function switchRow(label,caption,key,checked){
  return '<label class="v1300-choice"><span><strong>'+label+'</strong><small>'+caption+'</small></span><input type="checkbox" data-v1300-pref="'+key+'" '+(checked?'checked':'')+'></label>';
 }
 const prefRender=(a)=>{
- const p=readPrefs(a),perm=('Notification' in window)?Notification.permission:'unsupported';
+ const p=readPrefs(a),isApk=window.Capacitor?.isNativePlatform?.()===true;
+ let perm=('Notification' in window)?Notification.permission:'unsupported';
+ if(isApk){try{perm=JSON.parse(localStorage.getItem('ljr-native-notifications-v840')||'{}').state||'default'}catch{perm='default'}}
  return '<div class="v1300-page">'+
   detail('Configuración de esta cuenta','Los cambios se guardan automáticamente en este dispositivo.','settings')+
   part('Lectura y accesibilidad',
@@ -292,7 +294,19 @@ document.addEventListener('click',async e=>{
  if(target.matches('[data-v1300-ai-run]')){e.preventDefault();await localAI();return;}
  if(target.matches('[data-v1300-cloud-action]')){e.preventDefault();await cloudAction(target.dataset.v1300CloudAction,target);return;}
  if(target.matches('[data-v1300-permission-request]')){
-  e.preventDefault();if(!('Notification' in window))return;
+  e.preventDefault();
+  if(window.Capacitor?.isNativePlatform?.()===true){
+   try{
+    if(['denied','blocked'].includes(target.dataset?.installPermission)&&window.LJR_INSTALL_ONBOARDING?.openSettings){await window.LJR_INSTALL_ONBOARDING.openSettings();return}
+    if(!window.LJR_INSTALL_ONBOARDING?.requestPermission){status('El puente de notificaciones de Android no está disponible.',true);return}
+    const result=await window.LJR_INSTALL_ONBOARDING.requestPermission();
+    const el=$('[data-v1300-permission]');
+    if(el)el.textContent=result.granted?'Permiso de Android concedido para avisos locales.':result.state==='error'?'No se pudo comprobar el permiso de Android.':'Sin autorización de Android. Revisa los ajustes del dispositivo.';
+    target.disabled=false;
+   }catch{status('No se pudo cambiar el permiso de Android. Revisa los ajustes del dispositivo.',true)}
+   return;
+  }
+  if(!('Notification' in window))return;
   try{const res=Notification.permission==='default'?await Notification.requestPermission():Notification.permission;
    const el=$('[data-v1300-permission]');if(el)el.textContent=permissionText(res);
    target.disabled=res==='granted';

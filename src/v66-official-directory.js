@@ -259,6 +259,10 @@ function teamMarkup(store=false){
     (store&&!list.length?empty:'')+
   '</section>';
 }
+window.LJR_MOBILE_LISTS?.register('directory-filters',{
+ capture:()=>({playerQuery,playerCat,playerTeam,teamQuery,storeCat,storeRailScroll}),
+ restore:value=>{({playerQuery,playerCat,playerTeam,teamQuery,storeCat,storeRailScroll}=value)}
+});
 function playerMarkup(){
   const q=norm(playerQuery);
   const all=playerList();
@@ -281,7 +285,7 @@ function playerMarkup(){
     playerTeamRail()+
     '<div class="v66-search"><span>⌕</span><input data-v66-player-search type="search" autocomplete="off" placeholder="Buscar jugador por nombre" value="'+esc(playerQuery)+'"></div>'+
     '<p class="v66-source-note">'+list.length+' jugadores registrados'+(playerCat==='all'?'':' · '+esc(CAT_LABEL[playerCat]||''))+(playerTeam==='all'?'':' · '+esc(playerTeam))+'</p>'+
-    '<div class="v66-player-list">'+list.map((p,i)=>'<button type="button" class="v66-player-row" data-v66-player="'+esc(p.name)+'" data-v66-player-team="'+esc(p.team)+'" data-v66-cat-id="'+esc(p.cat)+'">'+playerAvatar(p)+'<span><b>'+esc(p.name)+'</b><small>'+esc(p.team)+' · '+esc(p.position||p.category)+'</small></span><i>›</i></button>').join('')+'</div>'+
+    '<div class="v66-player-list">'+(window.LJR_MOBILE_LISTS?.page('directory-players',list,[playerQuery,playerCat,playerTeam].join('|'))||list).map((p,i)=>'<button type="button" class="v66-player-row" data-v66-player="'+esc(p.name)+'" data-v66-player-team="'+esc(p.team)+'" data-v66-cat-id="'+esc(p.cat)+'">'+playerAvatar(p)+'<span><b>'+esc(p.name)+'</b><small>'+esc(p.team)+' · '+esc(p.position||p.category)+'</small></span><i>›</i></button>').join('')+'</div>'+(window.LJR_MOBILE_LISTS?.button('directory-players',list.length)||'')+
   '</section>';
 }
 function saveTeam(name,cat,resetTab=true){
@@ -290,6 +294,7 @@ function saveTeam(name,cat,resetTab=true){
   if(resetTab)localStorage.setItem('v42-team-tab','summary');
 }
 function bind(){
+  window.LJR_MOBILE_LISTS?.bind(document,'directory-players',()=>render(true));
   document.querySelector('[data-v447-store-back]')?.addEventListener('click',()=>{if(history.length>1)history.back();else location.hash='#/more'});
 
   document.querySelector('[data-v66-team-search]')?.addEventListener('input',e=>{teamQuery=e.target.value;render(true,true,false)});

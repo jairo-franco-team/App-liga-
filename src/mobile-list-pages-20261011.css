@@ -1,0 +1,9 @@
+@media(max-width:760px){
+ body:not(.lj-desktop) .ljr-mobile-list-more{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;min-height:44px;margin:16px 0;padding:11px 16px;
+  border:1px solid rgba(151,191,246,.4);border-radius:12px;
+  background:#10266f;color:#f5f8ff;font-family:inherit;font-size:14px;font-weight:700;line-height:1.25;cursor:pointer;
+ }
+ body:not(.lj-desktop) .ljr-mobile-list-more:focus-visible{outline:2px solid #45d9ee;outline-offset:3px}
+}

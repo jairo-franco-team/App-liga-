@@ -114,6 +114,7 @@
     "abbr": "TRI",
     "category": "Veteranos 35+"
   },
+  {"id":"OFF-POZOS-FC-V35","name":"POZOS FC","logo":"./assets/season-2026/pozos.webp","abbr":"POZ","category":"Veteranos 35+"},
   {
     "id": "OFF-SAN-JOSE-FC",
     "name": "SAN JOSE FC",

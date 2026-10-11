@@ -48,7 +48,7 @@ async function fixtureAccount(page){
 }
 try{
  const page=await openApp(resolve(root,'dist'));await fixtureAccount(page);
- const routes=['ligaControl','leagueTools','discipline','recruitment','refereeOffline','cedulas','players','v38Weekly','bracketBuilder','publicationCenter','profile','accountPassword','accountDevices','accountSecurity','accountPrivacy','accountPreferences','accountAdvisor','notifications','permissionBuilder','matchCenter','quiniela','matchday','agendaBuilder','weatherFields','cedulaBuilder','rulebook','ligaQR','televisados','v38Alerts','suspensionTool'];
+ const routes=['ligaControl','leagueTools','discipline','recruitment','refereeOffline','cedulas','players','v38Weekly','bracketBuilder','publicationCenter','profile','accountPassword','accountDevices','accountSecurity','accountPrivacy','accountPreferences','accountAdvisor','notifications','permissionBuilder','matchCenter','quiniela','matchday','agendaBuilder','weatherFields','cedulaBuilder','rulebook','ligaQR','televisados','v38Alerts','suspensionTool','accountEdit','news','search','scheduleChanges','credentialBuilder'];
  for(const route of routes){
   await go(page,route);
   if(route==='televisados'){await page.evaluate(()=>window.LJR_V440_TELEVISADOS.mount());await page.waitForTimeout(100);}
@@ -145,7 +145,7 @@ try{
   // controls. Its original header is also checked by v1438-protected-headers.
   return {screen:paint(root),controls:[...root.querySelectorAll('button,select,input')].filter(e=>e.getClientRects().length&&!e.closest('.ljr-cms-entry,.v391-category-wrap')).slice(0,16).map(paint)};
  });
- for(const route of ['teams','following','scorers','fantasy','stats','history','accountLogin','accountRegister','accountEdit','accountCloud','credentialBuilder','appInstall','tableExport','publications','historyLog','more']){
+ for(const route of ['teams','following','scorers','fantasy','stats','history','accountLogin','accountRegister','accountCloud','appInstall','tableExport','publications','historyLog','more']){
   await go(untouched,route);await go(baseline,route);
   if(route==='tableExport'){
    // Scorers' legacy controllers persist their selected category at different
@@ -160,5 +160,5 @@ try{
   assert.equal(await untouched.locator('#screen [data-design-card]').count(),0,route+' untouched');
   assert.deepEqual(await signature(untouched),await signature(baseline),route+' retains original backgrounds and control colors');
  }
- console.log('V1442: 30 complete routes, proportional backgrounds, white WebKit ink, independent tables, original selectors and PiP actions; at 412px, five complete mobile routes at 360px, solid controls, rainbow frames, editors, original selector, avatar, document and 16 protected routes verified.');
+ console.log('V1442: 30 complete routes, proportional backgrounds, white WebKit ink, independent tables, original selectors and PiP actions; at 412px, five complete mobile routes at 360px, solid controls, rainbow frames, editors, original selector, avatar, document and 14 protected routes verified.');
 }finally{await browser.close();}

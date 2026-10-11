@@ -6,6 +6,7 @@ window.__LJR_V1073_NEWS_AUTOMATION__=true;
 
 var KEY='ljr-news-center-v1073', REV='ljr-news-cms-revisions-v1073';
 var settings=read(KEY,{read:{},saved:{},mode:'all',query:'',alerts:false});
+window.LJR_MOBILE_LISTS?.register('news-view-filters',{capture:()=>({mode:settings.mode,query:settings.query}),restore:value=>{settings.mode=value.mode;settings.query=value.query}});
 var revisions=read(REV,null);
 var timer=0,checking=false,lastStatus='Actualización automática al abrir y cada minuto';
 function read(key,fallback){try{var data=JSON.parse(localStorage.getItem(key));return data&&typeof data==='object'?data:fallback}catch(_){return fallback}}
@@ -93,13 +94,17 @@ function renderAlerts(host){
 }
 function renderPublicNews(host){
  var feed=host.publicFeed;
- var items=records().filter(function(r){return r.kind==='news'}).sort(function(a,b){return Number(b.payload?.updatedAt||b.updated||b.created||0)-Number(a.payload?.updatedAt||a.updated||a.created||0)}).slice(0,16);
- var signature=items.map(function(r){return recordId(r)+'/'+String(r.revision||r.updated||'')+'/'+String(r.payload?.title||'')+'/'+String(r.payload?.body||'')}).join('|');
+ var q=clean(settings.query||''),mode=settings.mode||'all',category=host.root.querySelector('[data-news-filter][aria-selected="true"]')?.dataset.newsFilter||'Todas';
+ var all=records().filter(function(r){var id=recordId(r),p=r.payload||{};return r.kind==='news'&&(category==='Todas'||scope(r)===category)&&(!q||clean([p.title,p.body,p.description].join(' ')).includes(q))&&(mode!=='unread'||!isRead(id))&&(mode!=='saved'||isSaved(id))}).sort(function(a,b){return Number(b.payload?.updatedAt||b.updated||b.created||0)-Number(a.payload?.updatedAt||a.updated||a.created||0)});
+ var items=window.LJR_MOBILE_LISTS?.page('news-official',all,[q,mode,category].join('|'),16)||all.slice(0,16);
+ var signature=[q,mode,category,items.length,all.length].join('|')+'|'+items.map(function(r){return recordId(r)+'/'+String(r.revision||r.updated||'')+'/'+String(r.payload?.title||'')+'/'+String(r.payload?.body||'')}).join('|');
  if(feed.dataset.signature!==signature){
   feed.dataset.signature=signature;
   feed.innerHTML=items.length?items.map(function(r){var p=r.payload||{},id=recordId(r);return '<article class="v1073-official-card" data-v1073-id="'+esc(id)+'" data-v1073-category="'+esc(scope(r))+'">'+
    '<small>NOTICIA OFICIAL · '+esc(scope(r))+'</small><h3>'+esc(p.title||'Noticias de la Liga')+'</h3><p>'+esc(p.body||p.description||'')+'</p>'+buttons(id)+'</article>'}).join(''):'';
+  if(items.length)feed.innerHTML+=(window.LJR_MOBILE_LISTS?.button('news-official',all.length)||'');
  }
+ window.LJR_MOBILE_LISTS?.bind(feed,'news-official',()=>{renderPublicNews(host);applyFilters(host)});
  feed.hidden=!items.length;
 }
 function updateButtons(){
@@ -157,7 +162,7 @@ function checkVersions(){
 }
 function run(){
  if(checking||route()!=='news')return;
- checking=true;try{var host=assure();if(!host)return;renderAlerts(host);renderPublicNews(host);checkVersions();applyFilters(host)}catch(err){console.warn('Noticias Liga:',err)}finally{checking=false}
+ checking=true;try{window.LJR_MAIN_ROUTE?.refreshNewsRows?.(filterSignature());var host=assure();if(!host)return;renderAlerts(host);renderPublicNews(host);checkVersions();applyFilters(host)}catch(err){console.warn('Noticias Liga:',err)}finally{checking=false}
 }
 function schedule(){clearTimeout(timer);timer=setTimeout(run,95)}
 function share(id){
@@ -213,5 +218,10 @@ function boot(){
  schedule();setInterval(function(){if(route()==='news'&&!document.hidden)run()},60000);
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
-window.LJR_V1073_NEWS={refresh:run,version:'v1073'};
+function filterSignature(){return JSON.stringify([settings.query||'',settings.mode||'all',settings.mode==='saved'?settings.saved:(settings.mode==='unread'?settings.read:null)])}
+function filterNative(rows){
+ var q=clean(settings.query||''),mode=settings.mode||'all';
+ return rows.filter(function(n){var id='base:'+n.id;return (!q||clean([n.category,n.date,n.title,n.subtitle].join(' ')).includes(q))&&(mode!=='unread'||!isRead(id))&&(mode!=='saved'||isSaved(id))});
+}
+window.LJR_V1073_NEWS={refresh:run,filterNative,filterSignature,version:'v1073'};
 })();

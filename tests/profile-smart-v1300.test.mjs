@@ -57,3 +57,12 @@ test('nube opt-in: sin activación ni secretos remotos',()=>{
  assert.match(script,/persistSession:true/);
  assert.match(script,/data-v1300-cloud-action="restore"/);
 });
+test('perfil v1300: permiso APK usa el puente Liga incluso sin Notification web',async()=>{
+ let click;let requests=0;const label={textContent:''};
+ const doc={body:{dataset:{}},readyState:'loading',addEventListener:(event,handler)=>{if(event==='click')click=handler},querySelector:selector=>selector==='[data-v1300-permission]'?label:null};
+ const ctx={window:{Capacitor:{isNativePlatform:()=>true},LJR_INSTALL_ONBOARDING:{requestPermission:async()=>{requests++;return {granted:false,state:'denied',native:true}}},addEventListener(){}},document:doc,localStorage:{getItem:()=>null},location:{hash:'#/accountPreferences'},MutationObserver:class{observe(){}},setTimeout,queueMicrotask,console};
+ runInNewContext(get('src/profile-smart-v1300.js'),ctx);
+ const target={matches:selector=>selector==='[data-v1300-permission-request]',disabled:false};
+ await click({target:{closest:()=>target},preventDefault(){}});
+ assert.equal(requests,1);assert.match(label.textContent,/Android|dispositivo/);assert.equal(target.disabled,false);
+});

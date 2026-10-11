@@ -18,6 +18,14 @@ on:
       - 'public/reference-ui/**'
       - 'tests/v1440-drive-background-variety.mjs'
       - 'tests/v1441-captured-design.mjs'
+      - 'tests/v1460-mobile-corrections.mjs'
+      - 'tests/onboarding-mobile-v1460.mjs'
+      - 'src/mobile-list-pages-20261011.*'
+      - 'src/apk-first-install*'
+      - 'src/v1455-account-uefa-compact.*'
+      - 'src/v776-navigation.js'
+      - 'src/v840-apk-match-notifications.js'
+      - 'index.html'
       - 'src/v1441-captured-design.js'
       - 'src/v1441-captured-design.css'
       - 'src/v1442-picture-in-picture.*'
@@ -58,12 +66,14 @@ jobs:
         run: node tests/v1420-reference-blue-mobile.mjs
       - name: Build and check complete captured sections and untouched screens
         run: |
-          node --test tests/picture-in-picture-controls.test.mjs tests/native-pip-playback.test.mjs
+          node --test tests/*.test.mjs
           npm run build
           # Mejorar.zip now authorizes Profile/account and varied artwork.
           # The V1441 suite supersedes the exact V1421/V1440 background assertions
-          # and compares 16 untouched routes against a build without the decorator.
+          # and compares 14 untouched routes against a build without the decorator.
           node tests/v1441-captured-design.mjs
+          node tests/v1460-mobile-corrections.mjs
+          node tests/onboarding-mobile-v1460.mjs
           node tests/v1438-protected-headers.mjs
       - name: Keep mobile screenshots
         if: always()
@@ -77,5 +87,7 @@ jobs:
             artifacts/v1422-complete-sections/*.png
             artifacts/v1440/*.png
             artifacts/v1441/*.png
+            artifacts/v1460/*.png
+            artifacts/v1460-onboarding/*.png
           if-no-files-found: ignore
           retention-days: 14
