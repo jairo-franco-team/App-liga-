@@ -119,7 +119,8 @@ async function refreshLiveMatch(){
     // En caso de desconexión queda la programación, sin inventar una señal.
   }finally{remoteClockLoading=false}
 }
-function status(g,at=Date.now()){
+function status(g){
+  const at=arguments.length>1?arguments[1]:Date.now();
   if(!g)return {name:'Sin partidos',type:'pending'};
   const state=norm(g.status),scored=/^\d+$/.test(g.homeScore)&&/^\d+$/.test(g.awayScore);
   if(/suspend|cancel|aplaz|pospuest/.test(state))return {name:'Suspendido / aplazado',type:'pending'};
