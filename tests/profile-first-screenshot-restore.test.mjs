@@ -37,8 +37,8 @@ test('Perfil clásico: sin alteraciones funcionales ni de otras rutas',()=>{
 });
 
 test('V1418: Perfil clásico conserva azul rey intermedio y filas originales sin cuadros',()=>{
- assert.match(html,/profile-first-screenshot-restore\\.css\\?v=20261011-v1418-azul-rey-barra/);
- assert.match(css,/V1418 \\| Perfil original conservado/);
+ assert.match(html,/profile-first-screenshot-restore\.css\?v=20261011-v1418-azul-rey-barra/);
+ assert.match(css,/V1418 \| Perfil original conservado/);
  assert.ok(css.includes('background-color:#2055B7!important'),'Fondo de Perfil debe ser azul rey');
  assert.ok(css.includes('linear-gradient(180deg,#2865BF 0%,#2055B7 43%,#1E50AC 100%)'),'Gradiente medio del Perfil');
  assert.ok(css.includes('background-color:#2760BC!important'),'Tarjeta Mi cuenta en azul rey medio');
@@ -51,5 +51,5 @@ test('V1418: Perfil clásico conserva azul rey intermedio y filas originales sin
  const icons=rows.slice(rows.indexOf('.v569-profile-account-menu>button>span'));
  assert.ok(icons.includes('background:transparent!important'),'Iconos sin bloque de color');
  assert.doesNotMatch(css,/#05075e|#02044f|#101778|#070967/i,'No recuperar fondo azul noche');
- assert.doesNotMatch(css,/data-app-route\\^="account"|data-app-route="home"|pointer-events\\s*:/);
+ assert.doesNotMatch(css,/data-app-route\^="account"|data-app-route="home"|pointer-events\s*:/);
 });
