@@ -311,6 +311,14 @@
         html.classList.add('preview-mobile');
         if (mode === 'apk') html.classList.add('preview-apk');
       }
+      // Desktop solicitado: mantener una interfaz PC real también en Chrome Android.
+      // El modo móvil y APK conservan intactos el viewport y los estilos originales.
+      if (mode === 'desktop') {
+        html.classList.add('ljpc-forced-desktop');
+        const useDesktop = () => document.body && document.body.classList.add('lj-desktop');
+        if (document.body) useDesktop();
+        else document.addEventListener('DOMContentLoaded',useDesktop,{once:true});
+      }
       html.dataset.previewMode = mode || 'auto';
     })();
   </script>
@@ -591,8 +599,8 @@ html body.v587-fantasy-team-open .v576-field-row.por{
   <!-- V1160: instalación unificada en Android, iOS y PC, con instrucciones y SVG azul. -->
   <!-- V1166: selectors sede Deportiva Sur, presidente y secretario -->
   <script defer src="./src/v1222-notifications-local-assistant.js?v=20261010-v1222-blue-ai"></script>
-  <script type="module" crossorigin src="./assets/index-BMb5zEIH.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-Bi9OlByg.css">
+  <script type="module" crossorigin src="./assets/index-XrhehKa2.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CKn-diLW.css">
   <link rel="stylesheet" href="./src/v1166-meeting-officers.css" />
   <link rel="stylesheet" href="./src/v1211-notice-recurrence.css?v=20261010-v1212" />
   <link rel="stylesheet" href="./src/v1212-notice-series-cancel.css?v=20261010-v1212" />
