@@ -548,30 +548,31 @@ html body .liga-media-modal>section:is(
 }
 
 
-/* V1407 · Azul rey medio inspirado en la barra superior; sin cambiar funciones. */
+/* V1413 · Azul rey medio de la barra superior (perfil y ventanas con misma paleta).
+   Solo cambios de color; sin modificar geometría, roles, botones ni eventos. */
 :root{
-  --ljr-royal-mid-base:#235EBE;
-  --ljr-royal-mid-card:#2864C3;
-  --ljr-royal-mid-raised:#306DCE;
-  --ljr-royal-mid-input:#194FA8;
+  --ljr-royal-mid-base:#2055B7;
+  --ljr-royal-mid-card:#2760BC;
+  --ljr-royal-mid-raised:#2D69C8;
+  --ljr-royal-mid-input:#1E50A7;
   --ljr-royal-mid-border:rgba(207,229,255,.74);
 }
 html body:is([data-app-route="profile"],[data-app-route^="account"]){
-  --p1300-bg:#235EBE;--p1300-surface:#2864C3;--p1300-raised:#306DCE;
-  --p1300-deep:#194FA8;--p1300-border:rgba(207,229,255,.74);
+  --p1300-bg:#2055B7;--p1300-surface:#2760BC;--p1300-raised:#2D69C8;
+  --p1300-deep:#1E50A7;--p1300-border:rgba(207,229,255,.74);
   --p1300-muted:#eaf3ff;--p1300-accent:#d4e9ff;
-  --ljr-account-outer:#235EBE;--ljr-account-panel:#2864C3;
-  --ljr-account-raised:#306DCE;--ljr-account-deep:#194FA8;
+  --ljr-account-outer:#2055B7;--ljr-account-panel:#2760BC;
+  --ljr-account-raised:#2D69C8;--ljr-account-deep:#1E50A7;
   --ljr-account-outline:rgba(207,229,255,.74);
   --ljr-account-ink:#fff;--ljr-account-muted:#eaf3ff;
-  --ljr-account-royal:#2E6CCD;--ljr-account-gold:#d4e9ff;
-  --ljr-royal-page:#235EBE;--ljr-royal-head:#2D69C8;
-  --ljr-royal-panel:#2864C3;--ljr-royal-card:#2864C3;
-  --ljr-royal-control:#194FA8;--ljr-royal-action:#306DCE;
+  --ljr-account-royal:#2F69C8;--ljr-account-gold:#d4e9ff;
+  --ljr-royal-page:#2055B7;--ljr-royal-head:#2C68C6;
+  --ljr-royal-panel:#2760BC;--ljr-royal-card:#2760BC;
+  --ljr-royal-control:#1E50A7;--ljr-royal-action:#2D69C8;
 }
 html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen{
-  background-color:#235EBE!important;
-  background-image:linear-gradient(180deg,#2C68C9 0%,#245FBD 46%,#2059B4 100%)!important;
+  background-color:#2055B7!important;
+  background-image:linear-gradient(180deg,#2865BF 0%,#2259B5 46%,#1E50AC 100%)!important;
   color:#fff!important;
 }
 html body[data-app-route="profile"] #screen :is(
@@ -584,8 +585,8 @@ html body[data-app-route^="account"] #screen :is(
  .v1300-ai-status,.v1300-ai-answer,.v1300-cloud-state,.v1300-cloud-output,
  .v1300-pass-help,.v569-overlay-card,.v1150-privacy-card
 ){
-  background-color:#2864C3!important;
-  background-image:linear-gradient(155deg,#2D69C8,#245CB8)!important;
+  background-color:#2760BC!important;
+  background-image:linear-gradient(155deg,#2C68C6,#245CB8)!important;
   border-color:rgba(207,229,255,.71)!important;
   color:#fff!important;
 }
@@ -597,8 +598,8 @@ html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen
  :is(.v569-primary,.v569-secondary,.v569-link,.v1300-primary,
  .v1300-actions button,.v1300-permission button,.v1300-link,
  .v1300-pass-help button):not(.v569-danger){
-  background-color:#2C69CA!important;
-  background-image:linear-gradient(145deg,#3372D1,#2863BF)!important;
+  background-color:#2C66C3!important;
+  background-image:linear-gradient(145deg,#3370CE,#265FBA)!important;
   border-color:rgba(218,237,255,.75)!important;
   color:#fff!important;
   -webkit-text-fill-color:#fff!important;
@@ -607,15 +608,15 @@ html body[data-app-route="profile"] #screen
  :is(.v569-profile-buttons>button:first-child,.v569-methods>button.active),
 html body[data-app-route^="account"] #screen
  :is(.v569-primary,.v1300-primary){
-  background-color:#3270D3!important;
-  background-image:linear-gradient(140deg,#3878D8,#2B66CA)!important;
+  background-color:#306CCA!important;
+  background-image:linear-gradient(140deg,#3673CF,#2962BE)!important;
 }
 html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen
  :is(.v569-inline-auth input:not([type=checkbox]),.v569-inline-auth select,
  .v569-inline-auth textarea,.v569-field input,.v569-field select,
  .v569-form input:not([type=checkbox]):not([type=file]),.v569-form select,
  .v569-form textarea,.v1300-select select,.v1300-cloud-form input){
-  background:#194FA8!important;background-image:none!important;
+  background:#1E50A7!important;background-image:none!important;
   border-color:#C9E2FF!important;color:#fff!important;
 }
 /* Los siete modales de Mi cuenta se montan fuera de #screen. */
@@ -625,8 +626,8 @@ html body .liga-media-modal>section:is(
  [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
  [aria-label="Mi avatar y mi camiseta"]
 ){
-  background-color:#2561BD!important;
-  background-image:linear-gradient(160deg,#2F6BCB,#245FBA 67%,#2058B0)!important;
+  background-color:#2259B5!important;
+  background-image:linear-gradient(160deg,#2C68C6,#245CB6 67%,#1E50AC)!important;
   border-color:#CBE4FF!important;color:#fff!important;
 }
 html body .liga-media-modal>section:is(
@@ -635,8 +636,8 @@ html body .liga-media-modal>section:is(
  [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
  [aria-label="Mi avatar y mi camiseta"]
 )>header{
- background:#2B66C5!important;
- background-image:linear-gradient(145deg,#3170D1,#255DB9)!important;
+ background:#2862BE!important;
+ background-image:linear-gradient(145deg,#3070C9,#2257B2)!important;
  border-color:rgba(216,235,255,.7)!important;
 }
 html body .liga-media-modal>section:is(
@@ -645,8 +646,8 @@ html body .liga-media-modal>section:is(
  [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
  [aria-label="Mi avatar y mi camiseta"]
 ) :is(.cms-form>button,.ljr-profile-preview,.ljr-photo-upload,.ljr-avatar-gallery button){
- background:#2A66C5!important;
- background-image:linear-gradient(145deg,#326ECB,#245DB8)!important;
+ background:#2862BE!important;
+ background-image:linear-gradient(145deg,#3070C9,#245CB6)!important;
  border-color:rgba(217,236,255,.76)!important;color:#fff!important;
 }
 html body .liga-media-modal>section:is(
@@ -655,7 +656,7 @@ html body .liga-media-modal>section:is(
  [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
  [aria-label="Mi avatar y mi camiseta"]
 ) :is(input:not([type=checkbox]):not([type=file]):not([type=color]),select,textarea){
- background:#194FA8!important;background-image:none!important;
+ background:#1E50A7!important;background-image:none!important;
  border-color:#C6E0FF!important;color:#fff!important;
 }
 /* Administración, Crear/Revisar avisos y Edición: mismo nivel de azul rey. */
@@ -663,21 +664,21 @@ html body .liga-media-modal>section:is(
  .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
  .ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
 ){
- --ljr1310-bg:#235EBE;--ljr1310-surface:#2864C3;
- --ljr1310-card:#2864C3;--ljr1310-input:#194FA8;--ljr1310-edge:#C9E2FF;
- --ljr-admin-bg:#235EBE;--ljr-admin-panel:#2864C3;
- --ljr-admin-card:#2864C3;--ljr-admin-field:#194FA8;
- --cm-night:#235EBE;--cm-surface:#2864C3;--cm-card:#2864C3;
- background:#235EBE!important;
- background-image:linear-gradient(160deg,#2E6BCB 0%,#245EBA 64%,#2057B1 100%)!important;
+ --ljr1310-bg:#2055B7;--ljr1310-surface:#2760BC;
+ --ljr1310-card:#2760BC;--ljr1310-input:#1E50A7;--ljr1310-edge:#C9E2FF;
+ --ljr-admin-bg:#2055B7;--ljr-admin-panel:#2760BC;
+ --ljr-admin-card:#2760BC;--ljr-admin-field:#1E50A7;
+ --cm-night:#2055B7;--cm-surface:#2760BC;--cm-card:#2760BC;
+ background:#2055B7!important;
+ background-image:linear-gradient(160deg,#2C68C6 0%,#245CB6 64%,#1E50AC 100%)!important;
  border-color:rgba(211,232,255,.73)!important;color:#fff!important;
 }
 html body .liga-media-modal>section:is(
  .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
  .ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
 )>header{
- background:#2865C4!important;
- background-image:linear-gradient(140deg,#3270D1,#245CB5)!important;
+ background:#2862BD!important;
+ background-image:linear-gradient(140deg,#3070C9,#2258B3)!important;
  border-color:rgba(214,232,255,.72)!important;
 }
 html body .liga-media-modal :is(
@@ -689,15 +690,15 @@ html body .liga-media-modal :is(
  .ljr-editor-row,.ljr-editor-autofill,.ljr-review-card,.ljr-review-insights,
  .ljr-review-stats>div,.ljr-review-empty,.ljr-review-body,.v1081-note,.v1081-item
 ){
- background:#2864C3!important;
- background-image:linear-gradient(145deg,#2C68C8,#245CB6)!important;
+ background:#2760BC!important;
+ background-image:linear-gradient(145deg,#2C68C6,#2258B3)!important;
  border-color:rgba(211,230,255,.67)!important;color:#fff!important;
 }
 html body .liga-media-modal>section:is(
  .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
  .ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
 ) :is(input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=color]),select,textarea){
- background:#194FA8!important;background-image:none!important;
+ background:#1E50A7!important;background-image:none!important;
  border-color:#C2DFFF!important;color:#fff!important;
 }
 html body .liga-media-modal :is(
@@ -711,7 +712,7 @@ html body .liga-media-modal :is(
  .ljr-review-tabs>button,.ljr-review-automation button,.ljr-smart-actions button,
  .v1081-actions button,.v1081-role button
 ){
- background:#2B67C7!important;background-image:linear-gradient(145deg,#3371D1,#2761BB)!important;
+ background:#2864C0!important;background-image:linear-gradient(145deg,#3070C9,#255CB8)!important;
  border-color:rgba(218,237,255,.77)!important;color:#fff!important;
 }
 /* Acciones peligrosas conservan rojo y el botón final de avisos no tapa campos. */
