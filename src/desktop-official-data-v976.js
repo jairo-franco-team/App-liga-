@@ -62,7 +62,7 @@ function css(){
  .ljpc-data .ljpc-draw-group{margin:12px 0 0;border:1px solid #d7e5f4;border-radius:10px;background:#fff;padding:13px}
  .ljpc-data .ljpc-draw-group h3{font-size:13px;margin:0 0 7px;color:#15539a}
  @media(max-width:700px){.ljpc-data .ljpc-data-head{display:block}.ljpc-data .ljpc-data-actions{margin-top:10px}.ljpc-data .ljpc-categories{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.ljpc-data .ljpc-category{padding:8px}.ljpc-data .ljpc-data-search{width:100%}}
- `;document.head.appendChild(s);
+ .ljpc-weekly-confirmed{margin-top:22px;border:1px solid #cad9ed;border-radius:13px;padding:18px;background:#f8fbff;color:#173a62;display:grid;gap:11px}\n .ljpc-weekly-confirmed h3{font-size:16px;margin:0;color:#104c90}\n .ljpc-weekly-confirmed p{font-size:12px;line-height:1.6;margin:0}\n .ljpc-weekly-confirmed small{font-size:11px;color:#5a6d85}\n .ljpc-weekly-confirmed a{font-size:12px;color:#0755ac;font-weight:750}\n `;document.head.appendChild(s);
 }
 function host(){
  const page=document.querySelector('#screen > .ds-page');
@@ -117,6 +117,28 @@ function exportCsv(){
  const a=document.createElement('a');a.href=url;a.download='liga-juventino-'+tab+'-categoria-'+cat+'.csv';document.body.appendChild(a);a.click();a.remove();
  setTimeout(()=>URL.revokeObjectURL(url),1500);
 }
+function renderWeeklyOfficial(root){
+ const ITEMS=[
+  ['Intermedia','10/10/2026 08:00','ALDAMA FC','ATL. GALEANA','Campo 1 (Empastado)','Jornada 1'],
+  ['Intermedia','10/10/2026 10:00','OSASUNA','DEP. MARAVILLAS','Campo 1 (Empastado)','Jornada 1'],
+  ['Segunda Fuerza','10/10/2026 12:00','SAN ANTONIO FC','TAVERA FC','Campo 1 (Empastado)','Jornada 1'],
+  ['Segunda Fuerza','11/10/2026 08:00','PACHANGAS FC','TAPATIO','Campo 2','Jornada 7'],
+  ['Segunda Fuerza','11/10/2026 10:00','TAVERA FC','SAN JULIAN','San Julian','Jornada 7'],
+  ['Segunda Fuerza','11/10/2026 10:00','DEP. NOPALERO','SAN ANTONIO FC','Campo 2','Jornada 7'],
+  ['Segunda Fuerza','11/10/2026 10:00','SAN JOSE JRS','SAN JUAN FC','San Jose de la Montaña','Jornada 7'],
+  ['Segunda Fuerza','11/10/2026 12:00','BARZA','DEP. ZAPATA','Campo 2','Jornada 7'],
+  ['Segunda Fuerza','11/10/2026 12:00','CELTICOS','DEP. LA LUZ','Campo 1 (Empastado)','Jornada 7']
+ ];
+ const url='https://www.juventinorosasliga.com/reporte-semanal/';
+ const body=ITEMS.map(([category,date,home,away,venue,round])=>'<tr><td>'+esc(category)+'</td><td>'+esc(date)+'</td><td>'+esc(home)+'</td><td>'+esc(away)+'</td><td>'+esc(venue)+'</td><td>'+esc(round)+'</td></tr>').join('');
+ const n=root.querySelector('.ljpc-weekly-confirmed');
+ if(n)return;
+ const section=document.createElement('section');
+ section.className='ljpc-weekly-confirmed';
+ section.setAttribute('aria-label','Cambios comprobados del reporte semanal');
+ section.innerHTML='<h3>Cambios comprobados del rol · 05–11 octubre</h3><p>Comparación con la línea base del 8 de octubre. Intermedia: dos partidos adicionales. Segunda: partido adicional y rol del 11/10 publicado como Jornada 7 en lugar del rol anterior de Jornada 8. Estos datos son programación publicada: no equivalen a resultados ni a partidos disputados.</p><div class="ljpc-data-tablebox"><table class="ljpc-data-table"><thead><tr><th>Categoría</th><th>Fecha y hora</th><th>Local</th><th>Visitante</th><th>Campo</th><th>Jornada</th></tr></thead><tbody>'+body+'</tbody></table></div><p>Primera y Veteranos 50+: sin variaciones verificadas respecto a la base. Veteranos 35+: sin juegos en este reporte semanal. No hay nuevos resultados, sanciones ni goles confirmados en esta revisión.</p><a href="'+url+'" target="_blank" rel="noopener noreferrer">Consultar reporte oficial de la liga ↗</a><small>Revisión documental del 11/10/2026. Sin sincronización automática ni modificación de marcadores, estadísticas o sanciones.</small>';
+ root.appendChild(section);
+}
 function renderTable(root){
  const snapshot=official();
  const category=snapshot?.categories?.[cat]?.name||FALLBACK[cat];
@@ -129,6 +151,7 @@ function renderTable(root){
  (rows.length?'<div class="ljpc-data-tablebox"><table class="ljpc-data-table"><thead><tr>'+columns.map(h=>'<th>'+esc(h)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(row=>'<tr>'+columns.map((_,i)=>'<td>'+decoratedCell(row[i],i,columns)+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>':
  '<div class="ljpc-empty">'+(total?'No encontramos coincidencias.':'La fuente oficial no publicó registros para esta categoría y apartado.')+'</div>')+
  '<p class="ljpc-data-footer">'+rows.length+' de '+total+' registros · '+esc(category)+' · Fuente oficial de la liga. No se calculan ni inventan estadísticas.</p></div>';
+ renderWeeklyOfficial(root);
  root.querySelector('[data-ljpc-csv]')?.addEventListener('click',exportCsv);
  root.querySelectorAll('[data-ljpc-cat]').forEach(b=>b.addEventListener('click',()=>{setCategory(b.dataset.ljpcCat);search='';renderTable(root)}));
  root.querySelectorAll('[data-ljpc-tab]').forEach(b=>b.addEventListener('click',()=>{tab=b.dataset.ljpcTab;search='';renderTable(root)}));
