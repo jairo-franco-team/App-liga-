@@ -34,7 +34,7 @@ function fixtures(){
       if(!r?.[2]||!r?.[6])return;
       const hs=String(r?.[3]??'').trim(),as=String(r?.[5]??'').trim(),played=/^\d+$/.test(hs)&&/^\d+$/.test(as);
       out.push({
-        key:cid+':'+gi+':'+ri,cat:cid,category:c?.name||'Liga Juventino Rosas',
+        key:cid+':'+gi+':'+ri,officialKey:cid+':'+String(r?.[0]||gi+'-'+ri),cat:cid,category:c?.name||'Liga Juventino Rosas',status:String(r?.[10]||''),
         home:String(r[2]),away:String(r[6]),hs:played?hs:'',as:played?as:'',played,
         date:String(r?.[8]||''),time:parseDate(r?.[8]),field:String(r?.[7]||'')
       });
@@ -127,15 +127,36 @@ function fallbackRail(kind){
 
 function startOfDay(ts){const d=new Date(ts);return new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime()}
 function sameDay(a,b){return Number.isFinite(a)&&startOfDay(a)===startOfDay(b)}
-function isLive(m,now=Date.now()){return Number.isFinite(m.time)&&now>=m.time&&now<m.time+120*60000}
+/* La hora programada NO acredita que un partido haya iniciado. */
+function isLive(m,now=Date.now()){
+  if(m.played||!Number.isFinite(m.time)||now<m.time-15*60000||now>m.time+180*60000)return false;
+  const st=norm(m.status);
+  if(/suspend|cancel|aplaz|pospuest|finaliz|terminad|descansado/.test(st))return false;
+  if(/en vivo|jugando|primer tiempo|segundo tiempo|medio tiempo|\b1t\b|\b2t\b/.test(st))return true;
+  try{
+    const data=JSON.parse(localStorage.getItem('ljr-match-live-v144:'+m.officialKey)||'null');
+    const ph=String(data?.phase||'');
+    const fresh=!!(data?.source?.connected&&now-Number(data.source.lastSync||0)<30000);
+    return fresh&&['first','halftime','second'].includes(ph);
+  }catch(_){return false}
+}
+function transmissionState(m,now=Date.now()){
+  const status=norm(m.status);
+  if(/suspend|cancel|aplaz|pospuest/.test(status))return 'SUSPENDIDO';
+  if(m.played)return 'FINAL';
+  if(isLive(m,now))return 'EN VIVO';
+  if(!Number.isFinite(m.time))return 'HORA POR CONFIRMAR';
+  if(now<m.time)return 'PROGRAMADO';
+  return now<m.time+105*60000?'INICIO SIN CONFIRMAR':'RESULTADO PENDIENTE';
+}
 function clock(ts){if(!Number.isFinite(ts))return 'POR CONFIRMAR';return new Date(ts).toLocaleTimeString('es-MX',{hour:'numeric',minute:'2-digit',hour12:true}).replace(/\s/g,'').toUpperCase()}
 function shortDay(ts){return new Date(ts).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}).replace('.','').toUpperCase()}
 function tabDay(ts){return new Date(ts).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}).replace('.','').toUpperCase()}
 
 function telecastRow(m){
   const live=isLive(m),center=live&&m.played?(m.hs+' - '+m.as):(m.played?(m.hs+' - '+m.as):clock(m.time));
-  const state=live?'EN VIVO':(m.played?'FINAL':'TRANSMISIÓN');
-  return '<button class="v440-tv-match'+(live?' is-live':'')+'" type="button" data-v440-match="'+esc(m.key)+'" data-v440-home="'+esc(m.home)+'" data-v440-away="'+esc(m.away)+'" data-v440-date="'+esc(m.date)+'">'+
+  const state=transmissionState(m);
+  return '<button class="v440-tv-match'+(live?' is-live':'')+'" type="button" data-v440-match="'+esc(m.officialKey)+'" data-v440-home="'+esc(m.home)+'" data-v440-away="'+esc(m.away)+'" data-v440-date="'+esc(m.date)+'">'+
     '<span class="v440-tv-icon" aria-hidden="true"><b>TV</b></span>'+
     '<span class="v440-tv-team v440-tv-home"><span class="v440-tv-name">'+esc(m.home)+'</span><span class="v440-tv-badge">'+badge(m.home)+'</span></span>'+
     '<span class="v440-tv-center"><strong>'+esc(center)+'</strong><small>'+esc(state)+'</small></span>'+
@@ -182,6 +203,11 @@ function telecastMarkup(all){
 function renderTelecast(root,filter){
   const all=fixtures(),groups=root.querySelector('[data-v440-groups]');
   if(!groups)return;
+  const signature=JSON.stringify(telecastSelection(all,filter).map(m=>[m.officialKey,m.date,m.hs,m.as,transmissionState(m)]));
+  const liveButton=root.querySelector('[data-v440-filter-btn="live"]');
+  if(liveButton)liveButton.textContent='DIRECTO ('+all.filter(m=>isLive(m)).length+')';
+  if(root.dataset.v440Signature===signature&&root.dataset.v440Filter===filter)return;
+  root.dataset.v440Signature=signature;
   root.dataset.v440Filter=filter;
   root.querySelectorAll('[data-v440-filter-btn]').forEach(b=>b.classList.toggle('is-active',b.dataset.v440FilterBtn===filter));
   groups.innerHTML=telecastGroups(telecastSelection(all,filter));
@@ -366,5 +392,13 @@ window.addEventListener('hashchange',()=>{closeCastSheet();schedule(40)});
 window.addEventListener('load',()=>schedule(120));
 document.addEventListener('DOMContentLoaded',()=>schedule(60),{once:true});
 window.LJR_V440_TELEVISADOS={open:()=>{location.hash='#/televisados'},mount,openCast:(url='')=>openCastSheet(url)};
+/* Mantener las listas sincronizadas con nuevos roles y cambios de estado, sin refrescar la página. */
+function refreshVisibleTelecasts(){
+  if(document.hidden)return;
+  document.querySelectorAll('[data-v440-telecast]').forEach(el=>renderTelecast(el,el.dataset.v440Filter||'today'));
+}
+setInterval(refreshVisibleTelecasts,15000);
+window.addEventListener('ljr:official-data',refreshVisibleTelecasts);
+window.addEventListener('storage',e=>{if(e.key?.startsWith('ljr-match-live-v144:'))refreshVisibleTelecasts()});
 schedule(20);setTimeout(mount,500);setTimeout(mount,1500);
 })();
