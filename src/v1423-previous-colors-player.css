@@ -152,3 +152,40 @@ html body :is(.v977-player,.ljr-video-player.v918-overlay-player) :is(
 
 }
 }
+
+/* V1425 · Fondo AZUL OSCURO de Competición, Clasificación y Cuadro.
+   Restauración cromática solicitada en la captura 1002062239.
+   Mantener selector mitad blanca, textos, flechas, compartir, pestañas,
+   alturas, datos y manejadores existentes sin sobrescribirlos. */
+@layer ljr-reference-surfaces {
+@media screen {
+  html body[data-app-route="competition"] :is(
+    #app > .topbar,
+    .app-shell > .topbar,
+    .ljr-scroll-header
+  ){
+    background-color:#090b58!important;
+    background-image:
+      linear-gradient(135deg,transparent 31%,rgba(111,147,245,.10) 31.3%,transparent 31.7%),
+      linear-gradient(157deg,transparent 68%,rgba(104,144,236,.09) 68.3%,transparent 68.8%),
+      linear-gradient(180deg,#172877 0%,#0b1261 52%,#06074b 100%)!important;
+    background-repeat:no-repeat!important;
+    color:#fff!important;
+  }
+  html body[data-app-route="competition"] #screen{
+    background-color:#06064a!important;
+    background-image:linear-gradient(180deg,#080950 0%,#050542 100%)!important;
+  }
+  /* El lienzo de Cuadro es más oscuro que la cabecera, como en la referencia. */
+  html body[data-app-route="competition"] #screen .v12-bracket-reference{
+    background-color:#050547!important;
+    background-image:linear-gradient(180deg,#060653 0%,#03033c 100%)!important;
+  }
+  html body[data-app-route="competition"] #screen>.tabs{
+    background-color:#08074e!important;
+    background-image:none!important;
+  }
+  /* No modificar .topbar button ni .v12-bracket-stage-tabs: conservar
+     Clasificación/Cuadro blanco y Play-off cian con sus estados originales. */
+}
+}
