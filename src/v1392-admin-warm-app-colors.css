@@ -1,0 +1,313 @@
+/* V1392 · Tonos cálidos adaptados a App-liga- (10 oct 2026).
+   Presentación únicamente: no cambia rutas, eventos, controles, permisos, datos
+   ni altera escudos, fotografías, etiquetas o funciones de cada módulo.
+   Se carga AL FINAL para no recuperar los azules fríos previos. */
+:root{
+ --ljr1392-night:#090e36;
+ --ljr1392-liga:#152c70;
+ --ljr1392-panel:#13265b;
+ --ljr1392-card:#1a346d;
+ --ljr1392-deep:#0c1943;
+ --ljr1392-stroke:rgba(170,168,220,.49);
+ --ljr1392-warm-line:rgba(240,197,141,.24);
+ --ljr1392-text:#fff9f5;
+ --ljr1392-muted:#d6d0e3;
+ --ljr1392-gold:#f6cf92;
+ --ljr1392-peach:#ffb1a1;
+ --ljr1392-mint:#a1e0cc;
+ --ljr1392-violet:#d0c1ff;
+ --ljr1392-action:linear-gradient(140deg,#3269bf 0%,#264d9a 53%,#193676 100%);
+ --ljr1392-surface:linear-gradient(147deg,#203f84 0%,#162d69 47%,#101d4b 100%);
+ --ljr1392-inner:linear-gradient(151deg,#183466 0%,#112451 100%);
+}
+
+/* Administración, Crear aviso oficial, editar mi página e invitaciones. */
+html body .liga-media-modal > section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+ .ljr-admin-studio,.ljr-admin-picker,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
+){
+ --ljr1310-bg:var(--ljr1392-night);
+ --ljr1310-surface:var(--ljr1392-panel);
+ --ljr1310-card:var(--ljr1392-card);
+ --ljr1310-input:var(--ljr1392-deep);
+ --ljr1310-edge:var(--ljr1392-stroke);
+ --cm-night:var(--ljr1392-night);
+ --cm-surface:var(--ljr1392-panel);
+ --cm-card:var(--ljr1392-card);
+ --ljr-admin-bg:var(--ljr1392-night);
+ --ljr-admin-panel:var(--ljr1392-panel);
+ --ljr-admin-card:var(--ljr1392-card);
+ --ljr-admin-field:var(--ljr1392-deep);
+ background:radial-gradient(ellipse at 10% 0%,rgba(85,105,196,.21),transparent 61%),
+ linear-gradient(163deg,#172f76 0%,#14285f 29%,#0e1b49 69%,#090e36 100%)!important;
+ background-color:var(--ljr1392-night)!important;
+ border:1px solid var(--ljr1392-stroke)!important;
+ color:var(--ljr1392-text)!important;
+ box-shadow:0 16px 48px rgba(2,5,32,.37),inset 0 1px rgba(255,235,208,.075)!important;
+}
+html body .liga-media-modal > section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+ .ljr-admin-studio,.ljr-admin-picker,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
+)>header{
+ background:linear-gradient(125deg,#244e9f 0%,#1b3a84 52%,#162b67 100%)!important;
+ border-bottom:1px solid rgba(241,199,145,.27)!important;
+ color:var(--ljr1392-text)!important;
+ box-shadow:inset 0 1px rgba(255,245,224,.12)!important;
+}
+html body .liga-media-modal > section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+ .ljr-admin-studio,.ljr-admin-picker,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
+)>header [data-close]{
+ background:linear-gradient(145deg,#264787,#1a326f)!important;
+ border-color:rgba(212,191,213,.56)!important;
+ color:#fff9f5!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker,.ljr-editor-dialog,.v1081-dialog)
+ :is(.ljr-admin-area,.ljr-guide,.ljr-simple-intro,.ljr-admin-results,.ljr-admin-howto,
+ .ljr-smart-hub,.ljr-smart-tasks,.ljr-editor-hub,.ljr-editor-section-info,
+ .ljr-editor-preview,.ljr-editor-row,.ljr-editor-autofill,.ljr-review-card,
+ .ljr-review-insights,.ljr-review-body,.ljr-review-stats>div,.v1081-note,.v1081-item){
+ background:var(--ljr1392-inner)!important;
+ border-color:rgba(190,177,219,.40)!important;
+ color:var(--ljr1392-text)!important;
+ box-shadow:inset 0 1px rgba(255,232,208,.06)!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-editor-dialog,.ljr-admin-picker)
+ :is(.ljr-admin-intro,.ljr-admin-eyebrow,.ljr-editor-intro,.ljr-editor-security,.ljr-editor-note){
+ background:transparent!important;background-image:none!important;box-shadow:none!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker,.ljr-editor-dialog)
+ :is(.ljr-admin-greeting,.ljr-admin-section-sub,.ljr-editor-note,.ljr-editor-security,
+ .ljr-review-meta,.ljr-review-stats small,.ljr-admin-upload-name){
+ color:var(--ljr1392-muted)!important;
+}
+html body .liga-media-modal > section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+ .ljr-admin-studio,.ljr-admin-picker,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
+) :is(input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=color]),select,textarea){
+ background:#0c1b4b!important;background-image:none!important;
+ border:1px solid rgba(169,175,234,.57)!important;
+ color:var(--ljr1392-text)!important;border-radius:12px!important;
+ min-width:0!important;max-width:100%!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-editor-dialog,.ljr-admin-child)
+ :is(.ljr-admin-tile:not(.ljr-admin-tile-danger),.cms-kind-grid>button,
+ .ljr-editor-hub-grid>button,.ljr-editor-two-choice>button,.ljr-editor-extra-actions>button,
+ .ljr-editor-tools>button,.ljr-editor-bottom>button,.ljr-review-tabs>button,
+ .ljr-smart-actions button,.ljr-review-automation button){
+ background:var(--ljr1392-surface)!important;
+ border:1px solid rgba(194,177,221,.44)!important;
+ color:var(--ljr1392-text)!important;
+ box-shadow:inset 0 1px rgba(255,236,206,.085)!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-editor-dialog)
+ :is(.ljr-admin-tile-primary,[data-editor-publish],.ljr-review-publish,
+ .ljr-review-tabs>button[aria-pressed=true],.ljr-smart-actions button[aria-pressed=true]){
+ background:var(--ljr1392-action)!important;
+ border-color:rgba(249,214,166,.64)!important;
+ color:#fffaf6!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-editor-dialog)
+ :is(.ljr-admin-tile-icon,.ljr-simple-icon){
+ display:grid!important;place-items:center!important;
+ color:var(--ljr1392-gold)!important;
+ border-color:rgba(247,207,146,.35)!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+ :is(.ljr-admin-action-grid,.cms-kind-grid)>:nth-child(5n+2) .ljr-admin-tile-icon{color:var(--ljr1392-mint)!important}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+ :is(.ljr-admin-action-grid,.cms-kind-grid)>:nth-child(5n+3) .ljr-admin-tile-icon{color:var(--ljr1392-peach)!important}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+ :is(.ljr-admin-action-grid,.cms-kind-grid)>:nth-child(5n+4) .ljr-admin-tile-icon{color:var(--ljr1392-violet)!important}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+ :is(.ljr-admin-action-grid,.cms-kind-grid)>:nth-child(5n+5) .ljr-admin-tile-icon{color:#b3d2ff!important}
+html body .liga-media-modal .ljr-editor-two-choice>button:first-child>b svg{color:var(--ljr1392-gold)!important}
+html body .liga-media-modal .ljr-editor-two-choice>button:nth-child(2)>b svg{color:var(--ljr1392-mint)!important}
+
+/* Ventanas V105: Junta, Delegados, importar CSV, y otras herramientas administrativas. */
+html body > .v105-modal:is(.v1107-admin-modal,.v1212-csv-modal,.v1126-delegate-modal,.v875-meeting-modal)
+ > .v105-dialog{
+ background:radial-gradient(ellipse at 0% 0%,rgba(86,105,196,.16),transparent 57%),
+ linear-gradient(164deg,#1c387d 0%,#13265c 37%,#0c1943 78%,#090e36 100%)!important;
+ border:1px solid rgba(181,177,224,.51)!important;
+ color:var(--ljr1392-text)!important;
+ box-shadow:0 18px 58px rgba(2,4,33,.45)!important;
+}
+html body > .v105-modal:is(.v1107-admin-modal,.v1212-csv-modal,.v1126-delegate-modal,.v875-meeting-modal)
+ .v105-close{
+ background:linear-gradient(135deg,#2b5297,#183773)!important;
+ border-color:rgba(225,192,209,.60)!important;color:#fff9f5!important;
+}
+html body > .v105-modal:is(.v1107-admin-modal,.v1212-csv-modal,.v1126-delegate-modal,.v875-meeting-modal)
+ :is(input:not([type=checkbox]):not([type=radio]):not([type=file]),select,textarea){
+ background:#0d1c4c!important;background-image:none!important;
+ border-color:rgba(169,178,232,.58)!important;color:#fffaf6!important;
+}
+html body > .v105-modal:is(.v1107-admin-modal,.v1212-csv-modal,.v1126-delegate-modal,.v875-meeting-modal)
+ :is(.v105-btn,.csvpro-button,.v919-action,.v875-agenda-chips button,.mh-tabs>button){
+ background:var(--ljr1392-surface)!important;
+ border-color:rgba(182,179,232,.48)!important;
+ color:#fff9f5!important;
+}
+html body > .v105-modal:is(.v1107-admin-modal,.v1212-csv-modal,.v1126-delegate-modal,.v875-meeting-modal)
+ :is(.v105-btn:not(.alt),.csvpro-primary,.mh-tabs>button[aria-selected=true],.mh-tabs>button.is-active){
+ background:var(--ljr1392-action)!important;
+ border-color:rgba(250,209,146,.62)!important;
+ color:#fffaf6!important;
+}
+/* Junta, incluyendo fecha, asistencia y encabezado cálido. */
+html body > .v105-modal.v875-meeting-modal :is(.v919-meeting-hero,.ljr-meeting-hub .mh-header,.v875-meeting-options>label){
+ background:linear-gradient(137deg,#264c94,#1a3676)!important;
+ border-color:var(--ljr1392-stroke)!important;
+}
+html body > .v105-modal.v875-meeting-modal :is(
+ .v105-meeting-notice,.v105-meeting-form>label,.ljr-meeting-hub .mh-tip,
+ .ljr-meeting-hub .mh-stats>div,.ljr-meeting-hub .mh-record,.ljr-meeting-hub .mh-proposal){
+ background:var(--ljr1392-inner)!important;
+ border-color:var(--ljr1392-stroke)!important;
+}
+html body > .v105-modal.v875-meeting-modal .v919-hero-day{
+ background:#3166ad!important;border-color:#dfbe96!important;
+ color:#fff9f5!important;
+}
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub .mh-header small{
+ color:var(--ljr1392-gold)!important;
+}
+/* Delegados: sin panel morado independiente y botones legibles. */
+html body > .v105-modal.v1126-delegate-modal :is(
+ .v1126-metrics>*,.v1126-editor,.v1126-extra,.v1126-directory>article,.v1126-toolbar){
+ background:var(--ljr1392-inner)!important;
+ border-color:var(--ljr1392-stroke)!important;
+}
+html body > .v105-modal.v1126-delegate-modal .v1126-editor summary{color:var(--ljr1392-text)!important}
+html body > .v105-modal.v1126-delegate-modal .v1126-tools button{
+ background:var(--ljr1392-surface)!important;
+ border-color:rgba(194,177,221,.48)!important;
+}
+html body > .v105-modal.v1126-delegate-modal .v1126-tools button:first-child{
+ background:var(--ljr1392-action)!important;border-color:rgba(248,211,154,.62)!important;
+}
+/* CSV: zonas de carga y asistente sin cian eléctrico. */
+html body > .v105-modal.v1212-csv-modal :is(
+ .csvpro-aiintro,.csvpro-drop,.csvpro-section,.csvpro-map-item,
+ .csvpro-status,.csvpro-aireport,.csvpro-summary>div,.csvpro-warnings,.csvpro-note){
+ background:var(--ljr1392-inner)!important;
+ border-color:var(--ljr1392-stroke)!important;
+ color:var(--ljr1392-text)!important;
+}
+html body > .v105-modal.v1212-csv-modal :is(.csvpro-upload,.csvpro-aiicon){
+ background:linear-gradient(140deg,#315ca7,#203e83)!important;
+ border-color:rgba(246,207,146,.59)!important;
+ color:var(--ljr1392-gold)!important;
+}
+/* Registro de avisos y acciones auxiliares. */
+html body > .v105-modal.v168-account-modal.v920-registration-modal > .v105-dialog{
+ background:linear-gradient(155deg,#1c397c,#14285f 49%,#0c1741)!important;
+ border-color:var(--ljr1392-stroke)!important;
+}
+html body > .v105-modal.v168-account-modal.v920-registration-modal :is(
+ .v920-register-actions .v105-btn,.v1210-alert-tools-row button,.v1210-official-link){
+ background:var(--ljr1392-surface)!important;
+ border-color:rgba(200,178,224,.52)!important;
+ color:var(--ljr1392-text)!important;
+}
+html body > .v105-modal.v168-account-modal.v920-registration-modal .v920-register-actions .v920-btn-primary{
+ background:var(--ljr1392-action)!important;border-color:var(--ljr1392-gold)!important;
+}
+
+/* Página Cuenta/Perfil/Asistente local: cálida como el encabezado superior. */
+html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen{
+ background:linear-gradient(180deg,#12286f 0%,#101d58 28%,#0b1646 65%,#090e36 100%)!important;
+}
+html body:is([data-app-route="profile"],[data-app-route^="account"]){
+ --ljr-account-outer:#090e36;--ljr-account-panel:#152a64;
+ --ljr-account-raised:#203d82;--ljr-account-deep:#0d1c4a;
+ --ljr-account-outline:rgba(196,179,222,.43);
+ --ljr-account-muted:#d6d0e3;--ljr-account-royal:#3269bf;
+ --ljr-account-gold:#f6cf92;
+ --p1300-surface:#152a64;--p1300-raised:#203d82;
+ --p1300-deep:#0d1c4a;--p1300-border:rgba(196,179,222,.43);
+}
+html body[data-app-route="profile"] #screen :is(.v12-profile-card,.v569-profile-account-menu>button){
+ background:var(--ljr1392-surface)!important;
+ border-color:var(--ljr1392-stroke)!important;
+ color:var(--ljr1392-text)!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-buttons button{
+ background:var(--ljr1392-surface)!important;
+ border-color:var(--ljr1392-stroke)!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-buttons button:first-child{
+ background:var(--ljr1392-action)!important;
+ border-color:var(--ljr1392-gold)!important;
+}
+html body[data-app-route^="account"] #screen :is(.v569-card,.v1300-panel,.v1300-detail){
+ background:var(--ljr1392-surface)!important;
+ border-color:var(--ljr1392-stroke)!important;
+ color:var(--ljr1392-text)!important;
+}
+html body[data-app-route^="account"] #screen :is(
+ .v1300-findings article,.v1300-ai-status,.v1300-ai-answer,.v1300-cloud-state,
+ .v1300-cloud-output,.v1300-pass-help){
+ background:var(--ljr1392-inner)!important;
+ border-color:var(--ljr1392-stroke)!important;
+ color:var(--ljr1392-muted)!important;
+}
+html body[data-app-route^="account"] #screen :is(.v1300-mark,.v569-page-head small){
+ color:var(--ljr1392-gold)!important;
+}
+html body[data-app-route^="account"] #screen :is(
+ .v1300-primary,.v569-primary){
+ background:var(--ljr1392-action)!important;
+ border-color:rgba(244,206,153,.67)!important;
+ color:#fffaf6!important;
+}
+html body[data-app-route^="account"] #screen :is(
+ .v1300-actions button,.v1300-permission button,.v569-secondary,.v1300-pass-help button){
+ background:var(--ljr1392-surface)!important;
+ border-color:var(--ljr1392-stroke)!important;
+ color:var(--ljr1392-text)!important;
+}
+html body[data-app-route^="account"] #screen :is(
+ .v1300-select select,.v1300-cloud-form input,.v569-field input){
+ background:#0d1d4d!important;border-color:rgba(178,175,229,.56)!important;
+ color:#fff9f5!important;
+}
+
+/* Quiniela: conserva controles y logos PNG, armoniza tableros y fondos. */
+html body[data-app-route="quiniela"] :is(
+ .v970-jornada-progress,.v970-pre-match,.v970-preview-panel,
+ .v973-suggestion,.v618-q-cat){
+ background:var(--ljr1392-surface)!important;
+ border-color:var(--ljr1392-stroke)!important;
+ color:var(--ljr1392-text)!important;
+}
+html body[data-app-route="quiniela"] :is(
+ .v973-game-filter-row>button:not(.active),.v970-progress-footer button,
+ .v970-preview-toggle,.v970-quick-buttons button){
+ background:var(--ljr1392-surface)!important;
+ border-color:rgba(193,177,222,.49)!important;
+ color:var(--ljr1392-text)!important;
+}
+html body[data-app-route="quiniela"] :is(
+ .v973-game-filter-row>button.active,.v618-q-cat.active,
+ .v618-q-cat[aria-selected=true]){
+ background:var(--ljr1392-action)!important;
+ border-color:rgba(249,208,146,.67)!important;color:var(--ljr1392-text)!important;
+}
+html body[data-app-route="quiniela"] .v970-progress-head{
+ color:var(--ljr1392-gold)!important;
+}
+html body[data-app-route="quiniela"] .v970-progress-track{
+ background:rgba(187,178,229,.18)!important;
+}
+html body[data-app-route="quiniela"] .v970-progress-track i{
+ background:linear-gradient(90deg,#dcae8a,#f4d492)!important;
+}
+/* Accesibilidad y estados: sin modificar display, pointer-events, rutas ni layout. */
+html body :is(.liga-media-modal,.v105-modal,.v1300-page) button:focus-visible{
+ outline:2px solid #ffdfac!important;outline-offset:2px!important;
+}
+@media(prefers-reduced-motion:reduce){
+ html body :is(.liga-media-modal,.v105-modal,.v1300-page) button{transition:none!important}
+}
