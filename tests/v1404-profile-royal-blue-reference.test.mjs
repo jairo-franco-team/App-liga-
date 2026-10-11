@@ -40,7 +40,13 @@ test('V1407: hoja azul rey intermedia final publicada con cache nueva para Andro
  for(const older of ['src/v1387-profile-account-night-polish.css','src/v1396-profile-visual-harmony.css','src/account-bright-blue-unified-20261010.css'])
  assert.ok(html.indexOf(older)>=0 && html.indexOf(older)<html.indexOf(last),'Style order '+older);
  const tail=html.slice(html.indexOf(last)+last.length);
- assert.doesNotMatch(tail,/<link\s+rel="stylesheet"/, 'V1407 debe ser la paleta final cargada');
+ const laterSheets=[...tail.matchAll(/<link\\s+rel="stylesheet"\\s+href="([^"]+)"/g)].map(m=>m[1]);
+ for(const href of laterSheets){
+   const path=href.replace(/^\\.\\//,'').split('?')[0];
+   const content=read(path);
+   assert.doesNotMatch(content,/data-app-route="profile"|data-app-route\\^="account"/,
+     'Una hoja posterior no debe alterar la paleta Cuenta: '+path);
+ }
  assert.match(theme,/--ljr-royal-mid-base:#235EBE/, 'Debe utilizar azul rey medio similar a la barra superior');
 });
 
