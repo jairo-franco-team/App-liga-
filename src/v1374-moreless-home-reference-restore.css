@@ -128,3 +128,90 @@ html body[data-app-route="moreLess"] .app-shell > .bottom-nav{
     height:min(51%, 84.85vw)!important;
   }
 }
+
+/* V1382 · Uniformidad azul oscuro y tipografía compacta MÁS O MENOS. */
+/* El bloque superior usa la misma familia de azules del fondo del estadio.
+   Se elimina el azul eléctrico y la división horizontal visible. */
+html body[data-app-route="moreLess"],
+html body[data-app-route="moreLess"] .app-shell,
+html body[data-app-route="moreLess"] #screen{
+  background-color:#030466!important;
+}
+html body[data-app-route="moreLess"] #screen > [data-v12-moreless]{
+  background-color:#030466!important;
+  background-image:linear-gradient(180deg,#060a72 0%,#05086a 52%,#030466 100%)!important;
+}
+html body[data-app-route="moreLess"] #screen > [data-v12-moreless].v12-moreless::after{
+  /* Suaviza solo los primeros píxeles de la imagen; NO recorta el estadio. */
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 7%,#000 100%)!important;
+  mask-image:linear-gradient(to bottom,transparent 0%,#000 7%,#000 100%)!important;
+}
+/* Las tres palabras forman un solo bloque compacto.
+   La O está en la MISMA fila que MENOS, con separación mínima real. */
+html body[data-app-route="moreLess"] #screen > [data-v12-moreless] .v12-ml-title{
+  display:grid!important;
+  grid-template-columns:max-content max-content!important;
+  grid-template-rows:auto auto!important;
+  justify-content:center!important;
+  align-items:center!important;
+  column-gap:clamp(3px,.9vw,7px)!important;
+  row-gap:0!important;
+  left:50%!important;
+  top:16.2%!important;
+  width:max-content!important;
+  max-width:calc(100% - 36px)!important;
+  height:auto!important;
+  padding:0!important;
+  margin:0!important;
+  transform:translateX(-50%) skewX(-6deg)!important;
+  text-align:center!important;
+  font-style:italic!important;
+  line-height:.86!important;
+}
+html body[data-app-route="moreLess"] #screen > [data-v12-moreless] .v12-ml-title span{
+  position:relative!important;
+  display:block!important;
+  width:auto!important;
+  height:auto!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+  line-height:.90!important;
+  white-space:nowrap!important;
+  letter-spacing:-.045em!important;
+}
+html body[data-app-route="moreLess"] #screen > [data-v12-moreless] .v12-ml-title span:first-child{
+  grid-column:1 / -1!important;
+  grid-row:1!important;
+  justify-self:center!important;
+  font-size:clamp(47px,13vw,69px)!important;
+  text-align:center!important;
+}
+html body[data-app-route="moreLess"] #screen > [data-v12-moreless] .v12-ml-title span:last-child{
+  grid-column:2!important;
+  grid-row:2!important;
+  justify-self:start!important;
+  font-size:clamp(43px,12vw,65px)!important;
+  text-align:left!important;
+}
+html body[data-app-route="moreLess"] #screen > [data-v12-moreless] .v12-ml-title small{
+  position:static!important;
+  inset:auto!important;
+  grid-column:1!important;
+  grid-row:2!important;
+  display:block!important;
+  align-self:center!important;
+  justify-self:end!important;
+  margin:0 0 0 0!important;
+  padding:0!important;
+  font-size:clamp(23px,6.3vw,35px)!important;
+  line-height:1!important;
+  letter-spacing:-.05em!important;
+  white-space:nowrap!important;
+  transform:none!important;
+}
+@media(max-height:650px) and (orientation:portrait){
+ html body[data-app-route="moreLess"] #screen > [data-v12-moreless] .v12-ml-title{
+   top:11.3%!important;
+ }
+}
