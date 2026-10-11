@@ -5,10 +5,11 @@ import {readFileSync} from 'node:fs';
 const read=(p)=>readFileSync(new URL('../'+p,import.meta.url),'utf8');
 const index=read('index.html');
 const css=read('src/v1396-admin-profile-light-royal.css');
-const href='src/v1396-admin-profile-light-royal.css?v=20261010-v1396-profile-blue-bright';
+const links=[...index.matchAll(/src\/v1396-admin-profile-light-royal\.css\?v=[^"'<>\s]+/g)];
+const href=links[0]?.[0];
 
 test('V1396: capa clara de cuenta cargada al final para prevalecer sobre estilos oscuros',()=>{
-  assert.equal(index.split(href).length-1,1);
+  assert.equal(links.length,1,'La capa de Mi cuenta debe estar enlazada una vez con versión anticaché');
   assert.ok(index.indexOf(href)>index.indexOf('v1387-profile-account-night-polish.css'));
   assert.ok(index.indexOf(href)>index.indexOf('v1392-admin-warm-app-colors.css'));
   assert.ok(index.indexOf(href)>index.indexOf('v1395-admin-three-tools-night-polish.css'));
