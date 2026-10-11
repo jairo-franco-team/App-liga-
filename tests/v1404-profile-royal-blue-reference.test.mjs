@@ -33,9 +33,9 @@ test('V1404: incluye ajustes, registro y modales; mantiene contrastes y acciones
  assert.ok(!/pointer-events:\s*none!important/i.test(theme));
 });
 
-test('V1407: hoja azul rey intermedia final publicada con cache nueva para Android',()=>{
- const last='src/v1402-account-admin-royal-blue.css?v=20261010-v1407-barra-azul-rey-medio';
- assert.ok(html.includes(last),'Missing V1407 link');
+test('V1413: hoja azul rey media adaptada a la barra superior y cache actualizada',()=>{
+ const last='src/v1402-account-admin-royal-blue.css?v=20261010-v1413-azul-rey-barra-unificado';
+ assert.ok(html.includes(last),'Missing V1413 link');
  assert.equal(html.split('src/v1402-account-admin-royal-blue.css?v=').length,2);
  for(const older of ['src/v1387-profile-account-night-polish.css','src/v1396-profile-visual-harmony.css','src/account-bright-blue-unified-20261010.css'])
  assert.ok(html.indexOf(older)>=0 && html.indexOf(older)<html.indexOf(last),'Style order '+older);
@@ -53,7 +53,7 @@ test('V1407: hoja azul rey intermedia final publicada con cache nueva para Andro
     'Una hoja posterior no debe alterar paleta Cuenta: '+path);
   }
  }
- assert.match(theme,/--ljr-royal-mid-base:#235EBE/, 'Debe utilizar azul rey medio similar a la barra superior');
+ assert.match(theme,/--ljr-royal-mid-base:#2055B7/, 'Debe utilizar azul rey medio similar a la barra superior');
 });
 
 test('V1405: Mi cuenta usa azul rey real #4169E1 sin cambios funcionales',()=>{
