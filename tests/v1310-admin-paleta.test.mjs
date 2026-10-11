@@ -47,7 +47,7 @@ test('V1311 confirma fondo azul marino real de todas las ventanas y tonos oscuro
 });
 test('V1311 cubre al asistente local de Suspensión, que no usa el modal de Administración',()=>{
  const suspension=read('src/v1232-suspension-official-blue.css');
- assert.match(suspension,/V1311 · aviso de suspensión igual al azul marino/);
+ assert.match(suspension,/V1311 \/ V1385 · aviso de suspensión igual al azul marino/);
  assert.match(suspension,/\.v1232-qa\{/);
  assert.match(suspension,/background:#0b1643!important/);
  assert.match(suspension,/\.v1232-actions button\{/);
