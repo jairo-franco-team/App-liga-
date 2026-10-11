@@ -1,0 +1,89 @@
+/* Restauración visual de Inicio PC desde la captura HTML, exclusivamente en el shell PC.
+   No afecta ningún nodo o estilo del modo móvil / APK. */
+body.lj-desktop .ljpc-ref-home{--lj-wrap:1090px;--lj-green:#36e47d;--lj-navy:#040c1c;--lj-line:#1a3764;--lj-muted:#9db0cf;background:#040c1c!important;color:#eff5ff!important;font-family:Inter,"Segoe UI",Arial,sans-serif!important;font-size:12px}
+body.lj-desktop .ljpc-ref-home *,body.lj-desktop .ljpc-ref-home *::before,body.lj-desktop .ljpc-ref-home *::after{box-sizing:border-box}
+body.lj-desktop .ljpc-ref-home button{font-family:inherit;cursor:pointer}
+body.lj-desktop .ljpc-ref-home button:focus-visible{outline:2px solid #37de82;outline-offset:3px}
+body.lj-desktop .ljpc-ref-home .desk-wrap{width:min(1090px,calc(100% - 32px));max-width:1090px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-tiny{height:27px;background:#020918;border-bottom:1px solid #ffffff0e;color:#b7c6e8;font-size:9px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-tiny>.desk-wrap{height:100%;display:flex;align-items:center;justify-content:space-between}
+body.lj-desktop .ljpc-ref-home .ljpc-r-tiny button{border:0;background:transparent;color:#c5d5f2;font-size:9px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-top{background:radial-gradient(440px 330px at -1% 12%,#05ae6c91,transparent 85%),radial-gradient(500px 340px at 100% 16%,#1554de99,transparent 82%),linear-gradient(180deg,#07122a 0%,#08142f 63%,#040c1c 100%)!important;position:relative;isolation:isolate}
+body.lj-desktop .ljpc-ref-home .ljpc-r-top:before,body.lj-desktop .ljpc-ref-home .ljpc-r-top:after{content:"";position:absolute;pointer-events:none;z-index:0;width:380px;height:380px;background:#2369ec;opacity:.32;clip-path:polygon(50% 0%,61% 34%,97% 35%,67% 57%,78% 92%,50% 70%,22% 92%,33% 57%,3% 35%,39% 34%)}
+body.lj-desktop .ljpc-ref-home .ljpc-r-top:before{left:-230px;top:270px;transform:rotate(15deg)}
+body.lj-desktop .ljpc-ref-home .ljpc-r-top:after{right:-210px;top:135px;transform:rotate(-17deg)}
+body.lj-desktop .ljpc-ref-home .ljpc-r-top>*{position:relative;z-index:1}
+body.lj-desktop .ljpc-ref-home .desk-nav{height:56px;position:relative!important;background:transparent!important;border:0!important;box-shadow:none!important}
+body.lj-desktop .ljpc-ref-home .desk-nav>.desk-wrap{height:56px!important;min-height:56px!important;gap:14px!important}
+body.lj-desktop .ljpc-ref-home .desk-logo{gap:8px;min-width:112px}
+body.lj-desktop .ljpc-ref-home .desk-logo-mark{font-size:0!important;width:37px;height:37px;background:linear-gradient(145deg,#2868e9,#071f64) url('./../assets/liga-logo-oficial-transparente.png') center/contain no-repeat!important;border:1px solid #ffffff44;box-shadow:0 0 12px #214cb366}
+body.lj-desktop .ljpc-ref-home .desk-logo-text{color:#fff;font-size:9px;line-height:1.05;letter-spacing:.07em}
+body.lj-desktop .ljpc-ref-home .desk-menu{gap:5px!important;flex:1;overflow:auto}
+body.lj-desktop .ljpc-ref-home .desk-menu>button{font-size:10px!important;padding:8px 9px!important;height:32px!important;min-height:32px!important;line-height:1.2;border-radius:4px;background:transparent!important;color:#fff!important}
+body.lj-desktop .ljpc-ref-home .desk-menu>button:hover{background:#163c8c!important;color:#4bf29a!important}
+body.lj-desktop .ljpc-ref-home .ljpc-header-login{font-size:9px!important;padding:7px 8px!important;white-space:nowrap;min-width:max-content}
+body.lj-desktop .ljpc-ref-home .ljpc-r-fixtures{padding:4px 0 12px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-matchrow{display:flex;align-items:stretch;gap:8px;overflow:auto;scrollbar-width:thin;padding-bottom:5px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-game{width:117px;min-width:117px;height:62px;display:flex;flex-direction:column;align-items:stretch;gap:3px;background:#0a1a38de;color:#f1f7ff;border:1px solid #284877;border-radius:6px;padding:5px 7px;text-align:left;overflow:hidden}
+body.lj-desktop .ljpc-ref-home .ljpc-r-game small{font-size:8px;color:#91adcc;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+body.lj-desktop .ljpc-ref-home .ljpc-r-game span:not(.ljpc-r-crest){display:flex;align-items:center;gap:4px;min-height:15px;width:100%}
+body.lj-desktop .ljpc-ref-home .ljpc-r-game b{font-size:8px;font-weight:650;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}
+body.lj-desktop .ljpc-ref-home .ljpc-r-crest{width:15px;height:15px;flex:0 0 15px;display:grid;place-items:center;border-radius:50%;overflow:hidden;background:#0f48b7}
+body.lj-desktop .ljpc-ref-home .ljpc-r-crest img{width:100%;height:100%;object-fit:contain}
+body.lj-desktop .ljpc-ref-home .ljpc-r-crest-empty{font-size:11px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-all{align-self:center;height:31px;flex:0 0 auto;padding:0 13px;border:1px solid #25ca74;border-radius:4px;background:#081532a9;color:#44ee96;font-weight:750;font-size:9px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-arrow{align-self:center;display:grid;place-items:center;background:#0e2751aa;color:#7fa8dc;border-radius:50%;width:19px;height:19px;flex:0 0 19px;font-size:19px;line-height:1}
+body.lj-desktop .ljpc-ref-home .ljpc-r-arrow.round{border:1px solid #32dc89;color:#32dc89;background:#153b3844}
+body.lj-desktop .ljpc-ref-home .ljpc-r-stories{display:flex;justify-content:space-between;align-items:flex-start;gap:9px;padding:13px 0 19px;overflow-x:auto;scrollbar-width:thin}
+body.lj-desktop .ljpc-ref-home .ljpc-r-story{display:flex;align-items:center;flex-direction:column;gap:5px;flex:0 0 66px;min-width:66px;max-width:66px;border:0;background:transparent;color:#f5f8ff;font-size:8px;text-align:center;line-height:1.1;overflow:visible}
+body.lj-desktop .ljpc-ref-home .ljpc-r-storyring{width:57px;height:57px;padding:2px;background:linear-gradient(140deg,#25e184,#35dca0,#114eca);border-radius:50%;display:block;overflow:hidden}
+body.lj-desktop .ljpc-ref-home .ljpc-r-storyring img{width:100%;height:100%;object-fit:cover;border:2px solid #040e26;border-radius:50%;background:#11255d}
+body.lj-desktop .ljpc-ref-home .ljpc-r-info{width:560px;max-width:100%;min-height:38px;margin:5px auto 26px;border-radius:4px;border:1px solid #1c644a;padding:7px 12px;background:linear-gradient(95deg,#0e4a33e8,#092d2ae8);display:flex;align-items:center;gap:10px;color:#c4e6db}
+body.lj-desktop .ljpc-ref-home .ljpc-r-info .ljpc-r-info-icon{background:#135abe;color:#fff;border-radius:50%;width:23px;height:23px;display:grid;place-items:center;font-size:13px;font-weight:850}
+body.lj-desktop .ljpc-ref-home .ljpc-r-info b{font-size:9px;white-space:nowrap;color:#d5fce7}
+body.lj-desktop .ljpc-ref-home .ljpc-r-info>span:last-child{font-size:8px;line-height:1.4}
+body.lj-desktop .ljpc-ref-home .ljpc-r-hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:12px;padding-bottom:28px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-hero{height:340px;border:1px solid #50638e65;position:relative;overflow:hidden;border-radius:6px;padding:0;background:#091841;color:#fff;text-align:left}
+body.lj-desktop .ljpc-ref-home .ljpc-r-hero>img{width:100%;height:100%;object-fit:cover;transition:transform .25s ease}
+body.lj-desktop .ljpc-ref-home .ljpc-r-hero:hover>img{transform:scale(1.03)}
+body.lj-desktop .ljpc-ref-home .ljpc-r-shade{position:absolute;inset:0;background:linear-gradient(0deg,#020917ee,transparent 65%);pointer-events:none}
+body.lj-desktop .ljpc-ref-home .ljpc-r-hero strong{position:absolute;bottom:20px;left:18px;right:18px;font-size:18px;line-height:1.3;z-index:1;text-shadow:0 2px 12px #000}
+body.lj-desktop .ljpc-ref-home .ljpc-r-side{height:340px;border:1px solid #1c365d;border-radius:6px;padding:12px;background:#0b1b38df;display:flex;flex-direction:column;gap:3px;overflow:hidden}
+body.lj-desktop .ljpc-ref-home .ljpc-r-side>h2{font-size:12px;font-weight:850;margin:0 0 8px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-side>button{width:100%;flex:1;display:flex;align-items:center;gap:10px;border:0;border-bottom:1px solid #36507867;padding:4px 0;background:transparent;text-align:left;color:#f4f7ff;overflow:hidden}
+body.lj-desktop .ljpc-ref-home .ljpc-r-side>button:hover{background:#1c4d9b55}
+body.lj-desktop .ljpc-ref-home .ljpc-r-side>button img{height:38px;width:62px;flex:0 0 62px;object-fit:cover;border-radius:3px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-side>button b{font-size:9px;line-height:1.25;max-width:190px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-main{background:#040c1c!important}
+body.lj-desktop .ljpc-ref-home .ljpc-r-section{padding-top:26px;padding-bottom:11px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-heading h2{margin:0;font-size:16px;line-height:1.3;color:#f5f8ff;font-weight:850}
+body.lj-desktop .ljpc-ref-home .ljpc-r-heading button{border:0;background:none;color:#40e18e;font-size:10px;font-weight:750}
+body.lj-desktop .ljpc-ref-home .ljpc-r-moments{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-card{border:1px solid #26477e;border-radius:6px;background:#0c2146;color:#f4f9ff;min-width:0;overflow:hidden;position:relative;display:block;padding:0;text-align:left;isolation:isolate}
+body.lj-desktop .ljpc-ref-home .ljpc-r-card .ljpc-r-image{position:absolute;inset:0;z-index:-2}
+body.lj-desktop .ljpc-ref-home .ljpc-r-card .ljpc-r-image>img{width:100%;height:100%;object-fit:cover;transition:transform .25s}
+body.lj-desktop .ljpc-ref-home .ljpc-r-card:hover .ljpc-r-image>img{transform:scale(1.05)}
+body.lj-desktop .ljpc-ref-home .ljpc-r-card .ljpc-r-caption{position:absolute;bottom:9px;left:9px;right:8px;font-size:10px;line-height:1.15;color:#fff;text-shadow:0 1px 6px #000}
+body.lj-desktop .ljpc-ref-home .ljpc-r-card .ljpc-r-eyebrow{position:absolute;top:7px;left:7px;background:#32da7e;border-radius:3px;padding:2px 4px;font-size:7px;color:#002b18;font-weight:850}
+body.lj-desktop .ljpc-ref-home .ljpc-r-moments .ljpc-r-card{height:176px;border:2px solid #249e6a}
+body.lj-desktop .ljpc-ref-home .ljpc-r-news-top{display:grid;grid-template-columns:2fr .8fr .8fr;gap:9px;height:240px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-news-bottom{margin-top:9px;display:grid;grid-template-columns:1fr 1fr 2.55fr;gap:9px;height:160px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-news .ljpc-r-card .ljpc-r-caption{font-size:11px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-news .ljpc-r-news-feature .ljpc-r-caption{font-size:17px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-asistencia{display:flex;flex-direction:column;justify-content:center;gap:11px;background:#030711;border:1px solid #2e5184;color:#fff;border-radius:5px;padding:13px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-asistencia b{font-style:italic;text-align:center;font-size:16px;line-height:1.2}
+body.lj-desktop .ljpc-ref-home .ljpc-r-asistencia span{text-align:center;font-size:10px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-asistencia i{display:block;border:1px solid #33d979;color:#3bf58a;font-size:9px;text-align:center;font-weight:800;font-style:normal;padding:7px 4px;border-radius:4px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-outline{min-height:29px;padding:6px 16px;border:1px solid #2cd87e;border-radius:4px;color:#3ee88a;background:transparent;margin-top:13px;font-size:9px;font-weight:700}
+body.lj-desktop .ljpc-ref-home .ljpc-r-video-band{margin-top:35px;padding:30px 0 34px;background:radial-gradient(520px 360px at 22% 48%,#10498e96,transparent 95%),linear-gradient(120deg,#071c53,#031124 65%,#081448);border-top:1px solid #2bd39b}
+body.lj-desktop .ljpc-ref-home .ljpc-r-video-band .ljpc-r-section{padding-top:16px;padding-bottom:23px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-video-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-video-grid .ljpc-r-card{height:148px}
+body.lj-desktop .ljpc-ref-home .ljpc-r-sponsor{height:82px;display:grid;place-items:center;background:linear-gradient(105deg,#0a3b3c,#082634);font-size:10px;color:#accdd5}
+body.lj-desktop .ljpc-ref-home .desk-footer{min-height:280px;background:radial-gradient(380px 170px at 52% 100%,#174dca8c,transparent),linear-gradient(180deg,#030c20,#06183b)!important}
+body.lj-desktop .ljpc-ref-home .desk-footer .desk-wrap{padding-top:24px}
+body.lj-desktop .ljpc-ref-home .desk-footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:34px}
+body.lj-desktop .ljpc-ref-home .desk-footer-top h4{font-size:8px;letter-spacing:.16em;color:#94b4eb}
+body.lj-desktop .ljpc-ref-home .desk-footer-bottom{padding-top:20px;border-top:1px solid #1a3778;margin-top:30px;font-size:9px}
+@media(max-width:1100px){body.lj-desktop .ljpc-ref-home{min-width:1024px}body.lj-desktop .ljpc-ref-home .desk-wrap{width:calc(100% - 30px)}body.lj-desktop .ljpc-ref-home .ljpc-r-stories{gap:6px}}
