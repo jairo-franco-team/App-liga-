@@ -38,10 +38,25 @@ test('V1424: Avatar y Cuenta recuperan colores previos y conservan fotos y selec
  assert.doesNotMatch(css,/\.ljr-avatar-gallery>button\s*\{[^}]*pointer-events:none/i);
 });
 test('V1424: CSS restaurado se carga después del tema de referencia y sin duplicados',()=>{
- const restored='src/v1423-previous-colors-player.css?v=20261011-v1424-cuadro-avatar-blanco';
+ const restored='src/v1423-previous-colors-player.css?v=20261011-v1425-fondo-azul-oscuro-cuadro';
  const first='src/v1420-reference-blue-surfaces.css';
  const last='src/profile-first-screenshot-restore.css';
  assert.equal(index.split(restored).length-1,1);
  assert.ok(index.indexOf(first)>0&&index.indexOf(restored)>index.indexOf(first));
  assert.ok(index.indexOf(last)>index.indexOf(restored));
+});
+
+test('V1425: Competición vuelve al azul oscuro también en la cabecera',()=>{
+ assert.match(css,/V1425 · Fondo AZUL OSCURO de Competición/);
+ assert.match(css,/body\[data-app-route="competition"\] :is\(/);
+ assert.match(css,/#app > \.topbar/);
+ assert.match(css,/\.app-shell > \.topbar/);
+ assert.match(css,/\.ljr-scroll-header/);
+ assert.match(css,/linear-gradient\(180deg,#172877 0%,#0b1261 52%,#06074b 100%\)/);
+ assert.match(css,/body\[data-app-route="competition"\] #screen\{/);
+ assert.match(css,/background-color:#06064a!important/);
+ assert.match(css,/body\[data-app-route="competition"\] #screen \.v12-bracket-reference/);
+ assert.match(css,/background-color:#050547!important/);
+ assert.match(css,/body\[data-app-route="competition"\] #screen>\.tabs/);
+ assert.doesNotMatch(css,/<script|pointer-events\s*:\s*none|display\s*:\s*none/i);
 });
