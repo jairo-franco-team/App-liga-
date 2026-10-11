@@ -69,7 +69,7 @@ try{
  for(const route of ['players','historyLog','accountEdit','accountPrivacy','accountSecurity','accountDevices','accountPreferences','accountAdvisor','accountCloud','notifications','publications','leagueTools','matchday']){
   await go(page,route);
   const rootPaint=await page.locator('#screen').evaluate(e=>getComputedStyle(e).backgroundImage);
-  assert.match(rootPaint,route.startsWith('account')?/rgb\(7, 9, 103\).*rgb\(2, 4, 79\)/:/rgb\(29, 53, 180\).*rgb\(11, 11, 96\)/,route+' requested canvas');
+  assert.match(rootPaint,route.startsWith('account')?/rgb\(7, 9, 103\).*rgb\(2, 4, 79\)/:/rgb\(11, 11, 96\).*rgb\(0, 0, 64\)/,route+' requested canvas');
   if(route==='historyLog'){
    await page.locator('.v164-history-match').first().waitFor();
    const cards=page.locator('.v164-history-match');
@@ -119,6 +119,7 @@ try{
   const surface=page.locator('body > .liga-media-modal > section').last();
   await surface.waitFor({state:'visible'});await page.waitForTimeout(700);
   await royalSurface(surface,method+' complete editor');
+  if(method==='openNotice')await royalSurface(surface.locator('.ljr-notice-fixture-label'),'Notice fixture selector');
   await noPaleBlocks(page,'body > .liga-media-modal',method);
   await page.screenshot({path:resolve(output,method+'.png')});
   await page.evaluate(()=>document.querySelectorAll('body > .liga-media-modal').forEach(e=>e.remove()));

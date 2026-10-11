@@ -50,9 +50,9 @@ try{
   if(route.startsWith('account')){
    assert.match(paint.background,/rgb\(5, 7, 94\)/,route+' restored account night blue');
   }else if(!artwork.has(route)){
-   assert.equal(paint.color,'rgb(11, 11, 96)',route+' deep blue base');
-   assert.match(paint.background,/rgb\(29, 53, 180\)/,route+' royal blue');
-   assert.match(paint.background,/data:image\/svg\+xml/,route+' original Teams curves');
+   assert.equal(paint.color,'rgb(0, 0, 64)',route+' deep blue base');
+   assert.match(paint.background,/rgb\(11, 11, 96\)/,route+' deep blue');
+   assert.doesNotMatch(paint.background,/data:image\/svg\+xml/,route+' clean dark canvas');
   }
   if(route==='recruitment'){
    const picker=page.locator('.v190-community-select .ljr-picker-open');
@@ -80,5 +80,5 @@ try{
  await page.locator('[data-v569-page="register"]').waitFor({state:'visible'});
  assert.ok(await page.locator('[data-v569-page="register"]').count(),'Original account navigation works');
  assert.deepEqual(errors,[],'No application runtime errors');
- console.log('PASS: 24 real mobile pages, royal blue canvases, Teams curves, Profile preserved, community picker and account navigation.');
+ console.log('PASS: 24 real mobile pages, deep blue canvases, Teams header, Profile preserved, community picker and account navigation.');
 }finally{await browser.close();}
