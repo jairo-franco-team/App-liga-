@@ -23,6 +23,14 @@ Copiar el resultado **solo** a GitHub → repositorio `App-liga-` → Settings �
 
 Ejecutar manualmente **[Verificar preparación Firebase Android (FCM)](../.github/workflows/android-fcm-readiness.yml)** desde Actions. El script `scripts/android-fcm-preflight.mjs` valida que el JSON corresponda exactamente a `mx.ligajuventino.app`; no imprime valores del JSON.
 
+## Avance: adaptador privado de envío HTTP v1 (sin activar)
+
+El módulo `server/notifications/fcm-delivery.mjs` prepara solicitudes FCM con OAuth 2.0 JWT firmado a partir de una cuenta de servicio privada; sus pruebas **simulan** las respuestas y no contactan Firebase. El transporte exige que el despachador del servidor haya comprobado en PostgreSQL una aprobación oficial **y** una suscripción vigente con consentimiento explícito. Redacta respuestas de error para no registrar tokens.
+
+**Importante:** este archivo **todavía no está conectado** a `server/notifications/index.mjs`, no se han creado rutas públicas, no existe alta de tokens Android nativos ni se ha configurado la cuenta de servicio de Railway. Por tanto, **no envía Push FCM real**. El diagnóstico no considerará completa la integración simplemente por detectar el archivo.
+
+La futura cuenta de servicio Firebase debe configurarse **solo en variables privadas de Railway** (no en GitHub Pages, APK ni repositorio). `FIREBASE_ANDROID_CONFIG_B64` identifica la app Android en Actions, **no autoriza** al servidor a enviar mensajes.
+
 ## 3. Integración técnica que aún falta
 
 La comprobación de configuración no equivale a activar FCM. El seguimiento se mantiene en [incidencia #82](https://github.com/jairofrancog7-star/App-liga-/issues/82):
