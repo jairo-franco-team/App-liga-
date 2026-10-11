@@ -40,9 +40,28 @@ const short=n=>n.split(/\s+/).map(x=>x[0]).join('').slice(0,2).toUpperCase();
 const news=[['DATOS','Resultados y clasificación oficiales','Consulta las jornadas y tablas publicadas de las cinco categorías.','big'],['EQUIPOS','Equipos registrados de la temporada','Consulta los clubes participantes y sus categorías.',''],['DISCIPLINA','Tarjetas y sanciones oficiales','Consulta los registros públicos de la competición.',''],['FANTASY','Fantasy de la Liga','Herramientas disponibles en la aplicación.','wide gold']];
 /* El palmarés no se inventa: usar la sección histórica real. */
 const nav=[['Partidos','competition'],['Clasificación','standings'],['Liga TV','video'],['Sorteos','draws'],['Gaming','gaming'],['Datos','safe-data'],['Equipos','teams'],['Noticias','news'],['Historia','history'],['Sobre','about'],['Más','more']];
-const crest=n=>`<span class="ds-crest">${short(n)}</span>`;
+const esc=s=>String(s??'').replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
+function logoFor(name){
+ const n=String(name||'').trim();
+ try{
+  let raw=window.LJR_OFFICIAL_API?.getLogo?.(n)||window.V66_OFFICIAL_DIRECTORY?.logoFor?.(n)||window.LJR_TEAM_LOGOS?.get?.(n);
+  if(!raw){
+   const db=window.LJR_OFFICIAL_DATA?.team_logos||{};
+   const k=Object.keys(db).find(v=>v.trim().toLocaleLowerCase('es-MX')===n.toLocaleLowerCase('es-MX'));
+   raw=k?db[k]:null;
+  }
+  const src=String(typeof raw==='string'?raw:raw?.local||raw?.app||raw?.source||raw?.url||'').trim();
+  if(!src)return '';
+  if(src.startsWith('assets/')||src.startsWith('public/'))return './'+src.replace(/^public\//,'');
+  return /^(https?:\/\/|\.\/|\/)/i.test(src)?src:'';
+ }catch(_){return ''}
+}
+const crest=n=>{
+ const url=logoFor(n);
+ return '<span class="ds-crest">'+(url?'<img alt="" loading="lazy" src="'+esc(url)+'">':esc(short(String(n||'?'))))+'</span>';
+};
 const top=active=>`<header class="ds-nav"><div class="ds-wrap"><button class="ds-brand" data-ds-route="home"><span class="ds-brand-mark"></span><span class="ds-brand-name">LIGA<br>JUVENTINO</span></button><nav class="ds-menu">${nav.map(([t,r])=>`<button class="${active===r?'active':''}" data-ds-route="${r}">${t}</button>`).join('')}</nav><button type="button" class="ljpc-header-login" data-ds-route="accountLogin" aria-label="Iniciar sesión">Iniciar sesión <span aria-hidden="true">◉</span></button></div></header>`;
-const scorebar=()=>`<div class="ds-scorebar"><div class="ds-wrap">${fixtures.slice(0,6).map(f=>`<button class="ds-mini-match" data-ds-route="competition"><small>${f[0].replace('Jornada 5 · ','')}</small><b><i class="ds-dot"></i>${f[1]}</b><b><i class="ds-dot"></i>${f[2]}</b></button>`).join('')}<button class="ds-score-cta" data-ds-route="competition">▣ Ver todos los partidos</button></div></div>`;
+const scorebar=()=>`<div class="ds-scorebar"><div class="ds-wrap">${fixtures.slice(0,6).map(f=>`<button class="ds-mini-match" data-ds-route="competition"><small>${f[0].replace('Jornada 5 · ','')}</small><b>${crest(f[1])}${esc(f[1])}</b><b>${crest(f[2])}${esc(f[2])}</b></button>`).join('')}<button class="ds-score-cta" data-ds-route="competition">▣ Ver todos los partidos</button></div></div>`;
 const sponsors=()=>`<section class="ds-sponsors"><div class="ds-wrap"><small>COLABORADORES Y PATROCINADORES DE LA LIGA</small><div class="ds-sponsor-row"><span>JUVENTINO ROSAS</span><span>DEPORTE MUNICIPAL</span><span>COMISIÓN DE ÁRBITROS</span><span>CLUBES PARTICIPANTES</span><span>AFICIÓN</span></div></div></section>`;
 const footer=()=>`<footer class="ds-footer"><div class="ds-wrap"><div class="ds-footer-grid"><div><div class="ds-brand-name" style="font-size:11px">LIGA JUVENTINO ROSAS</div><p>Portal oficial para partidos, clasificación, equipos, noticias, estadísticas, vídeos, reglamento, credenciales y herramientas de competición.</p></div><div><h4>DESCUBRE</h4><button data-ds-route="competition">Partidos</button><button data-ds-route="standings">Clasificación</button><button data-ds-route="video">Liga TV</button><button data-ds-route="draws">Sorteos</button></div><div><h4>COMPETICIÓN</h4><button data-ds-route="teams">Equipos</button><button data-ds-route="safe-data">Datos</button><button data-ds-route="gaming">Gaming</button><button data-ds-route="history">Historia</button></div><div><h4>INFORMACIÓN</h4><button data-ds-route="news">Noticias</button><button data-ds-route="about">Sobre la liga</button><button data-ds-route="more">Reglamento</button><button data-ds-route="transfers">Fichajes</button></div><div><h4>HERRAMIENTAS</h4><button data-ds-route="v4-calendar">Calendario</button><button data-ds-route="safe-performance">Performance</button><button data-ds-route="safe-notifications">Notificaciones</button><button data-ds-route="profile">Cuenta</button></div></div><div class="ds-legal"><span>Privacidad · Términos y condiciones · Ajustes de privacidad</span><span>© 2026 Liga Juventino Rosas</span></div></div></footer>`;
 const head=(eyebrow,title,desc)=>`<section class="ds-pagehead"><div class="ds-wrap"><div class="eyebrow">${eyebrow}</div><h1>${title}</h1><p>${desc}</p></div></section>`;
