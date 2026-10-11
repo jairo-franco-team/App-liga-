@@ -47,9 +47,11 @@ test('FCM OAuth v1 usa JWT firmado y reutiliza token, sin tráfico antes de auto
   throw Error('Unexpected address');
  }});
  assert.equal(requests.length,0,'Constructor must never connect');
- await assert.rejects(()=>transport.sendApproved({notice:notice(),token:deviceToken}),/autorización/);
- assert.equal(requests.length,0,'Never connect on unauthorized send');
- const first=await transport.sendApproved({notice:notice(),token:deviceToken,approvalVerified:true});
+ await assert.rejects(()=>transport.sendApproved({notice:notice(),token:deviceToken,approvalVerified:true}),/consentimiento/);
+ assert.equal(requests.length,0,'Never connect on unverified subscription');
+ await assert.rejects(()=>transport.sendApproved({notice:notice(),token:deviceToken,subscriptionVerified:true}),/autorización/);
+ assert.equal(requests.length,0,'Never connect on unauthorized notice');
+ const first=await transport.sendApproved({notice:notice(),token:deviceToken,approvalVerified:true,subscriptionVerified:true});
  assert.deepEqual(first,{accepted:true});
  assert.equal(requests.length,2);
  const oauth=new URLSearchParams(requests[0].init.body);
@@ -62,7 +64,7 @@ test('FCM OAuth v1 usa JWT firmado y reutiliza token, sin tráfico antes de auto
  const sent=JSON.parse(requests[1].init.body);
  assert.equal(sent.message.data.route,'notifications');
  assert.equal(sent.message.token,deviceToken);
- await transport.sendApproved({notice:notice(),token:deviceToken,approvalVerified:true});
+ await transport.sendApproved({notice:notice(),token:deviceToken,approvalVerified:true,subscriptionVerified:true});
  assert.equal(requests.filter(x=>x.url==='https://oauth2.googleapis.com/token').length,1,'Reuse scoped OAuth token');
 });
 
@@ -70,6 +72,6 @@ test('FCM no filtra tokens en errores de proveedor ni confunde aceptación con e
  const transport=createFcmTransport({serviceAccount:account,fetchImpl:async url=>
   new Response(url.includes('/token')?JSON.stringify({access_token:'K'.repeat(40),expires_in:3600}):'sensitive-token-dump',
    {status:url.includes('/token')?200:401})});
- await assert.rejects(()=>transport.sendApproved({notice:notice(),token:deviceToken,approvalVerified:true}),
+ await assert.rejects(()=>transport.sendApproved({notice:notice(),token:deviceToken,approvalVerified:true,subscriptionVerified:true}),
   error=>error.status===401&&!String(error).includes(deviceToken)&&!String(error).includes('sensitive-token'));
 });
