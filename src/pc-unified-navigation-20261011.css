@@ -118,11 +118,12 @@ html.ljpc-unified-pc body #ljpc-unified-pc-footer{
  font-family:Inter,system-ui,"Segoe UI",Arial,sans-serif;color:#d7e7ff
 }
 html.ljpc-unified-pc body .ljpc-u-sponsor{
- background:#fff;color:#8a94a8;text-align:center;padding:17px 12px 15px;
- font-size:8px;font-weight:750;letter-spacing:.045em
+ background:#071b34;color:#c9e1ef;text-align:center;padding:17px 12px 15px;
+ font-size:8px;font-weight:750;letter-spacing:.045em;
+ border-top:1px solid #1a486f;border-bottom:0
 }
 html.ljpc-unified-pc body .ljpc-u-sponsor span{
- color:#67778e;font-size:9px;font-weight:650;display:block;margin-top:5px
+ color:#aacbdc;font-size:9px;font-weight:650;display:block;margin-top:5px
 }
 html.ljpc-unified-pc body .ljpc-u-footer{
  background:linear-gradient(180deg,#061234,#030919);padding:26px 0 12px;
@@ -176,4 +177,28 @@ html.ljpc-unified-pc body #screen :is(.ds-content,.desktop-page-shell){min-heigh
  html.ljpc-unified-pc body .ljpc-u-links{overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
  html.ljpc-unified-pc body .ljpc-u-nav>.ljpc-u-wrap{min-height:57px}
  html.ljpc-unified-pc body .ljpc-u-login{font-size:8px}
+}
+
+/* Restore the navy canvas between the admin controls and PC homepage. */
+html.ljpc-unified-pc body #screen:has(> #ljpc-exact-html-home),
+html.ljpc-unified-pc body[data-app-route="home"] #screen{
+ background:#040c1c!important;color:#f4f8ff!important;
+ border:0!important;border-top:0!important;outline:0!important;
+ box-shadow:none!important;padding-top:0!important;
+}
+html.ljpc-unified-pc body #screen #ljpc-exact-html-home {
+ display:block!important;margin:0!important;padding:0!important;
+ background:#040c1c!important;border:0!important;border-top:0!important;
+ outline:0!important;box-shadow:none!important;vertical-align:top!important;
+}
+html.ljpc-unified-pc body .ljpc-u-scorebar{
+ border-top-color:transparent!important;
+}
+html.ljpc-unified-pc body .ljpc-u-nav{
+ border-top:0!important;outline:0!important;
+}
+/* The shared sponsor bar must never turn white during route transitions. */
+html.ljpc-unified-pc body #ljpc-unified-pc-footer .ljpc-u-sponsor{
+ background:linear-gradient(180deg,#08253e,#06172f)!important;
+ color:#cae7f4!important;border-top-color:#164564!important;
 }
