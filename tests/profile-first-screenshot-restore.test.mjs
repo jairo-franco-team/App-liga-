@@ -36,20 +36,20 @@ test('Perfil clásico: sin alteraciones funcionales ni de otras rutas',()=>{
  assert.doesNotMatch(css,/\.topbar\s*\{|\.bottom-nav\s*\{/);
 });
 
-test('V1418: Perfil clásico conserva azul rey intermedio y filas originales sin cuadros',()=>{
- assert.match(html,/profile-first-screenshot-restore\.css\?v=20261011-v1418-azul-rey-barra/);
- assert.match(css,/V1418 \| Perfil original conservado/);
- assert.ok(css.includes('background-color:#2055B7!important'),'Fondo de Perfil debe ser azul rey');
- assert.ok(css.includes('linear-gradient(180deg,#2865BF 0%,#2055B7 43%,#1E50AC 100%)'),'Gradiente medio del Perfil');
- assert.ok(css.includes('background-color:#2760BC!important'),'Tarjeta Mi cuenta en azul rey medio');
- assert.ok(css.includes('background-color:#2C68C6!important'),'Botón principal en azul rey');
- assert.ok(css.includes('border:2px solid #AED9FF!important'),'Avatar legible y azul');
+test('V1423: Perfil clásico recupera azul noche y filas originales sin cuadros',()=>{
+ assert.match(html,/profile-first-screenshot-restore\.css\?v=20261011-v1423-colores-anteriores/);
+ assert.match(css,/V1423 \| Colores anteriores restaurados/);
+ assert.ok(css.includes('background-color:#05075e!important'),'Fondo de Perfil debe ser azul rey');
+ assert.ok(css.includes('linear-gradient(180deg,#070967 0%,#05075e 43%,#02044f 100%)'),'Gradiente medio del Perfil');
+ assert.ok(css.includes('background-color:#101778!important'),'Tarjeta Mi cuenta en azul rey medio');
+ assert.ok(css.includes('background-color:#2455af!important'),'Botón principal en azul rey');
+ assert.ok(css.includes('border:2px solid #38d9e8!important'),'Avatar legible y azul');
  const rows=css.slice(css.indexOf('/* Opciones: FILAS TRANSPARENTES'));
  for(const token of ['.v569-profile-account-menu>button','.v12-profile-menu>.v12-profile-row',
  'background-color:transparent!important','border-bottom:1px solid rgba(120,139,207,.18)!important',
  'border-radius:0!important']) assert.ok(rows.includes(token),'La fila ha cambiado: '+token);
  const icons=rows.slice(rows.indexOf('.v569-profile-account-menu>button>span'));
  assert.ok(icons.includes('background:transparent!important'),'Iconos sin bloque de color');
- assert.doesNotMatch(css,/#05075e|#02044f|#101778|#070967/i,'No recuperar fondo azul noche');
+ assert.doesNotMatch(css,/#2055B7|#2760BC/i,'No repintar con el azul claro posterior');
  assert.doesNotMatch(css,/data-app-route\^="account"|data-app-route="home"|pointer-events\s*:/);
 });

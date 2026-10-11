@@ -47,7 +47,9 @@ try{
  for(const route of routes){
   await go(page,route);
   const paint=await page.locator('#screen').evaluate(e=>({background:getComputedStyle(e).backgroundImage,color:getComputedStyle(e).backgroundColor}));
-  if(!artwork.has(route)){
+  if(route.startsWith('account')){
+   assert.match(paint.background,/rgb\(5, 7, 94\)/,route+' restored account night blue');
+  }else if(!artwork.has(route)){
    assert.equal(paint.color,'rgb(11, 11, 96)',route+' deep blue base');
    assert.match(paint.background,/rgb\(29, 53, 180\)/,route+' royal blue');
    assert.match(paint.background,/data:image\/svg\+xml/,route+' original Teams curves');
@@ -64,8 +66,8 @@ try{
  const profilePage=await openApp(resolve(root,'dist'));
  await go(profilePage,'profile');
  const profile=await profileStyle(profilePage);
- assert.match(profile.screen.background,/rgb\(40, 101, 191\)/,'Existing Profile color preserved');
- assert.match(profile.card.background,/rgb\(52, 123, 217\)/,'Existing account card preserved');
+ assert.match(profile.screen.background,/rgb\(7, 9, 103\)/,'Existing Profile color preserved');
+ assert.match(profile.card.background,/rgb\(11, 18, 109\)/,'Existing account card preserved');
  assert.equal(profile.menu.background,'none','Existing transparent menu preserved');
  if(process.env.REFERENCE_BASELINE_DIST){
   const baseline=await openApp(resolve(process.env.REFERENCE_BASELINE_DIST));

@@ -1,10 +1,11 @@
-/* V1418 | Perfil original conservado, colores azul rey MEDIO de la barra superior.
-   Fondo #2055B7, tarjeta #2760BC y menú en filas transparentes sin cuadros.
-   La barra superior permanece igual. Solo /profile, sin modificar
+/* V1423 | Colores anteriores restaurados: Perfil azul noche.
+   Fondo #05075e / #02044f, tarjeta azul profundo #101778,
+   menu sin tarjetas y solo divisores delicados.
+   La barra superior permanece azul rey. Solo /profile, sin modificar
    autenticacion, biometria, rutas, contenido, eventos ni permisos. */
 html body[data-app-route="profile"] #screen#screen#screen#screen#screen{
-  background-color:#2055B7!important;
-  background-image:linear-gradient(180deg,#2865BF 0%,#2055B7 43%,#1E50AC 100%)!important;
+  background-color:#05075e!important;
+  background-image:linear-gradient(180deg,#070967 0%,#05075e 43%,#02044f 100%)!important;
   color:#fff!important;
 }
 html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v12-profile-page{
@@ -15,8 +16,8 @@ html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v12-pro
 /* Tarjeta MI CUENTA: sin contorno claro ni doble panel. */
 html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v12-profile-card[data-v569-owned],
 html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v12-profile-card:has(.v569-profile-hero){
-  background-color:#2760BC!important;
-  background-image:linear-gradient(155deg,#2C68C6 0%,#265DBA 55%,#2256B1 100%)!important;
+  background-color:#101778!important;
+  background-image:linear-gradient(155deg,#131a7d 0%,#0e156f 55%,#0b1266 100%)!important;
   border:0!important;
   border-radius:26px!important;
   box-shadow:none!important;
@@ -31,38 +32,38 @@ html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v12-pro
   box-shadow:none!important;
 }
 html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-avatar{
-  background-color:#1E50AC!important;
-  border:2px solid #AED9FF!important;
+  background-color:#081f6a!important;
+  border:2px solid #38d9e8!important;
   box-shadow:0 0 0 3px rgba(56,217,232,.13)!important;
 }
 html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-copy small,
 html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-copy b{
-  color:#D9EEFF!important;
-  -webkit-text-fill-color:#D9EEFF!important;
+  color:#52dce9!important;
+  -webkit-text-fill-color:#52dce9!important;
 }
 html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-copy h1{
   color:#fff!important;
   -webkit-text-fill-color:#fff!important;
 }
 html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-copy p{
-  color:#E2EEFF!important;
-  -webkit-text-fill-color:#E2EEFF!important;
+  color:#aeb7d9!important;
+  -webkit-text-fill-color:#aeb7d9!important;
 }
 html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-bio{
   background:transparent!important;
   background-image:none!important;
-  color:#D4E5FF!important;
+  color:#9da9d0!important;
   border-color:rgba(116,140,218,.27)!important;
 }
 html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-bio.on{
   background:rgba(25,129,175,.10)!important;
   border-color:rgba(51,215,232,.48)!important;
-  color:#D9EEFF!important;
+  color:#55dae7!important;
 }
-/* Acciones compactas originales: botón principal y seguridad en azul rey medio. */
+/* Acciones compactas originales: boton principal azul rey y seguridad azul profundo. */
 html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-buttons>button{
-  background-color:#2459B8!important;
-  background-image:linear-gradient(155deg,#2A64C2 0%,#2255B1 100%)!important;
+  background-color:#193988!important;
+  background-image:linear-gradient(155deg,#204596 0%,#173782 100%)!important;
   border:1px solid rgba(111,160,237,.51)!important;
   border-radius:13px!important;
   box-shadow:inset 0 1px rgba(255,255,255,.07)!important;
@@ -71,8 +72,8 @@ html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-pr
   text-shadow:none!important;
 }
 html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-buttons>button:first-child{
-  background-color:#2C68C6!important;
-  background-image:linear-gradient(180deg,#3271CE 0%,#2862BE 100%)!important;
+  background-color:#2455af!important;
+  background-image:linear-gradient(180deg,#316bcc 0%,#2354ae 100%)!important;
   border-color:rgba(122,179,248,.57)!important;
   color:#fff!important;
   -webkit-text-fill-color:#fff!important;
@@ -111,11 +112,11 @@ html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v12-pro
   border:0!important;
   border-radius:0!important;
   box-shadow:none!important;
-  color:#D4E5FF!important;
+  color:#cdd5ec!important;
 }
 html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-account-menu>button>span svg,
 html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v12-profile-menu .v12-profile-row-icon svg{
-  color:#D4E5FF!important;
+  color:#cdd5ec!important;
 }
 html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-account-menu>button>b,
 html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v12-profile-menu .v12-profile-row-label{
@@ -127,7 +128,7 @@ html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-pr
 html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-account-menu>button>i svg,
 html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v12-profile-menu .v12-profile-row-chevron,
 html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v12-profile-menu .v12-profile-row-chevron svg{
-  color:#E2EEFF!important;
+  color:#d9e0f9!important;
 }
 html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-account-menu>button:active,
 html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v12-profile-menu>.v12-profile-row:active{
@@ -151,7 +152,7 @@ html body[data-app-route="profile"] #screen#screen#screen#screen#screen :is([dat
 }
 /* Herramientas editoriales visibles solo cuando la propia app las autoriza. */
 html body[data-app-route="profile"] #screen#screen#screen#screen#screen >.ljr-cms-entry{
-  background-color:#2760BC!important;
-  background-image:linear-gradient(155deg,#2C68C6,#2459B5)!important;
+  background-color:#101778!important;
+  background-image:linear-gradient(155deg,#171e7a,#0d1464)!important;
   border:1px solid rgba(90,131,220,.35)!important;
 }

@@ -67,7 +67,7 @@ try{
  for(const route of ['players','historyLog','accountEdit','accountPrivacy','accountSecurity','accountDevices','accountPreferences','accountAdvisor','accountCloud','notifications','publications','leagueTools','matchday']){
   await go(page,route);
   const rootPaint=await page.locator('#screen').evaluate(e=>getComputedStyle(e).backgroundImage);
-  assert.match(rootPaint,/rgb\(29, 53, 180\).*rgb\(11, 11, 96\)/,route+' full royal-to-deep canvas');
+  assert.match(rootPaint,route.startsWith('account')?/rgb\(7, 9, 103\).*rgb\(2, 4, 79\)/:/rgb\(29, 53, 180\).*rgb\(11, 11, 96\)/,route+' requested canvas');
   if(route==='historyLog'){
    await page.locator('.v164-history-match').first().waitFor();
    const cards=page.locator('.v164-history-match');

@@ -54,6 +54,11 @@ test('V1413: hoja azul rey media adaptada a la barra superior y cache actualizad
    assert.match(content,/@layer ljr-reference-surfaces/);
    assert.match(content,/body\[data-app-route\]:not\(:is\(\[data-app-route="profile"\]/, "El lienzo general debe excluir Perfil");
    assert.doesNotMatch(content,/html body\[data-app-route="profile"\]|pointer-events\s*:\s*none/);
+  }else if(path==='src/v1423-previous-colors-player.css'){
+   // Petición explícita: recuperar Cuenta azul noche y controles transparentes.
+   assert.match(content,/#05075e/);
+   assert.match(content,/background:transparent!important/);
+   assert.doesNotMatch(content,/pointer-events\s*:\s*none|display\s*:\s*none/);
   }else{
    assert.doesNotMatch(content,/data-app-route="profile"|data-app-route\^="account"/,
     'Una hoja posterior no debe alterar paleta Cuenta: '+path);

@@ -8,13 +8,13 @@ const profile=read('src/profile-first-screenshot-restore.css');
 const oldLayout=read('src/v1411-profile-old-layout-restore.css');
 const account=read('src/v1402-account-admin-royal-blue.css');
 
-test('Perfil V1418 usa azul rey MEDIO, no azul noche ni azul fosforescente',()=>{
- assert.match(profile,/V1418 \| Perfil original conservado/);
- assert.match(profile,/background-color:#2055B7!important/);
- assert.match(profile,/linear-gradient\(180deg,#2865BF 0%,#2055B7 43%,#1E50AC 100%\)/);
- assert.match(profile,/background-color:#2760BC!important/);
- assert.match(profile,/background-color:#2C68C6!important/);
- assert.doesNotMatch(profile,/#05075e|#02044f|#101778|#4169e1|#274fe6/i);
+test('Perfil V1423 recupera la paleta anterior azul noche',()=>{
+ assert.match(profile,/V1423 \| Colores anteriores restaurados/);
+ assert.match(profile,/background-color:#05075e!important/);
+ assert.match(profile,/linear-gradient\(180deg,#070967 0%,#05075e 43%,#02044f 100%\)/);
+ assert.match(profile,/background-color:#101778!important/);
+ assert.match(profile,/background-color:#2455af!important/);
+ assert.doesNotMatch(profile,/#2055B7|#2760BC|#4169e1|#274fe6/i);
 });
 
 test('El diseño de perfil original prevalece sin pintar cuadros en cada opción',()=>{
@@ -47,7 +47,7 @@ test('Mi cuenta, registro y Administración quedan en azul rey medio y sin alter
 });
 
 test('La prioridad CSS preserva Perfil al final, sin cambios en otras rutas',()=>{
- const last='src/profile-first-screenshot-restore.css?v=20261011-v1418-azul-rey-barra';
+ const last='src/profile-first-screenshot-restore.css?v=20261011-v1423-colores-anteriores';
  const initial='src/v1402-account-admin-royal-blue.css?v=20261010-v1413-azul-rey-barra-unificado';
  assert.ok(index.includes(last)&&index.includes(initial));
  const order=['src/v1406-account-balanced-royal.css',initial,'src/v1411-profile-old-layout-restore.css',last];

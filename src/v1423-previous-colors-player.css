@@ -1,0 +1,72 @@
+/* V1423: restaurar la paleta anterior de Cuenta y controles blancos transparentes.
+   Sólo pintura: sin cambiar rutas, dimensiones, eventos ni estado del reproductor. */
+@layer ljr-reference-surfaces {
+@media screen {
+html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen#screen#screen#screen#screen#screen {
+  color-scheme:dark;
+  background:linear-gradient(180deg,#070967 0%,#05075e 43%,#02044f 100%)!important;
+  color:#fff!important;
+}
+html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen#screen#screen#screen#screen#screen :is(.v569-page,.v12-profile-page,.v569-inline-auth,.v569-form) {
+  background:transparent!important;box-shadow:none!important;
+}
+html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen#screen#screen#screen#screen#screen :is(.v569-card,.v12-profile-card:not([data-v569-owned]),.v1300-panel,.v1300-detail) {
+  background:linear-gradient(155deg,#0b126d,#080b5d 58%,#050848)!important;
+  border-color:rgba(69,112,224,.3)!important;box-shadow:0 16px 34px rgba(0,0,40,.22)!important;
+  color:#fff!important;
+}
+html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen#screen#screen#screen#screen#screen .v12-profile-card[data-v569-inline] {
+  background:radial-gradient(circle at 85% -10%,rgba(44,224,235,.18),transparent 30%),linear-gradient(160deg,rgba(20,30,145,.97),rgba(8,12,89,.98) 58%,rgba(4,7,63,.99))!important;
+  border-color:rgba(69,226,240,.28)!important;
+}
+html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen#screen#screen#screen#screen#screen :is(.v569-field input,.v569-field select,.v569-field textarea,.v1300-field input) {
+  background:#070b59!important;border-color:rgba(87,111,208,.34)!important;color:#fff!important;
+}
+html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen#screen#screen#screen#screen#screen :is(.v569-field>span,.v569-field>small,.v569-note,.v569-page-head p,.v569-inline-head p,.v569-check span small) {
+  color:#a8b4d8!important;-webkit-text-fill-color:#a8b4d8!important;
+}
+html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen#screen#screen#screen#screen#screen :is(.v569-primary,.v12-profile-actions .solid) {
+  background:linear-gradient(180deg,#29e0ec,#10b9d9)!important;color:#061057!important;-webkit-text-fill-color:#061057!important;border-color:transparent!important;
+}
+html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen#screen#screen#screen#screen#screen :is(.v569-secondary,.v1300-actions button) {
+  background:#0b1269!important;color:#fff!important;border-color:rgba(72,113,218,.42)!important;
+}
+html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen#screen#screen#screen#screen#screen :is(.v569-link,.v12-profile-actions .outline) {
+  background:transparent!important;color:#22e5ef!important;-webkit-text-fill-color:#22e5ef!important;border-color:#22e5ef!important;box-shadow:none!important;
+}
+html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen#screen#screen#screen#screen#screen :is(.v577-known-device,.v577-device-summary,.v569-security-state,.v569-check,.v569-devices article,.v1300-choice,.v1300-permission) {
+  background:linear-gradient(180deg,rgba(19,62,135,.55),rgba(8,19,91,.72))!important;border-color:rgba(61,224,235,.30)!important;
+}
+html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen#screen#screen#screen#screen#screen :is(.v577-known-device,.v577-device-summary,.v569-security-state) small {
+  color:#a8b4d8!important;-webkit-text-fill-color:#a8b4d8!important;
+}
+html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen#screen#screen#screen#screen#screen .ljr-cms-entry {
+  background:linear-gradient(160deg,#141887,#0c1168)!important;border-color:rgba(105,152,244,.46)!important;
+}
+/* Reproductores HTML5 y transmisión: iconos blancos sobre el video, sin bloques azules. */
+html body :is(#screen#screen#screen#screen#screen#screen,.liga-media-modal,.v105-modal) :is(.v977-controls,.ljr-video-controls,.v919-stream-controls) button,
+html body :is(.v977-player,.ljr-video-player,.v919-stream-frame) :is(.v977-controls,.ljr-video-controls,.v919-stream-controls) button {
+  background:transparent!important;background-image:none!important;
+  border-color:transparent!important;box-shadow:none!important;
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+  text-shadow:0 1px 3px rgba(0,0,0,.7)!important;
+  backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+html body :is(#screen#screen#screen#screen#screen#screen,.liga-media-modal,.v105-modal) :is(.v977-controls,.ljr-video-controls,.v919-stream-controls) button svg,
+html body :is(.v977-player,.ljr-video-player,.v919-stream-frame) :is(.v977-controls,.ljr-video-controls,.v919-stream-controls) button svg {
+  color:#fff!important;filter:none!important;
+}
+/* Clasificación/Cuadro: conservar el lienzo oscuro y los acentos de la referencia. */
+html body #screen#screen#screen#screen#screen#screen .ljr-knockout {
+  --ko-ground:#000040;--ko-card:#0a0a60;--ko-cyan:#00deef;
+  background:#000040!important;
+}
+html body #screen#screen#screen#screen#screen#screen .ljr-knockout .ljr-ko-tabs button {
+  background:#1c1b50!important;color:#fff!important;box-shadow:none!important;
+}
+html body #screen#screen#screen#screen#screen#screen .ljr-knockout .ljr-ko-tabs button.active {
+  background:#00deef!important;color:#020c35!important;
+}
+
+}
+}
