@@ -304,10 +304,16 @@
     (function () {
       const mode = new URLSearchParams(location.search).get('mode') || '';
       const html = document.documentElement;
+      const smallTouchscreen = navigator.maxTouchPoints > 0 &&
+        Math.min(Number(screen.width)||1366,Number(screen.height)||1366) < 700;
       if (mode === 'desktop') {
         html.classList.add('preview-desktop');
         const viewport = document.querySelector('meta[name="viewport"]');
-        if (viewport) viewport.setAttribute('content', 'width=1366, initial-scale=1.0');
+        // Chrome Android must not shrink an entire 1366px desktop into the phone viewport.
+        if (smallTouchscreen) {
+          html.classList.add('ljpc-compact-phone');
+          if (viewport) viewport.setAttribute('content','width=device-width, initial-scale=1.0, viewport-fit=cover');
+        } else if (viewport) viewport.setAttribute('content', 'width=1366, initial-scale=1.0');
       } else if (mode === 'mobile' || mode === 'apk') {
         html.classList.add('preview-mobile');
         if (mode === 'apk') html.classList.add('preview-apk');
