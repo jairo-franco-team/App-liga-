@@ -1,0 +1,117 @@
+/* V1435: paleta azul rey SOLO en las tarjetas de JR Control y Más herramientas.
+   No es un tema global. Inicio, Competición, Perfil, Equipos y demás rutas
+   conservan sus fondos aprobados. Sin cambiar funciones, posiciones ni tamaños.
+   Cada tarjeta posee UNA superficie; titulares, iconos y controles internos no
+   reciben una segunda capa de fondo sobrepuesta. */
+@layer ljr-reference-surfaces {
+@media screen {
+  /* JR CONTROL · la página conserva su propio fondo. Solo tarjetas y búsqueda. */
+  html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"])
+    #screen .v562-page[data-v563-control] .v562-panel {
+    background:linear-gradient(180deg,#193aab 0%,#102881 65%,#0b1c68 100%)!important;
+    border-color:rgba(139,174,255,.28)!important;
+    box-shadow:none!important;
+  }
+  /* Secciones con tarjetas: no pintar un segundo rectángulo exterior. */
+  html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"])
+    #screen .v562-page[data-v563-control] .v562-panel:has(> .v562-list),
+  html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"])
+    #screen .v562-page[data-v563-control] .v562-panel.v563-management {
+    background:transparent!important;
+    background-image:none!important;
+    box-shadow:none!important;
+    border-color:transparent!important;
+  }
+  html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"])
+    #screen .v562-page[data-v563-control] :is(.v562-card,.v562-sync-grid article) {
+    background:linear-gradient(180deg,#2048b5 0%,#16328e 60%,#102472 100%)!important;
+    border-color:rgba(139,180,255,.32)!important;
+    box-shadow:none!important;
+  }
+  html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"])
+    #screen .v562-page[data-v563-control] .v562-card :is(.v562-icon,.v562-card-copy,.v562-card-copy b,.v562-card-copy small),
+  html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"])
+    #screen .v562-page[data-v563-control] :is(.v562-title,.v562-title span,.v562-title h2,.v563-section-help) {
+    background:transparent!important;
+    background-image:none!important;
+    box-shadow:none!important;
+  }
+  html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"])
+    #screen .v562-page[data-v563-control] .v563-management .v563-tool-search {
+    background:transparent!important;
+    background-image:none!important;
+    box-shadow:none!important;
+  }
+  html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"])
+    #screen .v562-page[data-v563-control] .v563-management .v563-tool-search > input {
+    background:#102876!important;
+    background-image:none!important;
+    border-color:rgba(121,172,249,.37)!important;
+    box-shadow:none!important;
+  }
+
+  /* MÁS HERRAMIENTAS · conserva el fondo actual de toda la página. */
+  html body[data-app-route="leagueTools"] #screen :is(
+    .v726-tools-page,.v60-tool-page,
+    .v726-quick-section,.v726-tool-section,.v726-admin-section
+  ){
+    background:transparent!important;
+    background-image:none!important;
+    box-shadow:none!important;
+  }
+  html body[data-app-route="leagueTools"] #screen :is(
+    .v726-tools-hero
+  ){
+    background:linear-gradient(180deg,#1f48b3,#132f8b 58%,#0c206c)!important;
+    border-color:rgba(146,187,255,.35)!important;
+    box-shadow:none!important;
+  }
+  html body[data-app-route="leagueTools"] #screen :is(
+    .v726-quick-card,.v726-tool-card.v734-tool-card,
+    .v612-tools-entry.v726-admin-entry,
+    .v60-tool-card,.v60-tools-featured-card
+  ){
+    background:linear-gradient(180deg,#2452c2 0%,#173997 55%,#102577 100%)!important;
+    border-color:rgba(147,182,255,.32)!important;
+    box-shadow:none!important;
+  }
+  html body[data-app-route="leagueTools"] #screen :is(
+    .v726-tool-card.v734-tool-card > .v734-tool-open,
+    .v726-tool-card.v734-tool-card > .v734-tool-details,
+    .v726-tool-card.v734-tool-card > .v734-tool-detail-panel,
+    .v734-tool-top,.v734-tool-main,.v734-tool-head,
+    .v734-tool-details-button,.v734-tool-detail-button,
+    .v726-tool-copy,.v726-quick-card > span,
+    .v726-tool-grid,.v726-quick-grid,.v726-section-head
+  ){
+    background:transparent!important;
+    background-image:none!important;
+    box-shadow:none!important;
+  }
+  /* Al desplegar detalles, no se coloca otra tarjeta, solo un separador. */
+  html body[data-app-route="leagueTools"] #screen .v726-tool-card.v734-tool-card > .v734-tool-details{
+    border-top-color:rgba(154,189,255,.25)!important;
+  }
+  /* La acción ABRIR sí tiene su propia superficie y sigue siendo clicable. */
+  html body[data-app-route="leagueTools"] #screen .v734-tool-go{
+    background:linear-gradient(180deg,#2456c6,#143a9b)!important;
+    color:#fff!important;
+    border-color:rgba(143,190,255,.37)!important;
+  }
+  html body[data-app-route="leagueTools"] #screen :is(
+    .v726-quick-icon,.v726-tool-icon,.v726-section-icon,.v726-admin-entry > span
+  ){
+    background:transparent!important;
+    background-image:none!important;
+    box-shadow:none!important;
+  }
+  html body[data-app-route="leagueTools"] #screen :is(
+    .v726-tools-hero,.v726-quick-section,.v726-tool-section,.v726-admin-section,
+    .v726-quick-card,.v726-tool-card.v734-tool-card
+  ) :is(h1,h2,h3,h4,p,small,b,strong){
+    background:transparent!important;
+    background-image:none!important;
+    box-shadow:none!important;
+  }
+}
+}
