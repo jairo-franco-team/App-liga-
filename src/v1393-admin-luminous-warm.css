@@ -1,0 +1,123 @@
+/* V1393 · Cuatro ventanas CMS más luminosas y cálidas.
+   Solo CSS. No cambia navegación, guardado, eventos, archivos ni permisos.
+   Cargar al final de index.html, DESPUÉS de v1392. */
+:root{
+ --ljr1393-text:#fff9f0;--ljr1393-muted:#e9dfda;
+ --ljr1393-edge:rgba(255,216,174,.57);
+ --ljr1393-panel:linear-gradient(155deg,#365f9e,#294d89 56%,#243f78);
+ --ljr1393-card:linear-gradient(145deg,#3b65a4,#30558f 58%,#27447d);
+ --ljr1393-action:linear-gradient(135deg,#547dbb,#3763a5);
+ --ljr1393-primary:linear-gradient(130deg,#487fc9,#3168b6 60%,#2856a2);
+}
+html body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker,.ljr-admin-friendly,.ljr-admin-v1081,.ljr-editor-dialog){
+ --cm-night:#233d78;--cm-surface:#30548d;--cm-card:#375f9b;
+ --ljr1310-bg:#233d78;--ljr1310-surface:#30548d;--ljr1310-card:#375f9b;--ljr1310-input:#25437c;
+ --ljr-admin-bg:#233d78;--ljr-admin-panel:#30548d;--ljr-admin-card:#375f9b;--ljr-admin-field:#25437c;
+ background:radial-gradient(ellipse 85% 50% at 0% 0%,rgba(255,180,120,.16),transparent 78%),linear-gradient(160deg,#355f9f 0%,#2d518e 38%,#26447c 78%,#223c73 100%)!important;
+ background-color:#294c86!important;
+ border:1px solid var(--ljr1393-edge)!important;color:var(--ljr1393-text)!important;
+ box-shadow:0 18px 52px rgba(6,13,45,.42),inset 0 1px rgba(255,240,208,.16)!important;
+ color-scheme:dark;
+}
+html body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker,.ljr-admin-friendly,.ljr-admin-v1081,.ljr-editor-dialog)>header{
+ background:linear-gradient(125deg,#4c77ba,#3a62a6 58%,#2e518f)!important;
+ border-bottom:1px solid var(--ljr1393-edge)!important;
+ box-shadow:inset 0 1px rgba(255,240,213,.18)!important;
+ color:#fffaf1!important;
+}
+html body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker,.ljr-admin-friendly,.ljr-admin-v1081,.ljr-editor-dialog)>header [data-close]{
+ background:linear-gradient(140deg,#4e73ad,#345792)!important;
+ border-color:#e9c99e!important;color:#fffaf1!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker,.ljr-admin-friendly,.ljr-admin-v1081,.ljr-editor-dialog)
+:is(.ljr-admin-area,.ljr-guide,.ljr-simple-intro,.ljr-admin-results,.ljr-admin-howto,.ljr-smart-hub,.ljr-smart-tasks,.ljr-editor-hub,.ljr-editor-section-info,.ljr-editor-preview,.ljr-editor-row,.ljr-editor-autofill,.ljr-review-card,.ljr-review-insights,.ljr-review-body,.v1081-note,.v1081-item){
+ background:var(--ljr1393-panel)!important;
+ border-color:rgba(255,216,176,.46)!important;color:var(--ljr1393-text)!important;
+ box-shadow:inset 0 1px rgba(255,242,219,.12)!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker)
+:is(.ljr-admin-intro,.ljr-admin-eyebrow,.ljr-admin-section-info){
+ background:transparent!important;background-image:none!important;box-shadow:none!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker,.ljr-editor-dialog)
+:is(.ljr-admin-section-title,.ljr-admin-results-title,.ljr-admin-eyebrow,.ljr-simple-intro strong){color:#fff0d8!important}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker,.ljr-editor-dialog)
+:is(.ljr-admin-section-sub,.ljr-admin-greeting,.ljr-admin-results-hint,.ljr-simple-intro p,.ljr-admin-upload-name,.ljr-editor-note,.ljr-editor-security,.ljr-guide li,.ljr-admin-howto li){color:var(--ljr1393-muted)!important}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker)
+:is(.ljr-guide>summary,.ljr-admin-howto>summary,.ljr-smart-tasks>summary){
+ background:linear-gradient(135deg,#345e9e,#2b4e87)!important;
+ border-color:rgba(255,214,161,.48)!important;color:#ffdfb0!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+:is(.ljr-admin-tile:not(.ljr-admin-tile-danger),.cms-kind-grid>button){
+ background:var(--ljr1393-card)!important;
+ border-color:rgba(251,212,172,.57)!important;color:#fff9f0!important;
+ box-shadow:inset 0 1px rgba(255,242,215,.13),0 3px 12px rgba(12,29,69,.16)!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+:is(.ljr-admin-tile.is-active,.cms-kind-grid>button.is-active,.cms-kind-grid>button[aria-pressed=true]){
+ background:linear-gradient(140deg,#4b77ba,#3564a7)!important;border-color:#ffe0a9!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms) .ljr-admin-tile :is(.ljr-admin-tile-icon,.ljr-simple-icon){
+ width:46px!important;height:46px!important;min-width:46px!important;
+ flex:0 0 46px!important;display:grid!important;place-items:center!important;border-radius:14px!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms) .ljr-admin-tile-icon svg{
+ display:block!important;width:25px!important;height:25px!important;min-width:25px!important;max-width:25px!important;margin:auto!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms) .ljr-admin-tile small{color:#f0e3d6!important}
+html body .liga-media-modal :is(.ljr-admin-action-grid,.cms-kind-grid)>:nth-child(5n+1) .ljr-admin-tile-icon{color:#ffdb91!important;background:rgba(255,209,126,.19)!important}
+html body .liga-media-modal :is(.ljr-admin-action-grid,.cms-kind-grid)>:nth-child(5n+2) .ljr-admin-tile-icon{color:#a0ebbf!important;background:rgba(142,233,172,.17)!important}
+html body .liga-media-modal :is(.ljr-admin-action-grid,.cms-kind-grid)>:nth-child(5n+3) .ljr-admin-tile-icon{color:#ffb3a6!important;background:rgba(255,151,145,.17)!important}
+html body .liga-media-modal :is(.ljr-admin-action-grid,.cms-kind-grid)>:nth-child(5n+4) .ljr-admin-tile-icon{color:#d8c1ff!important;background:rgba(204,185,255,.17)!important}
+html body .liga-media-modal :is(.ljr-admin-action-grid,.cms-kind-grid)>:nth-child(5n+5) .ljr-admin-tile-icon{color:#ffe3b8!important;background:rgba(255,215,172,.17)!important}
+html body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker,.ljr-admin-friendly,.ljr-admin-v1081,.ljr-editor-dialog)
+:is(input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=color]),select,textarea){
+ background:#24447e!important;background-image:none!important;
+ border-color:rgba(255,221,181,.65)!important;color:#fff9f1!important;caret-color:#ffdb9d!important;
+}
+html body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker,.ljr-admin-friendly,.ljr-admin-v1081,.ljr-editor-dialog)
+:is(input,textarea)::placeholder{color:#ead9d4!important;opacity:1!important}
+html body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker,.ljr-admin-friendly,.ljr-admin-v1081,.ljr-editor-dialog) select option{
+ background:#274983;color:#fff9f1;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker,.ljr-admin-friendly,.ljr-admin-v1081,.ljr-editor-dialog)
+:is(.liga-media-actions button,.cms-form>button,.ljr-admin-submit,.ljr-editor-hub-grid>button,.ljr-editor-two-choice>button,.ljr-editor-extra-actions>button,.ljr-editor-tools>button,.ljr-editor-bottom>button,.ljr-smart-actions button,.ljr-review-tabs>button){
+ background:var(--ljr1393-action)!important;border-color:rgba(255,216,172,.64)!important;color:#fff9f0!important;
+}
+html body .liga-media-modal>section.ljr-admin-picker [data-pick-element],
+html body .liga-media-modal>section.ljr-admin-child :is(form>button[type=submit],.cms-form>button[type=submit]),
+html body .liga-media-modal :is(.ljr-admin-cms,.ljr-editor-dialog,.ljr-admin-manage)
+:is(.ljr-admin-tile-primary,[data-editor-publish],.ljr-review-publish){
+ background:var(--ljr1393-primary)!important;border-color:#ffdfae!important;color:#fff9f1!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-editor-dialog)
+:is(.ljr-admin-tile-danger,.ljr-review-danger,[data-logout],[data-revoke]){
+ background:linear-gradient(140deg,#84495b,#683a4b)!important;border-color:#f7b3a8!important;color:#fff3ee!important;
+}
+/* Android: no mostrar el texto nativo recortado Sin archivo...eccionados.
+   El nombre real sigue debajo en el indicador que ya actualiza v1071 JS. */
+html body .liga-media-modal>section:is(.ljr-admin-child,.ljr-admin-picker,.ljr-admin-cms,.ljr-admin-v1081,.ljr-editor-dialog) input[type=file]{
+ display:block!important;box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important;
+ background:#315996!important;border:1px solid rgba(255,218,176,.63)!important;
+ border-radius:14px!important;padding:10px!important;font-size:0!important;overflow:hidden!important;
+}
+html body .liga-media-modal>section:is(.ljr-admin-child,.ljr-admin-picker,.ljr-admin-cms,.ljr-admin-v1081,.ljr-editor-dialog) input[type=file]::file-selector-button{
+ max-width:100%!important;margin:0!important;min-height:42px!important;
+ background:linear-gradient(145deg,#547ab7,#3e68aa)!important;color:#fffaf1!important;
+ border:1px solid #ffdfb4!important;border-radius:11px!important;
+ font:700 13px/1.3 system-ui,sans-serif!important;white-space:normal!important;
+}
+html body .liga-media-modal :is(.ljr-admin-child,.ljr-admin-picker,.ljr-admin-cms,.ljr-admin-v1081,.ljr-editor-dialog) .ljr-admin-upload-name{
+ display:block!important;max-width:100%!important;font-size:12px!important;
+ color:#fff0d9!important;overflow-wrap:anywhere!important;
+}
+html body .liga-media-modal :is(.ljr-admin-child,.ljr-admin-picker,.ljr-admin-cms,.ljr-admin-v1081,.ljr-editor-dialog) .ljr-admin-upload-name:empty::after{
+ content:'Ningún archivo seleccionado';color:#f0ded0;
+}
+html body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker,.ljr-admin-friendly,.ljr-admin-v1081,.ljr-editor-dialog)
+:is(input,select,textarea,button,summary):focus-visible{outline:2px solid #ffe0b1!important;outline-offset:2px!important}
+html body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker,.ljr-admin-v1081,.ljr-editor-dialog) [hidden]{display:none!important}
+@media(prefers-reduced-motion:reduce){
+ html body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker) button{transition:none!important}
+}
