@@ -311,6 +311,14 @@
         html.classList.add('preview-mobile');
         if (mode === 'apk') html.classList.add('preview-apk');
       }
+      // Desktop solicitado: mantener una interfaz PC real también en Chrome Android.
+      // El modo móvil y APK conservan intactos el viewport y los estilos originales.
+      if (mode === 'desktop') {
+        html.classList.add('ljpc-forced-desktop');
+        const useDesktop = () => document.body && document.body.classList.add('lj-desktop');
+        if (document.body) useDesktop();
+        else document.addEventListener('DOMContentLoaded',useDesktop,{once:true});
+      }
       html.dataset.previewMode = mode || 'auto';
     })();
   </script>
