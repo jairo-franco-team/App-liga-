@@ -1,0 +1,74 @@
+/* V1434 | Fondo de la página Equipos reutilizado en el resto de la app.
+ * Referencia real: --v963-teams-gradient de v954-teams-header-soft-fade.css.
+ * SOLO superficies base. No alterar las imágenes, los menús, los cuadros,
+ * los escudos, los botones, las portadas ni el comportamiento de scroll.
+ * La pantalla Equipos mantiene su composición original con líneas neón.
+ *
+ * Excepciones: Competición (#000040 confirmado), Perfil (restauración V1423),
+ * y portadas interactivas de juegos, Fantasy y transmisiones con fondos artísticos.
+ * El objetivo es evitar que los degradados internos se acumulen. */
+@layer ljr-reference-surfaces {
+ @media screen {
+  :root {
+    --ljr1434-teams-start:#2452cf;
+    --ljr1434-teams-end:#0a0a60;
+    --ljr1434-teams-bg:linear-gradient(180deg,
+      #2452cf 0%,#214ac3 20%,#1b3ab2 39%,
+      #152c9c 57%,#101c81 75%,#0c116d 89%,#0a0a60 100%);
+  }
+
+  /* No tocar rutas cuyo diseño completo depende de su imagen de fondo,
+     ni el azul oscuro exacto de Cuadro/Clasificación. */
+  html body:not(:is(
+    [data-app-route="teams"],[data-app-route="competition"],
+    [data-app-route="profile"],[data-app-route="fantasy"],
+    [data-app-route="fantasyAccess"],[data-app-route="quiz"],
+    [data-app-route="quizArena"],[data-app-route="moreLess"],
+    [data-app-route="predictor"],[data-app-route="predictorSix"],
+    [data-app-route="pronosticaSix"],[data-app-route="matchCenter"],
+    [data-app-route="match-center"],[data-app-route="moments"],
+    .v27-teams-active,.v41-teams-active,.v40-standings-master
+  )) #screen#screen#screen#screen {
+    background-color:var(--ljr1434-teams-end)!important;
+    background-image:var(--ljr1434-teams-bg)!important;
+    background-size:100% 100%!important;
+    background-position:center top!important;
+    background-repeat:no-repeat!important;
+  }
+
+  /* Una sola capa responsable del fondo; no dibujar otro degradado encima.
+     Solo los contenedores de página, nunca las tarjetas o sus controles. */
+  html body:not(:is(
+    [data-app-route="teams"],[data-app-route="competition"],
+    [data-app-route="profile"],[data-app-route="fantasy"],
+    [data-app-route="fantasyAccess"],[data-app-route="quiz"],
+    [data-app-route="quizArena"],[data-app-route="moreLess"],
+    [data-app-route="predictor"],[data-app-route="predictorSix"],
+    [data-app-route="pronosticaSix"],[data-app-route="matchCenter"],
+    [data-app-route="match-center"],[data-app-route="moments"],
+    .v27-teams-active,.v41-teams-active,.v40-standings-master
+  )) #screen#screen#screen#screen :is(
+    .v726-tools-page,.v60-tool-page,.v46-notifications,
+    .v46-ref-notifications-main,.v569-page
+  ){
+    background-color:transparent!important;
+    background-image:none!important;
+  }
+
+  /* Compatibilidad con los colores heredados de módulos que usan variables.
+     No se cambian los degradados de tarjetas o botones individuales. */
+  html body:not(:is(
+    [data-app-route="teams"],[data-app-route="competition"],
+    [data-app-route="profile"],[data-app-route="fantasy"],
+    [data-app-route="fantasyAccess"],[data-app-route="quiz"],
+    [data-app-route="quizArena"],[data-app-route="moreLess"],
+    [data-app-route="predictor"],[data-app-route="predictorSix"],
+    [data-app-route="pronosticaSix"],[data-app-route="matchCenter"],
+    [data-app-route="match-center"],[data-app-route="moments"],
+    .v27-teams-active,.v41-teams-active,.v40-standings-master
+  )) #screen {
+    --ljr1420-canvas:var(--ljr1434-teams-bg)!important;
+    --ljr1420-page:var(--ljr1434-teams-end)!important;
+  }
+ }
+}
