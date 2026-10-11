@@ -13,7 +13,9 @@ const NOTICE_ID=/^[a-f0-9-]{16,72}$/i;
 const base64url=value=>Buffer.from(value).toString('base64url');
 
 export function validateFcmServerAccount(value){
- const account=typeof value==='string'?JSON.parse(value):value;
+ let account;
+ try{account=typeof value==='string'?JSON.parse(value):value}
+ catch{throw new Error('Credenciales privadas FCM no válidas o incompletas')}
  if(!account||typeof account!=='object'||Array.isArray(account)||
     account.type!=='service_account'||
     !PROJECT.test(String(account.project_id||''))||
