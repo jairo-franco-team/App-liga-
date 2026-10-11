@@ -183,6 +183,12 @@ async function mountQuiniela(root){
      const pts=predictionPoints(saved,m);if(pts===null)continue;
      total+=pts;scored++;
      if(pts===2)exact++;else if(pts===1)outcome++;
+     const owner=window.LJR_V569_AUTH?.currentAccount?.()?.id;
+     const start=m.iso&&m.time?Date.parse(m.iso+'T'+m.time+':00-06:00'):NaN;
+     if(owner&&saved.accountId&&String(owner)===String(saved.accountId)&&
+        m.status==='FINAL'&&Number.isFinite(start)&&Date.parse(saved.savedAt||'')<start){
+       window.LJR_GAME_RANKING?.record('quiniela',{id:'partido:'+m.id,points:pts,won:pts>0});
+     }
    }
  }
  const teamCard=(m,side)=>{
@@ -339,7 +345,7 @@ async function mountQuiniela(root){
    const h=$('[data-q-home]',row),a=$('[data-q-away]',row);
    if(h.value===''&&a.value===''){delete next[fixtureKey(m)];delete next[m.id];localStorage.setItem('v561-quiniela',JSON.stringify(next));return true}
    if(!h.checkValidity()||!a.checkValidity()||h.value===''||a.value===''){notice('Completa ambos marcadores con enteros entre 0 y 99');return false}
-   next[fixtureKey(m)]={home:Number(h.value),away:Number(a.value),fixtureKey:fixtureKey(m),savedAt:new Date().toISOString()};
+   next[fixtureKey(m)]={home:Number(h.value),away:Number(a.value),fixtureKey:fixtureKey(m),savedAt:new Date().toISOString(),accountId:window.LJR_V569_AUTH?.currentAccount?.()?.id||null};
    delete next[m.id];localStorage.setItem('v561-quiniela',JSON.stringify(next));return true;
  };
  root.querySelectorAll('[data-q-save-one]').forEach(btn=>btn.onclick=()=>{

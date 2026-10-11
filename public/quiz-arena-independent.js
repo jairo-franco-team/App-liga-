@@ -201,17 +201,15 @@ function rankRows(data){
   return rows.map(function(r,i){return {pos:i+1,name:String(r[1]),pts:String(r[9]??'—'),pj:String(r[2]??'—')}});
 }
 function moreLocalScores(){
- try{const a=JSON.parse(localStorage.getItem('ljr-moreless-completed-scores-v1')||'[]');
- return (Array.isArray(a)?a:[]).filter(x=>x&&Number.isFinite(Number(x.points))&&Number(x.points)>=0)
- .sort((a,b)=>Number(b.points)-Number(a.points)).slice(0,3)
- .map((x,i)=>({pos:i+1,name:'Invitado '+(i+1),pts:Number(x.points)}))}
- catch(_){return []}
+ const ranks=window.LJR_GAME_RANKING?.rankings('moreLess')||[];
+ return ranks.slice(0,3).map((x,i)=>({pos:i+1,name:x.name,pts:x.points}));
 }
 function moreSaveScore(){
  if(more.scoreSaved||more.roundsPlayed<1)return;more.scoreSaved=true;
  try{const k='ljr-moreless-completed-scores-v1',v=JSON.parse(localStorage.getItem(k)||'[]'),a=Array.isArray(v)?v.slice(-29):[];
  a.push({points:more.points,rounds:more.roundsPlayed,at:new Date().toISOString()});
  localStorage.setItem(k,JSON.stringify(a))}catch(_){}
+ window.LJR_GAME_RANKING?.record('moreLess',{id:'more:'+Math.floor(Date.now()/10000),points:more.points,won:more.points>=50});
 }
 function moreNewGame(){
  v538ClearTimers();more.points=0;more.attempts=2;more.round=0;more.roundsPlayed=0;
@@ -269,7 +267,7 @@ function quizCountdown(data){
 function v614StartQuizCountdown(){
   v614ClearQuizCountdown();
   quiz.fieldStart=(quiz.fieldStart+5)%QUIZ_FIELDS.length;
-  quiz.mode='countdown';quiz.answered=false;quiz.selected='';quiz.exit=false;quiz.remaining=15;quiz.step=1;quiz.points=0;quiz.halfUsed=false;quiz.retryUsed=false;quiz.attempts=1;quiz.countdown=3;quiz.history=[];quiz.missed=[];
+  quiz.mode='countdown';quiz.answered=false;quiz.selected='';quiz.exit=false;quiz.remaining=15;quiz.step=1;quiz.points=0;quiz.halfUsed=false;quiz.retryUsed=false;quiz.attempts=1;quiz.countdown=3;quiz.history=[];quiz.missed=[];quiz.scoreSaved=false;
   render(true);
   v614QuizCountdownTimer=setInterval(function(){
     if(route()!=='quizArena'||quiz.mode!=='countdown'){v614ClearQuizCountdown();return}
@@ -408,6 +406,10 @@ function quizGame(data){
   '</section>';
 }
 function quizResult(data){
+  if(quiz.step>=10&&quiz.answered&&!quiz.scoreSaved){
+    quiz.scoreSaved=true;
+    window.LJR_GAME_RANKING?.record('quizArena',{id:'quiz:'+Math.floor(Date.now()/10000),points:quiz.points,won:quiz.points>=60});
+  }
   const q=quizData(data);
   return '<section class="v531-page v531-quiz v531-result-screen v534-result-clean" data-v531-quiz data-v531-view="result">'+
     '<header class="v531-result-head"><button type="button" data-v531-result-back aria-label="Volver">'+backSvg()+'</button></header>'+

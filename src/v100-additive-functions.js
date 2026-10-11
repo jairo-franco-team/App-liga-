@@ -1,3 +1,6 @@
+/* V1390: integrado como dependencia de V100; Vite empaqueta JS y CSS sin tocar index.html. */
+import './v1390-community-games.css';
+import './v1390-community-games.js';
 /* V100 — Funciones aditivas desde “Apps falta”.
    Regla: no sustituye, mueve ni rediseña pantallas existentes. Solo agrega bloques al final.
    Datos privados capturados en estas herramientas se guardan únicamente en localStorage. */

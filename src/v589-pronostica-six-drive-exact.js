@@ -462,7 +462,7 @@ function savePrediction(){
   if(!ui.game)return;
   const g=games.find(x=>x.id===ui.game);if(!g||locked(g)){toast('Este partido ya está cerrado');closeOverlay();return}
   const s=read();
-  s.predictions[ui.game]={home:ui.tempHome,away:ui.tempAway,updatedAt:Date.now()};
+  s.predictions[ui.game]={home:ui.tempHome,away:ui.tempAway,homeTeam:g.home,awayTeam:g.away,updatedAt:Date.now(),accountId:window.LJR_V569_AUTH?.currentAccount?.()?.id||null};
   write(s);
   closeOverlay();
   ui.game=null;

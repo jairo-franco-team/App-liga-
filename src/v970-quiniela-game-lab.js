@@ -69,6 +69,9 @@ function v970Performance(section,c,db,guesses){
    const key=String(m.round||'—');
    const stat=rounds.get(key)||{points:0,n:0};
    stat.points+=v970Points(p,m);stat.n++;rounds.set(key,stat);
+   // Solo partidos terminados con pronostico guardado; resultado de 0, 1 o 2 puntos oficiales.
+   if(p.accountId&&String(p.accountId)===String(window.LJR_V569_AUTH?.currentAccount?.()?.id||''))
+     window.LJR_GAME_RANKING?.record('quiniela',{id:'partido:'+String(m.id||[m.category,m.round,m.home,m.away].join('|')),points:v970Points(p,m),won:v970Points(p,m)>0});
  }
  const panel=document.createElement('section');
  panel.className='v970-round-performance';
