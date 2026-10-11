@@ -206,3 +206,108 @@ html body[data-app-route="profile"] #screen :is(
    min-height:58px!important;
  }
 }
+
+/* V1413 — Corrección de cascada para recuperar exactamente la tarjeta y las filas de Perfil */
+/* V1402/V1396 fuerzan background con !important y selectores :is() en la
+   tarjeta y las filas. Repetir el id existente eleva la especificidad sin
+   tocar DOM, permisos, sesión ni estilos de las subpantallas account*. */
+html body[data-app-route="profile"] #screen#screen#screen{
+  background-color:#0b1558!important;
+  background-image:linear-gradient(180deg,#112464 0%,#111951 48%,#090f3c 100%)!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen .v12-profile-card[data-v569-owned],
+html body[data-app-route="profile"] #screen#screen#screen .v12-profile-card:has(.v569-profile-hero){
+  background-color:#162e73!important;
+  background-image:linear-gradient(137deg,#2c57a0 0%,#294d83 49%,#121e55 100%)!important;
+  border:1px solid rgba(168,196,242,.67)!important;
+  border-radius:25px!important;
+  box-shadow:0 10px 25px rgba(3,10,42,.26),inset 0 1px 0 rgba(242,246,255,.15)!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen .v12-profile-card[data-v569-owned] .v569-profile-hero,
+html body[data-app-route="profile"] #screen#screen#screen .v12-profile-card:has(.v569-profile-hero) .v569-profile-hero{
+  background:transparent!important;
+  background-image:none!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen .v569-profile-copy small{
+  color:#f0cf9c!important;
+  -webkit-text-fill-color:#f0cf9c!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen .v569-profile-copy h1{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen .v569-profile-copy b{
+  color:#e4edff!important;
+  -webkit-text-fill-color:#e4edff!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen .v569-profile-copy p{
+  color:#bccce6!important;
+  -webkit-text-fill-color:#bccce6!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen .v569-profile-avatar{
+  border:2px solid #e9c48b!important;
+  box-shadow:0 0 0 3px rgba(232,197,143,.14)!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen .v569-profile-buttons>button{
+  background-color:#1a347b!important;
+  background-image:linear-gradient(155deg,#2755a8,#182c6d)!important;
+  border:1px solid rgba(155,189,241,.60)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen .v569-profile-buttons>button:first-child{
+  background-color:#3267b3!important;
+  background-image:linear-gradient(145deg,#386fbd,#274d91)!important;
+  border-color:#e9c38a!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen .v569-profile-account-menu,
+html body[data-app-route="profile"] #screen#screen#screen .v12-profile-menu{
+  background:transparent!important;
+  background-image:none!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen .v569-profile-account-menu>button,
+html body[data-app-route="profile"] #screen#screen#screen .v12-profile-menu>.v12-profile-row,
+html body[data-app-route="profile"] #screen#screen#screen .v12-profile-menu>.ljr-profile-action-row{
+  background-color:#172d67!important;
+  background-image:linear-gradient(180deg,#213c79 0%,#142650 100%)!important;
+  border:0!important;
+  border-bottom:1px solid rgba(166,190,234,.4)!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen .v569-profile-account-menu>button>span,
+html body[data-app-route="profile"] #screen#screen#screen .v12-profile-menu .v12-profile-row-icon{
+  background-color:rgba(115,146,199,.34)!important;
+  background-image:none!important;
+  border:0!important;
+  border-radius:2px!important;
+  color:#cbddff!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen .v569-profile-account-menu>button>span svg,
+html body[data-app-route="profile"] #screen#screen#screen .v12-profile-menu .v12-profile-row-icon svg{
+  color:#cbddff!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen .v569-profile-account-menu>button>b,
+html body[data-app-route="profile"] #screen#screen#screen .v12-profile-menu .v12-profile-row-label{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen .v569-profile-account-menu>button.logout b{
+  color:#ffb3bf!important;
+  -webkit-text-fill-color:#ffb3bf!important;
+}
+/* Solo pinta accesos CMS si el usuario YA los tiene disponibles; no los inventa. */
+html body[data-app-route="profile"] #screen#screen#screen >.ljr-cms-entry{
+  background-color:#0c205c!important;
+  background-image:linear-gradient(145deg,#122d72,#091747)!important;
+  border:1px solid rgba(104,144,223,.43)!important;
+}
