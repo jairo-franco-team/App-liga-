@@ -20,8 +20,17 @@ test('V1386: paleta de los cuadros administrativos antes de la capa exclusiva V1
  assert.equal(laterStyles[0],
   './src/v1387-notification-buttons-consistent.css?v=20261010-v1387-notice-uniform',
   'V1387 debe seguir inmediatamente después de V1386');
- assert.ok(laterStyles.slice(1).every(href=>href.endsWith('.css')||/\.css\?/.test(href)),
-  'Las capas posteriores deben ser únicamente hojas CSS, sin scripts');
+ // Validar cada hoja que se añade después de V1386, sin bloquear
+ // futuras paletas reales por su nombre o fecha de publicación.
+ for(const href of laterStyles){
+  assert.match(href,/^\.\/src\/[a-z0-9._-]+\.css\?v=[a-z0-9._-]+$/i,
+   'Cada hoja visual final debe ser CSS local con versión anticaché');
+  const filename=href.slice(2).split('?')[0];
+  const layer=read(filename);
+  assert.ok(layer.trim().length>0,'Hoja CSS inexistente o vacía: '+filename);
+  assert.doesNotMatch(layer,/<script|url\(\s*['"]?javascript:/i,
+   'El CSS no debe ejecutar código');
+ }
  assert.ok(laterStyles.some(href=>href.includes('v1396-account-royal-blue.css')),
   'La capa final azul rey para Mi cuenta debe permanecer después de los estilos antiguos');
  // Solo la ULTIMA hoja que realmente cambia Perfil/Cuenta debe tener azul rey.
