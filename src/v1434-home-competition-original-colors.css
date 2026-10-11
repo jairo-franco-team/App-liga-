@@ -1,0 +1,44 @@
+/* V1434 · Restaurar los colores anteriores de las capturas de Inicio y
+   Competición. Refuerza las restauraciones existentes V93 y V1426.
+   Sólo fondos exteriores / contenedores; no modificar imágenes, tarjetas,
+   escudos, botones, fechas, estados, barra superior ni barra inferior.
+   Una única capa de color: evita el antiguo azul rey global #010799. */
+@layer ljr-reference-surfaces {
+@media screen {
+  /* INICIO: lienzo marino original V93, incluso en móvil/scroll. */
+  html body[data-app-route="home"],
+  html body[data-app-route="home"] #app,
+  html body[data-app-route="home"] .app-shell,
+  html body[data-app-route="home"] #screen,
+  html body[data-app-route="home"] #safeHomeExtra {
+    --v93-home-bg:#000144;
+    background-color:#000144!important;
+    background-image:none!important;
+  }
+  html body[data-app-route="home"] #screen :is(
+    .v6-home-super,.v6-section,.v6-quick,.v6-section-head,
+    .v6-action-grid,.v6-news-strip,.v6-video-list,
+    .v6-stat-carousel,.v65-field-carousel,.v78-calendar-track
+  ) {
+    background-color:transparent!important;
+    background-image:none!important;
+  }
+
+  /* COMPETICIÓN: recupera el lienzo profundo V1426 en las tres pestañas.
+     Los paneles de resultados, filas, tarjetas y selectores guardan su
+     tratamiento original, con contraste cyan en el elemento activo. */
+  html body[data-app-route="competition"],
+  html body[data-app-route="competition"] #screen,
+  html body[data-app-route="competition"] #screen > .tabs,
+  html body[data-app-route="competition"] #screen :is(
+    .v12-date-strip,.v12-fixtures-reference,.v12-fixtures-host,
+    .v12-results-reference,.v12-standings-reference,
+    .v40-standings-host,.v40-standings,.v40-content,
+    .v12-bracket-reference,.v12-bracket-board,
+    .v12-bracket-brackets,.v12-bracket-scroll,.v12-bracket-route
+  ) {
+    background-color:#000040!important;
+    background-image:none!important;
+  }
+}
+}
