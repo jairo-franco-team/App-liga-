@@ -68,5 +68,87 @@ html body #screen#screen#screen#screen#screen#screen .ljr-knockout .ljr-ko-tabs 
   background:#00deef!important;color:#020c35!important;
 }
 
+/* V1424 complementar: Cuadro/Clasificación y avatar según capturas. */
+html body[data-app-route="competition"] .v12-bracket-reference{
+  --br-cyan:#10dce7!important;
+  --br-card:#0c267d!important;
+  --br-card2:#0a1c72!important;
+  background:linear-gradient(180deg,#06065d 0%,#03044b 100%)!important;
+}
+html body[data-app-route="competition"] .v12-bracket-stage-tabs button:not(.active){
+  background:#1c2057!important;
+  background-image:none!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+html body[data-app-route="competition"] .v12-bracket-stage-tabs button.active{
+  background:#10dce7!important;
+  background-image:none!important;
+  color:#041345!important;
+}
+html body[data-app-route="competition"] #screen>.tabs{
+  background-color:#080754!important;
+  background-image:none!important;
+}
+html body[data-app-route="competition"] #screen>.tabs .tab{
+  background:transparent!important;
+  color:#f1f4ff!important;
+}
+html body[data-app-route="competition"] #screen>.tabs .tab.active{
+  color:#fff!important;
+}
+html body[data-app-route="competition"] #screen>.tabs .tab.active::after{
+  background:#16deed!important;
+}
+
+/* El modal Mi avatar y mi camiseta también estaba sobreescrito por V1422.
+   Restituye su azul profundo, conservando fotos, disposición y selectores. */
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"]{
+  background-color:#121875!important;
+  background-image:linear-gradient(180deg,#213aaa 0%,#121a83 58%,#090c5b 100%)!important;
+  color:#fff!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"]>header{
+  background-color:#151b80!important;
+  background-image:linear-gradient(180deg,#1d308f,#0d1569)!important;
+  color:#fff!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] :is(
+  .ljr-profile-preview,.ljr-photo-upload,.ljr-avatar-gallery>button,
+  .v800-shirt-fields,.v893-shirt-customize
+){
+  background-color:#1c45a1!important;
+  background-image:linear-gradient(155deg,#2862bc,#163991)!important;
+  border-color:rgba(181,214,255,.55)!important;
+  color:#fff!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] input[type=file]{
+  background-color:#101562!important;
+  border-color:rgba(192,221,255,.5)!important;
+  color:#fff!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] input[type=file]::file-selector-button{
+  background-color:#21489e!important;
+  color:#fff!important;
+  border-color:rgba(195,220,255,.65)!important;
+}
+
+/* V977: play y pause usan paths llenos; mantenerlos blancos sin azulearlos. */
+html body .v977-player .v977-controls button svg{
+  color:#fff!important;stroke:#fff!important;
+}
+html body .v977-player .v977-controls button svg [fill="currentColor"]{
+  fill:#fff!important;
+}
+html body .ljr-video-player.v918-overlay-player .ljr-video-controls button svg{
+  color:#fff!important;stroke:#fff!important;
+}
+html body .ljr-video-player.v918-overlay-player .ljr-video-controls .v918-icon-filled{
+  fill:#fff!important;stroke:none!important;
+}
+html body :is(.v977-player,.ljr-video-player.v918-overlay-player) :is(
+  input[data-seek],input[data-volume],input[type=range]
+){accent-color:#fff!important;}
+
 }
 }
