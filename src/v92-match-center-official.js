@@ -1191,7 +1191,7 @@ function render(){
   renderGuard=false;
 }
 async function load(){
-  if(window.LJR_OFFICIAL_DATA?.categories){db=window.LJR_OFFICIAL_DATA;if(isDirectRoute())syncRoute();return db;}
+  if(window.LJR_OFFICIAL_DATA?.categories){db=window.LJR_OFFICIAL_DATA;if(isDirectRoute()){applyTelecastSelection();render();}return db;}
   if(loading)return loading;
   loading=(async()=>{
     for(const u of [LOCAL,REMOTE]){
@@ -1200,7 +1200,7 @@ async function load(){
         if(res.ok){db=await res.json();window.LJR_OFFICIAL_DATA=db;break}
       }catch(_){}
     }
-    if(isDirectRoute())syncRoute();
+    if(isDirectRoute()){applyTelecastSelection();render();}
     return db;
   })();
   return loading;
@@ -1227,6 +1227,15 @@ async function refreshOfficialData(force=false){
   }
   return db;
 }
+function applyTelecastSelection(){
+  try{
+    const request=JSON.parse(sessionStorage.getItem('v440-tv-match')||'null');
+    if(!request?.key||!db?.categories)return;
+    const found=allMatches().find(m=>m.key===String(request.key));
+    if(found){selectedKey=found.key;reviewKey=automaticPhase(found).phase==='final'?found.key:'';autoFollowKey='';}
+    sessionStorage.removeItem('v440-tv-match');
+  }catch(_){}
+}
 function syncRoute(){
   const r=route();
   try{
@@ -1245,15 +1254,7 @@ function syncRoute(){
   const on=isDirectRoute();
   document.body.classList.toggle('v92-match-center-official',on);
   if(!on){reviewKey='';selectedKey='';autoFollowKey='';return;}
-  // Televisados manda el ID oficial (categoría:ID de partido), no el índice visual.
-  try{
-    const request=JSON.parse(sessionStorage.getItem('v440-tv-match')||'null');
-    if(request?.key&&db?.categories){
-      const found=allMatches().find(m=>m.key===String(request.key));
-      if(found){selectedKey=found.key;reviewKey=automaticPhase(found).phase==='final'?found.key:'';autoFollowKey='';}
-      sessionStorage.removeItem('v440-tv-match');
-    }
-  }catch(_){}
+  applyTelecastSelection();
   render();
   load();
   if(!timer)timer=setInterval(()=>{if(isDirectRoute()&&!document.hidden){refreshOfficialData(false)}},30000);
