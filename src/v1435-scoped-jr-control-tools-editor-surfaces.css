@@ -151,3 +151,91 @@
   /* Jamás cambiar estados hidden, disabled, eventos, foco, tamaños o iconos. */
 }
 }
+
+
+/* V1437 · Corrección real de superficies anidadas.
+   Esta hoja se carga DESPUÉS del tema administrativo original: gana a los
+   paneles duplicados pero no toca Inicio, Competición, Perfil ni permisos. */
+@layer ljr-reference-surfaces {
+@media screen {
+  /* JR Control: el contenedor de tarjetas no es otra tarjeta coloreada. */
+  html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"])
+  #screen .v562-page[data-v563-control] .v562-panel:has(.v562-list),
+  html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"])
+  #screen .v562-page[data-v563-control] .v563-management,
+  html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"])
+  #screen .v562-page[data-v563-control] :is(.v562-list,.v563-admin-direct) {
+    background:transparent!important;
+    background-image:none!important;
+    box-shadow:none!important;
+  }
+  html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"])
+  #screen .v562-page[data-v563-control] .v562-panel:has(.v562-list) {
+    border-color:transparent!important;
+  }
+  /* En Más, únicamente las tarjetas pintan el degradado, no los grupos. */
+  html body[data-app-route="leagueTools"] #screen
+    :is(.v726-quick-section,.v726-tool-section,.v726-admin-section,
+      .v726-tools-content,.v726-tool-grid,.v726-quick-grid,
+      .v726-section-head,.v734-tool-open,.v734-tool-top,.v734-tool-main,
+      .v734-tool-head,.v734-tool-details,.v734-tool-detail-panel,
+      [data-v734-tool-details],.v726-hero-pills span,.v726-tool-tag) {
+    background:transparent!important;
+    background-image:none!important;
+    box-shadow:none!important;
+  }
+  html body[data-app-route="leagueTools"] #screen
+    :is(.v726-quick-card,.v726-tool-card,.v734-tool-card,
+      .v612-tools-entry.v726-admin-entry,.v60-tool-card,.v60-tools-featured-card) {
+    background:linear-gradient(180deg,#2452c2 0%,#173997 55%,#102577 100%)!important;
+    box-shadow:none!important;
+    border-color:rgba(147,182,255,.32)!important;
+  }
+  /* "Cómo crear y descargar el diseño": el <summary> no es un segundo
+     rectángulo azul sobre el <details>, incluidos los estados abierto/cerrado. */
+  html body .liga-media-modal > section:is(
+    .ljr-admin-studio,.ljr-admin-v1081,.ljr-admin-cms,.ljr-admin-manage,
+    .ljr-admin-child,.ljr-admin-friendly,.ljr-editor-dialog
+  ) details.ljr-admin-howto {
+    background:linear-gradient(170deg,#1944b4,#0c208b)!important;
+    background-image:linear-gradient(170deg,#1944b4,#0c208b)!important;
+    box-shadow:none!important;
+    border-color:rgba(140,184,255,.30)!important;
+  }
+  html body .liga-media-modal > section:is(
+    .ljr-admin-studio,.ljr-admin-v1081,.ljr-admin-cms,.ljr-admin-manage,
+    .ljr-admin-child,.ljr-admin-friendly,.ljr-editor-dialog
+  ) details.ljr-admin-howto > summary,
+  html body .liga-media-modal > section:is(
+    .ljr-admin-studio,.ljr-admin-v1081,.ljr-admin-cms,.ljr-admin-manage,
+    .ljr-admin-child,.ljr-admin-friendly,.ljr-editor-dialog
+  ) details.ljr-admin-howto > .cms-design-intro {
+    background:transparent!important;
+    background-image:none!important;
+    box-shadow:none!important;
+    border-color:transparent!important;
+  }
+  /* Área/encabezados/buscador no repiten una segunda pintura. */
+  html body .liga-media-modal > section:is(
+    .ljr-admin-studio,.ljr-admin-v1081,.ljr-admin-cms,.ljr-admin-manage,
+    .ljr-admin-child,.ljr-admin-friendly,.ljr-editor-dialog
+  ) :is(.ljr-admin-area,.ljr-admin-intro,.ljr-admin-section,
+        .ljr-admin-preset-tools,.ljr-admin-preset-count,
+        .ljr-admin-action-grid,.cms-design-presets,.cms-design-form,
+        .cms-kind-grid,.ljr-smart-hub,.ljr-smart-tasks,
+        .ljr-editor-hub,.ljr-editor-row,.ljr-editor-note) {
+    background:transparent!important;
+    background-image:none!important;
+    box-shadow:none!important;
+  }
+  html body .liga-media-modal > section:is(
+    .ljr-admin-studio,.ljr-admin-v1081,.ljr-admin-cms,.ljr-admin-manage,
+    .ljr-admin-child,.ljr-admin-friendly,.ljr-editor-dialog
+  ) .ljr-admin-preset-tools > input {
+    background:#102876!important;
+    background-image:none!important;
+    box-shadow:none!important;
+    border-color:rgba(121,172,249,.37)!important;
+  }
+}
+}
