@@ -113,15 +113,19 @@ function footerMarkup(){
  group('HERRAMIENTAS',[['Calendario','pc-calendar'],['Credenciales','credentialBuilder'],['Match Day','matchday'],['Herramientas PC','pc-tools']])+
  '</div><div class="ljpc-u-wrap ljpc-u-footnote">© 2026 Liga Juventino Rosas · Sitio en español</div></footer></div>';
 }
+let previousRoute=null;
 function selectNav(){
  const root=document.getElementById('ljpc-unified-pc-header');if(!root)return;
- const selected=active(route());
+ const r=route(),selected=active(r);
  root.querySelectorAll('[data-ljpc-u-highlight]').forEach(b=>{
   const on=b.dataset.ljpcUHighlight===selected;
   b.classList.toggle('active',on);
   if(b.tagName==='BUTTON'){if(on)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');}
  });
- root.querySelectorAll('details[open]').forEach(x=>x.removeAttribute('open'));
+ if(previousRoute!==r){
+  root.querySelectorAll('details[open]').forEach(x=>x.removeAttribute('open'));
+  previousRoute=r;
+ }
 }
 function hideIframeHeader(frame){
  if(!frame?.contentDocument)return;
