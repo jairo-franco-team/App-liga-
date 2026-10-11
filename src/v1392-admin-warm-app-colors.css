@@ -311,3 +311,181 @@ html body :is(.liga-media-modal,.v105-modal,.v1300-page) button:focus-visible{
 @media(prefers-reduced-motion:reduce){
  html body :is(.liga-media-modal,.v105-modal,.v1300-page) button{transition:none!important}
 }
+
+/* V1393 · Corrección real: azul real cálido y luminoso, no azul casi negro. */
+/* Mantener blanco legible, amarillo/ámbar suave y fondos azul medio. SOLO modales
+   de administración/edición/publicación: no alterar formularios, rutas ni listeners. */
+html body .liga-media-modal>section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+ .ljr-admin-studio,.ljr-admin-picker,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
+){
+ --ljr1392-night:#275e9f;
+ --ljr1392-liga:#3474b7;
+ --ljr1392-panel:#326faa;
+ --ljr1392-card:#3d7bb6;
+ --ljr1392-deep:#255998;
+ --ljr1392-stroke:rgba(194,218,244,.67);
+ --ljr1392-muted:#e4ebfb;
+ --ljr1392-inner:linear-gradient(148deg,#397ab6,#2c65a5);
+ --ljr1392-surface:linear-gradient(146deg,#4685c2,#326da9);
+ --ljr1392-action:linear-gradient(135deg,#4c94d9,#3078c6);
+ --cm-night:#275e9f;--cm-surface:#326faa;--cm-card:#3d7bb6;
+ --ljr1310-bg:#275e9f;--ljr1310-surface:#326faa;--ljr1310-card:#3d7bb6;
+ --ljr1310-input:#255998;--ljr-admin-bg:#275e9f;
+ --ljr-admin-panel:#326faa;--ljr-admin-card:#3d7bb6;--ljr-admin-field:#255998;
+ box-sizing:border-box!important;
+ background:radial-gradient(ellipse 110% 65% at 100% 0%,rgba(255,205,143,.19),transparent 60%),
+   linear-gradient(166deg,#498bd0 0%,#387bbc 44%,#2b66aa 100%)!important;
+ background-color:#3476b7!important;
+ color:#fffaf5!important;
+ border:1px solid rgba(203,223,248,.78)!important;
+ box-shadow:0 16px 45px rgba(5,27,68,.27),inset 0 1px rgba(255,244,225,.22)!important;
+ color-scheme:dark!important;
+}
+html body .liga-media-modal:has(>section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+ .ljr-admin-studio,.ljr-admin-picker,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
+)){
+ background:rgba(7,25,63,.52)!important;
+}
+html body .liga-media-modal>section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+ .ljr-admin-studio,.ljr-admin-picker,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
+)>header{
+ background:linear-gradient(128deg,#5597d6,#3e7fc4 60%,#3676b8)!important;
+ background-color:#4489c8!important;
+ color:#fffaf5!important;
+ border-bottom:1px solid rgba(255,217,165,.52)!important;
+ box-shadow:inset 0 1px rgba(255,248,231,.20)!important;
+}
+html body .liga-media-modal>section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+ .ljr-admin-studio,.ljr-admin-picker,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
+)>header [data-close]{
+ background:linear-gradient(135deg,#4586c7,#2e69ab)!important;
+ border:1px solid rgba(227,231,248,.84)!important;
+ color:#fffaf5!important;
+ box-shadow:inset 0 1px rgba(255,255,255,.14)!important;
+}
+/* Guías, áreas informativas, tarjetas y listas de edición: claridad pareja. */
+html body .liga-media-modal :is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+ .ljr-admin-studio,.ljr-admin-picker,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
+) :is(
+ .ljr-admin-area,.ljr-admin-results,.ljr-simple-intro,.ljr-guide,.ljr-admin-howto,
+ .ljr-smart-hub,.ljr-smart-tasks,.ljr-editor-hub,.ljr-editor-section-info,
+ .ljr-editor-preview,.ljr-editor-row,.ljr-editor-autofill,.ljr-editor-empty,
+ .ljr-review-card,.ljr-review-body,.ljr-review-insights,.ljr-review-feedback,
+ .ljr-review-stats>div,.v1081-note,.v1081-item,.v1081-preview
+){
+ background:linear-gradient(147deg,#3d7db8,#306aa7)!important;
+ background-color:#3774b0!important;
+ border-color:rgba(211,227,250,.60)!important;
+ color:#fffaf6!important;
+ box-shadow:inset 0 1px rgba(255,255,255,.10)!important;
+}
+html body .liga-media-modal :is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker,.ljr-editor-dialog
+) :is(
+ .ljr-admin-section-sub,.ljr-admin-greeting,.ljr-admin-results-hint,
+ .ljr-simple-intro p,.ljr-editor-note,.ljr-editor-security,.ljr-review-meta,
+ .ljr-review-stats small,.ljr-admin-upload-name,.v1081-hint
+){color:#e5edfb!important}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker)
+ :is(.ljr-guide>summary,.ljr-admin-howto>summary){
+ background:linear-gradient(140deg,#3b7ab6,#2d67a4)!important;
+ color:#fff4df!important;border-color:rgba(241,222,188,.65)!important;
+}
+/* Cuadros de Contenido y datos y tarjetas de acciones: azul luminoso, sin gris opaco. */
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+ :is(.ljr-admin-tile:not(.ljr-admin-tile-danger),.cms-kind-grid>button){
+ background:linear-gradient(151deg,#4486c5,#3373b2)!important;
+ background-color:#397ab8!important;
+ border:1px solid rgba(224,230,250,.68)!important;
+ color:#fff9f5!important;
+ box-shadow:inset 0 1px rgba(255,255,255,.14)!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+ :is(.ljr-admin-tile.is-active,.cms-kind-grid>button.is-active,.cms-kind-grid>button[aria-pressed=true]){
+ background:linear-gradient(151deg,#5398da,#3b7ec5)!important;
+ border-color:#ffe1b2!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+ .ljr-admin-tile small{color:#e9eefb!important}
+/* Iconos a escala, con acentos cálidos que no dependen de tonos cian. */
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+ .ljr-admin-tile :is(.ljr-admin-tile-icon,.ljr-simple-icon){
+ width:46px!important;height:46px!important;flex-basis:46px!important;
+ display:grid!important;place-items:center!important;
+ border-color:rgba(255,226,184,.42)!important;
+ box-shadow:inset 0 1px rgba(255,255,255,.11)!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+ .ljr-admin-tile-icon svg{width:25px!important;height:25px!important;max-width:25px!important}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+ :is(.ljr-admin-action-grid,.cms-kind-grid)>:nth-child(5n+1) .ljr-admin-tile-icon{
+ color:#ffe0a0!important;background:rgba(255,220,151,.21)!important}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+ :is(.ljr-admin-action-grid,.cms-kind-grid)>:nth-child(5n+2) .ljr-admin-tile-icon{
+ color:#a9f0cc!important;background:rgba(124,224,175,.18)!important}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+ :is(.ljr-admin-action-grid,.cms-kind-grid)>:nth-child(5n+3) .ljr-admin-tile-icon{
+ color:#ffc2b1!important;background:rgba(255,178,156,.20)!important}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+ :is(.ljr-admin-action-grid,.cms-kind-grid)>:nth-child(5n+4) .ljr-admin-tile-icon{
+ color:#e6cbff!important;background:rgba(219,188,251,.18)!important}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+ :is(.ljr-admin-action-grid,.cms-kind-grid)>:nth-child(5n+5) .ljr-admin-tile-icon{
+ color:#d6e8ff!important;background:rgba(185,216,250,.18)!important}
+/* Campos / selectores / archivos: campos azul medios para que no se vean negros. */
+html body .liga-media-modal>section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+ .ljr-admin-studio,.ljr-admin-picker,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
+) :is(input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=color]),select,textarea){
+ background:#2a65a4!important;background-image:none!important;
+ border:1px solid #b8d3f2!important;
+ color:#fffaf6!important;box-shadow:inset 0 1px 2px rgba(18,50,91,.12)!important;
+ color-scheme:dark!important;
+}
+html body .liga-media-modal>section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+ .ljr-admin-studio,.ljr-admin-picker,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
+) :is(input,textarea)::placeholder{color:#e0ebfa!important;opacity:1!important}
+html body .liga-media-modal :is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+ .ljr-admin-studio,.ljr-admin-picker,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
+) :is(.cms-form>button,.ljr-admin-submit,.liga-media-actions button,[data-pick-element],
+ .ljr-editor-two-choice>button,.ljr-editor-extra-actions>button,
+ .ljr-editor-hub-grid>button,.ljr-editor-tools>button,.ljr-editor-bottom>button,
+ .ljr-review-tabs>button,.ljr-smart-actions button,.ljr-review-footer button){
+ background:linear-gradient(141deg,#477fba,#336ca9)!important;
+ border:1px solid rgba(232,230,242,.70)!important;
+ color:#fffaf6!important;
+ box-shadow:inset 0 1px rgba(255,255,255,.13)!important;
+}
+html body .liga-media-modal>section:is(.ljr-admin-picker,.ljr-admin-child,.ljr-admin-cms,.ljr-editor-dialog)
+ :is(.cms-form>button[type=submit],form>button[type=submit],[data-pick-element],[data-editor-publish]){
+ background:linear-gradient(136deg,#549ce1,#357ac2)!important;
+ border-color:#ffe3b5!important;
+ color:#fffaf6!important;
+}
+html body .liga-media-modal>section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+ .ljr-admin-studio,.ljr-admin-picker,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
+) input[type=file]{
+ background:#2b65a4!important;border-color:#b8d3f2!important;color:#fffaf6!important;
+}
+html body .liga-media-modal>section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+ .ljr-admin-studio,.ljr-admin-picker,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
+) input[type=file]::file-selector-button{
+ background:linear-gradient(145deg,#498acb,#3475b8)!important;
+ border-color:#f9d9ae!important;color:#fffaf6!important;
+}
+html body .liga-media-modal>section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+ .ljr-admin-studio,.ljr-admin-picker,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
+) :is(input,select,textarea,button,summary):focus-visible{
+ outline:2px solid #ffe0a3!important;outline-offset:2px!important;
+}
+/* Reglas visuales: no esconder estados, no impedir pulsaciones ni falsificar datos. */
