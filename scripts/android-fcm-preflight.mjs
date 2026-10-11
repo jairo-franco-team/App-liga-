@@ -35,7 +35,10 @@ function main(){
     console.log('Firebase Android: aún no se configuró FIREBASE_ANDROID_CONFIG_B64 en GitHub Actions.');
   }
   const receiver=fs.existsSync('native/android/LigaFirebaseMessagingService.java');
-  const sender=fs.existsSync('server/notifications/fcm-delivery.mjs');
+  // Un archivo de transporte sin conexión al despachador de PostgreSQL
+  // NO significa que el servidor pueda entregar avisos reales.
+  const sender=fs.existsSync('server/notifications/fcm-delivery.mjs')&&
+    fs.readFileSync('server/notifications/index.mjs','utf8').includes("from './fcm-delivery.mjs'");
   const status=reportReadiness({configured,receiver,sender});
   console.log('Estado real APK: '+status);
   // Only simple public status is propagated to release notes; never any Firebase values.
