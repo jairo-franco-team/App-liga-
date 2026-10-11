@@ -13,7 +13,7 @@ test('The supplied original HTML structure and Tailwind geometry are preserved f
   assert.ok(html.includes(literal),literal);
  assert.equal((html.match(/data-name="moment card \d+"/g)||[]).length,7);
  assert.equal((html.match(/data-name="story item \d+"/g)||[]).length,12);
- assert.equal((html.match(/data-name="match card \d+"/g)||[]).length,6);
+ assert.equal((html.match(/<div\b[^>]*data-name="match card \d+"/g)||[]).length,6);
  assert.ok((html.match(/data-pc-route=/g)||[]).length>70);
 });
 test('Brand belongs to Liga Juventino Rosas; original fixture placeholders do not invent scores',()=>{
