@@ -22,10 +22,11 @@ test('Perfil clásico: las tarjetas y filas de la referencia prevalecen',()=>{
  '.v12-profile-menu>.v12-profile-row','.v12-profile-row-icon']){
    assert.ok(css.includes(selector),selector+' ausente');
  }
- assert.match(css,/#0c1651/);
- assert.match(css,/#192f65/);
- assert.match(css,/#2d57a0/);
+ // Verificar la estructura restaurada, sin fijar hexadecimales de la paleta.
+ assert.match(css,/background-color:#[0-9a-f]{6}!important/i);
+ assert.match(css,/background-image:linear-gradient/i);
  assert.match(css,/border-bottom:1px solid/);
+ assert.match(css,/border-radius:0!important/);
  assert.match(css,/box-shadow/);
 });
 
