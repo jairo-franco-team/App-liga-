@@ -33,7 +33,7 @@ public final class LigaFirebaseMessagingService extends FirebaseMessagingService
         RemoteMessage.Notification payload = message.getNotification();
         String title = payload == null ? data.get("title") : payload.getTitle();
         String body = payload == null ? data.get("body") : payload.getBody();
-        if (title == null || title.isBlank() || body == null || body.isBlank()) return;
+        if (title == null || title.trim().isEmpty() || body == null || body.trim().isEmpty()) return;
         title = title.length() > 120 ? title.substring(0, 120) : title;
         body = body.length() > 700 ? body.substring(0, 700) : body;
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
