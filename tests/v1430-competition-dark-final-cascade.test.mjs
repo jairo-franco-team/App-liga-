@@ -27,9 +27,11 @@ test('V1430: CSS de Más no cambia Competición y conservó Herramientas/Admin/N
   }
   const oldLink='src/v1426-competition-exact-dark-background.css?v=20261011-v1427-fondo-000040';
   const fixLink='src/v1428-more-reference-gradient-fix.css?v=20261011-v1432-imagen3-degradado-rey-noche';
-  assert.equal(html.split(fixLink).length-1,1);
+  // V1433: la capa universal se retiró para restaurar el diseño original.
+  // No debe cargarse de nuevo encima de Clasificación ni de Cuadro.
+  assert.equal(html.split(fixLink).length-1,0);
   assert.ok(html.indexOf(oldLink)>0);
-  assert.ok(html.indexOf(fixLink)>html.indexOf(oldLink));
+  assert.ok(!html.includes('src/v1428-more-reference-gradient-fix.css'));
   const following=[...html.slice(html.indexOf(oldLink)+oldLink.length).matchAll(/<link[^>]+href="([^"]+\.css(?:\?[^"]*)?)"/g)];
   for(const x of following){
     const path=x[1].replace(/^\.\//,'').split('?')[0];
