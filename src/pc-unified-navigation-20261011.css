@@ -202,3 +202,66 @@ html.ljpc-unified-pc body #ljpc-unified-pc-footer .ljpc-u-sponsor{
  background:linear-gradient(180deg,#08253e,#06172f)!important;
  color:#cae7f4!important;border-top-color:#164564!important;
 }
+
+/* PC SCROLL FLOW — 2026-10-11
+   El pie de Información y colaboradores debe quedar AL FINAL, nunca anclado
+   mientras se desplaza Inicio, Clasificación o el resto de secciones PC.
+   Algunos módulos móviles mantienen #screen como scroller separado y dejan
+   sus hermanos inmóviles: para PC el único scroll vertical es el documento.
+   Este selector sólo existe en mode=desktop o escritorio real; móvil/APK intactos. */
+html.ljpc-unified-pc{
+  height:auto!important;
+  min-height:100%!important;
+  max-height:none!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+}
+html.ljpc-unified-pc body{
+  position:relative!important;
+  height:auto!important;
+  min-height:100vh!important;
+  max-height:none!important;
+  overflow-x:hidden!important;
+  overflow-y:visible!important;
+  overscroll-behavior-y:auto!important;
+}
+html.ljpc-unified-pc body #app,
+html.ljpc-unified-pc body .app-shell{
+  position:relative!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:visible!important;
+  contain:none!important;
+  transform:none!important;
+}
+html.ljpc-unified-pc body #screen{
+  position:relative!important;
+  top:auto!important;
+  bottom:auto!important;
+  left:auto!important;
+  right:auto!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow-x:visible!important;
+  overflow-y:visible!important;
+  contain:none!important;
+  transform:none!important;
+  overscroll-behavior-y:auto!important;
+  touch-action:auto!important;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-footer{
+  position:relative!important;
+  inset:auto!important;
+  top:auto!important;
+  bottom:auto!important;
+  height:auto!important;
+  transform:none!important;
+  clear:both!important;
+  margin:0!important;
+}
+/* El pie alternativo de Inicio estaba fuera del scroll y duplicaba el oficial. */
+html.ljpc-unified-pc body #ljpc-home-integrated-footer{
+  display:none!important;
+}
