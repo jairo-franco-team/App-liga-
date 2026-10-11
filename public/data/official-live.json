@@ -21975,5 +21975,18 @@
     },
     "scorers_second": 39,
     "cards_second": 3
+  },
+  "weekend_suspension_2026_10_11": {
+    "date": "2026-10-11",
+    "affected_categories": [
+      "3",
+      "5",
+      "4",
+      "2"
+    ],
+    "exempt_category": "1",
+    "source_type": "user_notice",
+    "status": "SUSPENDED",
+    "note": "No modificar resultados históricos ni jornadas futuras; partidos pendientes del 10/10 se mantienen distintos."
   }
 }
