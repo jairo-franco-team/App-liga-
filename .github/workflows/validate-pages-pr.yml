@@ -1,0 +1,49 @@
+name: Validar Pages y pruebas antes de fusionar
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/validate-pages-pr.yml'
+      - '.github/workflows/pages.yml'
+      - 'index.html'
+      - 'src/**'
+      - 'public/**'
+      - 'tests/**'
+      - 'scripts/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'vite.config.*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-pr-validation-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-build:
+    name: Pruebas oficiales y compilación web
+    runs-on: ubuntu-22.04
+    timeout-minutes: 12
+    steps:
+      - name: Checkout exact PR ref
+        uses: actions/checkout@v4
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: package.json
+      - name: Install dependencies
+        run: npm install --prefer-offline --no-audit --no-fund
+      - name: Check demo stylesheet synchronization
+        run: node scripts/ensure-demo-notice-css.mjs
+      - name: Run same regression suite as Pages
+        run: node --test tests/*.test.mjs
+      - name: Build site without production secrets
+        run: npm run build -- --base=/App-liga-/
+      - name: Confirm HTML produced
+        run: test -s dist/index.html
