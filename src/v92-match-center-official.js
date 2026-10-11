@@ -17,6 +17,7 @@ const MATCH_MEDIA=BASE+'assets/motion/';
 let db=window.LJR_OFFICIAL_DATA||null;
 let activeTab='Resumen';
 let selectedKey='';
+let reviewKey='';
 let loading=null;
 let timer=null;
 let liveClockTimer=null;
@@ -154,30 +155,34 @@ function stateFor(m,now=mexicoStamp()){
 function selectedFixture(){
   const list=allMatches();if(!list.length)return null;
   const now=mexicoStamp();
+  const notSuspended=m=>!/suspend|cancel|aplaz|pospuest/i.test(String(m.r?.[10]||''));
+  const unfinished=m=>notSuspended(m)&&!publishedScore(m.r)&&!officialDecision(m);
+  // Permite consultar un resultado anterior sin interrumpir la consulta.
+  if(reviewKey&&selectedKey===reviewKey){
+    const archived=list.find(m=>m.key===reviewKey);
+    if(archived)return archived;
+    reviewKey='';
+  }
   if(selectedKey){
     const chosen=list.find(m=>m.key===selectedKey);
-    if(chosen){
-      const s=stateFor(chosen,now);
-      const auto=automaticPhase(chosen,now);
+    if(chosen&&unfinished(chosen)){
+      const s=stateFor(chosen,now),auto=automaticPhase(chosen,now);
       if(s.kind==='scheduled'||s.kind==='window'||auto.phase!=='final')return chosen;
-      // El partido seleccionado terminó: liberar la selección para saltar al siguiente horario.
-      selectedKey='';
     }
+    selectedKey='';
   }
-  const live=list.filter(m=>stateFor(m,now).kind==='window')
+  // Prioridad: directo confirmado; horario actual no confirmado; siguiente partido.
+  const live=list.filter(m=>unfinished(m)&&stateFor(m,now).kind==='window')
     .sort((a,b)=>a.start-b.start||Number(a.catId)-Number(b.catId)||a.key.localeCompare(b.key));
-  if(live.length){
-    // Si hay varios partidos a la misma hora, mostrar solo uno de forma estable.
-    const slot=live[0].start;
-    return live.filter(m=>m.start===slot)
-      .sort((a,b)=>Number(a.catId)-Number(b.catId)||a.key.localeCompare(b.key))[0];
-  }
-  const future=list.filter(m=>Number.isFinite(m.start)&&m.start>now&&stateFor(m,now).kind==='scheduled')
+  if(live.length)return live[0];
+  const slot=list.filter(m=>unfinished(m)&&Number.isFinite(m.start)&&m.start<=now&&now<m.start+AUTO_MATCH_MS)
+    .sort((a,b)=>a.start-b.start||Number(a.catId)-Number(b.catId)||a.key.localeCompare(b.key));
+  if(slot.length)return slot[0];
+  const future=list.filter(m=>unfinished(m)&&Number.isFinite(m.start)&&m.start>now)
     .sort((a,b)=>a.start-b.start||Number(a.catId)-Number(b.catId)||a.key.localeCompare(b.key));
   if(future.length)return future[0];
-  const withScore=list.filter(m=>publishedScore(m.r)).sort((a,b)=>b.start-a.start);
-  if(withScore.length)return withScore[0];
-  return list[list.length-1];
+  const last=list.filter(m=>Number.isFinite(m.start)).sort((a,b)=>b.start-a.start)[0];
+  return last||list[list.length-1];
 }
 function standings(m){return m?.cat?.standings?.[0]?.rows||[]}
 function roster(m,name){
@@ -1107,7 +1112,7 @@ function render(){
 
 
   document.body.classList.add('v92-match-center-official');
-  screen.querySelector('[data-v92-match-select]')?.addEventListener('change',e=>{selectedKey=e.target.value;activeTab='Resumen';profileSide='home';renderGuard=false;render()});
+  screen.querySelector('[data-v92-match-select]')?.addEventListener('change',e=>{selectedKey=e.target.value;reviewKey='';activeTab='Resumen';profileSide='home';renderGuard=false;render()});
   const focusMatchSection=(selector)=>{
     const go=()=>{const target=document.querySelector(selector);if(!target)return;try{target.scrollIntoView({behavior:'smooth',block:'start'})}catch(_){target.scrollIntoView?.()}};
     requestAnimationFrame(go);setTimeout(go,120);
@@ -1180,7 +1185,7 @@ function render(){
   screen.querySelector('[data-v423-live]')?.addEventListener('click',()=>{v423LiveOnly=!v423LiveOnly;renderGuard=false;render()});
   screen.querySelector('[data-v423-search]')?.addEventListener('click',()=>{location.hash='#/search'});
   screen.querySelector('[data-v423-calendar-open]')?.addEventListener('click',()=>{location.hash='#/v4-calendar'});
-  screen.querySelectorAll('[data-v423-match]').forEach(b=>b.onclick=()=>{selectedKey=b.dataset.v423Match||selectedKey;activeTab='Resumen';renderGuard=false;render();try{document.querySelector('[data-v92-matchcenter]')?.scrollIntoView({behavior:'smooth',block:'start'})}catch(_){}});
+  screen.querySelectorAll('[data-v423-match]').forEach(b=>b.onclick=()=>{selectedKey=b.dataset.v423Match||selectedKey;reviewKey='';activeTab='Resumen';renderGuard=false;render();try{document.querySelector('[data-v92-matchcenter]')?.scrollIntoView({behavior:'smooth',block:'start'})}catch(_){}});
   screen.querySelectorAll('[data-v423-fav]').forEach(b=>b.onclick=()=>{let a=[];try{a=JSON.parse(localStorage.getItem('v423-match-favs')||'[]')}catch(_){};const k=String(b.dataset.v423Fav||'');a=a.includes(k)?a.filter(x=>x!==k):[...a,k];try{localStorage.setItem('v423-match-favs',JSON.stringify(a))}catch(_){};renderGuard=false;render()});
   updateLiveClock();
   renderGuard=false;
@@ -1239,7 +1244,16 @@ function syncRoute(){
   }
   const on=isDirectRoute();
   document.body.classList.toggle('v92-match-center-official',on);
-  if(!on)return;
+  if(!on){reviewKey='';selectedKey='';autoFollowKey='';return;}
+  // Televisados manda el ID oficial (categoría:ID de partido), no el índice visual.
+  try{
+    const request=JSON.parse(sessionStorage.getItem('v440-tv-match')||'null');
+    if(request?.key){
+      const found=allMatches().find(m=>m.key===String(request.key));
+      if(found){selectedKey=found.key;reviewKey=automaticPhase(found).phase==='final'?found.key:'';autoFollowKey='';}
+      sessionStorage.removeItem('v440-tv-match');
+    }
+  }catch(_){}
   render();
   load();
   if(!timer)timer=setInterval(()=>{if(isDirectRoute()&&!document.hidden){refreshOfficialData(false)}},30000);
@@ -1247,7 +1261,7 @@ function syncRoute(){
   updateLiveClock();
 }
 window.addEventListener('hashchange',()=>requestAnimationFrame(syncRoute));
-window.LJR_MATCH_CENTER={open(key){selectedKey=String(key);db=window.CompetitionController?.raw()||window.LJR_OFFICIAL_DATA||db;location.hash='#/matchCenter';if(isDirectRoute())render()}};
+window.LJR_MATCH_CENTER={open(key){selectedKey=String(key||'');reviewKey='';autoFollowKey='';db=window.CompetitionController?.raw()||window.LJR_OFFICIAL_DATA||db;location.hash='#/matchCenter';if(isDirectRoute()){renderGuard=false;render()}}};
 window.addEventListener('ljr:official-data',()=>{if(isDirectRoute()){const next=window.LJR_OFFICIAL_DATA||db;const changed=JSON.stringify(next)!==JSON.stringify(db);db=next;if(changed||!document.querySelector('[data-v92-matchcenter]')){renderGuard=false;render()}}});
 window.addEventListener('ljr:match-live-feed',()=>{if(isDirectRoute()&&activeTab==='Alineaciones'){renderGuard=false;render()}});
 const screen=document.querySelector('#screen');
