@@ -55,6 +55,8 @@ async function noPaleBlocks(page,selector,label){
  const pale=await page.locator(selector).evaluateAll(roots=>roots.flatMap(root=>[root,...root.querySelectorAll('*')]).filter(e=>{
   const r=e.getBoundingClientRect();// El logotipo de Facebook conserva su azul de marca; no es una superficie de la app.
   if(!r.height||r.width*r.height<1500||['IMG','CANVAS','svg'].includes(e.tagName)||e.closest('.v74-fb-icon'))return false;
+  // Los botones primarios de Cuenta recuperan su cyan original; no son paneles azul claro.
+  if(document.body.dataset.appRoute?.startsWith('account')&&e.matches('.v569-primary'))return false;
   const c=getComputedStyle(e),colors=[...(c.backgroundImage+' '+c.backgroundColor).matchAll(/rgba?\((\d+), (\d+), (\d+)(?:, ([\d.]+))?/g)];
   return colors.some(x=>(x[4]===undefined||+x[4]>.6)&&+x[1]<120&&+x[2]>80&&+x[2]<190&&+x[3]>175);
  }).map(e=>String(e.className)));
