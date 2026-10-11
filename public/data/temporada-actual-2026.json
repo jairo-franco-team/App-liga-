@@ -3002,8 +3002,11 @@
       "Veteranos 35+"
     ],
     "exempt_category": "Veteranos 50+",
-    "source_type": "user_notice",
+    "source_type": "official_facebook_post_screenshot",
     "status": "SUSPENDIDO",
-    "note": "No convertir en partidos disputados ni resultados ni default. Los 3 pendientes de 10/10 siguen como programación separada hasta confirmar su disputa."
+    "note": "No convertir en partidos disputados ni resultados ni default. Los 3 pendientes de 10/10 siguen como programación separada hasta confirmar su disputa.",
+    "source_label": "Juventino Rosas Liga: SE SUSPENDE LA JORNADA DOMINICAL",
+    "source_link_confirmed": false,
+    "notice": "Jornada dominical suspendida. Tres partidos pendientes programados el sábado en Campo 1. Amistoso Veteranos 35+ suspendido."
   }
 }
