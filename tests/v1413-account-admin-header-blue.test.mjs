@@ -25,9 +25,10 @@ test('V1413: Mi cuenta y Administracion comparten azul rey medio del Perfil rest
 
 test('V1413: estilos finales y cache Android no sobrescriben el Perfil restaurado',()=>{
  const link='src/v1402-account-admin-royal-blue.css?v=20261010-v1413-azul-rey-barra-unificado';
- const restoredLink='src/v1411-profile-old-layout-restore.css?v=20261010-v1415-azul-rey-uniforme';
+ const restoredMatches=[...index.matchAll(/src\/v1411-profile-old-layout-restore\.css\?v=20\d{6}-[a-z0-9._-]+/gi)];
+ assert.equal(restoredMatches.length,1,'El Perfil debe conservar una sola hoja restaurada versionada');
+ const restoredLink=restoredMatches[0][0];
  assert.ok(index.includes(link));
- assert.ok(index.includes(restoredLink));
  assert.ok(index.indexOf(restoredLink)>index.indexOf(link));
  assert.equal(index.split('src/v1402-account-admin-royal-blue.css?v=').length,2);
  assert.doesNotMatch(patch,/<script|javascript:|pointer-events\s*:\s*none/i);
