@@ -76,6 +76,8 @@ function officialDecision(m){
   return decision;
 }
 function confirmedLivePhase(m){
+  // No dejar una fase anterior marcada EN DIRECTO cuando ya pasó el bloque deportivo.
+  if(!Number.isFinite(m?.start)||mexicoStamp()<m.start-15*60000||mexicoStamp()>m.start+180*60000)return '';
   try{
     const s=window.LJR_MATCH_LIVE?.getState?.();
     if(!s||s.key!==m?.key)return '';
