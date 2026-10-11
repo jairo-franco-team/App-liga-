@@ -311,3 +311,54 @@ html body[data-app-route="profile"] #screen#screen#screen >.ljr-cms-entry{
   background-image:linear-gradient(145deg,#122d72,#091747)!important;
   border:1px solid rgba(104,144,223,.43)!important;
 }
+
+
+/* V1414: neutraliza el repintado oscuro de Perfil conservando el diseño restaurado.
+   Todo igual de funcional: solo color; fondo, botones, filas e iconos azul rey
+   de intensidad media, en sintonía con la barra superior y el resto de Cuenta. */
+html body[data-app-route="profile"] #screen#screen#screen .v12-profile-card[data-v569-owned],
+html body[data-app-route="profile"] #screen#screen#screen .v12-profile-card:has(.v569-profile-hero){
+  background-color:#2760BC!important;
+  background-image:linear-gradient(155deg,#2C68C6 0%,#265DBA 60%,#2256B1 100%)!important;
+  border-color:rgba(180,211,255,.55)!important;
+  box-shadow:0 7px 20px rgba(12,39,99,.15),inset 0 1px rgba(255,255,255,.10)!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen .v569-profile-copy small{
+  color:#E1F1FF!important;
+  -webkit-text-fill-color:#E1F1FF!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen .v569-profile-copy p{
+  color:#E2EEFF!important;
+  -webkit-text-fill-color:#E2EEFF!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen .v569-profile-avatar{
+  border-color:#AED9FF!important;
+  box-shadow:0 0 0 3px rgba(174,215,255,.22)!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen .v569-profile-buttons>button{
+  background-color:#2459B8!important;
+  background-image:linear-gradient(180deg,#2A64C2,#2255B1)!important;
+  border-color:rgba(171,204,250,.56)!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen .v569-profile-buttons>button:first-child{
+  background-color:#2C68C6!important;
+  background-image:linear-gradient(180deg,#3271CE,#2862BE)!important;
+  border-color:rgba(187,216,254,.67)!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen .v569-profile-account-menu>button,
+html body[data-app-route="profile"] #screen#screen#screen .v12-profile-menu>.v12-profile-row,
+html body[data-app-route="profile"] #screen#screen#screen .v12-profile-menu>.ljr-profile-action-row{
+  background-color:#265AB7!important;
+  background-image:linear-gradient(180deg,#2B62BC 0%,#2355B0 100%)!important;
+  border-bottom-color:rgba(198,225,255,.43)!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen .v569-profile-account-menu>button>span,
+html body[data-app-route="profile"] #screen#screen#screen .v12-profile-menu .v12-profile-row-icon{
+  background-color:rgba(159,197,255,.18)!important;
+  color:#E0EEFF!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen >.ljr-cms-entry{
+  background-color:#2760BC!important;
+  background-image:linear-gradient(155deg,#2C68C6,#2459B5)!important;
+  border-color:rgba(180,211,255,.55)!important;
+}
