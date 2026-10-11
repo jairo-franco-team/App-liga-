@@ -1,0 +1,284 @@
+/* V1398 - Junta y Calendarios: superficies mas calidas y contenido compacto.
+   Solo presentacion, sin cambiar HTML, JS, datos oficiales ni eventos.
+   Cargar despues de las otras capas visuales para evitar el retorno al azul frio. */
+
+/* Paleta real de las dos ventanas; azul rey mas luminoso, matiz violeta
+   y acentos dorados/coral que armonizan con los iconos de la app. */
+html body > .v105-modal.v875-meeting-modal,
+html body > .v105-modal.v1130-calendar-pro {
+  --v1398-panel:#2b4a87;
+  --v1398-card:#355992;
+  --v1398-card-high:#3b639f;
+  --v1398-field:#294783;
+  --v1398-border:rgba(218,203,210,.63);
+  --v1398-text:#fff9f1;
+  --v1398-muted:#e2ddee;
+  --v1398-gold:#ffdfa6;
+  --v1398-peach:#ffd0ba;
+  --v1398-active:linear-gradient(140deg,#f2cd96 0%,#e1ae73 100%);
+  --v1398-buttons:linear-gradient(140deg,#507cba 0%,#3e629f 100%);
+  --v1398-surface:linear-gradient(145deg,#426daa 0%,#34558e 52%,#29437c 100%);
+  color-scheme:dark!important;
+}
+html body > .v105-modal.v875-meeting-modal {
+  background:rgba(19,22,54,.87)!important;
+}
+html body > .v105-modal.v1130-calendar-pro {
+  background:rgba(18,21,52,.91)!important;
+}
+/* Fondo completo de las ventanas: no quedara azul marino casi negro. */
+html body > .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro) > .v105-dialog {
+  background:radial-gradient(ellipse at 8% 0%,rgba(245,198,153,.15),transparent 50%),
+    linear-gradient(166deg,#416aab 0%,#365791 37%,#2d497f 75%,#273e73 100%)!important;
+  background-color:#32528c!important;
+  border:1px solid var(--v1398-border)!important;
+  color:var(--v1398-text)!important;
+  box-shadow:0 16px 38px rgba(11,17,50,.28),inset 0 1px rgba(255,245,218,.13)!important;
+}
+html body > .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro)
+ :is(.v105-close,.v1130-source-actions button,.v1130-bar button:not(.is-active),
+     .v1130-exports .v105-btn,.v1130-card-actions button,.v1240-buttons button) {
+  background:var(--v1398-buttons)!important;
+  border:1px solid rgba(244,211,176,.62)!important;
+  color:var(--v1398-text)!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.11)!important;
+}
+html body > .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro)
+ :is(button,input,select,textarea,summary):focus-visible {
+  outline:2px solid var(--v1398-gold)!important;
+  outline-offset:2px!important;
+}
+
+/* Junta: cabecera, tarjeta informativa, fecha, asistencia y demas campos. */
+html body > .v105-modal.v875-meeting-modal
+ :is(.v919-meeting-hero,.ljr-meeting-hub .mh-header) {
+  background:linear-gradient(140deg,#4a76b7,#34588e)!important;
+  border-color:rgba(246,213,176,.40)!important;
+  color:var(--v1398-text)!important;
+}
+html body > .v105-modal.v875-meeting-modal .v919-hero-copy small,
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub .mh-header small {
+  color:var(--v1398-gold)!important;
+}
+html body > .v105-modal.v875-meeting-modal .v919-hero-copy em,
+html body > .v105-modal.v875-meeting-modal .v919-meeting-intro {
+  color:var(--v1398-muted)!important;
+}
+html body > .v105-modal.v875-meeting-modal .v919-hero-day {
+  background:linear-gradient(135deg,#f4cf97,#dcae7c)!important;
+  border:1px solid #ffebc8!important;
+  color:#27385c!important;
+}
+html body > .v105-modal.v875-meeting-modal .v105-meeting-notice {
+  background:var(--v1398-surface)!important;
+  border-color:var(--v1398-border)!important;
+  color:var(--v1398-text)!important;
+  padding:12px 13px!important;
+  margin:6px 0 9px!important;
+  box-shadow:none!important;
+}
+html body > .v105-modal.v875-meeting-modal .v105-meeting-notice span {
+  color:var(--v1398-muted)!important;
+}
+html body > .v105-modal.v875-meeting-modal .v105-meeting-form {
+  gap:9px!important;
+  margin:0!important;
+  align-content:start!important;
+}
+html body > .v105-modal.v875-meeting-modal .v105-meeting-form > label,
+html body > .v105-modal.v875-meeting-modal .v875-meeting-options > label {
+  box-sizing:border-box!important;
+  min-height:0!important;
+  height:auto!important;
+  margin:0!important;
+  padding:11px 12px!important;
+  background:linear-gradient(145deg,#395f9b,#305187)!important;
+  border:1px solid var(--v1398-border)!important;
+  border-radius:14px!important;
+  box-shadow:none!important;
+}
+html body > .v105-modal.v875-meeting-modal
+ .v105-meeting-form :is(input:not([type=checkbox]):not([type=radio]):not([type=file]),select,textarea),
+html body > .v105-modal.v875-meeting-modal
+ .ljr-meeting-hub :is(input:not([type=checkbox]):not([type=radio]):not([type=file]),select,textarea) {
+  background:var(--v1398-field)!important;
+  background-image:none!important;
+  border:1px solid rgba(220,209,221,.73)!important;
+  color:var(--v1398-text)!important;
+}
+html body > .v105-modal.v875-meeting-modal
+ :is(input,textarea)::placeholder {
+  color:#ded9e9!important;
+  opacity:1!important;
+}
+html body > .v105-modal.v875-meeting-modal
+ :is(.v919-field-label,.v919-topic-head span,.v105-meeting-form label>span) {
+  color:var(--v1398-gold)!important;
+}
+html body > .v105-modal.v875-meeting-modal
+ :is(.v919-field-label svg,.v875-agenda-chips button>span) {
+  color:var(--v1398-peach)!important;
+}
+html body > .v105-modal.v875-meeting-modal
+ :is(.v875-agenda-chips button,.v919-action,.ljr-meeting-hub button:not([aria-selected=true])) {
+  background:var(--v1398-buttons)!important;
+  border-color:rgba(243,213,180,.65)!important;
+  color:var(--v1398-text)!important;
+}
+html body > .v105-modal.v875-meeting-modal
+ :is(.v919-action.is-save,.mh-tabs>button[aria-selected=true]) {
+  background:var(--v1398-active)!important;
+  border-color:#fff0ce!important;
+  color:#27395e!important;
+}
+html body > .v105-modal.v875-meeting-modal
+ .ljr-meeting-hub :is(.mh-stats>div,.mh-record,.mh-proposal,.mh-overview,.mh-tip) {
+  background:linear-gradient(145deg,#355993,#2d4b80)!important;
+  border-color:var(--v1398-border)!important;
+  color:var(--v1398-text)!important;
+}
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub {
+  margin:8px 0 10px!important;
+}
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub .mh-body {
+  gap:9px!important;
+}
+
+/* Calendario: brillo calido y separaciones compactas entre tarjetas. */
+html body > .v105-modal.v1130-calendar-pro {
+  --calendar-night:#294479;
+  --calendar-base:#31528a;
+  --calendar-card:#365b97;
+  --calendar-card2:#4169a7;
+  --calendar-line:rgba(232,204,188,.59);
+}
+html body > .v105-modal.v1130-calendar-pro
+ :is(.v105-form.v1130-filters,.v1107-calendar-output,.v1130-local-source:not([hidden]),.v1240-local) {
+  background:linear-gradient(145deg,#3b619e,#31518a 75%,#2e4b83)!important;
+  border-color:var(--v1398-border)!important;
+  color:var(--v1398-text)!important;
+  box-shadow:none!important;
+}
+html body > .v105-modal.v1130-calendar-pro
+ :is(.v1130-summary span,.v1130-day h4,.v1130-state,.v1107-fixture-top strong,.v1240-kpis>div) {
+  background:var(--v1398-surface)!important;
+  border-color:var(--v1398-border)!important;
+  color:var(--v1398-text)!important;
+}
+html body > .v105-modal.v1130-calendar-pro
+ :is(.v1130-summary b,.v1240-kpis b,.v1240-head small) {
+  color:var(--v1398-gold)!important;
+}
+html body > .v105-modal.v1130-calendar-pro
+ :is(.v1130-bar button.is-active,.v1130-exports .v105-btn[data-open]) {
+  background:var(--v1398-active)!important;
+  border-color:#fff0ce!important;
+  color:#26395e!important;
+}
+html body > .v105-modal.v1130-calendar-pro
+ :is(.v105-form.v1130-filters input,.v105-form.v1130-filters select) {
+  background:var(--v1398-field)!important;
+  border-color:rgba(225,207,204,.66)!important;
+  color:var(--v1398-text)!important;
+}
+html body > .v105-modal.v1130-calendar-pro .v1107-fixture.v1130-fixture {
+  background:linear-gradient(145deg,#416aa8,#35578f)!important;
+  border-color:var(--v1398-border)!important;
+}
+/* Causa del hueco en Chrome Android: la fuente tenia flex-basis:190px
+   y en <=360px cambiaba de fila a columna; el texto ocupaba altura fantasma. */
+html body > .v105-modal.v1130-calendar-pro .v1130-source {
+  display:flex!important;
+  flex-flow:column nowrap!important;
+  align-items:stretch!important;
+  justify-content:flex-start!important;
+  align-content:flex-start!important;
+  gap:8px!important;
+  width:100%!important;
+  min-height:0!important;
+  height:auto!important;
+  max-height:none!important;
+  padding:0!important;
+  margin:9px 0 10px!important;
+  color:var(--v1398-muted)!important;
+}
+html body > .v105-modal.v1130-calendar-pro .v1130-source > span {
+  display:block!important;
+  flex:0 0 auto!important;
+  flex-basis:auto!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:0!important;
+  line-height:1.4!important;
+}
+html body > .v105-modal.v1130-calendar-pro .v1130-source-actions {
+  display:flex!important;
+  position:static!important;
+  inset:auto!important;
+  flex:0 0 auto!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  align-self:flex-start!important;
+  gap:8px!important;
+  width:auto!important;
+  max-width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+}
+html body > .v105-modal.v1130-calendar-pro .v1130-source-actions button {
+  position:static!important;
+  flex:0 1 auto!important;
+  min-height:40px!important;
+  height:auto!important;
+  margin:0!important;
+  padding:9px 12px!important;
+  font-size:13px!important;
+}
+/* Ninguna tarjeta de datos o IA conserva altura vacia artificial. */
+html body > .v105-modal.v1130-calendar-pro
+ :is(.v1130-summary,.v1107-calendar-output,.v1240-local,.v1240-kpis) {
+  height:auto!important;
+  min-height:0!important;
+  margin-top:9px!important;
+  margin-bottom:9px!important;
+}
+html body > .v105-modal.v1130-calendar-pro .v1240-head > span {
+  background:#2d4a81!important;
+  border-color:var(--v1398-border)!important;
+  color:var(--v1398-gold)!important;
+}
+html body > .v105-modal.v1130-calendar-pro .v1240-warnings p {
+  background:#31538b!important;
+  border-color:var(--v1398-border)!important;
+  color:var(--v1398-text)!important;
+}
+html body > .v105-modal.v1130-calendar-pro
+ :is(.v1130-source,.v1130-notice,.v1240-notice,.v1240-ai-result,.v1240-kpis small) {
+  color:var(--v1398-muted)!important;
+}
+@media(max-width:600px) {
+  html body > .v105-modal.v875-meeting-modal .v105-dialog {
+    padding-bottom:16px!important;
+  }
+  html body > .v105-modal.v875-meeting-modal .v105-meeting-form > label {
+    padding:10px 11px!important;
+  }
+  html body > .v105-modal.v1130-calendar-pro .v1130-summary {
+    gap:8px!important;
+  }
+  html body > .v105-modal.v1130-calendar-pro .v1130-source {
+    gap:8px!important;
+  }
+  html body > .v105-modal.v1130-calendar-pro .v1130-source-actions {
+    width:100%!important;
+    justify-content:flex-start!important;
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  html body > .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro) * {
+    transition:none!important;
+  }
+}
