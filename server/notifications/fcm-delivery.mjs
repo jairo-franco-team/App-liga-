@@ -48,7 +48,7 @@ export function buildFcmApprovedMessage({notice,token,approvalVerified}){
    token,
    notification:{title:n.title,body:n.body},
    data:{route:'notifications',noticeId:String(n.id),type:'official'},
-   android:{priority:'HIGH',notification:{channel_id:'liga_partidos',click_action:'FLUTTER_NOTIFICATION_CLICK'}}
+   android:{priority:'HIGH',notification:{channel_id:'liga_partidos'}}
  }};
 }
 
