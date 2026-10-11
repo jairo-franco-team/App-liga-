@@ -1,0 +1,299 @@
+/* V1395 | Registro + Agenda + Patrocinadores PRO.
+   Corrección cromática final sobre las capas V1003/V1175/V1197/V1340.
+   Sólo presentación; NO modificar eventos, rutas, datos ni estados ocultos.
+   Paleta: fondo de la liga #070b34; superficie #101c50;
+   azul institucional #0d47a1; acentos diferenciados por significado.
+   Mantener @media screen en patrocinadores para no afectar impresión. */
+
+/* REGISTRO Y CREDENCIALES: coherencia con el azul noche de la navegación */
+html body[data-app-route="credentialBuilder"] #screen {
+  --v1395-page:#070b34;--v1395-panel:#101c50;
+  --v1395-card:#132756;--v1395-line:rgba(126,157,216,.41);
+  --v1395-secondary:#c8d4ef;--v1395-bright:#b9cfff;
+  background:linear-gradient(180deg,#101b4b 0%,#0a1241 36%,#070b34 100%)!important;
+  color:#f6f9ff!important;
+}
+html body[data-app-route="credentialBuilder"] #screen :is(
+ .v1005-credential-intro,.registration-capture,#v100-credential-extra,
+ .v196-classic-preview,#v124-player-registry){
+  background:radial-gradient(ellipse 90% 55% at 0% 0%,rgba(44,87,162,.19),transparent 75%),
+    linear-gradient(155deg,#14295b 0%,#101e4e 65%,#0b1640 100%)!important;
+  border:1px solid var(--v1395-line)!important;
+  border-radius:20px!important;
+  box-shadow:inset 0 1px 0 rgba(239,246,255,.07),0 8px 26px rgba(0,2,25,.14)!important;
+}
+html body[data-app-route="credentialBuilder"] #screen .v1005-intro-main :is(h1,p),
+html body[data-app-route="credentialBuilder"] #screen .registration-capture header :is(h1,h2,p){
+  text-shadow:none!important;
+}
+html body[data-app-route="credentialBuilder"] #screen :is(
+ .v1005-intro-main p,.v1005-step-grid small,.v1005-credential-help p,
+ .registration-capture header p,.registration-capture p){
+  color:var(--v1395-secondary)!important;
+}
+html body[data-app-route="credentialBuilder"] #screen :is(
+ .v1005-intro-main small,.v1005-credential-help summary,
+ .registration-capture header small){color:#bbd5fd!important}
+html body[data-app-route="credentialBuilder"] #screen .v1005-intro-logo {
+  background:linear-gradient(145deg,#233963,#111e45)!important;
+  border:1px solid rgba(172,199,242,.46)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1)!important;
+  color:#f5c978!important;
+}
+html body[data-app-route="credentialBuilder"] #screen .v1005-intro-logo svg{
+  color:#f5c978!important;stroke:currentColor!important;
+}
+html body[data-app-route="credentialBuilder"] #screen .v1005-step-grid>button {
+  min-width:0!important;
+  border:1px solid rgba(119,153,212,.46)!important;
+  border-radius:17px!important;
+  background:linear-gradient(160deg,#1c3568 0%,#122450 60%,#101d43 100%)!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.08),0 5px 14px rgba(0,5,28,.14)!important;
+  transition:background .15s ease,border-color .15s ease,transform .15s ease!important;
+}
+html body[data-app-route="credentialBuilder"] #screen .v1005-step-grid>button:is(:hover,:focus-visible) {
+  background:linear-gradient(160deg,#244779,#152958)!important;
+  border-color:#9db8ed!important;
+}
+html body[data-app-route="credentialBuilder"] #screen .v1005-step-grid>button:active{
+  transform:scale(.985)!important;
+}
+html body[data-app-route="credentialBuilder"] #screen .v1005-step-icon {
+  display:grid!important;place-items:center!important;
+  background:#14294f!important;
+  border:1px solid rgba(152,180,224,.35)!important;
+  border-radius:15px!important;
+  box-shadow:none!important;
+}
+html body[data-app-route="credentialBuilder"] #screen .v1005-step-icon svg{
+  width:clamp(23px,6vw,29px)!important;
+  height:clamp(23px,6vw,29px)!important;
+  max-width:72%!important;max-height:72%!important;
+  color:currentColor!important;stroke:currentColor!important;
+  stroke-width:1.9!important;fill:none!important;display:block!important;
+}
+html body[data-app-route="credentialBuilder"] #screen .v1005-step-grid>button:nth-child(1) .v1005-step-icon{color:#f3c978!important;background:#342f4b!important}
+html body[data-app-route="credentialBuilder"] #screen .v1005-step-grid>button:nth-child(2) .v1005-step-icon{color:#a0d8e9!important;background:#15334f!important}
+html body[data-app-route="credentialBuilder"] #screen .v1005-step-grid>button:nth-child(3) .v1005-step-icon{color:#cbb7ff!important;background:#29264d!important}
+html body[data-app-route="credentialBuilder"] #screen .v1005-step-grid>button:nth-child(4) .v1005-step-icon{color:#9cdec2!important;background:#173a42!important}
+html body[data-app-route="credentialBuilder"] #screen .v1005-credential-help{
+  border-top-color:rgba(139,169,226,.24)!important;
+}
+html body[data-app-route="credentialBuilder"] #screen .v1005-credential-help summary span{color:#f1c77b!important}
+html body[data-app-route="credentialBuilder"] #screen :is(
+ .registration-capture .capture-check,
+ .v64-form-grid>label,.v100-form-grid>label){
+  background:#101f4d!important;border-color:rgba(122,157,219,.35)!important;
+}
+html body[data-app-route="credentialBuilder"] #screen .registration-capture :is(input,select,textarea){
+  background:#0b173d!important;border-color:rgba(123,157,218,.45)!important;
+  color:#f7f9ff!important;color-scheme:dark!important;
+}
+html body[data-app-route="credentialBuilder"] #screen .registration-capture .capture-actions>button:not(:disabled){
+  background:linear-gradient(155deg,#244a83,#123267)!important;
+  border-color:rgba(146,184,239,.55)!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.10)!important;
+}
+html body[data-app-route="credentialBuilder"] #screen .registration-capture .capture-action-icon{
+  background:#173158!important;border-color:rgba(153,185,225,.46)!important;
+  color:#f2c779!important;
+}
+html body.liga-editor[data-app-route="credentialBuilder"] #screen>.ljr-cms-entry{
+  background:linear-gradient(155deg,#101f4f,#0b153d)!important;
+  border-color:rgba(122,159,227,.4)!important;
+}
+html body.liga-editor[data-app-route="credentialBuilder"] #screen>.ljr-cms-entry>button{
+  background:linear-gradient(155deg,#223e74,#152a56)!important;
+  border-color:rgba(135,170,229,.45)!important;
+  color:#f7faff!important;
+}
+/* AGENDA: superficies sobrias + campos seleccionables visibles sin alterar su lógica. */
+@media(max-width:1023px){
+ html body[data-app-route="agendaBuilder"] #app>.topbar,
+ html body[data-app-route="agendaBuilder"] .app-shell>.topbar{
+   background:radial-gradient(ellipse at 16% -40%,rgba(70,120,206,.26),transparent 67%),
+     linear-gradient(180deg,#174a9b 0%,#102c70 40%,#0b1b50 100%)!important;
+   border-bottom:1px solid rgba(119,153,217,.36)!important;
+   box-shadow:inset 0 1px 0 rgba(255,255,255,.1)!important;
+ }
+ html body[data-app-route="agendaBuilder"] .topbar .v1003-agenda-header-title{
+   border-left-color:#eec783!important;
+ }
+ html body[data-app-route="agendaBuilder"] .topbar .v1003-agenda-header-title small{color:#ccd8f3!important}
+ html body[data-app-route="agendaBuilder"] #screen .v60-tool-page.v64-page:has([data-v64-ag-home]){
+   background:linear-gradient(180deg,#0c1544,#070b34)!important;
+ }
+ html body[data-app-route="agendaBuilder"] .v64-form-grid.one>.label,
+ html body[data-app-route="agendaBuilder"] .v64-form-grid.one>label>b{color:#e9efff!important}
+ html body[data-app-route="agendaBuilder"] .v64-form-grid.one .v159-picker{
+   border:1px solid rgba(127,160,218,.48)!important;
+   border-radius:17px!important;
+   background:radial-gradient(ellipse at 0% 0%,rgba(83,125,195,.18),transparent 67%),
+    linear-gradient(125deg,#1a305e 0%,#101f4c 75%,#0c183e 100%)!important;
+   box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 7px 16px rgba(0,4,30,.13)!important;
+ }
+ html body[data-app-route="agendaBuilder"] .v159-picker .v159-picker-icon{
+   background-color:#20436f!important;
+   border:1px solid rgba(145,181,222,.45)!important;
+   box-shadow:inset 0 1px rgba(255,255,255,.12)!important;
+ }
+ html body[data-app-route="agendaBuilder"] .v159-picker[data-v159-picker="team"] .v159-picker-icon{
+   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f0c979' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10.8' cy='10.7' r='5.8'/%3E%3Cpath d='m15.2 15.2 5.1 5.1M8.7 10.7h4.2m-2.1-2.1v4.2'/%3E%3C/svg%3E"),linear-gradient(140deg,#383858,#1c2e57)!important;
+ }
+ html body[data-app-route="agendaBuilder"] .v159-picker[data-v159-picker="field"] .v159-picker-icon{
+   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2399dfc2' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 21s-6.5-5.8-6.5-11.7a6.5 6.5 0 1 1 13 0C18.5 15.2 12 21 12 21Z'/%3E%3Ccircle cx='12' cy='9.4' r='2.5'/%3E%3C/svg%3E"),linear-gradient(145deg,#1b4c57,#123544)!important;
+ }
+ html body[data-app-route="agendaBuilder"] .v159-picker > i{
+   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23bacbf0' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 5 7 7-7 7'/%3E%3C/svg%3E")!important;
+ }
+ html body[data-app-route="agendaBuilder"] .v159-picker small{color:#bfcee9!important}
+ html body[data-app-route="agendaBuilder"] .v159-picker:active{
+   border-color:#d7c08b!important;
+ }
+ html body[data-app-route="agendaBuilder"] .v64-form-grid.one>label>input:not(.v159-native),
+ html body[data-app-route="agendaBuilder"] .v64-form-grid.one>label>select:not(.v159-native){
+   background:linear-gradient(145deg,#172b5a,#101e47)!important;
+   border-color:rgba(135,163,212,.48)!important;
+ }
+ html body[data-app-route="agendaBuilder"] .v159-format,
+ html body[data-app-route="agendaBuilder"] .v159-format-note,
+ html body[data-app-route="agendaBuilder"] .v64-agenda-list article{
+   background:linear-gradient(145deg,#172957,#0d1a43)!important;
+   border-color:rgba(133,163,210,.36)!important;
+   border-radius:16px!important;
+ }
+ html body[data-app-route="agendaBuilder"] .v64-stack-actions button{
+   background:linear-gradient(150deg,#203969,#102650)!important;
+   border-color:rgba(131,163,220,.48)!important;
+ }
+ html body[data-app-route="agendaBuilder"] .v64-stack-actions button[data-v64-ag-add]{
+   background:linear-gradient(135deg,#2364b6,#164583)!important;
+   border-color:rgba(141,191,241,.65)!important;
+ }
+ html body.v159-open .v159-sheet{
+   background:linear-gradient(170deg,#152753,#0a1237)!important;
+   border-color:rgba(137,168,219,.51)!important;
+ }
+ html body.v159-open .v159-search{
+   background:#0b1a42!important;border-color:rgba(130,160,216,.55)!important;
+ }
+ html body.v159-open .v159-team-logo,
+ html body.v159-open .v159-field-icon{
+   background:#193964!important;border-color:rgba(148,180,224,.48)!important;
+ }
+}
+/* PATROCINADORES PRO: contenedor tipo app, jerarquía y acentos cálidos.
+   No aplicar cambios a la vista de impresión contractual. */
+@media screen {
+ html body .v105-modal.v105-sponsors-modal{
+   background:rgba(2,5,24,.88)!important;
+ }
+ html body .v105-modal.v105-sponsors-modal>.v105-dialog{
+   background:radial-gradient(ellipse 95% 40% at 80% 0%,rgba(55,96,166,.23),transparent 75%),
+    linear-gradient(165deg,#152858,#101e4a 49%,#080f33 100%)!important;
+   border:1px solid rgba(135,162,210,.52)!important;
+   box-shadow:0 20px 56px rgba(1,3,23,.5),inset 0 1px rgba(255,255,255,.06)!important;
+ }
+ html body .v105-modal.v105-sponsors-modal .sp-pro{
+   --sp-br:rgba(131,160,209,.4)!important;
+   --sp-sub:#c9d6ed!important;
+   --sp-surface:#0d1c42!important;
+   --sp-cyan:#f2cb81!important;
+   color:#f4f7ff!important;
+ }
+ html body .v105-modal.v105-sponsors-modal .sp-pro .sp-intro{
+   background:linear-gradient(130deg,#1b3563,#12234e)!important;
+   border-color:rgba(137,173,226,.46)!important;
+   border-radius:17px!important;
+ }
+ html body .v105-modal.v105-sponsors-modal .sp-pro .sp-intro-icon{
+   color:#f7d38b!important;
+   background:linear-gradient(150deg,#385071,#223654)!important;
+   border-color:rgba(243,203,131,.52)!important;
+ }
+ html body .v105-modal.v105-sponsors-modal .sp-pro .sp-tabs button{
+   min-width:0!important;min-height:65px!important;
+   color:#e9f0ff!important;
+   border-color:rgba(131,162,210,.42)!important;
+   border-radius:14px!important;
+   background:linear-gradient(160deg,#192c5a,#101e46)!important;
+   box-shadow:inset 0 1px rgba(255,255,255,.06)!important;
+ }
+ html body .v105-modal.v105-sponsors-modal .sp-pro .sp-tabs button[aria-selected="true"]{
+   color:#fff!important;
+   background:linear-gradient(150deg,#245ca5,#193e77)!important;
+   border-color:#a3bde9!important;
+   box-shadow:inset 0 1px rgba(255,255,255,.13),0 4px 12px rgba(0,7,32,.2)!important;
+ }
+ html body .v105-modal.v105-sponsors-modal .sp-pro .sp-tabs button svg{
+   width:21px!important;height:21px!important;flex:0 0 21px!important;
+   stroke-width:1.9!important;display:block!important;
+ }
+ html body .v105-modal.v105-sponsors-modal .sp-pro .sp-tabs button:nth-child(1) svg{color:#f2c879!important}
+ html body .v105-modal.v105-sponsors-modal .sp-pro .sp-tabs button:nth-child(2) svg{color:#a7d8f2!important}
+ html body .v105-modal.v105-sponsors-modal .sp-pro .sp-tabs button:nth-child(3) svg{color:#c9b8ff!important}
+ html body .v105-modal.v105-sponsors-modal .sp-pro .sp-tabs button:nth-child(4) svg{color:#a9dec6!important}
+ html body .v105-modal.v105-sponsors-modal .sp-pro .sp-metric,
+ html body .v105-modal.v105-sponsors-modal .sp-pro :is(
+  .sp-graph,.sp-alerts,.sp-item,.sp-log-row,.sp-qr-inner,
+  .sp-import-area details,.sp-form .sp-approve,.sp-spaces label,.sp-balance,.sp-foot){
+   background:linear-gradient(150deg,#172957,#0c1b43)!important;
+   border-color:rgba(125,158,210,.4)!important;
+   box-shadow:inset 0 1px rgba(255,255,255,.05)!important;
+ }
+ html body .v105-modal.v105-sponsors-modal .sp-pro .sp-metric b{
+   color:#f1d49a!important;
+   font-variant-numeric:tabular-nums!important;
+ }
+ html body .v105-modal.v105-sponsors-modal .sp-pro .sp-graph i{
+   background:linear-gradient(90deg,#356bb7,#d7b879)!important;
+ }
+ html body .v105-modal.v105-sponsors-modal .sp-pro .sp-search,
+ html body .v105-modal.v105-sponsors-modal .sp-pro :is(input:not([type=checkbox]):not([type=file]),select,textarea){
+   background:#0b1a40!important;
+   border-color:rgba(137,167,213,.46)!important;
+   color:#f7faff!important;
+ }
+ html body .v105-modal.v105-sponsors-modal .sp-pro .sp-search input[type=search]{
+   background:transparent!important;border:0!important;
+ }
+ html body .v105-modal.v105-sponsors-modal .sp-pro .sp-btn,
+ html body .v105-modal.v105-sponsors-modal .sp-pro :is(.sp-item-actions button,.sp-log-row button){
+   background:linear-gradient(145deg,#203c70,#142752)!important;
+   border-color:rgba(127,164,217,.5)!important;
+   color:#f6f9ff!important;
+ }
+ html body .v105-modal.v105-sponsors-modal .sp-pro .sp-btn.sp-primary{
+   background:linear-gradient(145deg,#2467bb,#184583)!important;
+   border-color:rgba(144,189,239,.67)!important;
+   color:#fff!important;
+   box-shadow:inset 0 1px rgba(255,255,255,.14),0 5px 16px rgba(0,8,44,.24)!important;
+ }
+ html body .v105-modal.v105-sponsors-modal .sp-pro :is(.sp-search svg,.sp-status,.sp-art-kicker,.sp-foot b){
+   color:#e5c78f!important;
+ }
+ html body .v105-modal.v105-sponsors-modal .sp-pro .sp-empty{
+   background:#0c1b42!important;
+   border-color:rgba(128,159,211,.46)!important;
+   color:#ccd7ed!important;
+ }
+ html body .v105-modal.v105-sponsors-modal .sp-pro .sp-btn:disabled{
+   opacity:.52!important;
+   cursor:not-allowed!important;
+ }
+ html body .v105-modal.v105-sponsors-modal .sp-pro :is(button,input,select,textarea,summary):focus-visible,
+ html body .v105-modal.v105-sponsors-modal .v105-close:focus-visible{
+   outline:2px solid #e4ca96!important;outline-offset:2px!important;
+ }
+}
+@media(max-width:420px){
+ html body .v105-modal.v105-sponsors-modal .sp-pro .sp-tabs button{
+   min-height:62px!important;padding:9px 3px!important;font-size:10px!important;
+ }
+ html body[data-app-route="credentialBuilder"] #screen .v1005-step-grid>button{border-radius:14px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ html body[data-app-route="credentialBuilder"] #screen .v1005-step-grid>button{
+   transition:none!important;transform:none!important;
+ }
+}
