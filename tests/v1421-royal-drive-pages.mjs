@@ -50,8 +50,8 @@ try{
   if(route.startsWith('account')){
    assert.match(paint.background,/rgb\(5, 7, 94\)/,route+' restored account night blue');
   }else if(!artwork.has(route)){
-   assert.equal(paint.color,'rgb(0, 0, 64)',route+' deep blue base');
-   assert.match(paint.background,/rgb\(11, 11, 96\)/,route+' deep blue');
+   assert.equal(paint.color,'rgb(4, 17, 63)',route+' deep blue base');
+   assert.match(paint.background,/rgb\(23, 59, 179\)/,route+' deep blue');
    assert.doesNotMatch(paint.background,/data:image\/svg\+xml/,route+' clean dark canvas');
   }
   if(route==='recruitment'){
