@@ -94,7 +94,7 @@ const HISTORY_FORCE_LOGOS={
   'toros de cuenda':RAW+'assets/official-logos/toros-de-cuenda.png?v=20261006-v874'
 };
 
-function logoUrl(name){
+function logoUrl(name,category){
   const normalizePath=p=>{
     p=String(p||'').trim();if(!p)return '';
     if(/^(?:https?:|data:|blob:)/i.test(p))return p;
@@ -102,6 +102,11 @@ function logoUrl(name){
   };
   const key=norm(name);
   try{
+    // V1422: usar el escudo transparente exacto de Equipos, con su categoría.
+    const current=window.LJR_TEAMS_CURRENT_LOGO?.get?.(name,category);
+    if(current)return new URL(current,document.baseURI).href;
+    const supplied=window.LJR_SEASON_LOGOS?.get?.(name);
+    if(supplied)return new URL(supplied,document.baseURI).href;
     const stable=window.LJR_TEAM_LOGOS?.get?.(name)||window.V66_OFFICIAL_DIRECTORY?.logoFor?.(name)||window.LJR_OFFICIAL_API?.getLogo?.(name);
     if(stable)return normalizePath(stable);
   }catch(_){}
@@ -113,8 +118,8 @@ function logoUrl(name){
   if(typeof hit==='string')return normalizePath(hit);
   return normalizePath(hit?.app||hit?.source||hit?.local||'');
 }
-function teamMark(name){
-  const src=logoUrl(name);
+function teamMark(name,category){
+  const src=logoUrl(name,category);
   const initials=String(name||'').split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]||'').join('').toUpperCase()||'JR';
   return '<span class="v164-history-logo '+(src?'has-logo':'fallback')+'">'+
     (src?'<img src="'+esc(src)+'" alt="" loading="lazy" decoding="async" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'grid\'"><b style="display:none">'+esc(initials)+'</b>':'<b>'+esc(initials)+'</b>')+
@@ -208,9 +213,9 @@ function cardMarkup(x,index){
   return '<article class="v164-history-match">'+
     '<div class="v164-history-meta"><span>'+esc(x.category)+'</span><b>'+esc(day||'Fecha por confirmar')+'</b></div>'+
     '<div class="v164-history-score">'+
-      '<span class="v164-history-team home">'+teamMark(x.home)+'<em title="'+esc(x.home)+'">'+esc(x.home)+'</em></span>'+
+      '<span class="v164-history-team home">'+teamMark(x.home,x.category)+'<em title="'+esc(x.home)+'">'+esc(x.home)+'</em></span>'+
       '<strong aria-label="Marcador '+esc(x.score)+'">'+esc(x.score)+'</strong>'+
-      '<span class="v164-history-team away">'+teamMark(x.away)+'<em title="'+esc(x.away)+'">'+esc(x.away)+'</em></span>'+
+      '<span class="v164-history-team away">'+teamMark(x.away,x.category)+'<em title="'+esc(x.away)+'">'+esc(x.away)+'</em></span>'+
     '</div>'+
     '<div class="v164-history-foot"><span>'+(x.round?'Jornada '+esc(x.round)+' · ':'')+esc(x.venue)+'</span><small>Finalizado</small></div>'+
     '<div class="v164-history-card-actions">'+

@@ -16,6 +16,8 @@ on:
       - 'src/v1420-reference-blue-surfaces.css'
       - 'tests/v1420-reference-blue-mobile.mjs'
       - 'tests/v1421-royal-drive-pages.mjs'
+      - 'tests/v1422-complete-sections.mjs'
+      - 'src/v164-history-log.js'
       - '.github/workflows/admin-mobile-palette-check.yml'
   workflow_dispatch:
 
@@ -49,6 +51,7 @@ jobs:
         run: |
           npm run build
           node tests/v1421-royal-drive-pages.mjs
+          node tests/v1422-complete-sections.mjs
       - name: Keep mobile screenshots
         if: always()
         uses: actions/upload-artifact@v4
@@ -58,5 +61,6 @@ jobs:
             artifacts/admin-mobile-v1353/*.png
             artifacts/v1420-reference-blue/*.png
             artifacts/v1421-royal-pages/*.png
+            artifacts/v1422-complete-sections/*.png
           if-no-files-found: ignore
           retention-days: 14
