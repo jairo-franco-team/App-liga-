@@ -1,0 +1,93 @@
+/* Restauracion cromatica de Perfil (10-oct-2026).
+   Colores basados en v12-reference-parts.css y v801-profile-modern.css,
+   anteriores a las capas V1388/V1392. Solo afecta a #/profile.
+   CSS exclusivamente: no cambia eventos, permisos, sesion, accesibilidad o JS. */
+html body[data-app-route="profile"] #screen{
+  background:linear-gradient(180deg,#090879 0%,#05045f 66%,#03034f 100%)!important;
+  color:#fff!important;
+}
+html body[data-app-route="profile"] #screen .v12-profile-card{
+  background:linear-gradient(150deg,#141887 0%,#101479 55%,#0b1068 100%)!important;
+  border-color:rgba(111,147,255,.48)!important;
+  color:#fff!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-avatar{
+  border-color:#33e0eb!important;
+  box-shadow:0 0 0 3px rgba(51,224,235,.13)!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-copy small{
+  color:#31e0eb!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-copy b{
+  color:#8feef3!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-copy p{
+  color:#c2d1f5!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-buttons button{
+  background:linear-gradient(180deg,#2759c5 0%,#183b97 100%)!important;
+  border-color:rgba(120,183,255,.59)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  text-shadow:none!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-buttons button:first-child{
+  background:linear-gradient(180deg,#2b63d1 0%,#214aa7 100%)!important;
+  border-color:rgba(137,194,255,.7)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button{
+  background:linear-gradient(180deg,rgba(15,35,123,.83),rgba(7,21,90,.87))!important;
+  border-color:rgba(105,146,231,.35)!important;
+  color:#fff!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button>span{
+  color:#9bd8ff!important;
+  background:rgba(33,76,170,.30)!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button>span svg{
+  color:#c8e0ff!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button>b,
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button>i{
+  color:#f6f9ff!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button.logout{
+  background:linear-gradient(180deg,rgba(91,25,68,.28),rgba(47,18,72,.31))!important;
+  border-color:rgba(255,120,141,.3)!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button.logout>b{
+  color:#ffb2bd!important;
+}
+html body[data-app-route="profile"] #screen .v12-profile-menu>.v12-profile-row{
+  background:transparent!important;
+  background-image:none!important;
+  color:#fff!important;
+}
+html body[data-app-route="profile"] #screen .v12-profile-menu>.v12-profile-row .v12-profile-row-icon{
+  color:#cbdcff!important;
+}
+html body[data-app-route="profile"] #screen .v12-profile-menu>.v12-profile-row .v12-profile-row-label{
+  color:#fff!important;
+}
+html body[data-app-route="profile"] #screen .v12-profile-menu>.v12-profile-row .v12-profile-row-chevron{
+  color:#b8cbf9!important;
+}
+/* Entradas de edicion que aparecen sobre Mi cuenta al iniciar sesion
+   como administrador: mismo azul original, sin invadir los dialogos CMS. */
+html body[data-app-route="profile"] #screen .ljr-cms-entry{
+  background:linear-gradient(160deg,#141887,#0c1168)!important;
+  border-color:rgba(105,152,244,.46)!important;
+}
+html body[data-app-route="profile"] #screen .ljr-cms-entry button:is(
+  [data-cms-open],[data-cms-edit-page],[data-cms-story],[data-cms-design]){
+  background:linear-gradient(180deg,#224ca9,#142d85)!important;
+  border-color:rgba(112,163,248,.5)!important;
+  color:#fff!important;
+}
+/* Mantiene pulsables los controles reales y el indicador de enfoque. */
+html body[data-app-route="profile"] #screen button:focus-visible{
+  outline:2px solid #9bdcf7!important;
+  outline-offset:2px!important;
+}
