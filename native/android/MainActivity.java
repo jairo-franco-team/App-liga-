@@ -28,6 +28,11 @@ public class MainActivity extends BridgeActivity {
     private void applyNotificationRoute(Intent intent) {
         if (intent == null || getBridge() == null) return;
         String route = intent.getStringExtra("ljr_route");
+        // FCM entrega los datos del aviso en el Intent cuando la app estaba cerrada.
+        // No aceptar rutas arbitrarias: solo el destino fijo de avisos oficiales.
+        if ((route == null || route.trim().isEmpty()) &&
+            "official".equals(intent.getStringExtra("type")) &&
+            "notifications".equals(intent.getStringExtra("route"))) route = "notifications";
         if (route == null || route.trim().isEmpty()) return;
         route = route.trim().replace("#/","").replace("#","").replaceFirst("^/+", "");
         String safe = route.replace("\\","").replace("'","").replace("\"","");
