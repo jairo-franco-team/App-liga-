@@ -24,8 +24,18 @@ test('V1386: paleta de los cuadros administrativos antes de la capa exclusiva V1
   'Las capas posteriores deben ser únicamente hojas CSS, sin scripts');
  assert.ok(laterStyles.some(href=>href.includes('v1396-account-royal-blue.css')),
   'La capa final azul rey para Mi cuenta debe permanecer después de los estilos antiguos');
- assert.ok(/royal|bright-blue|profile-visual-harmony|v1398-junta-calendario-warm-compact/.test(laterStyles[laterStyles.length-1]),
-  'El ultimo estilo debe mantener el azul rey luminoso de Mi cuenta');
+ // Solo la ULTIMA hoja que realmente cambia Perfil/Cuenta debe tener azul rey.
+ // Otros modulos pueden añadir CSS después sin bloquear Pages por su nombre.
+ const scopedAccountLayers=laterStyles.map(href=>{
+  const path=href.replace(/^\\.\\//,'').split('?')[0];
+  return {href, content:read(path)};
+ }).filter(layer=>/\\[data-app-route(?:\\^)?=\\\"(?:profile|account)/.test(layer.content));
+ assert.ok(scopedAccountLayers.length>0,'Debe existir al menos una capa visual de Perfil');
+ const lastAccountLayer=scopedAccountLayers.at(-1);
+ assert.match(lastAccountLayer.content,/azul rey|royal|luminos|bright/i,
+  'La ultima capa para Perfil debe conservar la paleta azul rey luminosa');
+ assert.match(lastAccountLayer.content,/#[234][0-9a-f]{5}/i,
+  'La ultima capa de Perfil debe incluir valores de azul medio luminoso');
  // V1392 solo uniforma superficies e iconos. No debe deshabilitar botones.
  if(laterStyles.some(href=>href.includes('v1392-admin-warm-app-colors.css'))){
   const warm=read('src/v1392-admin-warm-app-colors.css');
