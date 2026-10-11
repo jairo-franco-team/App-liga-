@@ -5,32 +5,29 @@ import {readFileSync} from 'node:fs';
 const read=(p)=>readFileSync(new URL('../'+p,import.meta.url),'utf8');
 const index=read('index.html');
 const css=read('src/v1396-admin-profile-light-royal.css');
-const profileHref=[...index.matchAll(/<link\s+rel="stylesheet"\s+href="([^"]*v1396-admin-profile-light-royal\.css\?[^"]+)"/g)]
-  .map(m=>m[1]);
+const stylesheetLinks=[...index.matchAll(/<link[^>]*rel="stylesheet"[^>]*href="([^"]+)"[^>]*>/g)].map(m=>m[1]);
+const profileHref=stylesheetLinks.filter(href=>href.includes('v1396-admin-profile-light-royal.css?'));
 const balancedHref='./src/v1406-account-balanced-royal.css?v=20261010-v1406-medium-royal';
+const finalHref='./src/v1402-account-admin-royal-blue.css?v=20261010-v1407-barra-azul-rey-medio';
 
-test('V1396: perfil enlazado y paleta azul rey media con prioridad sobre estilos anteriores',()=>{
-  assert.equal(profileHref.length,1,'La capa V1396 no debe duplicarse');
-  const href=profileHref[0];
-  assert.ok(index.indexOf(href)>index.indexOf('v1387-profile-account-night-polish.css'));
-  assert.ok(index.indexOf(href)>index.indexOf('v1392-admin-warm-app-colors.css'));
-  assert.ok(index.indexOf(href)>index.indexOf('v1395-admin-three-tools-night-polish.css'));
-  assert.ok(index.includes(balancedHref),'Debe incluirse la paleta azul rey V1406');
-  assert.ok(index.indexOf(balancedHref)>index.indexOf(href),'V1406 debe prevalecer sobre V1396');
-  const royal=read('src/v1406-account-balanced-royal.css');
-  assert.match(royal,/--v1406-royal:#225BB8/);
-  assert.match(royal,/\[data-app-route="profile"\]/);
-  assert.match(royal,/\[data-app-route\^="account"\]/);
-  assert.doesNotMatch(royal,/<script|javascript:|pointer-events\s*:\s*none/i);
-  const sheets=[...index.matchAll(/<link\s+rel="stylesheet"\s+href="([^"]+)"/g)].map(m=>m[1]);
-  const last=sheets.at(-1)||'';
-  assert.match(last,/v1406-account-balanced-royal\.css|v1402-account-admin-royal-blue\.css/,
-    'La última hoja debe seguir siendo azul rey intermedio de Perfil/Cuenta');
-  if(last.includes('v1402-account-admin-royal-blue.css')){
-    assert.ok(index.indexOf(last)>index.indexOf(balancedHref));
-    const finalRoyal=read('src/v1402-account-admin-royal-blue.css');
-    assert.match(finalRoyal,/--ljr-royal-mid-base:#235EBE/);
-  }
+test('V1396: la capa azul rey medio predomina sobre capas anteriores en Perfil',()=>{
+ assert.equal(profileHref.length,1,'V1396 no debe duplicarse');
+ assert.ok(index.includes(balancedHref),'Debe incluirse la base V1406');
+ assert.ok(index.includes(finalHref),'Debe incluirse el acabado medio V1407');
+ for(const old of ['v1387-profile-account-night-polish.css','v1392-admin-warm-app-colors.css','v1395-admin-three-tools-night-polish.css']){
+  assert.ok(index.indexOf(profileHref[0])>index.indexOf(old),'V1396 debe ir despues de '+old);
+ }
+ assert.ok(index.indexOf(balancedHref)>index.indexOf(profileHref[0]));
+ assert.ok(index.indexOf(finalHref)>index.indexOf(balancedHref));
+ const following=stylesheetLinks.slice(stylesheetLinks.indexOf(finalHref)+1);
+ assert.ok(following.every(h=>!h.includes('account')&&!h.includes('profile')),'Ninguna capa posterior debe cambiar la paleta Cuenta');
+ const medium=read('src/v1406-account-balanced-royal.css');
+ const last=read('src/v1402-account-admin-royal-blue.css').split('/* V1407 ·').at(-1);
+ assert.match(medium,/--v1406-royal:#225BB8/);
+ for(const hex of ['#235EBE','#2864C3','#194FA8']) assert.ok(last.includes(hex),'Falta '+hex);
+ assert.match(last,/data-app-route="profile"/);
+ assert.match(last,/data-app-route\^="account"/);
+ assert.doesNotMatch(last,/<script|javascript:|pointer-events\s*:\s*none/i);
 });
 
 test('V1396: todas las pantallas de perfil y cuenta, no otras rutas',()=>{
