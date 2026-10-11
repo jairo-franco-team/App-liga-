@@ -195,7 +195,10 @@
             "away": "Franco Tavera",
             "time": "04:30",
             "field": "Campo 3",
-            "date_confirmed": false
+            "date_confirmed": false,
+            "status": "SUSPENDIDO",
+            "suspended": true,
+            "note": "Partido amistoso suspendido. No forma parte del rol vigente."
           }
         ],
         "J2": [
@@ -1641,10 +1644,13 @@
       "rounds": {
         "J1": [
           {
-            "home": "Aldama FC",
-            "away": "Galeana",
-            "time": "10:00",
-            "field": "4"
+            "home": "ALDAMA FC",
+            "away": "ATL. GALEANA",
+            "time": "08:00",
+            "field": "Campo 1 (Empastado)",
+            "date": "2026-10-10",
+            "status": "PENDIENTE PROGRAMADO",
+            "note": "Partido pendiente de jornada 1"
           },
           {
             "home": "Capibaras",
@@ -1659,10 +1665,13 @@
             "field": "Fraccionamiento"
           },
           {
-            "home": "Osasuna",
-            "away": "Dep. Maravillas",
-            "time": "08:00",
-            "field": "4"
+            "home": "OSASUNA",
+            "away": "DEP. MARAVILLAS",
+            "time": "10:00",
+            "field": "Campo 1 (Empastado)",
+            "date": "2026-10-10",
+            "status": "PENDIENTE PROGRAMADO",
+            "note": "Partido pendiente de jornada 1"
           },
           {
             "home": "Populares",
@@ -2372,10 +2381,13 @@
             "field": "Fraccionamiento"
           },
           {
-            "home": "San Antonio FC",
-            "away": "Tavera FC",
+            "home": "SAN ANTONIO FC",
+            "away": "TAVERA FC",
             "time": "12:00",
-            "field": "4"
+            "field": "Campo 1 (Empastado)",
+            "date": "2026-10-10",
+            "status": "PENDIENTE PROGRAMADO",
+            "note": "Partido pendiente de jornada 1"
           },
           {
             "home": "Dep. Nopalero",
@@ -2912,11 +2924,13 @@
       "GANA LINCES",
       "GANA BOAVISTA"
     ],
-    "verified_on": "2026-10-09",
+    "verified_on": "2026-10-10",
     "vet35_first_round": "2026-10-17",
     "verified_source": "https://www.juventinorosasliga.com/reportes/jornadas/completo/",
     "second_force_round_2026_10_11": "J7",
-    "corrected_round_source": "https://www.juventinorosasliga.com/reporte-semanal/"
+    "corrected_round_source": "https://www.juventinorosasliga.com/reporte-semanal/",
+    "pending_matches_2026_10_10": "Intermedia: Aldama FC-Atl. Galeana 08:00; Osasuna-Dep. Maravillas 10:00. Segunda: San Antonio FC-Tavera FC 12:00. Todos Campo 1.",
+    "veteranos35_friendly": "SUSPENDIDO por aviso del usuario; sin fecha confirmada"
   },
   "last_user_verified_results": {
     "date": "2026-10-08",
