@@ -334,3 +334,55 @@ html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-legal{
   grid-template-columns:repeat(4,minmax(0,1fr))!important
  }
 }
+
+/* Apartados PC renderizados por desktop-sections.js: mismos escudos oficiales,
+   menú y proporciones, pero conservando sus páginas y clics existentes. */
+body.lj-desktop .ds-page .ds-crest{
+ display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;
+ overflow:hidden;background:linear-gradient(155deg,#1557c6,#0a1b59);
+ border:1px solid #4d81c55a
+}
+body.lj-desktop .ds-page .ds-crest img{
+ width:95%!important;height:95%!important;object-fit:contain!important
+}
+body.lj-desktop .ds-page .ds-mini-match b{
+ display:flex;align-items:center;gap:5px;min-width:0;
+ white-space:nowrap;text-overflow:ellipsis;overflow:hidden
+}
+body.lj-desktop .ds-page .ds-mini-match .ds-crest{
+ width:17px!important;height:17px!important;min-width:17px!important;
+ font-size:6px!important
+}
+body.lj-desktop .ds-page .ds-nav .ds-brand-mark{
+ font-size:0;background-image:url('./../assets/branding/escudo-liga-azul-sin-fondo-v1007.png')!important;
+ background-position:center!important;background-size:contain!important;background-repeat:no-repeat!important
+}
+body.lj-desktop .ds-page .ds-nav .ds-brand-mark:before{display:none!important}
+body.lj-desktop .ds-page .ds-nav .ds-menu button.active{
+ background:#12dee9!important;color:#041d55!important;border-radius:19px!important
+}
+body.lj-desktop .ds-page .ds-pagehead{
+ background:radial-gradient(500px 250px at 95% 0%,#0b69c076,transparent),
+ linear-gradient(110deg,#123c9f,#081b50 72%)!important
+}
+body.lj-desktop .ds-page .ds-news-grid .ds-news{
+ box-sizing:border-box;border-radius:9px
+}
+body.lj-desktop .ds-page .ds-about-grid .ds-about-card{
+ overflow:hidden;border-radius:10px
+}
+body.lj-desktop .ds-page .ds-teamcell .ds-crest,
+body.lj-desktop .ds-page .ds-team .ds-crest{
+ border-radius:50%;background:linear-gradient(150deg,#1554b5,#07113d)
+}
+body.lj-desktop .ds-page .ds-table-wrap{
+ border-radius:11px;overflow:auto
+}
+body.lj-desktop .ds-page .ds-table th{top:0}
+body.lj-desktop .ds-page :is(.ds-tab,.ds-day,.ds-select){
+ transition:background .15s,color .15s,border-color .15s
+}
+body.lj-desktop .ds-page .ds-tab.active,
+body.lj-desktop .ds-page .ds-day.active{
+ background:#064af1!important;border-color:#064af1!important;color:#fff!important
+}
