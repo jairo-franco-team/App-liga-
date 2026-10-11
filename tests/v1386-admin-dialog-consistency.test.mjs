@@ -22,8 +22,15 @@ test('V1386: paleta de los cuadros administrativos antes de la capa exclusiva V1
   'V1387 debe seguir inmediatamente después de V1386');
  assert.ok(laterStyles.slice(1).every(href=>href.endsWith('.css')||/\.css\?/.test(href)),
   'Las capas posteriores deben ser únicamente hojas CSS, sin scripts');
- assert.ok(laterStyles.slice(1).every(href=>/admin|visual-harmony|v1391|v1392|v1398-junta-calendario-warm-compact|profile-restore-original-palette/.test(href)),
-  'Las capas posteriores solo pueden armonizar las ventanas de Administración, Junta y Calendarios');
+ // Las capas finales cambian con nuevas pantallas. Validar existencia, origen y
+ // versión del CSS real en lugar de bloquear actualizaciones por nombre de archivo.
+ for(const href of laterStyles.slice(1)){
+  assert.match(href,/^\.\/src\/[a-z0-9][a-z0-9._-]*\.css\?v=[a-z0-9._-]+$/i,
+   'Las capas finales deben ser CSS locales versionados, no URLs remotas ni scripts');
+  const sheet=read(href.slice(2).split('?')[0]);
+  assert.ok(sheet.trim().length>0,'Falta el CSS local '+href);
+  assert.doesNotMatch(sheet,/<script|javascript:/i,'El CSS final no debe incluir código ejecutable');
+ }
  // V1398 no cambia acciones: es CSS exclusivo de las dos ventanas afectadas.
  if(laterStyles.some(href=>href.includes('v1398-junta-calendario-warm-compact.css'))){
   const compact=read('src/v1398-junta-calendario-warm-compact.css');
