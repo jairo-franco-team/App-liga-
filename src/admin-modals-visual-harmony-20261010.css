@@ -1,0 +1,246 @@
+/* Administración · acabado visual nocturno (10 oct 2026).
+   Solo CSS; no sustituir componentes ni alterar eventos, guardados o permisos.
+   Esta hoja se carga al FINAL para evitar que los parches antiguos recuperen azules claros. */
+html body .liga-media-modal>section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker
+){
+ --cm-night:#060c23;--cm-surface:#0b1530;--cm-card:#101d3b;
+ --cm-line:rgba(129,156,204,.39);--cm-muted:#c5d0e5;
+ background:radial-gradient(ellipse 95% 55% at 8% 0%,rgba(24,66,139,.22),transparent 72%),
+            linear-gradient(175deg,#101b3e 0%,#0a1431 27%,#060c23 100%)!important;
+ background-color:#060c23!important;
+ border:1px solid rgba(133,159,207,.48)!important;
+ border-radius:20px!important;
+ box-shadow:0 22px 65px rgba(0,1,17,.67),inset 0 1px rgba(255,255,255,.055)!important;
+ color:#f7f9ff!important;color-scheme:dark!important;
+ width:min(100%,680px)!important;max-width:680px!important;
+ max-height:calc(100dvh - 20px)!important;
+ overflow-x:hidden!important;
+ scrollbar-color:#40557f transparent;
+}
+html body .liga-media-modal:has(>section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker
+)){
+ background:rgba(2,6,20,.87)!important;
+ padding:10px!important;
+}
+html body .liga-media-modal>section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker
+)>header{
+ background:linear-gradient(125deg,#122347 0%,#0c1733 60%,#0a1229 100%)!important;
+ background-color:#0d1935!important;
+ border-bottom:1px solid rgba(142,170,216,.24)!important;
+ box-shadow:inset 0 1px rgba(255,255,255,.06)!important;
+ color:#fff!important;
+}
+html body .liga-media-modal>section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker
+)>header h2{
+ color:#fbfcff!important;font-size:clamp(19px,4.6vw,24px)!important;
+ font-weight:800!important;letter-spacing:-.035em!important;line-height:1.18!important;
+ overflow-wrap:break-word!important;
+}
+html body .liga-media-modal>section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker
+)>header [data-close]{
+ display:grid!important;place-items:center!important;
+ width:44px!important;height:44px!important;min-width:44px!important;min-height:44px!important;
+ flex:0 0 44px!important;margin:0!important;padding:0!important;
+ background:#172443!important;background-image:none!important;
+ color:#f6f8ff!important;border:1px solid rgba(161,185,226,.46)!important;
+ border-radius:13px!important;box-shadow:none!important;
+ font:800 24px/1 system-ui,sans-serif!important;
+}
+html body .liga-media-modal>section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker
+)>header [data-close]:is(:hover,:focus-visible){background:#21365f!important}
+/* Tarjetas y ayudas: una sola superficie, sin paneles azul eléctrico. */
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker)
+:is(.ljr-simple-intro,.ljr-guide,.ljr-admin-area,.ljr-admin-results,
+    .ljr-smart-hub,.ljr-smart-tasks,.ljr-editor-section-info,.ljr-admin-howto){
+ background:linear-gradient(153deg,#111f41,#0b1732)!important;
+ border:1px solid rgba(131,158,207,.33)!important;
+ border-radius:15px!important;
+ color:#f5f8ff!important;
+ box-shadow:inset 0 1px rgba(255,255,255,.035)!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker)
+:is(.ljr-admin-intro,.ljr-admin-eyebrow,.ljr-admin-section-info){
+ background:transparent!important;background-image:none!important;
+ box-shadow:none!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker)
+:is(.ljr-admin-section-title,.ljr-admin-results-title,.ljr-simple-intro strong){
+ color:#f9fbff!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker)
+:is(.ljr-admin-section-sub,.ljr-admin-greeting,.ljr-admin-results-hint,
+    .ljr-simple-intro p,.ljr-admin-upload-name,.ljr-editor-security,
+    .ljr-admin-howto li,.ljr-guide li){
+ color:#c5d0e5!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker)
+:is(.ljr-guide>summary,.ljr-admin-howto>summary){
+ color:#e0e9ff!important;
+ background:#101d3a!important;
+ min-height:44px!important;padding:11px 14px!important;
+ border-radius:13px!important;font-weight:750!important;
+}
+/* Cuadrícula compacta: tarjetas completas, textos sin solapar y símbolos iguales de tamaño. */
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+:is(.ljr-admin-action-grid,.cms-kind-grid){
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:10px!important;align-items:stretch!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+:is(.ljr-admin-tile,.cms-kind-grid>button){
+ min-width:0!important;min-height:116px!important;
+ padding:14px 9px!important;margin:0!important;
+ display:flex!important;flex-direction:column!important;
+ align-items:center!important;justify-content:center!important;
+ gap:7px!important;text-align:center!important;
+ border:1px solid rgba(139,164,209,.34)!important;border-radius:15px!important;
+ background:linear-gradient(152deg,#172648,#0e1b37)!important;
+ background-color:#111e3b!important;
+ color:#f7f9ff!important;box-shadow:inset 0 1px rgba(255,255,255,.045)!important;
+ font-size:13px!important;line-height:1.32!important;
+ overflow-wrap:break-word!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+:is(.ljr-admin-tile,.cms-kind-grid>button):is(:hover,:focus-visible){
+ border-color:rgba(151,190,250,.75)!important;
+ background:linear-gradient(152deg,#1c3156,#112142)!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+:is(.ljr-admin-tile.is-active,.cms-kind-grid>button.is-active,
+    .cms-kind-grid>button[aria-pressed=true]){
+ border-color:#8cb6f2!important;
+ background:linear-gradient(148deg,#204679,#152a50)!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+.ljr-admin-tile :is(.ljr-admin-tile-icon,.ljr-simple-icon){
+ display:grid!important;place-items:center!important;
+ width:46px!important;height:46px!important;min-width:46px!important;max-width:46px!important;
+ flex:0 0 46px!important;padding:0!important;margin:0 auto 2px!important;
+ border-radius:13px!important;border:1px solid currentColor!important;
+ box-shadow:inset 0 1px rgba(255,255,255,.07)!important;
+ line-height:1!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+.ljr-admin-tile-icon svg{
+ display:block!important;width:25px!important;height:25px!important;
+ min-width:25px!important;max-width:25px!important;
+ margin:auto!important;stroke:currentColor!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+.ljr-admin-tile :is(.ljr-admin-tile-label,strong,b){
+ font-size:13px!important;font-weight:750!important;line-height:1.3!important;
+ text-align:center!important;overflow-wrap:break-word!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+.ljr-admin-tile small{
+ display:block!important;font-size:11.5px!important;line-height:1.35!important;
+ color:#bdcbe2!important;text-align:center!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+:is(.ljr-admin-tile-next){display:none!important}
+/* Cinco acentos de iconos: dorado, verde menta, coral, violeta y cielo. */
+html body .liga-media-modal :is(.ljr-admin-action-grid,.cms-kind-grid)>:nth-child(5n+1) .ljr-admin-tile-icon{color:#f1cc75!important;background:rgba(241,204,117,.11)!important}
+html body .liga-media-modal :is(.ljr-admin-action-grid,.cms-kind-grid)>:nth-child(5n+2) .ljr-admin-tile-icon{color:#79ddad!important;background:rgba(121,221,173,.1)!important}
+html body .liga-media-modal :is(.ljr-admin-action-grid,.cms-kind-grid)>:nth-child(5n+3) .ljr-admin-tile-icon{color:#ff9ca1!important;background:rgba(255,156,161,.1)!important}
+html body .liga-media-modal :is(.ljr-admin-action-grid,.cms-kind-grid)>:nth-child(5n+4) .ljr-admin-tile-icon{color:#c9b3ff!important;background:rgba(201,179,255,.1)!important}
+html body .liga-media-modal :is(.ljr-admin-action-grid,.cms-kind-grid)>:nth-child(5n+5) .ljr-admin-tile-icon{color:#9bc5f2!important;background:rgba(155,197,242,.1)!important}
+/* Campos de publicación: claros, sin tiras azules demasiado luminosas. */
+html body .liga-media-modal>section:is(.ljr-admin-child,.ljr-admin-picker,.ljr-admin-cms)
+:is(input:not([type=checkbox]):not([type=radio]):not([type=color]):not([type=file]),select,textarea){
+ box-sizing:border-box!important;min-width:0!important;max-width:100%!important;
+ min-height:46px!important;
+ background:#080f28!important;background-image:none!important;
+ color:#f8faff!important;border:1px solid rgba(136,163,212,.52)!important;
+ border-radius:13px!important;
+ box-shadow:inset 0 1px 3px rgba(0,0,0,.2)!important;
+ color-scheme:dark!important;
+ font-size:14px!important;
+}
+html body .liga-media-modal>section:is(.ljr-admin-child,.ljr-admin-picker,.ljr-admin-cms)
+:is(input,textarea)::placeholder{color:#aabbd8!important;opacity:1!important}
+html body .liga-media-modal>section:is(.ljr-admin-child,.ljr-admin-picker,.ljr-admin-cms)
+:is(.cms-form>label,.cms-form label,.ljr-admin-friendly label){
+ color:#dce6f6!important;font-weight:650!important;
+}
+html body .liga-media-modal>section:is(.ljr-admin-child,.ljr-admin-picker,.ljr-admin-cms)
+:is(input,select,textarea,button,summary):focus-visible{
+ outline:2px solid #a7c8ff!important;outline-offset:2px!important;
+}
+/* Acciones: neutras hasta seleccionar; una primaria azul profunda por pantalla. */
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker)
+:is(.ljr-admin-submit,.liga-media-actions button,.cms-form>button,
+    .ljr-smart-actions button,[data-pick-element]){
+ min-height:44px!important;max-width:100%!important;
+ border:1px solid rgba(140,165,211,.53)!important;border-radius:13px!important;
+ background:linear-gradient(140deg,#223456,#172641)!important;
+ background-color:#1a2947!important;
+ color:#f9fbff!important;
+ box-shadow:inset 0 1px rgba(255,255,255,.075)!important;
+ font-weight:750!important;text-shadow:none!important;
+ overflow-wrap:break-word!important;
+}
+html body .liga-media-modal>section.ljr-admin-picker [data-pick-element],
+html body .liga-media-modal>section.ljr-admin-child :is(.cms-form>button[type=submit],form>button[type=submit],.ljr-admin-submit){
+ background:linear-gradient(130deg,#285da0,#184277)!important;
+ border-color:rgba(169,198,241,.75)!important;
+}
+html body .liga-media-modal :is(.ljr-admin-child,.ljr-admin-picker,.ljr-admin-cms)
+input[type=file]{
+ box-sizing:border-box!important;display:block!important;
+ min-width:0!important;width:100%!important;max-width:100%!important;
+ padding:9px!important;
+ color:#b8c6df!important;background:#0c1934!important;
+ border:1px solid rgba(136,163,212,.52)!important;border-radius:13px!important;
+ font-size:11px!important;white-space:nowrap!important;
+ overflow:hidden!important;text-overflow:ellipsis!important;
+}
+html body .liga-media-modal :is(.ljr-admin-child,.ljr-admin-picker,.ljr-admin-cms)
+input[type=file]::file-selector-button{
+ max-width:56%!important;min-height:39px!important;
+ margin:0 10px 0 0!important;padding:9px 12px!important;
+ border:1px solid rgba(168,189,226,.58)!important;border-radius:10px!important;
+ background:#223a65!important;color:#fff!important;
+ font:700 12px/1.3 system-ui,sans-serif!important;
+}
+html body .liga-media-modal :is(.ljr-admin-child,.ljr-admin-picker,.ljr-admin-cms)
+.ljr-admin-upload-name:not(:empty){
+ display:block!important;width:100%!important;
+ padding:6px 2px!important;color:#b5e3d2!important;
+ font-size:12px!important;overflow-wrap:anywhere!important;
+}
+/* Selector de elemento: diálogo corto y botón accesible, sin huecos internos grandes. */
+html body .liga-media-modal>section.ljr-admin-picker{
+ width:min(100%,560px)!important;
+}
+html body .liga-media-modal>section.ljr-admin-picker>p,
+html body .liga-media-modal>section.ljr-admin-picker .ljr-admin-picker-intro{
+ color:#d9e1f1!important;line-height:1.5!important;
+}
+html body .liga-media-modal>section.ljr-admin-picker [data-pick-element]{
+ width:auto!important;min-width:175px!important;
+ min-height:44px!important;padding:10px 16px!important;
+}
+/* No ocultar controles reales ni romper botones deshabilitados. */
+html body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker) [hidden]{display:none!important}
+html body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker) button:disabled{opacity:.58!important;cursor:not-allowed!important}
+@media(max-width:390px){
+ html body .liga-media-modal:has(>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker)){padding:6px!important}
+ html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+ :is(.ljr-admin-action-grid,.cms-kind-grid){gap:8px!important}
+ html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+ :is(.ljr-admin-tile,.cms-kind-grid>button){padding:12px 7px!important;min-height:108px!important}
+}
+@media(max-width:315px){
+ html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms)
+ :is(.ljr-admin-action-grid,.cms-kind-grid){grid-template-columns:1fr!important}
+}
+@media(prefers-reduced-motion:no-preference){
+ html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-picker)
+ :is(button,summary){transition:background-color .18s ease,border-color .18s ease!important}
+}
