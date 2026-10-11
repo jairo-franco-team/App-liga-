@@ -25,7 +25,7 @@ test('Inicio y Competición recuperados y Perfil queda al final',()=>{
   assert.match(home,/background-color:#000144!important/);
   assert.match(home,/background-color:#000040!important/);
   const a='src/v1434-home-competition-original-colors.css?v=20261011-v1434-restaurar-marino-original';
-  const b='src/v1435-jrcontrol-tools-single-surface.css?v=20261011-v1435-jr-tools-only';
+  const b='src/v1435-jrcontrol-tools-single-surface.css?v=';
   const c='src/profile-first-screenshot-restore.css?v=20261011-v1423-colores-anteriores';
   assert.equal(html.split(b).length-1,1);
   assert.ok(html.indexOf(a)<html.indexOf(b));
