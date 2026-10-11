@@ -21,6 +21,11 @@ function copyStaticReferences() {
         ['assets/reference/predictor-v36/liga-crest-white.webp', 'dist/assets/reference/predictor-v36/liga-crest-white.webp'],
         ['assets/moments/moments-original-a.png', 'dist/assets/moments/moments-original-a.png'],
         ['assets/moments/moments-original-b.png', 'dist/assets/moments/moments-original-b.png'],
+        // Portada PC original: los HTML fuera de index no son emitidos por Vite.
+        ['pc-exact-original-20261011.html', 'dist/pc-exact-original-20261011.html'],
+        // Fotografías de Liga Juventino usadas solo dentro del HTML PC.
+        ['assets/home-players-user.png', 'dist/assets/home-players-user.png'],
+        ['assets/home-players-fictional.jpg', 'dist/assets/home-players-fictional.jpg'],
       ];
 
       for (const [fromPath, toPath] of files) {
@@ -31,6 +36,17 @@ function copyStaticReferences() {
           copyFileSync(from, to);
         }
       }
+      // Fail the build instead of publishing a PC link that silently returns 404.
+      const pcHTML = resolve('dist/pc-exact-original-20261011.html');
+      if (!existsSync(pcHTML)) throw new Error('Falta portada PC en dist: pc-exact-original-20261011.html');
+      const pcMarkup = readFileSync(pcHTML,'utf8');
+      const pcAssets = [...pcMarkup.matchAll(/(?:src|href)="\.\/([^"?]+\.(?:png|jpe?g|webp|svg))"/gi)].map(m => m[1]);
+      for (const asset of new Set(pcAssets)) {
+        if (!existsSync(resolve('dist', asset))) {
+          throw new Error('Imagen o logo faltante en la portada PC publicada: ' + asset);
+        }
+      }
+
 
       // Historia usa rutas dinámicas en JS, por eso Vite no las detecta como assets importados.
       // Copiamos completa la carpeta para que las fotos reales de campeones/trofeos
