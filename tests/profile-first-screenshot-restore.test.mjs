@@ -36,20 +36,20 @@ test('Perfil clásico: sin alteraciones funcionales ni de otras rutas',()=>{
  assert.doesNotMatch(css,/\.topbar\s*\{|\.bottom-nav\s*\{/);
 });
 
-test('V1417: muestra el Perfil azul noche de la captura y no las filas azules sólidas',()=>{
- assert.match(html,/profile-first-screenshot-restore\.css\?v=20261011-v1417-captura-perfil-azul-noche/);
- assert.ok(css.includes('background-color:#05075e!important'),'Fondo superior de Perfil original');
- assert.ok(css.includes('linear-gradient(180deg,#070967 0%,#05075e 43%,#02044f 100%)'),'Fondo nocturno completo');
- assert.ok(css.includes('background-color:#101778!important'),'Tarjeta Mi cuenta azul profundo');
- assert.ok(css.includes('background-color:#2455af!important'),'Boton principal original');
- assert.ok(css.includes('border:2px solid #38d9e8!important'),'Avatar turquesa');
+test('V1418: Perfil clásico conserva azul rey intermedio y filas originales sin cuadros',()=>{
+ assert.match(html,/profile-first-screenshot-restore\\.css\\?v=20261011-v1418-azul-rey-barra/);
+ assert.match(css,/V1418 \\| Perfil original conservado/);
+ assert.ok(css.includes('background-color:#2055B7!important'),'Fondo de Perfil debe ser azul rey');
+ assert.ok(css.includes('linear-gradient(180deg,#2865BF 0%,#2055B7 43%,#1E50AC 100%)'),'Gradiente medio del Perfil');
+ assert.ok(css.includes('background-color:#2760BC!important'),'Tarjeta Mi cuenta en azul rey medio');
+ assert.ok(css.includes('background-color:#2C68C6!important'),'Botón principal en azul rey');
+ assert.ok(css.includes('border:2px solid #AED9FF!important'),'Avatar legible y azul');
  const rows=css.slice(css.indexOf('/* Opciones: FILAS TRANSPARENTES'));
- assert.ok(rows.includes('.v569-profile-account-menu>button'));
- assert.ok(rows.includes('.v12-profile-menu>.v12-profile-row'));
- assert.ok(rows.includes('background-color:transparent!important'));
- assert.ok(rows.includes('border-bottom:1px solid rgba(120,139,207,.18)!important'));
- assert.ok(rows.includes('border-radius:0!important'));
+ for(const token of ['.v569-profile-account-menu>button','.v12-profile-menu>.v12-profile-row',
+ 'background-color:transparent!important','border-bottom:1px solid rgba(120,139,207,.18)!important',
+ 'border-radius:0!important']) assert.ok(rows.includes(token),'La fila ha cambiado: '+token);
  const icons=rows.slice(rows.indexOf('.v569-profile-account-menu>button>span'));
  assert.ok(icons.includes('background:transparent!important'),'Iconos sin bloque de color');
- assert.doesNotMatch(css,/data-app-route\^="account"|data-app-route="home"|pointer-events\s*:/);
+ assert.doesNotMatch(css,/#05075e|#02044f|#101778|#070967/i,'No recuperar fondo azul noche');
+ assert.doesNotMatch(css,/data-app-route\\^="account"|data-app-route="home"|pointer-events\\s*:/);
 });
