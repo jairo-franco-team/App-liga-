@@ -51,5 +51,5 @@ test('V1311 cubre al asistente local de Suspensión, que no usa el modal de Admi
  assert.match(suspension,/\.v1232-qa\{/);
  assert.match(suspension,/background:#0b1643!important/);
  assert.match(suspension,/\.v1232-actions button\{/);
- assert.match(read('index.html'),/v1232-suspension-official-blue\.css\?v=20261010-v1311-suspension-navy/);
+ assert.match(read('index.html'),/v1232-suspension-official-blue\.css\?v=20261010-v1385-local-review-night/);
 });
