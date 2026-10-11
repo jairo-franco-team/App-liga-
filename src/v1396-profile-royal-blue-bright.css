@@ -1,0 +1,225 @@
+/* V1396 - Azul rey luminoso. "Cálido" = más claro y vivo, no dorado ni naranja.
+   Alcance: Mi cuenta / Perfil, sus diez rutas account*, modales propios y Reclutamiento.
+   Sólo presentación: respeta eventos, almacenamiento, permisos, selectores y rutas. */
+:root{
+ --ljr1396-royal:#2865d4;
+ --ljr1396-royal-light:#4181eb;
+ --ljr1396-royal-mid:#2a62c5;
+ --ljr1396-surface:#2e66c9;
+ --ljr1396-surface-low:#2153b5;
+ --ljr1396-field:#2455b2;
+ --ljr1396-border:rgba(159,200,255,.72);
+ --ljr1396-text:#ffffff;
+ --ljr1396-muted:#e0ecff;
+ --ljr1396-focus:#d7ebff;
+}
+/* El fondo de Mi cuenta es azul rey, incluso en las páginas independientes. */
+html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen{
+ background:linear-gradient(165deg,#3276e4 0%,#2765d0 40%,#2156bc 77%,#1c4da9 100%)!important;
+ background-color:#2765d0!important;color:#fff!important;
+}
+html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen :is(.v12-profile-card,.v569-card,.v1300-panel,.v1300-detail,.v168-profile-account,.v569-security-state){
+ background:linear-gradient(148deg,#3778de 0%,#2e67cd 53%,#265abd 100%)!important;
+ background-color:#2e67cd!important;
+ border-color:var(--ljr1396-border)!important;color:#fff!important;
+ box-shadow:0 8px 24px rgba(21,60,138,.19),inset 0 1px rgba(255,255,255,.17)!important;
+}
+html body[data-app-route="profile"] #screen :is(.v12-profile-card[data-v569-owned],.v12-profile-card[data-v569-inline]){
+ background:linear-gradient(155deg,#3a7bea,#306bdd 52%,#285fc7 100%)!important;
+}
+html body[data-app-route="profile"] #screen :is(.v12-profile-page,.v569-profile-copy h1,.v569-profile-copy b,.v569-profile-copy small,.v12-profile-row-label){
+ color:#fff!important;
+}
+html body[data-app-route="profile"] #screen :is(.v569-profile-copy p,.v12-profile-copy p){
+ color:var(--ljr1396-muted)!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-avatar{
+ border-color:#c9e4ff!important;box-shadow:0 0 0 3px rgba(229,244,255,.18)!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-buttons button,
+html body[data-app-route="profile"] #screen .v569-profile-buttons button:first-child{
+ background:linear-gradient(140deg,#4b92f6,#2c70db)!important;
+ border-color:#a9d0ff!important;color:#fff!important;
+ -webkit-text-fill-color:#fff!important;
+ text-shadow:none!important;box-shadow:inset 0 1px rgba(255,255,255,.19),0 6px 15px rgba(14,55,138,.19)!important;
+}
+/* Las filas ya existentes mantienen altura, icono y click: sólo color. */
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button:not(.logout),
+html body[data-app-route="profile"] #screen .v12-profile-menu>.v12-profile-row{
+ background:rgba(17,76,185,.20)!important;
+ background-image:none!important;
+ border-color:rgba(181,211,255,.43)!important;color:#fff!important;
+ box-shadow:none!important;
+}
+html body[data-app-route="profile"] #screen :is(.v569-profile-account-menu>button>span,.v12-profile-menu .v12-profile-row-icon){
+ color:#e1f0ff!important;background:rgba(159,206,255,.14)!important;
+}
+html body[data-app-route="profile"] #screen :is(.v569-profile-account-menu>button>span svg,.v12-profile-menu .v12-profile-row-icon svg){
+ color:#e3f1ff!important;
+}
+html body[data-app-route="profile"] #screen :is(.v569-profile-account-menu>button>b,.v569-profile-account-menu>button>i,.v12-profile-row-label,.v12-profile-row-chevron){
+ color:#fff!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button.logout{
+ background:rgba(119,44,104,.27)!important;border-color:rgba(255,195,214,.56)!important;
+}
+html body[data-app-route="profile"] #screen .ljr-cms-entry{
+ background:linear-gradient(150deg,#3270d7,#275fca)!important;
+ border-color:var(--ljr1396-border)!important;
+}
+html body[data-app-route="profile"] #screen .ljr-cms-entry button:is([data-cms-open],[data-cms-edit-page],[data-cms-story],[data-cms-design]){
+ background:linear-gradient(145deg,#4387ed,#316dd4)!important;
+ color:#fff!important;border-color:#afcfff!important;
+}
+/* Formularios de registro, inicio de sesión, editar cuenta, contraseña y seguridad. */
+html body[data-app-route^="account"] #screen :is(.v569-page-head small,.v1300-detail strong,.v1300-panel h2,.v569-field>span,.v1300-choice strong,.v1300-select strong,.v1300-permission b){
+ color:#fff!important;
+}
+html body[data-app-route^="account"] #screen :is(.v569-page-head p,.v569-field>small,.v569-note,.v1300-detail p,.v1300-panel>p,.v1300-explain,.v1300-footnote,.v1300-choice small,.v1300-permission small,.v569-devices small,.v1300-findings p){
+ color:var(--ljr1396-muted)!important;
+}
+html body[data-app-route^="account"] #screen :is(.v569-methods,.v569-inline,.v1300-cloud-state,.v1300-cloud-output,.v1300-ai-status,.v1300-ai-answer,.v1300-pass-help,.v1300-findings article,.v569-devices article,.v577-device-summary,.v1300-detail){
+ background:linear-gradient(148deg,#326ed8,#285fc2)!important;
+ border-color:rgba(160,201,255,.66)!important;
+ color:#fff!important;
+}
+html body[data-app-route^="account"] #screen :is(.v569-field input,.v1300-cloud-form input,.v1300-select select,.v569-inline input){
+ background:#2458b7!important;background-image:none!important;
+ border:1px solid #8bbaff!important;
+ border-radius:12px!important;color:#fff!important;
+ color-scheme:dark;
+}
+html body[data-app-route^="account"] #screen :is(input,textarea)::placeholder{
+ color:#e3eeff!important;opacity:.85!important;
+}
+html body[data-app-route^="account"] #screen :is(.v569-primary,.v569-card .v569-primary,.v1300-primary){
+ background:linear-gradient(145deg,#5b9df9 0%,#377ee8 60%,#286ad8 100%)!important;
+ border:1px solid #c1ddff!important;
+ color:#fff!important;-webkit-text-fill-color:#fff!important;
+ text-shadow:none!important;
+ box-shadow:inset 0 1px rgba(255,255,255,.2),0 7px 14px rgba(24,62,148,.19)!important;
+}
+html body[data-app-route^="account"] #screen :is(.v569-secondary,.v1300-actions button,.v1300-permission button,.v1300-link,.v1300-pass-help button,.v569-inline>button,.v569-methods button.active){
+ background:linear-gradient(150deg,#397ce3,#2b65cd)!important;
+ border-color:#a7ceff!important;color:#fff!important;
+}
+html body[data-app-route^="account"] #screen .v569-danger{
+ background:linear-gradient(135deg,#8b4d80,#6e3974)!important;
+ border-color:#f5b5d1!important;color:#fff!important;
+}
+html body[data-app-route^="account"] #screen .v1300-mark{
+ background:rgba(218,238,255,.22)!important;color:#fff!important;
+ border:1px solid rgba(213,235,255,.56)!important;
+}
+html body[data-app-route^="account"] #screen .v1300-choice input[type=checkbox]:checked,
+html body[data-app-route^="account"] #screen .v569-check input:checked+i{
+ background:#69b1ff!important;border-color:#e2f2ff!important;
+}
+html body[data-app-route^="account"] #screen :is(.v1300-choice,.v1300-permission){
+ border-bottom-color:rgba(207,229,255,.24)!important;
+}
+html body[data-app-route^="account"] #screen :is(.v569-card,.v1300-panel) :is(input,select,button):focus-visible{
+ outline:2px solid var(--ljr1396-focus)!important;outline-offset:2px!important;
+}
+/* Los 7 diálogos propios de Mi cuenta y Ajustes heredan la misma paleta real.
+   No invadir diálogos administrativos de otras herramientas. */
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+){
+ background:linear-gradient(154deg,#3e81e9 0%,#326ed5 42%,#2659bf 100%)!important;
+ background-color:#326ed5!important;border:1px solid #a8ceff!important;
+ color:#fff!important;box-shadow:0 18px 48px rgba(13,45,121,.32),inset 0 1px rgba(255,255,255,.18)!important;
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+)>header{
+ background:transparent!important;background-image:none!important;
+ border-bottom:1px solid rgba(210,234,255,.48)!important;
+ box-shadow:none!important;
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+) :is(h2,h3,strong,b,p,label,small,summary){
+ color:#fff!important;
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+) :is(select,input:not([type=checkbox]):not([type=radio]):not([type=file]),textarea){
+ background:#285cbd!important;background-image:none!important;
+ color:#fff!important;border:1px solid #a2ceff!important;
+}
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button,
+html body .liga-media-modal>section:is([aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"]) .cms-form>button{
+ background:linear-gradient(145deg,#4488ef,#2d69d2)!important;
+ border:1px solid #a9d2ff!important;color:#fff!important;
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+)>header [data-close]{
+ background:linear-gradient(145deg,#4489ee,#2a65c8)!important;
+ border-color:#b7d9ff!important;color:#fff!important;
+}
+html body .liga-media-modal>section:is([aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"]) input[type=checkbox]:checked{
+ background:#77b7ff!important;border-color:#e0f0ff!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] :is(.ljr-profile-preview,.ljr-photo-upload,.ljr-avatar-gallery button){
+ background:linear-gradient(145deg,#4486e7,#2d66ca)!important;
+ border-color:#abd1ff!important;color:#fff!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-profile-preview>div{
+ border-color:#dceeff!important;box-shadow:0 0 0 3px rgba(223,241,255,.22)!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-avatar-gallery button[aria-pressed=true]{
+ border-color:#e4f4ff!important;
+ box-shadow:0 0 0 2px rgba(210,238,255,.4)!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] :is(.ljr-photo-upload input,.v800-shirt-fields input,.v893-shirt-customize select){
+ background:#265cb9!important;border-color:#98c8ff!important;color:#fff!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] :is(.ljr-photo-upload input::file-selector-button,.ljr-save-profile){
+ background:linear-gradient(145deg,#5c9eff,#3578e2)!important;
+ border-color:#cae5ff!important;color:#fff!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-avatar-gallery button[aria-pressed=true] small{
+ color:#fff!important;
+}
+/* También corregir los dos formularios recientes que estaban excesivamente oscuros.
+   Se conserva la restauración del selector de localidad V1391. */
+html body[data-app-route="recruitment"] #screen #v190-recruitment-page{
+ background:linear-gradient(170deg,#2d69d8,#265fc9 52%,#2153b6)!important;
+ border-color:#95c2ff!important;
+}
+html body[data-app-route="recruitment"] #screen #v190-recruitment-page :is(.v190-recruit-card,.v190-publish-card,.v1390-panel){
+ background:linear-gradient(150deg,#3776d9,#2b64c7)!important;
+ border-color:#9ac5ff!important;
+}
+html body[data-app-route="recruitment"] #screen #v190-recruitment-page :is(.v1390-fields input,.v1390-fields select,.v190-recruit-card input,.v190-recruit-card select,.v190-publish-card input,.v190-publish-card select){
+ background:#2558b6!important;border-color:#98c3ff!important;color:#fff!important;
+}
+html body[data-app-route="recruitment"] #screen #v190-recruitment-page .v190-community-select > select[data-v190-team-community]{
+ background:#2558b6!important;border-color:#98c3ff!important;color:#fff!important;
+}
+html body[data-app-route="recruitment"] #screen #v190-recruitment-page :is(.v1390-fields button.v1390-main,.v190-recruit-card>button[type="submit"]){
+ background:linear-gradient(145deg,#4d91f4,#3478df)!important;border-color:#c0dbff!important;
+}
+html body[data-app-route="recruitment"] #screen #v190-recruitment-page .v1390-emoji{
+ background:#377bd9!important;border-color:#a7d1ff!important;
+}
+@media(prefers-reduced-motion:reduce){
+ html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen *{transition:none!important;}
+}
