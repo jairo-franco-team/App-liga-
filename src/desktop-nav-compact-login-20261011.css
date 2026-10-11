@@ -1,19 +1,19 @@
 /* Desktop navigation: one consistent blue bar, compact buttons, login aligned inside.
    Scoped to browser desktop only; do not modify mobile/APK or existing backgrounds. */
-@media (min-width:1024px) {
- body.lj-desktop .ds-utility,body.lj-desktop .desk-utility{display:none!important}
- body.lj-desktop .ds-nav .ds-wrap,body.lj-desktop .desk-nav .desk-wrap{
+@media screen {
+ :is(body.lj-desktop,html.ljpc-forced-desktop body) .ds-utility,:is(body.lj-desktop,html.ljpc-forced-desktop body) .desk-utility{display:none!important}
+ :is(body.lj-desktop,html.ljpc-forced-desktop body) .ds-nav .ds-wrap,:is(body.lj-desktop,html.ljpc-forced-desktop body) .desk-nav .desk-wrap{
    width:min(1500px,calc(100% - 36px));max-width:none;min-height:58px;height:auto;
    display:flex;align-items:center;gap:clamp(10px,1.4vw,22px);padding:7px 0;
  }
- body.lj-desktop .ds-nav .ds-brand,body.lj-desktop .desk-nav .desk-logo{flex:0 0 auto}
- body.lj-desktop .ds-nav .ds-menu,body.lj-desktop .desk-nav .desk-menu{
+ :is(body.lj-desktop,html.ljpc-forced-desktop body) .ds-nav .ds-brand,:is(body.lj-desktop,html.ljpc-forced-desktop body) .desk-nav .desk-logo{flex:0 0 auto}
+ :is(body.lj-desktop,html.ljpc-forced-desktop body) .ds-nav .ds-menu,:is(body.lj-desktop,html.ljpc-forced-desktop body) .desk-nav .desk-menu{
    flex:1 1 auto;min-width:0;display:flex;align-items:center;gap:clamp(2px,.38vw,7px);
    overflow-x:auto;overflow-y:hidden;scrollbar-width:none;
  }
- body.lj-desktop .ds-nav .ds-menu::-webkit-scrollbar,body.lj-desktop .desk-nav .desk-menu::-webkit-scrollbar{display:none}
- body.lj-desktop .ds-nav .ds-menu>button,body.lj-desktop .ds-nav .ds-menu>.lj-menu-wrap>button,
- body.lj-desktop .desk-nav .desk-menu>button,body.lj-desktop .desk-nav .desk-menu>.lj-menu-wrap>button{
+ :is(body.lj-desktop,html.ljpc-forced-desktop body) .ds-nav .ds-menu::-webkit-scrollbar,:is(body.lj-desktop,html.ljpc-forced-desktop body) .desk-nav .desk-menu::-webkit-scrollbar{display:none}
+ :is(body.lj-desktop,html.ljpc-forced-desktop body) .ds-nav .ds-menu>button,:is(body.lj-desktop,html.ljpc-forced-desktop body) .ds-nav .ds-menu>.lj-menu-wrap>button,
+ :is(body.lj-desktop,html.ljpc-forced-desktop body) .desk-nav .desk-menu>button,:is(body.lj-desktop,html.ljpc-forced-desktop body) .desk-nav .desk-menu>.lj-menu-wrap>button{
    display:inline-flex!important;align-items:center!important;justify-content:center;
    flex:0 0 auto;min-height:35px!important;height:35px!important;max-height:35px!important;
    box-sizing:border-box!important;padding:0 clamp(6px,.6vw,11px)!important;
@@ -21,29 +21,29 @@
    font-weight:700!important;line-height:1.1!important;white-space:nowrap!important;
    margin:0!important;
  }
- body.lj-desktop .ds-nav .ds-menu .lj-menu-wrap,body.lj-desktop .desk-nav .desk-menu .lj-menu-wrap{
+ :is(body.lj-desktop,html.ljpc-forced-desktop body) .ds-nav .ds-menu .lj-menu-wrap,:is(body.lj-desktop,html.ljpc-forced-desktop body) .desk-nav .desk-menu .lj-menu-wrap{
    min-height:35px!important;height:35px!important;display:flex;align-items:center;
  }
- body.lj-desktop .ds-nav .ds-menu>button.active,body.lj-desktop .desk-nav .desk-menu>button.active{
+ :is(body.lj-desktop,html.ljpc-forced-desktop body) .ds-nav .ds-menu>button.active,:is(body.lj-desktop,html.ljpc-forced-desktop body) .desk-nav .desk-menu>button.active{
    background:rgba(52,207,224,.16)!important;color:#fff!important;border:1px solid rgba(74,229,239,.35)!important;
  }
- body.lj-desktop .ds-nav .ljpc-header-login,body.lj-desktop .desk-nav .ljpc-header-login{
+ :is(body.lj-desktop,html.ljpc-forced-desktop body) .ds-nav .ljpc-header-login,:is(body.lj-desktop,html.ljpc-forced-desktop body) .desk-nav .ljpc-header-login{
    display:inline-flex;align-items:center;justify-content:center;gap:7px;
    flex:0 0 auto;height:35px;min-height:35px;padding:0 12px;
    border:1px solid rgba(148,205,255,.35);border-radius:9px;
    background:rgba(13,68,140,.65);color:#fff;font-size:11px;font-weight:750;
    white-space:nowrap;cursor:pointer;
  }
- body.lj-desktop .ds-nav .ljpc-header-login:hover,body.lj-desktop .desk-nav .ljpc-header-login:hover{
+ :is(body.lj-desktop,html.ljpc-forced-desktop body) .ds-nav .ljpc-header-login:hover,:is(body.lj-desktop,html.ljpc-forced-desktop body) .desk-nav .ljpc-header-login:hover{
    background:#1662b8;border-color:#87d9ff;
  }
- body.lj-desktop .ds-nav .ljpc-header-login:focus-visible,body.lj-desktop .desk-nav .ljpc-header-login:focus-visible{
+ :is(body.lj-desktop,html.ljpc-forced-desktop body) .ds-nav .ljpc-header-login:focus-visible,:is(body.lj-desktop,html.ljpc-forced-desktop body) .desk-nav .ljpc-header-login:focus-visible{
    outline:2px solid #64e6ff;outline-offset:2px;
  }
- body.lj-desktop .ds-nav .lj-dropdown,body.lj-desktop .desk-nav .lj-dropdown{top:36px}
+ :is(body.lj-desktop,html.ljpc-forced-desktop body) .ds-nav .lj-dropdown,:is(body.lj-desktop,html.ljpc-forced-desktop body) .desk-nav .lj-dropdown{top:36px}
 }
-@media (min-width:1024px) and (max-width:1220px){
- body.lj-desktop .ds-nav .ds-wrap,body.lj-desktop .desk-nav .desk-wrap{width:calc(100% - 20px);gap:9px}
- body.lj-desktop .ds-nav .ds-menu,body.lj-desktop .desk-nav .desk-menu{gap:2px}
- body.lj-desktop .ds-nav .ljpc-header-login,body.lj-desktop .desk-nav .ljpc-header-login{padding:0 8px}
+@media screen and (max-width:1220px){
+ :is(body.lj-desktop,html.ljpc-forced-desktop body) .ds-nav .ds-wrap,:is(body.lj-desktop,html.ljpc-forced-desktop body) .desk-nav .desk-wrap{width:calc(100% - 20px);gap:9px}
+ :is(body.lj-desktop,html.ljpc-forced-desktop body) .ds-nav .ds-menu,:is(body.lj-desktop,html.ljpc-forced-desktop body) .desk-nav .desk-menu{gap:2px}
+ :is(body.lj-desktop,html.ljpc-forced-desktop body) .ds-nav .ljpc-header-login,:is(body.lj-desktop,html.ljpc-forced-desktop body) .desk-nav .ljpc-header-login{padding:0 8px}
 }
