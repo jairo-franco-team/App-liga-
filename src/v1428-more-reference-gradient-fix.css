@@ -115,3 +115,58 @@
   /* Iconos, logos y botones interactivos no reciben filtros ni rellenos globales. */
 }
 }
+
+
+/* V1431 · Fondo universal azul rey exacto de 1002062374.jpg (#010799).
+ * Sólo lienzo / containers estructurales: tarjetas, botones, textos, iconos,
+ * fotos, estadios, portadas, transmisiones y lógica sin cambios.
+ * Sobrescribe fundos de distintas rutas que se veían violeta / bicolor.
+ * Fondo plano deliberadamente: imagen de muestra RGB aprox. (1,7,153).
+ */
+@layer ljr-reference-surfaces {
+ @media screen {
+  :root {
+    --ljr-universal-background:#010799;
+    --deep:#010799;
+    --base:#010799;
+  }
+  /* Aplicación, laterales de PC, área de scroll y pantallas móviles. */
+  html,html body,html body #app,html body .app-shell,
+  html body .screen:not(#screen) {
+    background-color:#010799!important;
+    background-image:none!important;
+  }
+  /* Seis IDs vencen fondos heredados de Perfil, Competición y secciones anidadas.
+     No seleccionar botones ni cuadros: únicamente la superficie madre. */
+  html body #screen#screen#screen#screen#screen#screen {
+    --ljr-universal-background:#010799;
+    --ljr1420-page:#010799!important;
+    --ljr1420-canvas:#010799!important;
+    background-color:#010799!important;
+    background-image:none!important;
+    background-repeat:no-repeat!important;
+  }
+  /* Contenedores que antes repintaban toda la pantalla con otro azul.
+     Se mantienen paneles y tarjetas interiores con su diseño individual. */
+  html body #screen#screen#screen#screen#screen#screen :is(
+    .v12-profile-page,.v569-page,.v726-tools-page,.v60-tool-page,
+    .v46-notifications,.v46-ref-notifications-main,
+    .v12-bracket-reference,.v12-standings-reference,.v40-standings-host,
+    .v40-standings,.v40-content,.v12-fixtures-reference,
+    .v12-fixtures-host,.ljr-knockout
+  ) {
+    background-color:#010799!important;
+    background-image:none!important;
+  }
+  /* Barras de pestañas de página, no las tarjetas ni los selectores activos. */
+  html body #screen#screen#screen#screen#screen#screen > .tabs,
+  html body #screen#screen#screen#screen#screen#screen :is(
+    .v12-bracket-board,.v12-bracket-brackets,.v12-bracket-scroll,
+    .v12-bracket-route
+  ) {
+    background-color:#010799!important;
+    background-image:none!important;
+  }
+  /* Mantener portadas, patrocinadores, botones y barras de navegación sin filtros. */
+ }
+}
