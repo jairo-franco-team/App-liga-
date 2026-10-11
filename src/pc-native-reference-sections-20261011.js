@@ -31,7 +31,7 @@ const TITLES={
  agendaBuilder:'Agenda',publications:'Publicaciones',rulebook:'Reglamento'
 };
 const GAME_ROUTES=new Set(['fantasy','fantasyTeam','fantasyLeagues','quiniela','predictor','predictorSix','quiz','quizArena','moreLess','moreLessHub','moreLessGallery']);
-const VIDEO_ROUTES=new Set(['video','moments','newsDetail']);
+const VIDEO_ROUTES=new Set(['video','moments']);
 const TEAM_ROUTES=new Set(['teams','following','teamDetail','compareTeams','teamCompare','playerCompare','playerDetail']);
 const DESKTOP_ALIAS={'pc-fixtures':'pc-fixtures','pc-standings':'pc-standings','pc-tools':'pc-tools','pc-data':'pc-data','pc-draws':'pc-draws'};
 const MODE=()=>new URLSearchParams(location.search).get('mode')||'';
