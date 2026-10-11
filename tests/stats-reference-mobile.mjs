@@ -164,8 +164,9 @@ const rect=e=>{const r=e.getBoundingClientRect();return {top:r.top,bottom:r.bott
   await page.evaluate(()=>window.scrollTo(0,0));
   await page.setViewportSize({width,height:780});
   await page.waitForTimeout(400);
-  // Navigation restores the previous deep scroll position; measure the top
-  // only after that restoration and the viewport resize have completed.
+  // Returning restores the previous position for three seconds. Real user
+  // input cancels that restoration before scrolling back to the top.
+  await page.keyboard.press('Home');
   await page.evaluate(()=>window.scrollTo(0,0));
   await page.waitForTimeout(300);
   const returnedHeading=await page.locator('.v33-general-title').first().evaluate(rect);
