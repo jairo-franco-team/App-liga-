@@ -25,8 +25,8 @@ html :where(
   --ljr1420-muted:#c2d4ee!important;
   --ljr1420-cyan:#00dbea!important;
   --ljr1420-canvas:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;
-  --ljr1420-surface:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;
-  --ljr1420-button:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;
+  --ljr1420-surface:none!important;
+  --ljr1420-button:none!important;
   --ljr1310-bg:var(--ljr1420-page)!important;
   --ljr1310-surface:var(--ljr1420-panel)!important;
   --ljr1310-card:var(--ljr1420-card)!important;
@@ -46,7 +46,7 @@ html :where(
   --v1398-muted:var(--ljr1420-muted)!important;
   --v1398-buttons:var(--ljr1420-button)!important;
   --v1398-surface:var(--ljr1420-surface)!important;
-  --v1398-active:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;
+  --v1398-active:#00dbea!important;
   --v1340-field:var(--ljr1420-field)!important;
   --ljr-notice-button-bg:var(--ljr1420-button)!important;
   --ljr-notice-button-line:var(--ljr1420-line)!important;
@@ -90,7 +90,7 @@ html :where(
   body .ljr-install-overlay .ljr-install-shell
 ) :is(.v1130-banner,.v1130-hint,.v1130-summary,.v1130-record,.v1212-metrics>div,.v1212-filters,.v1212-item,.v1212-details,.v1212-empty,.v1212-disclaimer,.v1223-insight,.v1223-chart,.v1223-notice,.ljr-admin-area,.ljr-admin-results,.ljr-simple-intro,.ljr-guide,.ljr-admin-howto,.ljr-smart-hub,.ljr-smart-tasks,.ljr-editor-hub,.ljr-editor-section-info,.ljr-editor-preview,.ljr-editor-autofill,.ljr-notice-fixture-label,.ljr-editor-feedback,.ljr-editor-row,.ljr-editor-empty,.ljr-review-card,.ljr-review-insights,.ljr-review-empty,.ljr-review-body,.ljr-review-feedback,.ljr-review-device-results,.ljr-review-stats>div,.ljr-studio,.v1081-note,.v1081-item,.v1081-preview,.v1081-role,.v1081-channel-note,.v569-card,.v1300-panel,.v1300-detail,.v569-inline-auth,.v569-security-state,.v577-device-summary,.v569-devices article,.v1300-findings article,.v1300-ai-status,.v1300-ai-answer,.v1300-cloud-state,.v1300-cloud-output,.v1300-pass-help,.v1150-privacy-card,.v1125-editor,.v1125-stats>div,.v1126-editor,.v1126-metrics>div,.v1126-extra,.v1111-context,.v1230-assistant,.v1232-qa,.csvpro-drop,.csvpro-summary>div,.csvpro-status,.v105-poll-intro,.v105-poll-grid label,.v105-meeting-notice,.v875-meeting-options,.ljr-meeting-hub,.v1130-card,.v1130-filters,.v1130-stat,.v1240-calendar-ai,.v190-recruit-card,.v190-publish-card,.v1390-panel,.v1005-credential-intro,.registration-capture,.v1004-pub-hub,.v642-publications-card,.v642-publications-card.v642-publications-card,.ljr-install-guide,.ljr-install-step,.ljr-backup-section,.ljr-backup-stats>div,.v46-ref-device,.v46-ref-master,.v46-ref-settings,.v46-ref-categories,.v840-match-feed,.v852-feed,.v1082-push,.v1073-mini,.v1215-automation,.v1215-audit,.v1215-answer,.v1215-panel,.v970-match-insight,.v970-game-tools,.v970-round-performance,.v619-q-hero,.v619-q-mini-stats>span,.ljr-studio-note,.v1130-summary span,.v1130-local-source,.v1107-calendar-output,.v1107-fixture.v1130-fixture,.v1240-local,.v1240-kpis>div,.v1240-warnings p,.v919-meeting-hero,.v919-hero-day,.mh-header,.mh-stats>div,.mh-record,.mh-proposal,.mh-overview,.mh-tip,.v105-meeting-form>label,.v875-meeting-options>label,.v1111-form,.v1126-match,.v1126-profile,.v1126-detail,.v1126-saved,.sp-intro,.sp-metric,.sp-graph,.sp-item,.sp-foot,.sp-empty,.sp-alerts,.sp-alerts>div span,.sp-log-row,.sp-balance,.sp-spaces label,.sp-import-area details,.v160-matchday-hero,.v160-matchday-bar,.v164-matchday-match,.v164-matchday-timeline,.cms-extra-design,.cms-local-ai,.v164-history-controls,.v164-history-summary>div,.v164-history-match,.v164-history-detail-body,.v164-history-empty,.v562-filters,.v562-team,.v562-player,.v713-ai,.v713-auto,.v713-item,.v713-cats,.v1081-public,.v1210-audit,.v1210-warning,.v1210-suggestion,.v1150-privacy-banner,.v1300-choice,.v1300-permission,.v1130-state,.v1130-day h4,.v1107-fixture-top strong) {
 background-color:var(--ljr1420-panel)!important;
-  background-image:var(--ljr1420-surface)!important;
+  background-image:none!important;
   border:1px solid var(--ljr1420-line)!important;
   border-radius:17px!important;
   color:var(--ljr1420-ink)!important;
@@ -174,7 +174,7 @@ html :where(
   body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(select option,select optgroup) {
-background:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;color:#fff!important;
+background:#000040!important;color:#fff!important;
 }
 
 html body[data-app-route="recruitment"] #screen #v190-recruitment-page .v190-community-select>.ljr-icon-picker {
@@ -204,7 +204,7 @@ box-sizing:border-box!important;
   border:1px solid rgba(147,190,255,.29)!important;
   border-radius:13px!important;
   background-color:#000040!important;
-  background-image:var(--ljr1420-button)!important;
+  background-image:none!important;
   color:#fff!important;
   -webkit-text-fill-color:#fff!important;
   text-shadow:none!important;
@@ -223,7 +223,7 @@ html :where(
   body .ljr-install-overlay .ljr-install-shell
 ) :is(.v1130-history>button,.v1130-record button,.v1212-audit button,.v1223-insight button,.ljr-admin-tile,.cms-kind-grid>button,.cms-design-presets>button,.cms-form>button,.ljr-editor-two-choice>button,.ljr-editor-extra-actions>button,.ljr-editor-hub-grid>button,.ljr-editor-tools>button,.ljr-editor-bottom>button,.ljr-editor-smart-tools>button,.ljr-review-tabs>button,.ljr-review-automation button,.ljr-review-footer button,.ljr-smart-actions button,.ljr-smart-tasks button,.liga-media-actions>button,.ljr-guide>summary,.v569-primary,.v569-secondary,.v569-link,.v569-methods button,.v1300-primary,.v1300-actions button,.v1300-permission button,.v1300-link,.v1300-pass-help button,.v1300-ai-actions button,.v105-btn,.v105-actions button,.v1125-toolbar button,.v1125-form-actions button,.v1126-toolbar button,.v1126-tools button,.v1126-save,.v1111-event-actions button,.v1111-bottom button,.csvpro-button,.v1232-actions button,.v1210-alert-tools-row>button,.v1210-official-link,.v919-action,.v875-agenda-chips button,.mh-actions button,.v1130-bar button,.v1130-source-actions button,.v1130-card-actions button,.v1240-buttons button,.v190-recruit-card button,.v190-publish-card button,.v1390-panel button,.v1005-step-grid>button,.capture-actions>button,.v1004-pub-primary,.v1004-pub-mini,.v1004-pub-editor,.ljr-install-primary,.ljr-install-secondary,.ljr-install-choice,.ljr-install-utilities button,.ljr-install-utilities a,.ljr-backup-primary,.ljr-backup-section button,.v840-head-actions button,.v840-feed-tabs button,.v1073-dashboard-actions button,.v1215-action-row button,.v1215-query-row button,.v1215-suggestions button,.v970-quick-buttons button,.v970-insight-toggle,.v618-q-nav button,.v618-q-actions button,.v196-toolbar button,.ljr-layout-gallery>button,.ljr-studio-actions button,.ljr-picker-open,.ljr-picker-options>button):is(.active,.is-active,.selected,[aria-pressed=true],[aria-selected=true],.v569-primary,.v1300-primary,.ljr-install-primary,.ljr-admin-tile-primary,.v1126-save,.is-save) {
 background-color:#000040!important;
-  background-image:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;
+  background-image:none!important;
   border-color:rgba(85,227,241,.65)!important;
   box-shadow:inset 0 -2px rgba(85,227,241,.8),0 4px 12px rgba(1,10,53,.2)!important;
 }
@@ -275,7 +275,7 @@ box-sizing:border-box!important;
   border:1px solid rgba(137,194,255,.3)!important;
   border-radius:13px!important;
   background-color:#000040!important;
-  background-image:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;
+  background-image:none!important;
   color:#85edf6!important;
   -webkit-text-fill-color:#85edf6!important;
   font-size:23px!important;
@@ -366,7 +366,7 @@ box-sizing:border-box!important;
   margin:0!important;padding:0!important;
   border:1px solid rgba(143,186,255,.32)!important;
   border-radius:13px!important;
-  background:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;
+  background:#000040!important;
   color:#fff!important;
   -webkit-text-fill-color:#fff!important;
   font-size:24px!important;line-height:1!important;
@@ -385,7 +385,7 @@ box-sizing:border-box!important;
   padding:9px!important;
   border:1px solid rgba(151,190,250,.35)!important;
   border-radius:12px!important;
-  background:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;
+  background:#000040!important;
   color:#d8e6ff!important;
   -webkit-text-fill-color:#d8e6ff!important;
   min-height:44px!important;
@@ -403,7 +403,7 @@ padding:10px 12px!important;margin:0 8px 0 0!important;
   max-width:64%!important;
   border:1px solid rgba(153,206,255,.4)!important;
   border-radius:9px!important;
-  background:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;color:#fff!important;
+  background:#000040!important;color:#fff!important;
   font:600 12px/1.3 system-ui,sans-serif!important;
   -webkit-text-fill-color:#fff!important;
 }
@@ -416,7 +416,7 @@ html :where(
   body .ljr-install-overlay .ljr-install-shell
 ) :is(.ljr-admin-tile-danger,.ljr-review-danger,.v569-danger,.is-danger,[data-logout],[data-revoke]) {
 background-color:#743353!important;
-  background-image:linear-gradient(145deg,#81395c,#682b4b)!important;
+  background-image:none!important;
   border-color:rgba(255,179,200,.5)!important;
   color:#fff1f5!important;
   -webkit-text-fill-color:#fff1f5!important;
@@ -479,7 +479,7 @@ background:transparent!important;
 }
 
 html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"],[data-app-route="players"],[data-app-route="leagueTools"],[data-app-route="tableExport"],[data-app-route="bracketBuilder"],[data-app-route="matchday"]) #screen :is(.v92-match-actions,.v92-match-actions button,.v642-action-icon,.v642-preview-icon,.v569-inline button) {
-background-color:#000040!important;background-image:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;border-color:rgba(137,162,242,.3)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+background-color:#000040!important;background-image:none!important;border-color:rgba(137,162,242,.3)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
 }
 
 html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"],[data-app-route="players"],[data-app-route="leagueTools"],[data-app-route="tableExport"],[data-app-route="bracketBuilder"],[data-app-route="matchday"]) #screen .v92-source {
@@ -508,7 +508,7 @@ html :where(
   body .ljr-install-overlay .ljr-install-shell
 ) :is(button,summary):not(:is(.sp-danger,.is-danger,.ljr-admin-tile-danger,.v569-danger,.logout,[data-md-action="goal"])) {
   background-color:#000040!important;
-  background-image:var(--ljr1420-button)!important;
+  background-image:none!important;
   border-color:var(--ljr1420-line)!important;
   color:#fff!important;
   -webkit-text-fill-color:#fff!important;
@@ -521,7 +521,7 @@ html :where(
   body .ljr-install-overlay .ljr-install-shell
 ) :is(button[aria-selected="true"],button[aria-pressed="true"],button.active,button.is-active,.sp-primary,.v919-action.is-save,.v1126-team-rail button.active) {
   background-color:#00dbea!important;
-  background-image:linear-gradient(160deg,#00dbea,#00cbdc)!important;
+  background-image:none!important;
   border-color:var(--ljr1420-cyan)!important;
   color:#000040!important;
   -webkit-text-fill-color:#000040!important;
@@ -534,7 +534,7 @@ html :where(
   body .ljr-install-overlay .ljr-install-shell
 ) :where(input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]):not([type=file]),select,textarea,.v164-history-search-wrap,.v562-search,.sp-search) {
   background-color:var(--ljr1420-field)!important;
-  background-image:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;
+  background-image:none!important;
   border-color:var(--ljr1420-line)!important;
   color:#fff!important;
   -webkit-text-fill-color:#fff!important;
@@ -548,7 +548,7 @@ html :where(
   body .ljr-install-overlay .ljr-install-shell
 ) :is(.sp-intro-icon,.v1126-trophy,.v1240-head>span,.v1111-shortcuts button,.v642-action-icon) {
   background-color:#000040!important;
-  background-image:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;
+  background-image:none!important;
   border-color:var(--ljr1420-line)!important;
   color:#bdeaf9!important;
 }
@@ -624,7 +624,7 @@ transition:none!important;
 /* Acciones principales: el mismo cyan de Competición y Fantasy. */
 html body .liga-media-modal > section :is(.cms-form > button[type="submit"],.ljr-editor-primary,.ljr-notice-create,.ljr-review-create),
 html body .v105-modal .v105-dialog :is(.sp-primary,.v105-btn.primary) {
-  background:linear-gradient(180deg,#00dbea,#00cbdc)!important;
+  background:#00dbea!important;
   border-color:#00dbea!important;color:#000040!important;-webkit-text-fill-color:#000040!important;
 }
 

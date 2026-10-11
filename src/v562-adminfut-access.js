@@ -67,6 +67,15 @@ const V563_ICON_PATHS={
   review:'<rect x="4" y="4" width="16" height="17" rx="2"/><path d="M8 9h8m-8 4h5m-5 4 2 2 5-5"/>'
 };
 function v563Icon(icon){
+ // Original Miapp vectors, restricted to the JR Control cards.
+ const names={positions:'standings',goal:'trophy',yellow:'yellowCard',ban:'warning',target:'competition',register:'player',id:'player',matchday:'calendar',document:'news',report:'news',goals:'trophy',scorers:'trophy',book:'news',publish:'image',account:'user',permission:'shield',notice:'notification',
+  reschedule:'calendar',sponsor:'heart',meeting:'calendarAdd',delegate:'team',officials:'referee',
+  incidents:'warning',backup:'download',audit:'news',import:'download',poll:'stats',
+  calendarExport:'calendar',match:'fixture',brackets:'competition',simulator:'standings',
+  analysis:'stats',tactic:'lineup',alertShield:'shield',trophy:'trophy',export:'download',
+  editPage:'edit',manage:'settings',review:'checkCircle'};
+ const original=window.LJR_ICONS?.svg(names[icon]||icon);
+ if(original)return original;
  const path=V563_ICON_PATHS[icon];
  return path?'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+path+'</svg>':esc(icon);
 }

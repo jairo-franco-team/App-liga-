@@ -46,8 +46,9 @@ async function fixtureAccount(page){
  });
 }
 async function royalSurface(locator,label){
- const paint=await locator.evaluate(e=>{const c=getComputedStyle(e);return {background:c.backgroundImage,color:c.color};});
- assert.match(paint.background,/linear-gradient/,label+' visible gradient');
+ const paint=await locator.evaluate(e=>{const c=getComputedStyle(e);return {background:c.backgroundImage,color:c.color,canvas:e.matches('.v105-dialog,.liga-media-modal>section')};});
+ if(paint.canvas)assert.match(paint.background,/linear-gradient/,label+' canvas gradient');
+ else assert.equal(paint.background,'none',label+' solid fill without a control gradient');
  assert.doesNotMatch(paint.background,/rgb\(4[89], 1[12][0-9], 2[0-9][0-9]\)/,label+' no pale blue');
 }
 const paleFailures=[];
