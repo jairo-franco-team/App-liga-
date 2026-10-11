@@ -5,15 +5,25 @@ import {readFileSync} from 'node:fs';
 const read=(p)=>readFileSync(new URL('../'+p,import.meta.url),'utf8');
 const index=read('index.html');
 const css=read('src/v1396-admin-profile-light-royal.css');
-const href='src/v1396-admin-profile-light-royal.css?v=20261010-v1396-profile-blue-bright';
+const profileHref=[...index.matchAll(/<link\\s+rel="stylesheet"\\s+href="([^"]*v1396-admin-profile-light-royal\\.css\\?[^"]+)"/g)]
+  .map(m=>m[1]);
+const balancedHref='./src/v1406-account-balanced-royal.css?v=20261010-v1406-medium-royal';
 
-test('V1396: capa clara de cuenta cargada al final para prevalecer sobre estilos oscuros',()=>{
-  assert.equal(index.split(href).length-1,1);
+test('V1396: capa de perfil presente, con la paleta azul rey intermedia como último estilo',()=>{
+  assert.equal(profileHref.length,1,'La capa V1396 no debe duplicarse');
+  const href=profileHref[0];
   assert.ok(index.indexOf(href)>index.indexOf('v1387-profile-account-night-polish.css'));
   assert.ok(index.indexOf(href)>index.indexOf('v1392-admin-warm-app-colors.css'));
   assert.ok(index.indexOf(href)>index.indexOf('v1395-admin-three-tools-night-polish.css'));
-  const following=index.slice(index.indexOf(href)+href.length);
-  assert.doesNotMatch(following, /<link[^>]+rel="stylesheet"/);
+  assert.ok(index.includes(balancedHref),'Debe incluirse la paleta V1406');
+  assert.ok(index.indexOf(balancedHref)>index.indexOf(href),'V1406 debe prevalecer sobre V1396');
+  const later=[...index.slice(index.indexOf(balancedHref)+balancedHref.length).matchAll(/<link\\s+rel="stylesheet"\\s+href="([^"]+)"/g)];
+  assert.equal(later.length,0,'V1406 debe ser la última hoja CSS para no reaplicar tonos claros/oscuros');
+  const royal=read('src/v1406-account-balanced-royal.css');
+  assert.match(royal,/--v1406-royal:#225BB8/);
+  assert.match(royal,/\\[data-app-route="profile"\\]/);
+  assert.match(royal,/\\[data-app-route\\^="account"\\]/);
+  assert.doesNotMatch(royal,/<script|javascript:|pointer-events\\s*:\\s*none/i);
 });
 
 test('V1396: todas las pantallas de perfil y cuenta, no otras rutas',()=>{
