@@ -33,7 +33,7 @@ html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen{
 }
 /* Perfil: portada y opciones de Mi Cuenta sin recuadros muy oscuros. */
 html body[data-app-route="profile"] #screen :is(
- .v12-profile-card[data-v569-owned],.v12-profile-card[data-v569-inline],
+ .v12-profile-card,.v12-profile-card[data-v569-owned],.v12-profile-card[data-v569-inline],
  .v569-inline-auth,.v569-security-state
 ){
  background:linear-gradient(151deg,#5796ce 0%,#4686c3 55%,#3476b6 100%)!important;
@@ -70,6 +70,11 @@ html body[data-app-route="profile"] #screen :is(
  .v569-profile-copy small,.v569-profile-copy b,.v569-profile-copy p,
  .v569-inline-head p,.v569-profile-bio
 ){color:#ebf5ff!important}
+/* Salir de la cuenta conserva color de advertencia, pero no morado casi negro. */
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button.logout{
+ background:linear-gradient(140deg,#ad667c,#924d6a)!important;
+ border-color:#f1c6d2!important;color:#fff!important;
+}
 /* Inicio de sesión/crear cuenta dentro del perfil: campos y pestañas claros. */
 html body[data-app-route="profile"] #screen :is(
  .v569-inline-auth input:not([type=checkbox]),.v569-inline-auth select,
@@ -264,9 +269,8 @@ html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] :is(
 ){
  background:#2e6da9!important;border:1px solid #cce7ff!important;color:#fff!important;
 }
-html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] :is(
- .ljr-save-profile,.ljr-photo-upload input::file-selector-button
-){
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-save-profile,
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-photo-upload input::file-selector-button{
  background:linear-gradient(135deg,#69a9df,#4086c4)!important;
  border:1px solid #d9ecff!important;color:#fff!important;
 }
