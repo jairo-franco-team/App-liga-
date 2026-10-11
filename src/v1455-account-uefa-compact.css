@@ -1,6 +1,6 @@
 /* V1455 · Mi cuenta inspirado en referencias Mi UEFA. Alcance exclusivo de account*.
  * Un único fondo azul rey y dos áreas, sin cambiar logos ni lógica de registro. */
-html body[data-app-route^="account"] .ljr-uefa-layout{
+html body[data-app-route^="account"] #screen .ljr-uefa-layout{
   --ljr-uefa-line:rgba(141,187,250,.34);
   box-sizing:border-box!important;
   display:grid!important;
@@ -14,33 +14,33 @@ html body[data-app-route^="account"] .ljr-uefa-layout{
   background:#142f82!important;
   box-shadow:0 10px 26px rgba(0,10,54,.16)!important;
 }
-html body[data-app-route^="account"] .ljr-uefa-layout *,
-html body[data-app-route^="account"] .ljr-uefa-guest *{box-sizing:border-box}
-html body[data-app-route^="account"] .ljr-uefa-side{
+html body[data-app-route^="account"] #screen .ljr-uefa-layout *,
+html body[data-app-route^="account"] #screen .ljr-uefa-guest *{box-sizing:border-box}
+html body[data-app-route^="account"] #screen .ljr-uefa-side{
   background:linear-gradient(175deg,#356cc1 0%,#2455ab 52%,#123474 100%)!important;
   padding:22px 14px 20px!important;
   min-width:0!important;
   border-right:1px solid rgba(207,226,255,.32)!important;
   color:#fff!important;
 }
-html body[data-app-route^="account"] .ljr-uefa-brand{
+html body[data-app-route^="account"] #screen .ljr-uefa-brand{
   color:#fff!important;
   font:900 clamp(16px,2.2vw,24px)/1.1 Inter,Arial,sans-serif!important;
   letter-spacing:-.04em!important;
   margin:0 0 26px!important;
 }
-html body[data-app-route^="account"] .ljr-uefa-brand b{color:#a9e4ff!important}
-html body[data-app-route^="account"] .ljr-uefa-welcome{
+html body[data-app-route^="account"] #screen .ljr-uefa-brand b{color:#a9e4ff!important}
+html body[data-app-route^="account"] #screen .ljr-uefa-welcome{
   color:#fff!important;
   font:500 clamp(13px,1.6vw,18px)/1.18 Inter,Arial,sans-serif!important;
   margin:0 0 24px!important;
   overflow-wrap:anywhere;
 }
-html body[data-app-route^="account"] .ljr-uefa-welcome b{color:#91e9ff!important}
-html body[data-app-route^="account"] .ljr-uefa-welcome span{display:block;margin-top:3px;color:#d9e7ff}
-html body[data-app-route^="account"] .ljr-uefa-nav{display:grid;gap:4px}
-html body[data-app-route^="account"] .ljr-uefa-nav button,
-html body[data-app-route^="account"] .ljr-uefa-return{
+html body[data-app-route^="account"] #screen .ljr-uefa-welcome b{color:#91e9ff!important}
+html body[data-app-route^="account"] #screen .ljr-uefa-welcome span{display:block;margin-top:3px;color:#d9e7ff}
+html body[data-app-route^="account"] #screen .ljr-uefa-nav{display:grid;gap:4px}
+html body[data-app-route^="account"] #screen .ljr-uefa-nav button,
+html body[data-app-route^="account"] #screen .ljr-uefa-return{
   display:block!important;min-height:36px!important;max-width:100%!important;
   width:100%!important;margin:0!important;padding:9px 7px!important;
   border:0!important;border-left:3px solid transparent!important;
@@ -50,35 +50,35 @@ html body[data-app-route^="account"] .ljr-uefa-return{
   font:650 clamp(10px,1.2vw,12px)/1.34 Inter,Arial,sans-serif!important;
   cursor:pointer!important;box-shadow:none!important;
 }
-html body[data-app-route^="account"] .ljr-uefa-nav button.active{
+html body[data-app-route^="account"] #screen .ljr-uefa-nav button.active{
   color:#fff!important;border-left-color:#5fe4fa!important;
   background:rgba(3,27,99,.30)!important;font-weight:850!important;
 }
-html body[data-app-route^="account"] .ljr-uefa-nav button:focus-visible,
-html body[data-app-route^="account"] .ljr-uefa-return:focus-visible{
+html body[data-app-route^="account"] #screen .ljr-uefa-nav button:focus-visible,
+html body[data-app-route^="account"] #screen .ljr-uefa-return:focus-visible{
   outline:2px solid #6eeafc!important;outline-offset:1px!important
 }
-html body[data-app-route^="account"] .ljr-uefa-return{
+html body[data-app-route^="account"] #screen .ljr-uefa-return{
   margin-top:18px!important;border-top:1px solid rgba(221,239,255,.20)!important;
   border-radius:0!important;padding-top:15px!important
 }
-html body[data-app-route^="account"] .ljr-uefa-layout > .v569-page{
+html body[data-app-route^="account"] #screen .ljr-uefa-layout > .v569-page{
   width:100%!important;max-width:none!important;min-width:0!important;
   margin:0!important;padding:23px clamp(12px,2.6vw,27px) 24px!important;
   background:linear-gradient(180deg,#113681,#0d2470 80%,#0b1f64)!important;
   color:#fff!important;
 }
-html body[data-app-route^="account"] .ljr-uefa-layout .v569-page-head{padding:0 0 13px!important}
-html body[data-app-route^="account"] .ljr-uefa-layout .v569-page-head small{color:#81e5ff!important;font-size:9px!important}
-html body[data-app-route^="account"] .ljr-uefa-layout .v569-page-head h1{
+html body[data-app-route^="account"] #screen .ljr-uefa-layout .v569-page-head{padding:0 0 13px!important}
+html body[data-app-route^="account"] #screen .ljr-uefa-layout .v569-page-head small{color:#81e5ff!important;font-size:9px!important}
+html body[data-app-route^="account"] #screen .ljr-uefa-layout .v569-page-head h1{
   color:#fff!important;font-size:clamp(19px,2.8vw,27px)!important;
   line-height:1.17!important;margin:5px 0!important;
 }
-html body[data-app-route^="account"] .ljr-uefa-layout .v569-page-head p{
+html body[data-app-route^="account"] #screen .ljr-uefa-layout .v569-page-head p{
   max-width:620px!important;font-size:clamp(11px,1.4vw,13px)!important;
   line-height:1.5!important;color:#c9daff!important;
 }
-html body[data-app-route^="account"] .ljr-uefa-layout :is(.v569-card,.v1300-panel,.v1300-detail,.v1150-privacy-card){
+html body[data-app-route^="account"] #screen .ljr-uefa-layout :is(.v569-card,.v1300-panel,.v1300-detail,.v1150-privacy-card){
   max-width:100%!important;min-width:0!important;
   padding:clamp(12px,2vw,20px)!important;
   border-radius:10px!important;
@@ -86,11 +86,11 @@ html body[data-app-route^="account"] .ljr-uefa-layout :is(.v569-card,.v1300-pane
   background:linear-gradient(170deg,#2054ad,#173d96)!important;
   box-shadow:none!important;
 }
-html body[data-app-route^="account"] .ljr-uefa-layout .v569-form{gap:12px!important}
-html body[data-app-route^="account"] .ljr-uefa-layout .v569-field>span{
+html body[data-app-route^="account"] #screen .ljr-uefa-layout .v569-form{gap:12px!important}
+html body[data-app-route^="account"] #screen .ljr-uefa-layout .v569-field>span{
   color:#e4eeff!important;font-size:10px!important;letter-spacing:.035em!important
 }
-html body[data-app-route^="account"] .ljr-uefa-layout :is(.v569-field input,.v569-field select,.v569-form textarea){
+html body[data-app-route^="account"] #screen .ljr-uefa-layout :is(.v569-field input,.v569-field select,.v569-form textarea){
   width:100%!important;max-width:100%!important;min-width:0!important;
   min-height:43px!important;height:auto!important;
   padding:10px 11px!important;
@@ -99,19 +99,19 @@ html body[data-app-route^="account"] .ljr-uefa-layout :is(.v569-field input,.v56
   border:1px solid rgba(170,206,255,.50)!important;border-radius:7px!important;
   box-shadow:none!important;
 }
-html body[data-app-route^="account"] .ljr-uefa-layout :is(.v569-primary,.v569-secondary,.v569-danger,.v1300-primary){
+html body[data-app-route^="account"] #screen .ljr-uefa-layout :is(.v569-primary,.v569-secondary,.v569-danger,.v1300-primary){
   min-height:42px!important;height:auto!important;
   padding:10px 14px!important;border-radius:7px!important;
   font-size:12px!important;line-height:1.35!important;
   white-space:normal!important;overflow-wrap:anywhere!important;
 }
-html body[data-app-route^="account"] .ljr-uefa-layout .v569-primary{
+html body[data-app-route^="account"] #screen .ljr-uefa-layout .v569-primary{
   background:linear-gradient(100deg,#24cae7,#52e9f4)!important;
   color:#08175d!important;font-weight:850!important;
 }
-html body[data-app-route^="account"] .ljr-uefa-layout .v569-check b{color:#f4f7ff!important;font-size:11px!important}
-html body[data-app-route^="account"] .ljr-uefa-layout .v569-check small,
-html body[data-app-route^="account"] .ljr-uefa-layout .v569-note{
+html body[data-app-route^="account"] #screen .ljr-uefa-layout .v569-check b{color:#f4f7ff!important;font-size:11px!important}
+html body[data-app-route^="account"] #screen .ljr-uefa-layout .v569-check small,
+html body[data-app-route^="account"] #screen .ljr-uefa-layout .v569-note{
   font-size:10px!important;line-height:1.45!important;
   color:#c9dbf7!important;
 }
@@ -125,38 +125,38 @@ html body:is([data-app-route="accountLogin"],[data-app-route="accountRegister"])
   min-height:0!important;
   padding-bottom:clamp(20px,4vw,46px)!important;
 }
-html body:is([data-app-route="accountLogin"],[data-app-route="accountRegister"]) .v569-page.ljr-uefa-guest{
+html body:is([data-app-route="accountLogin"],[data-app-route="accountRegister"]) #screen .v569-page.ljr-uefa-guest{
   width:min(calc(100% - 24px),570px)!important;
   max-width:570px!important;min-width:0!important;
   margin:14px auto 22px!important;padding:12px 0 14px!important;
 }
-html body:is([data-app-route="accountLogin"],[data-app-route="accountRegister"]) .ljr-uefa-guest .v569-card{
+html body:is([data-app-route="accountLogin"],[data-app-route="accountRegister"]) #screen .ljr-uefa-guest .v569-card{
   padding:clamp(14px,3vw,22px)!important;
   border-radius:14px!important;
   background:linear-gradient(150deg,#235cbe,#124197)!important;
   border:1px solid rgba(160,209,255,.42)!important;
 }
-html body:is([data-app-route="accountLogin"],[data-app-route="accountRegister"]) .ljr-uefa-guest .v569-page-head h1{
+html body:is([data-app-route="accountLogin"],[data-app-route="accountRegister"]) #screen .ljr-uefa-guest .v569-page-head h1{
   font-size:clamp(25px,4.7vw,35px)!important;color:#fff!important
 }
-html body:is([data-app-route="accountLogin"],[data-app-route="accountRegister"]) .ljr-uefa-guest .v569-page-head p{
+html body:is([data-app-route="accountLogin"],[data-app-route="accountRegister"]) #screen .ljr-uefa-guest .v569-page-head p{
   font-size:12px!important;color:#cadcff!important
 }
-html body:is([data-app-route="accountLogin"],[data-app-route="accountRegister"]) .ljr-uefa-guest .v569-field>span{
+html body:is([data-app-route="accountLogin"],[data-app-route="accountRegister"]) #screen .ljr-uefa-guest .v569-field>span{
   font-size:10px!important;color:#e2efff!important
 }
-html body:is([data-app-route="accountLogin"],[data-app-route="accountRegister"]) .ljr-uefa-guest .v569-field input{
+html body:is([data-app-route="accountLogin"],[data-app-route="accountRegister"]) #screen .ljr-uefa-guest .v569-field input{
   min-height:44px!important;font-size:14px!important;color:#fff!important;
   background:#0b2e83!important;border:1px solid #608cd5!important;
   border-radius:8px!important;
 }
-html body:is([data-app-route="accountLogin"],[data-app-route="accountRegister"]) .ljr-uefa-guest :is(.v569-primary,.v569-secondary){
+html body:is([data-app-route="accountLogin"],[data-app-route="accountRegister"]) #screen .ljr-uefa-guest :is(.v569-primary,.v569-secondary){
   min-height:43px!important;font-size:13px!important;border-radius:8px!important
 }
-html body:is([data-app-route="accountLogin"],[data-app-route="accountRegister"]) .ljr-uefa-guest .v569-check b{
+html body:is([data-app-route="accountLogin"],[data-app-route="accountRegister"]) #screen .ljr-uefa-guest .v569-check b{
   font-size:11px!important
 }
-html body:is([data-app-route="accountLogin"],[data-app-route="accountRegister"]) .ljr-uefa-guest .v569-check small{
+html body:is([data-app-route="accountLogin"],[data-app-route="accountRegister"]) #screen .ljr-uefa-guest .v569-check small{
   font-size:10px!important;line-height:1.4!important
 }
 /* Modo PC elegido en Chrome Android: navegación usable, nunca miniatura de 1366px. */
@@ -194,35 +194,35 @@ html body:is([data-app-route="accountLogin"],[data-app-route="accountRegister"])
   display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
   gap:12px!important
  }
- html body[data-app-route^="account"] .ljr-uefa-layout{
+ html body[data-app-route^="account"] #screen .ljr-uefa-layout{
   width:calc(100% - 12px)!important;
   grid-template-columns:minmax(104px,31%) minmax(0,1fr)!important;
   margin:8px auto 14px!important;border-radius:9px!important
  }
- html body[data-app-route^="account"] .ljr-uefa-side{padding:15px 8px!important}
- html body[data-app-route^="account"] .ljr-uefa-brand{font-size:16px!important;margin-bottom:18px!important}
- html body[data-app-route^="account"] .ljr-uefa-welcome{
+ html body[data-app-route^="account"] #screen .ljr-uefa-side{padding:15px 8px!important}
+ html body[data-app-route^="account"] #screen .ljr-uefa-brand{font-size:16px!important;margin-bottom:18px!important}
+ html body[data-app-route^="account"] #screen .ljr-uefa-welcome{
   font-size:12px!important;line-height:1.3!important;margin-bottom:12px!important
  }
- html body[data-app-route^="account"] .ljr-uefa-nav button{
+ html body[data-app-route^="account"] #screen .ljr-uefa-nav button{
   font-size:10px!important;line-height:1.25!important;
   padding:8px 4px!important;min-height:32px!important
  }
- html body[data-app-route^="account"] .ljr-uefa-return{font-size:10px!important;padding:10px 3px!important}
- html body[data-app-route^="account"] .ljr-uefa-layout>.v569-page{padding:14px 9px 18px!important}
- html body[data-app-route^="account"] .ljr-uefa-layout :is(.v569-card,.v1300-panel,.v1300-detail,.v1150-privacy-card){
+ html body[data-app-route^="account"] #screen .ljr-uefa-return{font-size:10px!important;padding:10px 3px!important}
+ html body[data-app-route^="account"] #screen .ljr-uefa-layout>.v569-page{padding:14px 9px 18px!important}
+ html body[data-app-route^="account"] #screen .ljr-uefa-layout :is(.v569-card,.v1300-panel,.v1300-detail,.v1150-privacy-card){
   padding:10px!important;border-radius:7px!important
  }
- html body[data-app-route^="account"] .ljr-uefa-layout .v569-page-head h1{font-size:20px!important}
- html body[data-app-route^="account"] .ljr-uefa-layout .v569-page-head p{font-size:11px!important}
- html body[data-app-route^="account"] .ljr-uefa-layout .v569-field>span{font-size:9px!important}
- html body[data-app-route^="account"] .ljr-uefa-layout .v569-field input{font-size:12px!important;min-height:40px!important}
- html body[data-app-route^="account"] .ljr-uefa-layout .v569-form{grid-template-columns:minmax(0,1fr)!important}
+ html body[data-app-route^="account"] #screen .ljr-uefa-layout .v569-page-head h1{font-size:20px!important}
+ html body[data-app-route^="account"] #screen .ljr-uefa-layout .v569-page-head p{font-size:11px!important}
+ html body[data-app-route^="account"] #screen .ljr-uefa-layout .v569-field>span{font-size:9px!important}
+ html body[data-app-route^="account"] #screen .ljr-uefa-layout .v569-field input{font-size:12px!important;min-height:40px!important}
+ html body[data-app-route^="account"] #screen .ljr-uefa-layout .v569-form{grid-template-columns:minmax(0,1fr)!important}
 }
 @media(max-width:355px){
- html body[data-app-route^="account"] .ljr-uefa-layout{
+ html body[data-app-route^="account"] #screen .ljr-uefa-layout{
   grid-template-columns:91px minmax(0,1fr)!important
  }
- html body[data-app-route^="account"] .ljr-uefa-side{padding:12px 5px!important}
- html body[data-app-route^="account"] .ljr-uefa-nav button{font-size:9px!important}
+ html body[data-app-route^="account"] #screen .ljr-uefa-side{padding:12px 5px!important}
+ html body[data-app-route^="account"] #screen .ljr-uefa-nav button{font-size:9px!important}
 }
