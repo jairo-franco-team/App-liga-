@@ -27,9 +27,9 @@ test('V1386: paleta de los cuadros administrativos antes de la capa exclusiva V1
  // Solo la ULTIMA hoja que realmente cambia Perfil/Cuenta debe tener azul rey.
  // Otros modulos pueden añadir CSS después sin bloquear Pages por su nombre.
  const scopedAccountLayers=laterStyles.map(href=>{
-  const path=href.replace(/^\\.\\//,'').split('?')[0];
+  const path=(href.startsWith('./')?href.slice(2):href).split('?')[0];
   return {href, content:read(path)};
- }).filter(layer=>/\\[data-app-route(?:\\^)?=\\\"(?:profile|account)/.test(layer.content));
+ }).filter(layer=>layer.content.includes('data-app-route="profile"') || layer.content.includes('data-app-route^="account"'));
  assert.ok(scopedAccountLayers.length>0,'Debe existir al menos una capa visual de Perfil');
  const lastAccountLayer=scopedAccountLayers.at(-1);
  assert.match(lastAccountLayer.content,/azul rey|royal|luminos|bright/i,
