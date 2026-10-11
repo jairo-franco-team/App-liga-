@@ -20,7 +20,14 @@ test('V1396: la capa azul rey medio predomina sobre capas anteriores en Perfil',
  assert.ok(index.indexOf(balancedHref)>index.indexOf(profileHref[0]));
  assert.ok(index.indexOf(finalHref)>index.indexOf(balancedHref));
  const following=stylesheetLinks.slice(stylesheetLinks.indexOf(finalHref)+1);
- assert.ok(following.every(h=>!h.includes('account')&&!h.includes('profile')),'Ninguna capa posterior debe cambiar la paleta Cuenta');
+ const permittedRestore='v1411-profile-old-layout-restore.css';
+ assert.ok(following.every(h=>(!h.includes('account')&&!h.includes('profile'))||h.includes(permittedRestore)),
+  'Solo la restauracion visual exclusiva de Perfil puede seguir a los estilos de Cuenta');
+ const restored=read('src/'+permittedRestore);
+ assert.ok(index.indexOf(permittedRestore)>index.indexOf(finalHref));
+ assert.match(restored,/html body\[data-app-route="profile"\]/);
+ assert.doesNotMatch(restored,/data-app-route\^="account"|data-app-route="competition"/);
+ assert.doesNotMatch(restored,/<script|javascript:|pointer-events\s*:\s*none/i);
  const medium=read('src/v1406-account-balanced-royal.css');
  const last=read('src/v1402-account-admin-royal-blue.css').split('/* V1407 ·').at(-1);
  assert.match(medium,/--v1406-royal:#225BB8/);

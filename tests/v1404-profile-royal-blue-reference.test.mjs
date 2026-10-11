@@ -44,8 +44,14 @@ test('V1407: hoja azul rey intermedia final publicada con cache nueva para Andro
  for(const href of laterSheets){
   const path=href.startsWith('./')?href.slice(2).split('?')[0]:href.split('?')[0];
   const content=read(path);
-  assert.doesNotMatch(content,/data-app-route="profile"|data-app-route\^="account"/,
-   'Una hoja posterior no debe alterar paleta Cuenta: '+path);
+  if(path==='src/v1411-profile-old-layout-restore.css'){
+   // Restore exactly the old #/profile view without changing other account screens.
+   assert.match(content,/html body\[data-app-route="profile"\]/);
+   assert.doesNotMatch(content,/data-app-route\^="account"|data-app-route="competition"|pointer-events\s*:\s*none/);
+  }else{
+   assert.doesNotMatch(content,/data-app-route="profile"|data-app-route\^="account"/,
+    'Una hoja posterior no debe alterar paleta Cuenta: '+path);
+  }
  }
  assert.match(theme,/--ljr-royal-mid-base:#235EBE/, 'Debe utilizar azul rey medio similar a la barra superior');
 });
