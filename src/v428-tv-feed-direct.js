@@ -23,9 +23,21 @@ function badge(name){
   const src=logo(name),ini=String(name||'JR').split(/\s+/).filter(Boolean).map(x=>x[0]).join('').slice(0,3).toUpperCase();
   return src?'<img src="'+esc(src)+'" alt="'+esc(name)+'" loading="lazy" decoding="async">':'<span>'+esc(ini)+'</span>';
 }
+/* Las horas oficiales del rol corresponden a Juventino Rosas (México), incluso en modo PC. */
 function parseDate(v){
   const m=String(v||'').match(/(\d{1,2})\/(\d{1,2})\/(\d{4})(?:\s+(\d{1,2}):(\d{2}))?/);
-  return m?new Date(+m[3],+m[2]-1,+m[1],+(m[4]||0),+(m[5]||0)).getTime():NaN;
+  if(!m||m[4]===undefined)return NaN;
+  const [day,month,year,hour,minute]=m.slice(1).map(Number);
+  const check=new Date(Date.UTC(year,month-1,day));
+  if(check.getUTCFullYear()!==year||check.getUTCMonth()!==month-1||check.getUTCDate()!==day||hour>23||minute>59)return NaN;
+  const wall=Date.UTC(year,month-1,day,hour,minute);
+  const format=new Intl.DateTimeFormat('en-US',{timeZone:'America/Mexico_City',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'});
+  let value=wall;
+  for(let n=0;n<3;n++){
+    const p=Object.fromEntries(format.formatToParts(value).map(x=>[x.type,x.value]));
+    value+=wall-Date.UTC(+p.year,+p.month-1,+p.day,+p.hour,+p.minute,+p.second);
+  }
+  return value;
 }
 function fixtures(){
   const out=[];
@@ -125,9 +137,12 @@ function fallbackRail(kind){
   ].join('');
 }
 
-function startOfDay(ts){const d=new Date(ts);return new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime()}
-function sameDay(a,b){return Number.isFinite(a)&&startOfDay(a)===startOfDay(b)}
-/* La hora programada NO acredita que un partido haya iniciado. */
+function startOfDay(ts){
+  if(!Number.isFinite(ts))return NaN;
+  const p=Object.fromEntries(new Intl.DateTimeFormat('en-US',{timeZone:'America/Mexico_City',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date(ts)).map(x=>[x.type,x.value]));
+  return Date.UTC(+p.year,+p.month-1,+p.day);
+}
+function sameDay(a,dayCode){return Number.isFinite(a)&&startOfDay(a)===dayCode}
 function isLive(m,now=Date.now()){
   if(m.played||!Number.isFinite(m.time)||now<m.time-15*60000||now>m.time+180*60000)return false;
   const st=norm(m.status);
@@ -149,9 +164,9 @@ function transmissionState(m,now=Date.now()){
   if(now<m.time)return 'PROGRAMADO';
   return now<m.time+105*60000?'INICIO SIN CONFIRMAR':'RESULTADO PENDIENTE';
 }
-function clock(ts){if(!Number.isFinite(ts))return 'POR CONFIRMAR';return new Date(ts).toLocaleTimeString('es-MX',{hour:'numeric',minute:'2-digit',hour12:true}).replace(/\s/g,'').toUpperCase()}
-function shortDay(ts){return new Date(ts).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}).replace('.','').toUpperCase()}
-function tabDay(ts){return new Date(ts).toLocaleDateString('es-MX',{day:'2-digit',month:'short'}).replace('.','').toUpperCase()}
+function clock(ts){if(!Number.isFinite(ts))return 'POR CONFIRMAR';return new Date(ts).toLocaleTimeString('es-MX',{timeZone:'America/Mexico_City',hour:'numeric',minute:'2-digit',hour12:true}).replace(/\s/g,'').toUpperCase()}
+function shortDay(ts){return new Date(ts).toLocaleDateString('es-MX',{timeZone:'America/Mexico_City',day:'2-digit',month:'short'}).replace('.','').toUpperCase()}
+function tabDay(ts){return new Date(ts).toLocaleDateString('es-MX',{timeZone:'UTC',day:'2-digit',month:'short'}).replace('.','').toUpperCase()}
 
 function telecastRow(m){
   const live=isLive(m),center=live&&m.played?(m.hs+' - '+m.as):(m.played?(m.hs+' - '+m.as):clock(m.time));
