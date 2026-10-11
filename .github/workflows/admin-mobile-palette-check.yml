@@ -8,6 +8,10 @@ on:
       - 'src/v1335-admin-app-colors.css'
       - 'src/v1340-admin-mobile-visual-unified.css'
       - 'src/v1246-content-studio.css'
+      - 'src/v1381-admin-colores-oficiales.css'
+      - 'src/v1384-admin-visual-dark-harmony.css'
+      - 'src/v1232-suspension-official-blue.css'
+      - 'tests/v1385-admin-palette-regression.test.mjs'
       - 'tests/admin-palette-android-v1353.mjs'
       - '.github/workflows/admin-mobile-palette-check.yml'
   workflow_dispatch:
