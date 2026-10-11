@@ -4,11 +4,11 @@ import {readFileSync} from 'node:fs';
 const read=p=>readFileSync(new URL('../'+p,import.meta.url),'utf8');
 const html=read('index.html');
 const style=read('src/v1411-profile-old-layout-restore.css');
-test('V1411: Perfil conserva fondo nocturno y opciones sin cuadros',()=>{
- const link='src/v1411-profile-old-layout-restore.css?v=20261010-v1411-original-profile-restore';
+test('V1412: Perfil conserva menú original sin cuadros y adopta azul rey medio',()=>{
+ const link='src/v1411-profile-old-layout-restore.css?v=20261010-v1412-royal-profile-topbar';
  assert.ok(html.includes(link));
  assert.ok(html.indexOf(link)>html.indexOf('src/v1402-account-admin-royal-blue.css'));
- for(const token of ['background:#060755!important','.v12-profile-card[data-v569-owned]','.v569-profile-account-menu>button','.v12-profile-menu>.v12-profile-row','background:transparent!important','border-radius:0!important','border-bottom:1px solid','.v569-profile-buttons>button:first-child']){
+ for(const token of ['background:#2055B7!important','.v12-profile-card[data-v569-owned]','.v569-profile-account-menu>button','.v12-profile-menu>.v12-profile-row','background:transparent!important','border-radius:0!important','border-bottom:1px solid','.v569-profile-buttons>button:first-child','linear-gradient(180deg,#2865BF']){
   assert.ok(style.includes(token),'No existe '+token);
  }
 });
