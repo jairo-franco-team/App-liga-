@@ -1,41 +1,41 @@
-/* CUENTA Y PERFIL | azul luminoso, no amarillo, sin cambios funcionales.
+/* V1400 CUENTA Y PERFIL | AZUL REY de la referencia #1232D5, no azul grisáceo.
    Reglas de presentación cargadas DESPUÉS de V1387 y V1392/V1393.
    No cambia estructura, fotos, formularios, permisos, clases ni listeners. */
 :root {
-  --ljr-account-blue-base:#2e6db8;
-  --ljr-account-blue-surface:#3475bf;
-  --ljr-account-blue-card:#3776bc;
-  --ljr-account-blue-raised:#3d7ec6;
-  --ljr-account-blue-field:#2864ae;
+  --ljr-account-blue-base:#183bc6;
+  --ljr-account-blue-surface:#2148c9;
+  --ljr-account-blue-card:#2349c5;
+  --ljr-account-blue-raised:#2956d3;
+  --ljr-account-blue-field:#1735a2;
   --ljr-account-blue-line:rgba(194,227,255,.66);
   --ljr-account-blue-copy:#f2f8ff;
   --ljr-account-blue-soft:#e2f1ff;
   --ljr-account-blue-highlight:#bde4ff;
-  --ljr-account-blue-action:linear-gradient(135deg,#397bd0 0%,#2869b9 100%);
-  --ljr-account-blue-card-bg:linear-gradient(150deg,#397bc6 0%,#3472ba 60%,#2d68b1 100%);
+  --ljr-account-blue-action:linear-gradient(135deg,#315de2 0%,#1e40bc 100%);
+  --ljr-account-blue-card-bg:linear-gradient(150deg,#2c54dc 0%,#2045c1 60%,#1738ae 100%);
 }
-/* Solo Perfil y rutas de Cuenta: fondo uniforme, notablemente más claro. */
+/* Perfil y rutas de Cuenta: cobalto vibrante con un degradado legible en móvil. */
 html body:is([data-app-route="profile"],[data-app-route^="account"]) {
-  --ljr-account-outer:#2e6db8;
-  --ljr-account-panel:#3475bf;
-  --ljr-account-raised:#397bc6;
-  --ljr-account-deep:#2864ae;
+  --ljr-account-outer:#183bc6;
+  --ljr-account-panel:#2148c9;
+  --ljr-account-raised:#2c54dc;
+  --ljr-account-deep:#1735a2;
   --ljr-account-outline:var(--ljr-account-blue-line);
   --ljr-account-ink:#fff;
   --ljr-account-muted:var(--ljr-account-blue-soft);
-  --ljr-account-royal:#4386d2;
+  --ljr-account-royal:#416bea;
   --ljr-account-gold:var(--ljr-account-blue-highlight);
-  --p1300-bg:#2e6db8;
-  --p1300-surface:#3475bf;
-  --p1300-raised:#397bc6;
-  --p1300-deep:#2864ae;
+  --p1300-bg:#183bc6;
+  --p1300-surface:#2148c9;
+  --p1300-raised:#2c54dc;
+  --p1300-deep:#1735a2;
   --p1300-border:var(--ljr-account-blue-line);
   --p1300-muted:var(--ljr-account-blue-soft);
   --p1300-accent:var(--ljr-account-blue-highlight);
 }
 html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen {
-  background:linear-gradient(168deg,#377dc9 0%,#3272bc 47%,#2a65b0 100%)!important;
-  background-color:#2e6db8!important;
+  background:linear-gradient(168deg,#173add 0%,#1532c5 47%,#1127a9 100%)!important;
+  background-color:#183bc6!important;
   color:#fff!important;
 }
 /* Tarjeta principal de perfil y las tarjetas más internas. */
@@ -65,7 +65,7 @@ html body[data-app-route="profile"] #screen .v569-profile-buttons button:first-c
 }
 html body[data-app-route="profile"] #screen .v569-profile-account-menu>button,
 html body[data-app-route="profile"] #screen .v12-profile-menu>.v12-profile-row {
-  background:linear-gradient(140deg,#3b7cc3,#316daf)!important;
+  background:linear-gradient(140deg,#2f55d5,#1d3db9)!important;
   border:1px solid rgba(193,229,255,.66)!important;
   box-shadow:inset 0 1px rgba(255,255,255,.13)!important;
   color:#fff!important;
@@ -92,13 +92,13 @@ html body[data-app-route^="account"] #screen :is(
   .v1300-cloud-state,.v1300-cloud-output,.v1300-pass-help,
   .v569-security-state,.v577-device-summary,.v569-devices article
 ){
-  background:linear-gradient(143deg,#3777c0,#2f6cb7)!important;
+  background:linear-gradient(143deg,#284ccd,#1c3ab4)!important;
   border:1px solid rgba(191,227,255,.65)!important;
   color:var(--ljr-account-blue-copy)!important;
 }
 html body[data-app-route^="account"] #screen .v569-devices article>span,
 html body[data-app-route^="account"] #screen .v1300-mark {
-  background:#2b68b1!important;
+  background:#1738ae!important;
   border:1px solid rgba(194,231,255,.6)!important;
   color:#d5eeff!important;
 }
@@ -118,7 +118,7 @@ html body[data-app-route^="account"] #screen .v1300-panel :is(h2,.v1300-choice s
   color:#fff!important;
 }
 html body[data-app-route^="account"] #screen :is(.v569-field input,.v1300-cloud-form input,.v1300-select select) {
-  background:#2864ae!important;
+  background:#1735a2!important;
   background-image:none!important;
   border:1px solid rgba(203,233,255,.79)!important;
   color:#fff!important;
@@ -127,7 +127,7 @@ html body[data-app-route^="account"] #screen :is(.v569-field input,.v1300-cloud-
 html body[data-app-route^="account"] #screen :is(.v569-field input,.v1300-cloud-form input)::placeholder {
   color:#e0f0ff!important;opacity:1!important;
 }
-html body[data-app-route^="account"] #screen select option {background:#2864ae;color:#fff}
+html body[data-app-route^="account"] #screen select option {background:#1735a2;color:#fff}
 html body[data-app-route^="account"] #screen :is(.v569-primary,.v1300-primary,.v569-card .v569-primary){
   background:var(--ljr-account-blue-action)!important;
   border:1px solid #c9ebff!important;
@@ -138,17 +138,17 @@ html body[data-app-route^="account"] #screen :is(
  .v569-secondary,.v569-card .v569-secondary,.v1300-actions button,
  .v1300-permission button,.v1300-link,.v1300-pass-help button
 ){
-  background:linear-gradient(140deg,#3f80ca,#306eBA)!important;
+  background:linear-gradient(140deg,#2d58d5,#1d3cb7)!important;
   border:1px solid rgba(202,235,255,.75)!important;color:#fff!important;
 }
 html body[data-app-route^="account"] #screen .v1300-findings article:nth-child(n){
   border-left-color:#b2e1ff!important;
 }
 html body[data-app-route^="account"] #screen .v1300-choice input[type=checkbox]:not(:checked){
-  background:#2a5a94!important;border-color:#b0d4f5!important;
+  background:#173398!important;border-color:#b0d4f5!important;
 }
 html body[data-app-route^="account"] #screen .v1300-choice input[type=checkbox]:checked {
-  background:#58a5ef!important;border-color:#d2f0ff!important;
+  background:#436fe7!important;border-color:#d2f0ff!important;
 }
 html body[data-app-route^="account"] #screen :is(input,select,textarea,button):focus-visible,
 html body[data-app-route="profile"] #screen button:focus-visible {
@@ -172,8 +172,8 @@ html body .liga-media-modal>section:is(
  [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
  [aria-label="Mi avatar y mi camiseta"]
 ){
-  background:linear-gradient(152deg,#4385cf 0%,#387ac3 47%,#2d6ab4 100%)!important;
-  background-color:#3477c0!important;
+  background:linear-gradient(152deg,#355ee3 0%,#244ac7 47%,#1838af 100%)!important;
+  background-color:#2045c1!important;
   border:1px solid #bedfff!important;color:#fff!important;
   box-shadow:0 17px 43px rgba(9,41,102,.24),inset 0 1px rgba(255,255,255,.23)!important;
 }
@@ -191,7 +191,7 @@ html body .liga-media-modal>section:is(
  [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
  [aria-label="Mi avatar y mi camiseta"]
 )>header [data-close]{
-  background:#2b69b3!important;color:#fff!important;
+  background:#1c3bbb!important;color:#fff!important;
   border:1px solid #cbe9ff!important;box-shadow:none!important;
 }
 html body .liga-media-modal>section:is(
@@ -201,7 +201,7 @@ html body .liga-media-modal>section:is(
  [aria-label="Mi avatar y mi camiseta"]
 ) :is(p,label,small){color:#eef7ff!important}
 html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button {
-  background:linear-gradient(148deg,#3a7bc5,#2d68b1)!important;
+  background:linear-gradient(148deg,#2d55d4,#1738ae)!important;
   border:1px solid rgba(199,231,255,.8)!important;color:#fff!important;
 }
 html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button::after{color:#eaf7ff!important}
@@ -213,25 +213,25 @@ html body .liga-media-modal>section:is(
  [aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],
  [aria-label="Términos y condiciones"]
 ) :is(input:not([type=checkbox]),select,textarea){
-  background:#2d69b5!important;color:#fff!important;
+  background:#1838ad!important;color:#fff!important;
   border:1px solid #c5e5ff!important;
 }
 html body .liga-media-modal>section:is(
  [aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"]
 ) .cms-form>button{
-  background:linear-gradient(143deg,#4284cf,#2f6fb9)!important;
+  background:linear-gradient(143deg,#365fe2,#2041bb)!important;
   border:1px solid #c7e8ff!important;color:#fff!important;
 }
 html body .liga-media-modal>section:is([aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"])
  input[type=checkbox]:not(:checked){
-  background:#2b5e9b!important;border-color:#b8dcfa!important;
+  background:#19368e!important;border-color:#b8dcfa!important;
 }
 html body .liga-media-modal>section:is([aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"])
  input[type=checkbox]:checked{
-  background:#61adee!important;border-color:#d2f0ff!important;
+  background:#416de7!important;border-color:#d2f0ff!important;
 }
 html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] :is(.ljr-profile-preview,.ljr-photo-upload,.ljr-avatar-gallery button){
-  background:linear-gradient(147deg,#3a7dc8,#306eb8)!important;
+  background:linear-gradient(147deg,#2f54d6,#1d3cbc)!important;
   border:1px solid rgba(205,232,255,.73)!important;color:#fff!important;
 }
 html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-profile-preview>div {
@@ -239,14 +239,14 @@ html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-p
   box-shadow:0 0 0 4px rgba(198,232,255,.22),0 7px 19px rgba(8,39,97,.21)!important;
 }
 html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] :is(.ljr-photo-upload input,.v800-shirt-fields input,.v893-shirt-customize select){
-  background:#2d68b4!important;border:1px solid #c5e7ff!important;color:#fff!important;
+  background:#1939b1!important;border:1px solid #c5e7ff!important;color:#fff!important;
 }
 html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-photo-upload input::file-selector-button{
-  background:linear-gradient(145deg,#5799e4,#397dcc)!important;
+  background:linear-gradient(145deg,#436fee,#2b56d3)!important;
   color:#fff!important;border:1px solid #d9f1ff!important;
 }
 html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-avatar-gallery button[aria-pressed="true"]{
-  background:linear-gradient(145deg,#4b91db,#3778c5)!important;
+  background:linear-gradient(145deg,#3e6ce8,#2349c4)!important;
   border:2px solid #e1f4ff!important;
   box-shadow:0 0 0 2px rgba(216,242,255,.28)!important;
 }
@@ -264,4 +264,44 @@ html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] :is(bu
 html body[data-app-route^="account"] #screen [hidden]{display:none!important}
 @media(prefers-reduced-motion:reduce){
  html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen :is(button,input){transition:none!important}
+}
+
+/* V1400 · Cubrir la portada de registro y el modal de acceso que viven fuera de #screen.
+   Mantener la geometría, la semántica de estado y los manejadores actuales. */
+html body[data-app-route="profile"] #v168-profile-account .v168-account-card{
+  background:linear-gradient(158deg,#2249d4 0%,#1738bc 55%,#102a9d 100%)!important;
+  border-color:rgba(187,213,255,.76)!important;
+  color:#fff!important;
+}
+html body[data-app-route="profile"] #v168-profile-account :is(.v168-account-icon,.v168-account-actions button:not(.primary)){
+  background:linear-gradient(150deg,#2b56d1,#1a3ab4)!important;
+  border-color:rgba(191,218,255,.74)!important;color:#fff!important;
+}
+html body[data-app-route="profile"] #v168-profile-account .v168-account-actions button.primary{
+  background:linear-gradient(135deg,#4775ed,#244ed5)!important;
+  border-color:#d3e6ff!important;color:#fff!important;
+}
+html body > .v105-modal.v168-account-modal > .v105-dialog{
+  background:linear-gradient(165deg,#1e47d0 0%,#1436b9 56%,#0e289d 100%)!important;
+  border-left-color:rgba(191,215,255,.72)!important;
+  color:#fff!important;
+}
+html body > .v105-modal.v168-account-modal :is(.v105-form input:not([type=checkbox]):not([type=radio]),.v105-form select,.v105-form textarea){
+  background:#1735a2!important;border-color:rgba(193,220,255,.8)!important;
+  color:#fff!important;
+}
+html body > .v105-modal.v168-account-modal :is(.v105-close,.v105-actions button:not(.primary):not([data-close])){
+  background:#244ac6!important;border-color:#a9caff!important;color:#fff!important;
+}
+html body > .v105-modal.v168-account-modal :is(.v105-primary,.v920-btn-primary,.v105-btn.primary){
+  background:linear-gradient(130deg,#416eec,#2451d1)!important;
+  border-color:#d6e8ff!important;color:#fff!important;
+}
+html body > .v105-modal.v168-account-modal :is(button,input,select,textarea):focus-visible{
+  outline:2px solid #d7eaff!important;outline-offset:2px!important;
+}
+/* El azul rey no modifica el significado de acciones destructivas. */
+html body[data-app-route="profile"] #screen :is(.v569-profile-account-menu>button.logout,.v569-profile-account-menu>button[data-logout]){
+  background:linear-gradient(145deg,#8c3655,#63263e)!important;
+  border-color:#e9abc1!important;color:#fff!important;
 }
