@@ -1,0 +1,204 @@
+/* V1383 · Junta de la Liga / Control de delegados — pantalla móvil.
+   La ventana es UNA superficie: formulario y módulo no son tarjetas anidadas.
+   Sólo cambia CSS; se mantienen rutas, acciones, fecha, QR y estado local/servidor. */
+html body > .v105-modal.v875-meeting-modal{
+  --meeting-bg:#06065f;
+  --meeting-deep:#0a235c;
+  --meeting-card:#10377b;
+  --meeting-accent:#1c69d4;
+  --meeting-line:#527fc9;
+  color-scheme:dark!important;
+}
+/* Aprovechar el espacio horizontal real hasta los bordes seguros. */
+html body > .v105-modal.v875-meeting-modal > .v105-dialog{
+  box-sizing:border-box!important;
+  width:min(100%,760px)!important;
+  max-width:760px!important;
+  min-width:0!important;
+  background:#06065f!important;
+  background-image:linear-gradient(165deg,#0c2c80 0%,#0a235c 45%,#06065f 100%)!important;
+  border:1px solid #527fc9!important;
+  color:#f7faff!important;
+}
+/* El formulario ya vive en el diálogo, no necesita otro cuadro. */
+html body > .v105-modal.v875-meeting-modal .v105-meeting-form{
+  box-sizing:border-box!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
+}
+/* Quitar la tarjeta superpuesta del Control de delegados. */
+html body > .v105-modal.v875-meeting-modal .v105-meeting-form > .ljr-meeting-hub{
+  grid-column:1/-1!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  margin:6px 0 14px!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
+  color:#f7faff!important;
+}
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub :is(.mh-header,.mh-body,.mh-fields,.mh-tabs,.mh-stats,.mh-records){
+  box-sizing:border-box!important;
+  min-width:0!important;
+  max-width:100%!important;
+}
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub .mh-header{
+  gap:10px!important;
+  padding:7px 0 2px!important;
+  background:transparent!important;
+}
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub .mh-header h4{
+  font-size:clamp(19px,5vw,25px)!important;
+  line-height:1.2!important;
+  color:#fff!important;
+  overflow-wrap:anywhere!important;
+}
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub .mh-header small{
+  color:#bcd8ff!important;
+  font-size:clamp(10px,2.8vw,12px)!important;
+  letter-spacing:.095em!important;
+}
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub .mh-header>span{
+  background:#10377b!important;
+  border-color:#5d8cdc!important;
+  color:#e0eeff!important;
+  flex-shrink:0!important;
+}
+/* Botones táctiles amplios y equilibrados, dos columnas sin estrechar texto. */
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub .mh-tabs{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:9px!important;
+  width:100%!important;
+  margin:13px 0 15px!important;
+}
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub .mh-tabs>button{
+  box-sizing:border-box!important;
+  width:100%!important;
+  min-width:0!important;
+  min-height:49px!important;
+  padding:10px 8px!important;
+  font-size:clamp(12px,3.6vw,15px)!important;
+  line-height:1.3!important;
+  white-space:normal!important;
+  overflow-wrap:break-word!important;
+  text-align:center!important;
+  color:#f7faff!important;
+  border:1px solid #5583cf!important;
+  background:#10377b!important;
+  background-image:linear-gradient(160deg,#174891,#0d3274)!important;
+  border-radius:12px!important;
+}
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub .mh-tabs>button[aria-selected="true"]{
+  background:#1c69d4!important;
+  background-image:linear-gradient(155deg,#1c69d4,#0d47a1)!important;
+  border-color:#8ab6ee!important;
+  color:#fff!important;
+}
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub .mh-stats{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:7px!important;
+  width:100%!important;
+}
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub .mh-stats>div{
+  min-width:0!important;
+  padding:9px 3px!important;
+  background:#0b2a6b!important;
+  border:1px solid #4b75bd!important;
+  border-radius:11px!important;
+}
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub .mh-stats small{
+  font-size:clamp(9px,2.6vw,12px)!important;
+  line-height:1.25!important;
+  color:#c7dcf7!important;
+}
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub .mh-stats b{
+  font-size:clamp(19px,5vw,24px)!important;
+  line-height:1.3!important;
+}
+/* Eliminamos una tercera tarjeta alrededor del selector de equipos. */
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub .mh-team-picker{
+  box-sizing:border-box!important;
+  width:100%!important;
+  min-width:0!important;
+  padding:0!important;
+  background:transparent!important;
+  background-image:none!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  gap:10px!important;
+}
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub .mh-team-filters{
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+}
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub .mh-body{
+  width:100%!important;
+  gap:11px!important;
+}
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub :is(.mh-tip,.mh-empty){
+  color:#cbdbf3!important;
+  font-size:clamp(12px,3.25vw,14px)!important;
+  line-height:1.48!important;
+}
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub :is(.mh-record,.mh-proposal,.mh-overview){
+  background:#0e3070!important;
+  border-color:#4b75bd!important;
+  color:#f4f9ff!important;
+}
+/* Los colores del formulario coinciden con el resto de la aplicación. */
+html body > .v105-modal.v875-meeting-modal .v105-meeting-form :is(input:not([type=checkbox]):not([type=file]),select,textarea){
+  box-sizing:border-box!important;
+  background:#081e55!important;
+  background-image:none!important;
+  border-color:#5686d0!important;
+  color:#fff!important;
+  min-width:0!important;
+  max-width:100%!important;
+}
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub button:not([aria-selected]){
+  background:#10377b!important;
+  background-image:linear-gradient(155deg,#174891,#0d3274)!important;
+  border-color:#5583cf!important;
+  color:#fff!important;
+}
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub :is(button,input,select,textarea):focus-visible{
+  outline:2px solid #a7caff!important;
+  outline-offset:2px!important;
+}
+/* Mantener visible el contenido sin salirse de la pantalla ni tapar la barra inferior. */
+@media(max-width:600px){
+  html body > .v105-modal.v875-meeting-modal > .v105-dialog{
+    flex:1 1 auto!important;
+    width:100%!important;
+    max-width:100%!important;
+    padding:12px 9px 22px!important;
+    overflow-x:hidden!important;
+    overflow-y:auto!important;
+  }
+  html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub .mh-tabs{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+@media(max-width:355px){
+  html body > .v105-modal.v875-meeting-modal > .v105-dialog{padding-inline:7px!important}
+  html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub .mh-tabs{gap:6px!important}
+  html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub .mh-stats{gap:4px!important}
+}
+/* Visibilidad controlada por la app: no mostrar secciones ocultas. */
+html body > .v105-modal.v875-meeting-modal .ljr-meeting-hub [hidden]{display:none!important}
