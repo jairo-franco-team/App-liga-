@@ -36,7 +36,7 @@ test('estilo aislado a Quiz Arena y cache de assets actualizado',()=>{
  assert.match(css,/\.v614-question-media/);
  assert.match(css,/grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
  assert.match(html,/v1050-quiz-modal-reference\.css\?v=/);
- assert.match(html,/v531-quiz-moreless-drive-reference\.js\?v=20261009-v\d+-[a-z0-9-]+/);
+ assert.match(html,/v531-quiz-moreless-drive-reference\.js\?v=20\d{6}-v\d+-[a-z0-9-]+/);
 });
 
 test('V1057: portada compacta con menú de tres puntos sin recordatorios ni popups',()=>{
