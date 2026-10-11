@@ -10,6 +10,11 @@ const NAV=[
  ['Liga TV','video'],['Sorteos','pc-draws'],['Gaming','predictorSix'],
  ['Datos','pc-data'],['Equipos','teams'],['Noticias','news'],['Más','pc-tools']
 ];
+const DROPDOWNS={
+ Gaming:[['Pronostica Seis','predictorSix'],['Fantasy','fantasy'],['Quiniela','quiniela'],['Quiz Arena','quizArena'],['Más o menos','moreLess']],
+ Datos:[['Clasificación','pc-standings'],['Máximos goleadores','pc-scorers'],['Estadísticas oficiales','pc-data'],['Match Center','matchCenter'],['Performance Zone','safe-performance']],
+ Más:[['Herramientas PC','pc-tools'],['Calendario','pc-calendar'],['Historia','history'],['Notificaciones','pc-notifications'],['Reglamento','rulebook']]
+};
 const TITLES={
  fantasy:'Fantasy de la liga',fantasyTeam:'Mi 7 Ideal',fantasyLeagues:'Ligas Fantasy',
  quiniela:'Quiniela',predictor:'Pronósticos',predictorSix:'Pronostica Seis',
@@ -84,10 +89,13 @@ function shellMarkup(r){
      '<button type="button" class="ljpc-pc-brand" data-ljpc-pc-go="home" aria-label="Ir a Inicio">'+
        '<img src="'+logo+'" alt="Escudo Liga Juventino Rosas">'+
        '<b>LIGA<br>JUVENTINO<br>ROSAS</b></button>'+
-     '<nav aria-label="Menú principal de escritorio">'+NAV.map(([label,route])=>
-       '<button type="button" class="'+(selected===route?'active':'')+'" data-ljpc-pc-go="'+route+'">'+
-       label+(label==='Gaming'||label==='Datos'||label==='Más'?' <span aria-hidden="true">⌄</span>':'')+'</button>'
-     ).join('')+'</nav>'+
+     '<nav aria-label="Menú principal de escritorio">'+NAV.map(([label,route])=>{
+       if(DROPDOWNS[label])return '<div class="ljpc-pc-drop-wrap">'+
+         '<button type="button" class="'+(selected===route?'active':'')+'" data-ljpc-pc-menu="'+label+'" aria-haspopup="true" aria-expanded="false">'+label+' <span aria-hidden="true">⌄</span></button>'+
+         '<div class="ljpc-pc-popover" hidden>'+DROPDOWNS[label].map(([name,to])=>
+           '<button type="button" data-ljpc-pc-go="'+to+'">'+escapeHTML(name)+'</button>').join('')+'</div></div>';
+       return '<button type="button" class="'+(selected===route?'active':'')+'" data-ljpc-pc-go="'+route+'">'+label+'</button>';
+     }).join('')+'</nav>'+
    '</div></div>'+
    '<div class="ljpc-pc-hero"><div class="ljpc-pc-wide">'+
     '<button type="button" class="ljpc-pc-breadcrumb" data-ljpc-pc-go="home">‹ &nbsp; Liga Juventino Rosas</button>'+
@@ -142,14 +150,37 @@ function schedule(){
  if(pending)return;pending=true;
  requestAnimationFrame(()=>{pending=false;sync()});
 }
+function closeMenus(except){
+ document.querySelectorAll('#ljpc-pc-top .ljpc-pc-drop-wrap').forEach(group=>{
+  if(group===except)return;
+  group.classList.remove('open');
+  group.querySelector('[data-ljpc-pc-menu]')?.setAttribute('aria-expanded','false');
+  const pop=group.querySelector('.ljpc-pc-popover');if(pop)pop.hidden=true;
+ });
+}
 document.addEventListener('click',e=>{
- const el=e.target instanceof Element?e.target.closest('[data-ljpc-pc-go]'):null;
- if(!el||!DESKTOP())return;
+ if(!DESKTOP()||!(e.target instanceof Element))return;
+ const dropdown=e.target.closest('#ljpc-pc-top [data-ljpc-pc-menu]');
+ if(dropdown){
+  e.preventDefault();e.stopPropagation();
+  const group=dropdown.closest('.ljpc-pc-drop-wrap'),willOpen=!group.classList.contains('open');
+  closeMenus(group);
+  group.classList.toggle('open',willOpen);
+  dropdown.setAttribute('aria-expanded',String(willOpen));
+  const pop=group.querySelector('.ljpc-pc-popover');if(pop)pop.hidden=!willOpen;
+  return;
+ }
+ const el=e.target.closest('[data-ljpc-pc-go]');
+ closeMenus();
+ if(!el)return;
  const r=el.dataset.ljpcPcGo;
  if(!/^[A-Za-z][A-Za-z0-9-]*$/.test(r||''))return;
  e.preventDefault();e.stopPropagation();
  location.hash='#/'+(DESKTOP_ALIAS[r]||r);
 },true);
+document.addEventListener('keydown',e=>{
+ if(e.key==='Escape'&&DESKTOP())closeMenus();
+});
 window.addEventListener('hashchange',schedule);
 window.addEventListener('resize',schedule);
 window.addEventListener('ljr:official-data',schedule);
