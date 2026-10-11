@@ -1,3 +1,4 @@
+@import url("./v1391-android-admin-visual-harmony.css?v=20261010-v1391-midnight-admin");
 /* V1387 — Registro de avisos: botones alineados y azul nocturno de la app.
    Afecta solo al modal de registro; mantiene intactos listeners, datos, Push y rutas. */
 html body > .v105-modal.v168-account-modal.v920-registration-modal{
