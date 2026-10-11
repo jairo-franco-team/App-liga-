@@ -29,9 +29,10 @@ test('V1426 deja azul rey en cabecera sin alterar pestanas y funciones',()=>{
 test('V1426 CSS cargado DESPUES de otros estilos y con version propia para Android',()=>{
  const link='src/v1426-competition-exact-dark-background.css?v=20261011-v1426-azul-000040';
  assert.equal(html.split(link).length-1,1);
- assert.ok(html.indexOf(link)>html.indexOf('src/profile-first-screenshot-restore.css'));
+ assert.ok(html.indexOf(link)<html.indexOf('src/profile-first-screenshot-restore.css'));
  assert.ok(html.indexOf(link)>html.indexOf('src/v1423-previous-colors-player.css'));
  const tail=html.slice(html.indexOf(link)+link.length);
- assert.doesNotMatch(tail,/<link[^>]+\.css/i);
+ assert.match(tail,/src\/profile-first-screenshot-restore\.css/);
+ assert.doesNotMatch(tail,/src\/v1420-reference-blue-surfaces\.css/);
  assert.match(css,/@layer ljr-reference-surfaces/);
 });
