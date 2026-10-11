@@ -115,3 +115,159 @@
   }
 }
 }
+
+
+/* V1429 · Azul rey a noche SIN MORADO / SIN FONDOS DOBLES. */
+/* Exclusivamente color. Sin alterar tamaños, pantallas, flujos, eventos ni portadas
+   Fantasy/Pronostica Seis, el reproductor, Perfil ni el #000040 de Competición. */
+@layer ljr-reference-surfaces {
+ @media screen {
+  /* Fondo único, claro (rey) arriba y azul noche abajo, nunca al revés. */
+  html body:is([data-app-route="leagueTools"],[data-app-route="notifications"],
+   [data-app-route="historyLog"],[data-app-route="publications"],
+   [data-app-route="publicationCenter"],[data-app-route="recruitment"],
+   [data-app-route="appInstall"],[data-app-route="agendaBuilder"],
+   [data-app-route="credentialBuilder"]) #screen {
+    --ljr1420-page:#050951!important;
+    --ljr1420-panel:#12338d!important;
+    --ljr1420-card:#1742a1!important;
+    --ljr1420-field:#0d286e!important;
+    --ljr1420-canvas:linear-gradient(180deg,#153fbe 0%,#1135a0 24%,#0a227d 51%,#061458 77%,#030943 100%)!important;
+    --ljr1420-surface:linear-gradient(180deg,#1c49ae,#102c80 62%,#0a1d66)!important;
+    --ljr1420-button:linear-gradient(180deg,#2859c6,#173c9b)!important;
+    color-scheme:dark;
+    background-color:#030943!important;
+    background-image:var(--ljr1420-canvas)!important;
+    background-size:100% 100%!important;
+    background-repeat:no-repeat!important;
+  }
+  /* Última regla de la misma capa: anula el degradado invertido de V1428. */
+  html body[data-app-route="leagueTools"] #screen,
+  html body[data-app-route="notifications"] #screen {
+    background:linear-gradient(180deg,#153fbe 0%,#10329c 23%,#0b227e 48%,#07165f 73%,#030943 100%)!important;
+  }
+  /* La hoja exterior es la que posee el degradado; capas estructurales transparentes. */
+  html body[data-app-route="leagueTools"] #screen :is(
+     .v726-tools-page,.v60-tool-page,.v726-tools-content,.v726-tool-grid
+  ),
+  html body[data-app-route="notifications"] #screen :is(
+     .v46-ref-notifications-main,.v46-notifications,.v46-ref-settings,.v46-ref-categories
+  ){
+    background:transparent!important;
+    background-image:none!important;
+    box-shadow:none!important;
+  }
+  /* Se pinta UNA vez la tarjeta, no el bloque, subtítulo e interior a la vez. */
+  html body[data-app-route="leagueTools"] #screen :is(
+     .v726-tools-hero,.v726-quick-section,.v726-tool-section,.v726-admin-section
+  ){
+    background:linear-gradient(160deg,#1a44ae,#112e89 57%,#0b206d)!important;
+    border-color:rgba(139,182,255,.28)!important;
+    box-shadow:none!important;
+  }
+  html body[data-app-route="leagueTools"] #screen :is(
+    .v726-quick-card,.v726-tool-card,.v734-tool-card,.v612-tools-entry.v726-admin-entry
+  ){
+    background:linear-gradient(180deg,#2352be,#163b9e 57%,#102d87)!important;
+    border-color:rgba(143,180,255,.32)!important;
+    box-shadow:none!important;
+  }
+  html body[data-app-route="leagueTools"] #screen :is(
+    .v734-tool-top,.v734-tool-main,.v734-tool-head,.v734-tool-details,
+    .v734-tool-details-button,.v734-tool-detail-button,[data-v734-tool-details]
+  ){
+    background:transparent!important;background-image:none!important;
+    box-shadow:none!important;
+  }
+  /* Los botones del bloque mantienen su superficie. Nada de fondos sobre textos. */
+  html body[data-app-route="leagueTools"] #screen :is(
+    .v734-tool-details-button,.v734-tool-detail-button
+  ){
+    background:#19439e!important;
+    border-color:rgba(144,189,255,.35)!important;
+  }
+  html body[data-app-route="leagueTools"] #screen :is(
+   .v726-tools-hero,.v726-quick-section,.v726-tool-section,.v726-admin-section,
+   .v726-quick-card,.v726-tool-card,.v734-tool-card
+  ) :is(h1,h2,h3,h4,p,small,strong,b){
+    background:transparent!important;background-image:none!important;
+    box-shadow:none!important;
+  }
+  /* Notificaciones y preferencias: azul rey, una cara por ajuste. */
+  html body[data-app-route="notifications"] #screen :is(
+    .v46-ref-device,.v46-ref-master,.v46-ref-setting,.v46-ref-category,
+    .v46-ref-category-panel,.v1082-push,.v840-match-feed
+  ){
+    background:linear-gradient(170deg,#1c47ad,#102a82)!important;
+    border-color:rgba(133,175,255,.28)!important;
+    box-shadow:none!important;
+  }
+  html body .v105-bottom[data-v105-route="notifications"]{
+    background:linear-gradient(180deg,#123aa7,#0a237c 58%,#050f52)!important;
+  }
+  html body .v105-bottom[data-v105-route="notifications"] :is(.v105-head,.v105-grid){
+    background:transparent!important;box-shadow:none!important;
+  }
+  html body .v105-bottom[data-v105-route="notifications"] .v105-card{
+    background:linear-gradient(180deg,#214bb6,#123389)!important;
+    box-shadow:none!important;
+  }
+  /* Secciones de administración del ZIP: modal exterior coloreado, texto interior
+     transparente, controles individuales una sola vez. */
+  html body .liga-media-modal > section:is(
+    .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+    .ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,
+    .ljr-admin-v1081,.v1081-dialog
+  ){
+    --ljr1310-bg:#040b4b!important;
+    --ljr1310-surface:#12318b!important;
+    --ljr1310-card:#1b44ab!important;
+    --ljr1310-input:#0d296f!important;
+    --ljr1420-page:#040b4b!important;
+    --ljr1420-panel:#12318b!important;
+    --ljr1420-card:#1b44ab!important;
+    --ljr1420-field:#0d296f!important;
+    --ljr1420-canvas:linear-gradient(180deg,#1744b6,#113394 32%,#0a216f 65%,#040b4b)!important;
+    --ljr1420-surface:linear-gradient(170deg,#1e4ab0,#12328d)!important;
+    --ljr1420-button:linear-gradient(180deg,#2858c0,#173b96)!important;
+    background:var(--ljr1420-canvas)!important;color:#fff!important;
+  }
+  html body .liga-media-modal > section:is(
+    .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+    .ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,
+    .ljr-admin-v1081,.v1081-dialog
+  ) > header{
+    background:linear-gradient(180deg,#1b49b2,#11328d)!important;
+  }
+  html body .liga-media-modal :is(
+    .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+    .ljr-admin-picker,.ljr-editor-dialog
+  ) :is(.ljr-admin-area,.ljr-admin-intro,.ljr-simple-intro,.ljr-guide,
+    .ljr-admin-howto,.ljr-admin-section,.ljr-editor-hub,.ljr-editor-note,
+    .ljr-review-card,.ljr-review-insights,.ljr-review-empty,.ljr-admin-results){
+    background:linear-gradient(170deg,#1740a0,#102c82)!important;
+    border-color:rgba(140,184,255,.3)!important;box-shadow:none!important;
+  }
+  html body .liga-media-modal :is(
+    .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+    .ljr-admin-picker,.ljr-editor-dialog
+  ) :is(.ljr-admin-area,.ljr-admin-intro,.ljr-guide,.ljr-admin-section,
+    .ljr-editor-hub,.ljr-admin-results) :is(
+     h1,h2,h3,h4,p,small,strong,b,label){
+    background:transparent!important;background-image:none!important;
+    box-shadow:none!important;
+  }
+  /* Campos no deben parecer dos tarjetas (campo + recuadro interior). */
+  html body .liga-media-modal :is(
+    .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+    .ljr-admin-picker,.ljr-editor-dialog
+  ) :is(.ljr-admin-tile:not(.ljr-admin-tile-danger),
+    .ljr-admin-action-grid>button:not(.ljr-admin-tile-danger),
+    .ljr-editor-hub-grid>button,.cms-kind-grid>button){
+    background:linear-gradient(180deg,#2352ba,#173b9a)!important;
+    border-color:rgba(142,183,255,.36)!important;box-shadow:none!important;
+  }
+  /* No forzar colores, fondos ni filtros sobre logos, imágenes, SVG, video,
+     ni alterar .active, .disabled, pointer-events, visibility o display. */
+ }
+}
