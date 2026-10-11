@@ -74,7 +74,7 @@ function pcExactFixtures(){
    if(!src){const logos=window.LJR_OFFICIAL_DATA?.team_logos||{};src=logos[name]||''}
    src=String(src||'').trim();
    if(src.startsWith('assets/')||src.startsWith('public/'))src='./'+src;
-   return /^(https?:|\\.\\/|\\/)/i.test(src)?src:'';
+   return (src.startsWith('https://')||src.startsWith('http://')||src.startsWith('./')||src.startsWith('/'))?src:'';
   }catch(_){return ''}
  };
  return desktopOfficialGames(6).map(g=>({...g,homeLogo:getLogo(g.home),awayLogo:getLogo(g.away)}));
