@@ -1,0 +1,24 @@
+/* V1436 · Simulador: restaurar SOLO el fondo posterior del selector
+   Clasificación / Cuadro con el azul marino #000040 de la captura adjunta.
+   Los dos botones, su mitad blanca, flecha, compartir, iconos, tarjetas,
+   liguilla y controles conservan tamaño, estilos y funcionamiento previos.
+   No se modifica la pantalla general de Competición ni el resto de rutas. */
+@media screen {
+  html body[data-app-route="simulator"],
+  html body[data-app-route="simulator"] #app,
+  html body[data-app-route="simulator"] #screen#screen#screen#screen,
+  html body[data-app-route="simulator"] #screen#screen#screen#screen [data-v501-simulator] {
+    background-color:#000040!important;
+    background-image:none!important;
+  }
+
+  /* Superficie visible DETRÁS de la cápsula y continuidad debajo de ella.
+     No pintar la cápsula .v501-tabs ni ninguno de sus botones. */
+  html body[data-app-route="simulator"] #screen#screen#screen#screen [data-v501-simulator] .v501-top,
+  html body[data-app-route="simulator"] #screen#screen#screen#screen [data-v501-simulator] .v501-category,
+  html body[data-app-route="simulator"] #screen#screen#screen#screen [data-v501-simulator] .v501-board.v501-standings,
+  html body[data-app-route="simulator"] #screen#screen#screen#screen [data-v501-simulator] .v501-board.v501-bracket {
+    background-color:#000040!important;
+    background-image:none!important;
+  }
+}
