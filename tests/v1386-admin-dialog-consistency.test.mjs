@@ -22,8 +22,15 @@ test('V1386: paleta de los cuadros administrativos antes de la capa exclusiva V1
   'V1387 debe seguir inmediatamente después de V1386');
  assert.ok(laterStyles.slice(1).every(href=>href.endsWith('.css')||/\.css\?/.test(href)),
   'Las capas posteriores deben ser únicamente hojas CSS, sin scripts');
- assert.ok(laterStyles.slice(1).every(href=>/admin|visual-harmony|v1391/.test(href)),
+ assert.ok(laterStyles.slice(1).every(href=>/admin|visual-harmony|v1391|v1392/.test(href)),
   'Las capas posteriores solo pueden armonizar el aspecto administrativo');
+ // V1392 solo uniforma superficies e iconos. No debe deshabilitar botones.
+ if(laterStyles.some(href=>href.includes('v1392-admin-warm-app-colors.css'))){
+  const warm=read('src/v1392-admin-warm-app-colors.css');
+  assert.match(warm,/\.ljr-admin-manage/);
+  assert.match(warm,/--ljr1392-night:#090e36/);
+  assert.doesNotMatch(warm,/<script|javascript:|pointer-events\\s*:\\s*none/i);
+ }
  const visual1391=read('src/v1391-android-admin-visual-harmony.css');
  assert.ok(visual1391.includes('.v1212-csv-modal')&&visual1391.includes('.v875-meeting-modal'),
   'La capa visual final debe cubrir CSV y Juntas');
