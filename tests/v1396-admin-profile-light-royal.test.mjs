@@ -8,12 +8,12 @@ const css=read('src/v1396-admin-profile-light-royal.css');
 const stylesheetLinks=[...index.matchAll(/<link[^>]*rel="stylesheet"[^>]*href="([^"]+)"[^>]*>/g)].map(m=>m[1]);
 const profileHref=stylesheetLinks.filter(href=>href.includes('v1396-admin-profile-light-royal.css?'));
 const balancedHref='./src/v1406-account-balanced-royal.css?v=20261010-v1406-medium-royal';
-const finalHref='./src/v1402-account-admin-royal-blue.css?v=20261010-v1407-barra-azul-rey-medio';
+const finalHref='./src/v1402-account-admin-royal-blue.css?v=20261010-v1413-azul-rey-barra-unificado';
 
 test('V1396: la capa azul rey medio predomina sobre capas anteriores en Perfil',()=>{
  assert.equal(profileHref.length,1,'V1396 no debe duplicarse');
  assert.ok(index.includes(balancedHref),'Debe incluirse la base V1406');
- assert.ok(index.includes(finalHref),'Debe incluirse el acabado medio V1407');
+ assert.ok(index.includes(finalHref),'Debe incluirse el acabado medio V1413');
  for(const old of ['v1387-profile-account-night-polish.css','v1392-admin-warm-app-colors.css','v1395-admin-three-tools-night-polish.css']){
   assert.ok(index.indexOf(profileHref[0])>index.indexOf(old),'V1396 debe ir despues de '+old);
  }
@@ -29,9 +29,9 @@ test('V1396: la capa azul rey medio predomina sobre capas anteriores en Perfil',
  assert.doesNotMatch(restored,/data-app-route\^="account"|data-app-route="competition"/);
  assert.doesNotMatch(restored,/<script|javascript:|pointer-events\s*:\s*none/i);
  const medium=read('src/v1406-account-balanced-royal.css');
- const last=read('src/v1402-account-admin-royal-blue.css').split('/* V1407 ·').at(-1);
+ const last=read('src/v1402-account-admin-royal-blue.css').split('/* V1413 ·').at(-1);
  assert.match(medium,/--v1406-royal:#225BB8/);
- for(const hex of ['#235EBE','#2864C3','#194FA8']) assert.ok(last.includes(hex),'Falta '+hex);
+ for(const hex of ['#2055B7','#2760BC','#1E50A7']) assert.ok(last.includes(hex),'Falta '+hex);
  assert.match(last,/data-app-route="profile"/);
  assert.match(last,/data-app-route\^="account"/);
  assert.doesNotMatch(last,/<script|javascript:|pointer-events\s*:\s*none/i);
