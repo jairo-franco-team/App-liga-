@@ -16,6 +16,8 @@ const notice=()=>({id:randomUUID(),status:'processing',approved_by:'presidencia-
 
 test('FCM requiere servicio privado exacto y no acepta credenciales incompletas',()=>{
  const clean=validateFcmServerAccount(JSON.stringify(account));
+ assert.throws(()=>validateFcmServerAccount('{private-secret-value'),error=>
+   !String(error).includes('private-secret-value')&&/Credenciales privadas FCM/.test(String(error)));
  assert.equal(clean.projectId,'liga-jr-pruebas');
  for(const patch of [{client_email:'test@gmail.com'},{token_uri:'https://evil.example/token'},
   {private_key:'invalid-key'},{project_id:'http://evil.example'}])
