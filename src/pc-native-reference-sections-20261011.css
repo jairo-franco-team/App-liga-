@@ -1,0 +1,427 @@
+/* Liga Juventino Rosas — sección PC con estructura tipo captura de escritorio.
+   ALCANCE: solo cuando el JS confirma modo PC y ruta nativa. La app móvil/APK
+   no recibe ninguna regla de este archivo. */
+html.ljpc-pc-native-mode body.ljpc-native-route{
+ --ljpc-shell:#030a24;--ljpc-deep:#030741;--ljpc-blue:#0733e9;
+ --ljpc-card:#0a145b;--ljpc-accent:#13dae8;--ljpc-green:#3ee27f;
+ background:linear-gradient(180deg,#040923,#050a42 52%,#030920)!important;
+ color:#f4f7ff!important;min-height:100vh
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #app{
+ background:transparent!important;max-width:none!important;width:100%!important;
+ border:0!important;box-shadow:none!important;overflow:visible!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #ljpc-native-toolbar{display:none!important}
+html.ljpc-pc-native-mode body.ljpc-native-route #ljpc-pc-top{
+ width:100%;background:#050a2b;color:white;position:relative;z-index:80;
+ font-family:Inter,"Segoe UI",Arial,sans-serif
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-wide{
+ width:min(1090px,calc(100% - 40px));margin-inline:auto;box-sizing:border-box
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-mini{
+ height:30px;background:#030714;border-bottom:1px solid #ffffff17
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-mini .ljpc-pc-wide{
+ display:flex;justify-content:space-between;align-items:center;height:100%
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-mini button{
+ border:0;background:transparent;color:#adbad2;cursor:pointer;font:600 10px Inter,Arial,sans-serif
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-navigation{
+ background:linear-gradient(103deg,#0a46fa 0%,#0a29a9 52%,#080e56 100%);
+ border-bottom:1px solid #83b7ff25
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-navigation .ljpc-pc-wide{
+ display:flex;align-items:center;gap:22px;min-height:66px;overflow:hidden
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-brand{
+ flex:0 0 auto;display:flex;align-items:center;gap:7px;text-align:left;
+ border:0;padding:0;color:white;background:transparent;cursor:pointer
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-brand img{
+ width:41px;height:41px;object-fit:contain;background:transparent
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-brand b{
+ font:900 9px/1 Inter,Arial,sans-serif;letter-spacing:.035em
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-navigation nav{
+ display:flex;align-items:center;gap:5px;overflow-x:auto;scrollbar-width:none;white-space:nowrap
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-navigation nav::-webkit-scrollbar{display:none}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-navigation nav button{
+ border:0;border-radius:20px;background:transparent;color:#eaf4ff;
+ min-height:34px;flex:0 0 auto;padding:8px 12px;cursor:pointer;
+ font:750 11px/1 Inter,Arial,sans-serif;transition:background .15s,color .15s
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-navigation nav button:hover{
+ background:#0e58e7;color:#fff
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-navigation nav button.active{
+ background:#14e0ec!important;color:#071958!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-hero{
+ background:radial-gradient(720px 240px at 88% 45%,#1755c855,transparent 78%),
+ linear-gradient(106deg,#19458f,#08275e 66%,#07153c);
+ border-bottom:1px solid #7aa1e42a
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-hero .ljpc-pc-wide{
+ padding:17px 0 24px
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-breadcrumb{
+ display:block;padding:0;margin:0 0 7px;border:0;background:transparent;color:#d2e6ff;
+ font:600 10px Inter,Arial,sans-serif;cursor:pointer
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-hero h1{
+ color:white!important;margin:0!important;font:850 29px/1.15 Inter,"Segoe UI",Arial,sans-serif!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-hero p{
+ color:#cbdcf9;margin:5px 0 0;font:450 12px/1.4 Inter,Arial,sans-serif
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-subtabs{
+ background:#09094d;border-bottom:1px solid #3e55a353
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-subtabs .ljpc-pc-wide{
+ display:flex;gap:14px;align-items:center;min-height:50px;overflow-x:auto
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-subtabs button{
+ height:50px;border:0;border-bottom:2px solid transparent;color:#e0ecff;
+ background:transparent;padding:0 7px;cursor:pointer;flex:0 0 auto;
+ font:650 12px Inter,Arial,sans-serif
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-subtabs button.active,
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-subtabs button:hover{
+ color:#15e0ed;border-bottom-color:#15e0ed
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen{
+ box-sizing:border-box!important;width:min(1130px,calc(100% - 40px))!important;
+ min-width:0!important;max-width:1130px!important;margin:0 auto!important;
+ padding:24px 18px 42px!important;overflow:visible!important;min-height:0!important;
+ background:transparent!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .screen-title{
+ font-size:27px!important;text-align:left!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen :is(button,a):focus-visible,
+html.ljpc-pc-native-mode body.ljpc-native-route #ljpc-pc-top button:focus-visible{
+ outline:2px solid #2ceaf3!important;outline-offset:3px!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .section{max-width:100%!important}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen :is(.news-list,.team-list,.player-list){
+ width:100%!important;max-width:none!important
+}
+/* Pronostica Seis: los seis botones mantienen su data-v29-pick y guardado reales.
+   Se cambia únicamente la geometría para pasar de 3x2 móvil a seis partidos PC. */
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-predictor-six{
+ width:100%!important;max-width:1100px!important;margin:0 auto!important;
+ border-radius:9px!important;padding:12px 22px 26px!important;min-height:0!important;
+ background:radial-gradient(600px 200px at 50% -10%,#1550ff7a,transparent 85%),
+ linear-gradient(160deg,#061ab5,#020856 72%)!important;
+ border:1px solid #2d55bd!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-predictor-six:before{
+ opacity:.18;top:0;transform:none;height:100%
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-head{
+ display:none!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-sponsor{
+ min-height:48px!important;margin:0 0 6px!important;
+ padding:5px 8px!important;justify-content:flex-end!important;
+ font-size:11px!important;background:transparent!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-sponsor-mark{
+ height:36px!important;min-width:100px!important;font-size:10px!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-sponsor-mark img{
+ width:28px!important;height:28px!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-stage{
+ min-height:0!important;padding:12px 4px 28px!important;display:block!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-stage:after{display:none!important}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-grid{
+ width:100%!important;max-width:none!important;display:grid!important;
+ grid-template-columns:1fr!important;gap:13px!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-game{
+ aspect-ratio:auto!important;width:100%!important;min-height:118px!important;
+ display:grid!important;grid-template-columns:minmax(0,1fr) 66px 48px 66px minmax(0,1fr)!important;
+ grid-template-rows:auto!important;gap:12px!important;align-items:center!important;
+ padding:15px 22px!important;border-radius:9px!important;
+ border:1px solid #2f67ff!important;color:#f9fcff!important;
+ background:linear-gradient(112deg,#0642d7,#0618c2 55%,#062b99)!important;
+ box-shadow:inset 0 1px #ffffff22,0 8px 18px #00042e52!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-game:hover{
+ border-color:#22e9ed!important;box-shadow:0 0 0 2px #1bedf73a!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-game>.v53-p6-team{
+ width:66px!important;min-width:0!important;height:62px!important;
+ display:grid!important;place-items:center!important;grid-row:1!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-game>.v53-p6-team:first-child{grid-column:2!important}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-game>.v53-p6-team:nth-of-type(3){grid-column:4!important}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-team img{
+ width:57px!important;height:57px!important;object-fit:contain!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-vs{
+ grid-column:3!important;grid-row:1!important;color:#8af3fb!important;font-size:12px!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .ljpc-pc-p6name{
+ font:750 17px/1.3 Inter,"Segoe UI",Arial,sans-serif;color:#fff;
+ display:block!important;grid-row:1!important;overflow-wrap:anywhere
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .ljpc-pc-p6name.home{
+ grid-column:1!important;text-align:right
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .ljpc-pc-p6name.away{
+ grid-column:5!important;text-align:left
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-pick{
+ right:12px!important;bottom:10px!important;min-width:38px!important;
+ height:27px!important;border-radius:6px!important;border:1px solid #4de6ff!important;
+ color:#d7faff!important;font-size:14px!important;background:#061b73!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-next{
+ top:auto!important;right:6px!important;bottom:-3px!important;height:35px!important;
+ width:35px!important;margin:0!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-next svg{height:23px!important}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-copy{
+ padding:9px 18px 10px!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-copy h2{
+ font-size:23px!important;line-height:1.2!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-copy p{
+ font-size:13px!important;max-width:760px!important;margin:7px auto 0!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-dots{
+ gap:8px!important;margin:13px auto 0!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-dots i{
+ width:7px!important;height:7px!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-actions{
+ padding:12px 0 0!important;display:flex!important;justify-content:center!important;
+ flex-wrap:wrap!important;gap:12px!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v53-p6-actions button{
+ min-width:210px!important;min-height:42px!important;height:42px!important;
+ border-radius:7px!important;font-size:12px!important;padding:9px 15px!important
+}
+/* Noticias: tarjetas en dos columnas como apartado PC, preservando data-news. */
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .news-list[data-news-list]{
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:12px!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .news-list .news-row{
+ display:grid!important;grid-template-columns:150px minmax(0,1fr)!important;
+ align-items:center!important;gap:13px!important;min-height:132px!important;
+ padding:12px!important;border-radius:9px!important;border:1px solid #264a85!important;
+ background:linear-gradient(140deg,#0b2350,#07123c)!important;color:#f0f6ff!important;
+ box-sizing:border-box!important;width:100%!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .news-list .news-thumb{
+ width:150px!important;height:98px!important;display:block!important;
+ border-radius:6px!important;background:linear-gradient(135deg,#1749b7,#051139)!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .news-list .news-row b{
+ font-size:14px!important;color:white!important;line-height:1.35!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .news-list .news-row :is(small,p){
+ font-size:11px!important;color:#bfd5f8!important
+}
+/* Vídeos: selección PC de miniaturas rectangulares, acciones nativas data-video. */
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .video-hero{
+ min-height:300px!important;padding:32px 40px!important;border-radius:11px!important;
+ background:radial-gradient(500px 250px at 80% 25%,#1153a665,transparent),
+ linear-gradient(115deg,#062e96,#070c3c)!important;color:#fff!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .video-hero h1{
+ font-size:36px!important;line-height:1.05!important;color:white!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .media-carousel{
+ display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+ gap:12px!important;max-width:none!important;overflow:visible!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .media-card{
+ width:auto!important;min-width:0!important;min-height:170px!important;
+ border-radius:9px!important;border:1px solid #1a4bb3!important;
+ background:linear-gradient(160deg,#122a80,#050b38)!important;
+ color:#fff!important
+}
+/* Equipos y Momentos en cuadrícula ancha: conservar la selección, seguimiento y vídeo. */
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v27-teams-page{
+ width:100%!important;max-width:none!important;min-width:0!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v27-grid{
+ display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;
+ gap:14px!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v27-section{
+ width:100%!important;max-width:none!important;margin:0 0 26px!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v26-moments-page{
+ max-width:none!important;width:100%!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v26-moments-grid{
+ width:100%!important;max-width:none!important;display:grid!important;
+ grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .v26-moment-card{
+ width:100%!important;min-width:0!important;min-height:210px!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .fantasy-field{
+ width:min(840px,100%)!important;max-width:840px!important;min-height:510px!important;
+ margin:15px auto!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .player-list{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #screen .player-list .player-row{
+ border:1px solid #204886!important;border-radius:10px!important;padding:12px!important
+}
+/* Tablas oficiales: azul claro accesible, sin alterar resultados ni cálculos. */
+html.ljpc-pc-native-mode body.ljpc-native-route #screen :is(.table-wrap,.v64-table-wrap,.stat-card){
+ width:100%!important;max-width:none!important;overflow-x:auto!important
+}
+/* Footer PC: el mismo para páginas nativas, sin alterar el pie de Inicio HTML. */
+html.ljpc-pc-native-mode body.ljpc-native-route #ljpc-pc-bottom{
+ position:relative;z-index:1;width:100%;margin-top:24px;
+ background:radial-gradient(650px 220px at 45% 100%,#0f4eba88,transparent 83%),
+ linear-gradient(180deg,#040a25,#02091b);color:#c1d0ed;
+ border-top:1px solid #2054a1;
+ font-family:Inter,"Segoe UI",Arial,sans-serif;
+}
+html.ljpc-pc-native-mode body.ljpc-native-route #ljpc-pc-bottom .ljpc-pc-wide{
+ padding-block:42px 20px
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-foot-columns{
+ display:grid;grid-template-columns:2fr repeat(3,1fr);gap:32px
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-foot-columns>div{
+ display:flex;align-items:flex-start;flex-direction:column;gap:10px;min-width:0
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-foot-columns img{
+ width:46px;height:46px;object-fit:contain
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-foot-columns b{
+ letter-spacing:.12em;font:800 10px Inter,Arial,sans-serif;color:#98add4
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-foot-columns strong{
+ font:900 14px Inter,Arial,sans-serif;color:#fff
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-foot-columns p{
+ font:450 12px/1.5 Inter,Arial,sans-serif;color:#98b0d5
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-foot-columns button{
+ background:transparent;border:0;padding:0;text-align:left;cursor:pointer;
+ font:600 11px/1.6 Inter,Arial,sans-serif;color:#dce9ff
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-foot-columns button:hover{
+ color:#33f1a0
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-legal{
+ text-align:center;margin-top:35px;padding-top:18px;border-top:1px solid #23519e8a;
+ color:#8da6ca;font:550 10px Inter,Arial,sans-serif
+}
+@media(max-width:1000px){
+ html.preview-desktop.ljpc-pc-native-mode body.ljpc-native-route{min-width:1024px!important}
+ html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-wide{width:calc(100% - 35px)}
+ html.ljpc-pc-native-mode body.ljpc-native-route #screen .v27-grid{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important
+ }
+}
+
+/* Apartados PC renderizados por desktop-sections.js: mismos escudos oficiales,
+   menú y proporciones, pero conservando sus páginas y clics existentes. */
+body.lj-desktop .ds-page .ds-crest{
+ display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;
+ overflow:hidden;background:linear-gradient(155deg,#1557c6,#0a1b59);
+ border:1px solid #4d81c55a
+}
+body.lj-desktop .ds-page .ds-crest img{
+ width:95%!important;height:95%!important;object-fit:contain!important
+}
+body.lj-desktop .ds-page .ds-mini-match b{
+ display:flex;align-items:center;gap:5px;min-width:0;
+ white-space:nowrap;text-overflow:ellipsis;overflow:hidden
+}
+body.lj-desktop .ds-page .ds-mini-match .ds-crest{
+ width:17px!important;height:17px!important;min-width:17px!important;
+ font-size:6px!important
+}
+body.lj-desktop .ds-page .ds-nav .ds-brand-mark{
+ font-size:0;background-image:url('./../assets/branding/escudo-liga-azul-sin-fondo-v1007.png')!important;
+ background-position:center!important;background-size:contain!important;background-repeat:no-repeat!important
+}
+body.lj-desktop .ds-page .ds-nav .ds-brand-mark:before{display:none!important}
+body.lj-desktop .ds-page .ds-nav .ds-menu button.active{
+ background:#12dee9!important;color:#041d55!important;border-radius:19px!important
+}
+body.lj-desktop .ds-page .ds-pagehead{
+ background:radial-gradient(500px 250px at 95% 0%,#0b69c076,transparent),
+ linear-gradient(110deg,#123c9f,#081b50 72%)!important
+}
+body.lj-desktop .ds-page .ds-news-grid .ds-news{
+ box-sizing:border-box;border-radius:9px
+}
+body.lj-desktop .ds-page .ds-about-grid .ds-about-card{
+ overflow:hidden;border-radius:10px
+}
+body.lj-desktop .ds-page .ds-teamcell .ds-crest,
+body.lj-desktop .ds-page .ds-team .ds-crest{
+ border-radius:50%;background:linear-gradient(150deg,#1554b5,#07113d)
+}
+body.lj-desktop .ds-page .ds-table-wrap{
+ border-radius:11px;overflow:auto
+}
+body.lj-desktop .ds-page .ds-table th{top:0}
+body.lj-desktop .ds-page :is(.ds-tab,.ds-day,.ds-select){
+ transition:background .15s,color .15s,border-color .15s
+}
+body.lj-desktop .ds-page .ds-tab.active,
+body.lj-desktop .ds-page .ds-day.active{
+ background:#064af1!important;border-color:#064af1!important;color:#fff!important
+}
+
+/* Menús reales Gaming, Datos y Más: flotan sobre el contenido del portal PC. */
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-navigation{position:relative;z-index:150}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-navigation .ljpc-pc-wide{
+ overflow:visible!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-navigation nav{
+ overflow:visible!important;flex-wrap:nowrap!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-drop-wrap{
+ flex:0 0 auto;position:relative;isolation:isolate
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-drop-wrap>.ljpc-pc-popover{
+ position:absolute;top:calc(100% + 6px);left:0;width:230px;min-width:215px;
+ z-index:1000;padding:6px;display:flex;flex-direction:column;gap:1px;
+ border:1px solid #295bbb;border-radius:9px;background:#070c48;
+ box-shadow:0 18px 45px #000727c4
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-drop-wrap>.ljpc-pc-popover[hidden]{
+ display:none!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-drop-wrap>.ljpc-pc-popover>button{
+ width:100%;border:0!important;border-radius:5px!important;
+ background:transparent!important;color:#eaf3ff!important;
+ min-height:41px!important;padding:10px 12px!important;
+ text-align:left!important;font-size:12px!important;font-weight:600!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-drop-wrap>.ljpc-pc-popover>button:hover{
+ background:#163d95!important;color:#39efaa!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-drop-wrap.open>button{
+ background:#12dcea!important;color:#031749!important
+}
+@media(max-width:1160px){
+ html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-navigation nav{gap:1px!important}
+ html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-navigation nav button{
+  padding-inline:8px!important;font-size:10px!important
+ }
+}
