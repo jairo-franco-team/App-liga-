@@ -22,7 +22,7 @@ test('V1386: paleta de los cuadros administrativos antes de la capa exclusiva V1
   'V1387 debe seguir inmediatamente después de V1386');
  assert.ok(laterStyles.slice(1).every(href=>href.endsWith('.css')||/\.css\?/.test(href)),
   'Las capas posteriores deben ser únicamente hojas CSS, sin scripts');
- assert.ok(laterStyles.slice(1).every(href=>/admin|visual-harmony|v1391|v1392|v1398-junta-calendario-warm-compact/.test(href)),
+ assert.ok(laterStyles.slice(1).every(href=>/admin|visual-harmony|v1391|v1392|v1398-junta-calendario-warm-compact|profile-restore-original-palette/.test(href)),
   'Las capas posteriores solo pueden armonizar las ventanas de Administración, Junta y Calendarios');
  // V1398 no cambia acciones: es CSS exclusivo de las dos ventanas afectadas.
  if(laterStyles.some(href=>href.includes('v1398-junta-calendario-warm-compact.css'))){
@@ -30,6 +30,12 @@ test('V1386: paleta de los cuadros administrativos antes de la capa exclusiva V1
   assert.match(compact,/\.v875-meeting-modal/);
   assert.match(compact,/\.v1130-calendar-pro/);
   assert.doesNotMatch(compact,/<script|javascript:|pointer-events\s*:\s*none/i);
+ }
+ // La restauración de Mi Cuenta carga después y debe limitarse al perfil.
+ if(laterStyles.some(href=>href.includes('profile-restore-original-palette-20261010.css'))){
+  const profile=read('src/profile-restore-original-palette-20261010.css');
+  assert.match(profile,/body\[data-app-route="profile"\]/);
+  assert.doesNotMatch(profile,/<script|javascript:|pointer-events\s*:\s*none/i);
  }
  // V1392 solo uniforma superficies e iconos. No debe deshabilitar botones.
  if(laterStyles.some(href=>href.includes('v1392-admin-warm-app-colors.css'))){
