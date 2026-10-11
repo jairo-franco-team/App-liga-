@@ -44,7 +44,7 @@ test('V1413: hoja azul rey media adaptada a la barra superior y cache actualizad
  for(const href of laterSheets){
   const path=href.startsWith('./')?href.slice(2).split('?')[0]:href.split('?')[0];
   const content=read(path);
-  if(path==='src/v1411-profile-old-layout-restore.css'){
+  if(path==='src/v1411-profile-old-layout-restore.css'||path==='src/profile-first-screenshot-restore.css'){
    // Restore exactly the old #/profile view without changing other account screens.
    assert.match(content,/html body\[data-app-route="profile"\]/);
    assert.doesNotMatch(content,/data-app-route\^="account"|data-app-route="competition"|pointer-events\s*:\s*none/);
