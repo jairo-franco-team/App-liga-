@@ -84,7 +84,10 @@ export function createFcmTransport({serviceAccount,fetchImpl=fetch,now=()=>Date.
  return Object.freeze({
   // Solo apto para invocación desde el despachador privado tras consultar DB
   // y verificar consentimiento, categoría y propietario del token.
-  async sendApproved({notice,token,approvalVerified}){
+  async sendApproved({notice,token,approvalVerified,subscriptionVerified}){
+   // El servidor debe comprobar una suscripción FCM activa del propietario.
+   // Nunca obtener esta bandera de req.body o del navegador.
+   if(subscriptionVerified!==true)throw new Error('No se verificó consentimiento del dispositivo');
    const payload=buildFcmApprovedMessage({notice,token,approvalVerified});
    const bearer=await getAccessToken();
    const url='https://fcm.googleapis.com/v1/projects/'+credentials.projectId+'/messages:send';
