@@ -84,11 +84,15 @@ try{
  // form interactions and the avatar viewer cannot affect this comparison.
  const untouched=await openApp(resolve(root,'dist'));await fixtureAccount(untouched);await untouched.setViewportSize({width:360,height:800});
  const baseline=await openApp(resolve(root,'dist'),true);await fixtureAccount(baseline);await baseline.setViewportSize({width:360,height:800});
+ // Native animated gradients otherwise have different phases in two tabs.
+ const freeze='@layer ljr-captured-design { *,*::before,*::after { animation:none!important;transition:none!important;scroll-behavior:auto!important; } }';
+ await untouched.addStyleTag({content:freeze});await baseline.addStyleTag({content:freeze});
  const signature=p=>p.locator('#screen').evaluate(root=>{
   const paint=e=>{const c=getComputedStyle(e);return {image:c.backgroundImage,bg:c.backgroundColor,ink:c.color,border:c.borderTopColor};};
-  // Private CMS entry availability depends on the auth refresh; compare the
-  // original public controls, whose appearance this task must preserve.
-  return {screen:paint(root),controls:[...root.querySelectorAll('button,select,input')].filter(e=>e.getClientRects().length&&!e.closest('.ljr-cms-entry')).slice(0,16).map(paint)};
+  // Private entry depends on auth refresh. The legacy v934/v942 scorers
+  // controllers alternate their category wrapper; compare the stable public
+  // controls. Its original header is also checked by v1438-protected-headers.
+  return {screen:paint(root),controls:[...root.querySelectorAll('button,select,input')].filter(e=>e.getClientRects().length&&!e.closest('.ljr-cms-entry,.v391-category-wrap')).slice(0,16).map(paint)};
  });
  for(const route of ['teams','following','scorers','fantasy','stats','history','accountLogin','accountRegister','accountEdit','accountCloud','credentialBuilder','appInstall','tableExport','publications','historyLog','more']){
   await go(untouched,route);await go(baseline,route);
