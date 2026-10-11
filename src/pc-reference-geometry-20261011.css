@@ -1,0 +1,34 @@
+/* Liga Juventino Rosas — pantalla PC basada en referencias, sin tocar móvil/APK. */
+html.preview-desktop body.lj-desktop .desktop-liga,
+html.preview-desktop body.lj-desktop .desktop-page-shell{background:#02074b!important;color:#f5f9ff!important}
+html.preview-desktop body.lj-desktop .desk-nav{background:linear-gradient(105deg,#0842db 0%,#0732a9 42%,#061d70 100%)!important;border-bottom:1px solid rgba(76,183,255,.3)!important}
+html.preview-desktop body.lj-desktop .desk-nav .desk-wrap{min-height:58px}
+html.preview-desktop body.lj-desktop .desk-nav .desk-menu{align-items:center;gap:6px;scrollbar-width:none}
+html.preview-desktop body.lj-desktop .desk-nav .desk-menu>button,
+html.preview-desktop body.lj-desktop .desk-nav .desk-menu>.lj-menu-wrap>button{
+ min-height:34px!important;height:34px!important;border-radius:7px!important;padding:0 12px!important;font-size:12px!important;line-height:1.15!important;color:white!important;background:transparent!important;
+}
+html.preview-desktop body.lj-desktop .desk-nav .desk-menu>button:hover,
+html.preview-desktop body.lj-desktop .desk-nav .desk-menu>.lj-menu-wrap>button:hover{background:#0c59d9!important}
+html.preview-desktop body.lj-desktop .desk-nav .ljpc-header-login{border-color:rgba(73,222,255,.5)!important;background:#073b95!important;color:#fff!important}
+html.preview-desktop body.lj-desktop .desk-main-dark{background:linear-gradient(180deg,#01063e,#030653)!important}
+html.preview-desktop body.lj-desktop .desk-section-title h2{font-size:19px!important}
+html.preview-desktop body.lj-desktop .desk-section-title button{font-size:12px!important;color:#43e3ed!important}
+html.preview-desktop body.lj-desktop .desk-tool{border-color:#153d99!important;background:linear-gradient(155deg,#102b89,#060e4a)!important}
+html.preview-desktop body.lj-desktop .desk-tool:hover{border-color:#26d8ed!important}
+html.preview-desktop body.lj-desktop .desk-home-top{background:linear-gradient(180deg,#0b3bcb 0%,#071e83 50%,#03084a 100%)!important}
+html.preview-desktop body.lj-desktop .desk-footer{background:linear-gradient(165deg,#091a70,#010532)!important}
+html.preview-desktop body.lj-desktop .desk-fixtures{background:#081d68!important}
+html.preview-desktop body.lj-desktop .desk-match{background:#07184e!important;border-color:#1a4d9f!important}
+html.preview-desktop body.lj-desktop .desk-page-hero{background:linear-gradient(105deg,#0d48c2,#12317f)!important}
+html.preview-desktop body.lj-desktop .desk-page-grid .desk-page-card{background:linear-gradient(150deg,#0d35a6,#071451)!important;border:1px solid #1c51b0!important}
+html.preview-desktop body.lj-desktop .desk-page-grid .desk-page-card:hover{border-color:#29ddec!important}
+html.preview-desktop body.lj-desktop .desk-wrap{max-width:1450px}
+html.preview-desktop body.lj-desktop .desk-page-card h3{font-size:15px!important}
+html.preview-desktop body.lj-desktop .desk-page-card p{font-size:11px!important}
+html.preview-desktop body.lj-desktop .ljpc-original-icons img{object-fit:contain;max-width:100%;max-height:100%}
+@media(max-width:850px){
+ html.preview-desktop body.lj-desktop{min-width:980px!important}
+ html.preview-desktop body.lj-desktop .desktop-liga{min-width:980px!important}
+ html.preview-desktop body.lj-desktop .desk-nav .desk-wrap{width:calc(100% - 28px)!important}
+}
