@@ -94,7 +94,7 @@ function render(){
  if(window.LJR_PC_NATIVE_ROUTES?.has(r))return;
  if(r==='home'){
   if(!pcExactFrame()){
-   h.innerHTML='<iframe id="ljpc-exact-html-home" title="Inicio PC de Liga Juventino Rosas" loading="eager" scrolling="no" src="./pc-exact-original-20261011.html?v=20261011-html-exacto" style="display:block;width:100%;height:3700px;min-height:1200px;border:0;outline:0;background:#040c1c" referrerpolicy="same-origin"></iframe>';
+   h.innerHTML='<iframe id="ljpc-exact-html-home" title="Inicio PC de Liga Juventino Rosas" loading="eager" scrolling="no" src="./pc-exact-original-20261011.html?v=20261011-navy-original-restore-v1" style="display:block;width:100%;height:3700px;min-height:1200px;border:0;outline:0;background:#040c1c" referrerpolicy="same-origin"></iframe>';
    const frame=pcExactFrame();
    if(frame)frame.addEventListener('load',syncPCExactFixtures,{once:true});
   }else syncPCExactFixtures();
