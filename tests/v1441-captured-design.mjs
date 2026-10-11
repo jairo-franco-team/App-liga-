@@ -147,6 +147,15 @@ try{
  });
  for(const route of ['teams','following','scorers','fantasy','stats','history','accountLogin','accountRegister','accountEdit','accountCloud','credentialBuilder','appInstall','tableExport','publications','historyLog','more']){
   await go(untouched,route);await go(baseline,route);
+  if(route==='tableExport'){
+   // Scorers' legacy controllers persist their selected category at different
+   // times. Compare the same category using the original export selector.
+   for(const p of [untouched,baseline]){
+    await p.locator('[data-v176-category]').selectOption('3');
+    await p.waitForTimeout(250);
+    assert.equal(await p.locator('[data-v176-category]').inputValue(),'3');
+   }
+  }
   assert.equal(await untouched.locator('#screen').getAttribute('data-captured-design'),null,route+' outside captured scope');
   assert.equal(await untouched.locator('#screen [data-design-card]').count(),0,route+' untouched');
   assert.deepEqual(await signature(untouched),await signature(baseline),route+' retains original backgrounds and control colors');
