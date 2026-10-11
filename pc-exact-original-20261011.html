@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta name="kombai-design-canvas" content="true">
+  
+  
+  
+  <script src="https://unpkg.com/@tailwindcss/browser@4.3.3/dist/index.global.js" integrity="sha384-2ql948lIdLcGEE0/qxNiudyTjgauA3RDJERu5xW75kFCvSl5a9odyQYCb6tEjnmB" crossorigin="anonymous"></script>
+  
+  <style>html, body { margin: 0; padding: 0; } #root { display: contents; }</style>
+<style id="ljpc-exact-adaptations">
+html,body{margin:0;padding:0;min-width:1024px;overflow-x:hidden}
+.ljpc-original-crest{display:block;width:36px;height:36px;object-fit:contain;background:transparent}
+img[src="./public/deportiva-sur-partido.jpg"]{object-position:center}
+[data-pc-route]{cursor:pointer}
+[data-pc-route]:focus-visible{outline:2px solid #3ee27f;outline-offset:2px}
+[data-name="match card 1"],[data-name="match card 2"],[data-name="match card 3"],
+[data-name="match card 4"],[data-name="match card 5"],[data-name="match card 6"]{cursor:pointer}
+</style></head><body>
+  <div id="root"><style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  @import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css');
+  .ucl { font-family: 'Inter', system-ui, sans-serif; --navy:#040c1c; --navy2:#0a1630; --card:#0b1a38; --card2:#0e2148; --line:#1c355f; --green:#3ee27f; --blue:#1d6bff; --text:#eef3ff; --muted:#9fb0cf; }
+  .ucl .img { width:100%; height:100%; object-fit:cover; display:block; }
+</style>
+<div class="ucl relative min-h-screen bg-[var(--navy)] text-[var(--text)] antialiased overflow-hidden" data-kid="1" data-name="page layout container">
+    <!-- ================= STARBALL SVG SYMBOL ================= -->
+    <svg aria-hidden="true" class="absolute" data-kid="1-1" data-name="starball svg symbol" height="0" width="0">
+        <defs>
+            <symbol id="starball" viewbox="0 0 400 400">
+                <defs>
+                    <radialgradient cx="50%" cy="50%" id="sbG" r="50%">
+                        <stop offset="0%" stop-color="#3b8dff" stop-opacity=".9">
+                        </stop>
+                        <stop offset="55%" stop-color="#1655d8" stop-opacity=".55">
+                        </stop>
+                        <stop offset="100%" stop-color="#040c1c" stop-opacity="0">
+                        </stop>
+                    </radialgradient>
+                    <clippath id="sbClip">
+                        <circle cx="200" cy="200" r="190">
+                        </circle>
+                    </clippath>
+                </defs>
+                <circle cx="200" cy="200" fill="url(#sbG)" r="190">
+                </circle>
+                <g clip-path="url(#sbClip)" fill="#0a1a3f" stroke="#7fb4ff" stroke-opacity=".35" stroke-width="1.5">
+                    <polygon points="200,60 232,150 328,150 250,205 280,300 200,245 120,300 150,205 72,150 168,150">
+                    </polygon>
+                    <polygon points="70,20 95,90 170,90 110,135 132,205 70,162 8,205 30,135 -30,90 45,90">
+                    </polygon>
+                    <polygon points="330,20 355,90 430,90 370,135 392,205 330,162 268,205 290,135 230,90 305,90">
+                    </polygon>
+                    <polygon points="60,270 85,340 160,340 100,385 122,455 60,412 -2,455 20,385 -40,340 35,340">
+                    </polygon>
+                    <polygon points="340,270 365,340 440,340 380,385 402,455 340,412 278,455 300,385 240,340 315,340">
+                    </polygon>
+                    <polygon points="200,330 218,380 272,380 228,412 245,465 200,432 155,465 172,412 128,380 182,380">
+                    </polygon>
+                </g>
+            </symbol>
+        </defs>
+    </svg>
+    <!-- ================= TOP BAR ================= -->
+    <div class="relative z-20 bg-[#03091a]" data-kid="1-2" data-name="top bar wrapper">
+        <div class="mx-auto max-w-[1090px] px-4 h-7 flex items-center justify-between text-[10px] text-[var(--muted)]" data-kid="1-2-1" data-name="top bar container">
+            <button class="flex items-center gap-1 hover:text-white" data-kid="1-2-1-1" data-name="uefa link button" data-pc-route="home">
+                <span class="font-semibold text-white" data-kid="1-2-1-1-1" data-name="uefa text">
+                    LIGA
+                </span>
+                .com
+                <i class="ti ti-chevron-down text-[9px]" data-kid="1-2-1-1-2" data-name="chevron down icon">
+                </i>
+            </button>
+            <button class="flex items-center gap-1.5 hover:text-white" data-kid="1-2-1-2" data-name="user session button" data-pc-route="accountLogin">
+                Iniciar sesión
+                <i class="ti ti-user-circle text-sm" data-kid="1-2-1-2-1" data-name="user icon">
+                </i>
+            </button>
+        </div>
+    </div>
+    <!-- ================= HEADER + FIXTURES + STORIES + HERO (with glow bg) ================= -->
+    <section class="relative" data-kid="1-3" data-name="hero and content section">
+        <!-- background glows -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden" data-kid="1-3-1" data-name="background glows container">
+            <div class="absolute -left-24 top-0 h-[360px] w-[420px] rounded-full bg-[#15d66a]/60 blur-[90px]" data-kid="1-3-1-1" data-name="green glow orb">
+            </div>
+            <div class="absolute -left-10 top-[120px] h-[240px] w-[300px] rounded-full bg-[#07c2a8]/40 blur-[80px]" data-kid="1-3-1-2" data-name="teal glow orb">
+            </div>
+            <div class="absolute -right-24 top-[40px] h-[420px] w-[460px] rounded-full bg-[#1e5fff]/60 blur-[90px]" data-kid="1-3-1-3" data-name="blue glow orb">
+            </div>
+            <div class="absolute right-[-80px] top-[110px] h-[360px] w-[360px] opacity-90" data-kid="1-3-1-4" data-name="starball icon glow container">
+                <svg class="w-full h-full" data-kid="1-3-1-4-1" data-name="starball icon">
+                    <use href="#starball">
+                    </use>
+                </svg>
+            </div>
+            <div class="absolute left-[-140px] top-[380px] h-[300px] w-[300px] opacity-70 rotate-[20deg]" data-kid="1-3-1-5" data-name="starball icon glow container 2">
+                <svg class="w-full h-full" data-kid="1-3-1-5-1" data-name="starball icon">
+                    <use href="#starball">
+                    </use>
+                </svg>
+            </div>
+            <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-[var(--navy)]" data-kid="1-3-1-6" data-name="bottom gradient overlay">
+            </div>
+        </div>
+        <!-- NAV -->
+        <header class="relative z-10" data-kid="1-3-2" data-name="header navigation wrapper">
+            <div class="mx-auto max-w-[1090px] px-4 h-[52px] flex items-center gap-6" data-kid="1-3-2-1" data-name="navigation layout container">
+                <a aria-label="Liga Juventino Rosas" class="flex items-center gap-2 shrink-0" data-kid="1-3-2-1-1" data-name="champions league logo link" href="#" data-pc-route="home">
+                    <div class="h-9 w-9 rounded-full bg-gradient-to-br from-[#1e5fff] to-[#0a2c7a] ring-1 ring-white/40 flex items-center justify-center overflow-hidden" data-kid="1-3-2-1-1-1" data-name="logo icon container">
+                        <img class="ljpc-original-crest" src="./assets/branding/escudo-liga-azul-sin-fondo-v1007.png" alt="Escudo Liga Juventino Rosas">
+                    </div>
+                    <div class="leading-[9px]" data-kid="1-3-2-1-1-2" data-name="logo text container">
+                        <div class="text-[8px] font-extrabold tracking-[0.12em]" data-kid="1-3-2-1-1-2-1" data-name="champions text">
+                            LIGA
+                        </div>
+                        <div class="text-[8px] font-extrabold tracking-[0.12em]" data-kid="1-3-2-1-1-2-2" data-name="league text">
+                            JUVENTINO
+                        </div>
+                    </div>
+                </a>
+                <nav class="flex items-center gap-[22px] text-[11px] font-medium ml-2" data-kid="1-3-2-1-2" data-name="main menu navigation">
+                    <a class="hover:text-[var(--green)]" data-kid="1-3-2-1-2-1" data-name="partidos link" href="#" data-pc-route="competition">
+                        Partidos
+                    </a>
+                    <a class="hover:text-[var(--green)]" data-kid="1-3-2-1-2-2" data-name="clasificación link" href="#" data-pc-route="standings">
+                        Clasificación
+                    </a>
+                    <a class="hover:text-[var(--green)]" data-kid="1-3-2-1-2-3" data-name="uefa.tv link" href="#" data-pc-route="video">
+                        Liga TV
+                    </a>
+                    <a class="hover:text-[var(--green)]" data-kid="1-3-2-1-2-4" data-name="sorteos link" href="#" data-pc-route="competition">
+                        Sorteos
+                    </a>
+                    <a class="hover:text-[var(--green)] flex items-center gap-1" data-kid="1-3-2-1-2-5" data-name="gaming menu dropdown link" href="#" data-pc-route="fantasy">
+                        Juegos
+                        <i class="ti ti-chevron-down text-[9px]" data-kid="1-3-2-1-2-5-1" data-name="chevron icon">
+                        </i>
+                    </a>
+                    <a class="hover:text-[var(--green)] flex items-center gap-1" data-kid="1-3-2-1-2-6" data-name="datos menu dropdown link" href="#" data-pc-route="safe-data">
+                        Datos
+                        <i class="ti ti-chevron-down text-[9px]" data-kid="1-3-2-1-2-6-1" data-name="chevron icon">
+                        </i>
+                    </a>
+                    <a class="hover:text-[var(--green)]" data-kid="1-3-2-1-2-7" data-name="equipos link" href="#" data-pc-route="teams">
+                        Equipos
+                    </a>
+                    <a class="hover:text-[var(--green)]" data-kid="1-3-2-1-2-8" data-name="noticias link" href="#" data-pc-route="news">
+                        Noticias
+                    </a>
+                    <a class="hover:text-[var(--green)] flex items-center gap-1" data-kid="1-3-2-1-2-9" data-name="historia menu dropdown link" href="#" data-pc-route="history">
+                        Historia
+                        <i class="ti ti-chevron-down text-[9px]" data-kid="1-3-2-1-2-9-1" data-name="chevron icon">
+                        </i>
+                    </a>
+                    <a class="hover:text-[var(--green)]" data-kid="1-3-2-1-2-10" data-name="sobre link" href="#" data-pc-route="more">
+                        Sobre
+                    </a>
+                    <a class="hover:text-[var(--green)] flex items-center gap-1" data-kid="1-3-2-1-2-11" data-name="más menu dropdown link" href="#" data-pc-route="more">
+                        Más
+                        <i class="ti ti-chevron-down text-[9px]" data-kid="1-3-2-1-2-11-1" data-name="chevron icon">
+                        </i>
+                    </a>
+                </nav>
+            </div>
+        </header>
+        <!-- FIXTURES STRIP -->
+        <div class="relative z-10 mx-auto max-w-[1090px] px-4 mt-2 flex items-center gap-2" data-kid="1-3-3" data-name="fixtures strip container">
+            <button aria-label="Anterior" class="h-5 w-5 rounded-full bg-[#1c2c4a]/80 border border-white/10 flex items-center justify-center text-[9px] text-white/50" data-kid="1-3-3-1" data-name="previous fixtures button">
+                <i class="ti ti-chevron-left" data-kid="1-3-3-1-1" data-name="chevron left icon">
+                </i>
+            </button>
+            <div class="flex-1 flex gap-2 overflow-hidden" data-kid="1-3-3-2" data-name="match cards list">
+                <!-- match card x6 -->
+                <div class="w-[116px] shrink-0 rounded-md bg-[#0b1a38]/85 border border-[var(--line)] px-2 py-1.5 backdrop-blur" data-kid="1-3-3-2-1" data-name="match card 1" data-pc-route="competition" role="button" tabindex="0">
+                    <div class="text-[8px] text-[var(--muted)]" data-kid="1-3-3-2-1-1" data-name="match time">
+                        Consulta rol
+                    </div>
+                    <div class="mt-1 space-y-1 text-[9px] font-medium" data-kid="1-3-3-2-1-2" data-name="teams container">
+                        <div class="flex items-center gap-1.5" data-kid="1-3-3-2-1-2-1" data-name="team 1 row">
+                            <span class="h-3 w-3 rounded-full bg-red-600 ring-1 ring-white/20" data-kid="1-3-3-2-1-2-1-1" data-name="team badge">
+                            </span>
+                            Consultar rol
+                        </div>
+                        <div class="flex items-center gap-1.5" data-kid="1-3-3-2-1-2-2" data-name="team 2 row">
+                            <span class="h-3 w-3 rounded-full bg-emerald-500 ring-1 ring-white/20" data-kid="1-3-3-2-1-2-2-1" data-name="team badge">
+                            </span>
+                            Partidos
+                        </div>
+                    </div>
+                </div>
+                <div class="w-[116px] shrink-0 rounded-md bg-[#0b1a38]/85 border border-[var(--line)] px-2 py-1.5 backdrop-blur" data-kid="1-3-3-2-2" data-name="match card 2" data-pc-route="competition" role="button" tabindex="0">
+                    <div class="text-[8px] text-[var(--muted)]" data-kid="1-3-3-2-2-1" data-name="match time">
+                        Consulta rol
+                    </div>
+                    <div class="mt-1 space-y-1 text-[9px] font-medium" data-kid="1-3-3-2-2-2" data-name="teams container">
+                        <div class="flex items-center gap-1.5" data-kid="1-3-3-2-2-2-1" data-name="team 1 row">
+                            <span class="h-3 w-3 rounded-full bg-orange-500 ring-1 ring-white/20" data-kid="1-3-3-2-2-2-1-1" data-name="team badge">
+                            </span>
+                            Ver jornada
+                        </div>
+                        <div class="flex items-center gap-1.5" data-kid="1-3-3-2-2-2-2" data-name="team 2 row">
+                            <span class="h-3 w-3 rounded-full bg-green-600 ring-1 ring-white/20" data-kid="1-3-3-2-2-2-2-1" data-name="team badge">
+                            </span>
+                            Partidos
+                        </div>
+                    </div>
+                </div>
+                <div class="w-[116px] shrink-0 rounded-md bg-[#0b1a38]/85 border border-[var(--line)] px-2 py-1.5 backdrop-blur" data-kid="1-3-3-2-3" data-name="match card 3" data-pc-route="competition" role="button" tabindex="0">
+                    <div class="text-[8px] text-[var(--muted)]" data-kid="1-3-3-2-3-1" data-name="match time">
+                        Consulta rol
+                    </div>
+                    <div class="mt-1 space-y-1 text-[9px] font-medium" data-kid="1-3-3-2-3-2" data-name="teams container">
+                        <div class="flex items-center gap-1.5" data-kid="1-3-3-2-3-2-1" data-name="team 1 row">
+                            <span class="h-3 w-3 rounded-full bg-yellow-400 ring-1 ring-white/20" data-kid="1-3-3-2-3-2-1-1" data-name="team badge">
+                            </span>
+                            Consultar rol
+                        </div>
+                        <div class="flex items-center gap-1.5" data-kid="1-3-3-2-3-2-2" data-name="team 2 row">
+                            <span class="h-3 w-3 rounded-full bg-red-700 ring-1 ring-white/20" data-kid="1-3-3-2-3-2-2-1" data-name="team badge">
+                            </span>
+                            Ver jornada
+                        </div>
+                    </div>
+                </div>
+                <div class="w-[116px] shrink-0 rounded-md bg-[#0b1a38]/85 border border-[var(--line)] px-2 py-1.5 backdrop-blur" data-kid="1-3-3-2-4" data-name="match card 4" data-pc-route="competition" role="button" tabindex="0">
+                    <div class="text-[8px] text-[var(--muted)]" data-kid="1-3-3-2-4-1" data-name="match time">
+                        Consulta rol
+                    </div>
+                    <div class="mt-1 space-y-1 text-[9px] font-medium" data-kid="1-3-3-2-4-2" data-name="teams container">
+                        <div class="flex items-center gap-1.5" data-kid="1-3-3-2-4-2-1" data-name="team 1 row">
+                            <span class="h-3 w-3 rounded-full bg-amber-500 ring-1 ring-white/20" data-kid="1-3-3-2-4-2-1-1" data-name="team badge">
+                            </span>
+                            Consultar rol
+                        </div>
+                        <div class="flex items-center gap-1.5" data-kid="1-3-3-2-4-2-2" data-name="team 2 row">
+                            <span class="h-3 w-3 rounded-full bg-blue-800 ring-1 ring-white/20" data-kid="1-3-3-2-4-2-2-1" data-name="team badge">
+                            </span>
+                            Equipos
+                        </div>
+                    </div>
+                </div>
+                <div class="w-[116px] shrink-0 rounded-md bg-[#0b1a38]/85 border border-[var(--line)] px-2 py-1.5 backdrop-blur" data-kid="1-3-3-2-5" data-name="match card 5" data-pc-route="competition" role="button" tabindex="0">
+                    <div class="text-[8px] text-[var(--muted)]" data-kid="1-3-3-2-5-1" data-name="match time">
+                        Consulta rol
+                    </div>
+                    <div class="mt-1 space-y-1 text-[9px] font-medium" data-kid="1-3-3-2-5-2" data-name="teams container">
+                        <div class="flex items-center gap-1.5" data-kid="1-3-3-2-5-2-1" data-name="team 1 row">
+                            <span class="h-3 w-3 rounded-full bg-yellow-300 ring-1 ring-white/20" data-kid="1-3-3-2-5-2-1-1" data-name="team badge">
+                            </span>
+                            Consultar rol
+                        </div>
+                        <div class="flex items-center gap-1.5" data-kid="1-3-3-2-5-2-2" data-name="team 2 row">
+                            <span class="h-3 w-3 rounded-full bg-sky-400 ring-1 ring-white/20" data-kid="1-3-3-2-5-2-2-1" data-name="team badge">
+                            </span>
+                            Ver jornada
+                        </div>
+                    </div>
+                </div>
+                <div class="w-[116px] shrink-0 rounded-md bg-[#0b1a38]/85 border border-[var(--line)] px-2 py-1.5 backdrop-blur" data-kid="1-3-3-2-6" data-name="match card 6" data-pc-route="competition" role="button" tabindex="0">
+                    <div class="text-[8px] text-[var(--muted)]" data-kid="1-3-3-2-6-1" data-name="match time">
+                        Consulta rol
+                    </div>
+                    <div class="mt-1 space-y-1 text-[9px] font-medium" data-kid="1-3-3-2-6-2" data-name="teams container">
+                        <div class="flex items-center gap-1.5" data-kid="1-3-3-2-6-2-1" data-name="team 1 row">
+                            <span class="h-3 w-3 rounded-full bg-red-500 ring-1 ring-white/20" data-kid="1-3-3-2-6-2-1-1" data-name="team badge">
+                            </span>
+                            Consultar rol
+                        </div>
+                        <div class="flex items-center gap-1.5" data-kid="1-3-3-2-6-2-2" data-name="team 2 row">
+                            <span class="h-3 w-3 rounded-full bg-rose-400 ring-1 ring-white/20" data-kid="1-3-3-2-6-2-2-1" data-name="team badge">
+                            </span>
+                            Ver jornada
+                        </div>
+                    </div>
+                </div>
+                <div class="w-[40px] shrink-0 rounded-md bg-[#0b1a38]/85 border border-[var(--line)] px-2 py-1.5 overflow-hidden" data-kid="1-3-3-2-7" data-name="match status icon card" data-ljpc-match-count>
+                    <div class="text-[8px] text-[var(--muted)]" data-kid="1-3-3-2-7-1" data-name="status count">
+                        10
+                    </div>
+                    <div class="mt-1 space-y-1" data-kid="1-3-3-2-7-2" data-name="indicators container">
+                        <span class="block h-3 w-3 rounded-full bg-indigo-400" data-kid="1-3-3-2-7-2-1" data-name="indicator 1">
+                        </span>
+                        <span class="block h-3 w-3 rounded-full bg-lime-400" data-kid="1-3-3-2-7-2-2" data-name="indicator 2">
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <button aria-label="Siguiente" class="h-5 w-5 rounded-full bg-[#1c2c4a]/80 border border-white/10 flex items-center justify-center text-[9px]" data-kid="1-3-3-3" data-name="next fixtures button">
+                <i class="ti ti-chevron-right" data-kid="1-3-3-3-1" data-name="chevron right icon">
+                </i>
+            </button>
+            <a class="ml-1 shrink-0 h-8 px-3 rounded-md border border-[var(--green)] text-[var(--green)] text-[10px] font-semibold flex items-center gap-2 hover:bg-[var(--green)]/10" data-kid="1-3-3-4" data-name="all matches link" href="#" data-pc-route="competition">
+                <i class="ti ti-calendar-event text-xs" data-kid="1-3-3-4-1" data-name="calendar icon">
+                </i>
+                Ver todos los partidos
+            </a>
+        </div>
+        <!-- STORIES -->
+        <div class="relative z-10 mx-auto max-w-[1090px] px-4 mt-7 flex items-center gap-2" data-kid="1-3-4" data-name="stories list container">
+            <button aria-label="Anterior" class="h-6 w-6 rounded-full border border-[var(--green)] text-[var(--green)] flex items-center justify-center text-[10px]" data-kid="1-3-4-1" data-name="previous story button">
+                <i class="ti ti-chevron-left" data-kid="1-3-4-1-1" data-name="chevron left icon">
+                </i>
+            </button>
+            <div class="flex-1 flex justify-between px-2" data-kid="1-3-4-2" data-name="stories wrapper">
+                <!-- story -->
+                <a class="flex flex-col items-center gap-1.5 w-[74px] group" data-kid="1-3-4-2-1" data-name="story item 1" href="#" data-pc-route="moments">
+                    <div class="h-[62px] w-[62px] rounded-full p-[2px] bg-[var(--green)]" data-kid="1-3-4-2-1-1" data-name="story ring">
+                        <div class="h-full w-full rounded-full ring-2 ring-[var(--navy)] overflow-hidden bg-gradient-to-br from-[#123a8a] to-[#0a1f4d] flex items-center justify-center text-center leading-[8px]" data-kid="1-3-4-2-1-1-1" data-name="story inner content">
+                            <span class="text-[7px] font-extrabold italic tracking-wide" data-kid="1-3-4-2-1-1-1-1" data-name="story title">
+                                MOMENTOS
+                                <br data-kid="1-3-4-2-1-1-1-1-1"/>
+                                DE LA LIGA
+                            </span>
+                        </div>
+                    </div>
+                    <span class="text-[8px] text-center leading-[9px]" data-kid="1-3-4-2-1-2" data-name="story label">
+                        Momentos
+                        <br data-kid="1-3-4-2-1-2-1" data-name="break tag"/>
+                        Priceless
+                        <span class="text-[var(--green)]" data-kid="1-3-4-2-1-2-2" data-name="online indicator">
+                            ●
+                        </span>
+                    </span>
+                </a>
+                <a class="flex flex-col items-center gap-1.5 w-[74px]" data-kid="1-3-4-2-2" data-name="story item 2" href="#" data-pc-route="competition">
+                    <div class="h-[62px] w-[62px] rounded-full p-[2px] bg-[var(--green)]" data-kid="1-3-4-2-2-1" data-name="story ring">
+                        <div class="h-full w-full rounded-full ring-2 ring-[var(--navy)] overflow-hidden" data-kid="1-3-4-2-2-1-1" data-name="story thumbnail container">
+                            <img alt="Categorías" class="img" data-kid="1-3-4-2-2-1-1-1" data-name="story image" decoding="async" loading="lazy" src="./assets/moments/moments-original-a.png"/>
+                        </div>
+                    </div>
+                    <span class="text-[8px] text-center leading-[9px]" data-kid="1-3-4-2-2-2" data-name="story label">
+                        Categorías
+                        <span class="text-[var(--green)]" data-kid="1-3-4-2-2-2-1" data-name="online indicator">
+                            ●
+                        </span>
+                    </span>
+                </a>
+                <a class="flex flex-col items-center gap-1.5 w-[74px]" data-kid="1-3-4-2-3" data-name="story item 3" href="#" data-pc-route="teams">
+                    <div class="h-[62px] w-[62px] rounded-full p-[2px] bg-[var(--green)]" data-kid="1-3-4-2-3-1" data-name="story ring">
+                        <div class="h-full w-full rounded-full ring-2 ring-[var(--navy)] overflow-hidden" data-kid="1-3-4-2-3-1-1" data-name="story thumbnail container">
+                            <img alt="Equipos" class="img" data-kid="1-3-4-2-3-1-1-1" data-name="story image" decoding="async" loading="lazy" src="./public/home-feature-reference.webp"/>
+                        </div>
+                    </div>
+                    <span class="text-[8px] text-center leading-[9px]" data-kid="1-3-4-2-3-2" data-name="story label">
+                        Equipos
+                        <span class="text-[var(--green)]" data-kid="1-3-4-2-3-2-1" data-name="online indicator">
+                            ●
+                        </span>
+                    </span>
+                </a>
+                <a class="flex flex-col items-center gap-1.5 w-[74px]" data-kid="1-3-4-2-4" data-name="story item 4" href="#" data-pc-route="competition">
+                    <div class="h-[62px] w-[62px] rounded-full p-[2px] bg-[var(--green)]" data-kid="1-3-4-2-4-1" data-name="story ring">
+                        <div class="h-full w-full rounded-full ring-2 ring-[var(--navy)] overflow-hidden" data-kid="1-3-4-2-4-1-1" data-name="story thumbnail container">
+                            <img alt="Equipos" class="img" data-kid="1-3-4-2-4-1-1-1" data-name="story image" decoding="async" loading="lazy" src="./assets/home-players-user.png"/>
+                        </div>
+                    </div>
+                    <span class="text-[8px] text-center leading-[9px]" data-kid="1-3-4-2-4-2" data-name="story label">
+                        Equipos
+                        <span class="text-[var(--green)]" data-kid="1-3-4-2-4-2-1" data-name="online indicator">
+                            ●
+                        </span>
+                    </span>
+                </a>
+                <a class="flex flex-col items-center gap-1.5 w-[74px]" data-kid="1-3-4-2-5" data-name="story item 5" href="#" data-pc-route="vote">
+                    <div class="h-[62px] w-[62px] rounded-full p-[2px] bg-[var(--green)]" data-kid="1-3-4-2-5-1" data-name="story ring">
+                        <div class="h-full w-full rounded-full ring-2 ring-[var(--navy)] overflow-hidden" data-kid="1-3-4-2-5-1-1" data-name="story thumbnail container">
+                            <img alt="Jugador de la Semana" class="img" data-kid="1-3-4-2-5-1-1-1" data-name="story image" decoding="async" loading="lazy" src="./public/video-hero-reference.webp"/>
+                        </div>
+                    </div>
+                    <span class="text-[8px] text-center leading-[9px]" data-kid="1-3-4-2-5-2" data-name="story label">
+                        Jugador de
+                        <br data-kid="1-3-4-2-5-2-1" data-name="break tag"/>
+                        la Semana
+                    </span>
+                </a>
+                <a class="flex flex-col items-center gap-1.5 w-[74px]" data-kid="1-3-4-2-6" data-name="story item 6" href="#" data-pc-route="vote">
+                    <div class="h-[62px] w-[62px] rounded-full p-[2px] bg-[var(--green)]" data-kid="1-3-4-2-6-1" data-name="story ring">
+                        <div class="h-full w-full rounded-full ring-2 ring-[var(--navy)] overflow-hidden bg-gradient-to-br from-[#1e5fff] to-[#0a1f4d] flex items-center justify-center text-center leading-[8px]" data-kid="1-3-4-2-6-1-1" data-name="story inner content">
+                            <span class="text-[7px] font-extrabold italic" data-kid="1-3-4-2-6-1-1-1" data-name="story title">
+                                JUGADOR
+                                <br data-kid="1-3-4-2-6-1-1-1-1"/>
+                                DE LA
+                                <br data-kid="1-3-4-2-6-1-1-1-2"/>
+                                SEMANA
+                            </span>
+                        </div>
+                    </div>
+                    <span class="text-[8px] text-center leading-[9px]" data-kid="1-3-4-2-6-2" data-name="story label">
+                        Jugadores
+                        <span class="text-[var(--green)]" data-kid="1-3-4-2-6-2-1" data-name="online indicator">
+                            ●
+                        </span>
+                    </span>
+                </a>
+                <a class="flex flex-col items-center gap-1.5 w-[74px]" data-kid="1-3-4-2-7" data-name="story item 7" href="#" data-pc-route="video">
+                    <div class="h-[62px] w-[62px] rounded-full p-[2px] bg-[var(--green)]" data-kid="1-3-4-2-7-1" data-name="story ring">
+                        <div class="h-full w-full rounded-full ring-2 ring-[var(--navy)] overflow-hidden bg-gradient-to-br from-[#0aa35a] to-[#053a25] flex items-center justify-center text-center leading-[8px]" data-kid="1-3-4-2-7-1-1" data-name="story inner content">
+                            <span class="text-[7px] font-extrabold italic" data-kid="1-3-4-2-7-1-1-1" data-name="story title">
+                                GOL
+                                <br data-kid="1-3-4-2-7-1-1-1-1"/>
+                                DEL DÍA
+                            </span>
+                        </div>
+                    </div>
+                    <span class="text-[8px] text-center leading-[9px]" data-kid="1-3-4-2-7-2" data-name="story label">
+                        Gol del día
+                        <span class="text-[var(--green)]" data-kid="1-3-4-2-7-2-1" data-name="online indicator">
+                            ●
+                        </span>
+                    </span>
+                </a>
+                <a class="flex flex-col items-center gap-1.5 w-[74px]" data-kid="1-3-4-2-8" data-name="story item 8" href="#" data-pc-route="moments">
+                    <div class="h-[62px] w-[62px] rounded-full p-[2px] bg-[var(--green)]" data-kid="1-3-4-2-8-1" data-name="story ring">
+                        <div class="h-full w-full rounded-full ring-2 ring-[var(--navy)] overflow-hidden bg-gradient-to-br from-[#2d4de0] to-[#0a1f4d] flex items-center justify-center text-center leading-[8px]" data-kid="1-3-4-2-8-1-1" data-name="story inner content">
+                            <span class="text-[7px] font-extrabold italic" data-kid="1-3-4-2-8-1-1-1" data-name="story title">
+                                JUGADA
+                                <br data-kid="1-3-4-2-8-1-1-1-1"/>
+                                DE LA
+                                <br data-kid="1-3-4-2-8-1-1-1-2"/>
+                                SEMANA
+                            </span>
+                        </div>
+                    </div>
+                    <span class="text-[8px] text-center leading-[9px]" data-kid="1-3-4-2-8-2" data-name="story label">
+                        Jugador
+                        <br data-kid="1-3-4-2-8-2-1" data-name="break tag"/>
+                        Jornada
+                        <span class="text-[var(--green)]" data-kid="1-3-4-2-8-2-2" data-name="online indicator">
+                            ●
+                        </span>
+                    </span>
+                </a>
+                <a class="flex flex-col items-center gap-1.5 w-[74px]" data-kid="1-3-4-2-9" data-name="story item 9" href="#" data-pc-route="teams">
+                    <div class="h-[62px] w-[62px] rounded-full p-[2px] bg-[var(--green)]" data-kid="1-3-4-2-9-1" data-name="story ring">
+                        <div class="h-full w-full rounded-full ring-2 ring-[var(--navy)] overflow-hidden" data-kid="1-3-4-2-9-1-1" data-name="story thumbnail container">
+                            <img alt="Jugador destacado" class="img" data-kid="1-3-4-2-9-1-1-1" data-name="story image" decoding="async" loading="lazy" src="./assets/home-players-fictional.jpg"/>
+                        </div>
+                    </div>
+                    <span class="text-[8px] text-center leading-[9px]" data-kid="1-3-4-2-9-2" data-name="story label">
+                        Jugador
+                        <br data-kid="1-3-4-2-9-2-1" data-name="break tag"/>
+                        destacado
+                    </span>
+                </a>
+                <a class="flex flex-col items-center gap-1.5 w-[74px]" data-kid="1-3-4-2-10" data-name="story item 10" href="#" data-pc-route="vote">
+                    <div class="h-[62px] w-[62px] rounded-full p-[2px] bg-[var(--green)]" data-kid="1-3-4-2-10-1" data-name="story ring">
+                        <div class="h-full w-full rounded-full ring-2 ring-[var(--navy)] overflow-hidden bg-gradient-to-br from-[#1e5fff] to-[#06183f] flex items-center justify-center text-center leading-[8px]" data-kid="1-3-4-2-10-1-1" data-name="story inner content">
+                            <span class="text-[7px] font-extrabold italic" data-kid="1-3-4-2-10-1-1-1" data-name="story title">
+                                JUGADOR
+                                <br data-kid="1-3-4-2-10-1-1-1-1"/>
+                                DEL DÍA
+                            </span>
+                        </div>
+                    </div>
+                    <span class="text-[8px] text-center leading-[9px]" data-kid="1-3-4-2-10-2" data-name="story label">
+                        Jugador
+                        <br data-kid="1-3-4-2-10-2-1" data-name="break tag"/>
+                        del Día
+                        <span class="text-[var(--green)]" data-kid="1-3-4-2-10-2-2" data-name="online indicator">
+                            ●
+                        </span>
+                    </span>
+                </a>
+                <a class="flex flex-col items-center gap-1.5 w-[74px]" data-kid="1-3-4-2-11" data-name="story item 11" href="#" data-pc-route="safe-data">
+                    <div class="h-[62px] w-[62px] rounded-full p-[2px] bg-[var(--green)]" data-kid="1-3-4-2-11-1" data-name="story ring">
+                        <div class="h-full w-full rounded-full ring-2 ring-[var(--navy)] overflow-hidden bg-gradient-to-br from-[#111f45] to-[#050d22] flex items-center justify-center text-center leading-[8px]" data-kid="1-3-4-2-11-1-1" data-name="story inner content">
+                            <span class="text-[7px] font-extrabold italic" data-kid="1-3-4-2-11-1-1-1" data-name="story title">
+                                ASISTENCIAS
+                                <br data-kid="1-3-4-2-11-1-1-1-1"/>
+                                DEL DÍA
+                            </span>
+                        </div>
+                    </div>
+                    <span class="text-[8px] text-center leading-[9px]" data-kid="1-3-4-2-11-2" data-name="story label">
+                        Asistencias
+                        <span class="text-[var(--green)]" data-kid="1-3-4-2-11-2-1" data-name="online indicator">
+                            ●
+                        </span>
+                    </span>
+                </a>
+                <a class="flex flex-col items-center gap-1.5 w-[74px]" data-kid="1-3-4-2-12" data-name="story item 12" href="#" data-pc-route="video">
+                    <div class="h-[62px] w-[62px] rounded-full p-[2px] bg-[var(--green)]" data-kid="1-3-4-2-12-1" data-name="story ring">
+                        <div class="h-full w-full rounded-full ring-2 ring-[var(--navy)] overflow-hidden bg-gradient-to-br from-[#0d2a6a] to-[#050d22] flex items-center justify-center text-center leading-[8px]" data-kid="1-3-4-2-12-1-1" data-name="story inner content">
+                            <span class="text-[7px] font-extrabold italic" data-kid="1-3-4-2-12-1-1-1" data-name="story title">
+                                MEJORES
+                                <br data-kid="1-3-4-2-12-1-1-1-1"/>
+                                GOLES
+                            </span>
+                        </div>
+                    </div>
+                    <span class="text-[8px] text-center leading-[9px]" data-kid="1-3-4-2-12-2" data-name="story label">
+                        Mejores goles
+                    </span>
+                </a>
+            </div>
+            <button aria-label="Siguiente" class="h-6 w-6 rounded-full border border-[var(--green)] text-[var(--green)] flex items-center justify-center text-[10px]" data-kid="1-3-4-3" data-name="next story button">
+                <i class="ti ti-chevron-right" data-kid="1-3-4-3-1" data-name="chevron right icon">
+                </i>
+            </button>
+        </div>
+        <!-- RESPONSIBLE GAMBLING BANNER -->
+        <div class="relative z-10 mx-auto max-w-[1090px] px-4 mt-8 flex justify-center" data-kid="1-3-5" data-name="responsible gambling banner wrapper">
+            <div class="w-[560px] rounded-sm bg-gradient-to-r from-[#0d4a33] to-[#0a2e28] border border-[#1e6a4b]/60 px-4 py-2.5 flex items-center gap-4" data-kid="1-3-5-1" data-name="banner container">
+                <span class="h-6 w-6 rounded-full bg-[#e53935] text-white text-[8px] font-extrabold flex items-center justify-center shrink-0" data-kid="1-3-5-1-1" data-name="age restriction label">
+                    5
+                </span>
+                <span class="text-[9px] font-bold text-[#c6f5d8] shrink-0" data-kid="1-3-5-1-2" data-name="banner title">
+                    CATEGORÍAS OFICIALES
+                </span>
+                <p class="text-[6.5px] leading-[9px] text-[#9fd8b8]" data-kid="1-3-5-1-3" data-name="banner legal disclaimer">
+                    Primera, Intermedia, Segunda, Veteranos 35+ y Veteranos 50+. Consulta partidos, equipos y resultados oficiales de la liga.
+                </p>
+            </div>
+        </div>
+        <!-- HERO -->
+        <div class="relative z-10 mx-auto max-w-[1090px] px-4 mt-6 pb-8 grid grid-cols-[1fr_300px] gap-3" data-kid="1-3-6" data-name="hero section container">
+            <a class="group relative h-[340px] rounded-md overflow-hidden ring-1 ring-white/10" data-kid="1-3-6-1" data-name="featured hero article card" href="#" data-pc-route="news">
+                <img alt="Estadio con ambiente de final" class="img group-hover:scale-[1.03] transition-transform duration-700" data-kid="1-3-6-1-1" data-name="article thumbnail image" decoding="async" loading="lazy" src="./public/deportiva-sur-partido.jpg"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" data-kid="1-3-6-1-2" data-name="gradient overlay">
+                </div>
+                <h2 class="absolute left-5 bottom-4 text-[17px] font-semibold tracking-tight" data-kid="1-3-6-1-3" data-name="article headline">
+                    Conoce los campos, equipos y partidos de Liga Juventino Rosas
+                </h2>
+            </a>
+            <aside class="rounded-md bg-[#0b1a38]/80 border border-[var(--line)] backdrop-blur p-3 h-[340px] flex flex-col" data-kid="1-3-6-2" data-name="highlighted articles sidebar">
+                <h3 class="text-[12px] font-bold mb-2" data-kid="1-3-6-2-1" data-name="sidebar title">
+                    Lo más destacado
+                </h3>
+                <ul class="flex-1 flex flex-col divide-y divide-[var(--line)]/70" data-kid="1-3-6-2-2" data-name="sidebar list">
+                    <li class="flex-1 flex items-center gap-2.5 py-1.5 hover:bg-white/5 rounded" data-kid="1-3-6-2-2-1" data-name="sidebar item 1" data-pc-route="video" role="button" tabindex="0">
+                        <div class="h-10 w-16 rounded overflow-hidden shrink-0" data-kid="1-3-6-2-2-1-1" data-name="thumbnail container">
+                            <img alt="" class="img" data-kid="1-3-6-2-2-1-1-1" data-name="thumbnail image" decoding="async" loading="lazy" src="./public/video-hero-reference.webp"/>
+                        </div>
+                        <span class="text-[9.5px] font-medium leading-tight" data-kid="1-3-6-2-2-1-2" data-name="item text">
+                            Consulta los vídeos y momentos de la liga
+                        </span>
+                    </li>
+                    <li class="flex-1 flex items-center gap-2.5 py-1.5 hover:bg-white/5 rounded" data-kid="1-3-6-2-2-2" data-name="sidebar item 2" data-pc-route="teams" role="button" tabindex="0">
+                        <div class="h-10 w-16 rounded overflow-hidden shrink-0 bg-gradient-to-br from-[#1e5fff] to-[#0a1f4d] flex items-center justify-center" data-kid="1-3-6-2-2-2-1" data-name="thumbnail container">
+                            <span class="text-[6px] font-extrabold italic tracking-wide" data-kid="1-3-6-2-2-2-1-1" data-name="sidebar badge title">
+                                EQUIPO DE LA SEMANA
+                            </span>
+                        </div>
+                        <span class="text-[9.5px] font-medium leading-tight" data-kid="1-3-6-2-2-2-2" data-name="item text">
+                            Equipos de la liga
+                        </span>
+                    </li>
+                    <li class="flex-1 flex items-center gap-2.5 py-1.5 hover:bg-white/5 rounded" data-kid="1-3-6-2-2-3" data-name="sidebar item 3" data-pc-route="moments" role="button" tabindex="0">
+                        <div class="h-10 w-16 rounded overflow-hidden shrink-0" data-kid="1-3-6-2-2-3-1" data-name="thumbnail container">
+                            <img alt="" class="img" data-kid="1-3-6-2-2-3-1-1" data-name="thumbnail image" decoding="async" loading="lazy" src="./assets/moments/moments-original-a.png"/>
+                        </div>
+                        <span class="text-[9.5px] font-medium leading-tight" data-kid="1-3-6-2-2-3-2" data-name="item text">
+                            Momentos de la liga
+                        </span>
+                    </li>
+                    <li class="flex-1 flex items-center gap-2.5 py-1.5 hover:bg-white/5 rounded" data-kid="1-3-6-2-2-4" data-name="sidebar item 4" data-pc-route="moments" role="button" tabindex="0">
+                        <div class="h-10 w-16 rounded overflow-hidden shrink-0" data-kid="1-3-6-2-2-4-1" data-name="thumbnail container">
+                            <img alt="" class="img" data-kid="1-3-6-2-2-4-1-1" data-name="thumbnail image" decoding="async" loading="lazy" src="./assets/home-players-user.png"/>
+                        </div>
+                        <span class="text-[9.5px] font-medium leading-tight" data-kid="1-3-6-2-2-4-2" data-name="item text">
+                            Momentos de la liga
+                        </span>
+                    </li>
+                    <li class="flex-1 flex items-center gap-2.5 py-1.5 hover:bg-white/5 rounded" data-kid="1-3-6-2-2-5" data-name="sidebar item 5" data-pc-route="fantasy" role="button" tabindex="0">
+                        <div class="h-10 w-16 rounded overflow-hidden shrink-0" data-kid="1-3-6-2-2-5-1" data-name="thumbnail container">
+                            <img alt="" class="img" data-kid="1-3-6-2-2-5-1-1" data-name="thumbnail image" decoding="async" loading="lazy" src="./assets/moments/moments-original-b.png"/>
+                        </div>
+                        <span class="text-[9.5px] font-medium leading-tight" data-kid="1-3-6-2-2-5-2" data-name="item text">
+                            Participa en Fantasy de la liga
+                        </span>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+    </section>
+    <!-- ================= MOMENTOS ================= -->
+    <section class="mx-auto max-w-[1090px] px-4 pt-6" data-kid="1-4" data-name="moments section container">
+        <div class="flex items-center justify-between mb-3" data-kid="1-4-1" data-name="section header container">
+            <h2 class="text-[15px] font-bold" data-kid="1-4-1-1" data-name="section title">
+                Momentos
+            </h2>
+            <a class="text-[9.5px] text-[var(--green)] font-medium flex items-center gap-1 hover:underline" data-kid="1-4-1-2" data-name="view all link" href="#" data-pc-route="moments">
+                Ver todos los momentos
+                <i class="ti ti-chevron-right text-[9px]" data-kid="1-4-1-2-1" data-name="chevron icon">
+                </i>
+            </a>
+        </div>
+        <div class="grid grid-cols-7 gap-2" data-kid="1-4-2" data-name="moments grid container">
+            <!-- moment card -->
+            <a class="relative h-[176px] rounded-md overflow-hidden border-2 border-[var(--green)]/80 group" data-kid="1-4-2-1" data-name="moment card 1" href="#" data-pc-route="moments">
+                <img alt="Jugadas de la liga" class="img group-hover:scale-105 transition-transform duration-500" data-kid="1-4-2-1-1" data-name="card image" decoding="async" loading="lazy" src="./assets/home-players-user.png"/>
+                <span class="absolute top-1.5 left-1.5 text-[6px] font-extrabold bg-[var(--green)] text-[#03301a] px-1 py-[1px] rounded-sm" data-kid="1-4-2-1-2" data-name="card badge">
+                    NUEVO
+                </span>
+                <div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/90 to-transparent" data-kid="1-4-2-1-3" data-name="gradient overlay">
+                </div>
+                <span class="absolute left-2 bottom-2 text-[8.5px] font-semibold" data-kid="1-4-2-1-4" data-name="card caption">
+                    Jugadas de la liga
+                    <span class="text-yellow-400" data-kid="1-4-2-1-4-1" data-name="status indicator">
+                        ●
+                    </span>
+                </span>
+            </a>
+            <a class="relative h-[176px] rounded-md overflow-hidden border-2 border-[var(--green)]/80 group" data-kid="1-4-2-2" data-name="moment card 2" href="#" data-pc-route="moments">
+                <img alt="Fútbol en equipo" class="img group-hover:scale-105 transition-transform duration-500" data-kid="1-4-2-2-1" data-name="card image" decoding="async" loading="lazy" src="./assets/moments/moments-original-a.png"/>
+                <span class="absolute top-1.5 left-1.5 text-[6px] font-extrabold bg-[var(--green)] text-[#03301a] px-1 py-[1px] rounded-sm" data-kid="1-4-2-2-2" data-name="card badge">
+                    NUEVO
+                </span>
+                <div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/90 to-transparent" data-kid="1-4-2-2-3" data-name="gradient overlay">
+                </div>
+                <span class="absolute left-2 bottom-2 text-[8.5px] font-semibold" data-kid="1-4-2-2-4" data-name="card caption">
+                    Fútbol en equipo
+                    <span class="text-red-500" data-kid="1-4-2-2-4-1" data-name="status indicator">
+                        ●
+                    </span>
+                </span>
+            </a>
+            <a class="relative h-[176px] rounded-md overflow-hidden border-2 border-[var(--green)]/80 group" data-kid="1-4-2-3" data-name="moment card 3" href="#" data-pc-route="moments">
+                <img alt="Atajadas" class="img group-hover:scale-105 transition-transform duration-500" data-kid="1-4-2-3-1" data-name="card image" decoding="async" loading="lazy" src="./assets/moments/moments-original-b.png"/>
+                <span class="absolute top-1.5 left-1.5 text-[6px] font-extrabold bg-[var(--green)] text-[#03301a] px-1 py-[1px] rounded-sm" data-kid="1-4-2-3-2" data-name="card badge">
+                    NUEVO
+                </span>
+                <div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/90 to-transparent" data-kid="1-4-2-3-3" data-name="gradient overlay">
+                </div>
+                <span class="absolute left-2 bottom-2 text-[8.5px] font-semibold" data-kid="1-4-2-3-4" data-name="card caption">
+                    Atajadas
+                    <span class="text-yellow-400" data-kid="1-4-2-3-4-1" data-name="status indicator">
+                        ●
+                    </span>
+                </span>
+            </a>
+            <a class="relative h-[176px] rounded-md overflow-hidden border-2 border-[var(--green)]/80 group" data-kid="1-4-2-4" data-name="moment card 4" href="#" data-pc-route="moments">
+                <img alt="Momentos destacados" class="img group-hover:scale-105 transition-transform duration-500" data-kid="1-4-2-4-1" data-name="card image" decoding="async" loading="lazy" src="./public/video-hero-reference.webp"/>
+                <span class="absolute top-1.5 left-1.5 text-[6px] font-extrabold bg-[var(--green)] text-[#03301a] px-1 py-[1px] rounded-sm" data-kid="1-4-2-4-2" data-name="card badge">
+                    NUEVO
+                </span>
+                <div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/90 to-transparent" data-kid="1-4-2-4-3" data-name="gradient overlay">
+                </div>
+                <span class="absolute left-2 bottom-2 text-[8.5px] font-semibold" data-kid="1-4-2-4-4" data-name="card caption">
+                    Momentos destacados
+                    <span class="text-red-500" data-kid="1-4-2-4-4-1" data-name="status indicator">
+                        ●
+                    </span>
+                </span>
+            </a>
+            <a class="relative h-[176px] rounded-md overflow-hidden border-2 border-[var(--green)]/80 group" data-kid="1-4-2-5" data-name="moment card 5" href="#" data-pc-route="moments">
+                <img alt="Nuestros jugadores" class="img group-hover:scale-105 transition-transform duration-500" data-kid="1-4-2-5-1" data-name="card image" decoding="async" loading="lazy" src="./public/home-feature-reference.webp"/>
+                <span class="absolute top-1.5 left-1.5 text-[6px] font-extrabold bg-[var(--green)] text-[#03301a] px-1 py-[1px] rounded-sm" data-kid="1-4-2-5-2" data-name="card badge">
+                    NUEVO
+                </span>
+                <div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/90 to-transparent" data-kid="1-4-2-5-3" data-name="gradient overlay">
+                </div>
+                <span class="absolute left-2 bottom-2 text-[8.5px] font-semibold" data-kid="1-4-2-5-4" data-name="card caption">
+                    Nuestros jugadores
+                    <span class="text-blue-400" data-kid="1-4-2-5-4-1" data-name="status indicator">
+                        ●
+                    </span>
+                </span>
+            </a>
+            <a class="relative h-[176px] rounded-md overflow-hidden border-2 border-[var(--green)]/80 group" data-kid="1-4-2-6" data-name="moment card 6" href="#" data-pc-route="moments">
+                <img alt="Goles de la jornada" class="img group-hover:scale-105 transition-transform duration-500" data-kid="1-4-2-6-1" data-name="card image" decoding="async" loading="lazy" src="./assets/home-players-user.png"/>
+                <span class="absolute top-1.5 left-1.5 text-[6px] font-extrabold bg-[var(--green)] text-[#03301a] px-1 py-[1px] rounded-sm" data-kid="1-4-2-6-2" data-name="card badge">
+                    NUEVO
+                </span>
+                <div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/90 to-transparent" data-kid="1-4-2-6-3" data-name="gradient overlay">
+                </div>
+                <span class="absolute left-2 bottom-2 text-[8.5px] font-semibold" data-kid="1-4-2-6-4" data-name="card caption">
+                    Goles de la jornada
+                    <span class="text-blue-400" data-kid="1-4-2-6-4-1" data-name="status indicator">
+                        ●
+                    </span>
+                </span>
+            </a>
+            <a class="relative h-[176px] rounded-md overflow-hidden border-2 border-[var(--green)]/80 group" data-kid="1-4-2-7" data-name="moment card 7" href="#" data-pc-route="moments">
+                <img alt="Los equipos" class="img group-hover:scale-105 transition-transform duration-500" data-kid="1-4-2-7-1" data-name="card image" decoding="async" loading="lazy" src="./assets/home-players-fictional.jpg"/>
+                <span class="absolute top-1.5 left-1.5 text-[6px] font-extrabold bg-[var(--green)] text-[#03301a] px-1 py-[1px] rounded-sm" data-kid="1-4-2-7-2" data-name="card badge">
+                    NUEVO
+                </span>
+                <div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/90 to-transparent" data-kid="1-4-2-7-3" data-name="gradient overlay">
+                </div>
+                <span class="absolute left-2 bottom-2 text-[8.5px] font-semibold" data-kid="1-4-2-7-4" data-name="card caption">
+                    Los equipos
+                    <span class="text-yellow-400" data-kid="1-4-2-7-4-1" data-name="status indicator">
+                        ●
+                    </span>
+                </span>
+            </a>
+        </div>
+    </section>
+    <!-- ================= ÚLTIMAS NOTICIAS ================= -->
+    <section class="mx-auto max-w-[1090px] px-4 pt-8" data-kid="1-5" data-name="news section container">
+        <h2 class="text-[15px] font-bold mb-3" data-kid="1-5-1" data-name="section title">
+            Últimas noticias
+        </h2>
+        <!-- row 1 -->
+        <div class="grid grid-cols-[1fr_222px_222px] gap-3" data-kid="1-5-2" data-name="news row 1 container">
+            <a class="group relative h-[248px] rounded-md overflow-hidden border border-[var(--green)]/60" data-kid="1-5-2-1" data-name="featured news card" href="#" data-pc-route="news">
+                <img alt="Jugadas de la liga celebra" class="img object-[50%_20%] group-hover:scale-[1.03] transition-transform duration-700" data-kid="1-5-2-1-1" data-name="news card image" decoding="async" loading="lazy" src="./public/home-feature-reference.webp"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" data-kid="1-5-2-1-2" data-name="gradient overlay">
+                </div>
+                <div class="absolute top-2.5 right-2.5 flex items-center gap-1.5 text-[8px] font-medium" data-kid="1-5-2-1-3" data-name="news card metadata">
+                    <span data-kid="1-5-2-1-3-1" data-name="time stamp">
+                        NOTICIA
+                    </span>
+                    <span class="h-5 w-5 rounded-full border border-white/70 flex items-center justify-center" data-kid="1-5-2-1-3-2" data-name="play icon button">
+                        <i class="ti ti-player-play-filled text-[8px]" data-kid="1-5-2-1-3-2-1" data-name="play icon">
+                        </i>
+                    </span>
+                </div>
+                <h3 class="absolute left-4 bottom-3.5 text-[15px] font-semibold tracking-tight" data-kid="1-5-2-1-4" data-name="news headline">
+                    Noticias y jornadas de Liga Juventino Rosas
+                </h3>
+            </a>
+            <a class="rounded-md overflow-hidden border border-[var(--line)] bg-[var(--card)] hover:border-[var(--green)]/60 transition-colors" data-kid="1-5-2-2" data-name="news card 2" href="#" data-pc-route="vote">
+                <div class="h-[118px] bg-gradient-to-br from-[#1e5fff] via-[#0f3ea8] to-[#0a1f4d] relative overflow-hidden" data-kid="1-5-2-2-1" data-name="news card top graphic">
+                    <div class="absolute left-3 top-3 text-[10px] font-extrabold italic leading-[11px] tracking-wide" data-kid="1-5-2-2-1-1" data-name="graphic title">
+                        JUGADOR
+                        <br data-kid="1-5-2-2-1-1-1" data-name="break tag"/>
+                        DE LA
+                        <br data-kid="1-5-2-2-1-1-2" data-name="break tag"/>
+                        SEMANA
+                    </div>
+                    <div class="absolute right-2 top-2 grid grid-cols-2 gap-1" data-kid="1-5-2-2-1-2" data-name="graphic thumbnails">
+                        <div class="h-[46px] w-[46px] rounded overflow-hidden" data-kid="1-5-2-2-1-2-1" data-name="thumbnail 1">
+                            <img alt="" class="img" data-kid="1-5-2-2-1-2-1-1" data-name="image" decoding="async" loading="lazy" src="./assets/home-players-user.png"/>
+                        </div>
+                        <div class="h-[46px] w-[46px] rounded overflow-hidden" data-kid="1-5-2-2-1-2-2" data-name="thumbnail 2">
+                            <img alt="" class="img" data-kid="1-5-2-2-1-2-2-1" data-name="image" decoding="async" loading="lazy" src="./assets/moments/moments-original-a.png"/>
+                        </div>
+                        <div class="h-[46px] w-[46px] rounded overflow-hidden" data-kid="1-5-2-2-1-2-3" data-name="thumbnail 3">
+                            <img alt="" class="img" data-kid="1-5-2-2-1-2-3-1" data-name="image" decoding="async" loading="lazy" src="./assets/home-players-fictional.jpg"/>
+                        </div>
+                        <div class="h-[46px] w-[46px] rounded overflow-hidden" data-kid="1-5-2-2-1-2-4" data-name="thumbnail 4">
+                            <img alt="" class="img" data-kid="1-5-2-2-1-2-4-1" data-name="image" decoding="async" loading="lazy" src="./public/video-hero-reference.webp"/>
+                        </div>
+                    </div>
+                    <div class="absolute left-3 bottom-2 text-[6px] font-bold tracking-[0.2em] text-white/70" data-kid="1-5-2-2-1-3" data-name="graphic hashtag">
+                        #LIGAJR
+                    </div>
+                </div>
+                <div class="p-3" data-kid="1-5-2-2-2" data-name="news card bottom container">
+                    <h3 class="text-[11px] font-semibold leading-snug" data-kid="1-5-2-2-2-1" data-name="news headline">
+                        Participa en Jugador de la Semana
+                    </h3>
+                </div>
+            </a>
+            <div class="rounded-md overflow-hidden border border-[#3b6bff]/60 bg-black flex flex-col" data-kid="1-5-2-3" data-name="sponsored news card">
+                <div class="h-[60px] bg-black" data-kid="1-5-2-3-1" data-name="placeholder header">
+                </div>
+                <div class="flex-1 relative flex flex-col items-center justify-center bg-gradient-to-b from-black to-[#0a1230]" data-kid="1-5-2-3-2" data-name="content wrapper">
+                    <div class="h-6 px-2 rounded-sm bg-yellow-400 text-red-700 text-[9px] font-black italic flex items-center" data-kid="1-5-2-3-2-1" data-name="sponsor label">
+                        LIGA
+                    </div>
+                    <div class="mt-2 text-[15px] font-black italic tracking-tight leading-none" data-kid="1-5-2-3-2-2" data-name="campaign title">
+                        ASISTENCIAS
+                        <span class="text-[8px] not-italic font-bold text-yellow-300" data-kid="1-5-2-3-2-2-1" data-name="sublabel">
+                            DEL
+                        </span>
+                        DÍA
+                    </div>
+                    <div class="mt-1 h-[2px] w-24 bg-gradient-to-r from-transparent via-yellow-400 to-transparent" data-kid="1-5-2-3-2-3" data-name="divider line">
+                    </div>
+                    <a class="mt-4 h-7 w-[180px] rounded-sm border border-[var(--green)] text-[var(--green)] text-[9px] font-semibold flex items-center justify-center hover:bg-[var(--green)]/10" data-kid="1-5-2-3-2-4" data-name="cta button" href="#" data-pc-route="safe-data">
+                        Ver ahora
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- row 2 -->
+        <div class="grid grid-cols-[222px_222px_1fr] gap-3 mt-3" data-kid="1-5-3" data-name="news row 2 container">
+            <a class="rounded-md overflow-hidden border border-[var(--line)] bg-[var(--card)] hover:border-[var(--green)]/60 transition-colors" data-kid="1-5-3-1" data-name="news card 4" href="#" data-pc-route="video">
+                <div class="h-[118px] overflow-hidden" data-kid="1-5-3-1-1" data-name="thumbnail container">
+                    <img alt="" class="img object-top" data-kid="1-5-3-1-1-1" data-name="thumbnail image" decoding="async" loading="lazy" src="./assets/moments/moments-original-a.png"/>
+                </div>
+                <div class="p-3 h-[90px]" data-kid="1-5-3-1-2" data-name="news card content">
+                    <h3 class="text-[11px] font-semibold leading-snug" data-kid="1-5-3-1-2-1" data-name="news headline">
+                        Vídeos y acciones de la jornada
+                    </h3>
+                </div>
+            </a>
+            <a class="rounded-md overflow-hidden border border-[var(--line)] bg-[var(--card)] hover:border-[var(--green)]/60 transition-colors" data-kid="1-5-3-2" data-name="news card 5" href="#" data-pc-route="history">
+                <div class="h-[118px] overflow-hidden" data-kid="1-5-3-2-1" data-name="thumbnail container">
+                    <img alt="Balón de Oro" class="img" data-kid="1-5-3-2-1-1" data-name="thumbnail image" decoding="async" loading="lazy" src="./public/final-trophy-drive.png"/>
+                </div>
+                <div class="p-3 h-[90px]" data-kid="1-5-3-2-2" data-name="news card content">
+                    <h3 class="text-[11px] font-semibold leading-snug" data-kid="1-5-3-2-2-1" data-name="news headline">
+                        Historia y campeones de nuestra liga
+                    </h3>
+                </div>
+            </a>
+            <a class="group relative h-[208px] rounded-md overflow-hidden border border-[var(--green)]/60" data-kid="1-5-3-3" data-name="featured news card 2" href="#" data-pc-route="news">
+                <img alt="Celebración de fútbol local" class="img object-[50%_30%] group-hover:scale-[1.03] transition-transform duration-700" data-kid="1-5-3-3-1" data-name="news card image" decoding="async" loading="lazy" src="./assets/home-players-user.png"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" data-kid="1-5-3-3-2" data-name="gradient overlay">
+                </div>
+                <h3 class="absolute left-4 bottom-3.5 text-[15px] font-semibold tracking-tight" data-kid="1-5-3-3-3" data-name="news headline">
+                    Equipos y protagonistas del fútbol local
+                </h3>
+            </a>
+        </div>
+        <a class="mt-4 inline-flex h-8 w-[150px] rounded-sm border border-[var(--green)] text-[var(--green)] text-[9.5px] font-semibold items-center justify-center hover:bg-[var(--green)]/10" data-kid="1-5-4" data-name="view all news link" href="#" data-pc-route="news">
+            Ver todas las noticias
+        </a>
+    </section>
+    <!-- ================= RESÚMENES EN VÍDEO + EN PORTADA (glow band) ================= -->
+    <section class="relative mt-14" data-kid="1-6" data-name="video section container">
+        <div class="absolute inset-0 pointer-events-none overflow-hidden" data-kid="1-6-1" data-name="background glow wrapper">
+            <div class="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-[var(--green)] via-[#1cc6ff] to-[#1e5fff]" data-kid="1-6-1-1" data-name="top divider line">
+            </div>
+            <div class="absolute -left-20 top-0 h-[420px] w-[520px] rounded-full bg-[#1e5fff]/55 blur-[100px]" data-kid="1-6-1-2" data-name="blue glow orb">
+            </div>
+            <div class="absolute left-[200px] top-[80px] h-[220px] w-[420px] rounded-full bg-[#15d66a]/35 blur-[90px]" data-kid="1-6-1-3" data-name="green glow orb">
+            </div>
+            <div class="absolute -right-28 top-[90px] h-[420px] w-[420px] rounded-full bg-[#1e5fff]/60 blur-[90px]" data-kid="1-6-1-4" data-name="blue glow orb 2">
+            </div>
+            <div class="absolute right-[-90px] top-[130px] h-[300px] w-[300px]" data-kid="1-6-1-5" data-name="starball icon glow container">
+                <svg class="w-full h-full" data-kid="1-6-1-5-1" data-name="starball icon">
+                    <use href="#starball">
+                    </use>
+                </svg>
+            </div>
+            <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[var(--navy)]" data-kid="1-6-1-6" data-name="bottom gradient overlay">
+            </div>
+        </div>
+        <!-- Resúmenes en vídeo -->
+        <div class="relative mx-auto max-w-[1090px] px-4 pt-8" data-kid="1-6-2" data-name="video highlights section">
+            <div class="flex items-center justify-between mb-3" data-kid="1-6-2-1" data-name="section header">
+                <h2 class="text-[15px] font-bold" data-kid="1-6-2-1-1" data-name="section title">
+                    Resúmenes en vídeo
+                </h2>
+                <div class="flex gap-1.5" data-kid="1-6-2-1-2" data-name="navigation buttons container">
+                    <button aria-label="Anterior" class="h-6 w-6 rounded-full border border-[var(--green)] text-[var(--green)] flex items-center justify-center text-[10px]" data-kid="1-6-2-1-2-1" data-name="previous video button">
+                        <i class="ti ti-chevron-left" data-kid="1-6-2-1-2-1-1" data-name="chevron left icon">
+                        </i>
+                    </button>
+                    <button aria-label="Siguiente" class="h-6 w-6 rounded-full border border-[var(--green)] text-[var(--green)] flex items-center justify-center text-[10px]" data-kid="1-6-2-1-2-2" data-name="next video button">
+                        <i class="ti ti-chevron-right" data-kid="1-6-2-1-2-2-1" data-name="chevron right icon">
+                        </i>
+                    </button>
+                </div>
+            </div>
+            <div class="grid grid-cols-4 gap-3" data-kid="1-6-2-2" data-name="video highlights grid">
+                <a class="rounded-md overflow-hidden border border-[var(--line)] bg-[var(--card)]/90 backdrop-blur hover:border-[var(--green)]/60 transition-colors" data-kid="1-6-2-2-1" data-name="video highlight card 1" href="#" data-pc-route="video">
+                    <div class="relative h-[120px] overflow-hidden" data-kid="1-6-2-2-1-1" data-name="thumbnail container">
+                        <img alt="" class="img object-top" data-kid="1-6-2-2-1-1-1" data-name="thumbnail image" decoding="async" loading="lazy" src="./assets/moments/moments-original-a.png"/>
+                        <div class="absolute top-2 right-2 flex items-center gap-1 text-[7.5px] font-medium" data-kid="1-6-2-2-1-1-2" data-name="metadata wrapper">
+                            <span data-kid="1-6-2-2-1-1-2-1" data-name="duration text">
+                                VÍDEO
+                            </span>
+                            <span class="h-4 w-4 rounded-full border border-white/70 flex items-center justify-center" data-kid="1-6-2-2-1-1-2-2" data-name="play icon container">
+                                <i class="ti ti-player-play-filled text-[6px]" data-kid="1-6-2-2-1-1-2-2-1" data-name="play icon">
+                                </i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-2.5" data-kid="1-6-2-2-1-2" data-name="card content wrapper">
+                        <div class="text-[7.5px] text-[var(--muted)]" data-kid="1-6-2-2-1-2-1" data-name="date text">
+                            Archivo de la liga
+                        </div>
+                        <h3 class="text-[10.5px] font-semibold leading-snug mt-0.5" data-kid="1-6-2-2-1-2-2" data-name="video title">
+                            Resúmenes de Liga Juventino Rosas
+                        </h3>
+                    </div>
+                </a>
+                <a class="rounded-md overflow-hidden border border-[var(--line)] bg-[var(--card)]/90 backdrop-blur hover:border-[var(--green)]/60 transition-colors" data-kid="1-6-2-2-2" data-name="video highlight card 2" href="#" data-pc-route="video">
+                    <div class="relative h-[120px] overflow-hidden" data-kid="1-6-2-2-2-1" data-name="thumbnail container">
+                        <img alt="" class="img object-top" data-kid="1-6-2-2-2-1-1" data-name="thumbnail image" decoding="async" loading="lazy" src="./assets/moments/moments-original-a.png"/>
+                        <div class="absolute top-2 right-2 flex items-center gap-1 text-[7.5px] font-medium" data-kid="1-6-2-2-2-1-2" data-name="metadata wrapper">
+                            <span data-kid="1-6-2-2-2-1-2-1" data-name="duration text">
+                                VÍDEO
+                            </span>
+                            <span class="h-4 w-4 rounded-full border border-white/70 flex items-center justify-center" data-kid="1-6-2-2-2-1-2-2" data-name="play icon container">
+                                <i class="ti ti-player-play-filled text-[6px]" data-kid="1-6-2-2-2-1-2-2-1" data-name="play icon">
+                                </i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-2.5" data-kid="1-6-2-2-2-2" data-name="card content wrapper">
+                        <div class="text-[7.5px] text-[var(--muted)]" data-kid="1-6-2-2-2-2-1" data-name="date text">
+                            Archivo de la liga
+                        </div>
+                        <h3 class="text-[10.5px] font-semibold leading-snug mt-0.5" data-kid="1-6-2-2-2-2-2" data-name="video title">
+                            Partidos y goles de la liga
+                        </h3>
+                    </div>
+                </a>
+                <a class="rounded-md overflow-hidden border border-[var(--line)] bg-[var(--card)]/90 backdrop-blur hover:border-[var(--green)]/60 transition-colors" data-kid="1-6-2-2-3" data-name="video highlight card 3" href="#" data-pc-route="video">
+                    <div class="relative h-[120px] overflow-hidden" data-kid="1-6-2-2-3-1" data-name="thumbnail container">
+                        <img alt="" class="img" data-kid="1-6-2-2-3-1-1" data-name="thumbnail image" decoding="async" loading="lazy" src="./assets/moments/moments-original-b.png"/>
+                        <div class="absolute top-2 right-2 flex items-center gap-1 text-[7.5px] font-medium" data-kid="1-6-2-2-3-1-2" data-name="metadata wrapper">
+                            <span data-kid="1-6-2-2-3-1-2-1" data-name="duration text">
+                                VÍDEO
+                            </span>
+                            <span class="h-4 w-4 rounded-full border border-white/70 flex items-center justify-center" data-kid="1-6-2-2-3-1-2-2" data-name="play icon container">
+                                <i class="ti ti-player-play-filled text-[6px]" data-kid="1-6-2-2-3-1-2-2-1" data-name="play icon">
+                                </i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-2.5" data-kid="1-6-2-2-3-2" data-name="card content wrapper">
+                        <div class="text-[7.5px] text-[var(--muted)]" data-kid="1-6-2-2-3-2-1" data-name="date text">
+                            Archivo de la liga
+                        </div>
+                        <h3 class="text-[10.5px] font-semibold leading-snug mt-0.5" data-kid="1-6-2-2-3-2-2" data-name="video title">
+                            Las mejores jugadas
+                        </h3>
+                    </div>
+                </a>
+                <a class="rounded-md overflow-hidden border border-[var(--line)] bg-[var(--card)]/90 backdrop-blur hover:border-[var(--green)]/60 transition-colors" data-kid="1-6-2-2-4" data-name="video highlight card 4" href="#" data-pc-route="video">
+                    <div class="relative h-[120px] overflow-hidden" data-kid="1-6-2-2-4-1" data-name="thumbnail container">
+                        <img alt="" class="img" data-kid="1-6-2-2-4-1-1" data-name="thumbnail image" decoding="async" loading="lazy" src="./assets/home-players-fictional.jpg"/>
+                        <div class="absolute top-2 right-2 flex items-center gap-1 text-[7.5px] font-medium" data-kid="1-6-2-2-4-1-2" data-name="metadata wrapper">
+                            <span data-kid="1-6-2-2-4-1-2-1" data-name="duration text">
+                                VÍDEO
+                            </span>
+                            <span class="h-4 w-4 rounded-full border border-white/70 flex items-center justify-center" data-kid="1-6-2-2-4-1-2-2" data-name="play icon container">
+                                <i class="ti ti-player-play-filled text-[6px]" data-kid="1-6-2-2-4-1-2-2-1" data-name="play icon">
+                                </i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-2.5" data-kid="1-6-2-2-4-2" data-name="card content wrapper">
+                        <div class="text-[7.5px] text-[var(--muted)]" data-kid="1-6-2-2-4-2-1" data-name="date text">
+                            Archivo de la liga
+                        </div>
+                        <h3 class="text-[10.5px] font-semibold leading-snug mt-0.5" data-kid="1-6-2-2-4-2-2" data-name="video title">
+                            Momentos del fútbol local
+                        </h3>
+                    </div>
+                </a>
+            </div>
+            <a class="mt-4 inline-flex h-8 w-[150px] rounded-sm border border-[var(--green)] text-[var(--green)] text-[9.5px] font-semibold items-center justify-center hover:bg-[var(--green)]/10" data-kid="1-6-2-3" data-name="view all videos link" href="#" data-pc-route="video">
+                Ver todos los vídeos
+            </a>
+        </div>
+        <!-- En portada -->
+        <div class="relative mx-auto max-w-[1090px] px-4 pt-10 pb-10" data-kid="1-6-3" data-name="spotlight videos section">
+            <div class="flex items-center justify-between mb-3" data-kid="1-6-3-1" data-name="section header">
+                <h2 class="text-[15px] font-bold" data-kid="1-6-3-1-1" data-name="section title">
+                    En portada
+                </h2>
+                <div class="flex gap-1.5" data-kid="1-6-3-1-2" data-name="navigation buttons container">
+                    <button aria-label="Anterior" class="h-6 w-6 rounded-full border border-[var(--green)] text-[var(--green)] flex items-center justify-center text-[10px]" data-kid="1-6-3-1-2-1" data-name="previous video button">
+                        <i class="ti ti-chevron-left" data-kid="1-6-3-1-2-1-1" data-name="chevron left icon">
+                        </i>
+                    </button>
+                    <button aria-label="Siguiente" class="h-6 w-6 rounded-full border border-[var(--green)] text-[var(--green)] flex items-center justify-center text-[10px]" data-kid="1-6-3-1-2-2" data-name="next video button">
+                        <i class="ti ti-chevron-right" data-kid="1-6-3-1-2-2-1" data-name="chevron right icon">
+                        </i>
+                    </button>
+                </div>
+            </div>
+            <div class="grid grid-cols-4 gap-3" data-kid="1-6-3-2" data-name="spotlight videos grid">
+                <a class="rounded-md overflow-hidden border border-[var(--line)] bg-[var(--card)]/90 backdrop-blur hover:border-[var(--green)]/60 transition-colors" data-kid="1-6-3-2-1" data-name="spotlight video card 1" href="#" data-pc-route="video">
+                    <div class="relative h-[120px] overflow-hidden" data-kid="1-6-3-2-1-1" data-name="thumbnail container">
+                        <img alt="" class="img object-top" data-kid="1-6-3-2-1-1-1" data-name="thumbnail image" decoding="async" loading="lazy" src="./assets/home-players-user.png"/>
+                        <span class="absolute top-2 left-2 h-3 w-5 rounded-sm bg-gradient-to-r from-red-500 to-orange-400" data-kid="1-6-3-2-1-1-2" data-name="thumbnail badge">
+                        </span>
+                        <div class="absolute top-2 right-2 flex items-center gap-1 text-[7.5px] font-medium" data-kid="1-6-3-2-1-1-3" data-name="metadata wrapper">
+                            <span data-kid="1-6-3-2-1-1-3-1" data-name="duration text">
+                                VÍDEO
+                            </span>
+                            <span class="h-4 w-4 rounded-full border border-white/70 flex items-center justify-center" data-kid="1-6-3-2-1-1-3-2" data-name="play icon container">
+                                <i class="ti ti-player-play-filled text-[6px]" data-kid="1-6-3-2-1-1-3-2-1" data-name="play icon">
+                                </i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-2.5" data-kid="1-6-3-2-1-2" data-name="card content wrapper">
+                        <div class="text-[7.5px] text-[var(--muted)]" data-kid="1-6-3-2-1-2-1" data-name="date text">
+                            Archivo de la liga
+                        </div>
+                        <h3 class="text-[10.5px] font-semibold leading-snug mt-0.5" data-kid="1-6-3-2-1-2-2" data-name="video title">
+                            Momentos de la liga
+                        </h3>
+                    </div>
+                </a>
+                <a class="rounded-md overflow-hidden border border-[var(--line)] bg-[var(--card)]/90 backdrop-blur hover:border-[var(--green)]/60 transition-colors" data-kid="1-6-3-2-2" data-name="spotlight video card 2" href="#" data-pc-route="video">
+                    <div class="relative h-[120px] overflow-hidden" data-kid="1-6-3-2-2-1" data-name="thumbnail container">
+                        <img alt="" class="img object-top" data-kid="1-6-3-2-2-1-1" data-name="thumbnail image" decoding="async" loading="lazy" src="./public/video-hero-reference.webp"/>
+                        <div class="absolute top-2 right-2 flex items-center gap-1 text-[7.5px] font-medium" data-kid="1-6-3-2-2-1-2" data-name="metadata wrapper">
+                            <span data-kid="1-6-3-2-2-1-2-1" data-name="duration text">
+                                VÍDEO
+                            </span>
+                            <span class="h-4 w-4 rounded-full border border-white/70 flex items-center justify-center" data-kid="1-6-3-2-2-1-2-2" data-name="play icon container">
+                                <i class="ti ti-player-play-filled text-[6px]" data-kid="1-6-3-2-2-1-2-2-1" data-name="play icon">
+                                </i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-2.5" data-kid="1-6-3-2-2-2" data-name="card content wrapper">
+                        <div class="text-[7.5px] text-[var(--muted)]" data-kid="1-6-3-2-2-2-1" data-name="date text">
+                            Archivo de la liga
+                        </div>
+                        <h3 class="text-[10.5px] font-semibold leading-snug mt-0.5" data-kid="1-6-3-2-2-2-2" data-name="video title">
+                            Consulta los vídeos y momentos de la liga 1
+                        </h3>
+                    </div>
+                </a>
+                <a class="rounded-md overflow-hidden border border-[var(--line)] bg-[var(--card)]/90 backdrop-blur hover:border-[var(--green)]/60 transition-colors" data-kid="1-6-3-2-3" data-name="spotlight video card 3" href="#" data-pc-route="video">
+                    <div class="relative h-[120px] overflow-hidden" data-kid="1-6-3-2-3-1" data-name="thumbnail container">
+                        <img alt="" class="img object-top" data-kid="1-6-3-2-3-1-1" data-name="thumbnail image" decoding="async" loading="lazy" src="./assets/home-players-user.png"/>
+                        <div class="absolute top-2 right-2 flex items-center gap-1 text-[7.5px] font-medium" data-kid="1-6-3-2-3-1-2" data-name="metadata wrapper">
+                            <span data-kid="1-6-3-2-3-1-2-1" data-name="duration text">
+                                VÍDEO
+                            </span>
+                            <span class="h-4 w-4 rounded-full border border-white/70 flex items-center justify-center" data-kid="1-6-3-2-3-1-2-2" data-name="play icon container">
+                                <i class="ti ti-player-play-filled text-[6px]" data-kid="1-6-3-2-3-1-2-2-1" data-name="play icon">
+                                </i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-2.5" data-kid="1-6-3-2-3-2" data-name="card content wrapper">
+                        <div class="text-[7.5px] text-[var(--muted)]" data-kid="1-6-3-2-3-2-1" data-name="date text">
+                            Archivo de la liga
+                        </div>
+                        <h3 class="text-[10.5px] font-semibold leading-snug mt-0.5" data-kid="1-6-3-2-3-2-2" data-name="video title">
+                            Jugadas destacadas de nuestra liga
+                        </h3>
+                    </div>
+                </a>
+                <a class="rounded-md overflow-hidden border border-[var(--line)] bg-[var(--card)]/90 backdrop-blur hover:border-[var(--green)]/60 transition-colors" data-kid="1-6-3-2-4" data-name="spotlight video card 4" href="#" data-pc-route="video">
+                    <div class="relative h-[120px] overflow-hidden" data-kid="1-6-3-2-4-1" data-name="thumbnail container">
+                        <img alt="" class="img" data-kid="1-6-3-2-4-1-1" data-name="thumbnail image" decoding="async" loading="lazy" src="./assets/moments/moments-original-b.png"/>
+                        <div class="absolute top-2 right-2 flex items-center gap-1 text-[7.5px] font-medium" data-kid="1-6-3-2-4-1-2" data-name="metadata wrapper">
+                            <span data-kid="1-6-3-2-4-1-2-1" data-name="duration text">
+                                VÍDEO
+                            </span>
+                            <span class="h-4 w-4 rounded-full border border-white/70 flex items-center justify-center" data-kid="1-6-3-2-4-1-2-2" data-name="play icon container">
+                                <i class="ti ti-player-play-filled text-[6px]" data-kid="1-6-3-2-4-1-2-2-1" data-name="play icon">
+                                </i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-2.5" data-kid="1-6-3-2-4-2" data-name="card content wrapper">
+                        <div class="text-[7.5px] text-[var(--muted)]" data-kid="1-6-3-2-4-2-1" data-name="date text">
+                            Archivo de la liga
+                        </div>
+                        <h3 class="text-[10.5px] font-semibold leading-snug mt-0.5" data-kid="1-6-3-2-4-2-2" data-name="video title">
+                            Los mejores momentos y atajadas
+                        </h3>
+                    </div>
+                </a>
+            </div>
+            <a class="mt-4 inline-flex h-8 w-[150px] rounded-sm border border-[var(--green)] text-[var(--green)] text-[9.5px] font-semibold items-center justify-center hover:bg-[var(--green)]/10" data-kid="1-6-3-3" data-name="view all videos link" href="#" data-pc-route="video">
+                Ver todos los vídeos
+            </a>
+        </div>
+    </section>
+    <!-- ================= SPONSORS BAND ================= -->
+    <section class="relative h-[108px] bg-gradient-to-b from-[#0c3a3e] via-[#0a2f36] to-[#061c2a] border-t border-[#1e6a5c]/40 flex items-center justify-center" data-kid="1-7" data-name="sponsors band">
+        <p class="text-[9px] font-medium text-[#cfe9e4]" data-kid="1-7-1" data-name="sponsors label">
+            LIGA JUVENTINO ROSAS · FÚTBOL LOCAL
+        </p>
+    </section>
+    <!-- ================= FOOTER ================= -->
+    <footer class="relative overflow-hidden bg-[#03091a]" data-kid="1-8" data-name="footer">
+        <!-- night skyline + starball glow -->
+        <div class="absolute inset-0 pointer-events-none" data-kid="1-8-1" data-name="footer atmosphere wrapper">
+            <div class="absolute inset-x-0 bottom-0 h-[300px] bg-gradient-to-t from-[#0a1d3f] via-[#061330] to-transparent" data-kid="1-8-1-1" data-name="footer gradient">
+            </div>
+            <div class="absolute left-1/2 -translate-x-1/2 bottom-[-260px] h-[560px] w-[900px] rounded-full bg-[#1e5fff]/40 blur-[70px]" data-kid="1-8-1-2" data-name="blue glow">
+            </div>
+            <div class="absolute left-1/2 -translate-x-1/2 bottom-[-300px] h-[560px] w-[560px] rounded-full bg-[#1cc6ff]/40 blur-[40px]" data-kid="1-8-1-3" data-name="cyan glow">
+            </div>
+            <div class="absolute left-1/2 -translate-x-1/2 bottom-[-200px] h-[520px] w-[520px] opacity-95" data-kid="1-8-1-4" data-name="starball icon glow container">
+                <svg class="w-full h-full" data-kid="1-8-1-4-1" data-name="starball icon">
+                    <use href="#starball">
+                    </use>
+                </svg>
+            </div>
+            <div class="absolute left-[8%] bottom-[110px] h-[2px] w-[40%] bg-gradient-to-r from-transparent via-[var(--green)]/70 to-transparent rotate-[-6deg]" data-kid="1-8-1-5" data-name="green diagonal line">
+            </div>
+            <div class="absolute right-[8%] bottom-[120px] h-[2px] w-[40%] bg-gradient-to-r from-transparent via-[#1cc6ff]/70 to-transparent rotate-[6deg]" data-kid="1-8-1-6" data-name="cyan diagonal line">
+            </div>
+            <div class="absolute inset-x-0 bottom-0 h-[90px] bg-gradient-to-t from-[#03091a] to-transparent" data-kid="1-8-1-7" data-name="bottom gradient">
+            </div>
+        </div>
+        <div class="relative mx-auto max-w-[1090px] px-4 pt-9 pb-6" data-kid="1-8-2" data-name="footer content container">
+            <div class="grid grid-cols-[110px_1fr_1fr_1.6fr_1fr] gap-4" data-kid="1-8-2-1" data-name="footer navigation grid">
+                <div class="flex flex-col items-center w-[60px] text-center" data-kid="1-8-2-1-1" data-name="logo section">
+                    <img class="ljpc-original-crest" src="./assets/branding/escudo-liga-azul-sin-fondo-v1007.png" alt="Escudo Liga Juventino Rosas">
+                    <div class="mt-1 text-[6.5px] font-extrabold tracking-[0.12em] leading-[8px]" data-kid="1-8-2-1-1-2" data-name="logo text">
+                        LIGA
+                        <br data-kid="1-8-2-1-1-2-1" data-name="break tag"/>
+                        JUVENTINO
+                    </div>
+                </div>
+                <div data-kid="1-8-2-1-2" data-name="discover column">
+                    <h4 class="text-[8px] font-semibold tracking-[0.12em] text-[var(--muted)] mb-3" data-kid="1-8-2-1-2-1" data-name="column title">
+                        DESCUBRE
+                    </h4>
+                    <ul class="space-y-2.5 text-[9.5px]" data-kid="1-8-2-1-2-2" data-name="list">
+                        <li data-kid="1-8-2-1-2-2-1" data-name="item 1">
+                            <a class="hover:text-[var(--green)]" data-kid="1-8-2-1-2-2-1-1" data-name="link" href="#" data-pc-route="competition">
+                                Partidos
+                            </a>
+                        </li>
+                        <li data-kid="1-8-2-1-2-2-2" data-name="item 2">
+                            <a class="hover:text-[var(--green)]" data-kid="1-8-2-1-2-2-2-1" data-name="link" href="#" data-pc-route="standings">
+                                Clasificación
+                            </a>
+                        </li>
+                        <li data-kid="1-8-2-1-2-2-3" data-name="item 3">
+                            <a class="hover:text-[var(--green)]" data-kid="1-8-2-1-2-2-3-1" data-name="link" href="#" data-pc-route="video">
+                                Liga TV
+                            </a>
+                        </li>
+                        <li data-kid="1-8-2-1-2-2-4" data-name="item 4">
+                            <a class="hover:text-[var(--green)]" data-kid="1-8-2-1-2-2-4-1" data-name="link" href="#" data-pc-route="competition">
+                                Sorteos
+                            </a>
+                        </li>
+                        <li data-kid="1-8-2-1-2-2-5" data-name="item 5">
+                            <a class="hover:text-[var(--green)]" data-kid="1-8-2-1-2-2-5-1" data-name="link" href="#" data-pc-route="fantasy">
+                                Juegos
+                            </a>
+                        </li>
+                        <li data-kid="1-8-2-1-2-2-6" data-name="item 6">
+                            <a class="hover:text-[var(--green)]" data-kid="1-8-2-1-2-2-6-1" data-name="link" href="#" data-pc-route="safe-data">
+                                Datos
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="pt-[22px]" data-kid="1-8-2-1-3" data-name="discover column 2">
+                    <ul class="space-y-2.5 text-[9.5px]" data-kid="1-8-2-1-3-1" data-name="list">
+                        <li data-kid="1-8-2-1-3-1-1" data-name="item 1">
+                            <a class="hover:text-[var(--green)]" data-kid="1-8-2-1-3-1-1-1" data-name="link" href="#" data-pc-route="teams">
+                                Equipos
+                            </a>
+                        </li>
+                        <li data-kid="1-8-2-1-3-1-2" data-name="item 2">
+                            <a class="hover:text-[var(--green)]" data-kid="1-8-2-1-3-1-2-1" data-name="link" href="#" data-pc-route="news">
+                                Noticias
+                            </a>
+                        </li>
+                        <li data-kid="1-8-2-1-3-1-3" data-name="item 3">
+                            <a class="hover:text-[var(--green)]" data-kid="1-8-2-1-3-1-3-1" data-name="link" href="#" data-pc-route="history">
+                                Historia
+                            </a>
+                        </li>
+                        <li data-kid="1-8-2-1-3-1-4" data-name="item 4">
+                            <a class="hover:text-[var(--green)]" data-kid="1-8-2-1-3-1-4-1" data-name="link" href="#" data-pc-route="more">
+                                Sobre
+                            </a>
+                        </li>
+                        <li data-kid="1-8-2-1-3-1-5" data-name="item 5">
+                            <a class="hover:text-[var(--green)]" data-kid="1-8-2-1-3-1-5-1" data-name="link" href="#" data-pc-route="club-store">
+                                Tienda de clubes
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div data-kid="1-8-2-1-4" data-name="visit also column">
+                    <h4 class="text-[8px] font-semibold tracking-[0.12em] text-[var(--muted)] mb-3" data-kid="1-8-2-1-4-1" data-name="column title">
+                        VISITE TAMBIÉN
+                    </h4>
+                    <ul class="space-y-2.5 text-[9.5px]" data-kid="1-8-2-1-4-2" data-name="list">
+                        <li data-kid="1-8-2-1-4-2-1" data-name="item 1">
+                            <a class="hover:text-[var(--green)]" data-kid="1-8-2-1-4-2-1-1" data-name="link" href="#" data-pc-route="more">
+                                Liga Juventino
+                            </a>
+                        </li>
+                        <li data-kid="1-8-2-1-4-2-2" data-name="item 2">
+                            <a class="hover:text-[var(--green)]" data-kid="1-8-2-1-4-2-2-1" data-name="link" href="#" data-pc-route="history">
+                                Historia de la liga
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div data-kid="1-8-2-1-5" data-name="settings and socials column">
+                    <h4 class="text-[8px] font-semibold tracking-[0.12em] text-[var(--muted)] mb-3" data-kid="1-8-2-1-5-1" data-name="column title">
+                        ELEGIR IDIOMA
+                    </h4>
+                    <button class="h-6 px-3 rounded-full bg-[#1a2a4a] border border-white/10 text-[9px] font-medium flex items-center gap-2" data-kid="1-8-2-1-5-2" data-name="language button">
+                        Español
+                        <i class="ti ti-chevron-down text-[8px]" data-kid="1-8-2-1-5-2-1" data-name="chevron icon">
+                        </i>
+                    </button>
+                    <h4 class="text-[8px] font-semibold tracking-[0.12em] text-[var(--muted)] mt-6 mb-3" data-kid="1-8-2-1-5-3" data-name="column title">
+                        SÍGANOS EN
+                    </h4>
+                    <div class="flex gap-2" data-kid="1-8-2-1-5-4" data-name="social media links">
+                        <a aria-label="X" class="h-7 w-7 rounded-full bg-[#1a2a4a] flex items-center justify-center text-[11px] hover:bg-[#25396a]" data-kid="1-8-2-1-5-4-1" data-name="x link" href="#" data-pc-route="more">
+                            <i class="ti ti-brand-x" data-kid="1-8-2-1-5-4-1-1" data-name="x icon">
+                            </i>
+                        </a>
+                        <a aria-label="Facebook" class="h-7 w-7 rounded-full bg-[#1a2a4a] flex items-center justify-center text-[11px] hover:bg-[#25396a]" data-kid="1-8-2-1-5-4-2" data-name="facebook link" href="#" data-pc-route="more">
+                            <i class="ti ti-brand-facebook" data-kid="1-8-2-1-5-4-2-1" data-name="facebook icon">
+                            </i>
+                        </a>
+                        <a aria-label="YouTube" class="h-7 w-7 rounded-full bg-[#1a2a4a] flex items-center justify-center text-[11px] hover:bg-[#25396a]" data-kid="1-8-2-1-5-4-3" data-name="youtube link" href="#" data-pc-route="video">
+                            <i class="ti ti-brand-youtube" data-kid="1-8-2-1-5-4-3-1" data-name="youtube icon">
+                            </i>
+                        </a>
+                        <a aria-label="Instagram" class="h-7 w-7 rounded-full bg-[#1a2a4a] flex items-center justify-center text-[11px] hover:bg-[#25396a]" data-kid="1-8-2-1-5-4-4" data-name="instagram link" href="#" data-pc-route="more">
+                            <i class="ti ti-brand-instagram" data-kid="1-8-2-1-5-4-4-1" data-name="instagram icon">
+                            </i>
+                        </a>
+                    </div>
+                    <h4 class="text-[8px] font-semibold tracking-[0.12em] text-[var(--muted)] mt-6 mb-3" data-kid="1-8-2-1-5-5" data-name="column title">
+                        Instala la aplicación
+                    </h4>
+                    <div class="flex gap-2" data-kid="1-8-2-1-5-6" data-name="app download links">
+                        <a class="h-7 px-2 rounded bg-black border border-white/30 flex items-center gap-1.5" data-kid="1-8-2-1-5-6-1" data-name="apple store link" href="#" data-pc-route="appInstall">
+                            <i class="ti ti-brand-apple text-sm" data-kid="1-8-2-1-5-6-1-1" data-name="apple icon">
+                            </i>
+                            <div class="leading-[8px]" data-kid="1-8-2-1-5-6-1-2" data-name="text wrapper">
+                                <div class="text-[5px] text-white/70" data-kid="1-8-2-1-5-6-1-2-1" data-name="top label">
+                                    Acceso directo para
+                                </div>
+                                <div class="text-[8px] font-semibold" data-kid="1-8-2-1-5-6-1-2-2" data-name="main label">
+                                    iPhone
+                                </div>
+                            </div>
+                        </a>
+                        <a class="h-7 px-2 rounded bg-black border border-white/30 flex items-center gap-1.5" data-kid="1-8-2-1-5-6-2" data-name="google play link" href="#" data-pc-route="appInstall">
+                            <i class="ti ti-brand-google-play text-sm" data-kid="1-8-2-1-5-6-2-1" data-name="play store icon">
+                            </i>
+                            <div class="leading-[8px]" data-kid="1-8-2-1-5-6-2-2" data-name="text wrapper">
+                                <div class="text-[5px] text-white/70" data-kid="1-8-2-1-5-6-2-2-1" data-name="top label">
+                                    INSTALA EN
+                                </div>
+                                <div class="text-[8px] font-semibold" data-kid="1-8-2-1-5-6-2-2-2" data-name="main label">
+                                    Android
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-[140px] flex justify-center gap-[72px] text-[9px] text-white/85" data-kid="1-8-2-2" data-name="footer links">
+                <a class="hover:text-[var(--green)]" data-kid="1-8-2-2-1" data-name="privacy link" href="#" data-pc-route="rulebook">
+                    Reglamento
+                </a>
+                <a class="hover:text-[var(--green)]" data-kid="1-8-2-2-2" data-name="terms link" href="#" data-pc-route="more">
+                    Información de la liga
+                </a>
+                <a class="hover:text-[var(--green)]" data-kid="1-8-2-2-3" data-name="cookies link" href="#" data-pc-route="accountLogin">
+                    Mi cuenta
+                </a>
+                <a class="hover:text-[var(--green)]" data-kid="1-8-2-2-4" data-name="settings link" href="#" data-pc-route="accountLogin">
+                    Configuración
+                </a>
+            </div>
+            <p class="mt-6 text-center text-[8px] text-white/80" data-kid="1-8-2-3" data-name="copyright notice">
+                © 2026 Liga Juventino Rosas. Información deportiva de la liga.
+            </p>
+        </div>
+    </footer>
+</div>
+</div>
+<script id="ljpc-exact-bridge">
+(function(){
+'use strict';
+const origin=location.origin;
+const matches=[...document.querySelectorAll('[data-name^="match card "]')].slice(0,6);
+function notify(data){if(window.parent!==window)window.parent.postMessage(Object.assign({ljpcExact:true},data),origin)}
+function routeTo(name){if(name&&/^[a-zA-Z0-9_-]+$/.test(name))notify({kind:'route',route:name})}
+document.addEventListener('click',function(e){
+ const target=e.target.closest('[data-pc-route]');
+ if(target){e.preventDefault();routeTo(target.getAttribute('data-pc-route'));return}
+ if(e.target.closest('a[href="#"]'))e.preventDefault();
+});
+document.addEventListener('keydown',function(e){
+ if((e.key==='Enter'||e.key===' ')&&e.target.matches('[role="button"][data-pc-route]')){e.preventDefault();routeTo(e.target.getAttribute('data-pc-route'))}
+});
+function setFixtures(list){
+ const data=Array.isArray(list)?list:[];
+ matches.forEach((card,i)=>{
+  const g=data[i],small=card.querySelector('[data-name="match time"]');
+  const rows=card.querySelectorAll('[data-name="team 1 row"],[data-name="team 2 row"]');
+  if(small)small.textContent=g?String(g.text||''):'Consultar calendario';
+  rows.forEach((row,idx)=>{
+   const name=g?String(idx===0?g.home:g.away):'Rol oficial';
+   const old=row.querySelector('[data-name="team badge"]');
+   const logo=g?String(idx===0?(g.homeLogo||''):(g.awayLogo||'')):'';
+   row.textContent='';
+   const dot=document.createElement('span');
+   dot.className='h-3 w-3 shrink-0 rounded-full bg-blue-600 ring-1 ring-white/20';
+   if(logo&&(logo.startsWith('https://')||logo.startsWith('http://')||logo.startsWith('./')||logo.startsWith('/'))){
+    const img=document.createElement('img');img.alt='';img.src=logo;img.style.cssText='width:100%;height:100%;object-fit:contain';dot.appendChild(img);
+   }
+   const label=document.createElement('span');label.textContent=name;label.style.cssText='white-space:nowrap;overflow:hidden;text-overflow:ellipsis';
+   row.append(dot,label);
+  });
+ });
+ const count=document.querySelector('[data-ljpc-match-count] [data-name="status count"]');
+ if(count)count.textContent=String(data.length);
+ requestHeight();
+}
+let pending=false;
+function requestHeight(){
+ if(pending)return;pending=true;
+ requestAnimationFrame(()=>{pending=false;const h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);
+  notify({kind:'height',height:h});});
+}
+window.addEventListener('message',e=>{
+ if(e.origin!==origin||e.source!==window.parent||!e.data||e.data.kind!=='fixtures'||!e.data.ljpcExact)return;
+ setFixtures(e.data.fixtures);
+});
+window.addEventListener('load',()=>{notify({kind:'ready'});requestHeight()});
+window.addEventListener('resize',requestHeight);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(requestHeight);
+if(window.ResizeObserver)new ResizeObserver(requestHeight).observe(document.body);
+document.querySelectorAll('img').forEach(i=>i.addEventListener('load',requestHeight,{once:true}));
+requestHeight();
+})();
+</script></body></html>
