@@ -14,6 +14,9 @@ on:
       - 'tests/v1385-admin-palette-regression.test.mjs'
       - 'tests/admin-palette-android-v1353.mjs'
       - 'src/v1420-reference-blue-surfaces.css'
+      - 'src/v1437-jr-tools-royal-blue-image2.css'
+      - 'public/reference-ui/**'
+      - 'tests/v1440-drive-background-variety.mjs'
       - 'tests/v1420-reference-blue-mobile.mjs'
       - 'tests/v1421-royal-drive-pages.mjs'
       - 'tests/v1422-complete-sections.mjs'
@@ -52,6 +55,9 @@ jobs:
           npm run build
           node tests/v1421-royal-drive-pages.mjs
           node tests/v1422-complete-sections.mjs
+          node tests/v1440-drive-background-variety.mjs
+          node tests/v1438-two-blue-surfaces.mjs
+          node tests/v1438-protected-headers.mjs
       - name: Keep mobile screenshots
         if: always()
         uses: actions/upload-artifact@v4
@@ -62,5 +68,6 @@ jobs:
             artifacts/v1420-reference-blue/*.png
             artifacts/v1421-royal-pages/*.png
             artifacts/v1422-complete-sections/*.png
+            artifacts/v1440/*.png
           if-no-files-found: ignore
           retention-days: 14

@@ -6,7 +6,7 @@ const css=readFileSync(new URL('../src/v1428-more-royal-blue-reference.css',impo
 const tail=css.slice(css.indexOf('/* V1429 · Azul rey a noche'));
 test('V1429 se publica una sola vez con clave de caché renovada',()=>{
  assert.ok(tail.length>3000);
- const link='src/v1428-more-royal-blue-reference.css?v=20261011-v1439-solid-controls-drive-backgrounds';
+ const link='src/v1428-more-royal-blue-reference.css?v=20261011-v1440-scoped-drive-background-variety';
  assert.equal(html.split(link).length-1,1);
  assert.ok(html.indexOf(link)>html.indexOf('src/v1426-competition-exact-dark-background.css'));
 });

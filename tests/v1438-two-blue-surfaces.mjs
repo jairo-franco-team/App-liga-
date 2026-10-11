@@ -68,7 +68,8 @@ try{
  const page=await openApp(resolve(root,'dist'));await page.setViewportSize({width,height:915});await fixtureAccount(page);
  await go(page,'ligaControl');await solid(page.locator('button.v562-card'),'JR cards');
  await transparent(page.locator('.v562-hero,.v562-card-copy,.v562-card .v562-icon'),'JR card contents');
- await transparent(page.locator('.v562-panel:has(.v562-sync-grid)'),'Summary structural wrapper');
+ assert.match(await page.locator('.v562-panel:has(.v562-sync-grid)').evaluate(e=>getComputedStyle(e).backgroundImage),/fantasy-card/,'Summary has one original Fantasy card');
+ await transparent(page.locator('.v562-sync-grid>article'),'Summary children have no second surface');
  await solid(page.locator('.ljr-cms-entry>button'),'CMS quick actions');
  assert.ok(await page.locator('.v562-card .v562-icon svg[data-ljr-icon]').count()>15,'JR cards use original Drive vectors');
  assert.equal(await page.locator('.ljr-cms-quick-icon svg[data-ljr-icon]').count(),4,'All four CMS actions use Drive vectors');

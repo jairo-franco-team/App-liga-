@@ -1,4 +1,4 @@
-/* V1439: Botones ZIP: rellenos planos; el degradado pertenece sólo al lienzo. */
+/* V1440: fondos Drive distintos por sección; botones ZIP siempre planos. */
 :root { --ljr1438-blue-gradient:linear-gradient(180deg,#01079b 0%,#000040 100%); }
 /* V1437: Imagen 2 (muestra RGB 1,7,155; #01079B).
    Azul rey profundo en Más Herramientas y JR Control, no en toda la app.
@@ -290,7 +290,7 @@
     --ljr1439-editor-art:url("../public/reference-ui/editor-blue.webp");
   }
   html body .liga-media-modal > section:is(.ljr-admin-picker,.ljr-content-studio) {
-    --ljr1439-editor-art:url("../public/reference-ui/jr-control-blue.webp");
+    --ljr1439-editor-art:url("../public/reference-ui/publication-lines.webp");
   }
   html body .v105-modal:is(.v1130-calendar-pro,.v875-meeting-modal) > .v105-dialog {
     --ljr1439-editor-art:url("../public/reference-ui/tools-blue.webp");
@@ -452,5 +452,82 @@
   html body[data-app-route="leagueTools"] #screen#screen .v726-tool-card:nth-child(3n+3) .v726-tool-icon,
   html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"])
     #screen#screen .v562-card:nth-child(3n+3) .v562-icon {color:#b6eddf!important;}
+}
+}
+
+/* V1440 · Sólo los apartados de administración de las capturas.
+   Cambiar la ilustración del lienzo existente, sin añadir otra placa a controles.
+   Las cabeceras públicas de Teams, Siguiendo, Goleadores y Reglamento no entran aquí. */
+@layer ljr-reference-surfaces {
+@media screen {
+  html body .liga-media-modal > section:is(.ljr-admin-manage,.ljr-admin-cms) {
+    --ljr1439-editor-art:url("../public/reference-ui/editor-ball.webp");
+  }
+  html body .liga-media-modal > section.ljr-admin-picker {
+    --ljr1439-editor-art:url("../public/reference-ui/meeting-lines.webp");
+  }
+  html body .liga-media-modal > section.ljr-editor-dialog:not(.ljr-content-studio):not(.ljr-admin-picker) {
+    --ljr1439-editor-art:url("../public/reference-ui/directory-lines.webp");
+  }
+  html body .v105-modal.v1126-delegate-modal > .v105-dialog {
+    --ljr1439-editor-art:url("../public/reference-ui/directory-lines.webp");
+  }
+  html body .v105-modal.v1130-calendar-pro > .v105-dialog {
+    --ljr1439-editor-art:url("../public/reference-ui/calendar-pitch.webp");
+  }
+  html body .v105-modal.v875-meeting-modal > .v105-dialog {
+    --ljr1439-editor-art:url("../public/reference-ui/meeting-lines.webp");
+  }
+  html body .v105-modal.v1111-incidents-modal > .v105-dialog {
+    --ljr1439-editor-art:url("../public/reference-ui/publication-lines.webp");
+  }
+  html body .v105-modal.v1126-motm-modal > .v105-dialog {
+    --ljr1439-editor-art:url("../public/reference-ui/winner-stage.webp");
+  }
+
+  /* Resumen grande Fantasy: una sola cara; cifras y etiquetas sin placas interiores. */
+  html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"])
+    #screen#screen .v562-page[data-v563-control] .v562-panel:has(.v562-sync-grid) {
+    background-color:#000040!important;
+    background-image:url("../public/reference-ui/fantasy-card.webp")!important;
+    background-size:100% 100%!important;background-position:center!important;
+    background-repeat:no-repeat!important;border:0!important;border-radius:24px!important;
+    padding:20px!important;overflow:hidden;
+  }
+  html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"])
+    #screen#screen .v562-page[data-v563-control] .v562-sync-grid>article {
+    background:transparent!important;background-image:none!important;
+    border-color:transparent!important;box-shadow:none!important;
+  }
+  /* PNG transparente original: figura en la esquina del bloque de herramientas. */
+  html body[data-app-route="leagueTools"] #screen#screen .v726-tools-hero.v726-tools-hero {
+    background-color:transparent!important;
+    background-image:url("../public/reference-ui/fantasy-frame.png")!important;
+    background-position:right bottom!important;background-size:145px auto!important;
+    background-repeat:no-repeat!important;
+  }
+  /* Guías grandes del CMS usan la tarjeta original, sin pintar su texto por separado. */
+  html body .liga-media-modal > section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-content-studio)
+    > .ljr-simple-intro {
+    background-color:#000040!important;
+    background-image:url("../public/reference-ui/fantasy-card.webp")!important;
+    background-size:100% 100%!important;background-position:center!important;
+    background-repeat:no-repeat!important;border:0!important;border-radius:22px!important;
+  }
+  html body .liga-media-modal > section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-content-studio)
+    > .ljr-simple-intro > div {
+    background:transparent!important;box-shadow:none!important;border:0!important;
+  }
+  html body .liga-media-modal > section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-content-studio)
+    > .ljr-simple-intro .ljr-simple-icon svg[data-ljr-icon] {
+    width:24px!important;height:24px!important;fill:currentColor!important;stroke:none!important;
+  }
+  /* Ilustración PNG enviada por el usuario en la ayuda de Crear publicación.
+     Flujo normal: no cubre texto, campos ni acciones, ni modifica el cartel generado. */
+  html body .liga-media-modal > section.ljr-content-studio .cms-design-intro::after {
+    content:"";display:block;width:100%;height:190px;margin-top:16px;
+    background:url("../public/reference-ui/league-trophy.png") center / contain no-repeat;
+    pointer-events:none;
+  }
 }
 }
