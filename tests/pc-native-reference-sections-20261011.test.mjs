@@ -59,3 +59,16 @@ test('mode=mobile and mode=apk do not mount native PC header',()=>{
   assert.deepEqual(called,[['ljpc-pc-native-mode',false]]);
  }
 });
+
+test('Gaming, Datos and Más menus open accessibly and route to existing modules',()=>{
+ for(const menu of ['Gaming','Datos','Más'])assert.match(script,new RegExp(menu.replace('á','.')+':\\['));
+ assert.match(script,/aria-haspopup="true" aria-expanded="false"/);
+ assert.match(script,/data-ljpc-pc-menu/);
+ assert.match(script,/function closeMenus\(except\)/);
+ assert.match(script,/e.key==='Escape'/);
+ assert.match(css,/\.ljpc-pc-popover\[hidden\]/);
+ assert.match(css,/z-index:1000/);
+ assert.match(script,/\['Pronostica Seis','predictorSix'\]/);
+ assert.match(script,/\['Estadísticas oficiales','pc-data'\]/);
+ assert.match(script,/\['Herramientas PC','pc-tools'\]/);
+});
