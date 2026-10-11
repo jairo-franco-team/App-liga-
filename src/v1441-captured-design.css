@@ -25,7 +25,7 @@
   position:relative!important;isolation:isolate;
   background-color:#000040!important;
   background-image:linear-gradient(180deg,#000040 12%,rgba(0,0,64,.58)),url('../public/reference-ui/captured-prism-lines.webp')!important;
-  background-size:100% 100%,100% auto!important;background-position:center bottom!important;background-repeat:no-repeat!important;
+  background-size:100% 100%,cover!important;background-position:center bottom!important;background-repeat:no-repeat!important;
   border:1px solid var(--captured-line,rgba(124,168,255,.28))!important;
   border-radius:24px!important;box-shadow:0 14px 32px rgba(0,0,32,.2)!important;
  }
@@ -103,9 +103,9 @@
  [data-captured-design] :is(.v1063-filter,.v726-tool-tag,.v726-hero-pills span) {
   color:#fff!important;-webkit-text-fill-color:currentColor!important;
  }
- [data-captured-design] .v1063-tools-filters {background:transparent!important;box-shadow:none!important;border:0!important;}
+ [data-captured-design] :is(.v1063-tools-filters,.ljr-function-filters) {background:transparent!important;box-shadow:none!important;border:0!important;}
  .ljr-cms-entry[data-captured-block] {background:transparent!important;box-shadow:none!important;border:0!important;}
- [data-captured-design] .v1063-filter {padding:9px 13px!important;height:auto!important;min-height:40px!important;}
+ [data-captured-design] :is(.v1063-filter,.ljr-function-filters button) {padding:9px 13px!important;height:auto!important;min-height:40px!important;}
  [data-captured-design] .v562-panel:has(.v562-sync-grid) {
   background-image:url('../public/reference-ui/fantasy-card.webp')!important;
   background-size:cover!important;background-position:center bottom!important;
@@ -154,7 +154,8 @@
    color:#fff!important;
   }
  }
- @media (max-width:380px) {
+ @media (max-width:600px) {
+  [data-captured-design] .v562-sync-grid {grid-template-columns:repeat(2,minmax(0,1fr))!important;}
   :is([data-captured-design],[data-captured-dialog],[data-captured-block]) .ljr-cms-entry button {grid-template-columns:30px minmax(0,1fr)!important;grid-template-rows:30px auto!important;gap:8px!important;padding:14px 12px!important;min-height:116px!important;}
   :is([data-captured-design],[data-captured-dialog],[data-captured-block]) .ljr-cms-quick-title {grid-column:1/-1!important;grid-row:2!important;font-size:14px!important;}
   :is([data-captured-design],[data-captured-dialog],[data-captured-block]) .ljr-cms-quick-arrow {grid-column:2!important;grid-row:1!important;justify-self:end!important;}

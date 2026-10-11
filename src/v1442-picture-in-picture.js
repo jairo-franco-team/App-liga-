@@ -50,7 +50,7 @@ export async function togglePagePiP(player){
 }
 window.LJR_PIP={toggleVideo:toggleVideoPiP,togglePage:togglePagePiP};
 const bound=new WeakMap();
-function icon(){return window.LJR_ICONS?.svg('pip')||'<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 4h20v16H2V4Zm2 2v12h16V6H4Zm8 5h7v6h-7z"/></svg>';}
+function icon(){const original=window.LJR_ICONS?.svg('pip');return original&&/<path\b/.test(original)?original:'<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M2 4h20v16H2V4Zm2 2v12h16V6H4Zm8 5h7v6h-7z"/></svg>';}
 function enhance(video){
  if(video.closest('[data-ljr-decorative],.v105-motion,.v15-decor,.v73-home-motion,.v806-camera,.v156-camera-frame'))return;
  if(video.matches('[aria-hidden="true"],[data-ljr-decorative]'))return;
@@ -61,6 +61,7 @@ function enhance(video){
  const controller=new AbortController(),record={player,controller};bound.set(video,record);trackNativePiP(video);
  let button=player.querySelector('[data-v777-action="pip"],[data-v977-action="pip"],[data-action="pip"]');
  if(!button){button=document.createElement('button');button.type='button';button.className='ljr-pip-access';button.innerHTML=icon()+'<span>Modo PiP</span>';video.after(button);record.fallback=button;}
+ if(!button.querySelector('svg path'))button.innerHTML=icon();
  button.classList.add('ljr-pip-button');button.title='Modo PiP · video en ventana flotante';button.setAttribute('aria-label','Modo PiP · video en ventana flotante');
  const status=document.createElement('small');status.className='ljr-pip-status';status.setAttribute('role','status');status.hidden=true;player.append(status);record.status=status;
  const update=()=>{button.disabled=video.readyState===0||!supportsVideoPiP(video);button.title=video.readyState===0?'Primero carga el video o inicia la transmisión':supportsVideoPiP(video)?'Modo PiP · video en ventana flotante':unsupported;button.setAttribute('aria-pressed',String(document.pictureInPictureElement===video||video.webkitPresentationMode==='picture-in-picture'));};
@@ -75,7 +76,7 @@ function enhance(video){
 function addPageButton(player,near){
  if(player.querySelector('[data-ljr-page-pip]'))return;
  const button=document.createElement('button');button.type='button';button.dataset.ljrPagePip='';button.className='ljr-pip-button ljr-page-pip-button';button.title='PiP de página · conservar los controles';button.setAttribute('aria-label',button.title);button.innerHTML=icon();near.after(button);
- button.addEventListener('click',async event=>{event.preventDefault();event.stopPropagation();try{await togglePagePiP(player);}catch(error){window.LJR_CMS?.toast?.(error.message);button.title=error.message;} });
+ button.addEventListener('click',async event=>{event.preventDefault();event.stopPropagation();try{await togglePagePiP(player);}catch(error){let status=player.querySelector('.ljr-pip-status');if(!status){status=document.createElement('small');status.className='ljr-pip-status';status.setAttribute('role','status');player.append(status);}status.textContent=error.message||'No se pudo abrir PiP de página.';status.hidden=false;} });
 }
 let queued=false;
 function scan(){queued=false;document.querySelectorAll('video').forEach(enhance);

@@ -74,9 +74,10 @@ try{
  const exportInk=await page.locator('[data-v1150-export-profile]').evaluate(e=>{const s=getComputedStyle(e);return {color:s.color,fill:s.webkitTextFillColor,bg:s.backgroundColor};});
  assert.equal(exportInk.color,'rgb(248, 251, 255)');assert.equal(exportInk.fill,exportInk.color,'Download text cannot retain a legacy dark WebKit fill');
  await go(page,'leagueTools');
- const all=page.locator('[data-v1063-filter="all"]');assert.equal((await all.textContent()).trim(),'Todo');
+ const all=page.locator('.ljr-function-filters [data-function="Todo"]');assert.equal((await all.textContent()).trim(),'Todo');
  assert.equal(await all.evaluate(e=>getComputedStyle(e).webkitTextFillColor),await all.evaluate(e=>getComputedStyle(e).color),'Active filter label remains visible');
  await go(page,'v38Weekly');
+ const quickLabels=await page.locator('.ljr-cms-quick-title').evaluateAll(es=>es.map(e=>({width:e.clientWidth,scroll:e.scrollWidth})));assert.ok(quickLabels.every(e=>e.scroll<=e.width+1),'CMS labels fit at 412px without covering their arrows');
  const group=page.locator('.v553-week-group').first();assert.equal(await group.getAttribute('data-design-card'),'table');
  assert.equal(await group.locator(':scope>.ljr-design-edge').count(),0,'Weekly table is not enclosed in a decorative rainbow card');
  const tableScroll=group.locator('.v553-week-scroll');assert.equal(await tableScroll.evaluate(e=>getComputedStyle(e).overflowX),'auto');
