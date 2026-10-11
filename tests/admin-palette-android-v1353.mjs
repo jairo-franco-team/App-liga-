@@ -1,4 +1,4 @@
-/* V1353: prueba visual aislada. Sólo Chromium móvil; sin credenciales ni APIs. */
+/* V1385: prueba visual aislada con hojas de estilo finales. Sólo Chromium móvil; sin credenciales ni APIs. */
 import assert from 'node:assert/strict';
 import {mkdirSync} from 'node:fs';
 import {resolve} from 'node:path';
@@ -7,7 +7,8 @@ const root=resolve(import.meta.dirname,'..');
 const out=resolve(root,'artifacts/admin-mobile-v1353');
 mkdirSync(out,{recursive:true});
 const sheets=['src/v1310-admin-paleta-unificada.css','src/v1335-admin-app-colors.css',
- 'src/v1340-admin-mobile-visual-unified.css','src/v1246-content-studio.css'];
+ 'src/v1340-admin-mobile-visual-unified.css','src/v1246-content-studio.css',
+ 'src/v1381-admin-colores-oficiales.css','src/v1384-admin-visual-dark-harmony.css'];
 const fixture=[
  '<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">',
  '<style>html,body{margin:0;width:100%;background:#071338;color:white;font:14px system-ui}',
@@ -69,21 +70,22 @@ try{
   }
   assert.ok(m.overflow<=3,'Page overflows at '+width+'px: '+m.overflow);
   assert.equal(m.outside,0,'Controls outside viewport at '+width+'px');
-  assert.match(m.admin.gradient,/rgb\(10, 27, 72\)/,'Admin should use single navy palette');
-  assert.match(m.review.gradient,/rgb\(10, 27, 72\)/,'Review should use navy palette');
-  assert.match(m.header,/rgb\(16, 43, 98\)/,'Header should not use bright blue');
+  assert.match(m.admin.gradient,/rgb\(11, 22, 67\)/,'Admin should use final V1384 navy palette');
+  assert.match(m.review.gradient,/rgb\(11, 22, 67\)/,'Review should use final navy palette');
+  assert.match(m.cms.gradient,/rgb\(11, 22, 67\)/,'CMS should not return to former bright-blue palette');
+  assert.match(m.header,/rgb\(22, 41, 99\)/,'Header should not return to saturated blue');
   const reviewColors=[...m.reviewCard.matchAll(/rgb\((\d+), (\d+), (\d+)\)/g)];
   assert.ok(reviewColors.length>=2 && reviewColors.every(x=>Math.max(+x[1],+x[2],+x[3])<=100),
    'Review card should use dark navy shades: '+m.reviewCard);
-  assert.match(m.content.gradient,/rgb\(7, 19, 56\)/,'Content studio should use navy');
+  assert.match(m.content.gradient,/rgb\(7, 11, 52\)/,'Content studio should use midnight background');
   assert.match(m.delegates.gradient,/rgb\(13, 37, 87\)/,'Delegates should use navy');
   assert.match(m.officials.gradient,/rgb\(13, 37, 87\)/,'Referees should use navy');
   const fieldRGB=(m.select.match(/[0-9]+/g)||[]).map(Number);
   assert.ok(fieldRGB.length===3 && fieldRGB[0]<=22 && fieldRGB[1]<=45 && fieldRGB[2]<=106 &&
     fieldRGB[2]>=fieldRGB[1]+28 && fieldRGB[1]>=fieldRGB[0]+7,
     'Selector should use a dark navy field, not bright cyan/purple: '+m.select);
-  assert.equal(m.contentClose,'rgb(18, 44, 96)','Content studio close button must be blue');
-  assert.equal(m.contentFile,'rgb(9, 26, 70)','Content studio file input must be dark navy');
+  assert.equal(m.contentClose,'rgb(24, 44, 99)','Content studio close button must share night palette');
+  assert.equal(m.contentFile,'rgb(10, 22, 67)','Content studio file input must be dark navy');
   await page.locator('#category').selectOption({label:'Segunda'});
   assert.equal(await page.locator('#category').inputValue(),'Segunda');
   await page.locator('#team').fill('Boavista FC');
