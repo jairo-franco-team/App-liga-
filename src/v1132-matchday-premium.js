@@ -20,7 +20,7 @@ const $=(s,r=document)=>r.querySelector(s);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const norm=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toLowerCase();
 const TZ='America/Mexico_City';
-let all=[],category='all',current='',host=null,signature='';
+let all=[],category='all',current='',host=null,signature='',lastAdvanceCheck=0,manualUntil=0;
 const icons={
 bell:'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/>',
 calendar:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/>',
@@ -96,6 +96,37 @@ if(!passed)return {name:'Próximo',type:'next'};
 return {name:'Horario iniciado · sin confirmar',type:'pending'};
 }
 function match(){return all.find(g=>g.id===current)||null;}
+const SLOT_MS=(45+15+45)*60*1000;
+function chooseAutomaticGame(now=Date.now()){
+  const choices=all.filter(g=>(category==='all'||g.catId===category)&&
+    !/suspend|cancel|aplaz|pospuest/.test(norm(g.status))&&
+    !(/^\d+$/.test(g.homeScore)&&/^\d+$/.test(g.awayScore)));
+  const order=(a,b)=>a.time-b.time||a.id.localeCompare(b.id);
+  const confirmed=choices.filter(g=>/en vivo|jugando|primer tiempo|segundo tiempo/.test(norm(g.status))&&
+    g.time<=now&&now<g.time+180*60000).sort(order);
+  if(confirmed.length)return confirmed[0];
+  const ongoing=choices.filter(g=>g.time<=now&&now<g.time+SLOT_MS).sort(order);
+  if(ongoing.length)return ongoing[0];
+  const next=choices.filter(g=>g.time>now).sort(order);
+  if(next.length)return next[0];
+  return all.filter(g=>category==='all'||g.catId===category).slice(-1)[0]||null;
+}
+function advanceGame(now=Date.now()){
+  if(route()!=='matchday'||!host?.isConnected)return false;
+  const previous=match(),candidate=chooseAutomaticGame(now);
+  if(!candidate||candidate.id===current)return false;
+  if(manualUntil>now&&previous&&!/suspend|cancel|aplaz|pospuest/.test(norm(previous.status)))return false;
+  const ended=previous&&(now>=previous.time+SLOT_MS||
+    status(previous).type==='final'||/suspend|cancel|aplaz|pospuest/.test(norm(previous.status)));
+  const newActive=candidate.time<=now&&now<candidate.time+SLOT_MS;
+  const oldFuture=previous?.time>now;
+  if(!previous||ended||(oldFuture&&newActive)||(!oldFuture&&!newActive&&previous.time<now-SLOT_MS)){
+    current=candidate.id;
+    if(pickLink())history.replaceState(null,'',location.pathname+location.search+'#/matchday');
+    render();return true;
+  }
+  return false;
+}
 function deepLink(g){return location.origin+location.pathname+location.search+'#/matchday?game='+encodeURIComponent(g.id);}
 function pickLink(){try{return new URLSearchParams(location.hash.split('?').slice(1).join('?')).get('game')||'';}catch(_){return '';}}
 function card(g){
@@ -132,6 +163,8 @@ tick();
 }
 function tick(){
 if(route()!=='matchday'||!host?.isConnected)return;
+const now=Date.now();
+if(now-lastAdvanceCheck>=5000){lastAdvanceCheck=now;if(advanceGame(now))return;}
 const clock=$('[data-md-clock]',host),g=match();if(!clock||!g)return;
 const remaining=g.time-Date.now();
 if(remaining>0){const sec=Math.floor(remaining/1000),days=Math.floor(sec/86400),hours=Math.floor((sec%86400)/3600),mins=Math.floor(sec%3600/60),seconds=sec%60;clock.textContent=(days?days+' d · ':'')+[hours,mins,seconds].map(n=>String(n).padStart(2,'0')).join(':');}
@@ -168,7 +201,7 @@ function onClick(e){
 if(route()!=='matchday'||!host?.contains(e.target))return;
 const team=e.target.closest('[data-md-team]');if(team){const name=team.dataset.mdTeam;localStorage.setItem('v62-team-name',name);localStorage.setItem('v42-team-tab','summary');if(window.LJR_OFFICIAL_API?.openTeam)window.LJR_OFFICIAL_API.openTeam(name);else go('teamDetail');return;}
 const filter=e.target.closest('[data-md-filter]');if(filter){category=filter.dataset.mdFilter;const a=all.filter(g=>category==='all'||g.catId===category);if(!a.some(g=>g.id===current))current=(a.find(g=>g.time>Date.now())||a[0])?.id||'';render();return;}
-const select=e.target.closest('[data-md-select]');if(select){current=select.dataset.mdSelect;const g=match();if(g){history.replaceState(null,'',location.pathname+location.search+'#/matchday?game='+encodeURIComponent(g.id));}render();return;}
+const select=e.target.closest('[data-md-select]');if(select){current=select.dataset.mdSelect;manualUntil=Date.now()+30000;const g=match();if(g){history.replaceState(null,'',location.pathname+location.search+'#/matchday?game='+encodeURIComponent(g.id));}render();return;}
 const action=e.target.closest('[data-md-action]');if(!action)return;
 const g=match();if(!g)return;
 switch(action.dataset.mdAction){
@@ -191,7 +224,7 @@ const next=readGames(),sig=next.map(x=>x.id+'|'+x.homeScore+'|'+x.awayScore+'|'+
 if(host===el&&el.dataset.md1132==='1'&&!force&&sig===signature)return;
 host=el;host.dataset.md1132='1';all=next;signature=sig;
 const query=pickLink();if(query&&all.some(x=>x.id===query))current=query;
-if(!all.some(x=>x.id===current))current=(all.find(g=>g.time>Date.now())||all[all.length-1])?.id||'';
+if(!all.some(x=>x.id===current))current=chooseAutomaticGame()?.id||'';
 if(category!=='all'&&!all.some(x=>x.catId===category))category='all';
 render();
 }
