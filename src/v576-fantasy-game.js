@@ -27,7 +27,20 @@ const fantasyLoggedIn=()=>{try{const s=JSON.parse(localStorage.getItem('lj-store
 const goFantasyLogin=()=>{try{localStorage.setItem(AUTH_RETURN_KEY,'fantasyTeam')}catch(_){};location.hash='#/accountLogin'};
 
 function readSquad(){try{const x=JSON.parse(localStorage.getItem(KEY)||'[]');return Array.isArray(x)?x.filter(Boolean).slice(0,15):[]}catch(_){return []}}
-function writeSquad(x){localStorage.setItem(KEY,JSON.stringify((x||[]).filter(Boolean).slice(0,15)))}
+function writeSquad(x){
+ localStorage.setItem(KEY,JSON.stringify((x||[]).filter(Boolean).slice(0,15)));
+ const a=window.LJR_V569_AUTH?.currentAccount?.();
+ if(a?.id)localStorage.setItem('ljr-v1390-fantasy-owner',String(a.id));
+ queueMicrotask(fantasyRankScore);
+}
+function fantasyRankScore(){
+ const a=window.LJR_V569_AUTH?.currentAccount?.();
+ if(!a?.id||String(localStorage.getItem('ljr-v1390-fantasy-owner')||'')!==String(a.id))return;
+ const squad=readSquad();
+ if(squad.length!==15)return; // no acreditar plantillas incompletas
+ const points=squad.reduce((total,p)=>total+fantasyPoints(p),0);
+ window.LJR_GAME_RANKING?.record('fantasy',{id:'plantilla:temporada-2026',points,won:false});
+}
 function key(p){return [p.cat,p.team,norm(p.name)].join('|')}
 function pos(v){
  const n=norm(v);
@@ -414,7 +427,8 @@ document.addEventListener('input',e=>{if(e.target?.matches?.('[data-v576-query]'
 window.LJR_V576_FANTASY={guest,openGuest:guest,openTeam:()=>{location.hash='#/fantasyTeam'},readSquad,teamLogo,samplePlayers:()=>{const a=allPlayers();return [...a.filter(p=>p.photo),...a.filter(p=>!p.photo)].slice(0,3)}};
 window.addEventListener('ljr:fantasy-guest',guest);
 window.addEventListener('hashchange',()=>{closeLayer();schedule()});
-window.addEventListener('ljr:official-data',schedule);
+window.addEventListener('ljr:official-data',()=>{schedule();fantasyRankScore()});
+setTimeout(fantasyRankScore,650);
 /* V599: no observar #screen aquí. render() reemplaza su HTML y el observer lo volvía a disparar en bucle, haciendo parpadear las playeras e imágenes. */
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',schedule,{once:true});else schedule();
 })();

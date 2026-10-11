@@ -1,0 +1,35 @@
+name: Community games checks
+on:
+  pull_request:
+    paths:
+      - "src/v1390-community-games.*"
+      - "src/v531-quiz-moreless-drive-reference.js"
+      - "public/quiz-arena-independent.js"
+      - "src/v589-pronostica-six-drive-exact.js"
+      - "src/v576-fantasy-game.js"
+      - "src/v561-league-publications.js"
+      - "src/v970-quiniela-game-lab.js"
+      - "tests/v1390-community-games.test.mjs"
+      - ".github/workflows/community-games-checks.yml"
+  push:
+    branches: ["feat/arbitros-apoyos-rankings-juegos-20261010"]
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check scripts
+        run: |
+          node --check src/v1390-community-games.js
+          node --check src/v531-quiz-moreless-drive-reference.js
+          node --check public/quiz-arena-independent.js
+          node --check src/v589-pronostica-six-drive-exact.js
+          node --check src/v576-fantasy-game.js
+          node --check src/v970-quiniela-game-lab.js
+          node --check src/v561-league-publications.js
+      - name: Test ranking data
+        run: node --test tests/v1390-community-games.test.mjs
