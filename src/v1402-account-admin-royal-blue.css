@@ -181,8 +181,8 @@ html body .liga-media-modal>section:is(
  [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
  [aria-label="Mi avatar y mi camiseta"]
 ) :is(p,small,label){color:#EDF7FF!important}
-html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"]
- :is(.ljr-save-profile,.ljr-photo-upload input::file-selector-button){
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-save-profile,
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-photo-upload input::file-selector-button{
  background:#347ADC!important;border-color:#DBEEFF!important;color:#fff!important;
 }
 /* Administración y las cuatro ventanas de tus capturas:
@@ -347,6 +347,15 @@ html body>.v105-modal:is(
  .v1125-officials-modal,.v875-meeting-modal
 ) :is(input:not([type=checkbox]):not([type=radio]):not([type=file]),select,textarea){
  background:#205AB0!important;border-color:#BDDDFF!important;color:#fff!important;
+}
+/* Los botones destructivos conservan identificación clara en rojo. */
+html body .liga-media-modal :is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+ .ljr-admin-picker,.ljr-editor-dialog,.v1081-dialog
+) :is(.ljr-admin-tile-danger,.ljr-review-danger,[data-logout],[data-revoke]),
+html body .liga-media-modal .ljr-editor-dialog .ljr-review-actions .ljr-review-danger{
+ background:#983B58!important;background-image:linear-gradient(145deg,#AF4966,#87364F)!important;
+ border-color:#FFD5E0!important;color:#fff!important;
 }
 /* El CSS no cambia visibilidad, eventos ni componentes: solo aspecto. */
 html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen
