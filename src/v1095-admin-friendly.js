@@ -46,7 +46,7 @@ function addGuide(section,kind){
  const intro=document.createElement('div');intro.className='ljr-simple-intro';
  intro.innerHTML='<span class="ljr-simple-icon" aria-hidden="true">'+safe(conf.icon)+'</span><div><strong>Así se usa</strong><p>'+safe(conf.intro)+'</p></div>';
  // Guías del CMS solicitado: iconos Miapp originales, sin depender del emoji del dispositivo.
- const guideIcon={news:'news',design:'image',page:'edit',cms:'news',manage:'settings'}[kind];
+ const guideIcon={news:'news',design:'image',page:'edit',cms:'news',manage:'settings',fixture:'calendar',sanction:'warning',scorers:'player',standings:'standings',team:'team',player:'player',document:'news'}[kind];
  const original=guideIcon&&window.LJR_ICONS?.node(guideIcon);
  if(original)intro.querySelector('.ljr-simple-icon').replaceChildren(original);
  const guide=document.createElement('details');guide.className='ljr-guide';

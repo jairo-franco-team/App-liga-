@@ -1,0 +1,99 @@
+/* Only sections from Mejorar.zip and their captured editorial dialogs.
+   Important-layer priority resolves legacy paints without changing layout or
+   visibility. Print sheets, QR pixels, posters and previews retain their ink. */
+@layer ljr-captured-design {
+@media screen {
+ :is([data-captured-design],[data-captured-dialog],[data-captured-block]) {
+  --captured-art:url('../public/reference-ui/captured-sport.webp');
+  --captured-line:rgba(124,168,255,.28);
+  --captured-ink:#f8fbff;
+  background-color:#000040!important;
+  background-image:linear-gradient(180deg,rgba(1,7,155,.16) 0%,rgba(0,0,64,.92) 85%),var(--captured-art)!important;
+  background-size:cover,100% 100%!important;
+  background-position:center top!important;
+  background-repeat:no-repeat!important;
+  background-attachment:fixed!important;
+  color:var(--captured-ink)!important;
+ }
+ :is([data-captured-design="facets"],[data-captured-dialog="facets"]) {--captured-art:url('../public/reference-ui/captured-facets.webp');}
+ :is([data-captured-design="orbit"],[data-captured-dialog="orbit"]) {--captured-art:url('../public/reference-ui/captured-orbit.webp');}
+ :is([data-captured-design="cyan"],[data-captured-dialog="cyan"]) {--captured-art:url('../public/reference-ui/captured-cyan.webp');}
+ :is([data-captured-design="prism"],[data-captured-dialog="prism"]) {--captured-art:url('../public/reference-ui/captured-prism.webp');}
+ [data-design-layout] {background:transparent!important;border-color:transparent!important;box-shadow:none!important;}
+ [data-design-card="panel"] {
+  position:relative!important;isolation:isolate;
+  background-color:#000040!important;
+  background-image:linear-gradient(180deg,#000040 12%,rgba(0,0,64,.58)),url('../public/reference-ui/captured-prism-lines.webp')!important;
+  background-size:100% auto!important;background-position:center bottom!important;background-repeat:no-repeat!important;
+  border:1px solid var(--captured-line,rgba(124,168,255,.28))!important;
+  border-radius:24px!important;box-shadow:0 14px 32px rgba(0,0,32,.2)!important;
+ }
+ [data-design-card="panel"][data-design-variant="1"] {background-image:linear-gradient(180deg,#000040 12%,rgba(0,0,64,.6)),url('../public/reference-ui/captured-cyan-lines.webp')!important;}
+ [data-design-card="panel"][data-design-variant="2"] {background-image:url('../public/reference-ui/captured-corner.webp')!important;background-size:180px auto!important;background-position:right bottom!important;}
+ [data-design-card="panel"][data-design-variant="3"] {background-image:linear-gradient(180deg,#000040 12%,rgba(0,0,64,.58)),url('../public/reference-ui/captured-points.webp')!important;background-size:cover!important;}
+ [data-design-card="shared"] {background:transparent!important;border-color:transparent!important;box-shadow:none!important;}
+ [data-design-card="row"] {
+  position:relative!important;isolation:isolate;background:#07074e!important;
+  border:1px solid rgba(124,168,255,.22)!important;box-shadow:none!important;
+  border-radius:18px!important;
+ }
+ [data-design-card="row"]:nth-child(even) {background:#000040!important;}
+ .ljr-design-edge {
+  position:absolute!important;inset:-1px!important;display:block!important;
+  width:auto!important;height:auto!important;padding:1px!important;border:0!important;
+  border-radius:inherit!important;pointer-events:none!important;z-index:2;
+  background:conic-gradient(from 30deg,#40d9ff,#5284ff,#e885dc,#ffbc8a,#d9e58f,#3be8d3,#40d9ff)!important;
+  mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0)!important;
+  mask-composite:exclude!important;
+ }
+ :is([data-captured-design],[data-captured-dialog],[data-captured-block]) :is(button,select,input:not([type="checkbox"]):not([type="radio"]):not([type="color"]):not([type="range"]),textarea):not([data-design-paper]):not([data-design-paper] *) {
+  background-color:#000040!important;background-image:none!important;
+  border-color:rgba(124,168,255,.38)!important;color:#f8fbff!important;box-shadow:none!important;
+ }
+ :is([data-captured-design],[data-captured-dialog],[data-captured-block]) :is(a.v60-link,a.v60-btn,.v921-field-card a,[role="button"]):not([data-design-paper] *) {
+  background-color:#000040!important;background-image:none!important;border-color:rgba(124,168,255,.38)!important;color:#f8fbff!important;box-shadow:none!important;
+ }
+ :is([data-captured-design],[data-captured-dialog],[data-captured-block]) :is(button,select,textarea,input):focus-visible {
+  outline:2px solid #41e1f0!important;outline-offset:3px!important;
+ }
+ :is([data-captured-design],[data-captured-dialog],[data-captured-block]) :is(button[aria-selected="true"],button.is-active,button.active,.v713-auto-primary,.ljr-bc-primary,.v569-primary):not([data-design-paper] *) {
+  background:#00d7ea!important;color:#000040!important;border-color:#00d7ea!important;
+ }
+ :is([data-captured-design],[data-captured-dialog],[data-captured-block]) :is(h1,h2,h3,h4,.ljr-cms-quick-title,.v562-player-copy,.v562-player-info,.v562-team-copy,.v638-cedula-title,.v553-week-title,.v635-form-title) {
+  background:transparent!important;box-shadow:none!important;
+ }
+ :is([data-captured-design],[data-captured-dialog],[data-captured-block]) :is(.v562-search,.v66-search,.v726-search,.ljr-editor-search) input {background:transparent!important;border-color:transparent!important;box-shadow:none!important;}
+ :is([data-captured-design],[data-captured-dialog],[data-captured-block]) button:has(>.ljr-design-edge) {position:relative!important;isolation:isolate;}
+ :is([data-captured-design],[data-captured-dialog],[data-captured-block]) .ljr-cms-entry {background:transparent!important;border:0!important;box-shadow:none!important;}
+ :is([data-captured-design],[data-captured-dialog],[data-captured-block]) .ljr-cms-entry button {
+  grid-template-columns:30px minmax(0,1fr) 10px!important;gap:10px!important;padding:16px 12px!important;
+  min-height:104px!important;border-radius:22px!important;
+ }
+ :is([data-captured-design],[data-captured-dialog],[data-captured-block]) .ljr-cms-quick-title {
+  font-size:14px!important;line-height:1.4!important;word-break:normal!important;overflow-wrap:normal!important;hyphens:none!important;
+ }
+ :is([data-captured-design],[data-captured-dialog],[data-captured-block]) .ljr-cms-quick-icon {
+  background:transparent!important;border:0!important;box-shadow:none!important;width:30px!important;height:30px!important;color:#58dfea!important;
+ }
+ :is([data-captured-design],[data-captured-dialog],[data-captured-block]) .ljr-cms-quick-icon svg {width:28px!important;height:28px!important;}
+ :is([data-captured-design],[data-captured-dialog],[data-captured-block]) .ljr-cms-entry [data-cms-story]::after {content:none!important;}
+ [data-captured-dialog] {background-size:auto 100dvh,100% 100%!important;}
+ [data-captured-design] :is(.v562-sync-grid,.v562-sync-grid>article) {background:transparent!important;border:0!important;box-shadow:none!important;}
+ [data-captured-design] :is(.v562-filter-row,.v562-registry-toolbar,.v12-profile-card,.v569-profile-copy,.v66-player-list,.v553-week-actions,.v651-section,.v92-section-body,.v618-q-teams,.v164-matchday-center,.v1082-types) {
+  background:transparent!important;box-shadow:none!important;
+ }
+ [data-captured-design] .v12-profile-menu {overflow:hidden;}
+ [data-captured-design] .v12-profile-menu>a {background:transparent!important;border-bottom:1px solid rgba(124,168,255,.16)!important;}
+ [data-design-card]>header {background:transparent!important;box-shadow:none!important;}
+ [data-captured-dialog] :is(.ljr-editor-form,.ljr-editor-two,.cms-form,.ljr-admin-table-wrap,.ljr-editor-tools,.ljr-guide>summary,.ljr-admin-howto>summary,.cms-design-intro>summary,.ljr-simple-intro>div) {background:transparent!important;box-shadow:none!important;}
+ [data-captured-design] :is(.v553-week-head,.v553-week-range,.v562-search>input,.v569-profile-copy,.v569-profile-buttons) {background:transparent!important;box-shadow:none!important;}
+ .ljr-captured-heading-icon {display:inline-block!important;width:20px!important;height:20px!important;vertical-align:middle;margin-right:8px;color:#48dfec!important;}
+ [data-captured-design] .v12-profile-row-icon {background:transparent!important;border:0!important;color:#48dfec!important;}
+ [data-captured-design] .v12-profile-row-icon svg {width:22px!important;height:22px!important;}
+ @media (max-width:380px) {
+  :is([data-captured-design],[data-captured-dialog],[data-captured-block]) .ljr-cms-entry button {grid-template-columns:30px minmax(0,1fr)!important;grid-template-rows:30px auto!important;gap:8px!important;padding:14px 12px!important;min-height:116px!important;}
+  :is([data-captured-design],[data-captured-dialog],[data-captured-block]) .ljr-cms-quick-title {grid-column:1/-1!important;grid-row:2!important;font-size:14px!important;}
+  :is([data-captured-design],[data-captured-dialog],[data-captured-block]) .ljr-cms-quick-arrow {grid-column:2!important;grid-row:1!important;justify-self:end!important;}
+ }
+}
+}
