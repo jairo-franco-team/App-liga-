@@ -1,0 +1,267 @@
+/* CUENTA Y PERFIL | azul luminoso, no amarillo, sin cambios funcionales.
+   Reglas de presentación cargadas DESPUÉS de V1387 y V1392/V1393.
+   No cambia estructura, fotos, formularios, permisos, clases ni listeners. */
+:root {
+  --ljr-account-blue-base:#2e6db8;
+  --ljr-account-blue-surface:#3475bf;
+  --ljr-account-blue-card:#3776bc;
+  --ljr-account-blue-raised:#3d7ec6;
+  --ljr-account-blue-field:#2864ae;
+  --ljr-account-blue-line:rgba(194,227,255,.66);
+  --ljr-account-blue-copy:#f2f8ff;
+  --ljr-account-blue-soft:#e2f1ff;
+  --ljr-account-blue-highlight:#bde4ff;
+  --ljr-account-blue-action:linear-gradient(135deg,#397bd0 0%,#2869b9 100%);
+  --ljr-account-blue-card-bg:linear-gradient(150deg,#397bc6 0%,#3472ba 60%,#2d68b1 100%);
+}
+/* Solo Perfil y rutas de Cuenta: fondo uniforme, notablemente más claro. */
+html body:is([data-app-route="profile"],[data-app-route^="account"]) {
+  --ljr-account-outer:#2e6db8;
+  --ljr-account-panel:#3475bf;
+  --ljr-account-raised:#397bc6;
+  --ljr-account-deep:#2864ae;
+  --ljr-account-outline:var(--ljr-account-blue-line);
+  --ljr-account-ink:#fff;
+  --ljr-account-muted:var(--ljr-account-blue-soft);
+  --ljr-account-royal:#4386d2;
+  --ljr-account-gold:var(--ljr-account-blue-highlight);
+  --p1300-bg:#2e6db8;
+  --p1300-surface:#3475bf;
+  --p1300-raised:#397bc6;
+  --p1300-deep:#2864ae;
+  --p1300-border:var(--ljr-account-blue-line);
+  --p1300-muted:var(--ljr-account-blue-soft);
+  --p1300-accent:var(--ljr-account-blue-highlight);
+}
+html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen {
+  background:linear-gradient(168deg,#377dc9 0%,#3272bc 47%,#2a65b0 100%)!important;
+  background-color:#2e6db8!important;
+  color:#fff!important;
+}
+/* Tarjeta principal de perfil y las tarjetas más internas. */
+html body[data-app-route="profile"] #screen .v12-profile-card,
+html body[data-app-route="profile"] #screen .v12-profile-card[data-v569-owned],
+html body[data-app-route="profile"] #screen .v12-profile-card[data-v569-inline] {
+  background:var(--ljr-account-blue-card-bg)!important;
+  border:1px solid var(--ljr-account-blue-line)!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.24),0 8px 21px rgba(9,39,98,.15)!important;
+  color:#fff!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-avatar {
+  border-color:#c9e8ff!important;
+  box-shadow:0 0 0 3px rgba(202,235,255,.27)!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-copy :is(small,b),
+html body[data-app-route="profile"] #screen .v569-profile-copy p {
+  color:var(--ljr-account-blue-soft)!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-buttons button,
+html body[data-app-route="profile"] #screen .v569-profile-buttons button:first-child {
+  background:var(--ljr-account-blue-action)!important;
+  color:#fff!important;
+  border:1px solid #b8e1ff!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.18)!important;
+  text-shadow:none!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button,
+html body[data-app-route="profile"] #screen .v12-profile-menu>.v12-profile-row {
+  background:linear-gradient(140deg,#3b7cc3,#316daf)!important;
+  border:1px solid rgba(193,229,255,.66)!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.13)!important;
+  color:#fff!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button>span,
+html body[data-app-route="profile"] #screen .v12-profile-row-icon {
+  background:rgba(209,238,255,.19)!important;
+  color:#d9f0ff!important;
+  border-color:rgba(215,238,255,.45)!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button>b,
+html body[data-app-route="profile"] #screen .v12-profile-row-label{color:#fff!important}
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button :is(svg,i),
+html body[data-app-route="profile"] #screen .v12-profile-menu svg{color:#e5f4ff!important}
+/* Cada pantalla interna: seguridad, contraseña, dispositivos, preferencias, asistente, nube. */
+html body[data-app-route^="account"] #screen :is(.v569-card,.v1300-panel,.v1300-detail) {
+  background:var(--ljr-account-blue-card-bg)!important;
+  border:1px solid var(--ljr-account-blue-line)!important;
+  box-shadow:0 7px 19px rgba(8,39,101,.12),inset 0 1px rgba(255,255,255,.20)!important;
+  color:#fff!important;
+}
+html body[data-app-route^="account"] #screen :is(
+  .v1300-findings article,.v1300-ai-status,.v1300-ai-answer,
+  .v1300-cloud-state,.v1300-cloud-output,.v1300-pass-help,
+  .v569-security-state,.v577-device-summary,.v569-devices article
+){
+  background:linear-gradient(143deg,#3777c0,#2f6cb7)!important;
+  border:1px solid rgba(191,227,255,.65)!important;
+  color:var(--ljr-account-blue-copy)!important;
+}
+html body[data-app-route^="account"] #screen .v569-devices article>span,
+html body[data-app-route^="account"] #screen .v1300-mark {
+  background:#2b68b1!important;
+  border:1px solid rgba(194,231,255,.6)!important;
+  color:#d5eeff!important;
+}
+html body[data-app-route^="account"] #screen :is(.v569-page-head small,.v1300-panel h2,.v1300-detail strong) {
+  color:#fff!important;
+}
+html body[data-app-route^="account"] #screen :is(
+  .v569-page-head p,.v569-field>span,.v569-field>small,.v569-note,
+  .v1300-explain,.v1300-footnote,.v1300-panel>p,.v1300-detail p,
+  .v1300-choice small,.v1300-permission small,.v1300-findings p,
+  .v569-devices small,.v569-devices em,.v577-device-summary small
+){color:var(--ljr-account-blue-soft)!important}
+html body[data-app-route^="account"] #screen .v1300-panel :is(label,strong,p,small) {
+  color:var(--ljr-account-blue-soft)!important;
+}
+html body[data-app-route^="account"] #screen .v1300-panel :is(h2,.v1300-choice strong,.v1300-select strong,.v1300-permission b) {
+  color:#fff!important;
+}
+html body[data-app-route^="account"] #screen :is(.v569-field input,.v1300-cloud-form input,.v1300-select select) {
+  background:#2864ae!important;
+  background-image:none!important;
+  border:1px solid rgba(203,233,255,.79)!important;
+  color:#fff!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.09)!important;
+}
+html body[data-app-route^="account"] #screen :is(.v569-field input,.v1300-cloud-form input)::placeholder {
+  color:#e0f0ff!important;opacity:1!important;
+}
+html body[data-app-route^="account"] #screen select option {background:#2864ae;color:#fff}
+html body[data-app-route^="account"] #screen :is(.v569-primary,.v1300-primary,.v569-card .v569-primary){
+  background:var(--ljr-account-blue-action)!important;
+  border:1px solid #c9ebff!important;
+  color:#fff!important;text-shadow:none!important;
+  box-shadow:0 5px 13px rgba(16,54,112,.18),inset 0 1px rgba(255,255,255,.18)!important;
+}
+html body[data-app-route^="account"] #screen :is(
+ .v569-secondary,.v569-card .v569-secondary,.v1300-actions button,
+ .v1300-permission button,.v1300-link,.v1300-pass-help button
+){
+  background:linear-gradient(140deg,#3f80ca,#306eBA)!important;
+  border:1px solid rgba(202,235,255,.75)!important;color:#fff!important;
+}
+html body[data-app-route^="account"] #screen .v1300-findings article:nth-child(n){
+  border-left-color:#b2e1ff!important;
+}
+html body[data-app-route^="account"] #screen .v1300-choice input[type=checkbox]:not(:checked){
+  background:#2a5a94!important;border-color:#b0d4f5!important;
+}
+html body[data-app-route^="account"] #screen .v1300-choice input[type=checkbox]:checked {
+  background:#58a5ef!important;border-color:#d2f0ff!important;
+}
+html body[data-app-route^="account"] #screen :is(input,select,textarea,button):focus-visible,
+html body[data-app-route="profile"] #screen button:focus-visible {
+  outline:2px solid #e3f5ff!important;outline-offset:3px!important;
+}
+/* Mantener diferenciadas las acciones peligrosas para evitar errores. */
+html body[data-app-route^="account"] #screen .v569-card .v569-danger {
+  background:linear-gradient(140deg,#93425d,#723248)!important;
+  border:1px solid #ffb6c7!important;color:#fff6fa!important;
+}
+/* Diálogos que salen de Mi Cuenta y Ajustes: NO incluye CMS ni juegos. */
+html body .liga-media-modal:has(>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+)){background:rgba(14,47,107,.70)!important}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+){
+  background:linear-gradient(152deg,#4385cf 0%,#387ac3 47%,#2d6ab4 100%)!important;
+  background-color:#3477c0!important;
+  border:1px solid #bedfff!important;color:#fff!important;
+  box-shadow:0 17px 43px rgba(9,41,102,.24),inset 0 1px rgba(255,255,255,.23)!important;
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+)>header{
+  background:transparent!important;border-bottom:1px solid rgba(219,241,255,.68)!important;
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+)>header [data-close]{
+  background:#2b69b3!important;color:#fff!important;
+  border:1px solid #cbe9ff!important;box-shadow:none!important;
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+) :is(p,label,small){color:#eef7ff!important}
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button {
+  background:linear-gradient(148deg,#3a7bc5,#2d68b1)!important;
+  border:1px solid rgba(199,231,255,.8)!important;color:#fff!important;
+}
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button::after{color:#eaf7ff!important}
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button::before{
+  --item-bg:rgba(191,230,255,.18);--item-stroke:rgba(201,235,255,.75);
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],
+ [aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],
+ [aria-label="Términos y condiciones"]
+) :is(input:not([type=checkbox]),select,textarea){
+  background:#2d69b5!important;color:#fff!important;
+  border:1px solid #c5e5ff!important;
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"]
+) .cms-form>button{
+  background:linear-gradient(143deg,#4284cf,#2f6fb9)!important;
+  border:1px solid #c7e8ff!important;color:#fff!important;
+}
+html body .liga-media-modal>section:is([aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"])
+ input[type=checkbox]:not(:checked){
+  background:#2b5e9b!important;border-color:#b8dcfa!important;
+}
+html body .liga-media-modal>section:is([aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"])
+ input[type=checkbox]:checked{
+  background:#61adee!important;border-color:#d2f0ff!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] :is(.ljr-profile-preview,.ljr-photo-upload,.ljr-avatar-gallery button){
+  background:linear-gradient(147deg,#3a7dc8,#306eb8)!important;
+  border:1px solid rgba(205,232,255,.73)!important;color:#fff!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-profile-preview>div {
+  border-color:#c6e8ff!important;
+  box-shadow:0 0 0 4px rgba(198,232,255,.22),0 7px 19px rgba(8,39,97,.21)!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] :is(.ljr-photo-upload input,.v800-shirt-fields input,.v893-shirt-customize select){
+  background:#2d68b4!important;border:1px solid #c5e7ff!important;color:#fff!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-photo-upload input::file-selector-button{
+  background:linear-gradient(145deg,#5799e4,#397dcc)!important;
+  color:#fff!important;border:1px solid #d9f1ff!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-avatar-gallery button[aria-pressed="true"]{
+  background:linear-gradient(145deg,#4b91db,#3778c5)!important;
+  border:2px solid #e1f4ff!important;
+  box-shadow:0 0 0 2px rgba(216,242,255,.28)!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-avatar-gallery button[aria-pressed="true"] small{
+  color:#fff!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-save-profile{
+  background:var(--ljr-account-blue-action)!important;
+  border:1px solid #d5eeff!important;color:#fff!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] :is(button,input,select,textarea):focus-visible{
+  outline:2px solid #eff9ff!important;outline-offset:2px!important;
+}
+/* Conserva la ocultación real, los controles disabled y la reducción de movimiento. */
+html body[data-app-route^="account"] #screen [hidden]{display:none!important}
+@media(prefers-reduced-motion:reduce){
+ html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen :is(button,input){transition:none!important}
+}
