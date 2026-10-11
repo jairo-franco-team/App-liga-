@@ -33,11 +33,19 @@ El módulo `server/notifications/fcm-delivery.mjs` prepara solicitudes FCM con O
 
 La futura cuenta de servicio Firebase debe configurarse **solo en variables privadas de Railway** (no en GitHub Pages, APK ni repositorio). `FIREBASE_ANDROID_CONFIG_B64` identifica la app Android en Actions, **no autoriza** al servidor a enviar mensajes.
 
+## Avance del receptor Android condicionado a Firebase
+
+El código `native/android/LigaFirebaseMessagingService.java` ya define un receptor para avisos oficiales y maneja la apertura de **Notificaciones** desde Android. El archivo solo se incorpora al APK cuando el paso `native/android/configure-fcm.mjs` recibe un `google-services.json` válido para el paquete `mx.ligajuventino.app` mediante el secreto de GitHub `FIREBASE_ANDROID_CONFIG_B64`.
+
+Sin dicho secreto, la compilación Android conserva la APK actual **sin agregar dependencias Firebase**. Con él, prepara el plugin Google Services, Firebase Messaging, el manifest y la configuración en el runner de GitHub, sin publicar ningún archivo en el repositorio.
+
+**Protección de privacidad:** el receptor queda con `firebase_messaging_auto_init_enabled=false` y Analytics desactivado; no registra, imprime, sube ni solicita tokens automáticamente. Falta conectar una opción explícita de suscripción con alta y baja autenticadas en el servidor, asociar solo avisos autorizados por Presidencia y probar la entrega real en un Android instalado. Por ahora **no existe Push FCM funcional ni recepción confirmada**.
+
 ## 3. Integración técnica que aún falta
 
 La comprobación de configuración no equivale a activar FCM. El seguimiento se mantiene en [incidencia #82](https://github.com/jairofrancog7-star/App-liga-/issues/82):
 
-- Incorporar el SDK de Firebase Messaging Android, plugin de Gradle, servicio receptor nativo y registro de token **con consentimiento**.
+- El SDK y el servicio receptor ya están preparados de forma **condicional**; falta configurar Firebase real, habilitar una alta/baja de tokens **solo con consentimiento** e integrar el flujo desde la APK.
 - Conectar las suscripciones con el servidor de Railway usando identidad/autorización; no publicar tokens de dispositivo ni claves de cuenta de servicio.
 - Crear envío FCM HTTP v1 desde el servidor con credenciales de cuenta de servicio **solo en Railway** y envío de avisos oficiales aprobados. El `google-services.json` Android **no sirve para autorizar** el envío desde servidor.
 - Validar un envío privado en un único Android real, con la APK cerrada normalmente, apertura de notificación y desactivación.
