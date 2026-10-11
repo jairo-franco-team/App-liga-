@@ -8,7 +8,8 @@ const out=resolve(root,'artifacts/admin-mobile-v1353');
 mkdirSync(out,{recursive:true});
 const sheets=['src/v1310-admin-paleta-unificada.css','src/v1335-admin-app-colors.css',
  'src/v1340-admin-mobile-visual-unified.css','src/v1246-content-studio.css',
- 'src/v1381-admin-colores-oficiales.css','src/v1384-admin-visual-dark-harmony.css'];
+ 'src/v1381-admin-colores-oficiales.css','src/v1384-admin-visual-dark-harmony.css',
+ 'src/v1386-admin-dialog-consistency.css'];
 const fixture=[
  '<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">',
  '<style>html,body{margin:0;width:100%;background:#071338;color:white;font:14px system-ui}',
