@@ -6648,6 +6648,15 @@ document.addEventListener('click',e=>{
 });
 
 function render(){
+  // La portada PC es un shell separado: no permitir que el render móvil lo sobrescriba.
+  // Solo afecta ?mode=desktop y únicamente la ruta home. Las herramientas nativas
+  // mantienen su renderizado original y móvil/APK no entran en esta condición.
+  if(new URLSearchParams(location.search).get('mode')==='desktop' && state.route==='home'){
+    document.body.dataset.appRoute='home';
+    document.body.classList.add('lj-desktop');
+    window.dispatchEvent(new Event('ljr:desktop-home-request'));
+    return;
+  }
   const editorRoutes=new Set(['publicationCenter','ligaControl','adminFut','jrControl','recruitment','refereeOffline','credentialBuilder','permissionBuilder','agendaBuilder','motionHub','suspensionTool','bracketBuilder','disciplineTool','scheduleChanges']);
   /* V636 — Las herramientas administrativas ya no bloquean la navegación.
      La pantalla siempre abre. Si existe una sesión recordada, se restaura
