@@ -117,56 +117,61 @@
 }
 
 
-/* V1431 · Fondo universal azul rey exacto de 1002062374.jpg (#010799).
- * Sólo lienzo / containers estructurales: tarjetas, botones, textos, iconos,
- * fotos, estadios, portadas, transmisiones y lógica sin cambios.
- * Sobrescribe fundos de distintas rutas que se veían violeta / bicolor.
- * Fondo plano deliberadamente: imagen de muestra RGB aprox. (1,7,153).
- */
+/* V1432 · Referencia de imagen 3: azul rey, descenso suave al azul noche.
+   Sin azul gris de imagen 1 ni azul claro de imagen 2. No tocar geometría ni lógica. */
 @layer ljr-reference-surfaces {
- @media screen {
-  :root {
-    --ljr-universal-background:#010799;
-    --deep:#010799;
-    --base:#010799;
-  }
-  /* Aplicación, laterales de PC, área de scroll y pantallas móviles. */
-  html,html body,html body #app,html body .app-shell,
-  html body .screen:not(#screen) {
-    background-color:#010799!important;
-    background-image:none!important;
-  }
-  /* Seis IDs vencen fondos heredados de Perfil, Competición y secciones anidadas.
-     No seleccionar botones ni cuadros: únicamente la superficie madre. */
-  html body #screen#screen#screen#screen#screen#screen {
-    --ljr-universal-background:#010799;
-    --ljr1420-page:#010799!important;
-    --ljr1420-canvas:#010799!important;
-    background-color:#010799!important;
-    background-image:none!important;
-    background-repeat:no-repeat!important;
-  }
-  /* Contenedores que antes repintaban toda la pantalla con otro azul.
-     Se mantienen paneles y tarjetas interiores con su diseño individual. */
-  html body #screen#screen#screen#screen#screen#screen :is(
-    .v12-profile-page,.v569-page,.v726-tools-page,.v60-tool-page,
-    .v46-notifications,.v46-ref-notifications-main,
-    .v12-bracket-reference,.v12-standings-reference,.v40-standings-host,
-    .v40-standings,.v40-content,.v12-fixtures-reference,
-    .v12-fixtures-host,.ljr-knockout
-  ) {
-    background-color:#010799!important;
-    background-image:none!important;
-  }
-  /* Barras de pestañas de página, no las tarjetas ni los selectores activos. */
-  html body #screen#screen#screen#screen#screen#screen > .tabs,
-  html body #screen#screen#screen#screen#screen#screen :is(
-    .v12-bracket-board,.v12-bracket-brackets,.v12-bracket-scroll,
-    .v12-bracket-route
-  ) {
-    background-color:#010799!important;
-    background-image:none!important;
-  }
-  /* Mantener portadas, patrocinadores, botones y barras de navegación sin filtros. */
+@media screen {
+ :root{
+   --ljr-universal-background:#070a99;
+   --ljr-universal-gradient:linear-gradient(180deg,#070a99 0%,#07098c 28%,#060779 52%,#050665 75%,#030449 100%);
+   --deep:#030449;--base:#070a99;
  }
+ html,html body,html body #app,html body .app-shell {
+   background-color:#030449!important;
+   background-image:var(--ljr-universal-gradient)!important;
+ }
+ /* Lienzo único, tarjetas y controles independientes, sin segunda capa. */
+ html body #screen#screen#screen#screen#screen#screen {
+   --ljr1420-page:#030449!important;
+   --ljr1420-canvas:var(--ljr-universal-gradient)!important;
+   background-color:#030449!important;
+   background-image:var(--ljr-universal-gradient)!important;
+   background-size:100% 100%!important;
+   background-repeat:no-repeat!important;
+ }
+ /* Sólo wrappers de contenido que ocultaban el fondo universal. */
+ html body #screen#screen#screen#screen#screen#screen :is(
+   .v12-profile-page,.v569-page,.v726-tools-page,.v60-tool-page,
+   .v46-notifications,.v46-ref-notifications-main,
+   .v12-bracket-reference,.v12-standings-reference,.v40-standings-host,
+   .v40-standings,.v40-content,.v12-fixtures-reference,
+   .v12-fixtures-host,.ljr-knockout,
+   .v12-bracket-board,.v12-bracket-brackets,.v12-bracket-scroll,
+   .v12-bracket-route
+ ){
+   background-color:transparent!important;
+   background-image:none!important;
+ }
+ /* Los fondos internos de cuadros y botones se mantienen visibles,
+    pero toman azules rey oscuros, no morado ni gris. */
+ html body[data-app-route="leagueTools"] #screen :is(
+   .v726-tools-hero,.v726-quick-section,.v726-tool-section,.v726-admin-section
+ ){
+   background:linear-gradient(180deg,#10269b,#080e6d)!important;
+ }
+ html body[data-app-route="leagueTools"] #screen :is(
+   .v726-quick-card,.v726-tool-card,.v612-tools-entry.v726-admin-entry,
+   .v60-tool-grid>.v60-tool-card,.v60-tools-featured-card
+ ){
+   background:linear-gradient(180deg,#142fa4,#0b187a)!important;
+ }
+ html body[data-app-route="notifications"] #screen :is(
+   .v46-ref-device,.v46-ref-master,.v46-ref-settings,.v46-ref-categories,
+   .v840-match-feed,.v852-feed,.v1082-push
+ ){
+   background:linear-gradient(180deg,#122a9c,#09146c)!important;
+ }
+ /* Perfil restaura aparte sus tarjetas, textos e iconos clásicos.
+    Fantasía/Pronostica mantienen gráficos originales sin modificarse. */
+}
 }
