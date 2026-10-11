@@ -15,6 +15,7 @@ on:
       - 'tests/admin-palette-android-v1353.mjs'
       - 'src/v1420-reference-blue-surfaces.css'
       - 'tests/v1420-reference-blue-mobile.mjs'
+      - 'tests/v1421-royal-drive-pages.mjs'
       - '.github/workflows/admin-mobile-palette-check.yml'
   workflow_dispatch:
 
@@ -44,6 +45,10 @@ jobs:
         run: node tests/admin-palette-android-v1353.mjs
       - name: Check reference blue dialogs and preserved controls
         run: node tests/v1420-reference-blue-mobile.mjs
+      - name: Build and check royal blue pages and preserved Profile
+        run: |
+          npm run build
+          node tests/v1421-royal-drive-pages.mjs
       - name: Keep mobile screenshots
         if: always()
         uses: actions/upload-artifact@v4
@@ -52,5 +57,6 @@ jobs:
           path: |
             artifacts/admin-mobile-v1353/*.png
             artifacts/v1420-reference-blue/*.png
+            artifacts/v1421-royal-pages/*.png
           if-no-files-found: ignore
           retention-days: 14

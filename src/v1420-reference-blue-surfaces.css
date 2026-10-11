@@ -1,4 +1,5 @@
-/* V1420 · Cuadros de las 118 capturas: azules de referencia, blanco y cyan.
+/* V1421 · Referencias Drive: azul rey de Equipos, lienzos y degradado continuo.
+   Cuadros de las 118 capturas: azules de referencia, blanco y cyan.
    Sólo presentación. Mantiene rutas, permisos, datos, validaciones y listeners.
    La capa usa !important para resolver los estilos heredados sin aumentar
    artificialmente la especificidad ni reemplazar sus reglas de visibilidad.
@@ -8,30 +9,31 @@
 @media screen {
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) {
---ljr1420-page:#111b68!important;
-  --ljr1420-panel:#173784!important;
-  --ljr1420-card:#142b73!important;
-  --ljr1420-field:#101f60!important;
+--ljr1421-lines:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22430%22%20height%3D%22300%22%20viewBox%3D%220%200%20430%20300%22%20fill%3D%22none%22%3E%3Cg%20stroke-linecap%3D%22round%22%3E%3Cg%20stroke%3D%22%234486FF%22%20stroke-width%3D%225%22%20opacity%3D%22.22%22%3E%3Cpath%20d%3D%22M-53%2078C24-46%20110-43%20166%2018S295%20112%20466-11%22%2F%3E%3Cpath%20d%3D%22M-62%20196C27%2095%20102%2096%20166%20145S301%20232%20464%20101%22%2F%3E%3Cpath%20d%3D%22M-70%20262C28%20169%20117%20177%20183%20211S345%20269%20471%20169%22%2F%3E%3C%2Fg%3E%3Cg%20stroke%3D%22%2379AEFF%22%20stroke-width%3D%221.7%22%20opacity%3D%22.45%22%3E%3Cpath%20d%3D%22M-53%2078C24-46%20110-43%20166%2018S295%20112%20466-11%22%2F%3E%3Cpath%20d%3D%22M-62%20196C27%2095%20102%2096%20166%20145S301%20232%20464%20101%22%2F%3E%3Cpath%20d%3D%22M-70%20262C28%20169%20117%20177%20183%20211S345%20269%20471%20169%22%2F%3E%3C%2Fg%3E%3Cg%20stroke%3D%22%23326FFF%22%20stroke-width%3D%221%22%20opacity%3D%22.22%22%3E%3Cpath%20d%3D%22M-40%20120C48%2045%20117%2038%20181%2094S325%20157%20453%2047%22%2F%3E%3Cpath%20d%3D%22M-31%20298C47%20239%20124%20233%20193%20261S340%20314%20475%20230%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E")!important;
+  --ljr1420-page:#0b0b60!important;
+  --ljr1420-panel:#172583!important;
+  --ljr1420-card:#131d73!important;
+  --ljr1420-field:#10166a!important;
   --ljr1420-line:rgba(143,186,255,.26)!important;
   --ljr1420-ink:#fff!important;
   --ljr1420-muted:#cbdaf7!important;
   --ljr1420-cyan:#55e3f1!important;
-  --ljr1420-canvas:radial-gradient(ellipse at 100% 0%,rgba(44,111,220,.28),transparent 55%),linear-gradient(160deg,#183b91 0%,#132a78 42%,#111b68 100%)!important;
-  --ljr1420-surface:linear-gradient(145deg,#1b4095 0%,#173784 48%,#142b73 100%)!important;
-  --ljr1420-button:linear-gradient(145deg,#214aab,#1b3a8e)!important;
+  --ljr1420-canvas:radial-gradient(ellipse at 100% 0%,rgba(48,72,217,.24),transparent 55%),linear-gradient(180deg,#1d35b4 0%,#192fa8 24%,#14238a 53%,#0b0b60 100%)!important;
+  --ljr1420-surface:linear-gradient(145deg,#20359b 0%,#172583 48%,#131d73 100%)!important;
+  --ljr1420-button:linear-gradient(145deg,#243ca6,#172680)!important;
   --ljr1310-bg:var(--ljr1420-page)!important;
   --ljr1310-surface:var(--ljr1420-panel)!important;
   --ljr1310-card:var(--ljr1420-card)!important;
   --ljr1310-input:var(--ljr1420-field)!important;
   --ljr1310-edge:var(--ljr1420-line)!important;
   --p1300-surface:var(--ljr1420-panel)!important;
-  --p1300-raised:#214aab!important;
+  --p1300-raised:#243ca6!important;
   --p1300-deep:var(--ljr1420-field)!important;
   --p1300-border:var(--ljr1420-line)!important;
   --p1300-muted:var(--ljr1420-muted)!important;
@@ -44,12 +46,15 @@ html :is(
   --v1398-muted:var(--ljr1420-muted)!important;
   --v1398-buttons:var(--ljr1420-button)!important;
   --v1398-surface:var(--ljr1420-surface)!important;
-  --v1398-active:linear-gradient(145deg,#2860c6,#204aa8)!important;
+  --v1398-active:linear-gradient(145deg,#2b49bd,#243ca6)!important;
   --v1340-field:var(--ljr1420-field)!important;
   --ljr-notice-button-bg:var(--ljr1420-button)!important;
   --ljr-notice-button-line:var(--ljr1420-line)!important;
   background-color:var(--ljr1420-page)!important;
-  background-image:var(--ljr1420-canvas)!important;
+  background-image:var(--ljr1421-lines),var(--ljr1420-canvas)!important;
+  background-size:100% 340px,100% 100%,100% 100%!important;
+  background-position:center top!important;
+  background-repeat:no-repeat!important;
   color:var(--ljr1420-ink)!important;
   border-color:var(--ljr1420-line)!important;
   color-scheme:dark!important;
@@ -62,24 +67,26 @@ border:1px solid var(--ljr1420-line)!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) > header {
-background-color:#153887!important;
-  background-image:linear-gradient(120deg,#204ba9,#173784)!important;
+background-color:#142582!important;
+  background-image:var(--ljr1421-lines),linear-gradient(155deg,#172583,#20359b)!important;
+  background-size:100% 100%!important;
+  background-repeat:no-repeat!important;
   border-bottom:1px solid var(--ljr1420-line)!important;
   color:#fff!important;
   box-shadow:none!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(.v1130-banner,.v1130-hint,.v1130-summary,.v1130-record,.v1212-metrics>div,.v1212-filters,.v1212-item,.v1212-details,.v1212-empty,.v1212-disclaimer,.v1223-insight,.v1223-chart,.v1223-notice,.ljr-admin-area,.ljr-admin-results,.ljr-simple-intro,.ljr-guide,.ljr-admin-howto,.ljr-smart-hub,.ljr-smart-tasks,.ljr-editor-hub,.ljr-editor-section-info,.ljr-editor-preview,.ljr-editor-autofill,.ljr-editor-row,.ljr-editor-empty,.ljr-review-card,.ljr-review-insights,.ljr-review-empty,.ljr-review-body,.ljr-review-feedback,.ljr-review-device-results,.ljr-review-stats>div,.ljr-studio,.v1081-note,.v1081-item,.v1081-preview,.v1081-role,.v1081-channel-note,.v569-card,.v1300-panel,.v1300-detail,.v569-inline-auth,.v569-security-state,.v577-device-summary,.v569-devices article,.v1300-findings article,.v1300-ai-status,.v1300-ai-answer,.v1300-cloud-state,.v1300-cloud-output,.v1300-pass-help,.v1150-privacy-card,.v1125-editor,.v1125-stats>div,.v1126-editor,.v1126-metrics>div,.v1126-extra,.v1111-context,.v1230-assistant,.v1232-qa,.csvpro-drop,.csvpro-summary>div,.csvpro-status,.v105-poll-intro,.v105-poll-grid label,.v105-meeting-notice,.v875-meeting-options,.ljr-meeting-hub,.v1130-card,.v1130-filters,.v1130-stat,.v1240-calendar-ai,.v190-recruit-card,.v190-publish-card,.v1390-panel,.v1005-credential-intro,.registration-capture,.v1004-pub-hub,.v642-publications-card,.v642-publications-card.v642-publications-card,.ljr-install-guide,.ljr-install-step,.ljr-backup-section,.ljr-backup-stats>div,.v46-ref-device,.v46-ref-master,.v46-ref-settings,.v46-ref-categories,.v840-match-feed,.v852-feed,.v1082-push,.v1073-mini,.v1215-automation,.v1215-audit,.v1215-answer,.v1215-panel,.v970-match-insight,.v970-game-tools,.v970-round-performance,.v619-q-hero,.v619-q-mini-stats>span,.ljr-studio-note) {
 background-color:var(--ljr1420-panel)!important;
@@ -90,16 +97,16 @@ background-color:var(--ljr1420-panel)!important;
   box-shadow:inset 0 1px rgba(228,241,255,.065),0 5px 16px rgba(2,12,58,.12)!important;
 }
 
-html body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen :is(.v190-recruit-page,#v190-recruitment-page,.v569-page,.v1300-page,.ljr-install-page,.v46-notifications,.v46-ref-notifications-main) {
+html body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen :is(.v190-recruit-page,#v190-recruitment-page,.v569-page,.v1300-page,.ljr-install-page,.v46-notifications,.v46-ref-notifications-main) {
 background:transparent!important;
   box-shadow:none!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(h1,h2,h3,h4,label,strong) {
 color:#fff!important;
@@ -107,10 +114,10 @@ color:#fff!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(.ljr-admin-section-sub,.ljr-admin-greeting,.ljr-admin-results-hint,.ljr-editor-security,.ljr-editor-note,.ljr-review-meta,.ljr-admin-upload-name,.ljr-simple-intro p,.ljr-simple-tile-note,.v1300-explain,.v1300-footnote,.v1300-detail p,.v1300-choice small,.v569-note,.v569-page-head p,.v569-devices small,.v577-device-summary small,.v1390-panel p,.v190-community-help,.ljr-install-smallprint,.ljr-install-choice small,.v1215-intro,.v1215-status) {
 color:var(--ljr1420-muted)!important;
@@ -119,10 +126,10 @@ color:var(--ljr1420-muted)!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(.ljr-admin-eyebrow,.ljr-guide>summary,.ljr-admin-section-title,.v569-page-head small,.v1390-community-title small,.ljr-install-eyebrow,.v1215-local-tag,.v919-hero-copy small) {
 color:var(--ljr1420-cyan)!important;
@@ -130,10 +137,10 @@ color:var(--ljr1420-cyan)!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=color]):not([type=range]):not([type=hidden]),select,textarea) {
 box-sizing:border-box!important;
@@ -151,23 +158,23 @@ box-sizing:border-box!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(input,textarea)::placeholder {
 color:#bdcdec!important;opacity:1!important;-webkit-text-fill-color:#bdcdec!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(select option,select optgroup) {
-background:#101f60!important;color:#fff!important;
+background:#10166a!important;color:#fff!important;
 }
 
 html body[data-app-route="recruitment"] #screen #v190-recruitment-page .v190-community-select>.ljr-icon-picker {
@@ -183,12 +190,12 @@ color:#85edf6!important;stroke:currentColor!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
-) :is(.v1130-history>button,.v1130-record button,.v1212-audit button,.v1223-insight button,.ljr-admin-tile,.cms-kind-grid>button,.cms-design-presets>button,.cms-form>button,.ljr-editor-two-choice>button,.ljr-editor-extra-actions>button,.ljr-editor-hub-grid>button,.ljr-editor-tools>button,.ljr-editor-bottom>button,.ljr-editor-smart-tools>button,.ljr-review-tabs>button,.ljr-review-automation button,.ljr-review-footer button,.ljr-smart-actions button,.ljr-smart-tasks button,.liga-media-actions>button,.ljr-guide>summary,.v569-primary,.v569-secondary,.v569-link,.v569-methods button,.v1300-primary,.v1300-actions button,.v1300-permission button,.v1300-link,.v1300-pass-help button,.v1300-ai-actions button,.v105-btn,.v105-actions button,.v1125-toolbar button,.v1125-form-actions button,.v1126-toolbar button,.v1126-tools button,.v1126-save,.v1111-event-actions button,.v1111-bottom button,.csvpro-button,.v1232-actions button,.v1210-alert-tools-row>button,.v1210-official-link,.v919-action,.v875-agenda-chips button,.mh-actions button,.v1130-bar button,.v1130-source-actions button,.v1130-card-actions button,.v1240-buttons button,.v190-recruit-card button,.v190-publish-card button,.v1390-panel button,.v1005-step-grid>button,.capture-actions>button,.v1004-pub-primary,.v1004-pub-mini,.v1004-pub-editor,.ljr-install-primary,.ljr-install-secondary,.ljr-install-choice,.ljr-install-utilities button,.ljr-install-utilities a,.ljr-backup-primary,.ljr-backup-section button,.v840-head-actions button,.v840-feed-tabs button,.v1073-dashboard-actions button,.v1215-action-row button,.v1215-query-row button,.v1215-suggestions button,.v970-quick-buttons button,.v970-insight-toggle,.v618-q-nav button,.v618-q-actions button,.v196-toolbar>button,.ljr-layout-gallery>button,.ljr-studio-actions button,.ljr-picker-open,.ljr-picker-options>button) {
+) :is(.v1130-history>button,.v1130-record button,.v1212-audit button,.v1223-insight button,.ljr-admin-tile,.cms-kind-grid>button,.cms-design-presets>button,.cms-form>button,.ljr-editor-two-choice>button,.ljr-editor-extra-actions>button,.ljr-editor-hub-grid>button,.ljr-editor-tools>button,.ljr-editor-bottom>button,.ljr-editor-smart-tools>button,.ljr-review-tabs>button,.ljr-review-automation button,.ljr-review-footer button,.ljr-smart-actions button,.ljr-smart-tasks button,.liga-media-actions>button,.ljr-guide>summary,.v569-primary,.v569-secondary,.v569-link,.v569-methods button,.v1300-primary,.v1300-actions button,.v1300-permission button,.v1300-link,.v1300-pass-help button,.v1300-ai-actions button,.v105-btn,.v105-actions button,.v1125-toolbar button,.v1125-form-actions button,.v1126-toolbar button,.v1126-tools button,.v1126-save,.v1111-event-actions button,.v1111-bottom button,.csvpro-button,.v1232-actions button,.v1210-alert-tools-row>button,.v1210-official-link,.v919-action,.v875-agenda-chips button,.mh-actions button,.v1130-bar button,.v1130-source-actions button,.v1130-card-actions button,.v1240-buttons button,.v190-recruit-card button,.v190-publish-card button,.v1390-panel button,.v1005-step-grid>button,.capture-actions>button,.v1004-pub-primary,.v1004-pub-mini,.v1004-pub-editor,.ljr-install-primary,.ljr-install-secondary,.ljr-install-choice,.ljr-install-utilities button,.ljr-install-utilities a,.ljr-backup-primary,.ljr-backup-section button,.v840-head-actions button,.v840-feed-tabs button,.v1073-dashboard-actions button,.v1215-action-row button,.v1215-query-row button,.v1215-suggestions button,.v970-quick-buttons button,.v970-insight-toggle,.v618-q-nav button,.v618-q-actions button,.v196-toolbar button,.ljr-layout-gallery>button,.ljr-studio-actions button,.ljr-picker-open,.ljr-picker-options>button) {
 box-sizing:border-box!important;
   min-width:0!important;
   max-width:100%!important;
@@ -196,7 +203,7 @@ box-sizing:border-box!important;
   height:auto!important;
   border:1px solid rgba(147,190,255,.29)!important;
   border-radius:13px!important;
-  background-color:#1b3a8e!important;
+  background-color:#172680!important;
   background-image:var(--ljr1420-button)!important;
   color:#fff!important;
   -webkit-text-fill-color:#fff!important;
@@ -209,23 +216,23 @@ box-sizing:border-box!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
-) :is(.v1130-history>button,.v1130-record button,.v1212-audit button,.v1223-insight button,.ljr-admin-tile,.cms-kind-grid>button,.cms-design-presets>button,.cms-form>button,.ljr-editor-two-choice>button,.ljr-editor-extra-actions>button,.ljr-editor-hub-grid>button,.ljr-editor-tools>button,.ljr-editor-bottom>button,.ljr-editor-smart-tools>button,.ljr-review-tabs>button,.ljr-review-automation button,.ljr-review-footer button,.ljr-smart-actions button,.ljr-smart-tasks button,.liga-media-actions>button,.ljr-guide>summary,.v569-primary,.v569-secondary,.v569-link,.v569-methods button,.v1300-primary,.v1300-actions button,.v1300-permission button,.v1300-link,.v1300-pass-help button,.v1300-ai-actions button,.v105-btn,.v105-actions button,.v1125-toolbar button,.v1125-form-actions button,.v1126-toolbar button,.v1126-tools button,.v1126-save,.v1111-event-actions button,.v1111-bottom button,.csvpro-button,.v1232-actions button,.v1210-alert-tools-row>button,.v1210-official-link,.v919-action,.v875-agenda-chips button,.mh-actions button,.v1130-bar button,.v1130-source-actions button,.v1130-card-actions button,.v1240-buttons button,.v190-recruit-card button,.v190-publish-card button,.v1390-panel button,.v1005-step-grid>button,.capture-actions>button,.v1004-pub-primary,.v1004-pub-mini,.v1004-pub-editor,.ljr-install-primary,.ljr-install-secondary,.ljr-install-choice,.ljr-install-utilities button,.ljr-install-utilities a,.ljr-backup-primary,.ljr-backup-section button,.v840-head-actions button,.v840-feed-tabs button,.v1073-dashboard-actions button,.v1215-action-row button,.v1215-query-row button,.v1215-suggestions button,.v970-quick-buttons button,.v970-insight-toggle,.v618-q-nav button,.v618-q-actions button,.v196-toolbar>button,.ljr-layout-gallery>button,.ljr-studio-actions button,.ljr-picker-open,.ljr-picker-options>button):is(.active,.is-active,.selected,[aria-pressed=true],[aria-selected=true],.v569-primary,.v1300-primary,.ljr-install-primary,.ljr-admin-tile-primary,.v1126-save,.is-save) {
-background-color:#2355b7!important;
-  background-image:linear-gradient(145deg,#2a64c9,#214eaf)!important;
+) :is(.v1130-history>button,.v1130-record button,.v1212-audit button,.v1223-insight button,.ljr-admin-tile,.cms-kind-grid>button,.cms-design-presets>button,.cms-form>button,.ljr-editor-two-choice>button,.ljr-editor-extra-actions>button,.ljr-editor-hub-grid>button,.ljr-editor-tools>button,.ljr-editor-bottom>button,.ljr-editor-smart-tools>button,.ljr-review-tabs>button,.ljr-review-automation button,.ljr-review-footer button,.ljr-smart-actions button,.ljr-smart-tasks button,.liga-media-actions>button,.ljr-guide>summary,.v569-primary,.v569-secondary,.v569-link,.v569-methods button,.v1300-primary,.v1300-actions button,.v1300-permission button,.v1300-link,.v1300-pass-help button,.v1300-ai-actions button,.v105-btn,.v105-actions button,.v1125-toolbar button,.v1125-form-actions button,.v1126-toolbar button,.v1126-tools button,.v1126-save,.v1111-event-actions button,.v1111-bottom button,.csvpro-button,.v1232-actions button,.v1210-alert-tools-row>button,.v1210-official-link,.v919-action,.v875-agenda-chips button,.mh-actions button,.v1130-bar button,.v1130-source-actions button,.v1130-card-actions button,.v1240-buttons button,.v190-recruit-card button,.v190-publish-card button,.v1390-panel button,.v1005-step-grid>button,.capture-actions>button,.v1004-pub-primary,.v1004-pub-mini,.v1004-pub-editor,.ljr-install-primary,.ljr-install-secondary,.ljr-install-choice,.ljr-install-utilities button,.ljr-install-utilities a,.ljr-backup-primary,.ljr-backup-section button,.v840-head-actions button,.v840-feed-tabs button,.v1073-dashboard-actions button,.v1215-action-row button,.v1215-query-row button,.v1215-suggestions button,.v970-quick-buttons button,.v970-insight-toggle,.v618-q-nav button,.v618-q-actions button,.v196-toolbar button,.ljr-layout-gallery>button,.ljr-studio-actions button,.ljr-picker-open,.ljr-picker-options>button):is(.active,.is-active,.selected,[aria-pressed=true],[aria-selected=true],.v569-primary,.v1300-primary,.ljr-install-primary,.ljr-admin-tile-primary,.v1126-save,.is-save) {
+background-color:#243fae!important;
+  background-image:linear-gradient(145deg,#2b49bd,#20359b)!important;
   border-color:rgba(85,227,241,.65)!important;
   box-shadow:inset 0 -2px rgba(85,227,241,.8),0 4px 12px rgba(1,10,53,.2)!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(.ljr-admin-tile,.cms-kind-grid>button):not([hidden]) {
 display:flex!important;
@@ -239,20 +246,20 @@ display:flex!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(.ljr-admin-tile-label,.ljr-simple-tile-title) {
 min-width:0!important;width:100%!important;white-space:normal!important;line-height:1.3!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(.v1212-item-icon,.v1223-glyph,.ljr-admin-tile-icon,.ljr-simple-icon,.ljr-editor-option-icon,.v1300-mark,.v1073-icon,.v1005-step-icon,.capture-action-icon,.v1004-pub-primary-icon,.v1004-pub-mini-icon,.v1004-pub-editor-icon,.v1340-incident-icon,.ljr-install-choice-icon,.ljr-install-guide-icon,.csvpro-upload,.v1390-panel-heading>span,.v190-recruit-card>header>span,.v159-picker-icon):not([hidden]) {
 box-sizing:border-box!important;
@@ -267,8 +274,8 @@ box-sizing:border-box!important;
   padding:0!important;
   border:1px solid rgba(137,194,255,.3)!important;
   border-radius:13px!important;
-  background-color:#1b459a!important;
-  background-image:linear-gradient(145deg,rgba(84,156,237,.27),rgba(16,33,96,.28))!important;
+  background-color:#1c3091!important;
+  background-image:linear-gradient(145deg,rgba(75,93,224,.24),rgba(17,22,106,.25))!important;
   color:#85edf6!important;
   -webkit-text-fill-color:#85edf6!important;
   font-size:23px!important;
@@ -277,10 +284,10 @@ box-sizing:border-box!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(.v1212-item-icon,.v1223-glyph,.ljr-admin-tile-icon,.ljr-simple-icon,.ljr-editor-option-icon,.v1300-mark,.v1073-icon,.v1005-step-icon,.capture-action-icon,.v1004-pub-primary-icon,.v1004-pub-mini-icon,.v1004-pub-editor-icon,.v1340-incident-icon,.ljr-install-choice-icon,.ljr-install-guide-icon,.csvpro-upload,.v1390-panel-heading>span,.v190-recruit-card>header>span,.v159-picker-icon) svg {
 display:block!important;
@@ -294,60 +301,60 @@ display:block!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(.v1212-item-icon,.v1223-glyph,.ljr-admin-tile-icon,.ljr-simple-icon,.ljr-editor-option-icon,.v1300-mark,.v1073-icon,.v1005-step-icon,.capture-action-icon,.v1004-pub-primary-icon,.v1004-pub-mini-icon,.v1004-pub-editor-icon,.v1340-incident-icon,.ljr-install-choice-icon,.ljr-install-guide-icon,.csvpro-upload,.v1390-panel-heading>span,.v190-recruit-card>header>span,.v159-picker-icon) img {
 width:25px!important;height:25px!important;object-fit:contain!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(.ljr-admin-action-grid,.cms-kind-grid)>:nth-child(even) :is(.ljr-admin-tile-icon,.ljr-simple-icon) {
-color:#c5ddff!important;-webkit-text-fill-color:#c5ddff!important;background-color:#284b9b!important;
+color:#c5ddff!important;-webkit-text-fill-color:#c5ddff!important;background-color:#263898!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(.ljr-admin-action-grid,.cms-kind-grid) {
 gap:10px!important;align-items:stretch!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(.ljr-editor-two-choice,.ljr-editor-extra-actions) {
 gap:10px!important;align-items:stretch!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(.ljr-admin-area,.ljr-smart-hub,.ljr-editor-hub) {
 padding:14px!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is([data-close],.v105-close):not([hidden]) {
 box-sizing:border-box!important;
@@ -359,7 +366,7 @@ box-sizing:border-box!important;
   margin:0!important;padding:0!important;
   border:1px solid rgba(143,186,255,.32)!important;
   border-radius:13px!important;
-  background:#1c3c8b!important;
+  background:#182883!important;
   color:#fff!important;
   -webkit-text-fill-color:#fff!important;
   font-size:24px!important;line-height:1!important;
@@ -367,10 +374,10 @@ box-sizing:border-box!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) input[type=file] {
 box-sizing:border-box!important;
@@ -378,7 +385,7 @@ box-sizing:border-box!important;
   padding:9px!important;
   border:1px solid rgba(151,190,250,.35)!important;
   border-radius:12px!important;
-  background:#101f60!important;
+  background:#10166a!important;
   color:#d8e6ff!important;
   -webkit-text-fill-color:#d8e6ff!important;
   min-height:44px!important;
@@ -386,26 +393,26 @@ box-sizing:border-box!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) input[type=file]::file-selector-button {
 padding:10px 12px!important;margin:0 8px 0 0!important;
   max-width:64%!important;
   border:1px solid rgba(153,206,255,.4)!important;
   border-radius:9px!important;
-  background:#214aab!important;color:#fff!important;
+  background:#243ca6!important;color:#fff!important;
   font:600 12px/1.3 system-ui,sans-serif!important;
   -webkit-text-fill-color:#fff!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(.ljr-admin-tile-danger,.ljr-review-danger,.v569-danger,.is-danger,[data-logout],[data-revoke]) {
 background-color:#743353!important;
@@ -416,44 +423,78 @@ background-color:#743353!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(input[type=checkbox],input[type=radio]) {
 accent-color:#55e3f1!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(button,input,select,textarea,summary,a):focus-visible {
 outline:2px solid #85edf6!important;outline-offset:3px!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) button:disabled {
 opacity:.55!important;cursor:not-allowed!important;
 }
 
+html body[data-app-route]:not(:is([data-app-route="profile"],[data-app-route="teams"],[data-app-route="home"],[data-app-route="competition"],[data-app-route="more"],[data-app-route="fantasy"],[data-app-route="quizArena"],[data-app-route="moreLess"],[data-app-route="predictor"],[data-app-route="moments"],[data-app-route="video"])) {
+--ljr1421-lines:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22430%22%20height%3D%22300%22%20viewBox%3D%220%200%20430%20300%22%20fill%3D%22none%22%3E%3Cg%20stroke-linecap%3D%22round%22%3E%3Cg%20stroke%3D%22%234486FF%22%20stroke-width%3D%225%22%20opacity%3D%22.22%22%3E%3Cpath%20d%3D%22M-53%2078C24-46%20110-43%20166%2018S295%20112%20466-11%22%2F%3E%3Cpath%20d%3D%22M-62%20196C27%2095%20102%2096%20166%20145S301%20232%20464%20101%22%2F%3E%3Cpath%20d%3D%22M-70%20262C28%20169%20117%20177%20183%20211S345%20269%20471%20169%22%2F%3E%3C%2Fg%3E%3Cg%20stroke%3D%22%2379AEFF%22%20stroke-width%3D%221.7%22%20opacity%3D%22.45%22%3E%3Cpath%20d%3D%22M-53%2078C24-46%20110-43%20166%2018S295%20112%20466-11%22%2F%3E%3Cpath%20d%3D%22M-62%20196C27%2095%20102%2096%20166%20145S301%20232%20464%20101%22%2F%3E%3Cpath%20d%3D%22M-70%20262C28%20169%20117%20177%20183%20211S345%20269%20471%20169%22%2F%3E%3C%2Fg%3E%3Cg%20stroke%3D%22%23326FFF%22%20stroke-width%3D%221%22%20opacity%3D%22.22%22%3E%3Cpath%20d%3D%22M-40%20120C48%2045%20117%2038%20181%2094S325%20157%20453%2047%22%2F%3E%3Cpath%20d%3D%22M-31%20298C47%20239%20124%20233%20193%20261S340%20314%20475%20230%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E")!important;
+  --ljr1421-page-canvas:var(--ljr1421-lines),radial-gradient(ellipse at 88% 0%,rgba(48,72,217,.22),transparent 60%),linear-gradient(180deg,#1d35b4 0px,#192fa8 220px,#14238a 510px,#0b0b60 900px)!important;
+  --ljr1421-head-canvas:var(--ljr1421-lines),linear-gradient(150deg,#101877,#1d35b4)!important;
+}
+
+html body[data-app-route]:not(:is([data-app-route="profile"],[data-app-route="teams"],[data-app-route="home"],[data-app-route="competition"],[data-app-route="more"],[data-app-route="fantasy"],[data-app-route="quizArena"],[data-app-route="moreLess"],[data-app-route="predictor"],[data-app-route="moments"],[data-app-route="video"])) #screen {
+background-color:#0b0b60!important;
+  background-image:var(--ljr1421-page-canvas)!important;
+  background-position:center top!important;
+  background-size:100% 340px,100% 500px,100% 900px!important;
+  background-repeat:no-repeat!important;
+}
+
+html body[data-app-route]:not(:is([data-app-route="profile"],[data-app-route="teams"],[data-app-route="home"],[data-app-route="competition"],[data-app-route="more"],[data-app-route="fantasy"],[data-app-route="quizArena"],[data-app-route="moreLess"],[data-app-route="predictor"],[data-app-route="moments"],[data-app-route="video"])) :is(#app>.topbar,#screen .ljr-scroll-header) {
+background-color:#1d35b4!important;
+  background-image:var(--ljr1421-head-canvas)!important;
+  background-position:center top!important;
+  background-size:100% 100%!important;
+  background-repeat:no-repeat!important;
+}
+
+html body[data-app-route]:not(:is([data-app-route="profile"],[data-app-route="teams"],[data-app-route="home"],[data-app-route="competition"],[data-app-route="more"],[data-app-route="fantasy"],[data-app-route="quizArena"],[data-app-route="moreLess"],[data-app-route="predictor"],[data-app-route="moments"],[data-app-route="video"])) #screen :is(.v642-publications-page,.v1215-page,.v1073-page,.v1073-dashboard-page) {
+background:transparent!important;
+}
+
+html body[data-app-route]:not(:is([data-app-route="profile"],[data-app-route="teams"],[data-app-route="home"],[data-app-route="competition"],[data-app-route="more"],[data-app-route="fantasy"],[data-app-route="quizArena"],[data-app-route="moreLess"],[data-app-route="predictor"],[data-app-route="moments"],[data-app-route="video"])) #screen :is(.v92-match-actions,.v92-match-actions button,.v642-action-icon,.v642-preview-icon,.v569-inline button) {
+background-color:#172680!important;background-image:linear-gradient(145deg,#243ca6,#172680)!important;border-color:rgba(137,162,242,.3)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+
+html body[data-app-route]:not(:is([data-app-route="profile"],[data-app-route="teams"],[data-app-route="home"],[data-app-route="competition"],[data-app-route="more"],[data-app-route="fantasy"],[data-app-route="quizArena"],[data-app-route="moreLess"],[data-app-route="predictor"],[data-app-route="moments"],[data-app-route="video"])) #screen .v92-source {
+background:transparent!important;
+}
+
 @media (hover:hover) {
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
-) :is(.v1130-history>button,.v1130-record button,.v1212-audit button,.v1223-insight button,.ljr-admin-tile,.cms-kind-grid>button,.cms-design-presets>button,.cms-form>button,.ljr-editor-two-choice>button,.ljr-editor-extra-actions>button,.ljr-editor-hub-grid>button,.ljr-editor-tools>button,.ljr-editor-bottom>button,.ljr-editor-smart-tools>button,.ljr-review-tabs>button,.ljr-review-automation button,.ljr-review-footer button,.ljr-smart-actions button,.ljr-smart-tasks button,.liga-media-actions>button,.ljr-guide>summary,.v569-primary,.v569-secondary,.v569-link,.v569-methods button,.v1300-primary,.v1300-actions button,.v1300-permission button,.v1300-link,.v1300-pass-help button,.v1300-ai-actions button,.v105-btn,.v105-actions button,.v1125-toolbar button,.v1125-form-actions button,.v1126-toolbar button,.v1126-tools button,.v1126-save,.v1111-event-actions button,.v1111-bottom button,.csvpro-button,.v1232-actions button,.v1210-alert-tools-row>button,.v1210-official-link,.v919-action,.v875-agenda-chips button,.mh-actions button,.v1130-bar button,.v1130-source-actions button,.v1130-card-actions button,.v1240-buttons button,.v190-recruit-card button,.v190-publish-card button,.v1390-panel button,.v1005-step-grid>button,.capture-actions>button,.v1004-pub-primary,.v1004-pub-mini,.v1004-pub-editor,.ljr-install-primary,.ljr-install-secondary,.ljr-install-choice,.ljr-install-utilities button,.ljr-install-utilities a,.ljr-backup-primary,.ljr-backup-section button,.v840-head-actions button,.v840-feed-tabs button,.v1073-dashboard-actions button,.v1215-action-row button,.v1215-query-row button,.v1215-suggestions button,.v970-quick-buttons button,.v970-insight-toggle,.v618-q-nav button,.v618-q-actions button,.v196-toolbar>button,.ljr-layout-gallery>button,.ljr-studio-actions button,.ljr-picker-open,.ljr-picker-options>button):not(:disabled):hover {
+) :is(.v1130-history>button,.v1130-record button,.v1212-audit button,.v1223-insight button,.ljr-admin-tile,.cms-kind-grid>button,.cms-design-presets>button,.cms-form>button,.ljr-editor-two-choice>button,.ljr-editor-extra-actions>button,.ljr-editor-hub-grid>button,.ljr-editor-tools>button,.ljr-editor-bottom>button,.ljr-editor-smart-tools>button,.ljr-review-tabs>button,.ljr-review-automation button,.ljr-review-footer button,.ljr-smart-actions button,.ljr-smart-tasks button,.liga-media-actions>button,.ljr-guide>summary,.v569-primary,.v569-secondary,.v569-link,.v569-methods button,.v1300-primary,.v1300-actions button,.v1300-permission button,.v1300-link,.v1300-pass-help button,.v1300-ai-actions button,.v105-btn,.v105-actions button,.v1125-toolbar button,.v1125-form-actions button,.v1126-toolbar button,.v1126-tools button,.v1126-save,.v1111-event-actions button,.v1111-bottom button,.csvpro-button,.v1232-actions button,.v1210-alert-tools-row>button,.v1210-official-link,.v919-action,.v875-agenda-chips button,.mh-actions button,.v1130-bar button,.v1130-source-actions button,.v1130-card-actions button,.v1240-buttons button,.v190-recruit-card button,.v190-publish-card button,.v1390-panel button,.v1005-step-grid>button,.capture-actions>button,.v1004-pub-primary,.v1004-pub-mini,.v1004-pub-editor,.ljr-install-primary,.ljr-install-secondary,.ljr-install-choice,.ljr-install-utilities button,.ljr-install-utilities a,.ljr-backup-primary,.ljr-backup-section button,.v840-head-actions button,.v840-feed-tabs button,.v1073-dashboard-actions button,.v1215-action-row button,.v1215-query-row button,.v1215-suggestions button,.v970-quick-buttons button,.v970-insight-toggle,.v618-q-nav button,.v618-q-actions button,.v196-toolbar button,.ljr-layout-gallery>button,.ljr-studio-actions button,.ljr-picker-open,.ljr-picker-options>button):not(:disabled):hover {
 border-color:rgba(85,227,241,.72)!important;box-shadow:inset 0 1px rgba(234,244,255,.11),0 4px 12px rgba(2,8,47,.2)!important;
 }
 
@@ -461,20 +502,20 @@ border-color:rgba(85,227,241,.72)!important;box-shadow:inset 0 1px rgba(234,244,
 @media (max-width:350px) {
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(.ljr-admin-action-grid,.cms-kind-grid) {
 gap:8px!important;
 }
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(.ljr-admin-tile,.cms-kind-grid>button) {
 padding:11px 7px!important;min-height:98px!important;
@@ -484,10 +525,10 @@ padding:11px 7px!important;min-height:98px!important;
 @media (prefers-reduced-motion:reduce) {
 
 html :is(
-  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="quiniela"]) #screen,
+  body:is([data-app-route^="account"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"]) #screen,
   body .liga-media-modal>section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog,.ljr-content-studio,.ljr-backup-dialog,[aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],[aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],[aria-label="Mi avatar y mi camiseta"],[aria-label^="Seleccionar "]),
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal)>.v105-dialog,
-  body #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
+  body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(button,a,summary) {
 transition:none!important;

@@ -52,7 +52,8 @@ test('V1413: hoja azul rey media adaptada a la barra superior y cache actualizad
    // Nueva petición: Cuenta y cuadros del ZIP adoptan la referencia azul/cyan;
    // la composición de Perfil sigue protegida por sus hojas propias.
    assert.match(content,/@layer ljr-reference-surfaces/);
-   assert.doesNotMatch(content,/data-app-route="profile"|data-app-route="competition"|pointer-events\s*:\s*none/);
+   assert.match(content,/body\[data-app-route\]:not\(:is\(\[data-app-route="profile"\]/, "El lienzo general debe excluir Perfil");
+   assert.doesNotMatch(content,/html body\[data-app-route="profile"\]|pointer-events\s*:\s*none/);
   }else{
    assert.doesNotMatch(content,/data-app-route="profile"|data-app-route\^="account"/,
     'Una hoja posterior no debe alterar paleta Cuenta: '+path);
