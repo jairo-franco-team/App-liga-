@@ -63,7 +63,7 @@ jobs:
         run: npx cap sync android
 
       - name: Validate native APK features
-        run: node --test tests/calendar-event.test.mjs tests/android-video-capture.test.mjs tests/android-fcm-preflight.test.mjs
+        run: node --test tests/calendar-event.test.mjs tests/android-video-capture.test.mjs tests/android-fcm-preflight.test.mjs tests/android-fcm-conditional-setup.test.mjs
 
       - name: Check Firebase Android readiness without exposing credentials
         env:
@@ -74,6 +74,11 @@ jobs:
         env:
           LJR_VERSION_CODE: ${{ github.run_number }}
         run: node native/android/configure.mjs
+
+      - name: Prepare optional Firebase SDK (never auto-enroll devices)
+        env:
+          FIREBASE_ANDROID_CONFIG_B64: ${{ secrets.FIREBASE_ANDROID_CONFIG_B64 }}
+        run: node native/android/configure-fcm.mjs
 
       - name: Build debug APK
         run: |
