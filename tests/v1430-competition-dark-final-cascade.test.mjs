@@ -26,7 +26,7 @@ test('V1430: CSS de Más no cambia Competición y conservó Herramientas/Admin/N
     assert.ok(late.includes(marker),'Se perdió '+marker);
   }
   const oldLink='src/v1426-competition-exact-dark-background.css?v=20261011-v1427-fondo-000040';
-  const fixLink='src/v1428-more-reference-gradient-fix.css?v=20261011-v1430-competition-no-override';
+  const fixLink='src/v1428-more-reference-gradient-fix.css?v=20261011-v1432-imagen3-degradado-rey-noche';
   assert.equal(html.split(fixLink).length-1,1);
   assert.ok(html.indexOf(oldLink)>0);
   assert.ok(html.indexOf(fixLink)>html.indexOf(oldLink));
