@@ -1,0 +1,255 @@
+/* V1384 | Administración: armonía con la app azul nocturna.
+   Presentación exclusivamente: NO altera JS, eventos, permisos, datos ni guardado.
+   Ámbito: Administración de la Liga, Crear/Revisar avisos y Editar mi página.
+   ÚLTIMA capa intencional después de V1381 y V1383. */
+html body .liga-media-modal > section:is(.ljr-admin-manage,.ljr-editor-dialog){
+  --ljr1310-bg:#070b34;--ljr1310-surface:#0b1643;--ljr1310-card:#111f54;
+  --ljr1310-input:#0a1643;--ljr1310-edge:#526eaf;
+  --ljr1310-ink:#f6f9ff;--ljr1310-muted:#bdcae6;--ljr1310-focus:#9abcf8;
+  --ljr-admin-night:#070b34;--ljr-admin-surface:#0b1643;
+  --ljr-admin-card:#111f54;--ljr-admin-control:#0a1643;--ljr-admin-line:#526eaf;
+  box-sizing:border-box!important;
+  background:#080e3c!important;
+  background-image:linear-gradient(168deg,#14215b 0%,#0b1643 32%,#070b34 100%)!important;
+  border:1px solid rgba(116,146,211,.58)!important;
+  border-radius:20px!important;
+  box-shadow:0 18px 55px rgba(0,2,24,.38),inset 0 1px rgba(255,255,255,.05)!important;
+  color:#f6f9ff!important;color-scheme:dark!important;
+  overflow-x:hidden!important;max-width:min(720px,100%)!important;
+  max-height:calc(100dvh - 16px)!important;
+  scrollbar-color:#526eaf transparent;
+}
+html body .liga-media-modal:has(>section:is(.ljr-admin-manage,.ljr-editor-dialog)){
+  padding:8px!important;
+  background:rgba(2,5,27,.84)!important;
+}
+html body .liga-media-modal > section:is(.ljr-admin-manage,.ljr-editor-dialog)>header{
+  background:#101c50!important;
+  background-image:linear-gradient(140deg,#162963,#101c50 62%,#0c1543)!important;
+  border-bottom:1px solid rgba(115,146,207,.4)!important;
+  box-shadow:none!important;
+  color:#fff!important;
+}
+html body .liga-media-modal > section:is(.ljr-admin-manage,.ljr-editor-dialog)>header h2{
+  color:#fff!important;letter-spacing:-.025em!important;
+  font-weight:800!important;line-height:1.2!important;
+  font-size:clamp(18px,4.4vw,23px)!important;
+  overflow-wrap:break-word!important;
+}
+html body .liga-media-modal > section:is(.ljr-admin-manage,.ljr-editor-dialog)>header [data-close]{
+  display:grid!important;place-items:center!important;
+  background:#182c63!important;background-image:none!important;
+  border:1px solid rgba(131,164,230,.58)!important;color:#fff!important;
+  border-radius:13px!important;box-shadow:none!important;
+  width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;
+  padding:0!important;font-size:24px!important;line-height:1!important;
+}
+html body .liga-media-modal > section:is(.ljr-admin-manage,.ljr-editor-dialog)>header [data-close]:active{
+  background:#294780!important;
+}
+/* Superficies calmadas, sin placas cyan ni rectángulos azules disparejos. */
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-editor-dialog)
+:is(.ljr-admin-area,.ljr-simple-intro,.ljr-guide,.ljr-smart-hub,.ljr-smart-tasks,
+    .ljr-editor-hub,.ljr-editor-section-info,.ljr-editor-preview,.ljr-editor-autofill,
+    .ljr-editor-row,.ljr-editor-empty,.ljr-review-stats>div,.ljr-review-card,
+    .ljr-review-insights,.ljr-review-empty,.ljr-review-device-results,
+    .ljr-review-feedback,.ljr-review-body){
+  background:#111f54!important;
+  background-image:linear-gradient(155deg,#142557,#101b4a)!important;
+  border-color:rgba(111,147,214,.48)!important;color:#f6f9ff!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.035)!important;
+}
+html body .liga-media-modal .ljr-admin-manage :is(.ljr-admin-intro,.ljr-admin-eyebrow){
+  background:transparent!important;background-image:none!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-editor-dialog)
+:is(.ljr-simple-intro p,.ljr-editor-intro,.ljr-editor-security,.ljr-editor-note,
+    .ljr-admin-section-sub,.ljr-admin-greeting,.ljr-review-stats small,.ljr-review-meta,.ljr-smart-count){
+  color:#c5d1ec!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-editor-dialog)
+:is(.ljr-smart-search,.ljr-review-filters input,.ljr-review-filters select,
+    .ljr-editor-form input:not([type=checkbox]):not([type=radio]):not([type=file]),
+    .ljr-editor-form select,.ljr-editor-form textarea,.ljr-editor-target input,
+    .ljr-editor-target select){
+  background:#0a1643!important;background-image:none!important;
+  border:1px solid #506ca9!important;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.15)!important;
+  color:#f5f8ff!important;
+  border-radius:12px!important;
+  min-width:0!important;max-width:100%!important;
+  color-scheme:dark!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-editor-dialog)
+:is(input,textarea)::placeholder{color:#aebedd!important;opacity:1!important}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-editor-dialog)
+:is(input,select,textarea,button,summary):focus-visible{
+  outline:2px solid #a9c5ff!important;outline-offset:2px!important;
+}
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-editor-dialog)
+:is(input[type=checkbox],input[type=radio]){accent-color:#5e97e8!important}
+/* Tarjetas de acciones, botones y filtros: azul fuerte sólo al seleccionar. */
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-editor-dialog)
+:is(.ljr-admin-action-grid>button.ljr-admin-tile:not(.ljr-admin-tile-danger),
+    .ljr-editor-hub-grid>button,.ljr-editor-two-choice>button,
+    .ljr-editor-extra-actions>button,.ljr-editor-tools>button,
+    .ljr-editor-smart-tools>button,.ljr-editor-bottom>button,
+    .ljr-review-tabs>button,.ljr-review-automation button,
+    .ljr-review-footer button,.ljr-review-device-controls button,
+    .ljr-smart-actions button,.ljr-smart-recommendation button,.ljr-smart-tasks button){
+  background:#172855!important;
+  background-image:linear-gradient(150deg,#1a3269,#142352)!important;
+  border:1px solid rgba(115,153,218,.57)!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.07)!important;
+  color:#f8faff!important;text-shadow:none!important;
+  border-radius:12px!important;
+}
+html body .liga-media-modal .ljr-editor-dialog
+:is(.ljr-review-tabs button[aria-pressed=true],.ljr-editor-tools button[aria-pressed=true],
+    .ljr-editor-bottom [data-editor-publish],.ljr-review-actions .ljr-review-publish),
+html body .liga-media-modal .ljr-admin-manage .ljr-smart-actions button[aria-pressed=true]{
+  background:#1a58b6!important;
+  background-image:linear-gradient(135deg,#2167c4,#174990)!important;
+  border-color:#8dafed!important;color:#fff!important;
+}
+html body .liga-media-modal .ljr-editor-dialog .ljr-review-tabs button span{
+  background:#09143b!important;color:#f8faff!important;
+}
+html body .liga-media-modal .ljr-editor-dialog :is(.ljr-review-badge,.ljr-review-chips span){
+  background:#1a2c62!important;border-color:#617fbd!important;color:#eaf2ff!important;
+}
+html body .liga-media-modal .ljr-editor-dialog
+:is(.ljr-review-actions .ljr-review-danger,[data-revoke]),
+html body .liga-media-modal .ljr-admin-manage
+:is(.ljr-admin-tile-danger,[data-logout]){
+  background:#40283e!important;background-image:none!important;
+  border-color:#ae758f!important;color:#ffdfeb!important;
+}
+/* Iconos consistentes: tamaño y posición; acentos variados, no todo azul/cyan. */
+html body .liga-media-modal .ljr-admin-manage
+:is(.ljr-admin-tile-icon,.ljr-simple-icon),
+html body .liga-media-modal .ljr-editor-dialog
+:is(.ljr-editor-hub-grid>button>b,.ljr-editor-two-choice button>b,.ljr-editor-two-choice button>i){
+  display:grid!important;place-items:center!important;
+  flex:0 0 38px!important;width:38px!important;height:38px!important;
+  margin-inline:auto!important;padding:0!important;line-height:1!important;
+  border-radius:12px!important;border:1px solid rgba(158,183,231,.28)!important;
+  background:rgba(120,150,235,.14)!important;color:#dde9ff!important;
+}
+html body .liga-media-modal .ljr-admin-manage .ljr-admin-tile-icon svg,
+html body .liga-media-modal .ljr-editor-dialog .ljr-editor-hub-grid>button>b svg{
+  display:block!important;width:23px!important;height:23px!important;
+  max-width:23px!important;max-height:23px!important;flex:none!important;
+}
+html body .liga-media-modal .ljr-admin-manage .ljr-admin-action-grid>button:nth-child(4n+1) .ljr-admin-tile-icon,
+html body .liga-media-modal .ljr-editor-dialog .ljr-editor-two-choice>button:first-child>b{
+  color:#f6c56e!important;background:rgba(246,197,110,.11)!important;
+}
+html body .liga-media-modal .ljr-admin-manage .ljr-admin-action-grid>button:nth-child(4n+2) .ljr-admin-tile-icon,
+html body .liga-media-modal .ljr-editor-dialog .ljr-editor-two-choice>button:nth-child(2)>b{
+  color:#94dbbf!important;background:rgba(102,202,164,.11)!important;
+}
+html body .liga-media-modal .ljr-admin-manage .ljr-admin-action-grid>button:nth-child(4n+3) .ljr-admin-tile-icon{
+  color:#f3adad!important;background:rgba(240,151,151,.1)!important;
+}
+html body .liga-media-modal .ljr-admin-manage .ljr-admin-action-grid>button:nth-child(4n) .ljr-admin-tile-icon{
+  color:#c5b0ff!important;background:rgba(169,144,233,.12)!important;
+}
+/* Centro: buscador y resumen sin espacios vacíos enormes. */
+html body .liga-media-modal .ljr-admin-manage .ljr-smart-hub{padding:12px!important;margin:8px 0!important}
+html body .liga-media-modal .ljr-admin-manage .ljr-smart-actions{
+  display:flex!important;flex-wrap:wrap!important;gap:7px!important;
+}
+html body .liga-media-modal .ljr-admin-manage .ljr-smart-actions button{
+  min-height:40px!important;padding:8px 11px!important;line-height:1.3!important;
+}
+html body .liga-media-modal .ljr-admin-manage .ljr-smart-tasks>summary,
+html body .liga-media-modal .ljr-admin-manage .ljr-guide>summary{color:#dce6fb!important}
+/* Avisos: acciones al FINAL del formulario, no encima de Cancha/Equipo. */
+html body .liga-media-modal>section.ljr-editor-dialog.ljr-notice-1212{
+  padding-bottom:14px!important;
+  scroll-padding-bottom:22px!important;
+}
+html body .liga-media-modal .ljr-notice-1212 .ljr-editor-bottom{
+  position:static!important;bottom:auto!important;z-index:auto!important;
+  margin:14px 0 0!important;
+  padding:12px 0 0!important;
+  background:transparent!important;background-image:none!important;
+  border-top:1px solid rgba(130,163,219,.42)!important;
+}
+html body .liga-media-modal .ljr-notice-1212 .ljr-editor-bottom button{
+  min-height:46px!important;padding:9px 8px!important;
+  font-size:12px!important;line-height:1.3!important;
+}
+html body .liga-media-modal .ljr-notice-1212 .ljr-editor-form{
+  gap:10px!important;min-width:0!important;
+}
+html body .liga-media-modal .ljr-notice-1212 .ljr-editor-form label{
+  min-width:0!important;overflow-wrap:break-word!important;
+}
+html body .liga-media-modal .ljr-notice-1212 .ljr-notice-fixture-label{
+  background:#111f54!important;border-color:#637fb8!important;
+}
+/* Revisar: tres filtros en una hilera de pestañas, sin tercera tarjeta huérfana. */
+html body .liga-media-modal .ljr-review-smart{gap:10px!important}
+html body .liga-media-modal .ljr-review-stats{gap:7px!important}
+html body .liga-media-modal .ljr-review-stats>div{
+  border-radius:13px!important;padding:10px 5px!important;
+}
+html body .liga-media-modal .ljr-review-tabs{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:7px!important;
+}
+html body .liga-media-modal .ljr-review-tabs>button{
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  flex-wrap:wrap!important;gap:5px!important;width:100%!important;min-width:0!important;
+  min-height:44px!important;padding:8px 5px!important;
+  font-size:clamp(10px,2.8vw,12px)!important;line-height:1.2!important;
+  white-space:normal!important;overflow-wrap:anywhere!important;
+}
+html body .liga-media-modal .ljr-review-filters{gap:9px!important;align-items:stretch!important}
+html body .liga-media-modal .ljr-review-automation button{
+  min-height:44px!important;padding:9px!important;line-height:1.25!important;
+}
+html body .liga-media-modal .ljr-review-automation{
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;
+}
+html body .liga-media-modal .ljr-review-automation button{width:100%!important;min-width:0!important}
+html body .liga-media-modal .ljr-review-automation label{grid-column:1/-1!important}
+/* Editar página: opciones niveladas, controles altos y texto que no se pisa. */
+html body .liga-media-modal .ljr-editor-page-panel .ljr-editor-two-choice{
+  gap:9px!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+}
+html body .liga-media-modal .ljr-editor-page-panel .ljr-editor-two-choice>button{
+  min-height:104px!important;display:flex!important;flex-direction:column!important;
+  align-items:center!important;justify-content:center!important;
+  gap:9px!important;padding:12px 7px!important;text-align:center!important;
+  font-size:12px!important;line-height:1.28!important;
+}
+html body .liga-media-modal .ljr-editor-page-panel .ljr-editor-extra-actions>button{
+  min-height:46px!important;line-height:1.28!important;
+}
+html body .liga-media-modal .ljr-editor-page-panel .ljr-editor-section-info{
+  border-radius:12px!important;padding:11px!important;
+}
+/* Preservar semántica hidden / deshabilitado y navegación con teclado. */
+html body .liga-media-modal :is(.ljr-editor-dialog,.ljr-admin-manage) [hidden]{display:none!important}
+html body .liga-media-modal :is(.ljr-editor-dialog,.ljr-admin-manage) button:disabled{
+  cursor:not-allowed!important;opacity:.58!important;
+}
+@media(max-width:380px){
+  html body .liga-media-modal .ljr-review-tabs{gap:5px!important}
+  html body .liga-media-modal .ljr-review-tabs>button{font-size:10px!important;padding:7px 3px!important}
+  html body .liga-media-modal .ljr-editor-page-panel .ljr-editor-two-choice{gap:7px!important}
+  html body .liga-media-modal .ljr-editor-page-panel .ljr-editor-two-choice>button{min-height:90px!important}
+}
+@media(max-width:310px){
+  html body .liga-media-modal .ljr-review-automation{grid-template-columns:1fr!important}
+  html body .liga-media-modal .ljr-editor-page-panel .ljr-editor-two-choice{grid-template-columns:1fr!important}
+}
+@media(prefers-reduced-motion:reduce){
+  html body .liga-media-modal :is(.ljr-editor-dialog,.ljr-admin-manage) *{
+    animation-duration:.01ms!important;transition-duration:.01ms!important;
+  }
+}
