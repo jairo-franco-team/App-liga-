@@ -79,7 +79,7 @@ function teams(){
 }
 function matchCard(m,label,portrait=false){
   const score=m.played?m.hs+' - '+m.as:'VS';
-  return '<button class="'+(portrait?'v428-tv-portrait':'v428-tv-card')+'" type="button" data-v428-match="'+esc(m.key)+'">'+
+  return '<button class="'+(portrait?'v428-tv-portrait':'v428-tv-card')+'" type="button" data-v428-match="'+esc(m.officialKey)+'">'+
     '<span class="'+(portrait?'v428-tv-portrait-art':'v428-tv-art')+'">'+
       '<span class="v428-tv-logo">'+badge(m.home)+'</span><span class="v428-tv-logo">'+badge(m.away)+'</span>'+
       '<i>▶</i><strong>'+esc(score)+'</strong><em>'+esc(label)+'</em>'+
@@ -217,10 +217,14 @@ function telecastMarkup(all){
 }
 function renderTelecast(root,filter){
   const all=fixtures(),groups=root.querySelector('[data-v440-groups]');
+  // Al terminar la señal en directo, saltar al rol actual/siguiente sin dejar una lista vacía.
+  if(filter==='live'&&!all.some(m=>isLive(m)))filter=defaultTelecastFilter(all);
   if(!groups)return;
   const signature=JSON.stringify(telecastSelection(all,filter).map(m=>[m.officialKey,m.date,m.hs,m.as,transmissionState(m)]));
   const liveButton=root.querySelector('[data-v440-filter-btn="live"]');
   if(liveButton)liveButton.textContent='DIRECTO ('+all.filter(m=>isLive(m)).length+')';
+  const oldDay=root.querySelector('[data-v440-filter-btn="older"]');
+  if(oldDay)oldDay.textContent=tabDay(startOfDay(Date.now())-2*86400000);
   if(root.dataset.v440Signature===signature&&root.dataset.v440Filter===filter)return;
   root.dataset.v440Signature=signature;
   root.dataset.v440Filter=filter;
@@ -355,7 +359,7 @@ function bind(root){
   root.querySelectorAll('[data-v439-connect]').forEach(b=>b.onclick=openCastSheet);
   root.querySelectorAll('[data-v428-route]').forEach(b=>b.onclick=()=>{location.hash='#/'+(b.dataset.v428Route||'video')});
   const telecast=root.querySelector('[data-v440-telecast]');if(telecast)bindTelecast(telecast);
-  root.querySelectorAll('[data-v428-match]').forEach(b=>b.onclick=()=>{location.hash='#/v4-matchcenter'});
+  root.querySelectorAll('[data-v428-match]').forEach(b=>b.onclick=()=>{try{sessionStorage.setItem('v440-tv-match',JSON.stringify({key:b.dataset.v428Match}))}catch(_){}location.hash='#/v4-matchcenter'});
   root.querySelectorAll('[data-v428-team]').forEach(b=>b.onclick=()=>{
     const name=b.dataset.v428Team||'';
     try{localStorage.setItem('v62-team-name',name);localStorage.setItem('v27-selected-team',norm(name).replace(/\s+/g,'-'))}catch(_){}
