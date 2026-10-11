@@ -1,0 +1,208 @@
+/* V1411 — RESTAURAR PERFIL DE LA SEGUNDA CAPTURA.
+   Se recupera la vista azul noche original del perfil: tarjeta lisa, menú de
+   filas transparentes, iconos sin cuadros y divisores finos.
+   La barra superior azul rey sigue intacta (#295dd0 es solo el botón principal).
+   Alcance EXCLUSIVO #/profile: no alterar rutas account*, JS, ni controles. */
+html body[data-app-route="profile"] #screen {
+  background:#060755!important;
+  background-image:linear-gradient(180deg,#070a66 0%,#06075c 40%,#05064d 100%)!important;
+  color:#fff!important;
+}
+html body[data-app-route="profile"] #screen .v12-profile-page {
+  background:transparent!important;
+}
+/* El cuadro de Mi cuenta vuelve a ser una tarjeta discreta, SIN borde blanco. */
+html body[data-app-route="profile"] #screen .v12-profile-card[data-v569-owned] {
+  background:#101877!important;
+  background-image:linear-gradient(155deg,#121b7c 0%,#0e166d 60%,#0d1465 100%)!important;
+  border:0!important;
+  border-radius:26px!important;
+  box-shadow:none!important;
+  color:#fff!important;
+  overflow:hidden!important;
+}
+html body[data-app-route="profile"] #screen .v12-profile-card[data-v569-owned] .v569-profile-hero {
+  background:transparent!important;
+  background-image:none!important;
+  border:0!important;
+  box-shadow:none!important;
+  padding:17px 14px 15px!important;
+  gap:10px!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-avatar {
+  background:#09206b!important;
+  border:2px solid #34d6e6!important;
+  box-shadow:0 0 0 3px rgba(42,210,233,.14)!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-copy small {
+  color:#33dce7!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-copy h1 {
+  color:#fff!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-copy b {
+  color:#7edcea!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-copy p {
+  color:#aeb5d9!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-bio {
+  background:transparent!important;
+  background-image:none!important;
+  border:1px solid rgba(123,141,212,.36)!important;
+  color:#9da7d1!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-bio.on {
+  background:rgba(26,144,177,.10)!important;
+  border-color:rgba(38,211,228,.50)!important;
+  color:#37dce9!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-buttons {
+  gap:10px!important;
+  margin-top:6px!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-buttons>button {
+  min-height:42px!important;
+  height:42px!important;
+  border:1px solid rgba(113,151,227,.54)!important;
+  border-radius:12px!important;
+  background:#1a338e!important;
+  background-image:linear-gradient(180deg,#204197,#1c337f)!important;
+  box-shadow:none!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  text-shadow:none!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-buttons>button:first-child {
+  background:#2a5dc0!important;
+  background-image:linear-gradient(180deg,#2f69d0,#2155b4)!important;
+  border-color:rgba(123,165,231,.66)!important;
+}
+/* Menús como en el original: filas sobre el fondo, no tarjetas redondeadas. */
+html body[data-app-route="profile"] #screen .v569-profile-account-menu {
+  display:block!important;
+  width:auto!important;
+  margin:18px 12px 0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
+  gap:0!important;
+}
+html body[data-app-route="profile"] #screen .v12-profile-menu {
+  background:transparent!important;
+  background-image:none!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button,
+html body[data-app-route="profile"] #screen .v12-profile-menu>.v12-profile-row,
+html body[data-app-route="profile"] #screen .v12-profile-menu>.ljr-profile-action-row {
+  position:relative!important;
+  width:100%!important;
+  min-width:0!important;
+  display:grid!important;
+  grid-template-columns:34px minmax(0,1fr) 20px!important;
+  align-items:center!important;
+  column-gap:12px!important;
+  height:60px!important;
+  min-height:60px!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:0 2px!important;
+  border:0!important;
+  border-bottom:1px solid rgba(164,180,230,.13)!important;
+  border-radius:0!important;
+  outline:0!important;
+  background:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
+  color:#f9faff!important;
+  text-align:left!important;
+  transform:none!important;
+  filter:none!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button:first-child,
+html body[data-app-route="profile"] #screen .v12-profile-menu>.v12-profile-row:first-child {
+  border-top:1px solid rgba(164,180,230,.13)!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button>span,
+html body[data-app-route="profile"] #screen .v12-profile-menu .v12-profile-row-icon {
+  width:34px!important;
+  height:34px!important;
+  min-width:34px!important;
+  max-width:34px!important;
+  margin:0!important;
+  padding:0!important;
+  display:grid!important;
+  place-items:center!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
+  color:#cdd4ee!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button>span svg,
+html body[data-app-route="profile"] #screen .v12-profile-menu .v12-profile-row-icon svg {
+  width:24px!important;
+  height:24px!important;
+  color:#cdd4ee!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button>b,
+html body[data-app-route="profile"] #screen .v12-profile-menu .v12-profile-row-label {
+  margin:0!important;
+  font:400 16px/1.2 Inter,Roboto,Arial,sans-serif!important;
+  letter-spacing:0!important;
+  color:#f7f8ff!important;
+  text-shadow:none!important;
+  white-space:normal!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button>i,
+html body[data-app-route="profile"] #screen .v12-profile-menu .v12-profile-row-chevron,
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button>i svg,
+html body[data-app-route="profile"] #screen .v12-profile-menu .v12-profile-row-chevron svg {
+  color:#e1e7ff!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button:active,
+html body[data-app-route="profile"] #screen .v12-profile-menu>.v12-profile-row:active {
+  background:rgba(255,255,255,.04)!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button.logout,
+html body[data-app-route="profile"] #screen .v12-profile-menu>.v569-profile-logout-row {
+  background:transparent!important;
+  background-image:none!important;
+  border-color:rgba(164,180,230,.13)!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button.logout b,
+html body[data-app-route="profile"] #screen .v12-profile-menu>.v569-profile-logout-row .v12-profile-row-label {
+  color:#ffb2bd!important;
+}
+/* Las dos filas anexas de Ajustes y Avatar conservan el aspecto nativo. */
+html body[data-app-route="profile"] #screen :is(
+  [data-ljr-account-settings],.v801-profile-shirt-entry) {
+  background:transparent!important;
+  background-image:none!important;
+  border:0!important;
+  border-bottom:1px solid rgba(164,180,230,.13)!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+html body[data-app-route="profile"] #screen :is(
+  [data-ljr-account-settings],.v801-profile-shirt-entry)::before {
+  background:transparent!important;
+  box-shadow:none!important;
+}
+/* El formulario inline se mantiene íntegro; las reglas de tarjeta sólo
+   afectan data-v569-owned, nunca la tarjeta de autenticación inline. */
+@media(max-width:390px){
+ html body[data-app-route="profile"] #screen .v569-profile-account-menu>button,
+ html body[data-app-route="profile"] #screen .v12-profile-menu>.v12-profile-row,
+ html body[data-app-route="profile"] #screen .v12-profile-menu>.ljr-profile-action-row {
+   grid-template-columns:32px minmax(0,1fr) 20px!important;
+   gap:10px!important;
+   min-height:58px!important;
+ }
+}
