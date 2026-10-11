@@ -34,17 +34,17 @@ test('V1352: V1340 mantiene geometría Android y respeta fondos maestros de Admi
  assert.match(v1340,/body\[data-app-route="publicationCenter"\]/);
 });
 test('V1352: el estudio de contenido comparte la paleta sin modificar elementos interactivos',()=>{
- assert.match(studio,/V1352 · Estudio de publicaciones/);
+ assert.match(studio,/V1385 · Estudio de publicaciones/);
  assert.match(studio,/section\.ljr-content-studio/);
- assert.match(studio,/background:#071338!important/);
- assert.match(studio,/background:#091a46!important/);
+ assert.match(studio,/background:#070b34!important/);
+ assert.match(studio,/background:#0a1643!important/);
  assert.match(studio,/\.cms-design-presets button/);
  assert.match(studio,/\.ljr-layout-gallery button/);
  assert.doesNotMatch(studio,/<script|javascript:/i);
 });
 test('V1352: CSS en la web refrescado sin añadir scripts ni controles',()=>{
  for(const n of ['v1310-admin-paleta-unificada','v1335-admin-app-colors','v1340-admin-mobile-visual-unified','v1246-content-studio']){
-  const version=n==='v1246-content-studio'?'20261010-v1354-content-controls':'20261010-v1352-unified-navy';
+  const version=n==='v1246-content-studio'?'20261010-v1385-midnight-palette':'20261010-v1352-unified-navy';
   const match=html.match(new RegExp('src/'+n+'\\.css\\?v='+version,'g'))||[];
   assert.equal(match.length,1,n+' must load once');
  }
