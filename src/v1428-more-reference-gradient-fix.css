@@ -1,0 +1,150 @@
+/* V1428 | Restaurar azul de MÁS (captura 1) en superficies fuera de MÁS.
+   Sin alteraciones a la navegación, imágenes, datos, posiciones ni JavaScript.
+   Compensación de estilos anteriores que dejaban #000040 plano o morado.
+   Mantener la sección MÁS y su balón originales intactos. */
+@layer ljr-reference-surfaces {
+@media screen {
+  /* 1. Cuadro, clasificación y partidos: el fondo NO debe ser negro plano.
+     El gradiente vive en #screen; los wrappers internos son transparentes. */
+  html body[data-app-route="competition"] {
+    background-color:#070b68!important;
+  }
+  html body[data-app-route="competition"] #screen#screen#screen,
+  html body.v40-standings-master[data-app-route="competition"] #screen#screen#screen {
+    background-color:#070b68!important;
+    background-image:linear-gradient(180deg,#101cb0 0%,#091388 26%,#070f72 57%,#05094b 100%)!important;
+    background-repeat:no-repeat!important;
+    background-size:100% 100%!important;
+  }
+  html body[data-app-route="competition"] #screen#screen#screen :is(
+    .v12-bracket-reference,.v12-standings-reference,.v40-standings,
+    .v40-standings-host,.v40-content,.v12-fixtures-reference,
+    .v12-fixtures-host,.v12-bracket-stage-tabs,.v12-bracket-board,
+    .v12-bracket-brackets,.v12-bracket-scroll,.v12-bracket-route,
+    .ljr-knockout
+  ),
+  html body[data-app-route="competition"] #screen#screen#screen > .tabs {
+    background-color:transparent!important;
+    background-image:none!important;
+  }
+  html body[data-app-route="competition"] #screen#screen#screen .ljr-knockout {
+    --ko-ground:#07116d!important;
+    --ko-card:#101b83!important;
+    background:transparent!important;
+  }
+  html body[data-app-route="competition"] #screen#screen#screen .ljr-knockout .ljr-ko-tabs button:not(.active) {
+    background:#152578!important;
+    color:#f8f9ff!important;
+  }
+  html body[data-app-route="competition"] #screen#screen#screen .ljr-knockout :is(.ljr-ko-club,.ljr-ko-card) {
+    background:#111c85!important;
+    color:#f9fbff!important;
+  }
+  /* La pestaña cyan de Play-off y el botón blanco de Cuadro permanecen igual. */
+
+  /* 2. Herramientas: se usa el azul intenso del menú MÁS, de arriba a abajo. */
+  html body[data-app-route="leagueTools"],
+  html body[data-app-route="leagueTools"] #screen {
+    background-color:#070b68!important;
+    background-image:linear-gradient(180deg,#101ca9 0%,#081385 36%,#060c62 72%,#050848 100%)!important;
+    background-size:100% 100%!important;
+  }
+  html body[data-app-route="leagueTools"] #screen :is(.v60-tool-page,.v726-tools-page) {
+    background-color:transparent!important;
+    background-image:none!important;
+  }
+  html body[data-app-route="leagueTools"] #screen :is(
+    .v726-tools-hero,.v726-quick-section,.v726-tool-section,.v726-admin-section,
+    .v60-panel,.v60-tool-section
+  ) {
+    background-color:#0b177b!important;
+    background-image:linear-gradient(175deg,#1c3eb5 0%,#112889 46%,#081561 100%)!important;
+    border-color:rgba(135,175,255,.36)!important;
+    box-shadow:inset 0 1px rgba(255,255,255,.07)!important;
+  }
+  html body[data-app-route="leagueTools"] #screen :is(
+    .v726-quick-card,.v726-tool-card,.v612-tools-entry.v726-admin-entry,
+    .v60-tool-grid > .v60-tool-card,.v60-tools-featured-card
+  ) {
+    background-color:#142b93!important;
+    background-image:linear-gradient(180deg,#2553bb 0%,#1b3b9b 52%,#122477 100%)!important;
+    border-color:rgba(140,179,255,.39)!important;
+    box-shadow:inset 0 1px rgba(255,255,255,.08)!important;
+  }
+  html body[data-app-route="leagueTools"] #screen .v726-tool-card .v726-tool-copy,
+  html body[data-app-route="leagueTools"] #screen .v726-quick-card :is(b,small),
+  html body[data-app-route="leagueTools"] #screen .v726-tools-hero :is(h1,p) {
+    background-color:transparent!important;
+    background-image:none!important;
+  }
+  html body[data-app-route="leagueTools"] #screen :is(.v726-tool-tag,.v726-hero-pills span) {
+    background:#173b96!important;
+    border-color:rgba(104,153,249,.42)!important;
+  }
+
+  /* 3. Administración: misma gama azul, sin el marino gris ni doble capa. */
+  html body .liga-media-modal > section:is(
+    .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+    .ljr-admin-studio,.ljr-editor-dialog,.v1081-dialog
+  ) {
+    background-color:#081268!important;
+    background-image:linear-gradient(180deg,#183caf 0%,#0d2280 45%,#071255 100%)!important;
+    color:#fff!important;
+  }
+  html body .liga-media-modal > section:is(
+    .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+    .ljr-admin-studio,.ljr-editor-dialog,.v1081-dialog
+  ) > header {
+    background-color:#19399a!important;
+    background-image:linear-gradient(180deg,#224eb8,#102777)!important;
+  }
+  html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-friendly,.ljr-editor-dialog,.v1081-dialog)
+    :is(.ljr-admin-area,.ljr-simple-intro,.ljr-guide,.ljr-admin-howto,
+      .ljr-editor-hub,.ljr-editor-preview,.ljr-review-card,.ljr-review-insights,
+      .v1081-note,.v1081-item) {
+    background-color:#142b8c!important;
+    background-image:linear-gradient(180deg,#2044a1,#112970)!important;
+    box-shadow:none!important;
+  }
+  html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-editor-dialog)
+    :is(.ljr-admin-tile,.ljr-admin-action-grid > button,.ljr-editor-hub-grid > button) {
+    background-color:#1b3b9c!important;
+    background-image:linear-gradient(180deg,#2451b8 0%,#193785 100%)!important;
+    border-color:rgba(157,190,255,.35)!important;
+    box-shadow:inset 0 1px rgba(255,255,255,.07)!important;
+  }
+
+  /* 4. Notificaciones: el bloque añadido al final de MÁS usa las
+     clases v105 y no se arreglaba retocando #/notifications. */
+  html body .v105-bottom[data-v105-route="notifications"] {
+    background-color:#070d73!important;
+    background-image:linear-gradient(180deg,#111e9c,#0b177b 44%,#071052 100%)!important;
+  }
+  html body .v105-bottom[data-v105-route="notifications"] .v105-head {
+    background:transparent!important;
+    box-shadow:none!important;
+  }
+  html body .v105-bottom[data-v105-route="notifications"] :is(.v105-grid,.v105-grid > *) {
+    box-shadow:none!important;
+  }
+  html body .v105-bottom[data-v105-route="notifications"] .v105-grid > :is(button,a,article,div),
+  html body .v105-bottom[data-v105-route="notifications"] .v105-card {
+    background-color:#16359a!important;
+    background-image:linear-gradient(180deg,#2552b7,#16347e)!important;
+    border-color:rgba(143,185,255,.29)!important;
+  }
+  html body[data-app-route="notifications"] #screen#screen {
+    background-color:#081273!important;
+    background-image:linear-gradient(180deg,#1226a2,#09177c 40%,#061055 100%)!important;
+  }
+  html body[data-app-route="notifications"] #screen :is(.v46-notifications,.v46-ref-notifications-main) {
+    background:transparent!important;
+  }
+  html body[data-app-route="notifications"] #screen :is(.v46-ref-device,.v46-ref-master,.v46-ref-settings,.v46-ref-categories,.v840-match-feed,.v852-feed,.v1082-push) {
+    background-color:#142c91!important;
+    background-image:linear-gradient(180deg,#2046a6,#11266b)!important;
+  }
+
+  /* Iconos, logos y botones interactivos no reciben filtros ni rellenos globales. */
+}
+}
