@@ -17,6 +17,9 @@ on:
       - 'src/v1437-jr-tools-royal-blue-image2.css'
       - 'public/reference-ui/**'
       - 'tests/v1440-drive-background-variety.mjs'
+      - 'tests/v1441-captured-design.mjs'
+      - 'src/v1441-captured-design.js'
+      - 'src/v1441-captured-design.css'
       - 'tests/v1420-reference-blue-mobile.mjs'
       - 'tests/v1421-royal-drive-pages.mjs'
       - 'tests/v1422-complete-sections.mjs'
@@ -50,13 +53,13 @@ jobs:
         run: node tests/admin-palette-android-v1353.mjs
       - name: Check reference blue dialogs and preserved controls
         run: node tests/v1420-reference-blue-mobile.mjs
-      - name: Build and check royal blue pages and preserved Profile
+      - name: Build and check complete captured sections and untouched screens
         run: |
           npm run build
-          node tests/v1421-royal-drive-pages.mjs
-          node tests/v1422-complete-sections.mjs
-          node tests/v1440-drive-background-variety.mjs
-          node tests/v1438-two-blue-surfaces.mjs
+          # Mejorar.zip now authorizes Profile/account and varied artwork.
+          # The V1441 suite supersedes the exact V1421/V1440 background assertions
+          # and compares 16 untouched routes against a build without the decorator.
+          node tests/v1441-captured-design.mjs
           node tests/v1438-protected-headers.mjs
       - name: Keep mobile screenshots
         if: always()
@@ -69,5 +72,6 @@ jobs:
             artifacts/v1421-royal-pages/*.png
             artifacts/v1422-complete-sections/*.png
             artifacts/v1440/*.png
+            artifacts/v1441/*.png
           if-no-files-found: ignore
           retention-days: 14

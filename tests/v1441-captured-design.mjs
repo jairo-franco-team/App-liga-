@@ -17,7 +17,7 @@ async function openApp(dist,original=false){
  await page.route('**/*',async route=>{
   const url=new URL(route.request().url());
   if(url.origin!=='http://royal.test')return route.abort();
-  if(original&&url.pathname.includes('v1420-reference-blue-surfaces'))return route.fulfill({body:'',contentType:'text/css'});
+  if(original&&url.pathname.includes('v1441-captured-design.js'))return route.fulfill({body:'',contentType:'application/javascript'});
   let pathname=url.pathname.replace(/^\/App-liga-\//,'/');
   if(pathname==='/')pathname='/index.html';
   const path=resolve(dist,'.'+pathname);
@@ -80,6 +80,21 @@ try{
  await go(page,'profile');await page.locator('.v12-profile-row').filter({hasText:'Ajustes de la aplicación'}).click();const settings=page.locator('[data-captured-dialog]').last();await settings.waitFor();await settings.locator('[data-close]').click();
  await page.evaluate(()=>window.LJR_PROFILE.open());const avatar=page.locator('[data-captured-dialog]').last();await avatar.waitFor();assert.ok(await avatar.locator('input[type=file]').count()>0,'Original avatar picker preserved');await avatar.locator('[data-close]').click();
  await go(page,'rulebook');assert.equal(await page.locator('.v102-rulebook-paper').getAttribute('data-design-card'),null,'PDF paper remains original');
- for(const route of ['teams','following','scorers','fantasy','stats','history']){await go(page,route);assert.equal(await page.locator('#screen').getAttribute('data-captured-design'),null,route+' outside captured scope');assert.equal(await page.locator('#screen [data-design-card]').count(),0,route+' untouched');}
- console.log('V1441: 29 complete routes at 412px, five complete mobile routes at 360px, solid controls, rainbow frames, editors, original selector, document and six protected routes verified.');
+ // Both comparison pages start with the same account and filter state; prior
+ // form interactions and the avatar viewer cannot affect this comparison.
+ const untouched=await openApp(resolve(root,'dist'));await fixtureAccount(untouched);await untouched.setViewportSize({width:360,height:800});
+ const baseline=await openApp(resolve(root,'dist'),true);await fixtureAccount(baseline);await baseline.setViewportSize({width:360,height:800});
+ const signature=p=>p.locator('#screen').evaluate(root=>{
+  const paint=e=>{const c=getComputedStyle(e);return {image:c.backgroundImage,bg:c.backgroundColor,ink:c.color,border:c.borderTopColor};};
+  // Private CMS entry availability depends on the auth refresh; compare the
+  // original public controls, whose appearance this task must preserve.
+  return {screen:paint(root),controls:[...root.querySelectorAll('button,select,input')].filter(e=>e.getClientRects().length&&!e.closest('.ljr-cms-entry')).slice(0,16).map(paint)};
+ });
+ for(const route of ['teams','following','scorers','fantasy','stats','history','accountLogin','accountRegister','accountEdit','accountCloud','credentialBuilder','appInstall','tableExport','publications','historyLog','more']){
+  await go(untouched,route);await go(baseline,route);
+  assert.equal(await untouched.locator('#screen').getAttribute('data-captured-design'),null,route+' outside captured scope');
+  assert.equal(await untouched.locator('#screen [data-design-card]').count(),0,route+' untouched');
+  assert.deepEqual(await signature(untouched),await signature(baseline),route+' retains original backgrounds and control colors');
+ }
+ console.log('V1441: 29 complete routes at 412px, five complete mobile routes at 360px, solid controls, rainbow frames, editors, original selector, avatar, document and 16 protected routes verified.');
 }finally{await browser.close();}
