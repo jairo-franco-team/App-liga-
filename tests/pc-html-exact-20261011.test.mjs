@@ -35,3 +35,18 @@ test('Original HTML bridge and shell parse, route via messages, official fixture
  assert.match(index,/desktop-shell\.js\?v=20261011-html-exacto-from-upload/);
  assert.ok(!html.includes('window.top.location='));
 });
+
+test('Pages emits the original HTML, local photos and crests without broken /public/ URLs',()=>{
+ const config=read('vite.config.js');
+ assert.match(config,/dist\/pc-exact-original-20261011\.html/);
+ assert.match(config,/assets\/home-players-user\.png/);
+ assert.match(config,/assets\/home-players-fictional\.jpg/);
+ assert.match(config,/Imagen o logo faltante en la portada PC publicada/);
+ assert.doesNotMatch(html,/\.\/public\//);
+ const images=[...html.matchAll(/<img\b[^>]*src="(\.\/[^"]+)"/g)].map(m=>m[1].slice(2));
+ assert.ok(images.length>=30,'La portada conserva su material visual');
+ for(const image of new Set(images)){
+  const path=image.startsWith('assets/')?image:'public/'+image;
+  assert.ok(fs.existsSync(new URL('../'+path,import.meta.url)),'Falta imagen '+image);
+ }
+});
