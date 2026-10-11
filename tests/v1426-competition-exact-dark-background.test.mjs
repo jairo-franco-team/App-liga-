@@ -27,7 +27,7 @@ test('V1426 deja azul rey en cabecera sin alterar pestanas y funciones',()=>{
  assert.match(previous,/background:#10dce7!important/);
 });
 test('V1426 CSS cargado DESPUES de otros estilos y con version propia para Android',()=>{
- const link='src/v1426-competition-exact-dark-background.css?v=20261011-v1426-azul-000040';
+ const link='src/v1426-competition-exact-dark-background.css?v=20261011-v1427-fondo-000040';
  assert.equal(html.split(link).length-1,1);
  assert.ok(html.indexOf(link)<html.indexOf('src/profile-first-screenshot-restore.css'));
  assert.ok(html.indexOf(link)>html.indexOf('src/v1423-previous-colors-player.css'));
@@ -35,4 +35,24 @@ test('V1426 CSS cargado DESPUES de otros estilos y con version propia para Andro
  assert.match(tail,/src\/profile-first-screenshot-restore\.css/);
  assert.doesNotMatch(tail,/src\/v1420-reference-blue-surfaces\.css/);
  assert.match(css,/@layer ljr-reference-surfaces/);
+});
+
+test('V1427 aplica #000040 a cada contenedor visible bajo Clasificación y Cuadro',()=>{
+ const part=css.slice(css.indexOf('/* V1427 · Arreglo del fondo'));
+ assert.ok(part.length>1000);
+ for(const selector of [
+  '#screen#screen#screen > .tabs',
+  '#screen#screen#screen > .v40-standings-host',
+  '#screen#screen#screen .v40-standings',
+  '#screen#screen#screen .v40-content',
+  '#screen#screen#screen .v12-bracket-reference',
+  '#screen#screen#screen .v12-bracket-stage-tabs',
+  '#screen#screen#screen .v12-bracket-board',
+  '#screen#screen#screen .v12-bracket-scroll',
+  '#screen#screen#screen .v12-bracket-route'
+ ])assert.ok(part.includes(selector),'Background missing: '+selector);
+ assert.match(part,/background-color:#000040!important;/);
+ assert.match(part,/background-image:none!important;/);
+ assert.doesNotMatch(part,/(?:\.topbar|\.back-button|\.tab\.active|\.v12-bracket-stage-tabs\s+button|\.v12-bracket-team)\s*\{/);
+ assert.doesNotMatch(part,/<script|javascript:|pointer-events\s*:/);
 });
