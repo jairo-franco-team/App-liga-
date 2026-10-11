@@ -546,3 +546,181 @@ html body .liga-media-modal>section:is(
 ) :is(button,input,select,textarea):focus-visible{
  outline:2px solid #EAF6FF!important;outline-offset:3px!important;
 }
+
+
+/* V1407 · Azul rey medio inspirado en la barra superior; sin cambiar funciones. */
+:root{
+  --ljr-royal-mid-base:#235EBE;
+  --ljr-royal-mid-card:#2864C3;
+  --ljr-royal-mid-raised:#306DCE;
+  --ljr-royal-mid-input:#194FA8;
+  --ljr-royal-mid-border:rgba(207,229,255,.74);
+}
+html body:is([data-app-route="profile"],[data-app-route^="account"]){
+  --p1300-bg:#235EBE;--p1300-surface:#2864C3;--p1300-raised:#306DCE;
+  --p1300-deep:#194FA8;--p1300-border:rgba(207,229,255,.74);
+  --p1300-muted:#eaf3ff;--p1300-accent:#d4e9ff;
+  --ljr-account-outer:#235EBE;--ljr-account-panel:#2864C3;
+  --ljr-account-raised:#306DCE;--ljr-account-deep:#194FA8;
+  --ljr-account-outline:rgba(207,229,255,.74);
+  --ljr-account-ink:#fff;--ljr-account-muted:#eaf3ff;
+  --ljr-account-royal:#2E6CCD;--ljr-account-gold:#d4e9ff;
+  --ljr-royal-page:#235EBE;--ljr-royal-head:#2D69C8;
+  --ljr-royal-panel:#2864C3;--ljr-royal-card:#2864C3;
+  --ljr-royal-control:#194FA8;--ljr-royal-action:#306DCE;
+}
+html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen{
+  background-color:#235EBE!important;
+  background-image:linear-gradient(180deg,#2C68C9 0%,#245FBD 46%,#2059B4 100%)!important;
+  color:#fff!important;
+}
+html body[data-app-route="profile"] #screen :is(
+ .v12-profile-card,.v569-profile-hero,.v569-inline-auth,.v569-security-state,
+ .v12-profile-menu,.v569-profile-account-menu,.v168-profile-account
+),
+html body[data-app-route^="account"] #screen :is(
+ .v569-card,.v1300-panel,.v1300-detail,.v569-inline-auth,.v569-security-state,
+ .v577-device-summary,.v569-devices article,.v1300-findings article,
+ .v1300-ai-status,.v1300-ai-answer,.v1300-cloud-state,.v1300-cloud-output,
+ .v1300-pass-help,.v569-overlay-card,.v1150-privacy-card
+){
+  background-color:#2864C3!important;
+  background-image:linear-gradient(155deg,#2D69C8,#245CB8)!important;
+  border-color:rgba(207,229,255,.71)!important;
+  color:#fff!important;
+}
+html body[data-app-route="profile"] #screen :is(
+ .v12-profile-menu>.v12-profile-row,.v569-profile-account-menu>button,
+ .v569-profile-buttons>button,.v569-methods>button
+),
+html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen
+ :is(.v569-primary,.v569-secondary,.v569-link,.v1300-primary,
+ .v1300-actions button,.v1300-permission button,.v1300-link,
+ .v1300-pass-help button):not(.v569-danger){
+  background-color:#2C69CA!important;
+  background-image:linear-gradient(145deg,#3372D1,#2863BF)!important;
+  border-color:rgba(218,237,255,.75)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+html body[data-app-route="profile"] #screen
+ :is(.v569-profile-buttons>button:first-child,.v569-methods>button.active),
+html body[data-app-route^="account"] #screen
+ :is(.v569-primary,.v1300-primary){
+  background-color:#3270D3!important;
+  background-image:linear-gradient(140deg,#3878D8,#2B66CA)!important;
+}
+html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen
+ :is(.v569-inline-auth input:not([type=checkbox]),.v569-inline-auth select,
+ .v569-inline-auth textarea,.v569-field input,.v569-field select,
+ .v569-form input:not([type=checkbox]):not([type=file]),.v569-form select,
+ .v569-form textarea,.v1300-select select,.v1300-cloud-form input){
+  background:#194FA8!important;background-image:none!important;
+  border-color:#C9E2FF!important;color:#fff!important;
+}
+/* Los siete modales de Mi cuenta se montan fuera de #screen. */
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+){
+  background-color:#2561BD!important;
+  background-image:linear-gradient(160deg,#2F6BCB,#245FBA 67%,#2058B0)!important;
+  border-color:#CBE4FF!important;color:#fff!important;
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+)>header{
+ background:#2B66C5!important;
+ background-image:linear-gradient(145deg,#3170D1,#255DB9)!important;
+ border-color:rgba(216,235,255,.7)!important;
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+) :is(.cms-form>button,.ljr-profile-preview,.ljr-photo-upload,.ljr-avatar-gallery button){
+ background:#2A66C5!important;
+ background-image:linear-gradient(145deg,#326ECB,#245DB8)!important;
+ border-color:rgba(217,236,255,.76)!important;color:#fff!important;
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+) :is(input:not([type=checkbox]):not([type=file]):not([type=color]),select,textarea){
+ background:#194FA8!important;background-image:none!important;
+ border-color:#C6E0FF!important;color:#fff!important;
+}
+/* Administración, Crear/Revisar avisos y Edición: mismo nivel de azul rey. */
+html body .liga-media-modal>section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+ .ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
+){
+ --ljr1310-bg:#235EBE;--ljr1310-surface:#2864C3;
+ --ljr1310-card:#2864C3;--ljr1310-input:#194FA8;--ljr1310-edge:#C9E2FF;
+ --ljr-admin-bg:#235EBE;--ljr-admin-panel:#2864C3;
+ --ljr-admin-card:#2864C3;--ljr-admin-field:#194FA8;
+ --cm-night:#235EBE;--cm-surface:#2864C3;--cm-card:#2864C3;
+ background:#235EBE!important;
+ background-image:linear-gradient(160deg,#2E6BCB 0%,#245EBA 64%,#2057B1 100%)!important;
+ border-color:rgba(211,232,255,.73)!important;color:#fff!important;
+}
+html body .liga-media-modal>section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+ .ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
+)>header{
+ background:#2865C4!important;
+ background-image:linear-gradient(140deg,#3270D1,#245CB5)!important;
+ border-color:rgba(214,232,255,.72)!important;
+}
+html body .liga-media-modal :is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+ .ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
+) :is(
+ .ljr-admin-area,.ljr-simple-intro,.ljr-guide,.ljr-smart-hub,
+ .ljr-smart-tasks,.ljr-editor-hub,.ljr-editor-section-info,.ljr-editor-preview,
+ .ljr-editor-row,.ljr-editor-autofill,.ljr-review-card,.ljr-review-insights,
+ .ljr-review-stats>div,.ljr-review-empty,.ljr-review-body,.v1081-note,.v1081-item
+){
+ background:#2864C3!important;
+ background-image:linear-gradient(145deg,#2C68C8,#245CB6)!important;
+ border-color:rgba(211,230,255,.67)!important;color:#fff!important;
+}
+html body .liga-media-modal>section:is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+ .ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
+) :is(input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=color]),select,textarea){
+ background:#194FA8!important;background-image:none!important;
+ border-color:#C2DFFF!important;color:#fff!important;
+}
+html body .liga-media-modal :is(
+ .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+ .ljr-admin-picker,.ljr-editor-dialog,.v1081-dialog,.ljr-admin-v1081
+) :is(
+ .ljr-admin-tile:not(.ljr-admin-tile-danger),.cms-kind-grid>button,
+ .ljr-editor-hub-grid>button,.ljr-editor-two-choice>button,
+ .ljr-editor-extra-actions>button,.ljr-editor-tools>button,
+ .ljr-editor-smart-tools>button,.ljr-editor-bottom>button,
+ .ljr-review-tabs>button,.ljr-review-automation button,.ljr-smart-actions button,
+ .v1081-actions button,.v1081-role button
+){
+ background:#2B67C7!important;background-image:linear-gradient(145deg,#3371D1,#2761BB)!important;
+ border-color:rgba(218,237,255,.77)!important;color:#fff!important;
+}
+/* Acciones peligrosas conservan rojo y el botón final de avisos no tapa campos. */
+html body .liga-media-modal .ljr-editor-dialog .ljr-review-actions button.ljr-review-danger,
+html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-child)
+ :is(button.ljr-admin-tile-danger,[data-logout],[data-revoke]){
+ background:#943C59!important;background-image:linear-gradient(145deg,#AB4B68,#883653)!important;
+ border-color:#F5C9D7!important;color:#fff!important;
+}
+html body .liga-media-modal .ljr-notice-1212 .ljr-editor-bottom{
+ position:static!important;bottom:auto!important;
+}
