@@ -21,6 +21,8 @@ const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const norm=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toLowerCase();
 const TZ='America/Mexico_City';
 let all=[],category='all',current='',host=null,signature='',lastAdvanceCheck=0,manualUntil=0;
+const sharedLiveStates=new Map();
+let remoteClockChecked=0,remoteClockKey='',remoteClockLoading=false;
 const icons={
 bell:'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/>',
 calendar:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/>',
@@ -90,7 +92,9 @@ function crest(name,category){
 function liveSignal(g,at=Date.now()){
   if(!g?.officialKey)return null;
   try{
-    const s=JSON.parse(localStorage.getItem('ljr-match-live-v144:'+g.officialKey)||'null');
+    const s=sharedLiveStates.has(g.officialKey)?
+      sharedLiveStates.get(g.officialKey):
+      JSON.parse(localStorage.getItem('ljr-match-live-v144:'+g.officialKey)||'null');
     if(!s||!['first','halftime','second','final'].includes(s.phase))return null;
     const confirmed=Array.isArray(s.events)&&s.events.some(e=>e?.type==='phase-'+s.phase&&e.confirmed!==false);
     const sourceFresh=!!(s.source?.connected&&Number(s.source.lastSync)>0&&at-Number(s.source.lastSync)<30000&&at>=Number(s.source.lastSync));
@@ -98,6 +102,22 @@ function liveSignal(g,at=Date.now()){
     if(!Number.isFinite(g.time)||at<g.time-15*60000||at>g.time+180*60000)return null;
     return s;
   }catch(_){return null}
+}
+/* Leer el estado COMPARTIDO de Match Center también en Match Day (usuarios públicos). */
+async function refreshLiveMatch(){
+  if(route()!=='matchday'||!window.LJR_MEDIA?.api)return;
+  const g=match();if(!g?.officialKey)return;
+  const now=Date.now(),key=g.officialKey;
+  if(remoteClockLoading||key===remoteClockKey&&now-remoteClockChecked<7000)return;
+  remoteClockKey=key;remoteClockChecked=now;remoteClockLoading=true;
+  try{
+    const r=await window.LJR_MEDIA.api('match/'+encodeURIComponent(key));
+    if(!r||typeof r!=='object')return;
+    sharedLiveStates.set(key,r.state&&typeof r.state==='object'?r.state:null);
+    if(match()?.officialKey===key)tick();
+  }catch(_){
+    // En caso de desconexión queda la programación, sin inventar una señal.
+  }finally{remoteClockLoading=false}
 }
 function status(g,at=Date.now()){
   if(!g)return {name:'Sin partidos',type:'pending'};
@@ -163,7 +183,8 @@ const SLOT_MS=(45+15+45)*60*1000;
 function chooseAutomaticGame(now=Date.now()){
   const choices=all.filter(g=>(category==='all'||g.catId===category)&&
     !/suspend|cancel|aplaz|pospuest/.test(norm(g.status))&&
-    !(/^\d+$/.test(g.homeScore)&&/^\d+$/.test(g.awayScore)));
+    !(/^\d+$/.test(g.homeScore)&&/^\d+$/.test(g.awayScore))&&
+    status(g,now).type!=='final');
   const order=(a,b)=>a.time-b.time||a.id.localeCompare(b.id);
   const confirmed=choices.filter(g=>/en vivo|jugando|primer tiempo|segundo tiempo/.test(norm(g.status))&&
     g.time<=now&&now<g.time+180*60000).sort(order);
@@ -305,14 +326,15 @@ render();
 }
 document.addEventListener('click',onClick);
 window.addEventListener('hashchange',()=>setTimeout(()=>activate(true),100));
-window.addEventListener('ljr:official-data',()=>activate(true));
+window.addEventListener('ljr:official-data',()=>{activate(true);refreshLiveMatch()});
 window.addEventListener('ljr:match-live-feed',()=>{if(route()==='matchday')tick()});
 window.addEventListener('storage',e=>{if(route()==='matchday'&&e.key?.startsWith('ljr-match-live-v144:'))tick()});
 function start(){
 const screen=$('#screen');
 if(screen)new MutationObserver(()=>activate()).observe(screen,{childList:true,subtree:true});
 activate();setTimeout(()=>activate(true),400);setTimeout(()=>activate(true),1300);setTimeout(()=>activate(true),3000);
-setInterval(tick,1000);
+setInterval(()=>{tick();refreshLiveMatch()},1000);
+refreshLiveMatch();
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
