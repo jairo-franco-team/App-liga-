@@ -1,11 +1,11 @@
-/* V1411 — RESTAURAR PERFIL DE LA SEGUNDA CAPTURA.
-   Se recupera la vista azul noche original del perfil: tarjeta lisa, menú de
+/* V1412 — PERFIL RESTAURADO EN AZUL REY MEDIO COMO LA BARRA SUPERIOR.
+   Se conserva el diseño restaurado del perfil: tarjeta lisa, menú de
    filas transparentes, iconos sin cuadros y divisores finos.
-   La barra superior azul rey sigue intacta (#295dd0 es solo el botón principal).
+   La barra superior permanece intacta; perfil adopta azul rey medio semejante a ella.
    Alcance EXCLUSIVO #/profile: no alterar rutas account*, JS, ni controles. */
 html body[data-app-route="profile"] #screen {
-  background:#060755!important;
-  background-image:linear-gradient(180deg,#070a66 0%,#06075c 40%,#05064d 100%)!important;
+  background:#2055B7!important;
+  background-image:linear-gradient(180deg,#2865BF 0%,#2259B5 48%,#1E50AC 100%)!important;
   color:#fff!important;
 }
 html body[data-app-route="profile"] #screen .v12-profile-page {
@@ -13,8 +13,8 @@ html body[data-app-route="profile"] #screen .v12-profile-page {
 }
 /* El cuadro de Mi cuenta vuelve a ser una tarjeta discreta, SIN borde blanco. */
 html body[data-app-route="profile"] #screen .v12-profile-card[data-v569-owned] {
-  background:#101877!important;
-  background-image:linear-gradient(155deg,#121b7c 0%,#0e166d 60%,#0d1465 100%)!important;
+  background:#2760BC!important;
+  background-image:linear-gradient(155deg,#2C68C6 0%,#265DBA 60%,#2256B1 100%)!important;
   border:0!important;
   border-radius:26px!important;
   box-shadow:none!important;
@@ -30,32 +30,32 @@ html body[data-app-route="profile"] #screen .v12-profile-card[data-v569-owned] .
   gap:10px!important;
 }
 html body[data-app-route="profile"] #screen .v569-profile-avatar {
-  background:#09206b!important;
-  border:2px solid #34d6e6!important;
-  box-shadow:0 0 0 3px rgba(42,210,233,.14)!important;
+  background:#2258B5!important;
+  border:2px solid #AED9FF!important;
+  box-shadow:0 0 0 3px rgba(174,215,255,.22)!important;
 }
 html body[data-app-route="profile"] #screen .v569-profile-copy small {
-  color:#33dce7!important;
+  color:#E1F1FF!important;
 }
 html body[data-app-route="profile"] #screen .v569-profile-copy h1 {
   color:#fff!important;
 }
 html body[data-app-route="profile"] #screen .v569-profile-copy b {
-  color:#7edcea!important;
+  color:#D6EAFF!important;
 }
 html body[data-app-route="profile"] #screen .v569-profile-copy p {
-  color:#aeb5d9!important;
+  color:#E2EEFF!important;
 }
 html body[data-app-route="profile"] #screen .v569-profile-bio {
   background:transparent!important;
   background-image:none!important;
-  border:1px solid rgba(123,141,212,.36)!important;
-  color:#9da7d1!important;
+  border:1px solid rgba(194,220,255,.52)!important;
+  color:#E5EEFF!important;
 }
 html body[data-app-route="profile"] #screen .v569-profile-bio.on {
-  background:rgba(26,144,177,.10)!important;
-  border-color:rgba(38,211,228,.50)!important;
-  color:#37dce9!important;
+  background:rgba(132,181,250,.18)!important;
+  border-color:rgba(183,220,255,.64)!important;
+  color:#E2F2FF!important;
 }
 html body[data-app-route="profile"] #screen .v569-profile-buttons {
   gap:10px!important;
@@ -66,16 +66,16 @@ html body[data-app-route="profile"] #screen .v569-profile-buttons>button {
   height:42px!important;
   border:1px solid rgba(113,151,227,.54)!important;
   border-radius:12px!important;
-  background:#1a338e!important;
-  background-image:linear-gradient(180deg,#204197,#1c337f)!important;
+  background:#2459B8!important;
+  background-image:linear-gradient(180deg,#2A64C2,#2255B1)!important;
   box-shadow:none!important;
   color:#fff!important;
   -webkit-text-fill-color:#fff!important;
   text-shadow:none!important;
 }
 html body[data-app-route="profile"] #screen .v569-profile-buttons>button:first-child {
-  background:#2a5dc0!important;
-  background-image:linear-gradient(180deg,#2f69d0,#2155b4)!important;
+  background:#2C68C6!important;
+  background-image:linear-gradient(180deg,#3271CE,#2862BE)!important;
   border-color:rgba(123,165,231,.66)!important;
 }
 /* Menús como en el original: filas sobre el fondo, no tarjetas redondeadas. */
@@ -113,7 +113,7 @@ html body[data-app-route="profile"] #screen .v12-profile-menu>.ljr-profile-actio
   margin:0!important;
   padding:0 2px!important;
   border:0!important;
-  border-bottom:1px solid rgba(164,180,230,.13)!important;
+  border-bottom:1px solid rgba(209,230,255,.26)!important;
   border-radius:0!important;
   outline:0!important;
   background:transparent!important;
@@ -126,7 +126,7 @@ html body[data-app-route="profile"] #screen .v12-profile-menu>.ljr-profile-actio
 }
 html body[data-app-route="profile"] #screen .v569-profile-account-menu>button:first-child,
 html body[data-app-route="profile"] #screen .v12-profile-menu>.v12-profile-row:first-child {
-  border-top:1px solid rgba(164,180,230,.13)!important;
+  border-top:1px solid rgba(209,230,255,.26)!important;
 }
 html body[data-app-route="profile"] #screen .v569-profile-account-menu>button>span,
 html body[data-app-route="profile"] #screen .v12-profile-menu .v12-profile-row-icon {
@@ -143,13 +143,13 @@ html body[data-app-route="profile"] #screen .v12-profile-menu .v12-profile-row-i
   background:transparent!important;
   background-image:none!important;
   box-shadow:none!important;
-  color:#cdd4ee!important;
+  color:#E0EEFF!important;
 }
 html body[data-app-route="profile"] #screen .v569-profile-account-menu>button>span svg,
 html body[data-app-route="profile"] #screen .v12-profile-menu .v12-profile-row-icon svg {
   width:24px!important;
   height:24px!important;
-  color:#cdd4ee!important;
+  color:#E0EEFF!important;
 }
 html body[data-app-route="profile"] #screen .v569-profile-account-menu>button>b,
 html body[data-app-route="profile"] #screen .v12-profile-menu .v12-profile-row-label {
@@ -174,7 +174,7 @@ html body[data-app-route="profile"] #screen .v569-profile-account-menu>button.lo
 html body[data-app-route="profile"] #screen .v12-profile-menu>.v569-profile-logout-row {
   background:transparent!important;
   background-image:none!important;
-  border-color:rgba(164,180,230,.13)!important;
+  border-color:rgba(209,230,255,.26)!important;
 }
 html body[data-app-route="profile"] #screen .v569-profile-account-menu>button.logout b,
 html body[data-app-route="profile"] #screen .v12-profile-menu>.v569-profile-logout-row .v12-profile-row-label {
@@ -186,7 +186,7 @@ html body[data-app-route="profile"] #screen :is(
   background:transparent!important;
   background-image:none!important;
   border:0!important;
-  border-bottom:1px solid rgba(164,180,230,.13)!important;
+  border-bottom:1px solid rgba(209,230,255,.26)!important;
   border-radius:0!important;
   box-shadow:none!important;
 }
