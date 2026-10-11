@@ -1,0 +1,245 @@
+/* V1406 · Mi cuenta — AZUL REY MEDIO de la barra superior.
+ * Ni azul noche/negro ni celeste brillante. Azul rey equilibrado.
+ * SOLO COLOR Y ACABADO: no alterar HTML, eventos, rutas, validación, sesiones,
+ * accesibilidad, disabled, imágenes, escudos, lógica ni estados de los controles.
+ * Esta capa debe ser la última hoja de CSS con alcance sobre Mi cuenta. */
+:root{
+  --ljr1406-royal:#2655ba;
+  --ljr1406-royal-upper:#3162c5;
+  --ljr1406-royal-lower:#2049ad;
+  --ljr1406-card:#2e5fc1;
+  --ljr1406-card-deep:#2855b4;
+  --ljr1406-field:#214ba6;
+  --ljr1406-button:#3367cf;
+  --ljr1406-line:rgba(193,217,255,.64);
+  --ljr1406-muted:#e2edff;
+  --ljr1406-white:#fff;
+}
+html body:is([data-app-route="profile"],[data-app-route^="account"]){
+  --p1300-bg:#2655ba;
+  --p1300-surface:#2e5fc1;
+  --p1300-raised:#3367c9;
+  --p1300-deep:#214ba6;
+  --p1300-border:var(--ljr1406-line);
+  --p1300-muted:var(--ljr1406-muted);
+  --p1300-accent:#c6dfff;
+  --ljr-account-outer:#2655ba;
+  --ljr-account-panel:#2e5fc1;
+  --ljr-account-raised:#3367c9;
+  --ljr-account-deep:#214ba6;
+  --ljr-account-outline:var(--ljr1406-line);
+  --ljr-account-ink:#fff;
+  --ljr-account-muted:var(--ljr1406-muted);
+  --ljr-account-royal:#3367cf;
+  --ljr-account-gold:#c6dfff;
+}
+html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen{
+  background:#2655ba!important;
+  background-image:linear-gradient(180deg,#305ec4 0%,#2855ba 43%,#2049ad 100%)!important;
+  color:#fff!important;
+}
+/* Perfil principal: misma familia de azul sin secciones pálidas ni casi negras. */
+html body[data-app-route="profile"] #screen :is(
+ .v12-profile-card,.v569-profile-hero,.v569-inline-auth,.v569-security-state,
+ .v12-profile-menu,.v569-profile-account-menu,.ljr-cms-entry,
+ .v168-profile-account
+){
+  background:#2c5bb9!important;
+  background-image:linear-gradient(148deg,#3264c8 0%,#2855b5 100%)!important;
+  border-color:var(--ljr1406-line)!important;
+  color:#fff!important;
+  box-shadow:0 7px 20px rgba(9,31,96,.17),inset 0 1px rgba(255,255,255,.13)!important;
+}
+html body[data-app-route="profile"] #screen :is(
+ .v569-profile-account-menu>button,.v12-profile-menu>.v12-profile-row,
+ .v569-profile-buttons button,.v569-methods>button,.ljr-cms-entry button
+){
+  background:#2d5dbc!important;
+  background-image:linear-gradient(139deg,#3365c9,#2652b4)!important;
+  border-color:var(--ljr1406-line)!important;
+  color:#fff!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.13)!important;
+}
+html body[data-app-route="profile"] #screen :is(
+ .v569-profile-buttons button:first-child,.v569-methods>button.active
+){
+  background:#3367cf!important;
+  background-image:linear-gradient(138deg,#3a70d4,#2958bd)!important;
+  border-color:#d4e7ff!important;
+}
+html body[data-app-route="profile"] #screen :is(
+ .v569-profile-account-menu>button>span,.v12-profile-row-icon
+){
+  background:rgba(211,228,255,.14)!important;
+  border-color:rgba(211,231,255,.54)!important;
+  color:#f2f7ff!important;
+}
+html body[data-app-route="profile"] #screen :is(
+ .v569-profile-copy p,.v569-profile-copy b,.v569-profile-copy small,
+ .v569-profile-bio,.v12-profile-copy p,.v569-inline-head p
+){color:var(--ljr1406-muted)!important}
+html body[data-app-route="profile"] #screen .v569-profile-avatar{
+  border-color:#c7e0ff!important;
+  box-shadow:0 0 0 3px rgba(207,227,255,.15)!important;
+}
+/* Inicio de sesión y registro integrados dentro del perfil. */
+html body[data-app-route="profile"] #screen :is(
+ .v569-inline-auth input:not([type=checkbox]):not([type=file]),
+ .v569-inline-auth select,.v569-inline-auth textarea
+){
+  background:#214ba6!important;background-image:none!important;
+  border:1px solid var(--ljr1406-line)!important;color:#fff!important;
+}
+html body[data-app-route="profile"] #screen .v569-inline-auth :is(
+ .v569-primary,.v569-secondary,.v569-link
+){
+  background:linear-gradient(135deg,#3769cc,#2855b6)!important;
+  border-color:var(--ljr1406-line)!important;color:#fff!important;
+}
+/* Todas las rutas account*: Cuenta, dispositivos, seguridad, asistencia, nube,
+   preferencias, privacidad y contraseña. Incluye tarjetas internas. */
+html body[data-app-route^="account"] #screen :is(
+ .v569-card,.v1300-panel,.v1300-detail,.v569-inline-auth,
+ .v569-security-state,.v577-device-summary,.v569-devices article,
+ .v1300-findings article,.v1300-ai-status,.v1300-ai-answer,
+ .v1300-cloud-state,.v1300-cloud-output,.v1300-pass-help,.v569-overlay-card
+){
+  background:#2c5dbd!important;
+  background-image:linear-gradient(149deg,#3265c8 0%,#2855b5 100%)!important;
+  border:1px solid var(--ljr1406-line)!important;
+  color:#fff!important;
+  box-shadow:0 6px 18px rgba(14,39,100,.16),inset 0 1px rgba(255,255,255,.12)!important;
+}
+html body[data-app-route^="account"] #screen :is(
+ .v1300-detail,.v1300-ai-status,.v1300-ai-answer,
+ .v1300-cloud-state,.v1300-cloud-output,.v569-devices article
+){
+  background:#2856b8!important;
+  background-image:linear-gradient(141deg,#2e60c1,#2653b2)!important;
+}
+html body[data-app-route^="account"] #screen :is(
+ .v1300-mark,.v569-devices article>span
+){
+  background:#2c61bf!important;
+  border-color:#a6c9fa!important;color:#ebf4ff!important;
+}
+html body[data-app-route^="account"] #screen :is(
+ .v569-page-head p,.v569-note,.v569-field>small,
+ .v1300-panel>p,.v1300-detail p,.v1300-choice small,
+ .v1300-permission small,.v1300-findings p,.v1300-explain,
+ .v1300-footnote,.v569-devices small,.v569-devices em,
+ .v577-device-summary small,.v1300-cloud-output
+){color:var(--ljr1406-muted)!important}
+html body[data-app-route^="account"] #screen :is(
+ .v569-field input,.v569-field select,.v569-form input:not([type=checkbox]):not([type=file]),
+ .v569-form select,.v569-form textarea,.v1300-cloud-form input,
+ .v1300-select select
+){
+  background:#214ba6!important;background-image:none!important;
+  border:1px solid #b9d5fa!important;color:#fff!important;
+  color-scheme:dark!important;
+}
+html body[data-app-route^="account"] #screen :is(
+ .v569-primary,.v569-card .v569-primary,.v1300-primary,
+ .v569-secondary,.v569-card .v569-secondary,.v1300-actions button,
+ .v1300-permission button,.v1300-link,.v1300-pass-help button,
+ .v569-methods button
+){
+  background:#3064ca!important;
+  background-image:linear-gradient(138deg,#386dcf,#2858b9)!important;
+  border:1px solid #c1ddff!important;
+  color:#fff!important;text-shadow:none!important;
+}
+html body[data-app-route^="account"] #screen :is(
+ .v569-primary,.v569-card .v569-primary,.v1300-primary,
+ .v569-methods button.active
+){
+  background:#3368cf!important;
+  background-image:linear-gradient(138deg,#3b73d8,#2e60c5)!important;
+  border-color:#d7e9ff!important;
+}
+html body[data-app-route^="account"] #screen :is(
+ .v569-danger,.v569-card .v569-danger
+){
+  background:linear-gradient(145deg,#923e61,#762e52)!important;
+  border-color:#f0adc3!important;color:#fff!important;
+}
+html body[data-app-route^="account"] #screen .v1300-choice input[type=checkbox]:not(:checked){
+  background:#20449b!important;border-color:#abcaf6!important;
+}
+html body[data-app-route^="account"] #screen .v1300-choice input[type=checkbox]:checked{
+  background:#417cde!important;border-color:#d7eaff!important;
+}
+/* Ajustes, idioma, accesibilidad, privacidad, ayuda, términos y avatar:
+   son modales fuera de #screen. Se aplica sólo a estos siete paneles. */
+html body .liga-media-modal:has(>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+)){background:rgba(8,22,74,.68)!important}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+){
+  background:#2958b9!important;
+  background-image:linear-gradient(153deg,#3263c5,#2652b2)!important;
+  border:1px solid #accdf9!important;color:#fff!important;
+  box-shadow:0 18px 48px rgba(6,19,69,.38),inset 0 1px rgba(255,255,255,.14)!important;
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+)>header{
+  background:linear-gradient(134deg,#3265c8,#2854b4)!important;
+  border-bottom:1px solid rgba(200,223,255,.52)!important;
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+) :is(.cms-form>button,.ljr-avatar-gallery button,.ljr-photo-upload,.ljr-profile-preview,
+ .v5-toggle-row,.v1300-detail){
+  background:#2f60c1!important;
+  background-image:linear-gradient(144deg,#3669cb,#2857b8)!important;
+  border-color:var(--ljr1406-line)!important;color:#fff!important;
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+) :is(input:not([type=checkbox]):not([type=file]):not([type=color]),select,textarea){
+  background:#214ba6!important;background-image:none!important;
+  border:1px solid #bad7ff!important;color:#fff!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] :is(
+ .ljr-save-profile,.ljr-photo-upload input::file-selector-button
+){
+  background:linear-gradient(135deg,#3870d4,#2b5cbe)!important;
+  border:1px solid #d1e6ff!important;color:#fff!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"]
+ .ljr-avatar-gallery button[aria-pressed="true"]{
+  background:linear-gradient(141deg,#3e72d4,#3061c5)!important;
+  border:2px solid #e0efff!important;
+}
+/* Visuales accesibles sin cambiar estados ni acciones de los controles. */
+html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen
+ :is(button,input,select,textarea):focus-visible,
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Mi avatar y mi camiseta"]
+) :is(button,input,select,textarea):focus-visible{
+  outline:2px solid #e5f1ff!important;outline-offset:2px!important;
+}
+@media(prefers-reduced-motion:reduce){
+ html body:is([data-app-route="profile"],[data-app-route^="account"]) #screen *{
+   transition-duration:.01ms!important;
+ }
+}
