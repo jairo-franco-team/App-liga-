@@ -1,3 +1,5 @@
+/* V1438: dos muestras exactas, azul rey arriba y azul noche abajo. */
+:root { --ljr1438-blue-gradient:linear-gradient(180deg,#01079b 0%,#000040 100%); }
 /* V1437: Imagen 2 (muestra RGB 1,7,155; #01079B).
    Azul rey profundo en Más Herramientas y JR Control, no en toda la app.
    Sólo color: conservar dimensiones, funcionamiento, scroll, iconos y estados.
@@ -6,14 +8,8 @@
 @media screen {
   /* Un fondo único por ruta, sin azul claro global ni franjas entre tarjetas. */
   html body:is([data-app-route="leagueTools"],[data-app-route="ligaControl"],
-    [data-app-route="adminFut"],[data-app-route="jrControl"]),
-  html body:is([data-app-route="leagueTools"],[data-app-route="ligaControl"],
-    [data-app-route="adminFut"],[data-app-route="jrControl"]) #app,
-  html body:is([data-app-route="leagueTools"],[data-app-route="ligaControl"],
-    [data-app-route="adminFut"],[data-app-route="jrControl"]) .app-shell,
-  html body:is([data-app-route="leagueTools"],[data-app-route="ligaControl"],
-    [data-app-route="adminFut"],[data-app-route="jrControl"]) #screen#screen {
-    background-color:#01079b!important;
+    [data-app-route="adminFut"],[data-app-route="jrControl"]) {
+    background-color:#000040!important;
     background-image:none!important;
   }
 
@@ -27,9 +23,16 @@
     background-image:none!important;
     box-shadow:none!important;
   }
+  html body[data-app-route="leagueTools"] #screen#screen :is(
+    .v726-quick-section,.v726-tool-section,.v726-admin-section,.v734-tool-detail-panel,
+    .v726-tool-icon,.v726-quick-icon,.v726-section-icon,.v919-shortcut-icon
+  ) {border-color:transparent!important;box-shadow:none!important;}
+  html body[data-app-route="leagueTools"] #screen#screen .v919-shortcut-icon {
+    background:transparent!important;background-image:none!important;
+  }
   html body[data-app-route="leagueTools"] #screen#screen .v726-tools-hero{
-    background-color:#040a93!important;
-    background-image:linear-gradient(180deg,#070eaa,#03078e)!important;
+    background-color:#000040!important;
+    background-image:var(--ljr1438-blue-gradient)!important;
     border-color:rgba(139,163,244,.35)!important;
     box-shadow:none!important;
   }
@@ -37,8 +40,8 @@
     .v726-quick-card,.v726-tool-card,.v734-tool-card,
     .v612-tools-entry.v726-admin-entry,.v60-tool-card,.v60-tools-featured-card
   ){
-    background-color:#030996!important;
-    background-image:linear-gradient(180deg,#0811a4 0%,#040991 100%)!important;
+    background-color:#000040!important;
+    background-image:var(--ljr1438-blue-gradient)!important;
     border-color:rgba(139,165,246,.38)!important;
     box-shadow:none!important;
     color:#fff!important;
@@ -59,8 +62,8 @@
     .v734-tool-go,.v734-tool-details-button,.v734-tool-detail-button,
     .v726-hero-pills span,.v726-tool-tag
   ){
-    background-color:#06109f!important;
-    background-image:linear-gradient(180deg,#101aac,#060b91)!important;
+    background-color:#000040!important;
+    background-image:var(--ljr1438-blue-gradient)!important;
     border-color:rgba(147,174,254,.40)!important;
     box-shadow:none!important;
     color:#fff!important;
@@ -73,14 +76,14 @@
     background-image:none!important;
   }
   html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"])
-   #screen#screen .v562-page[data-v563-control] .v562-panel:not(:has(.v562-list)){
-    background-color:#040a96!important;
-    background-image:linear-gradient(180deg,#080fa3,#04098c)!important;
+   #screen#screen .v562-page[data-v563-control] .v562-panel:not(:has(.v562-list,.v562-sync-grid)){
+    background-color:#000040!important;
+    background-image:var(--ljr1438-blue-gradient)!important;
     border-color:rgba(132,163,245,.34)!important;
     box-shadow:none!important;
   }
   html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"])
-   #screen#screen .v562-page[data-v563-control] .v562-panel:has(.v562-list){
+   #screen#screen .v562-page[data-v563-control] .v562-panel:has(.v562-list,.v562-sync-grid){
     background:transparent!important;
     background-image:none!important;
     box-shadow:none!important;
@@ -91,8 +94,8 @@
      button.v562-card,.v562-sync-grid > article,.v562-server,
      .v562-selector > div,.v562-info,.v562-app-badge
    ){
-    background-color:#050c9b!important;
-    background-image:linear-gradient(180deg,#0a13a7,#050a91)!important;
+    background-color:#000040!important;
+    background-image:var(--ljr1438-blue-gradient)!important;
     border-color:rgba(140,170,248,.36)!important;
     box-shadow:none!important;
     color:#fff!important;
@@ -102,8 +105,8 @@
      .v562-main-actions button,.v562-title > button,.v563-discipline-tabs button.active,
      .v562-info button,.v562-selector select,.v563-tool-search > input
    ){
-    background-color:#07109b!important;
-    background-image:linear-gradient(180deg,#111eaf,#080d94)!important;
+    background-color:#000040!important;
+    background-image:var(--ljr1438-blue-gradient)!important;
     border-color:rgba(140,173,253,.43)!important;
     box-shadow:none!important;
     color:#fff!important;
@@ -128,8 +131,8 @@
   }
   html body.liga-editor:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"])
     #screen#screen > .ljr-cms-entry button.ljr-cms-quick-button {
-    background-color:#060b99!important;
-    background-image:linear-gradient(180deg,#0b13a8,#050a91)!important;
+    background-color:#000040!important;
+    background-image:var(--ljr1438-blue-gradient)!important;
     border-color:rgba(140,170,250,.38)!important;
     box-shadow:none!important;
     color:#fff!important;
@@ -145,15 +148,121 @@
   html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"])
     .liga-media-modal > section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,
     .ljr-admin-friendly,.ljr-admin-studio,.ljr-editor-dialog) {
-    background-color:#01079b!important;
-    background-image:linear-gradient(180deg,#040ba0,#01077e)!important;
+    background-color:#000040!important;
+    background-image:var(--ljr1438-blue-gradient)!important;
   }
   html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"])
     .liga-media-modal :is(.ljr-admin-tile,.ljr-admin-action-grid > button,
     .ljr-editor-hub-grid > button,.ljr-editor-extra-actions > button) {
-    background-color:#040b98!important;
-    background-image:linear-gradient(180deg,#0a14a7,#040a8b)!important;
+    background-color:#000040!important;
+    background-image:var(--ljr1438-blue-gradient)!important;
     box-shadow:none!important;
+  }
+}
+}
+
+@layer ljr-reference-surfaces {
+@media screen {
+  /* El único lienzo: no superponer fondos en app, página y grupos. */
+  html body:is([data-app-route="leagueTools"],[data-app-route="ligaControl"],
+    [data-app-route="adminFut"],[data-app-route="jrControl"]) #screen#screen {
+    background:#000040 var(--ljr1438-blue-gradient) center top / 100% 100% no-repeat!important;
+  }
+  /* Los cuatro accesos pueden aparecer en cualquier página: cambiar sólo el grupo. */
+  html body #screen > .ljr-cms-entry {
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:10px!important;
+    padding:12px!important;
+    background:transparent!important;
+    border-color:transparent!important;
+    box-shadow:none!important;
+  }
+  html body #screen > .ljr-cms-entry > button {
+    display:grid!important;
+    grid-template-columns:28px minmax(0,1fr) 10px!important;
+    align-items:center!important;
+    gap:8px!important;
+    min-height:64px!important;
+    padding:12px 10px!important;
+    background:#000040 var(--ljr1438-blue-gradient)!important;
+    border:1px solid rgba(127,179,255,.35)!important;
+    border-radius:16px!important;
+    color:#fff!important;
+    font-weight:700!important;
+    text-align:left!important;
+    box-shadow:none!important;
+  }
+  html body #screen > .ljr-cms-entry > button :is(span,svg) {
+    background:transparent!important;background-image:none!important;
+    box-shadow:none!important;
+  }
+  html body #screen > .ljr-cms-entry > button .ljr-cms-quick-icon {
+    color:#00dbea!important;
+  }
+  html body #screen > .ljr-cms-entry > button:nth-child(2) .ljr-cms-quick-icon {color:#abd9ff!important;}
+  html body #screen > .ljr-cms-entry > button:nth-child(3) .ljr-cms-quick-icon {color:#ffd89e!important;}
+  html body #screen > .ljr-cms-entry > button:nth-child(4) .ljr-cms-quick-icon {color:#8de5c4!important;}
+  html body #screen > .ljr-cms-entry > button:hover {border-color:#00dbea!important;}
+
+  /* Estas ventanas se montan fuera de #screen, también desde otras páginas. */
+  html body .liga-media-modal > section:is(
+    .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+    .ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,
+    .v1081-dialog,.ljr-content-studio,.ljr-backup-dialog
+  ),
+  html body .v105-modal > .v105-dialog {
+    --ljr1420-page:#000040!important;
+    --ljr1420-panel:#000040!important;
+    --ljr1420-card:#000040!important;
+    --ljr1420-field:#000040!important;
+    --ljr1420-canvas:var(--ljr1438-blue-gradient)!important;
+    --ljr1420-surface:var(--ljr1438-blue-gradient)!important;
+    --ljr1420-button:var(--ljr1438-blue-gradient)!important;
+    --ljr1310-bg:#000040!important;
+    --ljr1310-surface:#000040!important;
+    --ljr1310-card:#000040!important;
+    --ljr1310-input:#000040!important;
+    background:#000040 var(--ljr1438-blue-gradient)!important;
+    box-shadow:none!important;
+  }
+  html body .liga-media-modal > section:is(
+    .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+    .ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,
+    .v1081-dialog,.ljr-content-studio,.ljr-backup-dialog
+  ) > header,
+  html body .v105-modal > .v105-dialog > .v105-modal-head {
+    background:#000040 var(--ljr1438-blue-gradient)!important;
+    box-shadow:none!important;
+  }
+  html body .liga-media-modal.liga-media-modal > section:is(
+    .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+    .ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,
+    .v1081-dialog,.ljr-content-studio,.ljr-backup-dialog
+  ) :where(button,input:not([type=color]):not([type=checkbox]):not([type=radio]),select,textarea),
+  html body .v105-modal > .v105-dialog :where(button,input:not([type=color]):not([type=checkbox]):not([type=radio]),select,textarea) {
+    background:#000040 var(--ljr1438-blue-gradient)!important;
+    border-color:rgba(127,179,255,.35)!important;
+    box-shadow:none!important;
+    color:#fff!important;-webkit-text-fill-color:#fff!important;
+  }
+  /* Una tarjeta, no otra placa sobre su título, símbolo o desplegable. */
+  html body .liga-media-modal > section:is(
+    .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
+    .ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,
+    .v1081-dialog,.ljr-content-studio,.ljr-backup-dialog
+  ) :is(h1,h2,h3,h4,p,small,b,strong,.ljr-admin-tile-icon,.ljr-simple-icon,
+    .ljr-editor-option-icon,.cms-design-form,.cms-form,.cms-design-presets,
+    .cms-design-intro,.cms-design-two,.ljr-admin-area,.ljr-admin-section,
+    .ljr-admin-preset-tools,.ljr-admin-intro,.ljr-editor-hub,.ljr-editor-note,
+    .ljr-admin-action-grid,.cms-kind-grid,.ljr-admin-howto>summary,.cms-extra-design>summary) {
+    background:transparent!important;background-image:none!important;
+    box-shadow:none!important;
+  }
+  /* El icono y el campo comparten la superficie exterior de la búsqueda. */
+  html body .v105-modal > .v105-dialog .sp-search input {
+    background:transparent!important;background-image:none!important;
+    border:0!important;box-shadow:none!important;
   }
 }
 }

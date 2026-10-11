@@ -69,7 +69,7 @@ try{
  for(const route of ['players','historyLog','accountEdit','accountPrivacy','accountSecurity','accountDevices','accountPreferences','accountAdvisor','accountCloud','notifications','publications','leagueTools','matchday']){
   await go(page,route);
   const rootPaint=await page.locator('#screen').evaluate(e=>getComputedStyle(e).backgroundImage);
-  assert.match(rootPaint,route.startsWith('account')?/rgb\(7, 9, 103\).*rgb\(2, 4, 79\)/:/rgb\(23, 59, 179\).*rgb\(4, 17, 63\)/,route+' requested canvas');
+  assert.match(rootPaint,route.startsWith('account')?/rgb\(7, 9, 103\).*rgb\(2, 4, 79\)/:/rgb\(1, 7, 155\).*rgb\(0, 0, 64\)/,route+' requested canvas');
   if(route==='historyLog'){
    await page.locator('.v164-history-match').first().waitFor();
    const cards=page.locator('.v164-history-match');
@@ -108,7 +108,10 @@ try{
    assert.equal(await surface.locator('[data-sp-field="brand"]').inputValue(),'Prueba sin guardar');
   }
   if(tool==='calendar-generator')await royalSurface(surface.locator('.v1240-local'),'Calendar assistant');
-  if(tool==='incidents')await royalSurface(surface.locator('.v1111-form'),'Incident form');
+  if(tool==='incidents'){
+   assert.equal(await surface.locator('.v1111-form').evaluate(e=>getComputedStyle(e).backgroundImage),'none','Incident form does not repeat the dialog background');
+   await royalSurface(surface.locator('.v1111-form textarea').first(),'Incident field');
+  }
   if(tool==='meeting')await royalSurface(surface.locator('.v919-meeting-hero'),'Meeting banner');
   await noPaleBlocks(page,'body > .v105-modal',tool);
   await page.screenshot({path:resolve(output,tool+'.png')});

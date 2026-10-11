@@ -47,8 +47,8 @@ try {
     const visible=[...document.querySelectorAll('button,input,select,textarea')].filter(e=>e.getBoundingClientRect().height&&getComputedStyle(e).visibility!=='hidden');
     return {section:styles(section),field:getComputedStyle(input).backgroundColor,tile:styles(tile),icon:{w:icon.width,h:icon.height},outside:visible.filter(e=>{const r=e.getBoundingClientRect();return r.left<-1||r.right>innerWidth+1}).map(e=>e.outerHTML.slice(0,90)),hidden:getComputedStyle(document.querySelector('[hidden]')).display};
    });
-   assert.match(metrics.section.background,/rgb\(4, 17, 63\)/,title+' canvas');
-   assert.equal(metrics.field,'rgb(7, 29, 76)',title+' field');
+   assert.match(metrics.section.background,/rgb\(0, 0, 64\)/,title+' canvas');
+   assert.equal(metrics.field,'rgb(0, 0, 64)',title+' field');
    assert.equal(metrics.tile.color,'rgb(255, 255, 255)',title+' button text');
    assert.deepEqual(metrics.outside,[],title+' controls inside viewport');
    assert.equal(metrics.hidden,'none',title+' hidden permissions preserved');

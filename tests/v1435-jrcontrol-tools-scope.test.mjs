@@ -18,7 +18,7 @@ test('V1435 elimina fondos interiores sin ocultar acciones',()=>{
   assert.match(css,/\.v734-tool-go/);
   assert.match(css,/\.v734-tool-details/);
   assert.match(css,/background:transparent!important/);
-  assert.match(css,/linear-gradient\(180deg,#2452c2/);
+  assert.doesNotMatch(css,/linear-gradient\(/);
   assert.match(css,/\.v563-tool-search > input/);
 });
 test('Inicio y Competición recuperados y Perfil queda al final',()=>{

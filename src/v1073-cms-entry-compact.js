@@ -34,7 +34,6 @@
     if(!screen)return;
     const entry=screen.querySelector(':scope > .ljr-cms-entry');
     if(!entry||entry.dataset.ljrCmsV1073==='1')return;
-    if(!['ligaControl','adminFut','players','notifications'].includes(route())&&!screen.querySelector('[data-v563-control]'))return;
     entry.dataset.ljrCmsV1073='1';
     entry.setAttribute('role','group');
     entry.setAttribute('aria-label','Herramientas privadas de la Liga');
@@ -43,7 +42,9 @@
       if(!button)continue;
       // Nunca se reemplaza el botón: se conservan su onclick y las comprobaciones de acceso.
       const title=String(button.textContent||'').trim()||labels[attribute];
-      const icon=document.createElement('span');icon.className='ljr-cms-quick-icon';icon.append(svg(markup));
+      const names={'data-cms-open':'news','data-cms-edit-page':'edit','data-cms-story':'clock','data-cms-design':'image'};
+      const icon=document.createElement('span');icon.className='ljr-cms-quick-icon';
+      icon.append(window.LJR_ICONS?.node(names[attribute])||svg(markup));
       const label=document.createElement('span');label.className='ljr-cms-quick-title';label.textContent=title;
       const arrow=document.createElement('span');arrow.className='ljr-cms-quick-arrow';arrow.setAttribute('aria-hidden','true');arrow.textContent='›';
       button.replaceChildren(icon,label,arrow);

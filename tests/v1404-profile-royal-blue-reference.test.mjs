@@ -52,7 +52,7 @@ test('V1413: hoja azul rey media adaptada a la barra superior y cache actualizad
    // Nueva petición: Cuenta y cuadros del ZIP adoptan la referencia azul/cyan;
    // la composición de Perfil sigue protegida por sus hojas propias.
    assert.match(content,/@layer ljr-reference-surfaces/);
-   assert.match(content,/body\[data-app-route\]:not\(:is\(\[data-app-route="profile"\]/, "El lienzo general debe excluir Perfil");
+   assert.doesNotMatch(content,/body\[data-app-route\]:not\(:is/, "El lienzo administrativo debe usar rutas explícitas");
    assert.doesNotMatch(content,/html body\[data-app-route="profile"\]|pointer-events\s*:\s*none/);
   }else if(path==='src/v1423-previous-colors-player.css'){
    // Petición explícita: recuperar Cuenta azul noche y controles transparentes.

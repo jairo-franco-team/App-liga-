@@ -4658,11 +4658,18 @@ function v60ToolCard(icon,title,sub,route,extra=''){
 function v60Header(kicker,title,desc){
   return '<div class="v60-tool-head"><span class="v60-tool-kicker">'+kicker+'</span><h1>'+title+'</h1><p>'+desc+'</p></div>';
 }
+// Use the original vectors from Miapp_imagenes_iconos.zip only in this tools menu.
+function v726ReferenceIcon(name,title){
+  const keys={chart:'standings',center:'fixture',matchday:'calendar',tactics:'lineup',
+    card:'player',rules:'news',file:'news',history:'clock',admin:'settings',
+    whistle:'referee',alert:'warning',users:title==='Jugadores'?'player':'team'};
+  return window.LJR_ICONS?.svg(keys[name]||name)||v60Icon(name);
+}
 function v726ToolCard(icon,title,desc,route,extra='',tag=''){
   const attrs=((route?'data-route="'+route+'" ':'')+(extra||'')).trim();
   return '<article class="v726-tool-card v734-tool-card">'+
     '<button type="button" class="v734-tool-open" '+attrs+' aria-label="Abrir '+title+'">'+
-      '<span class="v726-tool-icon">'+v60Icon(icon)+'</span>'+
+      '<span class="v726-tool-icon">'+v726ReferenceIcon(icon,title)+'</span>'+
       '<span class="v726-tool-copy">'+(tag?'<small class="v726-tool-tag">'+tag+'</small>':'')+'<b>'+title+'</b></span>'+
       '<span class="v726-tool-arrow" aria-hidden="true">›</span>'+
     '</button>'+
@@ -4675,7 +4682,7 @@ function v726ToolCard(icon,title,desc,route,extra='',tag=''){
 }
 function v726QuickCard(icon,title,desc,route){
   return '<button type="button" class="v726-quick-card" data-route="'+route+'">'+
-    '<span class="v726-quick-icon">'+v60Icon(icon)+'</span>'+
+    '<span class="v726-quick-icon">'+v726ReferenceIcon(icon,title)+'</span>'+
     '<span><b>'+title+'</b><small>'+desc+'</small></span><i aria-hidden="true">›</i>'+
   '</button>';
 }

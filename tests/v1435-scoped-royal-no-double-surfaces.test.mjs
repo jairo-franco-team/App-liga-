@@ -29,8 +29,7 @@ test('V1435 afecta solo JR Control, Más herramientas y el modal del editor',()=
 test('V1435 respeta texto y botones sin capas adicionales',()=>{
   assert.match(css,/background:transparent!important/);
   assert.match(css,/background-image:none!important/);
-  assert.match(css,/linear-gradient\(180deg,#1941b6/);
-  assert.match(css,/linear-gradient\(180deg,#1d4aba/);
+  assert.doesNotMatch(css,/linear-gradient\(/);
   assert.match(css,/\.ljr-editor-note/);
   assert.match(css,/\.v562-card-copy/);
   assert.match(css,/\.v726-tool-copy/);

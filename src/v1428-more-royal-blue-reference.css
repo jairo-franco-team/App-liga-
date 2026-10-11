@@ -1,3 +1,4 @@
+/* V1438: capas interiores transparentes. La paleta única se define en v1437-jr-tools-royal-blue-image2.css. */
 /* Restauracion cromatica 2026-10-11.
  * Referencia: primera captura de Más, azul rey profundo continuo (#020473 -> #0716b9).
  * Solo colores/superficies: no cambiar dimensiones, rutas, estados, iconos, imagen de Más,
@@ -9,15 +10,6 @@
   /* Una sola base azul rey: el fondo de Más (la referencia) queda intacto. */
   html body[data-app-route="leagueTools"] #screen,
   html body[data-app-route="notifications"] #screen {
-    --ljr1420-page:#040579!important;
-    --ljr1420-panel:#0b168d!important;
-    --ljr1420-card:#1237aa!important;
-    --ljr1420-field:#0b1982!important;
-    --ljr1420-canvas:linear-gradient(180deg,#030575 0%,#050888 30%,#06109f 64%,#0815bb 100%)!important;
-    --ljr1420-surface:linear-gradient(180deg,#1540b2,#101d93 55%,#0a0e76)!important;
-    --ljr1420-button:linear-gradient(180deg,#2354c7,#142c9d)!important;
-    background-color:#040579!important;
-    background-image:var(--ljr1420-canvas)!important;
     background-repeat:no-repeat!important;
     background-position:center top!important;
     background-size:100% 100%!important;
@@ -26,34 +18,20 @@
     background:transparent!important;
   }
   html body[data-app-route="leagueTools"] :is(.v726-tools-hero,.v726-quick-section,.v726-tool-section,.v726-admin-section) {
-    background-color:#0a148c!important;
-    background-image:linear-gradient(165deg,#163bb1 0%,#0e1e97 50%,#070b77 100%)!important;
     border-color:rgba(106,151,255,.32)!important;
   }
   html body[data-app-route="leagueTools"] :is(.v726-quick-card,.v726-tool-card,.v612-tools-entry.v726-admin-entry,.v734-tool-card) {
-    background-color:#1235a3!important;
-    background-image:linear-gradient(180deg,#2151be 0%,#1537a4 54%,#101e8c 100%)!important;
     border-color:rgba(129,171,255,.33)!important;
   }
   /* Tarjeta y boton usan la misma familia de azul, sin fondo gris ni morado. */
   html body[data-app-route="leagueTools"] :is(.v734-tool-top,.v734-tool-main,.v734-tool-head,.v734-tool-details,.v734-tool-details-button,.v734-tool-detail-button,[data-v734-tool-details]) {
-    background-color:#1538aa!important;
-    background-image:linear-gradient(180deg,#2254bd,#142e9b)!important;
     border-color:rgba(133,168,255,.35)!important;
   }
   html body[data-app-route="leagueTools"] :is(.v726-tool-icon,.v726-quick-icon,.v726-section-icon,.v726-admin-entry>span) {
-    background-color:#1642ae!important;
-    background-image:linear-gradient(155deg,#1b50bd,#103195)!important;
     border-color:rgba(114,164,255,.34)!important;
-  }
-  html body[data-app-route="leagueTools"] :is(.v726-hero-pills span,.v726-tool-tag) {
-    background-color:#0c238e!important;
-    background-image:linear-gradient(160deg,#1a42b4,#0b2082)!important;
   }
   /* Notificaciones y participación: quitar el corte violeta/negro y dejar continuidad. */
   html body .v105-bottom[data-v105-route="notifications"] {
-    background-color:#050783!important;
-    background-image:linear-gradient(180deg,#030575 0%,#05098c 50%,#0711b0 100%)!important;
     border-top-color:#061088!important;
   }
   html body .v105-bottom[data-v105-route="notifications"] .v105-head,
@@ -62,55 +40,23 @@
     background-image:none!important;
   }
   html body .v105-bottom[data-v105-route="notifications"] .v105-card {
-    background-color:#1136ac!important;
-    background-image:linear-gradient(180deg,#1e4abd,#1538a9 55%,#102d97)!important;
     border-color:rgba(173,197,255,.20)!important;
   }
   html body .v105-bottom[data-v105-route="notifications"] .v105-copy :is(b,small) {
     background:transparent!important;
   }
   /* El panel real de preferencias, por dentro, conserva una sola familia azul rey. */
-  html body[data-app-route="notifications"] :is(.v46-notifications,.v46-ref-notifications-main) {
-    background-color:#060883!important;
-    background-image:linear-gradient(180deg,#060883,#070d9a 65%,#0914b4)!important;
-  }
-  html body[data-app-route="notifications"] :is(.v46-ref-device,.v46-ref-master,.v46-ref-settings,.v46-ref-categories,.v46-ref-setting,.v46-ref-category,.v46-ref-category-panel,.v1082-push,.v840-match-feed) {
-    background-color:#101f97!important;
-    background-image:linear-gradient(165deg,#1941ae,#0b1989)!important;
-  }
   /* Administración de la Liga: restaura el azul rey de las tarjetas sin perder la jerarquia. */
   html body .liga-media-modal > section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog) {
-    --ljr1310-bg:#05077b!important;
-    --ljr1310-surface:#0e1e95!important;
-    --ljr1310-card:#153cad!important;
-    --ljr1310-input:#0c2288!important;
-    --ljr1420-page:#05077b!important;
-    --ljr1420-panel:#0e1e95!important;
-    --ljr1420-card:#153cad!important;
-    --ljr1420-field:#0c2288!important;
-    --ljr1420-surface:linear-gradient(165deg,#1944b8,#102c9e 55%,#08187f)!important;
-    --ljr1420-button:linear-gradient(180deg,#2554c5,#1534a2)!important;
-    background-color:#05077b!important;
-    background-image:linear-gradient(180deg,#0d289e 0%,#071387 50%,#050774 100%)!important;
     color:#fff!important;
   }
-  html body .liga-media-modal > section:is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,.ljr-admin-v1081,.v1081-dialog) > header {
-    background-color:#132f9c!important;
-    background-image:linear-gradient(180deg,#2054be 0%,#0c248c 100%)!important;
-  }
   html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,.ljr-admin-picker,.ljr-editor-dialog) :is(.ljr-admin-area,.ljr-admin-intro,.ljr-simple-intro,.ljr-guide,.ljr-admin-howto,.ljr-admin-section,.ljr-editor-hub,.ljr-editor-note,.ljr-review-card,.ljr-review-insights,.ljr-review-empty,.ljr-admin-results) {
-    background-color:#102a98!important;
-    background-image:linear-gradient(170deg,#1944b4,#0c208b)!important;
     border-color:rgba(137,170,252,.30)!important;
   }
   html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly) :is(.ljr-admin-tile:not(.ljr-admin-tile-danger),.ljr-admin-action-grid>button:not(.ljr-admin-tile-danger),.ljr-editor-hub-grid>button,.cms-kind-grid>button) {
-    background-color:#153caa!important;
-    background-image:linear-gradient(180deg,#2552be,#183aa8 60%,#122c91)!important;
     border-color:rgba(143,178,252,.35)!important;
   }
   html body .liga-media-modal :is(.ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly) :is(.ljr-admin-tile-icon,.ljr-editor-hub-grid>button>b,.ljr-simple-icon) {
-    background-color:#1a43ad!important;
-    background-image:linear-gradient(145deg,#2757c4,#14369a)!important;
     border-color:rgba(136,185,255,.39)!important;
   }
 }
@@ -128,24 +74,11 @@
    [data-app-route="publicationCenter"],[data-app-route="recruitment"],
    [data-app-route="appInstall"],[data-app-route="agendaBuilder"],
    [data-app-route="credentialBuilder"]) #screen {
-    --ljr1420-page:#050951!important;
-    --ljr1420-panel:#12338d!important;
-    --ljr1420-card:#1742a1!important;
-    --ljr1420-field:#0d286e!important;
-    --ljr1420-canvas:linear-gradient(180deg,#153fbe 0%,#1135a0 24%,#0a227d 51%,#061458 77%,#030943 100%)!important;
-    --ljr1420-surface:linear-gradient(180deg,#1c49ae,#102c80 62%,#0a1d66)!important;
-    --ljr1420-button:linear-gradient(180deg,#2859c6,#173c9b)!important;
     color-scheme:dark;
-    background-color:#030943!important;
-    background-image:var(--ljr1420-canvas)!important;
     background-size:100% 100%!important;
     background-repeat:no-repeat!important;
   }
   /* Última regla de la misma capa: anula el degradado invertido de V1428. */
-  html body[data-app-route="leagueTools"] #screen,
-  html body[data-app-route="notifications"] #screen {
-    background:linear-gradient(180deg,#153fbe 0%,#10329c 23%,#0b227e 48%,#07165f 73%,#030943 100%)!important;
-  }
   /* La hoja exterior es la que posee el degradado; capas estructurales transparentes. */
   html body[data-app-route="leagueTools"] #screen :is(
      .v726-tools-page,.v60-tool-page,.v726-tools-content,.v726-tool-grid
@@ -161,14 +94,12 @@
   html body[data-app-route="leagueTools"] #screen :is(
      .v726-tools-hero,.v726-quick-section,.v726-tool-section,.v726-admin-section
   ){
-    background:linear-gradient(160deg,#1a44ae,#112e89 57%,#0b206d)!important;
     border-color:rgba(139,182,255,.28)!important;
     box-shadow:none!important;
   }
   html body[data-app-route="leagueTools"] #screen :is(
     .v726-quick-card,.v726-tool-card,.v734-tool-card,.v612-tools-entry.v726-admin-entry
   ){
-    background:linear-gradient(180deg,#2352be,#163b9e 57%,#102d87)!important;
     border-color:rgba(143,180,255,.32)!important;
     box-shadow:none!important;
   }
@@ -183,7 +114,6 @@
   html body[data-app-route="leagueTools"] #screen :is(
     .v734-tool-details-button,.v734-tool-detail-button
   ){
-    background:#19439e!important;
     border-color:rgba(144,189,255,.35)!important;
   }
   html body[data-app-route="leagueTools"] #screen :is(
@@ -198,18 +128,13 @@
     .v46-ref-device,.v46-ref-master,.v46-ref-setting,.v46-ref-category,
     .v46-ref-category-panel,.v1082-push,.v840-match-feed
   ){
-    background:linear-gradient(170deg,#1c47ad,#102a82)!important;
     border-color:rgba(133,175,255,.28)!important;
     box-shadow:none!important;
-  }
-  html body .v105-bottom[data-v105-route="notifications"]{
-    background:linear-gradient(180deg,#123aa7,#0a237c 58%,#050f52)!important;
   }
   html body .v105-bottom[data-v105-route="notifications"] :is(.v105-head,.v105-grid){
     background:transparent!important;box-shadow:none!important;
   }
   html body .v105-bottom[data-v105-route="notifications"] .v105-card{
-    background:linear-gradient(180deg,#214bb6,#123389)!important;
     box-shadow:none!important;
   }
   /* Secciones de administración del ZIP: modal exterior coloreado, texto interior
@@ -218,26 +143,7 @@
     .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
     .ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,
     .ljr-admin-v1081,.v1081-dialog
-  ){
-    --ljr1310-bg:#040b4b!important;
-    --ljr1310-surface:#12318b!important;
-    --ljr1310-card:#1b44ab!important;
-    --ljr1310-input:#0d296f!important;
-    --ljr1420-page:#040b4b!important;
-    --ljr1420-panel:#12318b!important;
-    --ljr1420-card:#1b44ab!important;
-    --ljr1420-field:#0d296f!important;
-    --ljr1420-canvas:linear-gradient(180deg,#1744b6,#113394 32%,#0a216f 65%,#040b4b)!important;
-    --ljr1420-surface:linear-gradient(170deg,#1e4ab0,#12328d)!important;
-    --ljr1420-button:linear-gradient(180deg,#2858c0,#173b96)!important;
-    background:var(--ljr1420-canvas)!important;color:#fff!important;
-  }
-  html body .liga-media-modal > section:is(
-    .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
-    .ljr-admin-picker,.ljr-admin-studio,.ljr-editor-dialog,
-    .ljr-admin-v1081,.v1081-dialog
-  ) > header{
-    background:linear-gradient(180deg,#1b49b2,#11328d)!important;
+  ){color:#fff!important;
   }
   html body .liga-media-modal :is(
     .ljr-admin-manage,.ljr-admin-cms,.ljr-admin-child,.ljr-admin-friendly,
@@ -245,7 +151,6 @@
   ) :is(.ljr-admin-area,.ljr-admin-intro,.ljr-simple-intro,.ljr-guide,
     .ljr-admin-howto,.ljr-admin-section,.ljr-editor-hub,.ljr-editor-note,
     .ljr-review-card,.ljr-review-insights,.ljr-review-empty,.ljr-admin-results){
-    background:linear-gradient(170deg,#1740a0,#102c82)!important;
     border-color:rgba(140,184,255,.3)!important;box-shadow:none!important;
   }
   html body .liga-media-modal :is(
@@ -264,7 +169,6 @@
   ) :is(.ljr-admin-tile:not(.ljr-admin-tile-danger),
     .ljr-admin-action-grid>button:not(.ljr-admin-tile-danger),
     .ljr-editor-hub-grid>button,.cms-kind-grid>button){
-    background:linear-gradient(180deg,#2352ba,#173b9a)!important;
     border-color:rgba(142,183,255,.36)!important;box-shadow:none!important;
   }
   /* No forzar colores, fondos ni filtros sobre logos, imágenes, SVG, video,

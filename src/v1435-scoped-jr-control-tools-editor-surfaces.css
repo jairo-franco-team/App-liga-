@@ -1,3 +1,4 @@
+/* V1438: capas interiores transparentes. La paleta única se define en v1437-jr-tools-royal-blue-image2.css. */
 /* V1435: Referencia azul rey de las capturas, SOLO tarjetas de JR Control,
    Más herramientas y el modal "Editar mi página". Sin fondo universal.
    Una pintura por cuadro, sin bandas internas de texto ni icono. */
@@ -6,8 +7,6 @@
   /* JR Control: resumen, acciones, listados y Registro/administración. */
   html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"])
   #screen .v562-page[data-v563-control] .v562-panel {
-    background-color:#09137d!important;
-    background-image:linear-gradient(180deg,#102a9a 0%,#091570 100%)!important;
     border-color:rgba(107,151,243,.36)!important;
     box-shadow:none!important;
   }
@@ -15,14 +14,11 @@
   #screen .v562-page[data-v563-control] :is(
     .v562-sync-grid>article,button.v562-card,.v562-server,.v562-selector>div
   ){
-    background-color:#101f8d!important;
-    background-image:linear-gradient(180deg,#1941b6 0%,#112e99 49%,#0a1a72 100%)!important;
     border-color:rgba(125,165,248,.38)!important;
     box-shadow:none!important;
   }
   html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"])
   #screen .v562-page[data-v563-control] button.v562-card:hover{
-    background:linear-gradient(180deg,#2052c4,#132989)!important;
     border-color:rgba(146,190,255,.6)!important;
   }
   html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"])
@@ -38,7 +34,6 @@
   }
   html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"])
   #screen .v562-page[data-v563-control] :is(.v562-selector select,.v563-tool-search>input){
-    background:#0c237a!important;
     box-shadow:none!important;
   }
 
@@ -47,8 +42,6 @@
   html body[data-app-route="leagueTools"] #screen :is(
     .v726-tools-hero,.v726-quick-section,.v726-tool-section,.v726-admin-section
   ){
-    background-color:#0b1b86!important;
-    background-image:linear-gradient(180deg,#1438a9,#0a1b79 100%)!important;
     box-shadow:none!important;
     border-color:rgba(125,163,252,.31)!important;
   }
@@ -57,8 +50,6 @@
     .v612-tools-entry.v726-admin-entry,.v60-tool-grid>.v60-tool-card,
     .v60-tools-featured-card
   ){
-    background-color:#10339c!important;
-    background-image:linear-gradient(180deg,#1b49ba 0%,#11318e 64%,#0d2076 100%)!important;
     box-shadow:none!important;
     border-color:rgba(134,178,255,.38)!important;
   }
@@ -82,8 +73,6 @@
   html body[data-app-route="leagueTools"] #screen
   :is(.v734-tool-details,.v734-tool-details-button,.v734-tool-detail-button,
        .v734-tool-go){
-    background:#12358f!important;
-    background-image:none!important;
     box-shadow:none!important;
     border-color:rgba(140,182,255,.38)!important;
   }
@@ -95,18 +84,10 @@
   /* "Editar mi página": el diálogo es la ÚNICA capa de color.
      El texto de ayuda no debe aparecer sobre otra franja azul rectangular. */
   html body .liga-media-modal > section.ljr-editor-dialog {
-    --ljr1310-bg:#050c65!important;
-    --ljr1310-surface:#0e2486!important;
-    --ljr1310-card:#12349a!important;
-    --ljr1310-input:#0b2073!important;
-    background-color:#071168!important;
-    background-image:linear-gradient(180deg,#1c47b9 0%,#102b95 33%,#0b1c75 68%,#060c59 100%)!important;
     border-color:rgba(141,181,250,.48)!important;
     box-shadow:none!important;
   }
-  html body .liga-media-modal > section.ljr-editor-dialog > header {
-    background:#1b45b1!important; /* opaco para que el sticky no mezcle texto */
-    background-image:none!important;
+  html body .liga-media-modal > section.ljr-editor-dialog > header { /* opaco para que el sticky no mezcle texto */
     box-shadow:none!important;
     border-bottom-color:rgba(135,180,255,.31)!important;
   }
@@ -126,7 +107,6 @@
   }
   html body .liga-media-modal > section.ljr-editor-dialog
   .ljr-editor-page-panel .ljr-editor-target :is(input,select){
-    background:#0b2278!important;
     border-color:rgba(134,174,249,.45)!important;
     box-shadow:none!important;
   }
@@ -135,8 +115,6 @@
     .ljr-editor-two-choice button,.ljr-editor-extra-actions button,
     .ljr-editor-audit-actions button
   ){
-    background-color:#14389c!important;
-    background-image:linear-gradient(180deg,#1d4aba,#143796 65%,#0f267d)!important;
     border-color:rgba(143,180,251,.43)!important;
     box-shadow:none!important;
   }
@@ -187,7 +165,6 @@
   html body[data-app-route="leagueTools"] #screen
     :is(.v726-quick-card,.v726-tool-card,.v734-tool-card,
       .v612-tools-entry.v726-admin-entry,.v60-tool-card,.v60-tools-featured-card) {
-    background:linear-gradient(180deg,#2452c2 0%,#173997 55%,#102577 100%)!important;
     box-shadow:none!important;
     border-color:rgba(147,182,255,.32)!important;
   }
@@ -197,8 +174,6 @@
     .ljr-admin-studio,.ljr-admin-v1081,.ljr-admin-cms,.ljr-admin-manage,
     .ljr-admin-child,.ljr-admin-friendly,.ljr-editor-dialog
   ) details.ljr-admin-howto {
-    background:linear-gradient(170deg,#1944b4,#0c208b)!important;
-    background-image:linear-gradient(170deg,#1944b4,#0c208b)!important;
     box-shadow:none!important;
     border-color:rgba(140,184,255,.30)!important;
   }
@@ -232,8 +207,6 @@
     .ljr-admin-studio,.ljr-admin-v1081,.ljr-admin-cms,.ljr-admin-manage,
     .ljr-admin-child,.ljr-admin-friendly,.ljr-editor-dialog
   ) .ljr-admin-preset-tools > input {
-    background:#102876!important;
-    background-image:none!important;
     box-shadow:none!important;
     border-color:rgba(121,172,249,.37)!important;
   }

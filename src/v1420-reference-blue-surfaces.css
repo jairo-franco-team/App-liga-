@@ -16,24 +16,24 @@ html :where(
   body .ljr-install-overlay .ljr-install-shell
 ) {
 --ljr1421-lines:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22430%22%20height%3D%22300%22%20viewBox%3D%220%200%20430%20300%22%20fill%3D%22none%22%3E%3Cg%20stroke-linecap%3D%22round%22%3E%3Cg%20stroke%3D%22%234486FF%22%20stroke-width%3D%225%22%20opacity%3D%22.22%22%3E%3Cpath%20d%3D%22M-53%2078C24-46%20110-43%20166%2018S295%20112%20466-11%22%2F%3E%3Cpath%20d%3D%22M-62%20196C27%2095%20102%2096%20166%20145S301%20232%20464%20101%22%2F%3E%3Cpath%20d%3D%22M-70%20262C28%20169%20117%20177%20183%20211S345%20269%20471%20169%22%2F%3E%3C%2Fg%3E%3Cg%20stroke%3D%22%2379AEFF%22%20stroke-width%3D%221.7%22%20opacity%3D%22.45%22%3E%3Cpath%20d%3D%22M-53%2078C24-46%20110-43%20166%2018S295%20112%20466-11%22%2F%3E%3Cpath%20d%3D%22M-62%20196C27%2095%20102%2096%20166%20145S301%20232%20464%20101%22%2F%3E%3Cpath%20d%3D%22M-70%20262C28%20169%20117%20177%20183%20211S345%20269%20471%20169%22%2F%3E%3C%2Fg%3E%3Cg%20stroke%3D%22%23326FFF%22%20stroke-width%3D%221%22%20opacity%3D%22.22%22%3E%3Cpath%20d%3D%22M-40%20120C48%2045%20117%2038%20181%2094S325%20157%20453%2047%22%2F%3E%3Cpath%20d%3D%22M-31%20298C47%20239%20124%20233%20193%20261S340%20314%20475%20230%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E")!important;
-  --ljr1420-page:#04113f!important;
-  --ljr1420-panel:#0b245c!important;
-  --ljr1420-card:#102d6b!important;
-  --ljr1420-field:#071d4c!important;
+  --ljr1420-page:#000040!important;
+  --ljr1420-panel:#000040!important;
+  --ljr1420-card:#000040!important;
+  --ljr1420-field:#000040!important;
   --ljr1420-line:rgba(143,186,255,.26)!important;
   --ljr1420-ink:#fff!important;
   --ljr1420-muted:#c2d4ee!important;
   --ljr1420-cyan:#00dbea!important;
-  --ljr1420-canvas:linear-gradient(180deg,#173bb3 0%,#102b89 24%,#091d63 53%,#04113f 100%)!important;
-  --ljr1420-surface:linear-gradient(180deg,#173b91 0%,#102b72 48%,#071c4d 100%)!important;
-  --ljr1420-button:linear-gradient(180deg,#204cc4,#153584)!important;
+  --ljr1420-canvas:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;
+  --ljr1420-surface:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;
+  --ljr1420-button:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;
   --ljr1310-bg:var(--ljr1420-page)!important;
   --ljr1310-surface:var(--ljr1420-panel)!important;
   --ljr1310-card:var(--ljr1420-card)!important;
   --ljr1310-input:var(--ljr1420-field)!important;
   --ljr1310-edge:var(--ljr1420-line)!important;
   --p1300-surface:var(--ljr1420-panel)!important;
-  --p1300-raised:#204cc4!important;
+  --p1300-raised:#000040!important;
   --p1300-deep:var(--ljr1420-field)!important;
   --p1300-border:var(--ljr1420-line)!important;
   --p1300-muted:var(--ljr1420-muted)!important;
@@ -46,7 +46,7 @@ html :where(
   --v1398-muted:var(--ljr1420-muted)!important;
   --v1398-buttons:var(--ljr1420-button)!important;
   --v1398-surface:var(--ljr1420-surface)!important;
-  --v1398-active:linear-gradient(145deg,#2046ad,#204cc4)!important;
+  --v1398-active:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;
   --v1340-field:var(--ljr1420-field)!important;
   --ljr-notice-button-bg:var(--ljr1420-button)!important;
   --ljr-notice-button-line:var(--ljr1420-line)!important;
@@ -73,8 +73,8 @@ html :where(
   body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) > header {
-background-color:#102d6b!important;
-  background-image:var(--ljr1421-lines),linear-gradient(155deg,#1438cd,#071f60)!important;
+background-color:#000040!important;
+  background-image:var(--ljr1421-lines),linear-gradient(180deg,#01079b 0%,#000040 100%)!important;
   background-size:100% 100%!important;
   background-repeat:no-repeat!important;
   border-bottom:1px solid var(--ljr1420-line)!important;
@@ -142,7 +142,7 @@ html :where(
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal,.v105-sponsors-modal,.v1126-motm-modal,.v105-schedule-modal)>.v105-dialog,
   body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
-) :is(input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=color]):not([type=range]):not([type=hidden]),select,textarea) {
+) :where(input:not([type=checkbox]):not([type=radio]):not([type=file]):not([type=color]):not([type=range]):not([type=hidden]),select,textarea) {
 box-sizing:border-box!important;
   min-width:0!important;
   max-width:100%!important;
@@ -174,7 +174,7 @@ html :where(
   body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(select option,select optgroup) {
-background:#071d4c!important;color:#fff!important;
+background:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;color:#fff!important;
 }
 
 html body[data-app-route="recruitment"] #screen #v190-recruitment-page .v190-community-select>.ljr-icon-picker {
@@ -203,7 +203,7 @@ box-sizing:border-box!important;
   height:auto!important;
   border:1px solid rgba(147,190,255,.29)!important;
   border-radius:13px!important;
-  background-color:#153584!important;
+  background-color:#000040!important;
   background-image:var(--ljr1420-button)!important;
   color:#fff!important;
   -webkit-text-fill-color:#fff!important;
@@ -222,8 +222,8 @@ html :where(
   body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(.v1130-history>button,.v1130-record button,.v1212-audit button,.v1223-insight button,.ljr-admin-tile,.cms-kind-grid>button,.cms-design-presets>button,.cms-form>button,.ljr-editor-two-choice>button,.ljr-editor-extra-actions>button,.ljr-editor-hub-grid>button,.ljr-editor-tools>button,.ljr-editor-bottom>button,.ljr-editor-smart-tools>button,.ljr-review-tabs>button,.ljr-review-automation button,.ljr-review-footer button,.ljr-smart-actions button,.ljr-smart-tasks button,.liga-media-actions>button,.ljr-guide>summary,.v569-primary,.v569-secondary,.v569-link,.v569-methods button,.v1300-primary,.v1300-actions button,.v1300-permission button,.v1300-link,.v1300-pass-help button,.v1300-ai-actions button,.v105-btn,.v105-actions button,.v1125-toolbar button,.v1125-form-actions button,.v1126-toolbar button,.v1126-tools button,.v1126-save,.v1111-event-actions button,.v1111-bottom button,.csvpro-button,.v1232-actions button,.v1210-alert-tools-row>button,.v1210-official-link,.v919-action,.v875-agenda-chips button,.mh-actions button,.v1130-bar button,.v1130-source-actions button,.v1130-card-actions button,.v1240-buttons button,.v190-recruit-card button,.v190-publish-card button,.v1390-panel button,.v1005-step-grid>button,.capture-actions>button,.v1004-pub-primary,.v1004-pub-mini,.v1004-pub-editor,.ljr-install-primary,.ljr-install-secondary,.ljr-install-choice,.ljr-install-utilities button,.ljr-install-utilities a,.ljr-backup-primary,.ljr-backup-section button,.v840-head-actions button,.v840-feed-tabs button,.v1073-dashboard-actions button,.v1215-action-row button,.v1215-query-row button,.v1215-suggestions button,.v970-quick-buttons button,.v970-insight-toggle,.v618-q-nav button,.v618-q-actions button,.v196-toolbar button,.ljr-layout-gallery>button,.ljr-studio-actions button,.ljr-picker-open,.ljr-picker-options>button):is(.active,.is-active,.selected,[aria-pressed=true],[aria-selected=true],.v569-primary,.v1300-primary,.ljr-install-primary,.ljr-admin-tile-primary,.v1126-save,.is-save) {
-background-color:#2046ad!important;
-  background-image:linear-gradient(145deg,#2046ad,#173b91)!important;
+background-color:#000040!important;
+  background-image:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;
   border-color:rgba(85,227,241,.65)!important;
   box-shadow:inset 0 -2px rgba(85,227,241,.8),0 4px 12px rgba(1,10,53,.2)!important;
 }
@@ -274,8 +274,8 @@ box-sizing:border-box!important;
   padding:0!important;
   border:1px solid rgba(137,194,255,.3)!important;
   border-radius:13px!important;
-  background-color:#153573!important;
-  background-image:linear-gradient(145deg,rgba(75,93,224,.24),rgba(17,22,106,.25))!important;
+  background-color:#000040!important;
+  background-image:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;
   color:#85edf6!important;
   -webkit-text-fill-color:#85edf6!important;
   font-size:23px!important;
@@ -317,7 +317,7 @@ html :where(
   body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(.ljr-admin-action-grid,.cms-kind-grid)>:nth-child(even) :is(.ljr-admin-tile-icon,.ljr-simple-icon) {
-color:#c5ddff!important;-webkit-text-fill-color:#c5ddff!important;background-color:#1a3b86!important;
+color:#c5ddff!important;-webkit-text-fill-color:#c5ddff!important;background-color:#000040!important;
 }
 
 html :where(
@@ -366,7 +366,7 @@ box-sizing:border-box!important;
   margin:0!important;padding:0!important;
   border:1px solid rgba(143,186,255,.32)!important;
   border-radius:13px!important;
-  background:#102d6b!important;
+  background:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;
   color:#fff!important;
   -webkit-text-fill-color:#fff!important;
   font-size:24px!important;line-height:1!important;
@@ -385,7 +385,7 @@ box-sizing:border-box!important;
   padding:9px!important;
   border:1px solid rgba(151,190,250,.35)!important;
   border-radius:12px!important;
-  background:#071d4c!important;
+  background:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;
   color:#d8e6ff!important;
   -webkit-text-fill-color:#d8e6ff!important;
   min-height:44px!important;
@@ -403,7 +403,7 @@ padding:10px 12px!important;margin:0 8px 0 0!important;
   max-width:64%!important;
   border:1px solid rgba(153,206,255,.4)!important;
   border-radius:9px!important;
-  background:#204cc4!important;color:#fff!important;
+  background:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;color:#fff!important;
   font:600 12px/1.3 system-ui,sans-serif!important;
   -webkit-text-fill-color:#fff!important;
 }
@@ -452,37 +452,37 @@ html :where(
 opacity:.55!important;cursor:not-allowed!important;
 }
 
-html body[data-app-route]:not(:is([data-app-route="profile"],[data-app-route="teams"],[data-app-route="home"],[data-app-route="competition"],[data-app-route="more"],[data-app-route="fantasy"],[data-app-route="quizArena"],[data-app-route="moreLess"],[data-app-route="predictor"],[data-app-route="moments"],[data-app-route="video"])) {
+html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"],[data-app-route="players"],[data-app-route="leagueTools"],[data-app-route="tableExport"],[data-app-route="bracketBuilder"],[data-app-route="matchday"]) {
 --ljr1421-lines:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22430%22%20height%3D%22300%22%20viewBox%3D%220%200%20430%20300%22%20fill%3D%22none%22%3E%3Cg%20stroke-linecap%3D%22round%22%3E%3Cg%20stroke%3D%22%234486FF%22%20stroke-width%3D%225%22%20opacity%3D%22.22%22%3E%3Cpath%20d%3D%22M-53%2078C24-46%20110-43%20166%2018S295%20112%20466-11%22%2F%3E%3Cpath%20d%3D%22M-62%20196C27%2095%20102%2096%20166%20145S301%20232%20464%20101%22%2F%3E%3Cpath%20d%3D%22M-70%20262C28%20169%20117%20177%20183%20211S345%20269%20471%20169%22%2F%3E%3C%2Fg%3E%3Cg%20stroke%3D%22%2379AEFF%22%20stroke-width%3D%221.7%22%20opacity%3D%22.45%22%3E%3Cpath%20d%3D%22M-53%2078C24-46%20110-43%20166%2018S295%20112%20466-11%22%2F%3E%3Cpath%20d%3D%22M-62%20196C27%2095%20102%2096%20166%20145S301%20232%20464%20101%22%2F%3E%3Cpath%20d%3D%22M-70%20262C28%20169%20117%20177%20183%20211S345%20269%20471%20169%22%2F%3E%3C%2Fg%3E%3Cg%20stroke%3D%22%23326FFF%22%20stroke-width%3D%221%22%20opacity%3D%22.22%22%3E%3Cpath%20d%3D%22M-40%20120C48%2045%20117%2038%20181%2094S325%20157%20453%2047%22%2F%3E%3Cpath%20d%3D%22M-31%20298C47%20239%20124%20233%20193%20261S340%20314%20475%20230%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E")!important;
-  --ljr1421-page-canvas:linear-gradient(180deg,#173bb3 0%,#102b89 24%,#091d63 53%,#04113f 100%)!important;
-  --ljr1421-head-canvas:var(--ljr1421-lines),linear-gradient(180deg,#1747d5 0%,#103584 48%,#04113f 100%)!important;
+  --ljr1421-page-canvas:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;
+  --ljr1421-head-canvas:var(--ljr1421-lines),linear-gradient(180deg,#01079b 0%,#000040 100%)!important;
 }
 
-html body[data-app-route]:not(:is([data-app-route="profile"],[data-app-route="teams"],[data-app-route="home"],[data-app-route="competition"],[data-app-route="more"],[data-app-route="fantasy"],[data-app-route="quizArena"],[data-app-route="moreLess"],[data-app-route="predictor"],[data-app-route="moments"],[data-app-route="video"])) #screen {
-background-color:#04113f!important;
+html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"],[data-app-route="players"],[data-app-route="leagueTools"],[data-app-route="tableExport"],[data-app-route="bracketBuilder"],[data-app-route="matchday"]) #screen {
+background-color:#000040!important;
   background-image:var(--ljr1421-page-canvas)!important;
   background-position:center top!important;
   background-size:100% 500px,100% 100%!important;
   background-repeat:no-repeat!important;
 }
 
-html body[data-app-route]:not(:is([data-app-route="profile"],[data-app-route="teams"],[data-app-route="home"],[data-app-route="competition"],[data-app-route="more"],[data-app-route="fantasy"],[data-app-route="quizArena"],[data-app-route="moreLess"],[data-app-route="predictor"],[data-app-route="moments"],[data-app-route="video"])) :is(#app>.topbar,#screen .ljr-scroll-header) {
-background-color:#0b0b60!important;
+html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"],[data-app-route="players"],[data-app-route="leagueTools"],[data-app-route="tableExport"],[data-app-route="bracketBuilder"],[data-app-route="matchday"]) :is(#app>.topbar,#screen .ljr-scroll-header) {
+background-color:#000040!important;
   background-image:var(--ljr1421-head-canvas)!important;
   background-position:center top!important;
   background-size:100% 100%!important;
   background-repeat:no-repeat!important;
 }
 
-html body[data-app-route]:not(:is([data-app-route="profile"],[data-app-route="teams"],[data-app-route="home"],[data-app-route="competition"],[data-app-route="more"],[data-app-route="fantasy"],[data-app-route="quizArena"],[data-app-route="moreLess"],[data-app-route="predictor"],[data-app-route="moments"],[data-app-route="video"])) #screen :is(.v642-publications-page,.v1215-page,.v1073-page,.v1073-dashboard-page) {
+html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"],[data-app-route="players"],[data-app-route="leagueTools"],[data-app-route="tableExport"],[data-app-route="bracketBuilder"],[data-app-route="matchday"]) #screen :is(.v642-publications-page,.v1215-page,.v1073-page,.v1073-dashboard-page) {
 background:transparent!important;
 }
 
-html body[data-app-route]:not(:is([data-app-route="profile"],[data-app-route="teams"],[data-app-route="home"],[data-app-route="competition"],[data-app-route="more"],[data-app-route="fantasy"],[data-app-route="quizArena"],[data-app-route="moreLess"],[data-app-route="predictor"],[data-app-route="moments"],[data-app-route="video"])) #screen :is(.v92-match-actions,.v92-match-actions button,.v642-action-icon,.v642-preview-icon,.v569-inline button) {
-background-color:#153584!important;background-image:linear-gradient(180deg,#204cc4,#153584)!important;border-color:rgba(137,162,242,.3)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
+html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"],[data-app-route="players"],[data-app-route="leagueTools"],[data-app-route="tableExport"],[data-app-route="bracketBuilder"],[data-app-route="matchday"]) #screen :is(.v92-match-actions,.v92-match-actions button,.v642-action-icon,.v642-preview-icon,.v569-inline button) {
+background-color:#000040!important;background-image:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;border-color:rgba(137,162,242,.3)!important;color:#fff!important;-webkit-text-fill-color:#fff!important;
 }
 
-html body[data-app-route]:not(:is([data-app-route="profile"],[data-app-route="teams"],[data-app-route="home"],[data-app-route="competition"],[data-app-route="more"],[data-app-route="fantasy"],[data-app-route="quizArena"],[data-app-route="moreLess"],[data-app-route="predictor"],[data-app-route="moments"],[data-app-route="video"])) #screen .v92-source {
+html body:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="recruitment"],[data-app-route="credentialBuilder"],[data-app-route="agendaBuilder"],[data-app-route="appInstall"],[data-app-route="notifications"],[data-app-route="publications"],[data-app-route="publicationCenter"],[data-app-route="historyLog"],[data-app-route="matchCenter"],[data-app-route="match-center"],[data-app-route="match"],[data-app-route="weatherFields"],[data-app-route="quiniela"],[data-app-route="players"],[data-app-route="leagueTools"],[data-app-route="tableExport"],[data-app-route="bracketBuilder"],[data-app-route="matchday"]) #screen .v92-source {
 background:transparent!important;
 }
 
@@ -507,7 +507,7 @@ html :where(
   body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(button,summary):not(:is(.sp-danger,.is-danger,.ljr-admin-tile-danger,.v569-danger,.logout,[data-md-action="goal"])) {
-  background-color:#153584!important;
+  background-color:#000040!important;
   background-image:var(--ljr1420-button)!important;
   border-color:var(--ljr1420-line)!important;
   color:#fff!important;
@@ -532,9 +532,9 @@ html :where(
   body .v105-modal:is(.v875-meeting-modal,.v1130-calendar-pro,.v1125-officials-modal,.v1126-delegate-modal,.v1111-incidents-modal,.v1212-csv-modal,.v920-registration-modal,.v105-poll-modal,.v105-suspension-modal,.v639-sanction-modal,.v1107-admin-modal,.v105-sponsors-modal,.v1126-motm-modal,.v105-schedule-modal)>.v105-dialog,
   body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
-) :is(input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]):not([type=file]),select,textarea,.v164-history-search-wrap,.v562-search,.sp-search) {
+) :where(input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color]):not([type=file]),select,textarea,.v164-history-search-wrap,.v562-search,.sp-search) {
   background-color:var(--ljr1420-field)!important;
-  background-image:linear-gradient(180deg,#102960,#071d4c)!important;
+  background-image:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;
   border-color:var(--ljr1420-line)!important;
   color:#fff!important;
   -webkit-text-fill-color:#fff!important;
@@ -547,8 +547,8 @@ html :where(
   body:not([data-app-route="profile"]) #screen :is(.v1215-panel,.v1073-dashboard,.v618-q-card,.v196-toolbar,.v196-stream-panel,.ljr-cms-entry),
   body .ljr-install-overlay .ljr-install-shell
 ) :is(.sp-intro-icon,.v1126-trophy,.v1240-head>span,.v1111-shortcuts button,.v642-action-icon) {
-  background-color:#1a3b86!important;
-  background-image:linear-gradient(160deg,#224598,#153584)!important;
+  background-color:#000040!important;
+  background-image:linear-gradient(180deg,#01079b 0%,#000040 100%)!important;
   border-color:var(--ljr1420-line)!important;
   color:#bdeaf9!important;
 }
@@ -631,7 +631,7 @@ html body .v105-modal .v105-dialog :is(.sp-primary,.v105-btn.primary) {
 /* V1427: :where mantiene las reglas compartidas sin superar los detalles locales.
    Estructuras transparentes; el degradado pertenece al cuadro exterior. */
 html body:not([data-app-route="profile"]) #screen > .ljr-cms-entry {
-  background:var(--ljr1420-surface)!important;box-shadow:none!important;
+  background:transparent!important;box-shadow:none!important;
 }
 html body[data-app-route="matchday"] #screen :is(.v60-tool-page,.v60-tool-section,#v160-matchday-extra,.v164-matchday-center),
 html body[data-app-route="players"] #screen :is(.v562-registry,.v562-players) {

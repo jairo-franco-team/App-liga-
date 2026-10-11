@@ -43,15 +43,15 @@ try{
  const page=await openApp(resolve(root,'dist'));
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  const routes=['accountLogin','accountRegister','recruitment','credentialBuilder','agendaBuilder','appInstall','notifications','publications','publicationCenter','historyLog','leagueTools','tableExport','bracketBuilder','weatherFields','following','scorers','history','stats','matchCenter','teams','home','competition','more','profile'];
- const artwork=new Set(['teams','home','competition','more','profile']);
+ const artwork=new Set(['teams','home','competition','more','profile','following','scorers','history','stats']);
  for(const route of routes){
   await go(page,route);
   const paint=await page.locator('#screen').evaluate(e=>({background:getComputedStyle(e).backgroundImage,color:getComputedStyle(e).backgroundColor}));
   if(route.startsWith('account')){
    assert.match(paint.background,/rgb\(5, 7, 94\)/,route+' restored account night blue');
   }else if(!artwork.has(route)){
-   assert.equal(paint.color,'rgb(4, 17, 63)',route+' deep blue base');
-   assert.match(paint.background,/rgb\(23, 59, 179\)/,route+' deep blue');
+   assert.equal(paint.color,'rgb(0, 0, 64)',route+' deep blue base');
+   assert.match(paint.background,/rgb\(1, 7, 155\)/,route+' deep blue');
    assert.doesNotMatch(paint.background,/data:image\/svg\+xml/,route+' clean dark canvas');
   }
   if(route==='recruitment'){
