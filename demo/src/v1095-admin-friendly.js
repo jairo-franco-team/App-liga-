@@ -45,6 +45,10 @@ function addGuide(section,kind){
  const conf=instructions[kind];if(!conf)return;
  const intro=document.createElement('div');intro.className='ljr-simple-intro';
  intro.innerHTML='<span class="ljr-simple-icon" aria-hidden="true">'+safe(conf.icon)+'</span><div><strong>Así se usa</strong><p>'+safe(conf.intro)+'</p></div>';
+ // Guías del CMS solicitado: iconos Miapp originales, sin depender del emoji del dispositivo.
+ const guideIcon={news:'news',design:'image',page:'edit',cms:'news',manage:'settings'}[kind];
+ const original=guideIcon&&window.LJR_ICONS?.node(guideIcon);
+ if(original)intro.querySelector('.ljr-simple-icon').replaceChildren(original);
  const guide=document.createElement('details');guide.className='ljr-guide';
  guide.innerHTML='<summary>Ver instrucciones paso a paso</summary><ol>'+conf.steps.map(v=>'<li>'+safe(v)+'</li>').join('')+'</ol>';
  const header=section.querySelector(':scope>header');if(header){header.after(intro);intro.after(guide)}else{section.prepend(guide);section.prepend(intro)}
