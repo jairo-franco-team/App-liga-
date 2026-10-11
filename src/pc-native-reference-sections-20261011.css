@@ -386,3 +386,42 @@ body.lj-desktop .ds-page .ds-tab.active,
 body.lj-desktop .ds-page .ds-day.active{
  background:#064af1!important;border-color:#064af1!important;color:#fff!important
 }
+
+/* Menús reales Gaming, Datos y Más: flotan sobre el contenido del portal PC. */
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-navigation{position:relative;z-index:150}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-navigation .ljpc-pc-wide{
+ overflow:visible!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-navigation nav{
+ overflow:visible!important;flex-wrap:nowrap!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-drop-wrap{
+ flex:0 0 auto;position:relative;isolation:isolate
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-drop-wrap>.ljpc-pc-popover{
+ position:absolute;top:calc(100% + 6px);left:0;width:230px;min-width:215px;
+ z-index:1000;padding:6px;display:flex;flex-direction:column;gap:1px;
+ border:1px solid #295bbb;border-radius:9px;background:#070c48;
+ box-shadow:0 18px 45px #000727c4
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-drop-wrap>.ljpc-pc-popover[hidden]{
+ display:none!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-drop-wrap>.ljpc-pc-popover>button{
+ width:100%;border:0!important;border-radius:5px!important;
+ background:transparent!important;color:#eaf3ff!important;
+ min-height:41px!important;padding:10px 12px!important;
+ text-align:left!important;font-size:12px!important;font-weight:600!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-drop-wrap>.ljpc-pc-popover>button:hover{
+ background:#163d95!important;color:#39efaa!important
+}
+html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-drop-wrap.open>button{
+ background:#12dcea!important;color:#031749!important
+}
+@media(max-width:1160px){
+ html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-navigation nav{gap:1px!important}
+ html.ljpc-pc-native-mode body.ljpc-native-route .ljpc-pc-navigation nav button{
+  padding-inline:8px!important;font-size:10px!important
+ }
+}
