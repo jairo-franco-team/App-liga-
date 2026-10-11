@@ -154,8 +154,11 @@ function sync(){
  }
  const screen=document.getElementById('screen');
  if(!screen?.parentNode)return;
- if(!document.getElementById('ljpc-unified-pc-header'))
-  screen.insertAdjacentHTML('beforebegin',navMarkup());
+ if(!document.getElementById('ljpc-unified-pc-header')){
+  const nativeTop=document.getElementById('ljpc-pc-top')||document.getElementById('ljpc-native-toolbar');
+  const anchor=nativeTop?.parentNode===screen.parentNode?nativeTop:screen;
+  anchor.insertAdjacentHTML('beforebegin',navMarkup());
+ }
  if(!document.getElementById('ljpc-unified-pc-footer'))
   screen.insertAdjacentHTML('afterend',footerMarkup());
  selectNav();
