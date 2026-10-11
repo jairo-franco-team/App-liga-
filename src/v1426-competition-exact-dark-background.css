@@ -1,0 +1,55 @@
+/* V1426 · Restauracion exacta del color de la captura 1002062239.
+ * Referencia: fondo del Cuadro y Clasificacion #000040; barra superior azul rey
+ * #14218c -> #18299b. No se cambia la geometria, la navegacion ni el estado.
+ * Se carga DESPUES de todos los CSS previos, dentro de su misma cascade layer.
+ */
+@layer ljr-reference-surfaces {
+ @media screen {
+  /* La cabecera NO debe oscurecerse junto con el lienzo inferior. */
+  html body[data-app-route="competition"] :is(
+    .topbar,#app>.topbar,.app-shell>.topbar,.ljr-scroll-header
+  ) {
+    background-color:#14218c!important;
+    background-image:
+      linear-gradient(135deg,transparent 31%,rgba(116,157,246,.10) 31.3%,transparent 31.7%),
+      linear-gradient(157deg,transparent 68%,rgba(117,157,246,.10) 68.3%,transparent 68.8%),
+      linear-gradient(180deg,#14218c 0%,#18299b 100%)!important;
+    background-repeat:no-repeat!important;
+  }
+
+  /* El area BAJO la cabecera es azul #000040 uniforme (muestra real). */
+  html body[data-app-route="competition"] #screen,
+  html body.v40-standings-master[data-app-route="competition"] #screen {
+    background:#000040!important;
+    background-color:#000040!important;
+    background-image:none!important;
+  }
+  html body[data-app-route="competition"] #screen :is(
+    .v12-bracket-reference,
+    .v12-standings-reference,
+    .v40-standings,
+    .v40-standings-host,
+    .v12-fixtures-reference,
+    .v12-fixtures-host,
+    .ljr-knockout
+  ) {
+    background:#000040!important;
+    background-color:#000040!important;
+    background-image:none!important;
+  }
+  /* Mantener oscuro también el fondo visible al desplazar las tarjetas. */
+  html body.v40-standings-master[data-app-route="competition"],
+  html body[data-app-route="competition"] .v12-bracket-reference :is(
+    .v12-bracket-board,.v12-bracket-brackets,.v12-bracket-scroll
+  ) {
+    background-color:#000040!important;
+  }
+  html body[data-app-route="competition"] #screen>.tabs {
+    background:#000040!important;
+    background-image:none!important;
+  }
+
+  /* Deliberadamente NO tocamos botones de Clasificacion/Cuadro,
+     flechas, compartir, Play-off cian, tarjetas de equipos ni eventos. */
+ }
+}
