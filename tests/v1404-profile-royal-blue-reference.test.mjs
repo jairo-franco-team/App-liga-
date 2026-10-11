@@ -33,10 +33,22 @@ test('V1404: incluye ajustes, registro y modales; mantiene contrastes y acciones
  assert.ok(!/pointer-events:\s*none!important/i.test(theme));
 });
 
-test('V1404: nueva hoja final se publica después de los estilos antiguos, cache nueva para Android',()=>{
- const last='src/v1402-account-admin-royal-blue.css?v=20261010-v1404-cobalto-royal';
- assert.ok(html.includes(last),'Missing V1404 link');
+test('V1405: hoja azul rey final publicada con cache nueva para Android',()=>{
+ const last='src/v1402-account-admin-royal-blue.css?v=20261010-v1405-royal-blue-4169e1';
+ assert.ok(html.includes(last),'Missing V1405 link');
  assert.equal(html.split('src/v1402-account-admin-royal-blue.css?v=').length,2);
  for(const older of ['src/v1387-profile-account-night-polish.css','src/v1396-profile-visual-harmony.css','src/account-bright-blue-unified-20261010.css'])
  assert.ok(html.indexOf(older)>=0 && html.indexOf(older)<html.indexOf(last),'Style order '+older);
+});
+
+test('V1405: Mi cuenta usa azul rey real #4169E1 sin cambios funcionales',()=>{
+ assert.ok(theme.includes('V1405 - AZUL REY PURO #4169E1'), 'Nueva paleta royal blue debe estar presente');
+ for(const hex of ['#4169E1','#3474D4','#3073D5','#2B6BD4','#265EC6'])
+   assert.ok(theme.includes(hex), 'Falta color de la nueva paleta '+hex);
+ for(const token of ['[data-app-route="profile"]','[data-app-route^="account"]',
+  '[aria-label="Ajustes de la aplicación"]','[aria-label="Mi avatar y mi camiseta"]',
+  '.v569-field input','.v1300-panel'])
+   assert.ok(theme.includes(token), 'No se cubrio '+token);
+ const patch=theme.slice(theme.indexOf('V1405 - AZUL REY PURO'));
+ assert.ok(!/pointer-events\s*:\s*none|javascript:|on(click|change|submit)\s*=/i.test(patch),'Paleta debe ser solo visual');
 });
