@@ -4,43 +4,10 @@
    Mantener la sección MÁS y su balón originales intactos. */
 @layer ljr-reference-surfaces {
 @media screen {
-  /* 1. Cuadro, clasificación y partidos: el fondo NO debe ser negro plano.
-     El gradiente vive en #screen; los wrappers internos son transparentes. */
-  html body[data-app-route="competition"] {
-    background-color:#070b68!important;
-  }
-  html body[data-app-route="competition"] #screen#screen#screen,
-  html body.v40-standings-master[data-app-route="competition"] #screen#screen#screen {
-    background-color:#070b68!important;
-    background-image:linear-gradient(180deg,#101cb0 0%,#091388 26%,#070f72 57%,#05094b 100%)!important;
-    background-repeat:no-repeat!important;
-    background-size:100% 100%!important;
-  }
-  html body[data-app-route="competition"] #screen#screen#screen :is(
-    .v12-bracket-reference,.v12-standings-reference,.v40-standings,
-    .v40-standings-host,.v40-content,.v12-fixtures-reference,
-    .v12-fixtures-host,.v12-bracket-stage-tabs,.v12-bracket-board,
-    .v12-bracket-brackets,.v12-bracket-scroll,.v12-bracket-route,
-    .ljr-knockout
-  ),
-  html body[data-app-route="competition"] #screen#screen#screen > .tabs {
-    background-color:transparent!important;
-    background-image:none!important;
-  }
-  html body[data-app-route="competition"] #screen#screen#screen .ljr-knockout {
-    --ko-ground:#07116d!important;
-    --ko-card:#101b83!important;
-    background:transparent!important;
-  }
-  html body[data-app-route="competition"] #screen#screen#screen .ljr-knockout .ljr-ko-tabs button:not(.active) {
-    background:#152578!important;
-    color:#f8f9ff!important;
-  }
-  html body[data-app-route="competition"] #screen#screen#screen .ljr-knockout :is(.ljr-ko-club,.ljr-ko-card) {
-    background:#111c85!important;
-    color:#f9fbff!important;
-  }
-  /* La pestaña cyan de Play-off y el botón blanco de Cuadro permanecen igual. */
+  /* V1430: Se retiró la sobreescritura de Competición que anulaba V1426.
+     Clasificación y Cuadro usan #000040 desde
+     v1426-competition-exact-dark-background.css.
+     Conserva Play-off, selector, tarjetas y cabecera sin cambios. */
 
   /* 2. Herramientas: se usa el azul intenso del menú MÁS, de arriba a abajo. */
   html body[data-app-route="leagueTools"],
