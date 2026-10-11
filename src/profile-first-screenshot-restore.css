@@ -1,0 +1,85 @@
+/* Perfil clásico de la primera captura: royal blue discreto / tarjeta degradada.
+   Esta hoja AISLADA evita que futuras capas generales de Cuenta cambien Perfil.
+   Nunca modifica roles, eventos, navegación, formularios ni otros módulos. */
+html body[data-app-route="profile"] #screen#screen#screen#screen#screen{
+  background-color:#0c1651!important;
+  background-image:linear-gradient(180deg,#122665 0%,#0c1954 53%,#080f3c 100%)!important;
+  color:#fff!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v12-profile-card[data-v569-owned],
+html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v12-profile-card:has(.v569-profile-hero){
+  background-color:#203a80!important;
+  background-image:linear-gradient(145deg,#2d57a0 0%,#294a85 52%,#101d53 100%)!important;
+  border:1px solid rgba(166,199,249,.69)!important;
+  border-radius:25px!important;
+  box-shadow:0 11px 25px rgba(4,14,50,.2),inset 0 1px 0 rgba(255,255,255,.12)!important;
+  color:#fff!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v12-profile-card[data-v569-owned] .v569-profile-hero{
+  background:transparent!important;background-image:none!important;border:0!important;box-shadow:none!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-avatar{
+  border:2px solid #e7c48e!important;box-shadow:0 0 0 3px rgba(231,196,142,.13)!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-copy small{
+  color:#efd1a1!important;-webkit-text-fill-color:#efd1a1!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-copy p{
+  color:#c5d3eb!important;-webkit-text-fill-color:#c5d3eb!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-copy :is(h1,b){
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-buttons>button{
+  background-color:#213e81!important;
+  background-image:linear-gradient(155deg,#3059a7,#1a316c)!important;
+  border:1px solid rgba(166,191,241,.64)!important;
+  border-radius:15px!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14)!important;
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-buttons>button:first-child{
+  background-color:#3366b4!important;
+  background-image:linear-gradient(150deg,#3c72c2,#29539a)!important;
+  border-color:#e5c895!important;
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-account-menu,
+html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v12-profile-menu{
+  background:transparent!important;background-image:none!important;border:0!important;box-shadow:none!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-account-menu>button,
+html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v12-profile-menu>.v12-profile-row,
+html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v12-profile-menu>.ljr-profile-action-row{
+  background-color:#192f65!important;
+  background-image:linear-gradient(180deg,#244078 0%,#142652 100%)!important;
+  border:0!important;
+  border-bottom:1px solid rgba(165,190,238,.43)!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-account-menu>button>span,
+html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v12-profile-menu .v12-profile-row-icon{
+  background-color:rgba(115,145,199,.34)!important;
+  background-image:none!important;
+  border:0!important;border-radius:2px!important;
+  color:#d0dfff!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-account-menu>button>span svg,
+html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v12-profile-menu .v12-profile-row-icon svg{
+  color:#d1e1ff!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-account-menu>button>b,
+html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v12-profile-menu .v12-profile-row-label{
+  color:#fff!important;-webkit-text-fill-color:#fff!important;
+}
+html body[data-app-route="profile"] #screen#screen#screen#screen#screen .v569-profile-account-menu>button.logout>b{
+  color:#ffb4c4!important;-webkit-text-fill-color:#ffb4c4!important;
+}
+/* Herramientas editoriales existentes; no muestra herramientas a no autorizados. */
+html body[data-app-route="profile"] #screen#screen#screen#screen#screen >.ljr-cms-entry{
+  background-color:#0b2057!important;
+  background-image:linear-gradient(155deg,#142d6e,#0a174a)!important;
+  border:1px solid rgba(125,164,237,.45)!important;
+}
