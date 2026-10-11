@@ -70,5 +70,6 @@ function generic(r){const m=pageMeta[r]||pageMeta.more;return `<div class="deskt
 function render(){if(!desktop())return;document.body.classList.add('lj-desktop');document.documentElement.classList.toggle('ljpc-forced-desktop',mode()==='desktop');const h=host();if(!h)return;const r=route();if(window.LJR_PC_NATIVE_ROUTES?.has(r))return;h.innerHTML=r==='home'?home():generic(r)}
 function click(e){const b=e.target.closest('[data-desk-route]');if(!b)return;e.preventDefault();go(b.dataset.deskRoute)}
 document.addEventListener('click',click);window.addEventListener('hashchange',()=>setTimeout(render,0));let t;window.addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(()=>{if(desktop())render();else if(document.body.classList.contains('lj-desktop'))location.reload()},120)});setTimeout(render,0);
+window.addEventListener('ljr:desktop-home-request',()=>{if(desktop()&&route()==='home')render()});
 window.addEventListener('ljr:official-data',()=>{if(!desktop()||route()!=='home')return;const strip=host()?.querySelector('.desk-fixtures');if(strip)strip.outerHTML=fixtureStrip();const moments=host()?.querySelector('.desk-moments');if(moments)moments.innerHTML=desktopOfficialTeams().slice(0,7).map((n,i)=>`<button class="desk-moment" data-desk-route="${i%2?'scorers':'vote'}"><b>${n}</b></button>`).join('')});
 })();
