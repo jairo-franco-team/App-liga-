@@ -32,7 +32,8 @@ test('Original HTML bridge and shell parse, route via messages, official fixture
  assert.match(shell,/pcExactFixtures\(\)/);
  assert.match(shell,/window\.LJR_PC_NATIVE_ROUTES\?\.has\(r\)/);
  assert.match(shell,/if\(!desktop\(\)\)return/);
- assert.match(index,/desktop-shell\.js\?v=20261011-html-exacto-from-upload/);
+ // El identificador cambia cuando se actualiza el diseño PC y se invalida caché.
+ assert.match(index,/desktop-shell\.js\?v=20261011-(?:html-exacto-from-upload|navy-original-restore-v1)/);
  assert.ok(!html.includes('window.top.location='));
 });
 
