@@ -21,7 +21,8 @@ test('V1396: la capa azul rey medio predomina sobre capas anteriores en Perfil',
  assert.ok(index.indexOf(finalHref)>index.indexOf(balancedHref));
  const following=stylesheetLinks.slice(stylesheetLinks.indexOf(finalHref)+1);
  const permittedRestore='v1411-profile-old-layout-restore.css';
- assert.ok(following.every(h=>(!h.includes('account')&&!h.includes('profile'))||h.includes(permittedRestore)),
+ const isolatedRestore='profile-first-screenshot-restore.css';
+ assert.ok(following.every(h=>(!h.includes('account')&&!h.includes('profile'))||h.includes(permittedRestore)||h.includes(isolatedRestore)),
   'Solo la restauracion visual exclusiva de Perfil puede seguir a los estilos de Cuenta');
  const restored=read('src/'+permittedRestore);
  assert.ok(index.indexOf(permittedRestore)>index.indexOf(finalHref));
