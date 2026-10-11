@@ -52,7 +52,7 @@ test('mode=mobile and mode=apk do not mount native PC header',()=>{
   };
   const context={window:{addEventListener:()=>{}},document,
    location:{search:'?mode='+mode,hash:'#/predictorSix'},
-   innerWidth:1366,requestAnimationFrame:cb=>cb()};
+   innerWidth:1366,URLSearchParams,requestAnimationFrame:cb=>cb()};
   vm.runInNewContext(script,context);
   assert.ok(typeof listeners.DOMContentLoaded==='function');
   listeners.DOMContentLoaded();
