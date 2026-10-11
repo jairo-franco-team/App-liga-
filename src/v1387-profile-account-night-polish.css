@@ -378,3 +378,273 @@ html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms
 html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button[data-browser]::before{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23b4cafa%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M3%205h18v14H3V5Zm0%204h18M6%207h.01M9%207h.01M13%2014l3-3m0%200v3m0-3h-3%22%2F%3E%3C%2Fsvg%3E")!important}
 
 html body[data-app-route^="account"] #screen .v569-devices article>span::before{background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23aacaf0%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%226%22%20y%3D%222%22%20width%3D%2212%22%20height%3D%2220%22%20rx%3D%222%22%2F%3E%3Cpath%20d%3D%22M10%2018h4%22%2F%3E%3C%2Fsvg%3E")!important}
+
+
+
+/* V1388 WARM PROFILE REVISION: scoped only to profile/account and profile settings dialogs. */
+:root{
+ --ljr-profile-warm-blue:#2461c1;
+ --ljr-profile-warm-deep:#0c215b;
+ --ljr-profile-warm-gold:#ffd18a;
+ --ljr-profile-warm-peach:#ffac90;
+ --ljr-profile-warm-border:rgba(148,190,255,.56);
+}
+/* Bright royal blue with a discreet amber highlight, never gray/slate cards. */
+html body[data-app-route="profile"] #screen,
+html body[data-app-route^="account"] #screen{
+ background:
+  radial-gradient(ellipse at 82% 4%,rgba(46,108,222,.25),transparent 38%),
+  linear-gradient(180deg,#0b2064 0%,#09194c 55%,#070e32 100%)!important;
+}
+html body[data-app-route="profile"] #screen :is(
+ .v12-profile-card[data-v569-owned],.v12-profile-card[data-v569-inline]){
+ background:
+  radial-gradient(ellipse at 91% 0%,rgba(255,190,106,.17),transparent 45%),
+  linear-gradient(155deg,#204dab,#123478 55%,#0b2056)!important;
+ border:1px solid rgba(154,190,255,.57)!important;
+ box-shadow:0 13px 27px rgba(4,9,45,.26),inset 0 1px rgba(255,255,255,.13)!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-avatar{
+ border:2px solid var(--ljr-profile-warm-gold)!important;
+ box-shadow:0 0 0 3px rgba(255,209,138,.12)!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-copy :is(small,b){
+ color:#ffdda9!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-buttons button{
+ background:linear-gradient(155deg,#3579dc,#1a4aa1)!important;
+ border:1px solid rgba(161,200,255,.65)!important;
+ box-shadow:0 7px 16px rgba(2,23,88,.26),inset 0 1px rgba(255,255,255,.14)!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-buttons button:first-child{
+ background:linear-gradient(145deg,#f7c77e,#e5a75b)!important;
+ border-color:#ffe0aa!important;color:#17254f!important;
+ text-shadow:none!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button{
+ border-color:rgba(116,169,251,.48)!important;
+ background:linear-gradient(145deg,#1d4693,#12316d)!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button>span{
+ background:rgba(255,202,133,.16)!important;color:#ffdaa3!important;
+}
+html body[data-app-route="profile"] #screen .v569-profile-account-menu>button>b{
+ color:#f9fbff!important;
+}
+html body[data-app-route="profile"] #screen .v12-profile-menu>.v12-profile-row .v12-profile-row-icon{
+ color:var(--ljr-profile-warm-gold)!important;
+}
+html body[data-app-route^="account"] #screen .v569-card,
+html body[data-app-route^="account"] #screen .v1300-panel{
+ background:
+  radial-gradient(ellipse at 98% 1%,rgba(255,195,107,.14),transparent 45%),
+  linear-gradient(150deg,#1e4996 0%,#163877 50%,#0c245b 100%)!important;
+ border:1px solid var(--ljr-profile-warm-border)!important;
+ box-shadow:0 12px 25px rgba(0,10,51,.22),inset 0 1px rgba(255,255,255,.09)!important;
+}
+html body[data-app-route^="account"] #screen .v1300-detail{
+ background:linear-gradient(145deg,#2456ad,#194188)!important;
+ border-color:rgba(155,197,255,.57)!important;
+}
+html body[data-app-route^="account"] #screen .v1300-mark{
+ background:rgba(255,204,131,.19)!important;
+ color:#ffda9d!important;
+ border:1px solid rgba(255,209,138,.34);
+}
+html body[data-app-route^="account"] #screen .v1300-panel h2{
+ color:#fff!important;
+}
+html body[data-app-route^="account"] #screen :is(.v569-field input,.v1300-select select,.v1300-cloud-form input){
+ background:#102963!important;
+ border:1px solid rgba(155,193,255,.62)!important;
+ color:#fff!important;
+ box-shadow:inset 0 1px 4px rgba(0,8,39,.12)!important;
+}
+html body[data-app-route^="account"] #screen :is(.v569-field input,.v1300-select select,.v1300-cloud-form input):focus{
+ border-color:var(--ljr-profile-warm-gold)!important;
+ box-shadow:0 0 0 3px rgba(255,205,121,.16)!important;
+}
+html body[data-app-route^="account"] #screen .v569-card .v569-primary,
+html body[data-app-route^="account"] #screen .v1300-primary{
+ background:linear-gradient(155deg,#f7cd86,#e5ad62)!important;
+ border:1px solid #ffe1ac!important;color:#172856!important;
+ box-shadow:0 7px 17px rgba(15,23,63,.19),inset 0 1px rgba(255,255,255,.25)!important;
+ text-shadow:none!important;
+}
+html body[data-app-route^="account"] #screen .v569-card .v569-secondary,
+html body[data-app-route^="account"] #screen :is(.v1300-actions button,.v1300-permission button,.v1300-link,.v1300-pass-help button){
+ background:linear-gradient(145deg,#3373ce,#2054aa)!important;
+ border-color:rgba(159,195,250,.76)!important;
+ color:#fefeff!important;
+}
+html body[data-app-route^="account"] #screen .v569-card .v569-danger{
+ background:linear-gradient(140deg,#6d3557,#522843)!important;
+ border-color:#e99db1!important;color:#ffe3e9!important;
+}
+html body[data-app-route^="account"] #screen :is(
+ .v1300-findings article,.v1300-ai-status,.v1300-ai-answer,
+ .v1300-cloud-state,.v1300-cloud-output,.v1300-pass-help,
+ .v569-security-state,.v577-device-summary,.v569-devices article){
+ background:linear-gradient(145deg,#1a4086,#10316a)!important;
+ border-color:rgba(154,190,255,.5)!important;
+ color:#edf5ff!important;
+}
+html body[data-app-route^="account"] #screen .v1300-findings article:nth-child(3n+1){
+ border-left-color:#ffd082!important;
+}
+html body[data-app-route^="account"] #screen .v1300-findings article:nth-child(3n+2){
+ border-left-color:#ffad96!important;
+}
+html body[data-app-route^="account"] #screen .v1300-findings article:nth-child(3n){
+ border-left-color:#86b9ff!important;
+}
+html body[data-app-route^="account"] #screen .v1300-choice input[type=checkbox]:checked{
+ background:#efa858!important;border-color:#ffdf9a!important;
+}
+html body[data-app-route^="account"] #screen .v1300-findings :is(strong,p),
+html body[data-app-route^="account"] #screen .v1300-panel :is(label,strong,p,small),
+html body[data-app-route^="account"] #screen .v569-devices small{
+ color:#e3edff!important;
+}
+/* Consistent brightness for settings, help, language and legal dialogs.
+   Keep the original dialog, input, checkbox and event handlers intact. */
+html body .liga-media-modal:has(>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+)){background:rgba(4,9,39,.77)!important}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+){
+ background:
+   radial-gradient(ellipse at 92% -4%,rgba(255,194,107,.23),transparent 49%),
+   linear-gradient(145deg,#2458a8 0%,#183c80 43%,#10275d 100%)!important;
+ border:1px solid rgba(173,208,255,.65)!important;
+ box-shadow:0 23px 62px rgba(3,8,47,.46),inset 0 1px rgba(255,255,255,.13)!important;
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+)>header{
+ background:transparent!important;
+ background-image:none!important;
+ border:0!important;
+ border-bottom:1px solid rgba(255,210,147,.3)!important;
+ box-shadow:none!important;
+ border-radius:0!important;
+ padding:0 0 16px!important;margin-bottom:18px!important;
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+)>header h2{background:transparent!important;color:#fff!important}
+html body .liga-media-modal>section:is(
+ [aria-label="Ajustes de la aplicación"],[aria-label="Tu idioma preferido"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"],
+ [aria-label="Ayúdanos a mejorar"],[aria-label="Términos y condiciones"],
+ [aria-label="Mi avatar y mi camiseta"]
+)>header [data-close]{
+ background:linear-gradient(155deg,#2c63b8,#1a428b)!important;
+ border:1px solid rgba(186,210,255,.7)!important;
+ color:#ffdcaa!important;
+ box-shadow:inset 0 1px rgba(255,255,255,.13)!important;
+}
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button{
+ background:linear-gradient(148deg,#2959a3,#1b4389)!important;
+ border-color:rgba(152,195,255,.62)!important;color:#fff!important;
+}
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button:is([data-lang],[data-terms]){
+ --item-bg:rgba(255,198,113,.21);--item-stroke:rgba(255,207,141,.72);
+}
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button:is([data-help],[data-notify]){
+ --item-bg:rgba(255,169,153,.21);--item-stroke:rgba(255,170,156,.67);
+}
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button:is([data-privacy],[data-copy]){
+ --item-bg:rgba(255,207,149,.18);--item-stroke:rgba(255,205,149,.59);
+}
+html body .liga-media-modal>section[aria-label="Ajustes de la aplicación"] .cms-form>button:is([data-access],[data-browser]){
+ --item-bg:rgba(174,206,255,.21);--item-stroke:rgba(174,206,255,.7);
+}
+html body .liga-media-modal>section:is(
+ [aria-label="Tu idioma preferido"],[aria-label="Ayúdanos a mejorar"],
+ [aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"]
+) :is(input:not([type=checkbox]),select,textarea){
+ background:#133372!important;color:#fff!important;
+ border-color:rgba(161,199,255,.74)!important;
+ font-family:inherit!important;
+}
+html body .liga-media-modal>section:is([aria-label="Accesibilidad y pantalla"],[aria-label="Ajustes de privacidad"])
+ input[type=checkbox]:checked{
+ background:#eeb269!important;border-color:#ffda9b!important;
+}
+html body .liga-media-modal>section:is([aria-label="Ajustes de privacidad"],[aria-label="Ayúdanos a mejorar"]) .cms-form>button{
+ background:linear-gradient(145deg,#3474d5,#2055b0)!important;
+ border-color:rgba(170,203,255,.71)!important;color:#fff!important;
+}
+/* Avatar: warmed-up selection, brighter photo card; actual image assets untouched. */
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"]{
+ width:min(100%,650px)!important;max-width:650px!important;
+ padding:clamp(14px,3.9vw,22px)!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-profile-preview{
+ padding:18px!important;border-radius:20px!important;
+ background:linear-gradient(145deg,#2559ad,#193c89)!important;
+ border:1px solid rgba(161,197,255,.63)!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-profile-preview>div{
+ border:4px solid #ffc575!important;
+ box-shadow:0 0 0 4px rgba(255,205,129,.17),0 8px 22px rgba(5,17,67,.34)!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-profile-preview>span{
+ color:#fff1df!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-photo-upload{
+ background:linear-gradient(150deg,#2a65b9,#1d478e)!important;
+ border:1px solid rgba(255,212,150,.58)!important;
+ border-radius:17px!important;color:#fff8ed!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-photo-upload input{
+ background:#123271!important;border:1px solid rgba(152,190,255,.58)!important;
+ color:#fff!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-photo-upload input::file-selector-button{
+ background:linear-gradient(150deg,#ffd28a,#efb265)!important;
+ color:#172955!important;border:0!important;border-radius:10px!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-avatar-gallery button{
+ background:linear-gradient(155deg,#2b61b5,#1a4087)!important;
+ border:1px solid rgba(142,190,255,.64)!important;
+ color:#fff!important;border-radius:16px!important;
+ box-shadow:0 5px 13px rgba(4,20,76,.22)!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-avatar-gallery button[aria-pressed="true"]{
+ border:2px solid #ffcf83!important;
+ background:linear-gradient(145deg,#3466bd,#20498f)!important;
+ box-shadow:0 0 0 2px rgba(255,210,138,.26),0 6px 16px rgba(4,20,76,.25)!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-avatar-gallery button[aria-pressed="true"] small{
+ color:#ffe4b6!important;font-weight:800!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] :is(.v800-shirt-fields input,.v893-shirt-customize select){
+ background:#173a7b!important;color:#fff!important;
+ border:1px solid rgba(166,197,245,.68)!important;
+}
+html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-save-profile{
+ background:linear-gradient(150deg,#ffd38e,#eba756)!important;
+ color:#172955!important;border:1px solid #ffe3ad!important;border-radius:14px!important;
+ font-weight:850!important;
+}
+/* Do not animate when Android requests reduced motion. */
+@media(prefers-reduced-motion:reduce){
+ html body .liga-media-modal>section[aria-label="Mi avatar y mi camiseta"] .ljr-avatar-gallery button{
+  transition:none!important;
+ }
+}
