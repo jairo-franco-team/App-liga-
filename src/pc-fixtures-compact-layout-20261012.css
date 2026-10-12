@@ -4,7 +4,7 @@
 
 /* Eliminar contenedores de la cabecera antigua que dejan una franja
    sin contenido encima de "Partidos y resultados". */
-html.ljpc-unified-pc body.lj-desktop #screen:has(.ljpc-function-root[data-ljpc-function-route="pc-fixtures"]){
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen:has(.ljpc-function-root[data-ljpc-function-route="pc-fixtures"]){
   display:block!important;
   min-height:0!important;
   height:auto!important;
@@ -12,10 +12,10 @@ html.ljpc-unified-pc body.lj-desktop #screen:has(.ljpc-function-root[data-ljpc-f
   margin:0!important;
   overflow-anchor:none;
 }
-html.ljpc-unified-pc body.lj-desktop #screen:has(> .ds-page .ljpc-function-root[data-ljpc-function-route="pc-fixtures"]):not(:has(> .u18-root)) > :not(.ds-page){
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen:has(> .ds-page .ljpc-function-root[data-ljpc-function-route="pc-fixtures"]):not(:has(> .u18-root)) > :not(.ds-page){
   display:none!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen .ds-page:has(.ljpc-function-root[data-ljpc-function-route="pc-fixtures"]){
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen .ds-page:has(.ljpc-function-root[data-ljpc-function-route="pc-fixtures"]){
   box-sizing:border-box!important;
   display:flex!important;
   flex-direction:column!important;
@@ -30,10 +30,10 @@ html.ljpc-unified-pc body.lj-desktop #screen .ds-page:has(.ljpc-function-root[da
   overflow:visible!important;
   background:#f1f2f7!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen .ds-page:has(.ljpc-function-root[data-ljpc-function-route="pc-fixtures"]) > :is(.ds-utility,.ds-nav,.ds-scorebar,.ds-sponsors,.ds-footer){
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen .ds-page:has(.ljpc-function-root[data-ljpc-function-route="pc-fixtures"]) > :is(.ds-utility,.ds-nav,.ds-scorebar,.ds-sponsors,.ds-footer){
   display:none!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen .ds-page:has(.ljpc-function-root[data-ljpc-function-route="pc-fixtures"]) > .ds-pagehead{
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen .ds-page:has(.ljpc-function-root[data-ljpc-function-route="pc-fixtures"]) > .ds-pagehead{
   flex:0 0 auto!important;
   order:0!important;
   position:relative!important;
@@ -43,29 +43,29 @@ html.ljpc-unified-pc body.lj-desktop #screen .ds-page:has(.ljpc-function-root[da
   padding:0!important;
   transform:none!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen .ds-page:has(.ljpc-function-root[data-ljpc-function-route="pc-fixtures"]) > .ds-content{
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen .ds-page:has(.ljpc-function-root[data-ljpc-function-route="pc-fixtures"]) > .ds-content{
   order:1!important;
   flex:1 1 auto!important;
   min-height:0!important;
   margin:0!important;
   padding:12px 0 20px!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen .ds-page:has(.ljpc-function-root[data-ljpc-function-route="pc-fixtures"]) > .ds-content > .ds-wrap{
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen .ds-page:has(.ljpc-function-root[data-ljpc-function-route="pc-fixtures"]) > .ds-content > .ds-wrap{
   width:min(1080px,calc(100% - 20px))!important;
   max-width:1080px!important;
   min-width:0!important;
   margin-inline:auto!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen .ds-page:has(.ljpc-function-root[data-ljpc-function-route="pc-fixtures"]) .ds-pagehead .ds-wrap{
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen .ds-page:has(.ljpc-function-root[data-ljpc-function-route="pc-fixtures"]) .ds-pagehead .ds-wrap{
   padding-block:12px!important;
   width:min(1080px,calc(100% - 20px))!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen .ds-page:has(.ljpc-function-root[data-ljpc-function-route="pc-fixtures"]) .ds-pagehead h1{
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen .ds-page:has(.ljpc-function-root[data-ljpc-function-route="pc-fixtures"]) .ds-pagehead h1{
   font-size:20px!important;
   line-height:1.15!important;
   margin:3px 0 5px!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen .ds-page:has(.ljpc-function-root[data-ljpc-function-route="pc-fixtures"]) .ds-pagehead p{
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen .ds-page:has(.ljpc-function-root[data-ljpc-function-route="pc-fixtures"]) .ds-pagehead p{
   font-size:11px!important;
   line-height:1.35!important;
   text-align:left!important;
@@ -73,7 +73,7 @@ html.ljpc-unified-pc body.lj-desktop #screen .ds-page:has(.ljpc-function-root[da
 
 /* Filas, controles y tarjetas: compactas, sin texto montado y sin centrar
    las etiquetas explicativas. No afectamos Calendario u otras rutas PC. */
-html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"]{
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"]{
   box-sizing:border-box!important;
   display:grid!important;
   gap:9px!important;
@@ -82,20 +82,20 @@ html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtu
   padding:0!important;
   margin:0!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-toolbar{
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-toolbar{
   gap:7px!important;
   margin:0!important;
   padding:0!important;
   align-items:center!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] :is(.ljpc-cat-tabs,.ljpc-toolbar-group){
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] :is(.ljpc-cat-tabs,.ljpc-toolbar-group){
   display:flex!important;
   flex-wrap:wrap!important;
   align-items:center!important;
   gap:6px!important;
   min-width:0!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] :is(.ljpc-chip,.ljpc-btn){
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] :is(.ljpc-chip,.ljpc-btn){
   min-height:29px!important;
   height:auto!important;
   border-radius:6px!important;
@@ -104,7 +104,7 @@ html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtu
   font-size:11px!important;
   white-space:normal!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-panel{
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-panel{
   box-sizing:border-box!important;
   min-height:0!important;
   padding:12px 14px!important;
@@ -112,14 +112,14 @@ html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtu
   margin:0!important;
   box-shadow:none!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-panel>h3{
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-panel>h3{
   color:#14294a!important;
   font-size:14px!important;
   line-height:1.35!important;
   text-align:left!important;
   margin:0 0 8px!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match{
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match{
   box-sizing:border-box!important;
   display:grid!important;
   grid-template-columns:minmax(0,1fr) minmax(0,1fr) max-content!important;
@@ -135,11 +135,11 @@ html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtu
   border-bottom:1px solid #e3eaf2!important;
   text-align:left!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match:last-child{
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match:last-child{
   border-bottom:0!important;
   padding-bottom:3px!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match .ljpc-team{
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match .ljpc-team{
   display:flex!important;
   align-items:center!important;
   justify-content:flex-start!important;
@@ -152,7 +152,7 @@ html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtu
   line-height:1.2!important;
   font-weight:760!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match .ljpc-team span{
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match .ljpc-team span{
   display:block!important;
   min-width:0!important;
   max-width:100%!important;
@@ -162,16 +162,16 @@ html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtu
   font-size:12px!important;
   line-height:1.22!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match .ljpc-logo{
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match .ljpc-logo{
   width:27px!important;
   height:27px!important;
   flex:0 0 27px!important;
   border-radius:50%!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match .ljpc-logo img{
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match .ljpc-logo img{
   width:100%!important;height:100%!important;object-fit:contain!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match .ljpc-score{
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match .ljpc-score{
   grid-column:3!important;
   grid-row:1!important;
   justify-self:end!important;
@@ -180,13 +180,13 @@ html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtu
   text-align:right!important;
   line-height:1.2!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match .ljpc-score b{
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match .ljpc-score b{
   color:#0745ad!important;
   font-size:13px!important;
   font-weight:850!important;
   line-height:1.2!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match-details{
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match-details{
   grid-column:1/-1!important;
   grid-row:2!important;
   display:flex!important;
@@ -200,7 +200,7 @@ html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtu
   color:#65758b!important;
   line-height:1.35!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match-details span{
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match-details span{
   display:inline-block!important;
   flex:0 1 auto!important;
   font-size:10.5px!important;
@@ -208,41 +208,41 @@ html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtu
   text-align:left!important;
   overflow-wrap:break-word!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match-status{
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match-status{
   color:#24579e!important;
   font-weight:660!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match-venue::before{
+html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match-venue::before{
   content:"📍";
   display:inline-block;
   margin-right:4px;
   font-size:10px;
 }
 @media(max-width:620px){
-  html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-toolbar{
+  html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-toolbar{
     justify-content:flex-start!important;
   }
-  html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match{
+  html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match{
     grid-template-columns:minmax(0,1fr) minmax(0,1fr) 63px!important;
     column-gap:7px!important;
     padding:9px 0!important;
   }
-  html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match .ljpc-team{
+  html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match .ljpc-team{
     gap:5px!important;
   }
-  html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match .ljpc-logo{
+  html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match .ljpc-logo{
     width:22px!important;
     height:22px!important;
     flex:0 0 22px!important;
   }
-  html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match .ljpc-team span{
+  html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match .ljpc-team span{
     font-size:11px!important;
   }
-  html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match-details{
+  html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match-details{
     padding-left:27px!important;
     gap:4px 8px!important;
   }
-  html.ljpc-unified-pc body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match-details span{
+  html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop #screen [data-ljpc-function-route="pc-fixtures"] .ljpc-match-details span{
     font-size:10px!important;
   }
 }
