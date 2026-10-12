@@ -610,3 +610,13 @@ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body > #ljpc-unified-pc-foot
   font-size:17px!important;
  }
 }
+
+/* Stronger than the shared footer's fixed 12px clearance: in the short
+   PC fixtures view, unused height belongs ABOVE the footer, never below it. */
+html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer{
+ margin-top:auto!important;margin-right:0!important;margin-bottom:0!important;margin-left:0!important;
+}
+html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish > #app{
+ flex-grow:1!important;min-height:calc(100svh - 245px)!important;
+ background:#f2f3f8!important;background-image:none!important;
+}
