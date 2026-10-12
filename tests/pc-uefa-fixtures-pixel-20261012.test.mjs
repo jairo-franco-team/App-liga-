@@ -186,3 +186,22 @@ test('PC-only footer white gap overrides the stronger dark independent-finish ba
  assert.match(styles,/background-attachment:scroll!important/);
  assert.doesNotMatch(styles,/html\.preview-(?:mobile|apk)/);
 });
+
+
+test('PC fixture root removes stale independent-finish min-height without calculating fake page height',()=>{
+ const independent=read('src/pc-independent-finish-20261011.js');
+ assert.doesNotThrow(()=>new vm.Script(independent));
+ assert.match(independent,/if\(r==='pc-fixtures'&&screen\.querySelector\(':scope > \.u18-root'\)\)/);
+ assert.match(independent,/screen\.style\.removeProperty\('min-height'\)/);
+ assert.match(independent,/delete screen\.dataset\.ljpcFinishMinHeight/);
+ assert.match(html,/pc-independent-finish-20261011\.js\?v=pc-fixtures-height-guard-v7/);
+});
+test('only PC fixtures skip inflated footer clearance gap; other routes keep calculator',()=>{
+ const footer=read('src/pc-footer-flow-columns-20261012.js');
+ assert.doesNotThrow(()=>new vm.Script(footer));
+ assert.match(footer,/document\.documentElement\.dataset\.ljpc18Route==='pc-fixtures'/);
+ assert.match(footer,/screen\.querySelector\(':scope > \.u18-root'\)/);
+ assert.match(footer,/footer\.style\.setProperty\('--ljpc-footer-clearance','0px'\)/);
+ assert.match(footer,/const next=clearance\(bottom,natural\)/);
+ assert.match(html,/pc-footer-flow-columns-20261012\.js\?v=pc-fixtures-height-guard-v7/);
+});
