@@ -168,7 +168,7 @@ function hideIframeHeader(frame){
    style.textContent='[data-name="top bar wrapper"],[data-name="header navigation wrapper"],'+
     '[data-name="fixtures strip container"],[data-name="sponsors band"],[data-name="footer"]{display:none!important}'+
     /* Círculos separados de partidos sin huecos grandes. */
-    '[data-name="stories list container"]{margin-top:19px!important;'+
+    '[data-name="stories list container"]{margin-top:2px!important;'+
     'padding-top:9px!important;padding-bottom:12px!important;'+
     'position:relative!important;transform:none!important}'+
     '[data-name="stories wrapper"]{align-items:flex-start!important}';
