@@ -23,7 +23,7 @@ test('los equipos y el horario están en tres columnas y los metadatos debajo a 
   assert.match(body,/ljpc-match-date/);
   assert.match(body,/ljpc-match-status/);
   assert.match(body,/ljpc-match-venue/);
-  assert.doesNotMatch(body,/class="ljpc-muted">/);
+  assert.match(body,/class="ljpc-match-details"/);
   assert.match(css,/grid-template-columns:minmax\(0,1fr\) minmax\(0,1fr\) max-content!important/);
   assert.match(css,/grid-column:1\/-1!important/);
   assert.match(css,/text-align:left!important/);
