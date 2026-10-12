@@ -279,18 +279,36 @@ function standingsPage(){
 }
 function drawsPage(){
  const rows=tableRows(),squads=rows.filter(r=>r[1]).map(r=>r[1]);
- const tabs='<div class="u18-drawtabs">'+pills([['results','Resultados'],['updates','Actualizaciones'],['pots','Bombos'],['procedure','Procedimiento']],state.drawTab,'data-u18-draw-tab')+'</div>';
+ const tabs='<div class="u18-drawtabs" role="group" aria-label="Apartados del sorteo">'+
+   pills([['results','Resultados'],['updates','Actualizaciones'],['pots','Bombos'],['procedure','Procedimiento']],state.drawTab,'data-u18-draw-tab')+'</div>';
  let detail='';
- if(state.drawTab==='results')detail='<h3>Participantes de la categoría</h3><p>La liga no ha publicado un sorteo oficial completo en los datos disponibles. Estos clubes proceden de la tabla oficial, sin asignarles enfrentamientos.</p>'+
- '<div class="u18-entrants">'+squads.map(n=>'<div>'+crest(n)+'<span>'+escape(n)+'</span></div>').join('')+'</div>';
- if(state.drawTab==='updates')detail='<h3>Actualizaciones oficiales</h3><p>Consulta los reportes de la Liga Juventino Rosas para conocer los próximos sorteos y enfrentamientos aprobados.</p>'+
- '<a href="https://www.juventinorosasliga.com/reporte-semanal/" rel="noopener noreferrer" target="_blank">Abrir reporte semanal ↗</a>';
- if(state.drawTab==='pots')detail='<h3>Bombos del sorteo</h3><p>La fuente oficial todavía no identifica bombos confirmados. Puedes preparar una distribución de prueba en el generador.</p><button class="u18-button" data-u18-go="bracketBuilder">Crear sorteo de prueba</button>';
- if(state.drawTab==='procedure')detail='<h3>Procedimiento del sorteo</h3><p>Los criterios y las fechas oficiales deben ser confirmados por la liga. El generador sirve únicamente para crear cuadros editables y exportarlos.</p><button class="u18-button" data-u18-go="bracketBuilder">Abrir generador</button>';
+ if(state.drawTab==='results')detail='<h3>Participantes de la categoría</h3><p>La liga aún no ha publicado un sorteo completo en los datos disponibles. Estos equipos proceden de la clasificación, sin asignarles enfrentamientos.</p>'+
+  '<div class="u18-entrants">'+squads.map(n=>'<div>'+crest(n)+'<span>'+escape(n)+'</span></div>').join('')+'</div>';
+ if(state.drawTab==='updates')detail='<h3>Actualizaciones oficiales</h3><p>Consulta los reportes de la Liga Juventino Rosas para conocer sorteos, jornadas y enfrentamientos aprobados.</p>'+
+  '<a href="https://www.juventinorosasliga.com/reporte-semanal/" rel="noopener noreferrer" target="_blank">Consultar reporte semanal ↗</a>';
+ if(state.drawTab==='pots')detail='<h3>Bombos del sorteo</h3><p>No hay bombos oficiales confirmados en la información disponible. Puedes organizar una propuesta editable con los equipos de la liga.</p>'+
+  '<button type="button" class="u18-button" data-u18-go="bracketBuilder">Crear sorteo de prueba</button>';
+ if(state.drawTab==='procedure')detail='<h3>Procedimiento del sorteo</h3><p>Las reglas y las fechas deben confirmarse con la Liga. El generador sirve para preparar un cuadro editable y exportable; no publica resultados oficiales.</p>'+
+  '<button type="button" class="u18-button" data-u18-go="bracketBuilder">Abrir generador</button>';
+ const controls='<div class="u18-controls u18-drawcontrols">'+catSelect()+
+  '<div class="u18-controls-right"><button type="button" data-u18-go="bracketBuilder">Crear cuadro</button></div></div>';
+ const promo='<div class="u18-drawpromo"><img loading="lazy" src="./assets/liga-logo-oficial-transparente.png" alt="Escudo de Liga Juventino Rosas">'+
+  '<div><strong>LIGA JUVENTINO ROSAS</strong><span>SORTEOS · EQUIPOS · COMPETICIÓN LOCAL</span></div></div>';
+ const stage='<div class="u18-drawstage">'+
+  '<div class="u18-videotile"><div class="u18-drawcover"><img loading="lazy" src="./assets/home-players-user.png" alt="Fútbol de la Liga Juventino Rosas">'+
+  '<span class="u18-drawcover-label">FÚTBOL DE NUESTRA LIGA</span></div>'+
+  '<p class="u18-drawcaption">Consulta los sorteos y revive los encuentros de Juventino Rosas.</p>'+
+  '<button type="button" data-u18-go="video">Ver Liga TV ↗</button></div>'+
+  '<div class="u18-drawright">'+tabs+'<div class="u18-drawdetail">'+detail+'</div></div></div>';
+ const recommended='<section class="u18-drawrecommended" aria-label="Recomendado para ti"><h2>Recomendado para ti</h2>'+
+  '<div class="u18-drawreccards"><button type="button" data-u18-go="pc-fixtures"><img loading="lazy" src="./public/home-header-original-v775.jpg" alt="Partidos y jugadores de Juventino Rosas"><span>Calendario de partidos y próximas jornadas <b aria-hidden="true">↗</b></span></button>'+
+  '<button type="button" data-u18-go="history"><img loading="lazy" src="./public/final-trophy-drive.png" alt="Trofeo y campeones de la Liga Juventino Rosas"><span>Finales y campeones de nuestra liga <b aria-hidden="true">↗</b></span></button></div></section>';
+ const official='<div class="u18-drawofficial"><span>COMPETICIONES DE LA LIGA</span><div>'+
+  '<span>Primera Fuerza</span><span>Intermedia</span><span>Segunda Fuerza</span><span>Veteranos 35+</span><span>Veteranos 50+</span></div></div>';
  return shell('Sorteo de la fase liga','Liga Juventino Rosas · '+CAT[state.cat],
- '<div class="u18-controls">'+catSelect()+'<div class="u18-controls-right"><button data-u18-go="bracketBuilder">Crear cuadro</button></div></div>'+
- '<div class="u18-drawstage"><div class="u18-videotile"><div class="u18-film"><span aria-hidden="true">▶</span></div><b>Transmisiones de sorteos y partidos</b><button data-u18-go="video">Ir a Liga TV ↗</button></div>'+
- '<div class="u18-drawright">'+tabs+'<div class="u18-drawdetail">'+detail+'</div></div></div>');
+  controls+promo+stage+recommended+official).replace(
+    '<p>Los controles originales siguen disponibles debajo de la nueva presentación.</p>',
+    '<p>El diseño clásico se conserva para administración.</p><button type="button" data-u18-open-draw-original>Mostrar herramientas anteriores</button>');
 }
 const vids=[
  ['Destacados','./public/video-hero-reference.webp','video','Clips y transmisiones de la Liga'],
@@ -417,7 +435,7 @@ function sync(){
  let root=screen.querySelector(':scope > .u18-root');
  if(!root){root=document.createElement('div');root.className='u18-root';screen.prepend(root);lastRef=null;}
  if(route()==='pc-fixtures'&&screen.firstElementChild!==root)screen.prepend(root);
- isolateFixturesLegacy(screen,route()==='pc-fixtures'||route()==='pc-standings');
+ isolateFixturesLegacy(screen,route()==='pc-fixtures'||route()==='pc-standings'||(route()==='pc-draws'&&!state.showClassic));
  const signature=route()+'|'+state.cat+'|'+(source()?'loaded':'missing');
  if(lastRef!==root.dataset.loaded||root.children.length===0||root.dataset.signature!==signature){
   root.dataset.signature=signature;root.dataset.loaded=source()?'loaded':'missing';
@@ -475,6 +493,7 @@ function localClick(e){
  if(d.u18StandTab){state.standTab=d.u18StandTab;repaint();return;}
  if(d.u18StandView){state.standMode=d.u18StandView==='criteria'?'criteria':'table';repaint();return;}
  if(d.u18DrawTab){state.drawTab=d.u18DrawTab;repaint();return;}
+ if(d.u18OpenDrawOriginal!==undefined&&route()==='pc-draws'){state.showClassic=true;isolateFixturesLegacy(document.getElementById('screen'),false);return;}
  if(d.u18TvShift){const row=document.getElementById('u18-tv-row-'+String(d.u18TvTarget||''));if(row){row.scrollBy({left:Number(d.u18TvShift)*Math.max(240,row.clientWidth*.76),behavior:'smooth'});}return;}
  if(d.u18VideoTab){state.videoTab=d.u18VideoTab;repaint();return;}
  if(d.u18Modal){state.filterOpen=d.u18Modal==='filter';state.calendarOpen=d.u18Modal==='calendar';repaint();return;}
