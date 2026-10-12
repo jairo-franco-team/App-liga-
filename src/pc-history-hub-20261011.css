@@ -57,3 +57,15 @@ html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-links:has(>
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header details[data-ljpc-u-group="Historia"]>.ljpc-u-dropdown{
  width:232px;max-height:min(70vh,450px);overflow-y:auto;scrollbar-width:thin;
 }
+
+/* Native #/history is the live archive on desktop: keep the module intact.
+   On the three alternate sections, only hide the archive while their tab is open. */
+html.ljpc-unified-pc body.lj-desktop[data-app-route="history"] #screen > #ljpc-pc-history-hub{
+ display:block!important;position:relative!important;z-index:2!important;
+ width:min(1112px,100%)!important;max-width:1112px!important;margin:0 auto 12px!important;
+ height:auto!important;min-height:0!important;overflow:visible!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="history"] #screen.ljpc-h-show-other > :not(#ljpc-pc-history-hub){display:none!important}
+html.ljpc-unified-pc body.lj-desktop #ljpc-pc-history-hub .ljpc-h-tab svg{
+ display:block;width:15px;height:15px;flex:0 0 15px;stroke:currentColor;color:inherit;
+}
