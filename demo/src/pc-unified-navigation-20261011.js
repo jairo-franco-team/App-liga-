@@ -11,8 +11,25 @@ const NAV=[
  ['Datos','pc-data'],['Más','pc-tools']
 ];
 const MENUS={
- Gaming:[['Todos los juegos','gamingPortal'],['Pronostica Seis','predictorSix'],['Fantasy','fantasy'],['Quiniela','quiniela'],['Quiz Arena','quizArena'],['Más o menos','moreLess']],
- Datos:[['Clasificación','pc-standings'],['Goleadores','pc-scorers'],['Estadísticas oficiales','pc-data'],['Estadísticas de equipo','v38Stats'],['Performance Zone','safe-performance']],
+ Gaming:[
+  ['Todos los juegos','gamingPortal'],
+  ['Fantasy Football','fantasy'],
+  ['Pronostica Seis','predictorSix'],
+  ['Bracket','pc-bracket'],
+  ['Gol del Día','moments'],
+  ['Quiniela','quiniela'],
+  ['Quiz Arena','quizArena'],
+  ['Más o menos','moreLess'],
+  ['Mi perfil de juegos','accountLogin']
+ ],
+ Datos:[
+  ['Estadísticas de equipo','pc-data','data-team'],
+  ['Estadísticas de jugador','pc-data','data-player'],
+  ['Máximo goleador','pc-scorers'],
+  ['Fase de clasificación','pc-standings'],
+  ['Estadísticas históricas','history','history-link'],
+  ['Performance Zone','safe-performance']
+ ],
  Más:[['Equipos','teams'],['Noticias','news'],['Historia','historia','history-toggle'],
  ['Temporadas','temporadas','history-child'],['Estadísticas históricas','estadisticas','history-child'],
  ['Vídeos','videos','history-child'],['Equipos','historicos','history-child'],['Más títulos','titulos','history-child'],
@@ -91,6 +108,10 @@ function navMarkup(){
    label+' <span aria-hidden="true">⌄</span></summary><div class="ljpc-u-dropdown" role="group" aria-label="'+label+'">'+
    group.map(([name,to,kind])=>{
      if(kind==='history-child')return '';
+     if(kind==='data-team'||kind==='data-player')
+       return '<button type="button" data-ljpc-u-go="pc-data" data-ljpc-u-data-view="'+(kind==='data-team'?'team':'player')+'">'+escapeHtml(name)+'</button>';
+     if(kind==='history-link')
+       return '<button type="button" data-ljpc-u-history-section="estadisticas">'+escapeHtml(name)+'</button>';
      if(kind==='history-toggle')return '<button type="button" class="ljpc-u-history-main" data-ljpc-u-history-toggle aria-controls="ljpc-u-history-submenu" aria-expanded="false">'+escapeHtml(name)+' <span aria-hidden="true">⌄</span></button>'+
       '<div class="ljpc-u-history-submenu" id="ljpc-u-history-submenu" hidden>'+
       group.filter(([,r,k])=>k==='history-child').map(([text,section])=>
@@ -146,12 +167,17 @@ function hideIframeHeader(frame){
    const style=doc.createElement('style');style.id='ljpc-u-iframe-hide';
    style.textContent='[data-name="top bar wrapper"],[data-name="header navigation wrapper"],'+
     '[data-name="fixtures strip container"],[data-name="sponsors band"],[data-name="footer"]{display:none!important}'+
-    /* Carrusel PC pegado a la franja de partidos, sin huecos. */
-    '[data-name="stories list container"]{margin-top:7px!important;'+
-    'padding-top:4px!important;padding-bottom:5px!important;'+
+    /* Círculos separados de partidos sin huecos grandes. */
+    '[data-name="stories list container"]{margin-top:19px!important;'+
+    'padding-top:9px!important;padding-bottom:12px!important;'+
     'position:relative!important;transform:none!important}'+
     '[data-name="stories wrapper"]{align-items:flex-start!important}';
    doc.head.appendChild(style);
+   // Recalcular altura del iframe tras bajar historias y ocultar barras.
+   const inner=doc.defaultView;
+   inner?.requestAnimationFrame?.(()=>{
+    inner.dispatchEvent(new inner.Event('resize'));
+   });
   }
  }catch(_){/* An isolated document must keep working if access is unavailable. */}
 }
@@ -224,7 +250,14 @@ document.addEventListener('click',e=>{
   else go('history');
   return;
  }
- const r=b.dataset.ljpcUGo;
+ const dataView=b.dataset.ljpcUDataView;
+  if(dataView==='team'||dataView==='player'){
+   window.dispatchEvent(new CustomEvent('ljpc:pc-data-view',{detail:{view:dataView}}));
+   b.closest('details')?.removeAttribute('open');
+   if(route()!=='pc-data')go('pc-data');
+   return;
+  }
+  const r=b.dataset.ljpcUGo;
  if(r==='gamingPortal'){location.assign('./gaming/index.html');return;}
  if(/^[a-z][a-zA-Z0-9_-]*$/.test(r||''))go(r);
 },true);
