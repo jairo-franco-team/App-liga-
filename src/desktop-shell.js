@@ -19,6 +19,7 @@ function desktopOfficialGames(limit=6){
    if(!d||d[4]==='00:00')continue;
    const iso=d[3]+'-'+d[2]+'-'+d[1];
    if(iso<today||/^\d+$/.test(String(r[3]))&&/^\d+$/.test(String(r[5]))||c.fixture_decisions?.[String(r[0])])continue;
+   if(r.suspended===true||/^(SUSPENDED|SUSPENDIDO)$/i.test(String(r.status||''))||(iso==='2026-10-11'&&['3','4','5'].includes(id)&&db.weekend_suspension_2026_10_11?.status))continue;
    const dow=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'][new Date(Number(d[3]),Number(d[2])-1,Number(d[1])).getDay()];
    games.push({sort:iso+'T'+d[4],text:dow+' '+d[1]+'/'+d[2]+' · '+d[4]+' · J'+r[1],home:r[2],away:r[6],time:d[4],field:r[7]||'',category:c.name,id});
   }
