@@ -14,10 +14,8 @@ const menus={
   'Datos':[
     ['Estadísticas de equipo','v38Stats'],['Estadísticas de jugador','v38Stats'],['Máximos goleadores','pc-scorers'],['Fase de clasificación','pc-standings'],['Estadísticas históricas','history'],['Performance Zone','safe-performance']
   ],
-  'Historia':[
-    ['Temporadas','history'],['Estadísticas históricas','history'],['Vídeos','video'],['Equipos','teams'],['Más títulos','history']
-  ],
   'Más':[
+    ['Equipos','teams'],['Noticias','news'],['Historia','history-group'],['Sobre','about'],
     ['Centro de la Liga','more'],['Herramientas PC','pc-tools'],['Centro de Jornada','matchday'],['Canchas y sedes','venues'],['Tienda (clubes)','club-store'],['Calendario de partidos','pc-calendar'],['Credenciales','credentialBuilder'],['Fichajes','transfers'],['Notificaciones','pc-notifications'],['Instalar aplicación','appInstall']
   ]
 };
@@ -85,6 +83,44 @@ function installMenus(){
     const caret=document.createElement('span');caret.className='lj-caret';caret.textContent='▼';btn.appendChild(caret);
     const drop=document.createElement('div');drop.className='lj-dropdown'+(label==='Más'?' lj-more-dropdown':'');
     items.forEach(([text,r])=>{
+      if(label==='Más'&&r==='history-group'){
+        const group=document.createElement('div');
+        group.className='ljpc-legacy-history-group';
+        const toggle=document.createElement('button');
+        toggle.type='button';
+        toggle.className='ljpc-legacy-history-toggle';
+        toggle.textContent='Historia ⌄';
+        toggle.setAttribute('aria-expanded','false');
+        const children=document.createElement('div');
+        children.className='ljpc-legacy-history-children';
+        children.hidden=true;
+        for(const [name,section] of [
+          ['Temporadas','temporadas'],['Estadísticas históricas','estadisticas'],
+          ['Vídeos','videos'],['Equipos históricos','historicos'],['Más títulos','titulos']
+        ]){
+          const child=document.createElement('button');
+          child.type='button';child.textContent=name;child.dataset.ljpcHistoryTab=section;
+          children.appendChild(child);
+        }
+        toggle.addEventListener('click',e=>{
+          e.preventDefault();e.stopPropagation();
+          children.hidden=!children.hidden;
+          toggle.setAttribute('aria-expanded',String(!children.hidden));
+        });
+        children.addEventListener('click',e=>{
+          const child=e.target.closest('[data-ljpc-history-tab]');
+          if(!child)return;
+          e.preventDefault();e.stopPropagation();
+          try{sessionStorage.setItem('ljpc-history-pc-tab',child.dataset.ljpcHistoryTab)}catch(_){}
+          closeMenus();
+          if(route()==='history'){
+            window.dispatchEvent(new CustomEvent('ljpc:history-select',{detail:{section:child.dataset.ljpcHistoryTab}}));
+          }else go('history');
+        });
+        group.append(toggle,children);
+        drop.appendChild(group);
+        return;
+      }
       if(label==='Más'&&text==='Tienda (clubes)'){
         makeStoreRow(drop);
         return;
