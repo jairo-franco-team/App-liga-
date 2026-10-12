@@ -266,6 +266,7 @@ function sync(){
  const screen=document.getElementById('screen');
  if(!active()||!screen){
   document.documentElement.classList.remove('ljpc18-active');
+  delete document.documentElement.dataset.ljpc18Route;
   screen?.querySelector(':scope > .u18-root')?.remove();
   currentRoute='';return;
  }
@@ -274,6 +275,7 @@ function sync(){
   screen.querySelector(':scope > .u18-root')?.classList.remove('u18-show-classic');
  }
  document.documentElement.classList.add('ljpc18-active');
+ document.documentElement.dataset.ljpc18Route=route();
  let root=screen.querySelector(':scope > .u18-root');
  if(!root){root=document.createElement('div');root.className='u18-root';screen.prepend(root);lastRef=null;}
  const signature=route()+'|'+state.cat+'|'+(source()?'loaded':'missing');
