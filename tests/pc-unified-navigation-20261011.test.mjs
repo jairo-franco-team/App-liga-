@@ -65,3 +65,59 @@ test('desktop shared CSS is scoped and does not edit any mobile style files',()=
  assert.doesNotMatch(styles,/html\.preview-mobile|html\.preview-apk/);
  assert.doesNotMatch(styles,/body:not\(\.lj-desktop\)/);
 });
+
+
+test('Gaming, Datos y Más abren en top-layer cuando Chrome PC recorta el menú horizontal',()=>{
+ const dropdownCss=read('src/pc-dropdowns-uefa-20261011.css');
+ assert.match(dropdownCss,/:popover-open/);
+ assert.match(dropdownCss,/position:fixed!important/);
+ assert.match(script,/panel\.showPopover\(\)/);
+ assert.match(script,/panel\.hidePopover\(\)/);
+ const handlers=new Map();
+ class ElementMock {}
+ const panel={
+  open:false,
+  classList:{remove:()=>{},add:()=>{}},
+  setAttribute:()=>{},
+  matches:selector=>selector===':popover-open'&&panel.open,
+  showPopover(){panel.open=true},
+  hidePopover(){panel.open=false},
+  style:{setProperty:()=>{}}
+ };
+ const summary=new ElementMock();
+ const nav={};
+ const details={
+  tagName:'DETAILS',open:false,dataset:{ljpcUGroup:'Datos'},
+  querySelector:selector=>selector==='.ljpc-u-dropdown'?panel:selector==='summary'?summary:null,
+  closest:selector=>selector==='.ljpc-u-links'?nav:null
+ };
+ summary.parentElement=details;
+ summary.getBoundingClientRect=()=>({left:180,right:270,width:90,bottom:48});
+ summary.setAttribute=()=>{};
+ const root={querySelectorAll:()=>[]};
+ const document={
+  readyState:'loading',
+  addEventListener:(name,fn)=>handlers.set(name,[...(handlers.get(name)||[]),fn]),
+  getElementById:id=>id==='ljpc-unified-pc-header'?root:null
+ };
+ const target=new ElementMock();
+ target.closest=selector=>selector.includes('details > summary')?summary:null;
+ const ctx={
+  Element:ElementMock,document,window:{innerWidth:430,innerHeight:820,addEventListener:()=>{}},
+  innerWidth:430,URLSearchParams,location:{search:'?mode=desktop',hash:'#/home'},
+  getComputedStyle:()=>({overflowX:'auto',overflowY:'hidden'}),
+  requestAnimationFrame:()=>{}
+ };
+ vm.runInNewContext(script,ctx);
+ const click=handlers.get('click')[0];
+ const event={target,preventDefault:()=>{},stopPropagation:()=>{},stopImmediatePropagation:()=>{}};
+ for(const label of ['Gaming','Datos','Más']){
+  details.dataset.ljpcUGroup=label;
+  click(event);
+  assert.equal(details.open,true,label+' opened');
+  assert.equal(panel.open,true,label+' visible in the top layer');
+  click(event);
+  assert.equal(details.open,false,label+' closed');
+  assert.equal(panel.open,false,label+' dismissed');
+ }
+});
