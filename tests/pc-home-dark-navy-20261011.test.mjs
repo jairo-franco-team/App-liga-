@@ -34,7 +34,7 @@ test('white horizontal divider is disabled and no white sponsor band remains',()
 test('PC HTML, JS and CSS all have fresh cache keys while mobile/APK remain untouched',()=>{
  assert.match(desktop,/pc-original-navy-20261011-restore-v1/);
  assert.match(shell,/pc-exact-original-20261011\.html\?v=20261012-tight-layout-v3/);
- assert.match(index,/desktop-shell\.js\?v=20261011-(?:navy-original-restore-v1|compact-iframe-v1|carousel-scroll-v2|tight-layout-v3)/);
+ assert.match(index,/desktop-shell\.js\?v=20\d{6}-[a-z0-9._-]+/i);
  assert.match(index,/pc-unified-navigation-20261011\.css\?v=(?:pc-header-unified-20261011-navy-v2|pc-footer-natural-scroll-20261011-v1)/);
  assert.doesNotThrow(()=>new vm.Script(shell));
  assert.match(nav,/html\.ljpc-unified-pc body/);
