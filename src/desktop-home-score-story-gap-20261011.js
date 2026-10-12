@@ -61,7 +61,7 @@
        rail.style.setProperty('margin-top',next+'px','important');
        rail.dataset.ljpcTrimInner=String(next);
        // Let the existing iframe ResizeObserver report the new actual height.
-       iframe.contentWindow?.dispatchEvent(new Event('resize'));
+       iframe.contentWindow?.dispatchEvent(new iframe.contentWindow.Event('resize'));
      }
    }
  }
