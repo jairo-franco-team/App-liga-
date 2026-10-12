@@ -1,3 +1,7 @@
+window.LJR_STREETVIEW_API_KEY="";
+/* Core router loads independently from optional feature bundles. */
+(()=>{
+'use strict';
 const teams = [
   {"code":"SJO","id":"sjo","name":"San José FC","officialName":"SAN JOSE FC","category":"Primera Fuerza","coach":"No publicado","field":"San Jose de la Montaña","p":5,"gd":12,"pts":15,"form":[],"founded":null,"news":"Datos oficiales de la Liga Juventino Rosas","logo":"./assets/season-2026/san-jose.webp"},
   {"code":"JVS","id":"jvs","name":"Juventus","officialName":"JUVENTUS","category":"Primera Fuerza","coach":"No publicado","field":"Fraccionamiento","p":5,"gd":11,"pts":9,"form":[],"founded":null,"news":"Datos oficiales de la Liga Juventino Rosas","logo":"./assets/season-2026/juventus.webp"},
@@ -4615,7 +4619,7 @@ function v60FieldPreview(f,cls=''){
   const lat=f?.lat,lon=f?.lon;
   const hasExact=lat!==null&&lat!==undefined&&lon!==null&&lon!==undefined&&
     Number.isFinite(Number(lat))&&Number.isFinite(Number(lon));
-  const key=String(import.meta.env.VITE_GOOGLE_STREETVIEW_API_KEY||'').trim();
+  const key=String(window.LJR_STREETVIEW_API_KEY||'').trim();
   const googleSrc=key&&hasExact?'https://maps.googleapis.com/maps/api/streetview?'+
     'size=640x360&location='+encodeURIComponent(Number(lat).toFixed(6)+','+Number(lon).toFixed(6))+
     '&radius=75&fov=80&pitch=0&source=outdoor&return_error_code=true&key='+encodeURIComponent(key):'';
@@ -7006,3 +7010,5 @@ document.querySelectorAll('[data-news]').forEach(el=>el.onclick=()=>{state.selec
 function action(a){if(a==='share'){navigator.share?navigator.share({title:'Liga Juventino',text:'Mira esto en Liga Juventino'}):toast('Contenido listo para compartir')}if(a==='login-demo'){state.user={name:'Aficionado Municipal',email:'aficionado@ligajuventino.mx'};save();toast('Sesión local iniciada');render()}if(a==='logout'){state.user=null;save();render()}if(a==='clear-fantasy'){state.fantasyPicks={};save();render()}if(a==='accept-privacy'){state.privacy.accepted=true;save();toast('Preferencias de privacidad guardadas');render()}if(a==='create-league')toast('Liga privada creada: LJ-2026');if(a==='join-league')toast('Introduce el código de invitación cuando conectemos cuentas')}
 function openVideo(title){const modal=document.createElement('div');modal.className='modal';modal.innerHTML=`<div class="video-modal"><button class="modal-close">×</button><div class="video-stage"><button class="play-big">▶</button></div><span class="eyebrow">VIDEO</span><h2>${title}</h2><p class="muted">Reproductor preparado. Añade el archivo o URL real para reproducir contenido oficial.</p><div class="progress"><i style="width:35%"></i></div><button class="btn outline full" data-cheer="video:${title}">Apoyar · ${state.cheers['video:'+title]||0}</button></div>`;document.body.appendChild(modal);modal.querySelector('.modal-close').onclick=()=>modal.remove();modal.onclick=e=>{if(e.target===modal)modal.remove()};modal.querySelector('[data-cheer]').onclick=()=>{const id='video:'+title;state.cheers[id]=(state.cheers[id]||0)+1;save();toast('¡Apoyo registrado!');modal.querySelector('[data-cheer]').textContent=`Apoyar · ${state.cheers[id]}`}}
 window.LJR_MAIN_ROUTE={go,render,state,refreshNewsRows};backButton.onclick=()=>{if(window.LJR_NAVIGATION){window.LJR_NAVIGATION.back();return}const prev=state.history.pop();if(prev)go(prev,false);else go('home',false)};window.addEventListener('hashchange',()=>{let r=location.hash.replace('#/','').split('?')[0];if(r==='quiz')r='quizArena';if(r.startsWith('v4-'))return;if(r&&r!==state.route){state.route=r;render()}});if(!state.route.startsWith('v4-'))render();
+
+})();
