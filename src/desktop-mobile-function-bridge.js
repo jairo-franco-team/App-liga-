@@ -141,7 +141,9 @@ function ensureOwnHost(title,desc){
 }
 function formatDate(d){return new Intl.DateTimeFormat('es-MX',{weekday:'short',day:'2-digit',month:'short',year:'numeric'}).format(d)}
 function googleCalendarUrl(m){
+ if(m?.suspended||m?.awarded)return '';
  const start=new Date(m.date).getTime();
+ if(!window.LJR_GOOGLE_CALENDAR_GLOBAL?.build)return '';
  return window.LJR_GOOGLE_CALENDAR_GLOBAL.build({
   title:m.home+' - '+m.away,startMs:start,duration:120,venue:m.venue||'',
   description:'Liga Juventino Rosas · '+categoryName(m.cat)+' · Jornada '+m.round
@@ -182,7 +184,7 @@ function renderCalendar(){
   wrap.querySelector('[data-ljpc-today]')?.addEventListener('click',()=>{monthShift=0;selectedDate='';renderCalendar()});
   wrap.querySelector('[data-ljpc-back-more]')?.addEventListener('click',()=>go('more'));
   wrap.querySelectorAll('[data-ljpc-date]').forEach(b=>b.addEventListener('click',()=>{selectedDate=b.dataset.ljpcDate;renderCalendar()}));
-  wrap.querySelectorAll('[data-ljpc-cal]').forEach(b=>b.addEventListener('click',()=>{const x=dayMatches[+b.dataset.ljpcCal];if(x)window.open(googleCalendarUrl(x),'_blank','noopener')}));
+  wrap.querySelectorAll('[data-ljpc-cal]').forEach(b=>b.addEventListener('click',()=>{const x=dayMatches[+b.dataset.ljpcCal];if(x&&!x.suspended&&!x.awarded){const url=googleCalendarUrl(x);if(url)window.open(url,'_blank','noopener');else alert('Google Calendar no está disponible ahora.')}}));
   wrap.querySelectorAll('[data-ljpc-share]').forEach(b=>b.addEventListener('click',()=>{const x=dayMatches[+b.dataset.ljpcShare];if(x)shareMatch(x)}));
 }
 
