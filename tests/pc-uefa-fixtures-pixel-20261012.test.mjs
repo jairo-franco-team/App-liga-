@@ -66,3 +66,26 @@ test('two compact columns and exact score/card hierarchy, all CSS route scoped',
  let braces=0;for(const ch of styles){if(ch==='{')braces++;if(ch==='}')braces--;}
  assert.equal(braces,0);
 });
+
+test('screenshot header uses dark utility band, cobalt/navy gradient and accessible primary actions',()=>{
+ const markup=source().fixturesPage();
+ assert.match(markup,/u18fx-utility/);
+ assert.match(markup,/u18fx-navlinks/);
+ for(const text of ['Notificaciones','Añadir al calendario','Filtrar','Ver cuadro','Ver detalles'])assert.ok(markup.includes(text),text);
+ for(const color of ['#111','#0a37f1','#050b53','#15e2e9'])assert.ok(styles.includes(color),color);
+ assert.match(styles,/\.u18fx-result \.u18fx-detail-button\{/);
+ assert.match(styles,/visibility:visible!important;opacity:1!important/);
+});
+test('Ver cuadro shows league-safe draw panel and functioning Ver detalles del sorteo route',()=>{
+ const x=source();
+ assert.match(script,/Sorteo de clasificación/);
+ assert.match(script,/Ver detalles del sorteo/);
+ assert.match(script,/data-u18-go=\"pc-draws\"/);
+ assert.match(script,/data-u18-go=\"bracketBuilder\"/);
+ assert.match(script,/No se inventan cruces, equipos ni fechas/);
+ assert.match(styles,/\.u18fx-draw-pair-grid/);
+});
+test('index avoids cached previous page assets',()=>{
+ assert.match(html,/pc-uefa-18-references-20261012\.js\?v=pc-fixtures-header-detail-draw-v3/);
+ assert.match(html,/pc-uefa-fixtures-pixel-20261012\.css\?v=pc-fixtures-header-detail-draw-v3/);
+});
