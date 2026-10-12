@@ -353,3 +353,18 @@ html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-ko-footer
   flex:0 0 110px!important;min-width:110px!important;
  }
 }
+
+/* 2026-10-12 · Center the two stage tabs as one exact 2-column control. */
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-switch{
+ display:grid!important;
+ grid-template-columns:repeat(2,minmax(0,min(190px,calc((100vw - 30px)/2))))!important;
+ align-items:center!important;
+ justify-content:center!important;
+ column-gap:0!important;
+ row-gap:0!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-switch > .u18-pill[data-u18-stand-tab="league"],
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-switch > .u18-pill[data-u18-stand-tab="knockout"]{
+ width:100%!important;min-width:0!important;max-width:none!important;
+ margin:0!important;flex:none!important;
+}
