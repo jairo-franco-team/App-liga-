@@ -17,7 +17,8 @@ const db={
       ]}],
       scorers:[{rows:[
         [1,'Luis García','Tavera FC',5],
-        [2,'Carlos Ruiz','Juventus',3]
+        [2,'Carlos Ruiz','Juventus',3],
+        [3,'Diego Pérez','Juventus',1]
       ]}],
       cards:[{rows:[['Amarilla','Luis García','Tavera FC',2]]}],
       player_usage:{c:{name:'Carlos Ruiz',team:'Juventus',cedulas:7}}
