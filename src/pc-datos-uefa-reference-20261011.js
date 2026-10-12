@@ -16,7 +16,13 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const norm=s=>String(s??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('es-MX').replace(/[^a-z0-9]+/g,' ').trim();
 const numeric=v=>{if(v===null||v===undefined||String(v).trim()==='')return null;const n=Number(String(v).trim().replace(',','.'));return Number.isFinite(n)?n:null};
 const textValue=v=>v===null||v===undefined||String(v).trim()===''?'—':esc(v);
-function source(){const found=window.LJR_OFFICIAL_DATA||window.LJR_OFFICIAL_API?.getData?.()||live;return found?.categories?found:null}
+function source(){
+ const injected=window.LJR_OFFICIAL_DATA;
+ if(injected?.categories)return injected;
+ const official=window.LJR_OFFICIAL_API?.getData?.();
+ if(official?.categories)return official;
+ return live?.categories?live:null;
+}
 function getData(){
  if(source()||fetching)return;
  fetching=true;
