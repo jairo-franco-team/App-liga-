@@ -161,6 +161,7 @@ async function edit(subject='',placement='all',onPublished,options={}){subject=t
   await refresh();onPublished?.({...b,id:draft.id,mime,url:base+'/api/file/'+draft.id});
   form.hidden=true;status.textContent='Publicado en la Liga. Puedes compartir el archivo en tus redes.';
   const actions=document.createElement('div');actions.className='liga-media-actions';
+  const copy=document.createElement('button');copy.type='button';copy.textContent='Copiar enlace del archivo';copy.onclick=async()=>{const url=base+'/api/file/'+draft.id;try{await navigator.clipboard.writeText(url);status.textContent='Enlace copiado. En Editar esta página pégalo en Imagen o video y selecciona Video si corresponde.'}catch{status.textContent=url}};actions.append(copy);
   const share=document.createElement('button');share.textContent='Compartir archivo en redes';
   share.onclick=async()=>{try{const data={files:[file]};if(navigator.canShare?.(data))await navigator.share(data);else{status.textContent='Este navegador no permite compartir archivos. Abre la plataforma y selecciona el mismo video.'}}catch(err){if(err.name!=='AbortError')status.textContent=err.message}};actions.append(share);
   for(const [name,url]of [['Facebook','https://www.facebook.com/'],['YouTube','https://studio.youtube.com/'],['TikTok','https://www.tiktok.com/tiktokstudio/upload']]){const a=document.createElement('a');a.textContent='Abrir '+name;a.href=url;a.target='_blank';a.rel='noopener';actions.append(a)}

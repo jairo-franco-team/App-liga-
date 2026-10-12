@@ -12,12 +12,9 @@
   if(native()&&['more','appInstall','quiniela','leagueTools'].includes(r)&&!root.querySelector('[data-ljr-offline-link]')){
    const link=document.createElement('button');link.type='button';link.className='ljr-offline-link';link.dataset.ljrOfflineLink='';link.dataset.route='offlineHub';link.textContent='◉ Sin internet · datos y herramientas guardadas';root.append(link);
   }
-  const games=new Set(['quizArena','moreLess','moreLessHub','fantasy','fantasyTeam','predictor','quiniela']);
   let back=document.getElementById('ljr-game-back');
-  const gameRoot=r==='quizArena'?(document.getElementById('v612-quiz-portal')||root):r.startsWith('moreLess')?(document.getElementById('v543-moreless-portal')||root):root;
-  const originalBack=[...gameRoot.querySelectorAll('[data-v531-quiz-back],[data-v531-more-back],.v589-back,.v766-back,.v22-back,[data-v48-game-back]')].find(el=>el.getClientRects().length&&getComputedStyle(el).display!=='none'&&getComputedStyle(el).visibility!=='hidden');
-  if(games.has(r)&&!originalBack){
-   if(!back){back=document.createElement('button');back.id='ljr-game-back';back.type='button';back.className='ljr-game-back';back.setAttribute('aria-label','Regresar');back.textContent='←';back.onclick=()=>window.LJR_APP_BACK?window.LJR_APP_BACK():window.LJR_NAVIGATION?.back?.();document.body.append(back)}
+  if(r==='fantasyTeam'){
+   if(!back){back=document.createElement('button');back.id='ljr-game-back';back.type='button';back.setAttribute('aria-label','Regresar');back.textContent='←';back.onclick=()=>window.LJR_APP_BACK?window.LJR_APP_BACK():window.LJR_NAVIGATION?.back?.();document.body.append(back)}
   }else back?.remove();
  }
  function schedule(){if(queued)return;queued=true;queueMicrotask(patch)}
