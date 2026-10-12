@@ -155,39 +155,62 @@
       '<p class="ljpc8-footnote">Sólo registros disponibles en la fuente oficial de la liga. «—» indica información no publicada.</p></section>';
   }
   function featureScorer(){
-    const arr=scorers().slice().sort((a,b)=>(number(b[3])??0)-(number(a[3])??0));
-    const leaders=arr.slice(0,2);
-    return '<section class="ljpc8-scorer"><h2>Máximo goleador</h2>'+
-    '<div class="ljpc8-scorer-feature">'+(leaders.length?leaders.map((r,i)=>
-      '<article class="ljpc8-scorer-hero"><div class="ljpc8-scorer-art">'+playerImage(r[1],r[2])+'</div><div class="ljpc8-scorer-info"><small>'+(i===0?'1.º GOLEADOR':'2.º GOLEADOR')+' · '+categoryCaption()+'</small><b>'+esc(r[1])+'</b><span>'+esc(r[2])+'</span></div><strong>'+value(r[3])+'<small>GOLES</small></strong></article>'
-    ).join(''):note('Aún no se ha publicado una tabla de goleo para esta categoría.'))+'</div>'+
-    '<div class="ljpc8-scorer-grid">'+arr.slice(2,18).map((r,i)=>'<div class="ljpc8-scorer-tile">'+playerImage(r[1],r[2])+'<span><b>'+esc(r[1])+'</b><small>'+esc(r[2])+'</small></span><strong>'+value(r[3])+'<small>goles</small></strong></div>').join('')+'</div>'+
-    '<button type="button" class="ljpc8-primary" data-ljpc8-go="pc-scorers">Ver tabla de goleadores '+icon('right')+'</button></section>';
+    const ranked=scorers().slice().sort((a,b)=>(number(b[3])??0)-(number(a[3])??0));
+    function photoFor(name,team){
+      const entries=Object.entries(dFor().player_profiles||{});
+      const entry=entries.find(([t])=>normalized(t)===normalized(team));
+      const p=(Array.isArray(entry?.[1])?entry[1]:[]).find(v=>normalized(v.name)===normalized(name));
+      const src=String(p?.photo||'').trim();
+      return /^https:\/\//i.test(src)?src:'';
+    }
+    const leaders=ranked.slice(0,2).map((r,i)=>{
+      const portrait=photoFor(r[1],r[2]);
+      const photo=portrait||'./deportiva-sur-partido.jpg';
+      const label=portrait?'Fotografía del jugador':'Fotografía de un partido de la Liga Juventino Rosas';
+      return '<article class="ljpc8-scorer-hero"><div class="ljpc8-scorer-art"><img class="ljpc8-scorer-photo" src="'+esc(photo)+'" alt="'+label+'" loading="lazy" decoding="async"><span class="ljpc8-scorer-label">#'+(i+1)+' Máximo goleador</span></div>'+
+        '<div class="ljpc8-scorer-result"><div class="ljpc8-scorer-info"><small>'+logo(r[2])+' '+esc(r[2])+'</small><b>'+esc(r[1])+'</b></div><strong>'+value(r[3])+'<small>Goles</small></strong></div></article>';
+    }).join('');
+    const remainder=ranked.slice(2,40).map((r,i)=>
+      '<div class="ljpc8-scorer-tile"><span class="ljpc8-scorer-rank">#'+(i+3)+'</span>'+playerImage(r[1],r[2])+
+      '<span class="ljpc8-scorer-tile-copy"><b>'+esc(r[1])+'</b><small>'+esc(r[2])+'</small></span><strong>'+value(r[3])+'<small>'+(number(r[3])===1?'Gol':'Goles')+'</small></strong></div>'
+    ).join('');
+    return '<section class="ljpc8-scorer"><h2>Máximo goleador</h2><div class="ljpc8-scorer-feature">'+
+       (leaders||note('No hay goleadores publicados en esta categoría.'))+'</div>'+
+       (remainder?'<div class="ljpc8-scorer-grid">'+remainder+'</div>':'')+
+       '<button type="button" class="ljpc8-primary" data-ljpc8-go="pc-scorers">Ranking completo '+icon('right')+'</button></section>';
   }
   function book(){
-    return '<section class="ljpc8-book"><div class="ljpc8-book-copy"><span class="ljpc8-kicker">LIGA JUVENTINO ROSAS · DATOS OFICIALES</span>'+
-      '<h2>Libro de estadísticas de la Liga Juventino Rosas</h2><p>Consulta las estadísticas de esta temporada, las tablas de todas las categorías, los máximos goleadores y los registros deportivos disponibles.</p></div>'+
-      '<div class="ljpc8-book-layout"><div class="ljpc8-book-photo"><img alt="Fútbol de la Liga Juventino Rosas" loading="lazy" src="./assets/home-players-user.png"></div>'+
-      '<div class="ljpc8-book-info"><h3>Un archivo de nuestra historia deportiva</h3><p>La información de los equipos, jugadores y campeonatos se presenta con datos publicados por la liga. Las cifras ausentes se mantienen sin inventar.</p>'+
-      '<p>Explora los resultados, el rendimiento y las historias de las cinco categorías oficiales.</p>'+
-      '<div class="ljpc8-book-links"><button type="button" data-ljpc8-go="pc-standings">'+icon('stats')+' Clasificación</button><button type="button" data-ljpc8-go="history">'+icon('book')+' Historia</button></div></div></div>'+
-      '<div class="ljpc8-book-footer"><button type="button" class="ljpc8-primary" data-ljpc8-go="pc-data">Consultar estadísticas '+icon('right')+'</button>'+
-      '<button type="button" class="ljpc8-quiet" data-ljpc8-go="pc-fixtures">Ver partidos ›</button></div></section>';
+    return '<article class="ljpc8-book">'+
+      '<div class="ljpc8-book-copy"><h2>Libro de estadísticas de la Liga Juventino Rosas</h2>'+
+      '<p>Consulta el calendario, los resultados de la temporada, las estadísticas de clubes y jugadores y los datos históricos disponibles de nuestra liga.</p></div>'+
+      '<figure class="ljpc8-book-photo"><img loading="lazy" decoding="async" src="./deportiva-sur-partido.jpg" alt="Partido de fútbol de la Liga Juventino Rosas"><figcaption>Fútbol de la Liga Juventino Rosas · Archivo de la liga</figcaption></figure>'+
+      '<div class="ljpc8-book-info"><p>El libro de estadísticas reúne la información deportiva publicada de las cinco categorías oficiales, desde las tablas generales hasta los goleadores y los registros de cada jornada.</p>'+
+      '<p>Conservamos los datos originales de los equipos y jugadores. Cuando una estadística no está publicada, indicamos que no está disponible, sin generar resultados ni cifras ficticias.</p></div>'+
+      '<div class="ljpc8-book-footer"><button type="button" class="ljpc8-primary" data-ljpc8-go="pc-standings">'+icon('stats')+' Consultar estadísticas</button>'+
+      '<button type="button" class="ljpc8-quiet" data-ljpc8-go="history">Explorar historia ›</button></div>'+
+      '<figure class="ljpc8-book-second-photo"><img src="./assets/home-players-user.png" alt="Jugadores de la Liga Juventino Rosas" loading="lazy" decoding="async"></figure>'+
+      '</article>';
   }
   function performance(){
     const teams=stand().filter(r=>r[1]).slice(0,11).map(r=>r[1]);
-    return '<section class="ljpc8-performance"><div class="ljpc8-performance-hero"><img alt="Jugadores de la Liga Juventino Rosas" src="./assets/home-players-user.png" loading="lazy">'+
-      '<div class="ljpc8-performance-overlay"><span>ZONA DE RENDIMIENTO</span><h2>Performance Zone</h2><p>Rendimiento y pasión por la Liga Juventino Rosas</p></div></div>'+
-      '<div class="ljpc8-performance-rail" aria-label="Equipos destacados">'+teams.map(t=>'<button type="button" data-ljpc8-go="teams">'+logo(t)+'<span>'+esc(t)+'</span></button>').join('')+'</div>'+
-      '<div class="ljpc8-performance-stories">'+[
-        ['Estadísticas de los clubes','Análisis oficial por categoría','pc-data','stats'],
-        ['Resultados y próximos juegos','Jornadas y partidos de la liga','pc-fixtures','trophy'],
-        ['Los mejores goleadores','Jugadores y goles anotados','pc-scorers','player'],
-        ['Vídeos y momentos','Noticias deportivas y transmisiones','video','video'],
-        ['Historia de los equipos','Campeones y temporadas','history','book'],
-        ['Comparar equipos','Rendimiento de los clubes','pc-team-compare','stats']
-      ].map(([t,d,route,symbol])=>'<button type="button" class="ljpc8-performance-story" data-ljpc8-go="'+route+'"><span class="ljpc8-story-art">'+icon(symbol)+'</span><b>'+esc(t)+'</b><small>'+esc(d)+'</small><span class="ljpc8-story-open">'+icon('right')+'</span></button>').join('')+'</div>'+
-      '<button type="button" class="ljpc8-primary" data-ljpc8-go="safe-performance">Abrir Performance Zone '+icon('right')+'</button></section>';
+    const items=[
+      ['Estadísticas de clubes','Consulta rendimiento y clasificaciones de equipos','pc-data','./deportiva-sur-partido.jpg'],
+      ['Partidos y jornadas','Resultados y programación de la Liga','pc-fixtures','./home-feature-reference.webp'],
+      ['Máximos goleadores','Los jugadores destacados por categoría','pc-scorers','./assets/home-players-user.png'],
+      ['Liga TV y transmisiones','Vídeos disponibles de nuestra liga','video','./video-hero-reference.webp'],
+      ['Campeones e historia','Recuerdos y temporadas de la competición','history','./reference-ui/winner-stage.webp'],
+      ['Comparación de clubes','Datos y rendimiento entre equipos','pc-team-compare','./reference-ui/captured-sport.webp']
+    ];
+    return '<section class="ljpc8-performance">'+
+      '<div class="ljpc8-performance-hero"><img alt="Partido de fútbol de la Liga Juventino Rosas" src="./deportiva-sur-partido.jpg" loading="lazy" decoding="async">'+
+      '<div class="ljpc8-performance-overlay"><span>LIGA JUVENTINO ROSAS</span><h2>Performance Zone</h2></div></div>'+
+      '<div class="ljpc8-performance-rail" aria-label="Equipos y contenidos destacados">'+
+      teams.map(t=>'<button type="button" data-ljpc8-go="teams"><span class="ljpc8-rail-photo">'+logo(t)+'</span><span>'+esc(t)+'</span></button>').join('')+'</div>'+
+      '<div class="ljpc8-performance-stories">'+items.map(([title,detail,target,img])=>
+        '<button type="button" class="ljpc8-performance-story" data-ljpc8-go="'+target+'"><img src="'+esc(img)+'" alt="" loading="lazy" decoding="async">'+
+        '<span class="ljpc8-performance-story-shade"></span><b>'+esc(title)+'</b><small>'+esc(detail)+'</small><span class="ljpc8-story-open">'+icon('right')+'</span></button>'
+      ).join('')+'</div>'+
+      '<button type="button" class="ljpc8-primary" data-ljpc8-go="safe-performance">Descubrir más '+icon('right')+'</button></section>';
   }
   function phase(){
     const all=stand(),goals=all.reduce((n,r)=>n+(number(r[6])||0),0);
