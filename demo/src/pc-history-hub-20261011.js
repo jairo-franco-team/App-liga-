@@ -30,8 +30,9 @@ function link(text,r,desc){
  return '<button class="ljpc-h-link" type="button" data-ds-route="'+esc(r)+'"><strong>'+esc(text)+'</strong>'+
  (desc?'<small>'+esc(desc)+'</small>':'')+'<span aria-hidden="true">›</span></button>';
 }
+const TAB_ICONS={"equipos":"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-users-group\" > <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/> <path d=\"M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\" /> <path d=\"M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1\" /> <path d=\"M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\" /> <path d=\"M17 10h2a2 2 0 0 1 2 2v1\" /> <path d=\"M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\" /> <path d=\"M3 13v-1a2 2 0 0 1 2 -2h2\" /> </svg>","noticias":"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-news\" > <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/> <path d=\"M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11\" /> <path d=\"M8 8l4 0\" /> <path d=\"M8 12l4 0\" /> <path d=\"M8 16l4 0\" /> </svg>","historia":"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-history\" > <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/> <path d=\"M12 8l0 4l2 2\" /> <path d=\"M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5\" /> </svg>","sobre":"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-info-circle\" > <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"/> <path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0\" /> <path d=\"M12 9h.01\" /> <path d=\"M11 12h1v4h1\" /> </svg>"};
 function tab(name,text,sub){
- return '<button type="button" class="ljpc-h-tab" data-ljpc-h-'+(sub?'sub':'section')+'="'+name+'" aria-selected="false">'+text+'</button>';
+ return '<button type="button" class="ljpc-h-tab" data-ljpc-h-'+(sub?'sub':'section')+'="'+name+'" aria-selected="false">'+(TAB_ICONS[name]||'')+'<span>'+text+'</span></button>';
 }
 function teamRows(){
  const db=window.LJR_OFFICIAL_DATA||window.LJR_OFFICIAL_API?.getData?.();
@@ -90,6 +91,7 @@ function choose(name){
  const hub=document.getElementById('ljpc-pc-history-hub');if(!hub)return;
  const inSub=subs.includes(name),main=inSub?'historia':sections.includes(name)?name:'historia';
  const sub=inSub?name:'temporadas';
+ document.getElementById('screen')?.classList.toggle('ljpc-h-show-other',main!=='historia');
  hub.querySelectorAll('[data-ljpc-h-section]').forEach(el=>{
   const active=el.dataset.ljpcHSection===main;el.classList.toggle('active',active);el.setAttribute('aria-selected',String(active));
  });
@@ -100,11 +102,23 @@ function choose(name){
  hub.querySelectorAll('[data-ljpc-h-subpanel]').forEach(el=>{el.hidden=el.dataset.ljpcHSubpanel!==sub});
  try{sessionStorage.setItem(KEY,name)}catch(_){}
 }
+/* Historia is an existing native PC route, so insert this hub above the actual
+   historical archive instead of waiting for the desktop-sections mock template.
+   This preserves the original functioning history view below the PC menu. */
 function mount(){
- if(!pc()||route()!=='history')return;
- const wrap=document.querySelector('#screen .ds-page .ds-content .ds-wrap');
- if(!wrap)return;
- if(!wrap.querySelector('#ljpc-pc-history-hub'))wrap.innerHTML=markup();
+ const screen=document.getElementById('screen');
+ if(!screen)return;
+ if(!pc()||route()!=='history'){
+  screen.classList.remove('ljpc-h-show-other');
+  screen.querySelector(':scope > #ljpc-pc-history-hub')?.remove();
+  return;
+ }
+ const staticWrap=screen.querySelector('.ds-page .ds-content .ds-wrap');
+ if(staticWrap){
+  if(!staticWrap.querySelector('#ljpc-pc-history-hub'))staticWrap.innerHTML=markup();
+ }else if(!screen.querySelector(':scope > #ljpc-pc-history-hub')){
+  screen.insertAdjacentHTML('afterbegin',markup());
+ }
  choose(saved());
 }
 let pending=false;
