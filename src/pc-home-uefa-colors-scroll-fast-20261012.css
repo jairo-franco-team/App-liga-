@@ -1,0 +1,199 @@
+/* Portada PC dentro del iframe pc-exact-original-20261011.html.
+   Referencia: capturas UEFA (azul de cabecera, Momentos/Noticias/Portada claros,
+   Resúmenes azul intenso). Ninguna regla afecta al shell móvil ni al APK.
+   Mantener los <a>, data-pc-route, carruseles y partidos sin alteraciones. */
+:root{color-scheme:light}
+html,body{scroll-behavior:auto!important}
+#root .ucl[data-name="page layout container"]{
+ --green:#13d1df;--blue:#1049f4;--pc-paper:#f2f3f7;--pc-ink:#203341;
+ --pc-blue:#103bfc;--pc-navy:#080b51;
+ background:var(--pc-paper)!important;color:var(--pc-ink)!important;
+}
+#root .ucl [data-name="hero and content section"]{
+ background:linear-gradient(110deg,#102fdd 0%,#090e69 54%,#080845 100%)!important;
+ color:#f7faff!important;overflow:hidden;
+}
+/* Evitar múltiples desenfoques de 80-100 px repintados durante el scroll. */
+#root .ucl :is([data-name="background glows container"],[data-name="background glow wrapper"],[data-name="footer atmosphere wrapper"])
+ [data-name*="glow orb"],
+#root .ucl :is([data-name="background glows container"],[data-name="background glow wrapper"],[data-name="footer atmosphere wrapper"])
+ [data-name*="glow"][class*="blur-"]{
+ display:none!important;
+}
+#root .ucl [data-name="moments section container"],
+#root .ucl [data-name="news section container"]{
+ background:transparent!important;color:var(--pc-ink)!important;
+ border:0!important;box-shadow:none!important;
+}
+#root .ucl [data-name="moments section container"]{
+ padding-top:18px!important;padding-bottom:8px!important;
+}
+#root .ucl [data-name="news section container"]{
+ padding-top:10px!important;padding-bottom:22px!important;
+}
+#root .ucl [data-name="moments section container"] [data-name="section title"],
+#root .ucl [data-name="news section container"] [data-name="section title"]{
+ color:var(--pc-ink)!important;font-size:17px!important;font-weight:750!important;
+ line-height:1.28!important;text-shadow:none!important;
+}
+#root .ucl [data-name="moments section container"] [data-name="view all link"]{
+ color:#1046c9!important;font-weight:650!important;
+}
+#root .ucl [data-name="moments grid container"]{
+ display:flex!important;gap:9px!important;overflow-x:auto!important;
+ overflow-y:hidden!important;scroll-snap-type:x proximity!important;
+ padding:2px 0 7px!important;overscroll-behavior-x:contain!important;
+ scrollbar-width:none!important;-webkit-overflow-scrolling:touch;
+}
+#root .ucl [data-name="moments grid container"]::-webkit-scrollbar{display:none}
+#root .ucl [data-name="moments grid container"]>a{
+ box-sizing:border-box!important;flex:0 0 clamp(115px,17.5%,190px)!important;
+ width:clamp(115px,17.5%,190px)!important;
+ scroll-snap-align:start!important;min-width:0!important;
+ height:183px!important;min-height:183px!important;
+ border:1px solid rgba(33,64,109,.16)!important;border-radius:10px!important;
+ box-shadow:none!important;
+}
+#root .ucl [data-name="moments grid container"]>a [data-name="card image"]{
+ width:100%!important;height:100%!important;object-fit:cover!important;
+}
+#root .ucl [data-name="moments grid container"] [data-name="card badge"]{
+ background:#19d6e0!important;color:#073652!important;
+}
+#root .ucl [data-name="news section container"] [data-name="news card bottom container"],
+#root .ucl [data-name="news section container"] [data-name="news card content"],
+#root .ucl [data-name="news section container"] [data-name^="news card "]:not([data-name="news card image"]){
+ box-shadow:none!important;
+}
+#root .ucl [data-name="news section container"] [data-name="news card bottom container"],
+#root .ucl [data-name="news section container"] [data-name="news card content"]{
+ background:#fff!important;color:var(--pc-ink)!important;
+}
+#root .ucl [data-name="news section container"] [data-name="view all news link"]{
+ color:#1042c6!important;background:transparent!important;
+ border:1px solid #2357be!important;border-radius:5px!important;
+}
+#root .ucl [data-name="news section container"] :is(
+ [data-name="news row 1 container"],[data-name="news row 2 container"]){
+ gap:10px!important;
+}
+#root .ucl [data-name="video section container"]{
+ position:relative!important;margin-top:0!important;
+ padding-top:0!important;padding-bottom:0!important;
+ background:linear-gradient(105deg,#123cff 0%,#1029cb 55%,#060d73 100%)!important;
+ color:white!important;overflow:hidden;
+}
+#root .ucl [data-name="video section container"]>[data-name="background glow wrapper"]{
+ display:none!important;
+}
+#root .ucl [data-name="video highlights section"]{
+ padding-top:25px!important;padding-bottom:27px!important;
+ color:#fff!important;min-width:0!important;
+}
+#root .ucl [data-name="video highlights section"] [data-name="section title"]{
+ color:#fff!important;font-weight:760!important;font-size:17px!important;
+}
+#root .ucl [data-name="video highlights grid"],
+#root .ucl [data-name="spotlight videos grid"]{
+ display:flex!important;gap:11px!important;
+ overflow-x:auto!important;overflow-y:hidden!important;
+ scroll-snap-type:x proximity!important;overscroll-behavior-x:contain!important;
+ padding:2px 1px 10px!important;scrollbar-width:none!important;
+ -webkit-overflow-scrolling:touch;
+}
+#root .ucl [data-name="video highlights grid"]::-webkit-scrollbar,
+#root .ucl [data-name="spotlight videos grid"]::-webkit-scrollbar{display:none}
+#root .ucl [data-name="video highlights grid"]>a,
+#root .ucl [data-name="spotlight videos grid"]>a{
+ box-sizing:border-box!important;
+ flex:0 0 calc((100% - 22px)/3)!important;
+ width:calc((100% - 22px)/3)!important;min-width:0!important;
+ scroll-snap-align:start!important;box-shadow:none!important;
+ border-radius:9px!important;backdrop-filter:none!important;
+ -webkit-backdrop-filter:none!important;
+}
+#root .ucl [data-name="video highlights grid"]>a{
+ background:#0a145c!important;border:1px solid rgba(255,255,255,.18)!important;
+ color:#fff!important;
+}
+#root .ucl [data-name="video highlights section"] [data-name="view all videos link"]{
+ background:transparent!important;color:#eaf7ff!important;
+ border-color:rgba(255,255,255,.66)!important;
+}
+#root .ucl [data-name="spotlight videos section"]{
+ color:var(--pc-ink)!important;
+ background:var(--pc-paper)!important;
+ padding-top:26px!important;padding-bottom:28px!important;
+ max-width:none!important;
+ padding-left:max(16px,calc((100% - 1060px)/2))!important;
+ padding-right:max(16px,calc((100% - 1060px)/2))!important;
+}
+#root .ucl [data-name="spotlight videos section"] [data-name="section title"]{
+ color:var(--pc-ink)!important;font-weight:760!important;font-size:17px!important;
+}
+#root .ucl [data-name="spotlight videos grid"]>a{
+ background:white!important;color:var(--pc-ink)!important;
+ border:1px solid #dde2eb!important;
+}
+#root .ucl [data-name="spotlight videos grid"]>a :is(p,span,b,strong){
+ color:var(--pc-ink)!important;text-shadow:none!important;
+}
+#root .ucl [data-name="spotlight videos section"] [data-name="view all videos link"]{
+ color:#1645b9!important;background:transparent!important;
+ border:1px solid #3256b7!important;border-radius:5px!important;
+}
+#root .ucl [data-name="video section container"] [data-name="navigation buttons container"] button{
+ width:25px!important;height:25px!important;min-width:25px!important;
+ border-color:currentColor!important;color:inherit!important;
+ background:transparent!important;
+}
+/* Fondo profundo del pie, sin cambiar ligas, nombres ni accesos. */
+#root .ucl [data-name="sponsors band"]{background:#eff0f6!important;color:#50627c!important}
+#root .ucl [data-name="sponsors label"]{color:#50627c!important}
+#root .ucl [data-name="footer"]{
+ background:linear-gradient(160deg,#07115c 0%,#05083b 100%)!important;
+ color:#f4f7ff!important;
+}
+/* Cada tarjeta no necesita sombras gigantes ni filtros de composición.
+   Mantener hover simple y la navegación intacta. */
+#root .ucl :is(
+ [data-name="moments grid container"],[data-name="news section container"],
+ [data-name="video highlights grid"],[data-name="spotlight videos grid"]) :is(a,button){
+ -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+ transition-property:border-color,opacity!important;
+ transition-duration:100ms!important;
+}
+@media(max-width:820px){
+ #root .ucl [data-name="moments section container"],
+ #root .ucl [data-name="news section container"]{
+   padding-left:10px!important;padding-right:10px!important;
+ }
+ #root .ucl [data-name="moments grid container"]>a{
+   flex:0 0 clamp(69px,19vw,108px)!important;
+   width:clamp(69px,19vw,108px)!important;
+   height:120px!important;min-height:120px!important;
+ }
+ #root .ucl [data-name="news section container"] :is(
+  [data-name="news row 1 container"],[data-name="news row 2 container"]){
+   gap:7px!important;min-width:0!important;
+ }
+ #root .ucl [data-name="video highlights section"],
+ #root .ucl [data-name="spotlight videos section"]{
+   padding-left:10px!important;padding-right:10px!important;
+ }
+ #root .ucl [data-name="video highlights grid"]>a,
+ #root .ucl [data-name="spotlight videos grid"]>a{
+   flex-basis:calc((100% - 16px)/3)!important;
+   width:calc((100% - 16px)/3)!important;
+ }
+ #root .ucl [data-name="video highlights grid"],
+ #root .ucl [data-name="spotlight videos grid"]{gap:8px!important}
+ #root .ucl :is(
+  [data-name="video highlights section"],[data-name="spotlight videos section"])
+  [data-name="section title"]{font-size:16px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ #root .ucl *,#root .ucl *::before,#root .ucl *::after{
+   scroll-behavior:auto!important;animation:none!important;
+ }
+}
