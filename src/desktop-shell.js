@@ -94,7 +94,7 @@ function render(){
  if(window.LJR_PC_NATIVE_ROUTES?.has(r))return;
  if(r==='home'){
   if(!pcExactFrame()){
-   h.innerHTML='<iframe id="ljpc-exact-html-home" title="Inicio PC de Liga Juventino Rosas" loading="eager" scrolling="no" src="./pc-exact-original-20261011.html?v=20261011-navy-original-restore-v1" style="display:block;width:100%;height:900px;min-height:0;border:0;outline:0;background:#040c1c;overflow-anchor:none" referrerpolicy="same-origin"></iframe>';
+   h.innerHTML='<iframe id="ljpc-exact-html-home" title="Inicio PC de Liga Juventino Rosas" loading="eager" scrolling="no" src="./pc-exact-original-20261011.html?v=20261011-circulos-scroll-v2" style="display:block;width:100%;height:900px;min-height:0;border:0;outline:0;background:#040c1c;overflow-anchor:none" referrerpolicy="same-origin"></iframe>';
    const frame=pcExactFrame();
    if(frame)frame.addEventListener('load',syncPCExactFixtures,{once:true});
   }else syncPCExactFixtures();
@@ -116,6 +116,15 @@ window.addEventListener('message',e=>{
    if(Math.abs(target-prior)>4)frame.style.height=target+'px';
   }
  }else if(e.data.kind==='ready')syncPCExactFixtures();
+ else if(e.data.kind==='pan'){
+  // El iframe de portada utiliza altura dinámica y no tiene scroll propio.
+  // Transferir sólo sus gestos verticales; las listas horizontales se deslizan
+  // dentro del propio iframe, sin alterar el móvil ni el APK.
+  const dy=Number(e.data.dy);
+  if(Number.isFinite(dy)&&Math.abs(dy)<=300){
+   window.scrollBy({top:dy,left:0,behavior:'instant'});
+  }
+ }
  else if(e.data.kind==='route'&&/^[a-zA-Z0-9_-]+$/.test(String(e.data.route||'')))go(e.data.route);
 });
 function click(e){const b=e.target.closest('[data-desk-route]');if(!b)return;e.preventDefault();go(b.dataset.deskRoute)}
