@@ -1,5 +1,8 @@
 /* V1387 — Registro de avisos: botones alineados y azul nocturno de la app.
    Afecta solo al modal de registro; mantiene intactos listeners, datos, Push y rutas. */
+/* Keep the functional hidden state formerly supplied by the retired import.
+   Design rules must never expose controls hidden by the original controller. */
+html body :is(.liga-media-modal,.v105-modal,.v1300-page) [hidden]{display:none!important}
 html body > .v105-modal.v168-account-modal.v920-registration-modal{
   --ljr-reg-bg:#070b34;
   --ljr-reg-surface:#0b1643;

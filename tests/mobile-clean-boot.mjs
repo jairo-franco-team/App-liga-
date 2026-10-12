@@ -34,7 +34,7 @@ try{
    return descriptor.set.call(this,value);
   }});
   function frame(){
-   const screen=document.getElementById('screen'),route=document.body?.dataset.appRoute;
+   const screen=document.getElementById('screen'),route=location.hash.replace(/^#\/?/,'').split('?')[0]||document.body?.dataset.appRoute;
    const expected=themes[route];
    if(screen&&expected&&screen.children.length&&screen.firstElementChild?.attributes.length&&getComputedStyle(screen).visibility==='visible'&&!screen.firstElementChild.matches('[data-ljr-reference-mount],[data-v569-auth-mount]')){
     window.__cleanBoot.frames++;

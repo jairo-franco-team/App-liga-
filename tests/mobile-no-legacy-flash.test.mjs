@@ -47,3 +47,24 @@ test('returning to the app resumes only visible decorative videos; leaving pause
  handler();assert.equal(visible.plays,1);assert.equal(offscreen.plays,0,'offscreen artwork must not restart on app return');assert.equal(offscreen.pauses,1);
  document.hidden=true;handler();assert.equal(visible.pauses,1);assert.equal(offscreen.pauses,2);assert.equal(visible.plays,1);
 });
+test('an asynchronous old route cannot decorate a newly opened protected route',()=>{
+ const screen={dataset:{},querySelectorAll(){return[];},querySelector(){return null;},removeAttribute(){delete this.dataset.capturedDesign;}};
+ const context={URLSearchParams,location:{search:'?mode=apk',hash:'#/historyLog'},window:{innerWidth:412,addEventListener(){}},document:{readyState:'complete',body:{dataset:{appRoute:'profile'}},getElementById:()=>screen,querySelector:()=>null,querySelectorAll:()=>[]},MutationObserver:class{observe(){}},queueMicrotask(){},requestAnimationFrame(){}};
+ vm.runInNewContext(source('v1441-captured-design.js'),context);
+ assert.equal(screen.dataset.capturedDesign,undefined,'the current URL owns the design even when an old module writes its body marker');
+});
+test('page motion holds its starting position until browser layout is ready and cancels stale starts',async()=>{
+ const classes=new Set(),frames=[];let animation;
+ const screen={animate(){animation={paused:0,played:0,cancelled:0,ready:Promise.resolve(),pause(){this.paused++;},play(){this.played++;},cancel(){this.cancelled++;}};return animation;}};
+ const location={search:'?mode=apk',hash:'#/home'};
+ const window={LJR_NAVIGATION:{direction:()=> 'back'}};
+ const context={window,location,document:{readyState:'complete',documentElement:{classList:{add:n=>classes.add(n),remove:n=>classes.delete(n)}},body:{dataset:{}},getElementById:()=>screen},URLSearchParams,matchMedia:()=>({matches:true}),localStorage:{getItem:()=>null},performance:{now:()=>0},setTimeout:()=>1,clearTimeout(){},addEventListener(){},MutationObserver:class{observe(){}},requestAnimationFrame:fn=>frames.push(fn)};
+ // Reduced-motion preference false; viewport query true.
+ context.matchMedia=query=>({matches:!query.includes('reduced-motion')});
+ vm.runInNewContext(source('v929-route-paint-guard.js'),context);
+ location.hash='#/news';window.LJR_VISUAL_STABILITY.begin(location.hash);window.LJR_VISUAL_STABILITY.finish();
+ assert.equal(animation.paused,1,'CPU/layout work must not consume the slide before its first visible frame');
+ assert.equal(animation.played,0);await Promise.resolve();frames.shift()();assert.equal(animation.played,1);
+ location.hash='#/profile';window.LJR_VISUAL_STABILITY.begin(location.hash);window.LJR_VISUAL_STABILITY.finish();const stale=animation;
+ location.hash='#/search';window.LJR_VISUAL_STABILITY.begin(location.hash);await Promise.resolve();frames.shift()();assert.equal(stale.played,0,'rapid navigation never starts a cancelled page slide');
+});

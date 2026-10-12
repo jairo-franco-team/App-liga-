@@ -104,6 +104,7 @@ jobs:
           npm install --no-save playwright --no-audit --no-fund
           npx playwright install --with-deps chromium
           ANDROID_PUBLIC_DIR=android/app/src/main/assets/public node tests/mobile-clean-boot.mjs
+          node tests/navigation-motion.mjs
 
       - name: Upload measured Android asset inventory
         uses: actions/upload-artifact@v4

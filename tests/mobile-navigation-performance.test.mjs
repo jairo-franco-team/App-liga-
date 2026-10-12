@@ -42,9 +42,9 @@ test('a scroll immediately followed by direct hash navigation restores the exact
  assert.equal(n.location.hash,'#/home');assert.equal(n.window.scrollY,683);assert.equal(n.root.scrollTop,427);
 });
 function motion({mobile=true,reduced=false,back=false,appReduced=false,storedReduced=false}={}){
- const animations=[];const screen={animate(frames,options){animations.push({frames,options});return {cancel(){},finished:Promise.resolve()}}};
+ const animations=[];const screen={animate(frames,options){animations.push({frames,options});return {cancel(){},pause(){},play(){},ready:Promise.resolve(),finished:Promise.resolve()}}};
  const html={classList:{add(){},remove(){}}};const document={body:{dataset:{v1300Reduced:String(appReduced)}},documentElement:html,getElementById:()=>screen,readyState:'complete'};
- const context={URLSearchParams,localStorage:{getItem:key=>key==='ljr-profile-prefs-v1300-member17'?JSON.stringify({reduceMotion:storedReduced}):null},window:{LJR_V569_AUTH:{currentAccount:()=>({id:'member17'})},LJR_NAVIGATION:{direction:()=>back?'back':'forward'}},document,location:{hash:'#/home',search:mobile?'?mode=apk':'?mode=desktop'},matchMedia:q=>({matches:q.includes('reduced')?reduced:mobile}),addEventListener(){},performance:{now:()=>0},setTimeout:()=>1,clearTimeout(){},MutationObserver:class{observe(){}}};
+ const context={URLSearchParams,localStorage:{getItem:key=>key==='ljr-profile-prefs-v1300-member17'?JSON.stringify({reduceMotion:storedReduced}):null},window:{LJR_V569_AUTH:{currentAccount:()=>({id:'member17'})},LJR_NAVIGATION:{direction:()=>back?'back':'forward'}},document,location:{hash:'#/home',search:mobile?'?mode=apk':'?mode=desktop'},matchMedia:q=>({matches:q.includes('reduced')?reduced:mobile}),addEventListener(){},performance:{now:()=>0},requestAnimationFrame:fn=>fn(),setTimeout:()=>1,clearTimeout(){},MutationObserver:class{observe(){}}};
  vm.runInNewContext(read('src/v929-route-paint-guard.js'),context);context.window.LJR_VISUAL_STABILITY.begin('#/players');context.location.hash='#/players';context.window.LJR_VISUAL_STABILITY.finish();return animations;
 }
 test('forward mobile pages slide right to left and back pages reverse',()=>{

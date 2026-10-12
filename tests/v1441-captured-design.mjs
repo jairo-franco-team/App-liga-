@@ -162,7 +162,12 @@ try{
   }
   assert.equal(await untouched.locator('#screen').getAttribute('data-captured-design'),null,route+' outside captured scope');
   assert.equal(await untouched.locator('#screen [data-design-card]').count(),0,route+' untouched');
-  assert.deepEqual(await signature(untouched),await signature(baseline),route+' retains original backgrounds and control colors');
+  const actualPaint=await signature(untouched),originalPaint=await signature(baseline);
+  if(JSON.stringify(actualPaint)!==JSON.stringify(originalPaint)){
+   const controls=p=>p.locator('#screen').evaluate(root=>[...root.querySelectorAll('button,select,input')].filter(e=>e.getClientRects().length&&!e.closest('.ljr-cms-entry,.v391-category-wrap')).slice(0,16).map(e=>({tag:e.tagName,text:e.textContent.trim().slice(0,60),class:e.className,surface:e.dataset.designSurface,card:e.dataset.designCard,html:e.outerHTML.slice(0,250)})));
+   console.error('Protected route diagnostic:',JSON.stringify({route,actual:await controls(untouched),original:await controls(baseline)}));
+  }
+  assert.deepEqual(actualPaint,originalPaint,route+' retains original backgrounds and control colors');
  }
  console.log('V1442: 30 complete routes, proportional backgrounds, white WebKit ink, independent tables, original selectors and PiP actions; at 412px, five complete mobile routes at 360px, solid controls, rainbow frames, editors, original selector, avatar, document and 14 protected routes verified.');
 }finally{await browser.close();}
