@@ -15,6 +15,14 @@ function adjust(){
  if(!pc()){if(footer)footer.style.removeProperty('--ljpc-footer-clearance');return}
  const screen=document.getElementById('screen');
  if(!footer||!screen||footer.parentElement!==document.body)return;
+ // The modern fixture page has its own natural-height knockout. The legacy
+ // footer gap calculator must not insert 100s/1000s of pixels after it.
+ if(document.documentElement.classList.contains('ljpc18-active')&&
+    document.documentElement.dataset.ljpc18Route==='pc-fixtures'&&
+    screen.querySelector(':scope > .u18-root')){
+   footer.style.setProperty('--ljpc-footer-clearance','0px');
+   return;
+ }
  const currentBottom=screen.querySelector('#v105-bottom');
  if(ro&&currentBottom&&observedBottom!==currentBottom){
   if(observedBottom)ro.unobserve(observedBottom);
