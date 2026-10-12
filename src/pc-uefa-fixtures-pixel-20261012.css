@@ -428,3 +428,68 @@ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-too
  html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-pair :is(span,b){font-size:9px!important}
  html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-tools{flex-wrap:wrap!important}
 }
+
+/* PC fixture consolidation v4 — nunca renderizar el listado histórico debajo */
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > :not(.u18-root){
+ display:none!important;visibility:hidden!important;pointer-events:none!important;
+ max-height:0!important;overflow:hidden!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > .u18-root{
+ display:block!important;visibility:visible!important;position:relative!important;
+ inset:auto!important;opacity:1!important;max-height:none!important;
+ width:100%!important;min-height:0!important;margin:0!important;padding:0!important;
+ overflow:visible!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-page .u18-original{
+ display:none!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-unified-controls{
+ display:flex!important;align-items:center!important;justify-content:space-between!important;
+ flex-wrap:wrap!important;gap:8px 14px!important;max-width:100%!important;
+ min-width:0!important;margin:0 0 15px!important;padding:10px 0 9px!important;
+ border-bottom:1px solid #dfe5ee!important;background:transparent!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-category-pills,
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-status-pills{
+ display:flex!important;flex-wrap:wrap!important;align-items:center!important;
+ gap:6px!important;min-width:0!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-category-pills button,
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-status-pills button{
+ appearance:none!important;position:static!important;display:inline-flex!important;align-items:center!important;
+ justify-content:center!important;flex:0 0 auto!important;min-height:27px!important;
+ height:27px!important;margin:0!important;padding:4px 10px!important;
+ border:1px solid #d6dfeb!important;border-radius:6px!important;
+ background:#fff!important;color:#233b57!important;box-shadow:none!important;
+ font-size:10px!important;font-weight:670!important;letter-spacing:0!important;
+ text-decoration:none!important;white-space:nowrap!important;line-height:1!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-category-pills button.selected{
+ background:#0739a3!important;color:#fff!important;border-color:#0739a3!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-status-pills .u18-pill.selected{
+ background:#0a1174!important;color:#fff!important;border-color:#0a1174!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-category-pills button:focus-visible,
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-status-pills button:focus-visible{
+ outline:2px solid #08cde9!important;outline-offset:2px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-card .u18fx-detail-button{
+ display:inline-flex!important;visibility:visible!important;opacity:1!important;
+ pointer-events:auto!important;cursor:pointer!important;
+}
+@media(max-width:900px){
+ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-unified-controls{
+  align-items:flex-start!important;justify-content:flex-start!important;
+ }
+}
+@media(max-width:610px){
+ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-unified-controls{
+  padding:7px 0!important;gap:6px!important;margin-bottom:10px!important;
+ }
+ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-category-pills button,
+ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-status-pills button{
+  min-height:25px!important;height:25px!important;padding:4px 6px!important;
+  font-size:9px!important;
+ }
+}
