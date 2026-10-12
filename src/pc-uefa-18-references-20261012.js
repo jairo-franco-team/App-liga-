@@ -341,6 +341,7 @@ function sync(){
  document.documentElement.dataset.ljpc18Route=route();
  let root=screen.querySelector(':scope > .u18-root');
  if(!root){root=document.createElement('div');root.className='u18-root';screen.prepend(root);lastRef=null;}
+ if(route()==='pc-fixtures'&&screen.firstElementChild!==root)screen.prepend(root);
  isolateFixturesLegacy(screen,route()==='pc-fixtures');
  const signature=route()+'|'+state.cat+'|'+(source()?'loaded':'missing');
  if(lastRef!==root.dataset.loaded||root.children.length===0||root.dataset.signature!==signature){
