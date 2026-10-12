@@ -1,6 +1,16 @@
 <!doctype html>
 <html lang="es-MX">
 <head>
+  <!-- PC: detectar escritorio antes del primer dibujo del encabezado móvil. -->
+  <script id="ljpc-desktop-head-early">
+    (function(){
+      var mode=new URLSearchParams(location.search).get('mode')||'';
+      if(mode==='desktop'||(mode!=='mobile'&&mode!=='apk'&&window.innerWidth>=1024)){
+        document.documentElement.classList.add('ljpc-header-free-desktop');
+      }
+    })();
+  </script>
+
   <style>@layer ljr-captured-design, ljr-reference-surfaces;</style>
   <script>
     (function(){
@@ -934,6 +944,22 @@ html body.v587-fantasy-team-open .v576-field-row.por{
   <link rel="stylesheet" href="./src/pc-mas-uefa-20261011.css?v=20261011-pc-only" />
   <!-- Referencias visuales Drive: aisladas en Datos PC, sin tocar APK/móvil. -->
   <link rel="stylesheet" href="./src/pc-drive-eight-references-20261011.css?v=20261011-drive-eight-pc-v1" />
+  <!-- Aislamiento PC: al final de TODOS los estilos de cabecera. -->
+  <style id="ljpc-native-topbar-before-paint">
+    html.ljpc-header-free-desktop body #app > header.topbar,
+    html.ljpc-header-free-desktop body #app > .topbar,
+    html.ljpc-header-free-desktop body .app-shell > header.topbar{
+      display:none!important;visibility:hidden!important;opacity:0!important;
+      height:0!important;min-height:0!important;max-height:0!important;
+      margin:0!important;padding:0!important;border:0!important;
+      position:static!important;overflow:hidden!important;
+      pointer-events:none!important;background-image:none!important;
+    }
+    html.ljpc-header-free-desktop body #app > header.topbar::before,
+    html.ljpc-header-free-desktop body #app > header.topbar::after{
+      display:none!important;content:none!important;
+    }
+  </style>
 </head>
 <body>
 <div id="ljr-boot" aria-label="Cargando Liga Juventino" role="status"><i></i></div>
@@ -1019,7 +1045,7 @@ html body.v587-fantasy-team-open .v576-field-row.por{
   <script defer src="./src/v882-home-galacticos-logo-hardfix.js?v=20261007-v882"></script>
   <script defer src="./src/desktop-home-restore-20261011.js?v=20261011-restore-pc-reference"></script>
   <script defer src="./src/desktop-home-bottom-integration-20261011.js?v=20261011-compact-inside-v1"></script>
-  <script type="module" src="./src/desktop-shell.js?v=20261011-tight-layout-v3&scrollowner=20261012v3&history=inside-more-v3&nativebar=off-v1"></script>
+  <script type="module" src="./src/desktop-shell.js?v=20261011-tight-layout-v3&scrollowner=20261012v3&history=inside-more-v3&nativebar=removed-v2"></script>
   <script type="module" src="./src/desktop-sections.js?v=20261008-v956-pc-official-data"></script>
   <script defer src="./src/desktop-parity-20261008.js?v=20261010-v1175-pc-global"></script>
   <script defer src="./src/desktop-parity-runtime-20261008.js?v=20261010-v1177-comparison-pc"></script>
