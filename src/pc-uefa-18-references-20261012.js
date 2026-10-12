@@ -431,8 +431,9 @@ function sync(){
   if(currentRoute==='pc-fixtures')try{window.scrollTo({top:0,behavior:'instant'});}catch(_){}
   screen.querySelector(':scope > .u18-root')?.classList.remove('u18-show-classic');
  }
- document.documentElement.classList.add('ljpc18-active');
- document.documentElement.dataset.ljpc18Route=route();
+ // Reassert the PC-only marker only when needed: other desktop shell updates can reset <html> classes.
+ if(!document.documentElement.classList.contains('ljpc18-active'))document.documentElement.classList.add('ljpc18-active');
+ if(document.documentElement.dataset.ljpc18Route!==route())document.documentElement.dataset.ljpc18Route=route();
  let root=screen.querySelector(':scope > .u18-root');
  if(!root){root=document.createElement('div');root.className='u18-root';screen.prepend(root);lastRef=null;}
  if(route()==='pc-fixtures'&&screen.firstElementChild!==root)screen.prepend(root);
@@ -534,6 +535,14 @@ document.addEventListener('input',e=>{if(active()&&e.target.matches?.('[data-u18
 window.addEventListener('hashchange',schedule);
 window.addEventListener('resize',schedule);
 window.addEventListener('ljr:official-data',()=>{db=null;lastRef=null;schedule();});
-function boot(){schedule();const screen=document.getElementById('screen');if(screen)new MutationObserver(schedule).observe(screen,{childList:true});}
+function boot(){
+ schedule();
+ // The desktop shell may change html classes after the UEFA view mounts. Restore only in PC routes.
+ if(typeof MutationObserver==='function')new MutationObserver(()=>{
+  if(active()&&(!document.documentElement.classList.contains('ljpc18-active')||document.documentElement.dataset.ljpc18Route!==route()))schedule();
+ }).observe(document.documentElement,{attributes:true,attributeFilter:['class','data-ljpc18-route']});
+ const screen=document.getElementById('screen');
+ if(screen&&typeof MutationObserver==='function')new MutationObserver(schedule).observe(screen,{childList:true});
+}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
