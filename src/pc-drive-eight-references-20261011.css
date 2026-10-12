@@ -800,3 +800,62 @@ html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-card .ljpc8-phase-ro
  html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-hero{grid-template-columns:1fr}
  html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-cat-picker{position:relative}
 }
+
+
+/* Captura 201646: título por fuera de las tarjetas de resumen, doble panel azul. */
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-hero{
+ grid-template-columns:1fr 1fr!important;grid-template-rows:auto 1fr;
+ gap:18px!important;padding:31px 21px 34px!important;
+ border-radius:0!important;min-height:335px!important;
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-hero h2.ljpc8-phase-main-title{
+ grid-column:1/-1;max-width:none!important;width:100%;
+ font:850 29px/1.24 Inter,Arial,sans-serif!important;
+ color:#fff!important;margin:0 0 2px!important;
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-summary{
+ display:flex;flex-direction:column;justify-content:flex-start;
+ gap:4px;min-height:170px;background:#13249d!important;border-radius:12px;
+ padding:17px 20px;color:#fff
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-summary>h3{
+ margin:0 0 6px!important;font:760 13px Inter,Arial,sans-serif!important;
+ color:#fff!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-summary>strong{
+ color:#fff!important;font:860 42px/1.05 Inter,Arial,sans-serif!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-summary>span{
+ color:#d1ddff;font:500 11px Inter,Arial,sans-serif
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-numbers{
+ border-top:1px solid #8ba9f555;margin-top:auto;padding-top:13px;
+ display:grid;grid-template-columns:1fr 1fr;gap:13px
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-numbers span{
+ display:grid;gap:3px;color:#d4dfff;font-size:10px!important;
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-numbers strong{
+ color:#fff!important;font:820 19px/1.1 Inter,Arial,sans-serif!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-chart{
+ background:#111b8cbb!important;border-radius:12px!important;
+ padding:17px 20px 10px!important;min-height:170px
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-chart h3{
+ color:#fff!important;font-size:13px!important;font-weight:780!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-bars{
+ min-height:128px!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-bar-area i{
+ background:#0ee8ee!important;width:45%!important
+}
+@media(max-width:960px){
+ html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-hero{
+  grid-template-columns:1fr!important
+ }
+ html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-hero h2.ljpc8-phase-main-title{
+  grid-column:auto
+ }
+}
