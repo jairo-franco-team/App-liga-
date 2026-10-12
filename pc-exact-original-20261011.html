@@ -57,12 +57,19 @@ html.ljpc-embedded-home body,
 html.ljpc-embedded-home #root .ucl {
  overflow-x:clip!important;overflow-y:visible!important;height:auto!important;
 }
+html.ljpc-embedded-home #root .ucl[data-name="page layout container"]{
+ min-height:0!important;height:max-content!important;
+}
+/* El degradado ya es parte del fondo; sombras gaussianas de 90px generan lag al deslizar. */
+html.ljpc-embedded-home #root .ucl [data-name="background glows container"]{
+ display:none!important;
+}
 html.ljpc-embedded-home #root .ucl [data-name="hero and content section"] {
  margin-top:0!important;padding-top:0!important;
 }
 html.ljpc-embedded-home #root .ucl [data-name="stories list container"] {
  margin:0 auto 0!important;
- padding:2px 12px 4px!important;
+ padding:0 10px 3px!important;
  position:relative!important;
 }
 html.ljpc-embedded-home #root .ucl [data-name="responsible gambling banner wrapper"] {
@@ -1436,15 +1443,21 @@ function setFixtures(list){
  if(count)count.textContent=String(data.length);
  requestHeight();
 }
-let pending=false;
+let pending=false,lastSentHeight=0;
 function requestHeight(){
  if(pending)return;pending=true;
- requestAnimationFrame(()=>{pending=false;
-  const body=document.body,doc=document.documentElement;
+ requestAnimationFrame(()=>{
+  pending=false;
   const content=document.querySelector('#root .ucl[data-name="page layout container"]');
-  const rootHeight=content?Math.ceil(content.getBoundingClientRect().bottom+window.scrollY):0;
-  const h=Math.max(body.scrollHeight,doc.scrollHeight,rootHeight);
-  notify({kind:'height',height:h});});
+  if(!content)return;
+  // El scrollHeight de html/body depende de la altura del iframe exterior.
+  // Reenviarlo realimentaba un bucle de +3px, relayout y más scrollHeight.
+  const h=Math.ceil(Math.max(content.offsetHeight,content.scrollHeight));
+  if(Number.isFinite(h)&&h>0&&Math.abs(h-lastSentHeight)>2){
+   lastSentHeight=h;
+   notify({kind:'height',height:h});
+  }
+ });
 }
 window.addEventListener('message',e=>{
  if(e.origin!==origin||e.source!==window.parent||!e.data||e.data.kind!=='fixtures'||!e.data.ljpcExact)return;
@@ -1454,10 +1467,8 @@ window.addEventListener('load',()=>{notify({kind:'ready'});requestHeight()});
 window.addEventListener('resize',requestHeight);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(requestHeight);
 if(window.ResizeObserver){
- const obs=new ResizeObserver(requestHeight);
- obs.observe(document.body);
  const page=document.querySelector('#root .ucl[data-name="page layout container"]');
- if(page)obs.observe(page);
+ if(page)new ResizeObserver(requestHeight).observe(page);
 }
 document.querySelectorAll('img').forEach(i=>i.addEventListener('load',requestHeight,{once:true}));
 requestHeight();
