@@ -23,7 +23,7 @@ test('V1386: paleta de los cuadros administrativos antes de la capa exclusiva V1
  // Validar cada hoja que se añade después de V1386, sin bloquear
  // futuras paletas reales por su nombre o fecha de publicación.
  for(const href of laterStyles){
-  assert.match(href,/^\.\/src\/[a-z0-9._-]+\.css\?v=[a-z0-9._-]+$/i,
+  assert.match(href,/^\.\/src\/[a-z0-9._-]+\.css\?v=[a-z0-9._-]+(?:&[a-z0-9._-]+=[a-z0-9._-]+)*$/i,
    'Cada hoja visual final debe ser CSS local con versión anticaché');
   const filename=href.slice(2).split('?')[0];
   const layer=read(filename);
