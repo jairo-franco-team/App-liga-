@@ -376,7 +376,8 @@ function v124EligibilityHtml(){
     return '<div class="v124-eligibility neutral" data-v124-eligibility><b>Edad por detectar</b><span>Cuando se detecte la fecha de nacimiento se mostrarán sólo las categorías en las que puede jugar.</span></div>';
   }
   const cls=e.ok?'ok':'blocked',title=e.ok?'✓ Elegible · '+e.age+' años':'✕ No elegible · '+e.age+' años';
-  return '<div class="v124-eligibility '+cls+'" data-v124-eligibility><b>'+title+'</b><span>'+(e.ok?'Puede registrarse en: ':esc(e.message||'')+' · Elegibles: ')+esc(eligible.join(' · '))+'</span></div>';
+  const rule=e.age>50?' · Art. 97: puede participar en Veteranos 35+ y 50+ a la vez, si cumple registro y no tiene sanción.':e.age===50?' · Art. 97: consultar a la directiva la simultaneidad a los 50 exactos (dice «rebasan los 50»).':e.age>=35?' · Art. 72: edad mínima 35 cumplidos en Veteranos 35+.':'';
+  return '<div class="v124-eligibility '+cls+'" data-v124-eligibility><b>'+title+'</b><span>'+(e.ok?'Puede registrarse en: ':esc(e.message||'')+' · Elegibles: ')+esc(eligible.join(' · '))+rule+' Art. 91: la edad por sí sola no autoriza cambiar de equipo durante el torneo.</span></div>';
 }
 function renderEligibility(){
   if(route()!=='credentialBuilder')return;
