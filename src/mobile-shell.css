@@ -161,7 +161,7 @@ html.ljr-insets-loading #ljr-route-loader{display:grid}
 @layer ljr-mobile-shell {
 @media(max-width:1023px){
  html body.ljr-v777[data-app-route="home"] #app>.topbar{height:calc(128px + env(safe-area-inset-top,0px))!important;min-height:calc(128px + env(safe-area-inset-top,0px))!important;max-height:calc(128px + env(safe-area-inset-top,0px))!important;background-image:linear-gradient(180deg,transparent 58%,#04065c 100%),url('../public/profile/home-header.webp')!important;border:0!important}
- html body.ljr-v777[data-app-route="home"] #app>.topbar::before{content:""!important;position:absolute!important;inset:auto!important;left:18px!important;top:calc(30px + env(safe-area-inset-top,0px))!important;width:46px!important;height:46px!important;background:url('../assets/reference/predictor-v36/liga-crest-white.webp') center/contain no-repeat!important;border:0!important;transform:none!important;opacity:1!important}
+ html body.ljr-v777[data-app-route="home"] #app>.topbar::before{content:""!important;display:block!important;visibility:visible!important;position:absolute!important;inset:auto!important;left:18px!important;top:calc(30px + env(safe-area-inset-top,0px))!important;width:46px!important;height:46px!important;background:url('../assets/reference/predictor-v36/liga-crest-white.webp') center/contain no-repeat!important;border:0!important;transform:none!important;opacity:1!important}
  html body.ljr-v777[data-app-route="home"].ljr-header-compact #app>.topbar{height:var(--ljr-head-height)!important;min-height:var(--ljr-head-height)!important;max-height:var(--ljr-head-height)!important}
  html body.ljr-v777[data-app-route="home"].ljr-header-compact #app>.topbar::before{top:calc(14px + env(safe-area-inset-top,0px))!important;width:34px!important;height:34px!important}
 }
@@ -171,5 +171,13 @@ html.ljr-insets-loading #ljr-route-loader{display:grid}
  html body .v64-upload-field{grid-column:1/-1!important}
  html body.v369-compare-open #screen>.v42-team-page{visibility:hidden!important;pointer-events:none!important}
  html body .v369-compare-topbar{padding-top:calc(13px + env(safe-area-inset-top,0px))!important;min-height:calc(58px + env(safe-area-inset-top,0px))!important}
+}
+}
+/* Keep the bottom navigation visible, matching the loading reference. */
+#ljr-route-loader{bottom:var(--v774-nav-h,0px)}
+
+@layer ljr-mobile-shell {
+@media(max-width:1023px){
+ html body.ljr-native-insets:not(.ljr-v777) #app>.topbar{height:calc(64px + env(safe-area-inset-top,0px))!important;min-height:calc(64px + env(safe-area-inset-top,0px))!important;padding-top:calc(16px + env(safe-area-inset-top,0px))!important}
 }
 }

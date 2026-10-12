@@ -23,6 +23,7 @@ try{
  blockOptionalBundle=false;
  await page.goto('https://mobile.test/?mode=apk#/home',{waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>window.LJR_MAIN_ROUTE?.go&&!document.documentElement.classList.contains('ljr-preboot'));
+ assert.equal(await page.locator('#app>.topbar').evaluate(e=>getComputedStyle(e,'::before').display),'block','Home retains its league crest over the restored artwork');
  const go=async r=>{await page.evaluate(r=>window.LJR_MAIN_ROUTE.go(r),r);await page.waitForTimeout(950)};
  await go('history');
  await page.evaluate(()=>{window.__chromeCalls=0;const sync=window.LJR_CHROME.sync;window.LJR_CHROME.sync=function(...args){window.__chromeCalls++;return sync.apply(this,args)}});
@@ -39,8 +40,11 @@ try{
   layouts.push(await page.evaluate(()=>{const e=document.querySelector('#screen>.tabs');const r=e.getBoundingClientRect();return [r.x,r.y,r.width,r.height]}));
  }
  assert.deepEqual(layouts[1],layouts[0],'classification tabs keep their geometry');assert.deepEqual(layouts[2],layouts[0],'bracket tabs keep their geometry');
- await go('more');await page.evaluate(()=>window.LJR_MAIN_ROUTE.go('teams'));
- assert.equal(await page.locator('#ljr-route-loader').isVisible(),true,'navigation has a loading indicator');
+ await go('more');const loading=await page.evaluate(()=>{
+  window.LJR_MAIN_ROUTE.go('teams');const loader=document.getElementById('ljr-route-loader'),nav=document.querySelector('.bottom-nav'),r=nav.getBoundingClientRect();
+  return {visible:getComputedStyle(loader).display!=='none',nav:document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)?.closest('.bottom-nav')===nav,circle:parseFloat(getComputedStyle(loader.querySelector('i')).width)};
+ });
+ assert.equal(loading.visible,true,'navigation has a loading indicator');assert.equal(loading.nav,true,'loading reference keeps bottom navigation visible and usable');assert.ok(loading.circle>=48,'loading circle is larger');
  await page.waitForTimeout(1100);assert.equal(await page.locator('#ljr-route-loader').isVisible(),false,'loading indicator releases the new view');
  await page.evaluate(()=>{
   function event(type,x){const e=new Event(type,{bubbles:true});Object.defineProperty(e,type==='touchend'?'changedTouches':'touches',{value:[{clientX:x,clientY:350}]});document.querySelector('#screen').dispatchEvent(e)}
