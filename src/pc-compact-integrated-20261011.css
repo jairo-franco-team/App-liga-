@@ -224,6 +224,7 @@ html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen .v103-upcomi
 }
 html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen .v103-upcoming-match{
   width:100%!important;min-height:45px!important;height:auto!important;
+  display:grid!important;
   grid-template-columns:minmax(0,1fr) 51px minmax(0,1fr)!important;
   align-items:center!important;gap:6px!important;
   padding:4px 3px!important;margin:0!important;
@@ -233,6 +234,7 @@ html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen .v103-upcomi
   border-top:1px solid #ffffff26!important;
 }
 html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen .v103-upcoming-team{
+  display:flex!important;align-items:center!important;
   min-width:0!important;gap:5px!important;
 }
 html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen .v103-upcoming-team b{
@@ -329,3 +331,16 @@ html.ljpc-unified-pc.ljpc-pc-native-mode body.lj-desktop.ljpc-native-route #scre
 }
 /* Keep original mobile and APK modes fully isolated: none of the selectors above
    match without BOTH ljpc-unified-pc and lj-desktop. */
+
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen .v103-upcoming-center {
+  display:flex!important;flex-direction:column!important;
+  align-items:center!important;justify-content:center!important;gap:2px!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen .v103-upcoming-day-head {
+  display:flex!important;align-items:center!important;justify-content:space-between!important;
+}
+/* Single-date cards occupy the full available width instead of leaving a blank
+   half-column; two dates remain side by side. */
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen .v103-upcoming-card > .v103-upcoming-day:nth-child(2):last-child{
+  grid-column:1/-1!important;
+}
