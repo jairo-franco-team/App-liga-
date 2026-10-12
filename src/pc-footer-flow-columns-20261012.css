@@ -1,0 +1,95 @@
+/* Pie unico del modo PC: conserva sus botones y evita superposicion
+   con la ultima fila de herramientas. NUNCA aplica al movil o APK. */
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer{
+  display:block!important;position:relative!important;inset:auto!important;
+  width:100%!important;max-width:100%!important;min-width:0!important;
+  height:auto!important;min-height:0!important;transform:none!important;
+  float:none!important;clear:both!important;isolation:isolate!important;
+  z-index:1!important;
+  margin:var(--ljpc-footer-clearance,12px) 0 0!important;
+  padding:0!important;box-sizing:border-box!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-sponsor{
+  position:relative!important;inset:auto!important;transform:none!important;
+  margin:0!important;clear:both!important;padding:12px 14px!important;
+  line-height:1.35!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-footer{
+  box-sizing:border-box!important;display:block!important;
+  width:100%!important;min-height:0!important;overflow:visible!important;
+  padding:18px 0 12px!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-footer-columns{
+  box-sizing:border-box!important;display:grid!important;
+  width:min(1120px,calc(100% - 32px))!important;max-width:1120px!important;
+  margin:0 auto!important;padding:0!important;
+  align-items:start!important;justify-content:stretch!important;
+  grid-auto-rows:max-content!important;gap:14px!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-footer-columns > section{
+  box-sizing:border-box!important;display:flex!important;min-width:0!important;
+  max-width:100%!important;align-self:start!important;
+  flex-direction:column!important;align-items:flex-start!important;
+  gap:9px!important;padding:0!important;margin:0!important;
+  position:relative!important;inset:auto!important;transform:none!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-footer-columns > section h3{
+  margin:0 0 4px!important;line-height:1.3!important;
+  font-size:clamp(10px,1.05vw,12px)!important;
+  letter-spacing:.07em!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-footer-columns > section button{
+  max-width:100%!important;min-height:24px!important;padding:2px 0!important;
+  overflow-wrap:anywhere!important;white-space:normal!important;
+  text-align:left!important;line-height:1.35!important;
+  font-size:clamp(10px,.94vw,12px)!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-footer-brand{
+  gap:8px!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-footer-brand p{
+  font-size:11px!important;line-height:1.45!important;
+  max-width:230px!important;
+}
+/* En PC ancho, modo escritorio forzado en Android INCLUIDO, son 5
+   columnas lado a lado; nunca el falso 2x3 de la captura. */
+@media(min-width:900px){
+  html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-footer-columns{
+    grid-template-columns:minmax(170px,1.5fr) repeat(4,minmax(0,1fr))!important;
+    gap:clamp(14px,2.1vw,30px)!important;
+  }
+  html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-footer-columns > section{
+    grid-column:auto!important;grid-row:auto!important;
+  }
+}
+/* Vista intermedia: logo en primera fila y cuatro menus compactos debajo. */
+@media(min-width:680px) and (max-width:899px){
+  html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-footer-columns{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    gap:13px!important;
+  }
+  html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-footer-brand{
+    grid-column:1/-1!important;grid-row:auto!important;
+  }
+  html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-footer-columns > section:not(.ljpc-u-footer-brand){
+    grid-column:auto!important;grid-row:auto!important;
+  }
+}
+/* PC abierto en telefono angosto: 2 columnas cercanas, marca de ancho total.
+   Es PC forzado, nunca el modo de aplicacion movil. */
+@media(max-width:679px){
+  html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-footer-columns{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:14px 12px!important;
+    width:calc(100% - 28px)!important;
+  }
+  html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-footer-brand{
+    grid-column:1/-1!important;grid-row:auto!important;
+  }
+  html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-footer-columns > section:not(.ljpc-u-footer-brand){
+    grid-column:auto!important;grid-row:auto!important;
+  }
+  html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-footer-columns > section button{
+    font-size:11px!important;
+  }
+}
