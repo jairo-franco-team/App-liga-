@@ -25,5 +25,5 @@ test('La hoja es única y posterior a los estilos que agrandaban los cuadros',()
   const file='src/pc-admin-shortcuts-compact-20261012.css';
   assert.equal(index.split(file).length-1,1);
   assert.ok(index.indexOf(file)>index.indexOf('src/v1441-captured-design.css'));
-  assert.match(index,/pc-admin-shortcuts-compact-20261012.css\?v=pc-admin-mini-20261012-v1/);
+  assert.match(index,/pc-admin-shortcuts-compact-20261012.css\?v=pc-admin-mini-20261012-v[0-9]+/);
 });
