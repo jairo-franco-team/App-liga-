@@ -72,9 +72,9 @@ jobs:
           # The V1441 suite supersedes the exact V1421/V1440 background assertions
           # and compares 14 untouched routes against a build without the decorator.
           node tests/v1441-captured-design.mjs
-          node tests/navigation-motion.mjs
           node tests/v1460-mobile-corrections.mjs
           node tests/onboarding-mobile-v1460.mjs
+          node tests/navigation-motion.mjs
           node tests/v1438-protected-headers.mjs
       - name: Keep mobile screenshots
         if: always()

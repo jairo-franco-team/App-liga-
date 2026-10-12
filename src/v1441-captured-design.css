@@ -204,18 +204,18 @@
  [data-captured-design] :is(.v1300-detail,.v1150-privacy-banner) {padding:14px 6px!important;gap:14px!important;}
  [data-captured-design] .v569-form {gap:20px!important;padding:6px 2px!important;}
  /* Profile links share continuous white separators rather than nested frames. */
- [data-captured-design] [data-design-surface="line"] {
+ [data-captured-design] [data-design-surface="line"]:not([data-design-paper]):not([data-design-paper] *) {
   display:flex!important;align-items:center!important;gap:14px!important;
   position:relative!important;background:transparent!important;background-image:none!important;
   border:0!important;border-bottom:1px solid rgba(239,247,255,.42)!important;
   border-radius:0!important;box-shadow:none!important;min-height:58px!important;
   padding:16px 10px!important;margin:0!important;color:#fff!important;text-align:left!important;
  }
- [data-captured-design] [data-design-surface="line"]>.ljr-design-edge {display:none!important;}
- [data-captured-design] [data-design-surface="line"]::before,
- [data-captured-design] [data-design-surface="line"]::after {content:none!important;background:none!important;box-shadow:none!important;border:0!important;}
- [data-captured-design] [data-design-surface="line"]> :is(b,.v12-profile-row-label) {flex:1!important;min-width:0!important;}
- [data-captured-design] [data-design-surface="line"] svg {color:#fff!important;width:22px!important;height:22px!important;}
+ [data-captured-design] [data-design-surface="line"]:not([data-design-paper]):not([data-design-paper] *)>.ljr-design-edge {display:none!important;}
+ [data-captured-design] [data-design-surface="line"]:not([data-design-paper]):not([data-design-paper] *)::before,
+ [data-captured-design] [data-design-surface="line"]:not([data-design-paper]):not([data-design-paper] *)::after {content:none!important;background:none!important;box-shadow:none!important;border:0!important;}
+ [data-captured-design] [data-design-surface="line"]:not([data-design-paper]):not([data-design-paper] *)> :is(b,.v12-profile-row-label) {flex:1!important;min-width:0!important;}
+ [data-captured-design] [data-design-surface="line"]:not([data-design-paper]):not([data-design-paper] *) svg {color:#fff!important;width:22px!important;height:22px!important;}
  [data-captured-design] .v12-profile-menu {overflow:visible!important;}
  [data-captured-dialog] .ljr-profile-preview {
   padding:24px 16px!important;border:1px solid rgba(130,197,255,.5)!important;
@@ -243,6 +243,7 @@
  [data-captured-dialog] .v800-shirt-fields {gap:16px!important;padding:0!important;margin:16px 0!important;}
  [data-captured-dialog] .ljr-avatar-gallery {gap:12px!important;}
  [data-captured-dialog] .ljr-avatar-gallery button {min-height:104px!important;border-radius:16px!important;}
+ [data-captured-dialog] .ljr-admin-tile-icon {background:transparent!important;border:0!important;box-shadow:none!important;color:#d7faff!important;}
  /* Standalone cards can vary in blue without creating an enclosing blue plate. */
  :is([data-captured-design],[data-captured-dialog]) :is(.v105-card,.ljr-admin-btn,.ljr-admin-grid>button,.v1081-list>article,.v1126-card) {
   background:#091957!important;background-image:none!important;
