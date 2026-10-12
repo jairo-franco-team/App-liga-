@@ -238,3 +238,8 @@ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-modal-ca
  html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-navlinks button{font-size:8px!important;padding:6px!important}
  html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-team-line span{font-size:9px!important}
 }
+
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-brand img{
+ display:block!important;width:31px!important;height:37px!important;flex:0 0 31px!important;
+ object-fit:contain!important;background:none!important;border:0!important;box-shadow:none!important;
+}
