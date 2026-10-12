@@ -292,14 +292,17 @@ function meeting(root){
 function profiles(){
  if(route()!=='video')return;
  let a=null;try{a=window.LJR_V569_AUTH?.currentAccount?.()||window.LJR_MAIN_ROUTE?.state?.user||null}catch(_){}
- const fallback='<img class="v17-tv-profile-icon" src="./profile-reference.svg" alt="">';
+ const fallback='<img class="v17-tv-profile-icon" src="./profile-tv-reference.svg" alt="">';
  const photo=a&&(a.avatar||a.photoURL||a.picture);
  const gamer=a&&/^gamer:[0-8]$/.test(a.avatarPreset||'');
  let html=fallback;
  if(photo)html='<img class="ljr-profile-image v17-tv-profile-photo" src="'+esc(photo)+'" alt="Mi perfil">';
  else if(gamer&&window.LJR_CHROME?.avatar)html=window.LJR_CHROME.avatar(a);
  document.querySelectorAll('.v17-tv-profile').forEach(button=>{
-  if(button.innerHTML!==html)button.innerHTML=html;
+  const current=button.firstElementChild;
+  const expected=photo||'./profile-tv-reference.svg';
+  const sameImage=!gamer&&button.children.length===1&&current?.tagName==='IMG'&&current.matches(photo?'.v17-tv-profile-photo':'.v17-tv-profile-icon')&&current.src===new URL(expected,location.href).href;
+  if(!sameImage&&button.innerHTML!==html)button.innerHTML=html;
   button.classList.toggle('has-account-avatar',!!(photo||gamer));
   button.setAttribute('aria-label',a?'Mi perfil':'Perfil');
  });

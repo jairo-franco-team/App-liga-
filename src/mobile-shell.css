@@ -181,3 +181,18 @@ html.ljr-insets-loading #ljr-route-loader{display:grid}
  html body.ljr-native-insets:not(.ljr-v777) #app>.topbar{height:calc(64px + env(safe-area-inset-top,0px))!important;min-height:calc(64px + env(safe-area-inset-top,0px))!important;padding-top:calc(16px + env(safe-area-inset-top,0px))!important}
 }
 }
+@layer ljr-mobile-shell {
+@media(max-width:1023px){
+ html body[data-app-route="video"] .v17-tv-profile{overflow:hidden!important}
+}
+}
+@layer ljr-mobile-shell {
+@media(max-width:1023px){
+ html body .v569-credentials>section{background:linear-gradient(160deg,#12378b,#080b64)!important;color:#fff!important;border-color:#3559a2!important;box-shadow:none!important}
+ html body .v569-credentials :is(header,footer,.v569-cred-body>div){border-color:#3559a2!important}
+ html body .v569-credentials :is(h2,.v569-cred-body b,header button){color:#fff!important}
+ html body .v569-credentials :is(.v569-cred-body p,.v569-cred-body small){color:#c1cfee!important}
+ html body .v569-credentials footer button{background:rgba(255,255,255,.12)!important;border-color:#5379b4!important;color:#fff!important}
+ html body .v569-credentials footer button.primary{background:#21d3e8!important;color:#052153!important}
+}
+}

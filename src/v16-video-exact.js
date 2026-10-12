@@ -100,7 +100,7 @@ function v16VideoMarkup(){
         </div>
 
         <button class="v17-tv-profile" data-v16-route="profile" aria-label="Perfil">
-          <img class="v17-tv-profile-icon" src="./profile-reference.svg" alt="">
+          <img class="v17-tv-profile-icon" src="./profile-tv-reference.svg" alt="">
         </button>
 
         <div class="v17-tv-title">
@@ -149,8 +149,9 @@ function v16SyncProfile(){
     if(button.innerHTML!==html)button.innerHTML=html;
     button.classList.add('has-account-avatar');
   }else{
-    const fallback='<img class="v17-tv-profile-icon" src="./profile-reference.svg" alt="">';
-    if(button.innerHTML!==fallback)button.innerHTML=fallback;
+    const fallback='<img class="v17-tv-profile-icon" src="./profile-tv-reference.svg" alt="">';
+    const existing=button.querySelector('img.v17-tv-profile-icon');
+    if(!existing||button.children.length!==1||existing.src!==new URL('./profile-tv-reference.svg',location.href).href)button.innerHTML=fallback;
     button.classList.remove('has-account-avatar');
   }
   button.setAttribute('aria-label',account?'Mi perfil':'Perfil');
