@@ -1,0 +1,111 @@
+/* 2026-10-12: Scoped mobile/APK refinements. Desktop remains unchanged.
+ * Keep the routing/loading overlay and all action handlers intact. */
+@media (max-width:1023px) {
+  /* There are two initial loaders in index.html. Keep ONLY the route loader
+     visible on phones. Its geometry stays fixed, with no animation or text. */
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) #ljr-boot {
+    display:none!important;
+  }
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) #ljr-route-loader > i {
+    position:relative!important;
+    display:block!important;
+    width:50px!important;
+    height:50px!important;
+    box-sizing:border-box!important;
+    border:5px solid rgba(255,255,255,.24)!important;
+    border-top-color:#fff!important;
+    border-right-color:#fff!important;
+    border-radius:50%!important;
+    animation:none!important;
+    transform:none!important;
+    transition:none!important;
+    will-change:auto!important;
+  }
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) #ljr-route-loader > i > svg,
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) #ljr-route-loader > span {
+    display:none!important;
+  }
+  /* Insets may come from the CSS safe-area or the Android native bridge. */
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) body.v33-data-active
+    .v33-head-actions {
+    top:calc(30px + max(var(--ljr-native-top, env(safe-area-inset-top, 0px)),var(--ljr-native-top,0px)))!important;
+  }
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) body.v33-data-active
+    .v33-data-head.is-collapsed .v33-head-actions {
+    top:calc(17px + max(var(--ljr-native-top, env(safe-area-inset-top, 0px)),var(--ljr-native-top,0px)))!important;
+  }
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) body.v33-data-active
+    .v33-collapsed-title {
+    font-size:clamp(20px,5.25vw,26px)!important;
+  }
+  /* The dedicated invitation screen remains an independently scrolling
+     surface when the phone has a short usable height or a large keyboard. */
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop).v31-hospitality-active
+    #screen.screen {
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    overscroll-behavior-y:contain!important;
+    -webkit-overflow-scrolling:touch;
+  }
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop).v31-hospitality-active
+    .v31-hospitality-page {
+    min-height:max(740px,calc(100dvh - 60px))!important;
+    height:auto!important;
+  }
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) body[data-app-route="hospitality"]
+    .v31-continue {
+    max-width:calc(100% - 40px)!important;
+    bottom:calc(22px + var(--ljr-native-bottom, env(safe-area-inset-bottom,0px)))!important;
+    white-space:normal!important;
+  }
+  /* Right-sized action icons in the small notification / alert tiles. */
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) body
+    :is(.v774-alert-tools,.v562-sync-grid) button :is(svg,img) {
+    width:clamp(18px,5vw,23px)!important;
+    height:clamp(18px,5vw,23px)!important;
+    max-width:23px!important;
+    max-height:23px!important;
+    object-fit:contain!important;
+  }
+}
+
+/* Player comparison: the previous full-height flex layout clipped the final
+   "Cambiar jugador" action below the visible screen. Allow the original
+   contents to scroll inside the existing mobile viewport; keep their artwork. */
+@media(max-width:1023px){
+ html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop)
+ body.ljr-v777[data-app-route="playerCompare"] #app #screen{
+   overflow-x:hidden!important;
+   overflow-y:auto!important;
+   -webkit-overflow-scrolling:touch;
+   overscroll-behavior-y:contain;
+ }
+ html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop)
+ body.ljr-v777[data-app-route="playerCompare"] #app #screen .v123-player-compare{
+   box-sizing:border-box!important;
+   height:auto!important;
+   min-height:100%!important;
+   overflow:visible!important;
+   padding:0 0 calc(72px + var(--ljr-native-bottom, env(safe-area-inset-bottom,0px)))!important;
+ }
+ html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop)
+ body.ljr-v777[data-app-route="playerCompare"] #app #screen
+ :is(.v123-choose-empty,.v123-results){
+   flex:0 0 auto!important;
+   height:auto!important;
+   min-height:0!important;
+   overflow:visible!important;
+ }
+ html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop)
+ body.ljr-v777[data-app-route="playerCompare"] #app #screen .v123-change-player{
+   display:flex!important;
+   align-items:center!important;
+   justify-content:center!important;
+   width:100%!important;
+   min-height:46px!important;
+   height:auto!important;
+   padding:11px 14px!important;
+   white-space:normal!important;
+   box-sizing:border-box!important;
+ }
+}
