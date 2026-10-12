@@ -55,11 +55,42 @@ function copyStaticReferences() {
       // sí existan tanto en GitHub Pages como dentro del build Android.
       // Image URLs from the reusable resource catalog are resolved dynamically.
       for(const directory of ['assets/content-studio','assets/branding']){if(existsSync(resolve(directory)))cpSync(resolve(directory),resolve('dist',directory),{recursive:true,force:true})}
+      // Gaming UEFA-reference 6-page PC site: publish static HTML/CSS and real league crests.
+      // Independent from index.html, mobile APK and the original games' JavaScript.
+      const gamingSource = resolve('gaming');
+      if (existsSync(gamingSource)) {
+        cpSync(gamingSource, resolve('dist/gaming'), { recursive: true, force: true });
+      }
+      const seasonSource = resolve('assets/season-2026');
+      if (existsSync(seasonSource)) {
+        cpSync(seasonSource, resolve('dist/assets/season-2026'), { recursive: true, force: true });
+      }
+      for (const name of ['index.html','about.html','services.html','portfolio.html','blog.html','contact.html']) {
+        const dest = resolve('dist/gaming', name);
+        if (!existsSync(dest)) throw new Error('Página Gaming faltante: ' + name);
+      }
+      const gamingAssets = [
+        'assets/branding/escudo-liga-azul-sin-fondo-v1007.png',
+        'assets/home-players-user.png',
+        'assets/moments/moments-original-a.png',
+        'assets/moments/moments-original-b.png',
+        'assets/history/archive-v224/la-esperanza-campeon-copa-veteranos50-08-nov-2025.webp',
+        'assets/history/archive-v278/boavista-campeon-de-campeones-primera-18-ene-2015.jpg',
+        'assets/reference/final-trophy-drive.png',
+        'assets/season-2026/galacticos.webp',
+        'assets/season-2026/lobos-cdg.webp',
+      ];
+      // Existing history copy below; verification is done after history files are copied.
       const historyFrom = resolve('assets/history');
       const historyTo = resolve('dist/assets/history');
       if (existsSync(historyFrom)) {
         mkdirSync(historyTo, { recursive: true });
         cpSync(historyFrom, historyTo, { recursive: true, force: true });
+      }
+
+      // Block deploy if any of the new Gaming photo/crest assets is missing.
+      for (const asset of gamingAssets) {
+        if (!existsSync(resolve('dist', asset))) throw new Error('Asset Gaming ausente en dist: ' + asset);
       }
 
       // The source index still contains a small set of classic, non-module
