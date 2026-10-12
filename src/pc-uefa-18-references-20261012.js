@@ -347,10 +347,7 @@ function localClick(e){
    date:m.day?m.day.split('-').reverse().join('/'):'',time:m.time,
    venue:m.venue,category:CAT[state.cat],jornada:'Jornada '+m.round
   }));}catch(_){}
-  if(typeof window.LJR_MATCH_CENTER?.open==='function'){
-   try{window.LJR_MATCH_CENTER.open(m.id);return;}catch(_){}
-  }
-  go('matchCenter');return;
+  go('match');return;
  }
 
  if(d.u18StandTab){state.standTab=d.u18StandTab;repaint();return;}
