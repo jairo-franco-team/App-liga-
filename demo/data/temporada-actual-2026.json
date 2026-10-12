@@ -2669,7 +2669,50 @@
             "note": "Jornada suspendida por aviso del usuario para el 11/10/2026; no es un resultado ni default."
           }
         ],
-        "J8": [],
+        "J8": [
+          {
+            "home": "DEP. LA LUZ",
+            "away": "SAN ANTONIO FC",
+            "date": "2026-10-18",
+            "time": "08:00",
+            "field": "Campo 2"
+          },
+          {
+            "home": "SAN JULIAN",
+            "away": "TAVERA FC",
+            "date": "2026-10-18",
+            "time": "08:00",
+            "field": "San Julian"
+          },
+          {
+            "home": "BARZA",
+            "away": "DEP. ZAPATA",
+            "date": "2026-10-18",
+            "time": "10:00",
+            "field": "Campo 2"
+          },
+          {
+            "home": "DEP. NOPALERO",
+            "away": "SAN JUAN FC",
+            "date": "2026-10-18",
+            "time": "10:00",
+            "field": "Campo 4"
+          },
+          {
+            "home": "CELTICOS",
+            "away": "TAPATIO",
+            "date": "2026-10-18",
+            "time": "12:00",
+            "field": "Campo 1 (Empastado)"
+          },
+          {
+            "home": "SAN JOSE JRS",
+            "away": "PACHANGAS FC",
+            "date": "2026-10-18",
+            "time": "12:00",
+            "field": "San Jose  de la Montaña"
+          }
+        ],
         "J9": [
           {
             "home": "CELTICOS",
@@ -2980,7 +3023,11 @@
     "second_force_round_2026_10_11": "J7",
     "corrected_round_source": "https://www.juventinorosasliga.com/reporte-semanal/",
     "pending_matches_2026_10_10": "Intermedia: Aldama FC-Atl. Galeana 08:00; Osasuna-Dep. Maravillas 10:00. Segunda: San Antonio FC-Tavera FC 12:00. Todos Campo 1.",
-    "veteranos35_friendly": "SUSPENDIDO por aviso del usuario; sin fecha confirmada"
+    "veteranos35_friendly": "SUSPENDIDO por aviso del usuario; sin fecha confirmada",
+    "latest_week": "2026-10-12/2026-10-18",
+    "latest_week_source": "https://www.juventinorosasliga.com/reporte-semanal/",
+    "latest_week_checked": "2026-10-12",
+    "second_j8_2026_10_18": "Seis partidos contrastados con la publicación oficial; solo horario, rivales y cancha, sin adjudicar resultados."
   },
   "last_user_verified_results": {
     "date": "2026-10-08",
