@@ -25,6 +25,9 @@ function copyStaticReferences() {
         ['assets/moments/moments-original-b.png', 'dist/assets/moments/moments-original-b.png'],
         // CSS propio de la portada PC independiente: index se empaqueta, pero el iframe necesita su URL literal.
         ['src/desktop-browser-editorial-20261011.css', 'dist/src/desktop-browser-editorial-20261011.css'],
+        // CORRECCIÓN: este CSS se enlaza desde pc-exact-original-20261011.html,
+        // Vite no lo agrega automáticamente porque el HTML del iframe se copia literal.
+        ['src/pc-home-uefa-colors-scroll-fast-20261012.css', 'dist/src/pc-home-uefa-colors-scroll-fast-20261012.css'],
         // Portada PC original: los HTML fuera de index no son emitidos por Vite.
         ['pc-exact-original-20261011.html', 'dist/pc-exact-original-20261011.html'],
         // Fotografías de Liga Juventino usadas solo dentro del HTML PC.
@@ -51,6 +54,11 @@ function copyStaticReferences() {
       const pcHTML = resolve('dist/pc-exact-original-20261011.html');
       if (!existsSync(pcHTML)) throw new Error('Falta portada PC en dist: pc-exact-original-20261011.html');
       const pcMarkup = readFileSync(pcHTML,'utf8');
+      // Comprobar también hojas externas enlazadas por el iframe antes de publicar.
+      const pcStyles = [...pcMarkup.matchAll(/<link\\b[^>]*href="\\.\\/([^"?]+\\.css)(?:\\?[^\"]*)?"/gi)].map(m => m[1]);
+      for (const css of new Set(pcStyles)) {
+        if (!existsSync(resolve('dist',css))) throw new Error('CSS faltante en Inicio PC publicado: '+css);
+      }
       const pcAssets = [...pcMarkup.matchAll(/(?:src|href)="\.\/([^"?]+\.(?:png|jpe?g|webp|svg))"/gi)].map(m => m[1]);
       for (const asset of new Set(pcAssets)) {
         if (!existsSync(resolve('dist', asset))) {
