@@ -68,3 +68,30 @@ body.lj-desktop .lj-new{text-align:center;font-size:11px;color:#67758a;margin:15
 body.lj-desktop .lj-login-note{font-size:9px;line-height:1.4;color:#78869a;margin-top:12px;text-align:center}
 body.lj-desktop .lj-login-back{display:inline-flex;margin-bottom:10px;border:0;background:none;color:#174fc5;font-weight:800;cursor:pointer}
 @media(max-width:1050px){body.lj-desktop .lj-dropdown{left:auto;right:-12px}body.lj-desktop .lj-more-dropdown{right:-12px!important;left:auto!important}body.lj-desktop .lj-store-flyout{left:auto;right:calc(100% + 8px)}.lj-directory-main{grid-template-columns:280px 1fr!important}.lj-dir-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
+
+
+/* Navegación PC: Historia va exclusivamente dentro de Más. */
+body.lj-desktop .ds-menu .ljpc-legacy-history-group{
+ display:block;position:relative;border-bottom:1px solid #ffffff21;
+}
+body.lj-desktop .ds-menu .ljpc-legacy-history-toggle{
+ display:flex!important;align-items:center;justify-content:space-between;
+ width:100%;padding:10px 14px!important;height:auto!important;
+ border:0;background:#10166b;color:#fff;font-weight:750;text-align:left;
+}
+body.lj-desktop .ds-menu .ljpc-legacy-history-children{
+ display:flex;flex-direction:column;background:#101b72;
+}
+body.lj-desktop .ds-menu .ljpc-legacy-history-children[hidden]{
+ display:none!important;
+}
+body.lj-desktop .ds-menu .ljpc-legacy-history-children button{
+ padding:11px 12px 11px 26px!important;border:0;border-bottom:1px solid #ffffff13;
+ background:transparent;color:#ecf2ff;text-align:left!important;font-size:11px;
+}
+body.lj-desktop .ds-menu .ljpc-legacy-history-children button:hover{background:#1c4bab;}
+/* Resguardo para menús de escritorio antiguos que sigan en el DOM. */
+body.lj-desktop :is(.ds-menu,.desk-menu) > button[data-desk-route="history"],
+body.lj-desktop :is(.ds-menu,.desk-menu) > .lj-menu-wrap:has(> button[data-desk-route="history"]){
+ display:none!important;
+}
