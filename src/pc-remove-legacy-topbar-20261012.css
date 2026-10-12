@@ -26,3 +26,19 @@ html.ljpc-unified-pc body #ljpc-unified-pc-header,
 html.ljpc-no-legacy-topbar body #ljpc-unified-pc-header {
  display:block!important;
 }
+
+/* Defensive fallback for the initial desktop frame before the DOM detach runs.
+   This targets the actual #app > header.topbar even if app-shell gets replaced. */
+html.ljpc-no-legacy-topbar body[data-app-route] #app > header.topbar,
+html.ljpc-no-legacy-topbar body[data-app-route] #app > .topbar,
+html.ljpc-unified-pc body[data-app-route] #app > header.topbar,
+html.ljpc-unified-pc body[data-app-route] #app > .topbar {
+ display:none!important;
+ height:0!important;
+ min-height:0!important;
+ max-height:0!important;
+ padding:0!important;
+ margin:0!important;
+ border:0!important;
+ overflow:hidden!important;
+}
