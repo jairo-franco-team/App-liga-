@@ -71,3 +71,12 @@ test('forced PC mode on Android unlocks the mobile 100dvh overflow lock',()=>{
  assert.match(css,/overflow-x:hidden!important;overflow-y:auto!important/);
  assert.match(css,/overflow-x:hidden!important;overflow-y:visible!important/);
 });
+
+test('PC home hides floating Moments banner, not the playable Momentos cards',()=>{
+ assert.match(css,/\[data-app-route="home"\] #screen \.v26-moments-sticky/);
+ assert.match(css,/\[data-app-route="home"\] #screen \.v621-moments-bg/);
+ assert.match(css,/\[data-app-route="home"\] #screen \.v26-moments-page\{/);
+ assert.match(html,/html\.ljpc-embedded-home #root \.ucl \[data-name="top bar wrapper"\]/);
+ assert.match(html,/html\.ljpc-embedded-home #root \.ucl \[data-name="stories list container"\]/);
+ assert.doesNotMatch(css,/html\.preview-mobile .*\.v26-moments-sticky/);
+});
