@@ -70,3 +70,98 @@ html.ljpc-forced-handset body.lj-desktop #screen .ljr-uefa-root{
 html.ljpc-forced-handset body.lj-desktop #screen .ljpc-data-tablebox{
   max-width:100%!important;overflow-x:auto!important;
 }
+
+
+/* Navegación PC visible completa en Chrome Android 360–820 CSS px.
+   Mantener siete entradas y desplegables funcionales sin cortar el costado derecho. */
+@media(max-width:820px){
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header .ljpc-u-nav>.ljpc-u-wrap{
+  display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;
+  grid-template-areas:"brand login" "links links"!important;
+  height:auto!important;min-height:0!important;
+  gap:5px 7px!important;padding:7px 9px!important;
+  overflow:visible!important;
+}
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header .ljpc-u-brand{
+  grid-area:brand!important;min-width:0!important;gap:5px!important;
+}
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header .ljpc-u-brand img{
+  width:28px!important;height:28px!important;
+}
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header .ljpc-u-brand span{
+  font-size:10px!important;line-height:1.12!important;
+}
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header .ljpc-u-login{
+  grid-area:login!important;display:inline-flex!important;
+  position:static!important;white-space:nowrap!important;
+  font-size:9px!important;min-height:29px!important;
+  height:29px!important;padding:4px 8px!important;
+}
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header .ljpc-u-links{
+  grid-area:links!important;
+  display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:4px!important;flex:none!important;
+  width:100%!important;min-width:0!important;max-width:100%!important;
+  overflow:visible!important;margin:0!important;padding:0!important;
+}
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header .ljpc-u-links>button,
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header .ljpc-u-links>details{
+  display:block!important;min-width:0!important;
+  width:100%!important;max-width:100%!important;
+  flex:initial!important;margin:0!important;position:relative!important;
+}
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header .ljpc-u-links>button,
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header .ljpc-u-links>details>summary{
+  display:flex!important;justify-content:center!important;align-items:center!important;
+  gap:2px!important;width:100%!important;max-width:100%!important;
+  height:30px!important;min-height:30px!important;
+  padding:2px 3px!important;margin:0!important;
+  border-radius:5px!important;font-size:9.5px!important;line-height:1.1!important;
+  white-space:nowrap!important;overflow:visible!important;
+}
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header .ljpc-u-links>details[open]{
+  z-index:1930!important;
+}
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header .ljpc-u-links>details .ljpc-u-dropdown{
+  position:absolute!important;top:calc(100% + 5px)!important;
+  left:0;width:min(245px,calc(100vw - 20px))!important;
+  max-width:calc(100vw - 20px)!important;
+  max-height:min(68vh,430px)!important;
+  overflow-x:hidden!important;overflow-y:auto!important;
+  z-index:1931!important;
+}
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header [data-ljpc-u-group="Más"]>.ljpc-u-dropdown{
+  left:auto!important;right:0!important;
+}
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header .ljpc-u-scorebar{
+  overflow:hidden!important;width:100%!important;
+}
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header .ljpc-u-score-wrap{
+  display:flex!important;flex-direction:column!important;align-items:stretch!important;
+  gap:5px!important;width:100%!important;max-width:100%!important;
+  padding:7px 9px!important;
+}
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header .ljpc-u-matchlist{
+  display:flex!important;flex:0 0 auto!important;
+  width:100%!important;max-width:100%!important;min-width:0!important;
+  overflow-x:auto!important;overflow-y:hidden!important;
+  gap:6px!important;scroll-snap-type:x proximity!important;
+}
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header .ljpc-u-match{
+  flex:0 0 145px!important;width:145px!important;max-width:145px!important;
+  min-height:58px!important;padding:5px 7px!important;
+  scroll-snap-align:start!important;
+}
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header .ljpc-u-all{
+  align-self:flex-end!important;position:static!important;
+  padding:2px 7px!important;font-size:9px!important;
+  min-height:22px!important;height:22px!important;
+}
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-footer .ljpc-u-footer-columns{
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  width:calc(100% - 20px)!important;gap:10px!important;
+}
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-footer .ljpc-u-footer-columns>section{
+  min-width:0!important;
+}
+}
