@@ -1,0 +1,166 @@
+/* Restore the original Liga Juventino Rosas desktop navigation geometry.
+   Scope exclusively to the six independent /gaming/*.html pages.
+   IMPORTANT: no styles in App-liga-/index.html, #app, mobile or APK. */
+.gaming-pc-header{
+  --gp-cyan:#17dce9;
+  --gp-ink:#f5f9ff;
+  position:relative;
+  z-index:140;
+  width:100%;
+  background:#051336;
+  color:var(--gp-ink);
+  font:inherit;
+}
+.gaming-pc-header *,
+.gaming-pc-header *::before,
+.gaming-pc-header *::after {box-sizing:border-box}
+.gaming-pc-header .gaming-pc-nav{
+  background:linear-gradient(100deg,#104afa 0%,#092eaf 50%,#07135e 100%);
+  box-shadow:0 1px #345abf66,0 8px 22px #01092c36;
+}
+.gaming-pc-header .gaming-pc-wrap{
+  width:min(1120px,calc(100% - 42px));
+  max-width:1120px;
+  margin-inline:auto;
+  min-height:61px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+.gaming-pc-header .gaming-pc-brand{
+  flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  color:white;
+  font-size:9px;
+  font-weight:900;
+  line-height:1.04;
+  letter-spacing:.04em;
+  text-align:left;
+  text-decoration:none;
+}
+.gaming-pc-header .gaming-pc-brand img{
+  display:block;
+  width:38px;
+  height:38px;
+  flex:0 0 38px;
+  object-fit:contain;
+  background:transparent;
+}
+.gaming-pc-header .gaming-pc-links{
+  display:flex;
+  flex:1 1 auto;
+  align-items:center;
+  gap:2px;
+  min-width:0;
+  white-space:nowrap;
+  overflow-x:auto;
+  overflow-y:visible;
+  scrollbar-width:none;
+}
+.gaming-pc-header .gaming-pc-links::-webkit-scrollbar{display:none}
+.gaming-pc-header .gaming-pc-links>a,
+.gaming-pc-header .gaming-pc-links>details>summary{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  flex:0 0 auto;
+  gap:4px;
+  min-height:33px;
+  padding:0 7px;
+  border:0;
+  border-radius:12px;
+  color:#f5f9ff;
+  font-size:10px;
+  font-weight:740;
+  line-height:1.2;
+  text-decoration:none;
+  cursor:pointer;
+  list-style:none;
+  white-space:nowrap;
+  background:transparent;
+}
+.gaming-pc-header .gaming-pc-links>details>summary::-webkit-details-marker{display:none}
+.gaming-pc-header .gaming-pc-links>details{position:relative;flex:0 0 auto}
+.gaming-pc-header .gaming-pc-links>details>summary span{
+  font-size:12px;
+  opacity:.85;
+}
+.gaming-pc-header .gaming-pc-links>a:hover,
+.gaming-pc-header .gaming-pc-links>details>summary:hover{background:#1644c2}
+.gaming-pc-header .gaming-pc-links .gaming-pc-active,
+.gaming-pc-header .gaming-pc-links>details[open]>summary{
+  background:var(--gp-cyan);
+  color:#061447;
+  font-weight:850;
+}
+.gaming-pc-header .gaming-pc-links>details>div{
+  display:grid;
+  gap:2px;
+  position:fixed;
+  z-index:1000;
+  top:61px;
+  width:215px;
+  padding:6px;
+  background:#071252;
+  border:1px solid #3159a5;
+  border-radius:8px;
+  box-shadow:0 14px 35px #00092da6;
+}
+.gaming-pc-header .gaming-pc-links>details>div a{
+  display:block;
+  padding:10px;
+  color:#f0f6ff;
+  font-size:11px;
+  font-weight:650;
+  text-align:left;
+  border-radius:5px;
+}
+.gaming-pc-header .gaming-pc-links>details>div a:hover{
+  background:#1947a3;
+  color:#43efa5;
+}
+.gaming-pc-header .gaming-pc-links>details.gaming-pc-games>div{left:min(51vw,calc(50vw + 8px))}
+.gaming-pc-header .gaming-pc-links>details.gaming-pc-history>div{right:112px}
+.gaming-pc-header .gaming-pc-links>details.gaming-pc-more>div{right:24px}
+.gaming-pc-header .gaming-pc-login{
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  min-height:31px;
+  padding:0 9px;
+  border:1px solid #a9caff59;
+  background:#10448d99;
+  border-radius:7px;
+  color:#fff;
+  font-size:9px;
+  font-weight:750;
+  text-decoration:none;
+  white-space:nowrap;
+}
+.gaming-pc-header .gaming-pc-login:hover{background:#135bc2}
+.gaming-pc-header a:focus-visible,
+.gaming-pc-header summary:focus-visible{
+  outline:2px solid #20e7fa;
+  outline-offset:2px;
+}
+@media(max-width:1060px){
+  .gaming-pc-header .gaming-pc-wrap{width:calc(100% - 22px);gap:9px}
+  .gaming-pc-header .gaming-pc-links{gap:0}
+  .gaming-pc-header .gaming-pc-links>a,
+  .gaming-pc-header .gaming-pc-links>details>summary{font-size:9.2px;padding-inline:5px}
+  .gaming-pc-header .gaming-pc-brand{font-size:8.5px}
+  .gaming-pc-header .gaming-pc-login{font-size:8.5px}
+}
+@media(max-width:660px){
+  .gaming-pc-header .gaming-pc-wrap{width:calc(100% - 18px);gap:8px}
+  .gaming-pc-header .gaming-pc-brand span{display:none}
+  .gaming-pc-header .gaming-pc-brand img{width:34px;height:34px;flex-basis:34px}
+  .gaming-pc-header .gaming-pc-login{font-size:0;padding-inline:7px}
+  .gaming-pc-header .gaming-pc-login span{font-size:16px}
+  .gaming-pc-header .gaming-pc-links>a,
+  .gaming-pc-header .gaming-pc-links>details>summary{font-size:10px;min-height:37px;padding-inline:8px}
+  .gaming-pc-header .gaming-pc-links>details>div{top:61px}
+}
