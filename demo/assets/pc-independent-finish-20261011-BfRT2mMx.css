@@ -520,3 +520,25 @@ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="hom
   position:static!important;height:0!important;min-height:0!important;
  }
 }
+
+
+/* Inicio PC: cuando un módulo móvil de Momentos reaparece dentro de la
+   portada, su banner/sticky header no debe flotar sobre Noticias/Vídeos.
+   Las tarjetas y los enlaces de Momentos permanecen completamente visibles. */
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="home"] #screen .v26-moments-sticky,
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="home"] #screen .v621-moments-bg{
+ display:none!important;visibility:hidden!important;
+ position:static!important;height:0!important;min-height:0!important;
+ max-height:0!important;margin:0!important;padding:0!important;
+ pointer-events:none!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="home"] #screen .v26-moments-page{
+ padding-top:0!important;margin-top:0!important;
+ min-height:0!important;height:auto!important;
+}
+/* Si el carrusel carga antes de sus fotografías, mantenga la zona del primer
+   fotograma compacta; no reserve otra cabecera entre resultados e Historias. */
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="home"] #screen > #ljpc-exact-html-home{
+ margin-block-start:0!important;margin-block-end:0!important;
+ align-self:stretch!important;vertical-align:top!important;
+}

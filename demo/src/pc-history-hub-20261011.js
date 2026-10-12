@@ -107,8 +107,8 @@ function choose(name){
    This preserves the original functioning history view below the PC menu. */
 function mount(){
  const screen=document.getElementById('screen');
- if(!screen)return;
- if(!pc()||route()!=='history'){
+ if(!screen||!pc())return; // Do not touch mobile or APK screens, even for cleanup.
+ if(route()!=='history'){
   screen.classList.remove('ljpc-h-show-other');
   screen.querySelector(':scope > #ljpc-pc-history-hub')?.remove();
   return;
