@@ -105,18 +105,18 @@ function render(){
 /* Chrome Android desktop mode: scroll the active vertical container. */
 function scrollDesktopFlow(delta){
  const root=document.scrollingElement||document.documentElement;
- const available=Math.max(0,root.scrollHeight-root.clientHeight);
- if(available>2){
-  root.scrollTop=Math.max(0,Math.min(available,root.scrollTop+delta));
-  return;
- }
- for(const box of [document.getElementById('app'),document.getElementById('screen')]){
+ const candidates=[root,document.getElementById('app'),document.getElementById('screen')];
+ const direction=Math.sign(delta);
+ for(const box of candidates){
   if(!box)continue;
-  const rest=box.scrollHeight-box.clientHeight;
-  if(rest>2){
-   box.scrollTop=Math.max(0,Math.min(rest,box.scrollTop+delta));
-   return;
-  }
+  const limit=Math.max(0,box.scrollHeight-box.clientHeight);
+  if(limit<2)continue;
+  const before=box.scrollTop;
+  const target=Math.max(0,Math.min(limit,before+delta));
+  // Do not treat an overflow-clipped ancestor as a successful scroll owner.
+  if(direction>0&&target<=before+0.5 || direction<0&&target>=before-0.5)continue;
+  box.scrollTop=target;
+  if(Math.abs(box.scrollTop-before)>0.5)return;
  }
  window.scrollBy({left:0,top:delta,behavior:'instant'});
 }
