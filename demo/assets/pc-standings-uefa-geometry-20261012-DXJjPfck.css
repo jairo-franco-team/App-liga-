@@ -138,3 +138,218 @@ html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-result-em
   max-width:calc(100% - 26px)!important;font-size:9px!important;
  }
 }
+
+/* pc-uefa-detail-criteria-and-bracket-v3 · isolated to PC classification route. */
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-switch{
+ margin-bottom:32px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-switch .u18-pill[data-u18-stand-tab="simulator"]{
+ position:fixed!important;bottom:16px!important;left:50%!important;right:auto!important;top:auto!important;
+ transform:translateX(-50%)!important;z-index:490!important;flex:0 0 auto!important;
+ width:auto!important;max-width:fit-content!important;height:35px!important;min-height:35px!important;
+ margin:0!important;padding:7px 15px!important;border-radius:7px!important;
+ font-size:11px!important;line-height:1!important;white-space:nowrap!important;
+ background:#063cdb!important;border:1px solid #1b67ff!important;
+ box-shadow:0 3px 8px rgba(0,15,95,.2)!important;color:#fff!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-switch:has([data-u18-stand-tab="knockout"].selected) [data-u18-stand-tab="simulator"]{
+ display:none!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-switch [data-u18-stand-tab="knockout"].selected{
+ color:#32dbef!important;border:1px solid #4063e9!important;box-shadow:inset 0 0 0 1px #3652b4!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-switch [data-u18-stand-tab="league"].selected{
+ color:#fff!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-criteria-description{
+ font-size:10px!important;line-height:1.5!important;text-align:center!important;
+ padding:7px 0 12px!important;margin:0 auto!important;max-width:850px!important;
+ color:#718095!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-criteria-wrap{
+ margin:3px 0 10px!important;border:0!important;overflow-x:auto!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-criteria-table{
+ width:100%!important;min-width:710px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-criteria-table th{
+ height:43px!important;min-height:43px!important;white-space:normal!important;
+ vertical-align:bottom!important;font-size:9px!important;line-height:1.25!important;
+ padding:7px 5px 10px!important;border-bottom:1px solid #c7ccd5!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-criteria-table th:nth-child(2){
+ width:28%!important;max-width:none!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-criteria-table th:not(:first-child):not(:nth-child(2)){
+ width:11%!important;min-width:72px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-criteria-table td{
+ height:51px!important;min-height:51px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-criteria-table tr.u18-criteria-zone th{
+ height:24px!important;min-height:24px!important;border-bottom:1px solid #a5aab7!important;
+ padding:9px 0 3px!important;background:#fff!important;
+ color:#8c97a4!important;text-align:left!important;
+ font-size:8px!important;font-weight:400!important;letter-spacing:.02em!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-criteria-table td.u18-tie-highlight span{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ min-width:24px!important;min-height:23px!important;padding:4px 5px!important;
+ background:#e1e4ef!important;border-radius:5px!important;color:#26374b!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-criteria-legal{
+ color:#66707c!important;font-size:10px!important;line-height:1.45!important;
+ margin:18px 0 5px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-criteria-legal p{
+ margin:7px 0!important;max-width:100%!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-criteria-legal a{
+ color:#2353a7!important;text-decoration:underline!important;
+}
+/* Knockout route: UEFA-like white canvas, silver/blue rail, and five-column geometry.
+   This only overrides the shared mobile bracket within the desktop standings page. */
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket{
+ display:block!important;width:100%!important;min-height:0!important;
+ margin:0!important;padding:14px 0 10px!important;background:transparent!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .u18-ko-intro{
+ max-width:100%!important;text-align:center!important;line-height:1.45!important;
+ margin:0 0 12px!important;color:#84909e!important;font-size:10px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-knockout{
+ --ko-ground:#f2f3f8!important;--ko-card:#fff!important;--ko-muted:#6e7887!important;
+ --ko-cyan:#1052d3!important;--ko-column:185px!important;
+ width:100%!important;min-width:0!important;max-width:100%!important;margin:0!important;
+ padding:0 10px 20px 22px!important;background:#f2f3f8!important;
+ color:#1c2d41!important;border:0!important;border-radius:0!important;
+ overflow:visible!important;isolation:auto!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-tabs{
+ display:flex!important;justify-content:space-between!important;flex-wrap:nowrap!important;
+ gap:7px!important;width:100%!important;max-width:none!important;min-height:44px!important;
+ margin:0 0 11px!important;padding:2px 0 3px!important;
+ border-bottom:1px solid #dce0e8!important;background:transparent!important;
+ overflow-x:auto!important;scrollbar-width:thin!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-tabs button{
+ display:inline-flex!important;flex:1 1 0!important;min-width:108px!important;
+ min-height:32px!important;height:32px!important;padding:5px 7px!important;
+ border:0!important;border-radius:4px!important;background:transparent!important;
+ box-shadow:none!important;color:#6d7888!important;font:500 10px/1.2 Arial,sans-serif!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-tabs button.active{
+ background:#e2e6f2!important;color:#204ba3!important;font-weight:700!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-note{
+ color:#8290a1!important;font:500 10px/1.4 Arial,sans-serif!important;
+ margin:2px 0 10px!important;text-align:center!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-board{
+ position:relative!important;max-width:100%!important;min-height:770px!important;overflow:visible!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-scroll{
+ width:100%!important;max-width:100%!important;height:auto!important;
+ overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:thin!important;
+ scroll-snap-type:none!important;overscroll-behavior-x:contain!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-track{
+ display:flex!important;gap:19px!important;width:max-content!important;min-width:100%!important;
+ min-height:754px!important;background:transparent!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-column,
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-final{
+ flex:0 0 var(--ko-column)!important;max-width:var(--ko-column)!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-date{
+ border-top:0!important;border-bottom:1px solid #d6dae3!important;
+ color:#8a94a4!important;height:43px!important;text-align:left!important;
+ padding:9px 2px 3px!important;font:400 10px/1.25 Arial,sans-serif!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-round{
+ height:710px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-pair{
+ height:42px!important;grid-template-columns:minmax(0,1fr) 11px minmax(0,1fr)!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-club{
+ min-width:0!important;height:42px!important;padding:0 3px!important;
+ background:#fff!important;color:#2d394a!important;border:1px solid #e7ebf2!important;
+ border-radius:5px!important;mask-image:none!important;
+ box-shadow:0 1px 1px rgba(25,44,74,.04)!important;gap:3px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-club:last-child{
+ padding:0 3px!important;mask-image:none!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-club strong{
+ color:#24384f!important;font-size:10px!important;line-height:1!important;font-weight:650!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-club small{
+ font-size:8px!important;color:#8995a4!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-club img{
+ flex:0 0 15px!important;width:15px!important;height:18px!important;object-fit:contain!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-versus{
+ width:17px!important;height:17px!important;color:#8a94a3!important;
+ background:#f2f3f8!important;font-size:10px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-card{
+ height:77px!important;padding:7px 9px!important;background:#fff!important;
+ color:#2b3b4f!important;border:1px solid #e5eaf2!important;
+ border-radius:5px!important;box-shadow:0 1px 1px rgba(25,44,74,.04)!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-card time{
+ color:#8a94a4!important;min-height:16px!important;font-size:9px!important;margin-bottom:3px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-opponent{
+ height:22px!important;gap:4px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-opponent b{
+ color:#344459!important;font-size:10px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-winner{
+ height:48px!important;padding:5px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-winner strong{
+ font-size:9px!important;font-weight:500!important;color:#8792a0!important;
+ white-space:normal!important;line-height:1.2!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-connectors path{
+ stroke-width:1.5!important;stroke-linecap:round!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-connectors path.silver{
+ stroke:#a9b0be!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-connectors path.blue{
+ stroke:#0752dc!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-rail{
+ width:2px!important;color:#a9b0be!important;background:#a9b0be!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-rail.blue{
+ color:#0b52d8!important;background:#0b52d8!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-rail span{
+ color:inherit!important;background:#f2f3f8!important;font-size:9px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-trophy{
+ max-width:170px!important;opacity:.94!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-ko-footer{
+ margin:14px 0 12px!important;font-size:10px!important;color:#7b8798!important;
+ text-align:center!important;line-height:1.4!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-ko-footer button{
+ margin-left:10px!important;background:transparent!important;border:0!important;
+ color:#1451ae!important;font-size:10px!important;cursor:pointer!important;
+}
+@media(max-width:750px){
+ html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-knockout{
+  --ko-column:155px!important;padding:0 0 14px 20px!important;
+ }
+ html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-track{gap:16px!important}
+ html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-standings-bracket .ljr-ko-tabs button{
+  flex:0 0 110px!important;min-width:110px!important;
+ }
+}
