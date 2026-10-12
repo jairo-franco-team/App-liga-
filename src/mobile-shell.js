@@ -12,6 +12,10 @@
   const next=route();
   if(!mobile()||next===lastOpenedRoute)return;
   lastOpenedRoute=next;
+  // The navigation controller restores the exact prior offset on Back.
+  // Resetting here as well used to jump to the top for one/two frames,
+  // producing the torn-screen effect visible in the Android recording.
+  if(window.LJR_NAVIGATION?.direction?.()==='back')return;
   function top(){
    if(route()!==next)return;
    const screen=document.getElementById('screen');
