@@ -184,3 +184,39 @@
   max-height:calc(100dvh - 72px);overflow-y:auto
  }
 }
+
+/* Align dropdown menus with their parent tab on the 8-item PC bar. */
+@media(min-width:661px){
+  .gaming-pc-header .gaming-pc-links{
+    /* The eight real PC tabs fit at the designed desktop width.
+       Do not create a clipping scroll container around their menus. */
+    overflow:visible;
+  }
+  .gaming-pc-header .gaming-pc-links>details{
+    position:relative;
+  }
+  .gaming-pc-header .gaming-pc-links>details>div{
+    position:absolute;
+    top:calc(100% + 7px);
+    left:0;
+    right:auto;
+    max-height:min(65vh,520px);
+    overflow-y:auto;
+  }
+  .gaming-pc-header .gaming-pc-links>details.gaming-pc-games>div{
+    left:0;right:auto;
+  }
+  .gaming-pc-header .gaming-pc-links>details.gaming-pc-data>div,
+  .gaming-pc-header .gaming-pc-links>details.gaming-pc-more>div{
+    left:auto;right:0;
+  }
+}
+@media(max-width:660px){
+  .gaming-pc-header .gaming-pc-links>details>div{
+    max-height:65vh;
+    overflow-y:auto;
+  }
+  .gaming-pc-header .gaming-pc-links>details.gaming-pc-data>div{
+    right:50px;left:auto;
+  }
+}
