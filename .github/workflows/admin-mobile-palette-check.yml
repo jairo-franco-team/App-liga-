@@ -64,9 +64,11 @@ jobs:
         run: node tests/admin-palette-android-v1353.mjs
       - name: Check reference blue dialogs and preserved controls
         run: node tests/v1420-reference-blue-mobile.mjs
+      - name: Complete repository unit tests
+        run: node --test tests/*.test.mjs
       - name: Build and check complete captured sections and untouched screens
+        if: ${{ !cancelled() }}
         run: |
-          node --test tests/*.test.mjs
           npm run build
           # Mejorar.zip now authorizes Profile/account and varied artwork.
           # The V1441 suite supersedes the exact V1421/V1440 background assertions
