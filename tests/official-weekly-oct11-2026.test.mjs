@@ -16,14 +16,13 @@ const expected=[
  ['CELTICOS','DEP. LA LUZ','12:00','Campo 1 (Empastado)']
 ];
 
-test('Segunda J7: seis cruces del 11/10, sin partidos obsoletos del 04/10',()=>{
+test('Segunda J7 histórica: seis cruces del 11/10 siguen archivados en temporada',()=>{
  const second=season.categories['Segunda Fuerza'];
  assert.match(second.current_phase,/J7 · 11\/10\/2026/);
  const list=second.rounds.J7;
  assert.equal(list.length,6);
  for(const [home,away,time,field] of expected){
   assert.equal(list.filter(x=>x.date==='2026-10-11'&&x.home===home&&x.away===away&&x.time===time&&x.field===field).length,1);
-  assert.ok(weekly.includes("['11/10/2026','"+time+"','"+home+"','"+away+"','"+field+"','Jornada 7']"));
  }
  assert.ok(list.every(x=>x.date==='2026-10-11'));
  assert.doesNotMatch(weekly,/04\/10\/2026/);
@@ -37,12 +36,12 @@ test('J7 y J8: el respaldo coincide con la fuente oficial sin inventar goles',()
  }
  assert.ok(j7.every(x=>x[3]==='-'&&x[5]==='-'));
 });
-test('reporte y PDF muestran campo, número de jornada y fechas correctas',()=>{
- assert.match(main,/Semana del 05\/10\/2026 al 11\/10\/2026/);
- assert.match(main,/value="2026-10-05"/);
- assert.match(main,/value="2026-10-11"/);
+test('reporte semanal vigente y PDF muestran campo, jornadas y fechas correctas',()=>{
+ assert.match(main,/Semana del 12\/10\/2026 al 18\/10\/2026/);
+ assert.match(main,/value="2026-10-12"/);
+ assert.match(main,/value="2026-10-18"/);
  assert.match(main,/<th>Visitante<\/th><th>Campo<\/th><th>Jornada<\/th>/);
  assert.match(main,/<td>'\+r\[4\]\+'<\/td><td>'\+r\[5\]\+'<\/td>/);
  assert.match(main,/<td>'\+t\[5\]\+'<\/td><td>'\+t\[6\]\+'<\/td>/);
- assert.ok(weekly.includes("['10/10/2026','15:30','BOAVISTA','BOCA JRS','Campo 3','Jornada 8']"));
+ assert.ok(weekly.includes("['17/10/2026','15:30','BOCA JRS','DYNAMO','Campo 4','Jornada 9']"));
 });
