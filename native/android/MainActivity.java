@@ -3,6 +3,10 @@ package mx.ligajuventino.app;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import androidx.activity.OnBackPressedCallback;
+import androidx.core.view.WindowInsetsControllerCompat;
 import com.getcapacitor.BridgeActivity;
 
 public class MainActivity extends BridgeActivity {
@@ -15,6 +19,17 @@ public class MainActivity extends BridgeActivity {
         registerPlugin(LigaNotificationsPlugin.class);
         registerPlugin(LigaCalendarPlugin.class);
         super.onCreate(savedInstanceState);
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(13, 35, 139)));
+        new WindowInsetsControllerCompat(getWindow(), getWindow().getDecorView()).setAppearanceLightStatusBars(false);
+        // Android's button and either system edge gesture use the app's own
+        // history, including direct-entry games, instead of finishing Activity.
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (getBridge() != null) getBridge().getWebView().evaluateJavascript(
+                    "if(window.LJR_APP_BACK){window.LJR_APP_BACK()}else if(window.LJR_NAVIGATION){window.LJR_NAVIGATION.back()}else{location.hash='#/home'}", null);
+            }
+        });
         getWindow().getDecorView().postDelayed(() -> applyNotificationRoute(getIntent()), 420);
     }
 

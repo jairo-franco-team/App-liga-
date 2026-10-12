@@ -75,7 +75,7 @@ test('página principal y JSON de partidos no usan caché antigua',async()=>{
 });
 
 
-test('optimizador mantiene visibles escudos e imágenes y difiere sólo imágenes lejanas',()=>{
+test('optimizador conserva prioridad normal y deja al navegador cargar según el viewport',()=>{
   const frames=[];
   const fakeImage=(top)=>({
     tagName:'IMG',nodeType:1,isConnected:true,fetchPriority:'auto',
@@ -93,7 +93,8 @@ test('optimizador mantiene visibles escudos e imágenes y difiere sólo imágene
   runInNewContext(media,{window,document,MutationObserver,requestAnimationFrame:fn=>frames.push(fn),Set});
   assert.equal(frames.length,1);
   frames.shift()();
-  assert.equal(visible.loading,undefined,'la foto visible no debe quedar diferida');
+  assert.equal(visible.loading,'lazy','el navegador inicia imágenes cercanas sin medir el layout en JS');
   assert.equal(distant.loading,'lazy');
-  assert.equal(distant.fetchPriority,'low');
+  assert.equal(visible.fetchPriority,'auto');
+  assert.equal(distant.fetchPriority,'auto');
 });

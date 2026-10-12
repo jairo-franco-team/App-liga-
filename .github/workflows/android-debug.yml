@@ -56,7 +56,7 @@ jobs:
       - name: Apply corrected full-blue Liga Juventino app icon
         run: |
           mkdir -p assets
-          curl -fL 'https://d2ol7oe51mr4n9.cloudfront.net/user_3JNvttsAwr0QjxhuX5O1uaa9bvv/720d1f82-1d59-4a7a-af69-9e7e8da0250a.png' -o assets/icon.png
+          test -s assets/icon.png
           npx --yes @capacitor/assets generate --android --iconBackgroundColor '#02065F' --iconBackgroundColorDark '#02065F'
 
       - name: Sync Capacitor
@@ -105,6 +105,7 @@ jobs:
           npx playwright install --with-deps chromium
           ANDROID_PUBLIC_DIR=android/app/src/main/assets/public node tests/mobile-clean-boot.mjs
           node tests/navigation-motion.mjs
+          node tests/mobile-shell.mjs
 
       - name: Upload measured Android asset inventory
         uses: actions/upload-artifact@v4

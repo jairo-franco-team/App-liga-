@@ -150,15 +150,23 @@ function rankMarkup(game='all'){
 }
 let selectedGame='all',timer=0,mutating=false;
 function injectRanks(){
- const r=route(),map={fantasy:'fantasy',fantasyTeam:'fantasy',quiniela:'quiniela',quizArena:'quizArena',moreLess:'moreLess',moreLessGallery:'moreLess',predictorSix:'predictorSix',rankings:'all'};
+ const r=route(),map={fantasy:'fantasy',fantasyTeam:'fantasy',quiniela:'quiniela',quizArena:'quizArena',moreLess:'moreLess',moreLessHub:'moreLess',moreLessGallery:'moreLess',predictor:'quiniela',predictorSix:'predictorSix',rankings:'all'};
  if(!map[r])return;
- // No insertar sobre el juego activo: solo en el pie de la pantalla, sin modificar tarjetas ni botones.
- const host=$('#screen');if(!host)return;
- let p=$('[data-v1390-ranking]',host);
- if(!p){p=document.createElement('div');p.dataset.v1390Ranking='';host.append(p)}
+ const screen=$('#screen');if(!screen)return;
+ const visible=node=>node.getClientRects().length&&getComputedStyle(node).display!=='none'&&getComputedStyle(node).visibility!=='hidden';
+ const mobile=new URLSearchParams(location.search).get('mode')!=='desktop'&&innerWidth<1024;
+ const prestart=mobile&&[...document.querySelectorAll('[data-v531-view="splash"],[data-v531-view="hub"],.v589-page.intro,.v766-quiz-start,.v22-fantasy-master')].find(visible);
+ const active=[...document.querySelectorAll('[data-v531-view="game"],[data-v531-view="countdown"]')].find(visible);
+ const host=prestart||screen;
+ let p=$('[data-v1390-ranking]');
+ if(!p){p=document.createElement('div');p.dataset.v1390Ranking=''}
+ if(p.parentNode!==host)host.append(p);
+ p.hidden=!!active&&!prestart;
+ p.classList.toggle('v1390-before-start',!!prestart);
  const game=r==='rankings'?selectedGame:map[r];
- if(p.dataset.v1390Version!==game+':'+entries().length+':'+(account()?.id||'')){
-  p.innerHTML=rankMarkup(game);p.dataset.v1390Version=game+':'+entries().length+':'+(account()?.id||'');
+ const signature=game+':'+entries().length+':'+(account()?.id||'')+':'+!!prestart;
+ if(p.dataset.v1390Version!==signature){
+  p.innerHTML=prestart?'<details class="v1390-prestart"><summary>🏆 Ranking de mejores jugadores ⌄</summary><div>'+rankMarkup(game)+'</div></details>':rankMarkup(game);p.dataset.v1390Version=signature;
  }
 }
 function schedule(){if(timer)return;timer=requestAnimationFrame(()=>{timer=0;if(mutating)return;mutating=true;try{injectRecruit();injectRanks()}finally{mutating=false}})}
@@ -188,7 +196,10 @@ document.addEventListener('click',e=>{
 });
 function init(){
  const host=$('#screen')||document.body;
- new MutationObserver(schedule).observe(host,{childList:true,subtree:false});
+ new MutationObserver(records=>{
+  const selector='[data-v531-view],.v589-page,.v766-quiz-start,.v22-fantasy-master';
+  if(records.some(r=>r.target===host||Array.from(r.addedNodes).some(n=>n.nodeType===1&&(n.matches?.(selector)||n.querySelector?.(selector)))))schedule();
+ }).observe(document.body,{childList:true,subtree:true});
  window.addEventListener('hashchange',()=>{selectedGame='all';schedule()});
  window.addEventListener('ljr:official-data',()=>{reconcilePronostica();schedule()});
  window.addEventListener('ljr:profile-updated',schedule);

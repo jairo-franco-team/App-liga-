@@ -480,7 +480,7 @@ function handleClick(e){
     e.preventDefault();e.stopPropagation();
     if(ui.view==='rules'){ui.view='predictions';render();return}
     if(ui.view==='leagues'){ui.view='predictions';render();return}
-    location.hash='#/more';return;
+    if(window.LJR_NAVIGATION)window.LJR_NAVIGATION.back();else location.hash='#/home';return;
   }
   if(t.matches('[data-v589-menu]')){
     e.preventDefault();e.stopPropagation();

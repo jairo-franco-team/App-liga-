@@ -2,6 +2,10 @@
   "appId": "mx.ligajuventino.app",
   "appName": "Liga Juventino",
   "webDir": "dist",
+  "android": {
+    "adjustMarginsForEdgeToEdge": "force",
+    "backgroundColor": "#0D238B"
+  },
   "server": {
     "androidScheme": "https"
   }

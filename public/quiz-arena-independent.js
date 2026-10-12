@@ -2,7 +2,7 @@
    Unifica hub, juego, resultado y modal de salida sin incrustar las capturas. */
 (function(){
 'use strict';
-if(window.__LJR_V531_GAMES__)return;
+if(window.__LJR_V531_GAMES__&&window.__LJR_V531_GAMES_READY__)return;
 window.__LJR_V531_GAMES__=true;
 window.__LJR_V533_PRIMARY_GAMES__=true;
 window.__LJR_V536_MONITO_FLOW__=true;
@@ -75,6 +75,8 @@ const quiz={mode:'splash',answered:false,selected:'',points:0,step:1,exit:false,
 const more={mode:'legacy',answered:false,selected:'',points:0,attempts:2,exit:false,phase:'intro',countdown:15,roundToken:0,round:0,roundsPlayed:0,finished:false,scoreSaved:false};
 let v538MoreTimers=[];
 let v538MoreInterval=null;
+let v538ActivePair=null;
+const v538UnavailablePhotos=new Set();
 let v614QuizCountdownTimer=null;
 let v1050NotifyOpen=false;
 const V1050_NOTIFY_KEY='ljr-quiz-notice-dismissed';
@@ -169,7 +171,18 @@ function quizData(data){
   return {...q,options,leader:rows[0]||null};
 }
 function morePair(data){
-  const list=scorers(data);
+  const scorersList=scorers(data);
+  // Algunos listados incluyen resúmenes por equipo entre los goleadores.
+  // Para el juego de PERSONAS usamos únicamente registros de jugadores,
+  // y priorizamos a quienes tienen una foto auténtica publicada.
+  const profiles=category(data)?.player_profiles||{};
+  const roster=scorersList.filter(p=>{
+    const found=Object.entries(profiles).find(([club])=>norm(club)===norm(p.team));
+    return (Array.isArray(found?.[1])?found[1]:[]).some(x=>norm(x?.name)===norm(p.name));
+  });
+  const portraits=roster.filter(p=>!!v538PlayerPhoto(p.name,p.team,data));
+  const useful=rows=>rows.length>=2&&rows.some(x=>x.goals!==rows[0].goals);
+  const list=useful(portraits)?portraits:useful(roster)?roster:scorersList;
   const pairs=[];
   for(let i=0;i<list.length;i++){
     for(let j=i+1;j<list.length;j++){
@@ -179,6 +192,8 @@ function morePair(data){
     if(pairs.length>=36)break;
   }
   if(pairs.length){
+    // Dar preferencia a comparaciones con retratos REALES registrados; no generar caras ni cambiar los goles.
+    pairs.sort((x,y)=>v538PhotoScore(y,data)-v538PhotoScore(x,data));
     const round=Math.abs(Number(more.round)||0);
     const chosen=pairs[round%pairs.length];
     // Mezclar dirección sin cambiar goles ni jugadores oficiales.
@@ -213,7 +228,7 @@ function moreSaveScore(){
 }
 function moreNewGame(){
  v538ClearTimers();more.points=0;more.attempts=2;more.round=0;more.roundsPlayed=0;
- more.finished=false;more.scoreSaved=false;more.answered=false;more.selected='';more.exit=false;more.phase='intro';
+ more.finished=false;more.scoreSaved=false;more.answered=false;more.selected='';more.exit=false;more.phase='intro';v538ActivePair=null;
 }
 function v583PairAt(data,offset){
   const saved=more.round;
@@ -418,27 +433,61 @@ function quizResult(data){
     '<button type="button" class="v531-next-btn" data-v531-quiz-next>Siguiente pregunta</button>'+
   '</section>';
 }
-function v538PlayerPhoto(name,team){
+/* Retratos verificados del mismo jugador y equipo, nunca un escudo disfrazado de fotografía. */
+function v538PlayerPhoto(name,team,data){
   try{
-    if(window.LJR_PLAYER_MEDIA&&typeof window.LJR_PLAYER_MEDIA.photo==='function'){
-      const x=window.LJR_PLAYER_MEDIA.photo(name,team);
-      if(x)return String(x);
-    }
+    const snapshot=data||db||window.LJR_OFFICIAL_DATA||null;
+    const profiles=category(snapshot)?.player_profiles||{};
+    const entry=Object.entries(profiles).find(([club])=>norm(club)===norm(team));
+    const rec=(Array.isArray(entry?.[1])?entry[1]:[]).find(p=>norm(p?.name)===norm(name));
+    const direct=String(rec?.photo||'').trim();
+    if(direct&&!v538UnavailablePhotos.has(direct))return direct;
+    const media=window.LJR_PLAYER_MEDIA?.photo?.(name,team,catId(snapshot));
+    if(typeof media==='string'&&media.trim()&&!v538UnavailablePhotos.has(media.trim()))return media.trim();
     const pub=window.LJR_PLAYER_PHOTOS;
     if(pub){
-      if(typeof pub.get==='function'){const x=pub.get(name,team);if(x)return String(x)}
-      const x=pub[norm(name)+'|'+norm(team)]||pub[norm(name)]||pub[name];
-      if(x)return String(x);
+      const found=typeof pub.get==='function'?pub.get(name,team,catId(snapshot)):(pub[norm(name)+'|'+norm(team)]||pub[norm(name)]||pub[name]);
+      if(typeof found==='string'&&found.trim()&&!v538UnavailablePhotos.has(found.trim()))return found.trim();
     }
   }catch(_){}
   return '';
 }
+function v538PhotoScore(pair,data){
+  return Number(!!v538PlayerPhoto(pair.a.name,pair.a.team,data))+Number(!!v538PlayerPhoto(pair.b.name,pair.b.team,data));
+}
 function v538Person(p,data,cls){
-  const photo=v538PlayerPhoto(p.name,p.team);
-  if(photo)return '<span class="v538-person '+esc(cls||'')+' has-photo"><img src="'+esc(photo)+'" alt="'+esc(p.name)+'" loading="eager" decoding="async" referrerpolicy="no-referrer"></span>';
-  const teamLogo=logo(p.team||p.name,data);
-  if(teamLogo)return '<span class="v538-person '+esc(cls||'')+' has-team-logo"><span class="v584-circle-photo"><img src="'+esc(teamLogo)+'" alt="'+esc(p.team||p.name)+'" loading="eager" decoding="async"></span></span>';
-  return '<span class="v538-person '+esc(cls||'')+' is-fallback">'+v535AvatarSvg('#b9b9b9')+'</span>';
+  const photo=v538PlayerPhoto(p.name,p.team,data);
+  const attrs=' data-v538-player-name="'+esc(p.name)+'" data-v538-player-team="'+esc(p.team)+'"';
+  const classes='v538-person '+esc(cls||'');
+  return '<span class="'+classes+(photo?' has-photo':' is-fallback')+'"'+attrs+'>'+
+    (photo?'<img src="'+esc(photo)+'" alt="'+esc(p.name)+'" loading="eager" decoding="async" referrerpolicy="no-referrer">':v535AvatarSvg('#b9b9b9'))+
+    '</span>';
+}
+/* Las fotografías oficiales pueden terminar de cargarse DESPUÉS de iniciar el juego.
+   Hidratar solo el retrato, sin reconstruir ni reiniciar la animación de la carta. */
+function v538HydratePortraits(root){
+  if(!root)return;
+  root.querySelectorAll('.v538-person[data-v538-player-name]').forEach(el=>{
+    const name=el.dataset.v538PlayerName||'',team=el.dataset.v538PlayerTeam||'';
+    const src=v538PlayerPhoto(name,team);
+    if(!src)return;
+    let img=el.querySelector(':scope > img');
+    if(!img||img.getAttribute('src')!==src){
+      img=document.createElement('img');
+      img.src=src;img.alt=name;img.loading='eager';img.decoding='async';img.referrerPolicy='no-referrer';
+      el.replaceChildren(img);
+      el.classList.remove('is-fallback');el.classList.add('has-photo');
+    }
+    if(img.dataset.v538Checked)return;
+    img.dataset.v538Checked='1';
+    img.addEventListener('error',()=>{
+      v538UnavailablePhotos.add(src);
+      if(img.parentElement!==el)return;
+      el.innerHTML=v535AvatarSvg('#b9b9b9');
+      el.classList.remove('has-photo');el.classList.add('is-fallback');
+    },{once:true});
+    if(img.complete&&!img.naturalWidth)img.dispatchEvent(new Event('error'));
+  });
 }
 function v545MoreScreenCards(pair,data){
   return '<section class="v545-more-screens" aria-label="Otros diseños de Más o menos">'+
@@ -558,6 +607,7 @@ function v538StartMoreRound(){
   more.roundToken++;
   const token=more.roundToken;
   more.round=Math.max(0,Number(more.round)||0)+1;
+  v538ActivePair=morePair(db||window.LJR_OFFICIAL_DATA||{});
   more.mode='game';more.phase='intro';more.answered=false;more.selected='';more.exit=false;more.countdown=15;more.finished=false;
   document.body.classList.add('v543-more-portal-open');
   v543RenderMorePortal();
@@ -580,7 +630,7 @@ function v538StartMoreRound(){
   v538MoreTimers.push(setTimeout(function(){if(token!==more.roundToken||more.mode!=='game')return;more.phase='ready';v543RenderMorePortal()},4450));
 }
 function moreGame(data){
-  const pair=morePair(data);
+  const pair=v538ActivePair||morePair(data);
   const question=pair.kind==='player'
     ?'¿Ha marcado '+esc(pair.b.name)+' más o menos?'
     :'¿Tiene '+esc(pair.b.name)+' más o menos goles?';
@@ -741,7 +791,10 @@ function v543RenderMorePortal(){
   portal.innerHTML=more.mode==='hub'?moreHub(data):moreGame(data);
   document.body.classList.add('v543-more-portal-open');
   setGamesNav();
-  requestAnimationFrame(function(){portal.scrollTop=0});
+  requestAnimationFrame(function(){portal.scrollTop=0;v538HydratePortraits(portal)});
+  [700,1800,3600,6500].forEach(delay=>setTimeout(()=>{
+    if(portal.isConnected&&!portal.hidden)v538HydratePortraits(portal);
+  },delay));
 }
 function v543CloseMorePortal(){
   v538ClearTimers();
@@ -904,6 +957,49 @@ function schedule(){
     }
   })});
 }
+/* V1074: hoja de salida independiente del render del partido. Los
+   actualizadores de otras pantallas pueden sustituir el HTML de #v612
+   tras pulsar X; el dialogo persistente en <body> evita que desaparezca. */
+function v1074RemoveStableGameExit(){
+  document.getElementById('v1074-quiz-exit-sheet')?.remove();
+}
+function v1074ShowStableGameExit(){
+  let root=document.getElementById('v1074-quiz-exit-sheet');
+  if(!root){root=document.createElement('div');root.id='v1074-quiz-exit-sheet';document.body.appendChild(root)}
+  root.innerHTML=exitModal('quiz');
+}
+window.addEventListener('click',function(e){
+  if(!(e.target instanceof Element))return;
+  const choice=e.target.closest('#v1074-quiz-exit-sheet [data-v531-exit-confirm],#v1074-quiz-exit-sheet [data-v531-exit-cancel]');
+  if(!choice)return;
+  e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();
+  const confirmed=choice.hasAttribute('data-v531-exit-confirm');
+  v1074RemoveStableGameExit();
+  if(confirmed){v614ClearQuizCountdown();quiz.mode='hub';quiz.exit=false;quiz.answered=false;render(false)}
+  else{quiz.exit=false}
+},true);
+window.addEventListener('hashchange',v1074RemoveStableGameExit);
+/* V1380: La flecha visible del hub vuelve a la portada de Quiz Arena.
+   Otros manejadores globales de navegación procesaban este botón como
+   "volver a Inicio" antes del controlador del Quiz. Interceptar únicamente
+   este clic, sin reactivar la X duplicada que V1360 oculta. */
+window.addEventListener('click',function(e){
+  if(route()!=='quizArena'||!(e.target instanceof Element))return;
+  const back=e.target.closest('#v612-quiz-portal [data-v531-view="hub"] [data-v531-quiz-back]');
+  if(!back)return;
+  e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();
+  v614ClearQuizCountdown();quiz.mode='splash';quiz.exit=false;render(false);
+},true);
+/* V1073: Capturar la X de la partida antes de los manejadores globales.
+   En Android otros controles document-level consumían su click y la hoja
+   de confirmación no se montaba, aunque funcionaba la X del 3-2-1. */
+window.addEventListener('click',function(e){
+  if(route()!=='quizArena'||quiz.mode!=='game'||!(e.target instanceof Element))return;
+  const hit=e.target.closest('#v612-quiz-portal [data-v531-quiz-close]');
+  if(!hit)return;
+  e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();
+  quiz.exit=true;v1050NotifyOpen=false;v1074ShowStableGameExit();
+},true);
 document.addEventListener('click',function(e){
   const v766Start=e.target.closest('[data-v766-quiz-open]');
   if(route()==='quizArena'&&v766Start){
@@ -1087,7 +1183,7 @@ document.addEventListener('click',function(e){
   if(t.matches('[data-v531-more-close]')){v538ClearTimers();more.exit=true;v543RenderMorePortal();return}
   if(t.matches('[data-v531-more-choice]')){
     if(more.answered||more.phase!=='ready'||more.exit)return;
-    const data=db||window.LJR_OFFICIAL_DATA||{},pair=morePair(data);
+    const data=db||window.LJR_OFFICIAL_DATA||{},pair=v538ActivePair||morePair(data);
     const actual=pair.b.goals>pair.a.goals?'more':'less';
     const picked=t.dataset.v531MoreChoice||'less';
     more.selected=picked===actual?'correct':'wrong';
@@ -1128,6 +1224,19 @@ const target=document.querySelector('#screen');
 if(target)new MutationObserver(schedule).observe(target,{childList:true,subtree:false});
 load().then(schedule);
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',schedule,{once:true});else schedule();
+/* V1073 — evitar pantalla vacía cuando otro módulo reinicia el DOM después de
+   que el quiz ya se cargó. No sobrescribir una partida o un HUB visible. */
+function v1073EnsureQuizVisible(){
+  if(route()!=='quizArena'||!document.querySelector('#screen'))return;
+  const existing=document.querySelector('#v612-quiz-portal [data-v531-view]');
+  if(existing)return;
+  quiz.mode='splash';quiz.exit=false;
+  try{render(false)}catch(err){console.error('Quiz Arena no se pudo montar:',err)}
+}
+[0,150,450,1100,2500].forEach(function(delay){setTimeout(v1073EnsureQuizVisible,delay)});
+window.addEventListener('pageshow',v1073EnsureQuizVisible);
+window.addEventListener('focus',v1073EnsureQuizVisible);
+window.__LJR_V531_GAMES_READY__=true;
 // One clock for the active question; dialogs pause the countdown.
 setInterval(()=>{if(route()!=='quizArena'||quiz.mode!=='game'||quiz.exit||v1050NotifyOpen||quiz.answered)return;
   quiz.remaining=Math.max(0,quiz.remaining-1);const clock=document.querySelector('[data-quiz-timer]');if(clock)clock.textContent=quiz.remaining;

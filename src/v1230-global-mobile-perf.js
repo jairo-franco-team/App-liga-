@@ -20,19 +20,11 @@ function canTouch(image){
 }
 function enhance(image){
   if(!canTouch(image))return;
-  // Mantener escudos, rostros, cabeceras e imágenes visibles con prioridad normal.
-  // Evitar medir todos los nodos en cada scroll: sólo cuando se inserta una imagen.
-  const box=image.getBoundingClientRect();
-  const distance=250;
-  const visible=box.bottom>=-distance&&box.top<=(window.innerHeight+distance)&&
-    box.right>=-distance&&box.left<=(window.innerWidth+distance);
-  if(!visible){
-    image.loading='lazy';
-    image.decoding='async';
-    if('fetchPriority' in image)image.fetchPriority='low';
-  }else if(!image.hasAttribute('decoding')){
-    image.decoding='async';
-  }
+  // Native lazy loading already knows the viewport, and starts visible images
+  // immediately. Measuring each newly inserted image forced style/layout while
+  // dozens of legacy renderers were still mounting the same route.
+  image.decoding='async';
+  if(!image.complete||!image.naturalWidth)image.loading='lazy';
 }
 function drain(){
   scheduled=false;

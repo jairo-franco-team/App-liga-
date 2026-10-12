@@ -19,17 +19,21 @@ function safePhoto(src){
 }
 function data(){return window.LJR_OFFICIAL_API?.getData?.()||window.LJR_OFFICIAL_DATA||null}
 let records=[],source=null,snapshot='',handle=0,observer=null;
+let byName=new Map();
 function rebuild(){
  const d=data();if(!d?.categories)return records;
- if(d===source&&records.length)return records;
- source=d;records=[];
+ if(d===source)return records;
+ source=d;records=[];byName=new Map();
  for(const [cat,c] of Object.entries(d.categories)){
   for(const [team,players] of Object.entries(c.player_profiles||{})){
    for(const p of Array.isArray(players)?players:[]){
     if(!p?.name)continue;
-    records.push({name:String(p.name).trim(),team,cat,category:String(c.name||''),
+    const record={name:String(p.name).trim(),team,cat,category:String(c.name||''),
       position:String(p.position||'').trim(),dorsal:String(p.dorsal||'').trim(),
-      photo:safePhoto(p.photo)});
+      photo:safePhoto(p.photo)};
+    records.push(record);
+    const key=norm(record.name),hits=byName.get(key)||[];
+    hits.push(record);byName.set(key,hits);
    }
   }
  }
@@ -38,7 +42,8 @@ function rebuild(){
 }
 function find(name,team='',cat=''){
  const n=norm(name);if(!n)return null;
- let hits=rebuild().filter(p=>norm(p.name)===n);if(!hits.length)return null;
+ rebuild();
+ let hits=byName.get(n)||[];if(!hits.length)return null;
  if(team){const exact=hits.filter(p=>same(p.team,team));if(!exact.length)return null;hits=exact}
  if(cat){const sameCat=hits.filter(p=>String(p.cat)===String(cat));if(sameCat.length)hits=sameCat}
  if(hits.length===1)return hits[0];
@@ -52,6 +57,7 @@ function catStored(){
 function label(p){return [p.team,p.category,p.position,p.dorsal&&p.dorsal!=='—'?'#'+p.dorsal:''].filter(Boolean).join(' · ')}
 function picture(holder,p){
  if(!holder||!p?.photo)return;
+ if(holder.dataset.v971FailedPhoto===p.photo)return;
  if(holder.closest('.v35-champion-card,.v35-history-moment-photo,.v115-card,.v35-final-row,.v672-modern-card,.v701-team-logo'))return;
  if(holder.dataset.v971Photo===p.photo&&holder.querySelector('img'))return;
  let img=holder.querySelector(':scope > img');
@@ -60,7 +66,7 @@ function picture(holder,p){
  img.alt='Foto oficial: '+p.name;
  img.loading='lazy';img.decoding='async';img.referrerPolicy='no-referrer';
  img.classList.add('v971-official-image');
- img.onerror=()=>{if(img.isConnected&&img.src===p.photo){holder.textContent=p.name.split(/\s+/).slice(0,2).map(n=>n[0]).join('').toUpperCase();holder.classList.remove('v971-has-photo');holder.removeAttribute('data-v971-photo')}};
+ img.onerror=()=>{if(img.isConnected&&img.src===p.photo){holder.dataset.v971FailedPhoto=p.photo;holder.textContent=p.name.split(/\s+/).slice(0,2).map(n=>n[0]).join('').toUpperCase();holder.classList.remove('v971-has-photo');holder.removeAttribute('data-v971-photo')}};
  holder.classList.add('v971-has-photo');holder.classList.remove('v576-team-fallback','v576-photo-fallback');
  holder.dataset.v971Photo=p.photo;
 }
@@ -210,7 +216,8 @@ function start(){
  if(observer)observer.disconnect();
  observer=new MutationObserver(()=>schedule());
  observer.observe(root,{childList:true,subtree:true});
- for(const event of ['hashchange','ljr:official-data','ljr:player-updated','popstate'])window.addEventListener(event,()=>{source=null;schedule()});
+ for(const event of ['hashchange','popstate'])window.addEventListener(event,schedule);
+ for(const event of ['ljr:official-data','ljr:player-updated'])window.addEventListener(event,()=>{source=null;schedule()});
  schedule();setTimeout(schedule,600);setTimeout(schedule,1600);
 }
 window.LJR_V971_PLAYER_INTEGRATION={find,refresh:schedule,all:()=>[...rebuild()]};

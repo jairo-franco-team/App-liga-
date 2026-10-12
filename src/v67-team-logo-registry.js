@@ -254,7 +254,7 @@
     const oldCategory={'primera-fuerza-hd.png':'3','intermedia.webp':'5','segunda-fuerza.webp':'4','veteranos-35-user.png':'2','veteranos-50.webp':'1'};
     const file=(img.getAttribute('src')||'').split(/[?#]/)[0].split('/').pop();
     const category=window.LJR_SEASON_LOGOS?.category(img.alt)||window.LJR_SEASON_LOGOS?.category(oldCategory[file]);
-    if(category){if(img.src!==category){img.removeAttribute('srcset');img.src=category;}img.onerror=null;return;}
+    if(category){if(img.src!==new URL(category,document.baseURI).href){img.removeAttribute('srcset');img.src=category;}img.onerror=null;return;}
     const photo=String(img.getAttribute('src')||'');
     if(/(?:^|\s)[^\s]*(?:photo|portrait|cover|thumb)[^\s]*(?:\s|$)/i.test(img.className)||(/\/history\//.test(photo)&&!/\/team-logos\//.test(photo)))return;
     const name=teamNameFrom(img);

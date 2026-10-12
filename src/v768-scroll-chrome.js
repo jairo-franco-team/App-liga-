@@ -9,6 +9,15 @@
     teamsCompact=active&&(teamsCompact?top>24:top>86);
     document.body?.classList.toggle('v974-teams-compact',teamsCompact);
   };
+  let compact=false;
+  const syncCompact=()=>{
+    const route=document.body?.dataset.appRoute;
+    const enabled=matchMedia('(max-width:1023px)').matches&&!['competition','quiz','quizArena','moreLess','predictorSix','fantasy','video','simulator'].includes(route);
+    const top=Math.max(document.getElementById('screen')?.scrollTop||0,window.scrollY||0);
+    const next=enabled&&(compact?top>24:top>100);
+    if(next===compact)return false;
+    compact=next;document.body?.classList.toggle('ljr-header-compact',compact);return true;
+  };
   const sizes=new ResizeObserver(()=>schedule());
   // These are page controls, not card titles or headers inside a modal.
   const customHeaders={fantasy:['.v22-fantasy-master'],stats:['.v33-data-head','.v520-stats-topbar'],compareTeams:['.v369-compare-topbar'],following:['.v46-follow-head','.v28-head'],history:['.v620-history-top'],moments:['.v26-moments-sticky'],rankings:['.v32-head'],scorers:[],'club-store':['.v431-store-head','.v510-store-head'],simulator:['.v501-top'],hospitality:['.v774-hospitality-head'],favorites:['.v414-ref-head'],'v4-calendar':['.v415-reference-topbar'],teams:['.v41-head','.v27-teams-head'],'safe-about':['.v33-about-tools'],'safe-data':['.v33-data-head','.v62-data-head'],leagueData:['.v33-data-head','.v62-data-head']};
@@ -21,6 +30,7 @@
     frame=0;
     const body=document.body;
     syncTeamsCompact();
+    syncCompact();
     if(!body||!matchMedia('(max-width:1023px)').matches){body?.classList.remove('v768-scroll-root');if(body){delete body.dataset.mobileLayout;delete body.dataset.mobileHeader;}clearHeaders();sizes.disconnect();observedHeader=observedNav=null;return;}
     const route=body.dataset.appRoute;
     const screen=document.querySelector('#screen');
@@ -64,14 +74,24 @@
   const schedule=()=>{if(!frame)frame=requestAnimationFrame(apply)};
   window.LJR_SCROLL_CHROME={refresh:schedule};
   const boot=()=>{
-    new MutationObserver(schedule).observe(document.body,{attributes:true,attributeFilter:['data-app-route','class']});
+    new MutationObserver(records=>{
+      // Legacy controllers remove an already absent class. DOM still emits
+      // an attribute record, but that is not a new layout state.
+      if(records.some(r=>r.oldValue!==r.target.getAttribute(r.attributeName)))schedule();
+    }).observe(document.body,{attributes:true,attributeOldValue:true,attributeFilter:['data-app-route','class']});
     const root=document.querySelector('#screen');
     if(root){
-      root.addEventListener('scroll',()=>{syncTeamsCompact();schedule()},{passive:true});
-      new MutationObserver(schedule).observe(root,{childList:true,subtree:true});
+      root.addEventListener('scroll',()=>{const old=teamsCompact;syncTeamsCompact();if(syncCompact()||old!==teamsCompact)schedule()},{passive:true});
+      new MutationObserver(records=>{
+        // Only newly mounted page headers require geometry work. Counters,
+        // portraits and cards do not change which header owns this route.
+        const selectors='.v620-history-top,.v41-head,.v27-teams-head,.v26-moments-sticky,.v774-hospitality-head,.v46-follow-head,.v414-ref-head,.v33-data-head';
+        if(records.some(r=>r.target===root||Array.from(r.addedNodes).some(n=>n.nodeType===1&&(n.matches?.(selectors)||n.querySelector?.(selectors)))))schedule();
+      }).observe(root,{childList:true,subtree:true});
     }
     const header=document.querySelector('#app>.topbar');if(header)new ResizeObserver(schedule).observe(header);
     window.addEventListener('resize',schedule);window.addEventListener('hashchange',schedule);schedule();
+    window.addEventListener('scroll',()=>{if(syncCompact())schedule()},{passive:true});
   };
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
