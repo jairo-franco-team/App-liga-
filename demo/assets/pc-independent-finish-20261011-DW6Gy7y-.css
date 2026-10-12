@@ -491,3 +491,32 @@ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen > #ljpc-exa
 html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="home"] #screen{
  row-gap:0!important;
 }
+
+
+/* PC forzado en Android usa viewport de teléfono. El CSS móvil V768 aplica
+   @media(max-width:1023px) y bloquea html/body a 100dvh con overflow:hidden.
+   Sólo recuperar scroll documental si estamos realmente dentro del modo PC. */
+@media(max-width:1023px){
+ html.ljpc-unified-pc:has(body.lj-desktop.ljpc-independent-finish){
+  height:auto!important;min-height:100%!important;max-height:none!important;
+  overflow-x:hidden!important;overflow-y:auto!important;
+  position:static!important;touch-action:pan-y!important;
+ }
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish{
+  height:auto!important;min-height:100%!important;max-height:none!important;
+  overflow-x:hidden!important;overflow-y:visible!important;
+  position:relative!important;touch-action:pan-y!important;
+ }
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #app,
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish .app-shell,
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen{
+  height:auto!important;min-height:0!important;max-height:none!important;
+  overflow-y:visible!important;position:relative!important;
+  top:auto!important;bottom:auto!important;
+ }
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #app > .topbar,
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish .app-shell > .topbar{
+  display:none!important;visibility:hidden!important;
+  position:static!important;height:0!important;min-height:0!important;
+ }
+}
