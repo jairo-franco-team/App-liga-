@@ -41,6 +41,54 @@ html,body,#root{background:#040c1c!important;color:#f4f8ff}
 #root .ucl [data-name="sponsors band"]{background:#0a2842!important;color:#e0f3ff!important}
 </style>
 
+<script id="ljpc-embedded-context">if(window.parent!==window)document.documentElement.classList.add('ljpc-embedded-home');</script>
+<style id="ljpc-embedded-tight-flow">
+/* Solo iframe de Inicio PC. No esconder elementos del HTML cuando se abre aislado. */
+html.ljpc-embedded-home #root .ucl [data-name="top bar wrapper"],
+html.ljpc-embedded-home #root .ucl [data-name="header navigation wrapper"],
+html.ljpc-embedded-home #root .ucl [data-name="fixtures strip container"],
+html.ljpc-embedded-home #root .ucl [data-name="sponsors band"],
+html.ljpc-embedded-home #root .ucl [data-name="footer"]{
+ display:none!important;height:0!important;min-height:0!important;
+ padding:0!important;margin:0!important;border:0!important;
+}
+html.ljpc-embedded-home,
+html.ljpc-embedded-home body,
+html.ljpc-embedded-home #root .ucl {
+ overflow-x:clip!important;overflow-y:visible!important;height:auto!important;
+}
+html.ljpc-embedded-home #root .ucl [data-name="hero and content section"] {
+ margin-top:0!important;padding-top:0!important;
+}
+html.ljpc-embedded-home #root .ucl [data-name="stories list container"] {
+ margin:0 auto 0!important;
+ padding:2px 12px 4px!important;
+ position:relative!important;
+}
+html.ljpc-embedded-home #root .ucl [data-name="responsible gambling banner wrapper"] {
+ margin-top:5px!important;margin-bottom:0!important;
+}
+html.ljpc-embedded-home #root .ucl [data-name="hero section container"] {
+ margin-top:7px!important;padding-bottom:9px!important;
+}
+html.ljpc-embedded-home #root .ucl [data-name="moments section container"] {
+ padding-top:7px!important;padding-bottom:7px!important;
+}
+html.ljpc-embedded-home #root .ucl [data-name="news section container"]{
+ padding-top:7px!important;padding-bottom:8px!important;
+}
+html.ljpc-embedded-home #root .ucl [data-name="video section container"]{
+ margin-top:7px!important;padding-top:0!important;
+}
+html.ljpc-embedded-home #root .ucl [data-name="video highlights section"],
+html.ljpc-embedded-home #root .ucl [data-name="spotlight videos section"] {
+ padding-top:9px!important;padding-bottom:9px!important;
+}
+/* Las listas horizontales no bloquean gestos verticales del documento. */
+html.ljpc-embedded-home #root .ucl [data-name="stories wrapper"] {
+ touch-action:pan-x pan-y!important;
+}
+</style>
 <style id="ljpc-pc-story-rail-fix">
 /* Únicamente HTML de portada PC, aislado del modo móvil y APK. */
 html,body{height:auto!important;min-height:0!important;overscroll-behavior-y:auto!important}
@@ -1391,7 +1439,11 @@ function setFixtures(list){
 let pending=false;
 function requestHeight(){
  if(pending)return;pending=true;
- requestAnimationFrame(()=>{pending=false;const h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);
+ requestAnimationFrame(()=>{pending=false;
+  const body=document.body,doc=document.documentElement;
+  const content=document.querySelector('#root .ucl[data-name="page layout container"]');
+  const rootHeight=content?Math.ceil(content.getBoundingClientRect().bottom+window.scrollY):0;
+  const h=Math.max(body.scrollHeight,doc.scrollHeight,rootHeight);
   notify({kind:'height',height:h});});
 }
 window.addEventListener('message',e=>{
@@ -1401,7 +1453,12 @@ window.addEventListener('message',e=>{
 window.addEventListener('load',()=>{notify({kind:'ready'});requestHeight()});
 window.addEventListener('resize',requestHeight);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(requestHeight);
-if(window.ResizeObserver)new ResizeObserver(requestHeight).observe(document.body);
+if(window.ResizeObserver){
+ const obs=new ResizeObserver(requestHeight);
+ obs.observe(document.body);
+ const page=document.querySelector('#root .ucl[data-name="page layout container"]');
+ if(page)obs.observe(page);
+}
 document.querySelectorAll('img').forEach(i=>i.addEventListener('load',requestHeight,{once:true}));
 requestHeight();
 })();
