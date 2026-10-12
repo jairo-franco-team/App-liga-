@@ -94,13 +94,31 @@ function render(){
  if(window.LJR_PC_NATIVE_ROUTES?.has(r))return;
  if(r==='home'){
   if(!pcExactFrame()){
-   h.innerHTML='<iframe id="ljpc-exact-html-home" title="Inicio PC de Liga Juventino Rosas" loading="eager" scrolling="no" src="./pc-exact-original-20261011.html?v=20261011-circulos-scroll-v2" style="display:block;width:100%;height:900px;min-height:0;border:0;outline:0;background:#040c1c;overflow-anchor:none" referrerpolicy="same-origin"></iframe>';
+   h.innerHTML='<iframe id="ljpc-exact-html-home" title="Inicio PC de Liga Juventino Rosas" loading="eager" scrolling="no" src="./pc-exact-original-20261011.html?v=20261012-tight-layout-v3" style="display:block;width:100%;height:900px;min-height:0;border:0;outline:0;background:#040c1c;overflow-anchor:none" referrerpolicy="same-origin"></iframe>';
    const frame=pcExactFrame();
    if(frame)frame.addEventListener('load',syncPCExactFixtures,{once:true});
   }else syncPCExactFixtures();
   return;
  }
  h.innerHTML=generic(r);
+}
+/* Chrome Android desktop mode: scroll the active vertical container. */
+function scrollDesktopFlow(delta){
+ const root=document.scrollingElement||document.documentElement;
+ const available=Math.max(0,root.scrollHeight-root.clientHeight);
+ if(available>2){
+  root.scrollTop=Math.max(0,Math.min(available,root.scrollTop+delta));
+  return;
+ }
+ for(const box of [document.getElementById('app'),document.getElementById('screen')]){
+  if(!box)continue;
+  const rest=box.scrollHeight-box.clientHeight;
+  if(rest>2){
+   box.scrollTop=Math.max(0,Math.min(rest,box.scrollTop+delta));
+   return;
+  }
+ }
+ window.scrollBy({left:0,top:delta,behavior:'instant'});
 }
 window.addEventListener('message',e=>{
  if(e.origin!==location.origin||!desktop()||route()!=='home'||!e.data?.ljpcExact)return;
@@ -122,13 +140,21 @@ window.addEventListener('message',e=>{
   // dentro del propio iframe, sin alterar el móvil ni el APK.
   const dy=Number(e.data.dy);
   if(Number.isFinite(dy)&&Math.abs(dy)<=300){
-   window.scrollBy({top:dy,left:0,behavior:'instant'});
+   scrollDesktopFlow(dy);
   }
  }
  else if(e.data.kind==='route'&&/^[a-zA-Z0-9_-]+$/.test(String(e.data.route||'')))go(e.data.route);
 });
 function click(e){const b=e.target.closest('[data-desk-route]');if(!b)return;e.preventDefault();go(b.dataset.deskRoute)}
-document.addEventListener('click',click);window.addEventListener('hashchange',()=>setTimeout(render,0));let t;window.addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(()=>{if(desktop())render();else if(document.body.classList.contains('lj-desktop'))location.reload()},120)});setTimeout(render,0);
+document.addEventListener('click',click);window.addEventListener('hashchange',()=>setTimeout(render,0));let t;let lastOuterWidth=innerWidth;
+window.addEventListener('resize',()=>{
+ const nextWidth=innerWidth;
+ // Chrome Android may change viewport HEIGHT while scrolling. Do not rerender.
+ if(Math.abs(nextWidth-lastOuterWidth)<3)return;
+ lastOuterWidth=nextWidth;
+ clearTimeout(t);
+ t=setTimeout(()=>{if(desktop())render();else if(document.body.classList.contains('lj-desktop'))location.reload()},160);
+});setTimeout(render,0);
 window.addEventListener('ljr:desktop-home-request',()=>{if(desktop()&&route()==='home')render()});
 window.addEventListener('ljr:official-data',()=>{if(desktop()&&route()==='home')syncPCExactFixtures()});
 })();
