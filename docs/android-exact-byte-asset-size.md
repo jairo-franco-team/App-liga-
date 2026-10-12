@@ -40,4 +40,18 @@ The app's native notification image loader is the one direct public-image `Asset
 - APK ZIP tests verify real final archive bytes, reject missing/changed media, and compare measured archive sizes. The release verifier checks every pre-optimization file's SHA-256 and byte count inside the final APK, resolves aliases, and rejects copies unexpectedly left in the APK.
 - The native Android workflow builds both baseline and optimized APKs with Gradle. This verifies the generated MainActivity, notification copy and alias module against the installed Android/Capacitor APIs.
 
-Local verification passed all 19 Android/calendar tests, including the four new tests. Native Java compilation and device-specific behavior require the GitHub Actions run; no local Android device or emulator is implied by the built-tree checks. The alias inventory proves retention of all previously packaged bytes; it does not prove the baseline build included every remotely hosted or dynamically requested asset. Existing runtime tests remain necessary for that separate concern.
+Local verification passed all 19 Android/calendar tests, including the four new tests. The clean-build GitHub Actions run also passed native Java compilation, actual APK inventory checks and compiled browser checks against the optimized native asset tree. No physical Android device or emulator is implied by those checks. The alias inventory proves retention of all previously packaged bytes; it does not prove the baseline build included every remotely hosted or dynamically requested asset. Existing runtime tests remain necessary for that separate concern.
+
+## Verified release measurement
+
+Source `188f93bb1c0e93b9aa2511d8ddb6e6533a8c37c6`, build `v1461-mobile-clean-boot-smaller-apk-r4`, GitHub Actions run [38213078489](https://github.com/jairofrancog7-star/App-liga-/actions/runs/38213078489):
+
+| Actual APK | Bytes | Decimal MB |
+| --- | ---: | ---: |
+| Baseline | 183,620,514 | 183.62 |
+| Compact APK | 158,558,436 | 158.56 |
+| Saved | 25,062,078 | 25.06 |
+
+836 original runtime paths retained identical bytes; 111 redundant image copies removed. The optimized native tree passed all 35 captured mobile routes, seven initial delegated routes and all 111 original alias URLs. A sampler observed 1,283 visible frames without a legacy-design frame. Forward/reverse animation and exact previous scroll restoration also passed before APK publication.
+
+Published APK SHA-256: `b4d3ac4d5acd915216ed46b4573c63de67b54fb51935d21162a40ed2bc2e82d8`.
