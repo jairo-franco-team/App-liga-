@@ -1,0 +1,16 @@
+/* Home PC: reduce scroll paint work; all card geometry, routes, logos and mobile remain untouched. */
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen .v73-reveal,
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen .v73-reveal.v73-visible{
+  filter:none!important;transform:none!important;opacity:1!important;
+  transition:none!important;animation:none!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen :is(.v73-motion-banner,.v73-motion-pills button,.v73-motion-banner.v509-stats-integrated){
+  -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+  will-change:auto!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen :is(.v73-motion-banner,.v73-motion-inner,.v105-motion,.v105-final,.v100-fav-card){
+  scroll-behavior:auto!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen > .v73-motion-banner{
+  contain:layout style!important;
+}
