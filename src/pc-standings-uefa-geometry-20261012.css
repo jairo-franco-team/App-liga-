@@ -39,7 +39,6 @@ html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table td.
 html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table td.u18-team b{display:inline-block!important;vertical-align:middle!important;max-width:calc(100% - 39px)!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;color:#35404b!important;font-size:11px!important;font-weight:600!important}
 html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table td.u18-place{color:#89929a!important;font-size:10px!important}
 html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table td:last-child{color:#1e2938!important;font-weight:780!important}
-html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table tbody tr:nth-child(8) td{border-bottom:2px solid #bfc6d2!important}
 html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-footnote{font-size:9px!important;color:#8b94a3!important;margin:12px 0 0!important;line-height:1.5!important}
 html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-original{margin:7px 0 0!important;padding:5px 0!important;border:0!important;font-size:10px!important}
 html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-original summary{font-size:10px!important;color:#164e9a!important}
