@@ -7,7 +7,7 @@ window.__LJR_PC_DATOS_UEFA_20261011__=true;
 const CATS=['3','5','4','2','1'], BASE='https://raw.githubusercontent.com/jairofrancog7-star/Liga_Futbol/main/';
 const TEAM_FIELDS=[['pj','Datos clave',2],['gf','Goles',6],['pg','Victorias',3],['pe','Empates',4],['pp','Derrotas',5],['gc','Defensa',7],['dg','Diferencia',8],['pts','Puntos',9]];
 const PLAYER_FIELDS=[['goals','Goles'],['cedulas','Cédulas'],['yellow','Amarillas'],['red','Rojas'],['minutes','Minutos'],['assists','Asistencias'],['shots','Disparos']];
-let live=null, fetching=false,queued=false, state={cat:'',view:'team',metric:'pj'};
+let live=null, fetching=false,queued=false, pendingMenuView=null, state={cat:'',view:'team',metric:'pj'};
 const route=()=>String(location.hash||'').replace(/^#\/?/,'').split('?')[0];
 const mode=()=>new URLSearchParams(location.search).get('mode')||'';
 const desktop=()=>!['mobile','apk'].includes(mode())&&(mode()==='desktop'||window.innerWidth>=1024);
@@ -131,6 +131,11 @@ function enhance(){
  if(!host||host.dataset.ljrUefaEnhanced)return;
  host.dataset.ljrUefaEnhanced='1';
  const cat=category();if(state.cat!==cat){state={cat,view:'team',metric:'pj'}}
+  if(pendingMenuView){
+   state.view=pendingMenuView;
+   state.metric=state.view==='team'?'pj':'goals';
+   pendingMenuView=null;
+  }
  const d=records(cat);
  const dashboard=document.createElement('div');
  dashboard.className='ljr-uefa-root';
@@ -168,7 +173,17 @@ document.addEventListener('click',e=>{
   location.hash='#/'+hit.dataset.ljrGo;
  }
 });
-window.addEventListener('hashchange',schedule);
+window.addEventListener('ljpc:pc-data-view',e=>{
+  const view=e.detail?.view;
+  if(view!=='team'&&view!=='player')return;
+  pendingMenuView=view;
+  if(active()&&document.querySelector('#screen .ljr-uefa-root')){
+   state.view=view;state.metric=view==='team'?'pj':'goals';
+   pendingMenuView=null;renderExplorer();
+   document.getElementById('ljr-uefa-explorer')?.scrollIntoView({block:'start',behavior:'smooth'});
+  }
+ });
+ window.addEventListener('hashchange',schedule);
 window.addEventListener('resize',schedule);
 window.addEventListener('ljr:official-data',schedule);
 document.addEventListener('DOMContentLoaded',()=>{
