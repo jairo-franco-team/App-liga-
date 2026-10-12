@@ -234,3 +234,13 @@ img{max-width:100%;display:block}svg{width:20px;height:20px;display:block}h1,h2,
 .gaming-fantasy-subnav{display:flex;gap:20px;overflow-x:auto;scrollbar-width:none;background:#090d53}
 .gaming-fantasy-subnav a{display:flex;align-items:center;min-height:44px;flex:0 0 auto;padding:7px 4px;font-size:12px;font-weight:700;color:#eff4ff;text-decoration:none;border-bottom:3px solid transparent}
 .gaming-fantasy-subnav a.active{color:#56ecf4;border-bottom-color:#00dce9}
+
+/* Bracket: promotional compact hero — links to the already functional bracket. */
+.gaming-bracket-uefa{background:#05063b;padding:30px 0}
+.gaming-bracket-banner{display:grid;grid-template-columns:1fr 290px;gap:20px;align-items:center;min-height:215px;background:radial-gradient(ellipse at 80% 40%,#0f32a8,transparent 65%),#040745;border:1px solid #1c3898;border-radius:9px;overflow:hidden;padding:23px 32px}
+.gaming-bracket-banner a:not(.btn){color:#8bccfa;font-size:11px;text-decoration:none}
+.gaming-bracket-banner h2{margin:6px 0;font-size:28px}
+.gaming-bracket-banner p{font-size:13px;color:#d5e4ff;max-width:440px}
+.gaming-bracket-banner .btn{display:inline-block;margin-top:10px}
+.gaming-bracket-banner>img{width:100%;height:192px;object-fit:contain;filter:drop-shadow(0 12px 18px #0008)}
+@media(max-width:650px){.gaming-bracket-banner{grid-template-columns:minmax(0,1fr) 110px;padding:15px;min-height:170px}.gaming-bracket-banner>img{height:130px}.gaming-bracket-banner h2{font-size:21px}.gaming-bracket-banner p{font-size:11px}}
