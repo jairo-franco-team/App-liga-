@@ -87,7 +87,7 @@ test('Ver cuadro shows league-safe draw panel and functioning Ver detalles del s
 });
 test('index avoids cached previous page assets',()=>{
  assert.match(html,/pc-uefa-18-references-20261012\.js\?v=[a-z0-9-]+/);
- assert.match(html,/pc-uefa-fixtures-pixel-20261012\.css\?v=pc-fixtures-mobile-knockout-footer-v5/);
+ assert.match(html,/pc-uefa-fixtures-pixel-20261012\.css\?v=pc-fixtures-mobile-knockout-footer-v6/);
 });
 
 
@@ -171,4 +171,18 @@ test('native bracket fallback remains complete before canonical mobile knockout 
  assert.match(markup,/data-u18-go="pc-draws"/);
  assert.match(markup,/<\/section>/);
  assert.match(markup,/Ver detalles del sorteo/);
+});
+
+test('PC-only footer white gap overrides the stronger dark independent-finish backgrounds',()=>{
+ const scope='html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish';
+ for(const name of [
+  scope+'{',
+  scope+' #screen{',
+  scope+' > #app{',
+  scope+' > #ljpc-unified-pc-footer{'
+ ])assert.ok(styles.includes(name),'missing stronger PC footer scope '+name);
+ assert.match(styles,/\#screen\{\s*background:\#f2f3f8!important;background-image:none!important/);
+ assert.match(styles,/min-height:calc\(100svh - 260px\)!important/);
+ assert.match(styles,/background-attachment:scroll!important/);
+ assert.doesNotMatch(styles,/html\.preview-(?:mobile|apk)/);
 });
