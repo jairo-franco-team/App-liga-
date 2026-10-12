@@ -7,7 +7,7 @@
 
   const PAGES = [
     ['resumen','Resumen'], ['equipos','Estadísticas de equipo'],
-    ['jugadores','Estadísticas de jugadores'], ['goleador','Máximo goleador'],
+    ['jugadores','Estadísticas de jugadores'], ['goleador','Máximo goleador'], ['fase','Fase de clasificación'],
     ['libro','Libro de estadísticas'], ['rendimiento','Performance Zone']
   ];
   const TEAM_METRICS = [
@@ -23,7 +23,7 @@
   const CATEGORIES = {'3':'Primera Fuerza','5':'Intermedia','4':'Segunda Fuerza','2':'Veteranos 35+','1':'Veteranos 50+'};
   const BASE = 'https://raw.githubusercontent.com/jairofrancog7-star/Liga_Futbol/main/';
   let state = {page:'resumen',teamMetric:'clave',playerMetric:'clave',category:'3',revision:0};
-  let queued=false, currentRoot=null, currentSignature='';
+  let queued=false, currentRoot=null, currentSignature='',cachedData=null,loadingData=false,pendingMenuPage=null;
   const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const normalized=x=>String(x??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
   const number=x=>{
@@ -34,10 +34,18 @@
   const value=x=>number(x)===null?'—':esc(x);
   const route=()=>String(location.hash||'').replace(/^#\/?/,'').split('?')[0];
   const mode=()=>new URLSearchParams(location.search).get('mode')||'';
-  function desktop(){return !['mobile','apk'].includes(mode())&&(mode()==='desktop'||window.innerWidth>=1024)&&document.body?.classList.contains('lj-desktop');}
+  function desktop(){return !['mobile','apk'].includes(mode())&&!window.Capacitor?.isNativePlatform?.()&&(mode()==='desktop'||window.innerWidth>=1024)&&document.body?.classList.contains('lj-desktop');}
   function active(){return desktop()&&route()==='pc-data'&&document.documentElement.classList.contains('ljr-pc-datos-uefa');}
   function category(){try{const x=sessionStorage.getItem('ljpc-selected-category');return x in CATEGORIES?x:'3';}catch(_){return '3';}}
-  function official(){const x=window.LJR_OFFICIAL_DATA||window.LJR_OFFICIAL_API?.getData?.();return x?.categories?x:null;}
+  function official(){const x=window.LJR_OFFICIAL_DATA||window.LJR_OFFICIAL_API?.getData?.()||cachedData;return x?.categories?x:null;}
+  function ensureData(){
+    if(official()||loadingData||!active())return;
+    loadingData=true;
+    fetch('./data/official-live.json?v=pc-drive-eight-reference',{cache:'no-store'})
+      .then(r=>{if(!r.ok)throw Error('No se pudieron cargar datos oficiales');return r.json();})
+      .then(d=>{if(d?.categories){cachedData=d;state.revision++;schedule();}})
+      .catch(()=>{}).finally(()=>{loadingData=false});
+  }
   const dFor=()=>official()?.categories?.[state.category]||{};
   const stand=()=>Array.isArray(dFor().standings?.[0]?.rows)?dFor().standings[0].rows.filter(r=>Array.isArray(r)&&r[1]):[];
   const scorers=()=>Array.isArray(dFor().scorers?.[0]?.rows)?dFor().scorers[0].rows.filter(r=>Array.isArray(r)&&r[1]&&r[2]&&number(r[3])!==null):[];
@@ -61,6 +69,14 @@
     if(/^https:\/\//i.test(raw))return raw;
     if(/^(?:\.\/)?assets\//i.test(raw))return BASE+raw.replace(/^\.\//,'');
     return '';
+  }
+  function playerImage(name,team){
+    const profiles=dFor().player_profiles||{};
+    const row=Object.entries(profiles).find(([n])=>normalized(n)===normalized(team));
+    const photo=(Array.isArray(row?.[1])?row[1]:[]).find(p=>normalized(p.name)===normalized(name))?.photo;
+    const src=String(photo||'');
+    if(/^https:\/\//i.test(src))return '<img class="ljpc8-player-image" src="'+esc(src)+'" alt="" loading="lazy" decoding="async">';
+    return logo(team);
   }
   function logo(name){
     const src=imageUrl(name);
@@ -123,7 +139,7 @@
     });
     if(!rows.length)return note('No hay jugadores con datos oficialmente registrados en esta categoría.');
     return '<div class="ljpc8-tablebox"><table class="ljpc8-table">'+tableHead(cols,true)+
-    '<tbody>'+rows.map((p,i)=>'<tr><td class="ljpc8-place">'+String(i+1).padStart(2,'0')+'</td><td class="ljpc8-name"><span class="ljpc8-person">'+logo(p.team)+'<span><b>'+esc(p.name)+'</b><small>'+esc(p.team)+'</small></span></span></td>'+
+    '<tbody>'+rows.map((p,i)=>'<tr><td class="ljpc8-place">'+String(i+1).padStart(2,'0')+'</td><td class="ljpc8-name"><span class="ljpc8-person">'+playerImage(p.name,p.team)+'<span><b>'+esc(p.name)+'</b><small>'+esc(p.team)+'</small></span></span></td>'+
       cols.map(([,k],j)=>'<td class="'+(j===0?'ljpc8-leading':'')+'">'+value(p[k])+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>';
   }
   function filters(page){
@@ -143,9 +159,9 @@
     const leaders=arr.slice(0,2);
     return '<section class="ljpc8-scorer"><h2>Máximo goleador</h2>'+
     '<div class="ljpc8-scorer-feature">'+(leaders.length?leaders.map((r,i)=>
-      '<article class="ljpc8-scorer-hero"><div class="ljpc8-scorer-art">'+logo(r[2])+'</div><div class="ljpc8-scorer-info"><small>'+(i===0?'1.º GOLEADOR':'2.º GOLEADOR')+' · '+categoryCaption()+'</small><b>'+esc(r[1])+'</b><span>'+esc(r[2])+'</span></div><strong>'+value(r[3])+'<small>GOLES</small></strong></article>'
+      '<article class="ljpc8-scorer-hero"><div class="ljpc8-scorer-art">'+playerImage(r[1],r[2])+'</div><div class="ljpc8-scorer-info"><small>'+(i===0?'1.º GOLEADOR':'2.º GOLEADOR')+' · '+categoryCaption()+'</small><b>'+esc(r[1])+'</b><span>'+esc(r[2])+'</span></div><strong>'+value(r[3])+'<small>GOLES</small></strong></article>'
     ).join(''):note('Aún no se ha publicado una tabla de goleo para esta categoría.'))+'</div>'+
-    '<div class="ljpc8-scorer-grid">'+arr.slice(2,18).map((r,i)=>'<div class="ljpc8-scorer-tile">'+logo(r[2])+'<span><b>'+esc(r[1])+'</b><small>'+esc(r[2])+'</small></span><strong>'+value(r[3])+'<small>goles</small></strong></div>').join('')+'</div>'+
+    '<div class="ljpc8-scorer-grid">'+arr.slice(2,18).map((r,i)=>'<div class="ljpc8-scorer-tile">'+playerImage(r[1],r[2])+'<span><b>'+esc(r[1])+'</b><small>'+esc(r[2])+'</small></span><strong>'+value(r[3])+'<small>goles</small></strong></div>').join('')+'</div>'+
     '<button type="button" class="ljpc8-primary" data-ljpc8-go="pc-scorers">Ver tabla de goleadores '+icon('right')+'</button></section>';
   }
   function book(){
@@ -173,7 +189,31 @@
       ].map(([t,d,route,symbol])=>'<button type="button" class="ljpc8-performance-story" data-ljpc8-go="'+route+'"><span class="ljpc8-story-art">'+icon(symbol)+'</span><b>'+esc(t)+'</b><small>'+esc(d)+'</small><span class="ljpc8-story-open">'+icon('right')+'</span></button>').join('')+'</div>'+
       '<button type="button" class="ljpc8-primary" data-ljpc8-go="safe-performance">Abrir Performance Zone '+icon('right')+'</button></section>';
   }
-  const pages={equipos:()=>statistics('equipos'),jugadores:()=>statistics('jugadores'),goleador:featureScorer,libro:book,rendimiento:performance};
+  function phase(){
+    const all=stand(),goals=all.reduce((n,r)=>n+(number(r[6])||0),0);
+    const played=all.reduce((n,r)=>n+(number(r[2])||0),0);
+    const matches=all.length&&played%2===0?String(played/2):'—';
+    const ranked=all.filter(r=>number(r[6])!==null).sort((a,b)=>(number(b[6])||0)-(number(a[6])||0)).slice(0,10);
+    const high=Math.max(1,...ranked.map(r=>number(r[6])||0));
+    const bars=ranked.length?ranked.map(r=>{
+      const x=number(r[6])||0,h=Math.max(4,Math.round(x/high*100));
+      return '<button type="button" data-ljpc8-go="pc-standings" title="'+esc(r[1])+' · '+x+' goles"><span class="ljpc8-bar-area"><i style="height:'+h+'%"></i></span><strong>'+x+'</strong><small>'+esc(r[1])+'</small></button>';
+    }).join(''):note('Todavía no hay goles registrados oficialmente en esta categoría.');
+    const topPlayers=scorers().slice().sort((a,b)=>(number(b[3])||0)-(number(a[3])||0)).slice(0,5);
+    const teamCard=(metric,title,index)=>{
+      const arr=all.filter(r=>number(r[index])!==null).sort((a,b)=>(number(b[index])||0)-(number(a[index])||0)).slice(0,5);
+      return '<article class="ljpc8-phase-card"><h3>'+esc(title)+'</h3>'+(arr.length?arr.map((r,i)=>'<div class="ljpc8-phase-row"><small>'+String(i+1).padStart(2,'0')+'</small>'+logo(r[1])+'<b>'+esc(r[1])+'</b><strong>'+value(r[index])+'</strong></div>').join(''):note())+'<button type="button" data-ljpc8-go="pc-standings">Ranking completo ›</button></article>';
+    };
+    return '<section class="ljpc8-phase"><div class="ljpc8-phase-hero"><div><small>DATOS · '+categoryCaption()+'</small><h2>Estadísticas de la fase de clasificación</h2><div class="ljpc8-phase-numbers"><span><strong>'+(all.length?goals:'—')+'</strong>Goles registrados</span><span><strong>'+matches+'</strong>Partidos contabilizados</span></div></div><div class="ljpc8-phase-chart"><h3>¿Quiénes marcaron más goles?</h3><div class="ljpc8-phase-bars">'+bars+'</div></div></div>'+
+      '<div class="ljpc8-phase-title"><h2>Estadísticas de equipo</h2><button type="button" data-ljpc8-page="equipos">Ver todas ›</button></div>'+
+      '<div class="ljpc8-phase-cards">'+teamCard('goles','Goles',6)+teamCard('puntos','Puntos',9)+teamCard('victorias','Victorias',3)+'</div>'+
+      '<div class="ljpc8-phase-title"><h2>Estadísticas de jugadores</h2><button type="button" data-ljpc8-page="jugadores">Ver todas ›</button></div>'+
+      '<div class="ljpc8-phase-cards">'+
+      '<article class="ljpc8-phase-card"><h3>Goles</h3>'+(topPlayers.length?topPlayers.map((r,i)=>'<div class="ljpc8-phase-row"><small>'+String(i+1).padStart(2,'0')+'</small>'+playerImage(r[1],r[2])+'<b>'+esc(r[1])+'</b><strong>'+value(r[3])+'</strong></div>').join(''):note())+'<button type="button" data-ljpc8-page="goleador">Ranking completo ›</button></article>'+
+      '<article class="ljpc8-phase-card ljpc8-phase-feature"><h3>Estadísticas oficiales</h3><p>Explora los datos registrados de equipos y jugadores. Las métricas que faltan se muestran sin cifras estimadas.</p><button type="button" data-ljpc8-page="jugadores">Ver jugadores ›</button></article>'+
+      '<article class="ljpc8-phase-card ljpc8-phase-feature"><h3>Palmarés de la Liga</h3><p>Conoce a los campeones de Primera, Intermedia, Segunda y Veteranos.</p><button type="button" data-ljpc8-go="history">Ver historia ›</button></article></div></section>';
+  }
+  const pages={equipos:()=>statistics('equipos'),jugadores:()=>statistics('jugadores'),goleador:featureScorer,fase:phase,libro:book,rendimiento:performance};
   function paint(root,force=false){
     const bar=root.querySelector('.ljpc8-tabs'),space=root.querySelector('.ljpc8-workspace');
     if(!bar||!space)return;
@@ -193,8 +233,10 @@
   function mount(){
     if(!active())return;
     const root=document.querySelector('#screen .ljr-uefa-root');
-    if(!root||!official())return;
+    if(!root)return;
+    if(!official()){ensureData();return;}
     const cat=category();if(state.category!==cat){state.category=cat;state.revision++;}
+    if(pendingMenuPage){state.page=pendingMenuPage;pendingMenuPage=null;}
     if(!root.querySelector(':scope > .ljpc8-tabs')){
       const original=document.createElement('div');original.className='ljpc8-original';
       while(root.firstChild)original.append(root.firstChild);
@@ -215,12 +257,24 @@
     if(hit.hasAttribute('data-ljpc8-metric')){const k=state.page==='equipos'?'teamMetric':'playerMetric';state[k]=hit.dataset.ljpc8Metric;paint(hit.closest('.ljr-uefa-root'));return;}
     if(hit.hasAttribute('data-ljpc8-scroll')){hit.parentElement?.querySelector('[data-ljpc8-filter-rail]')?.scrollBy({left:Number(hit.dataset.ljpc8Scroll)*240,behavior:'smooth'});return;}
     const next=hit.dataset.ljpc8Go;
+    if(next==='pc-data'){state.page='equipos';paint(hit.closest('.ljr-uefa-root'));return;}
     if(/^[a-z][A-Za-z0-9-]*$/.test(next||''))location.hash='#/'+next;
   });
   document.addEventListener('click',e=>{
     if(!active()||!e.target?.closest?.('.ljpc-categories'))return;
     setTimeout(schedule,90);
   },false);
+  window.addEventListener('ljpc:pc-data-view',e=>{
+    const view=e?.detail?.view;
+    if(view!=='team'&&view!=='player')return;
+    pendingMenuPage=view==='team'?'equipos':'jugadores';
+    if(active()){
+      state.page=pendingMenuPage;
+      pendingMenuPage=null;
+      const root=document.querySelector('#screen .ljr-uefa-root');
+      if(root){paint(root);root.scrollIntoView({behavior:'smooth',block:'start'});}
+    }
+  });
   window.addEventListener('hashchange',schedule);
   window.addEventListener('resize',schedule);
   window.addEventListener('ljr:official-data',()=>{state.revision++;schedule();});
