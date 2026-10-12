@@ -8,12 +8,12 @@ window.__LJPC_SHARED_SHELL_OCT11__=true;
 const NAV=[
  ['Inicio','home'],['Partidos','pc-fixtures'],['Clasificación','pc-standings'],
  ['Liga TV','video'],['Sorteos','pc-draws'],['Gaming','gamingPortal'],
- ['Datos','pc-data'],['Equipos','teams'],['Noticias','news'],
- ['Historia','history'],['Sobre','about'],['Más','pc-tools']
+ ['Datos','pc-data'],['Historia','history'],['Más','pc-tools']
 ];
 const MENUS={
  Gaming:[['Todos los juegos','gamingPortal'],['Pronostica Seis','predictorSix'],['Fantasy','fantasy'],['Quiniela','quiniela'],['Quiz Arena','quizArena'],['Más o menos','moreLess']],
  Datos:[['Clasificación','pc-standings'],['Goleadores','pc-scorers'],['Estadísticas oficiales','pc-data'],['Estadísticas de equipo','v38Stats'],['Performance Zone','safe-performance']],
+ Historia:[['Equipos','equipos'],['Noticias','noticias'],['Historia','historia'],['Temporadas','temporadas','child'],['Estadísticas históricas','estadisticas','child'],['Vídeos','videos','child'],['Equipos históricos','historicos','child'],['Más títulos','titulos','child'],['Sobre','sobre']],
  Más:[['Herramientas PC','pc-tools'],['Match Day','matchday'],['Calendario','pc-calendar'],['Credenciales','credentialBuilder'],['Reglamento','rulebook']]
 };
 const logo='./assets/branding/escudo-liga-azul-sin-fondo-v1007.png';
@@ -29,9 +29,7 @@ const active=r=>{
  if(['pc-draws','draws','pc-bracket','bracket'].includes(r))return 'pc-draws';
  if(['gamingPortal','fantasy','fantasyTeam','fantasyLeagues','quiniela','predictor','predictorSix','gaming','quizArena','quiz','moreLess','moreLessHub','moreLessGallery'].includes(r))return 'predictorSix';
  if(['safe-data','pc-data','pc-scorers','pc-notifications','scorers','stats','v38Stats','rankings'].includes(r))return 'pc-data';
- if(['teams','following','teamDetail','compareTeams','teamCompare','playerCompare'].includes(r))return 'teams';
- if(['news','newsDetail'].includes(r))return 'news';
- if(['about','history'].includes(r))return r;
+ if(['teams','following','teamDetail','compareTeams','teamCompare','playerCompare','news','newsDetail','about','history'].includes(r))return 'history';
  if(r==='home')return 'home';
  return 'pc-tools';
 };
@@ -87,7 +85,9 @@ function navMarkup(){
   const group=MENUS[label];
   return group?'<details class="ljpc-u-group" data-ljpc-u-group="'+label+'"><summary data-ljpc-u-highlight="'+r+'">'+
    label+' <span aria-hidden="true">⌄</span></summary><div class="ljpc-u-dropdown" role="group" aria-label="'+label+'">'+
-   group.map(([name,to])=>'<button type="button" data-ljpc-u-go="'+to+'">'+escapeHtml(name)+'</button>').join('')+
+   group.map(([name,to,kind])=>label==='Historia'
+    ?'<button type="button" class="'+(kind==='child'?'ljpc-u-history-child':'ljpc-u-history-main')+'" data-ljpc-u-history-section="'+to+'">'+escapeHtml(name)+'</button>'
+    :'<button type="button" data-ljpc-u-go="'+to+'">'+escapeHtml(name)+'</button>').join('')+
    '</div></details>':'<button type="button" data-ljpc-u-go="'+r+'" data-ljpc-u-highlight="'+r+'">'+label+'</button>';
  }).join('');
  return '<div id="ljpc-unified-pc-header" aria-label="Cabecera universal de escritorio">'+
@@ -188,9 +188,17 @@ function refreshFixtures(){
 }
 document.addEventListener('click',e=>{
  if(!desktop()||!(e.target instanceof Element))return;
- const b=e.target.closest('[data-ljpc-u-go]');
+ const b=e.target.closest('[data-ljpc-u-go],[data-ljpc-u-history-section]');
  if(!b)return;
  e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();
+ const section=b.dataset.ljpcUHistorySection;
+ if(section){
+  try{sessionStorage.setItem('ljpc-history-pc-tab',section)}catch(_){}
+  b.closest('details')?.removeAttribute('open');
+  if(route()==='history')window.dispatchEvent(new CustomEvent('ljpc:history-select',{detail:{section}}));
+  else go('history');
+  return;
+ }
  const r=b.dataset.ljpcUGo;
  if(r==='gamingPortal'){location.assign('./gaming/index.html');return;}
  if(/^[a-z][a-zA-Z0-9_-]*$/.test(r||''))go(r);
