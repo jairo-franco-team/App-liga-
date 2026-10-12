@@ -88,6 +88,16 @@
   }
   enhanceAbout();
   normalizeFooter();
+  // This route owns a real flow-sized desktop knockout. An earlier mobile
+  // shell can leave a huge inline min-height on #screen. Do not preserve or
+  // recompute it for the modern PC fixture root; other routes stay unchanged.
+  if(r==='pc-fixtures'&&screen.querySelector(':scope > .u18-root')){
+    if(screen.dataset.ljpcFinishMinHeight==='1'){
+      screen.style.removeProperty('min-height');
+      delete screen.dataset.ljpcFinishMinHeight;
+    }
+    return;
+  }
   // Only grow the document flow when a component has escaped its parent's
   // bounding box. This prevents the footer from cutting across native cards.
   if(sizing)return;
