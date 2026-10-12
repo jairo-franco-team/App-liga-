@@ -12,8 +12,12 @@ const run=(root,app,screen,delta)=>{
  const fallback=[];
  const doc={scrollingElement:root,documentElement:root,
    getElementById:id=>id==='app'?app:id==='screen'?screen:null};
- const context={document:doc,window:{scrollBy:args=>fallback.push(args)},Math};
- const fn=vm.runInNewContext(code+';scrollDesktopFlow',context);
+ // The extracted production function closes over this cache and receives
+ // connected DOM nodes with a working computed style in a real browser.
+ for(const node of [root,app,screen])if(node)node.isConnected=true;
+ const context={document:doc,window:{scrollBy:args=>fallback.push(args)},Math,
+  getComputedStyle:()=>({overflowY:'auto'})};
+ const fn=vm.runInNewContext('let pcScrollOwner=null;\n'+code+';scrollDesktopFlow',context);
  fn(delta);
  return fallback;
 };
