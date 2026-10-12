@@ -6700,6 +6700,14 @@ function render(){
   const moduleRoutes=new Set(['v4-calendar','v4-matchcenter','v4-discipline',
     'calendar','monthlyCalendar','calendarMonthly','whereToWatch','safe-about',
     'safe-data','safe-performance','v38About','v38Home']);
+  const displayMode=new URLSearchParams(location.search).get('mode');
+  const mobileDisplay=displayMode!=='desktop'&&(['mobile','apk'].includes(displayMode)||window.innerWidth<1024);
+  // These modules own their page. Building Home first loads unrelated media
+  // and exposes the previous design while their real controls are mounting.
+  if(mobileDisplay){
+    ['accountPrivacy','accountPreferences','accountAdvisor','accountCloud',
+      'leagueData','about','televisados'].forEach(route=>moduleRoutes.add(route));
+  }
   const delegated=moduleRoutes.has(state.route)||state.route.startsWith('v4-');
   screen.innerHTML=views[state.route]?views[state.route]():
     (delegated?'<div data-ljr-reference-mount aria-hidden="true"></div>':views.home());
