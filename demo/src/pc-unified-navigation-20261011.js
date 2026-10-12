@@ -135,10 +135,9 @@ function hideIframeHeader(frame){
    const style=doc.createElement('style');style.id='ljpc-u-iframe-hide';
    style.textContent='[data-name="top bar wrapper"],[data-name="header navigation wrapper"],'+
     '[data-name="fixtures strip container"],[data-name="sponsors band"],[data-name="footer"]{display:none!important}'+
-    /* Separación real entre barra de encuentros exterior y círculos del iframe.
-       No aplicar transform que pudiera encimar el círculo con la barra. */
-    '[data-name="stories list container"]{margin-top:40px!important;'+
-    'padding-top:12px!important;padding-bottom:16px!important;'+
+    /* Carrusel PC pegado a la franja de partidos, sin huecos. */
+    '[data-name="stories list container"]{margin-top:7px!important;'+
+    'padding-top:4px!important;padding-bottom:5px!important;'+
     'position:relative!important;transform:none!important}'+
     '[data-name="stories wrapper"]{align-items:flex-start!important}';
    doc.head.appendChild(style);
@@ -171,19 +170,12 @@ function sync(){
  }
  if(!document.getElementById('ljpc-unified-pc-footer'))
   screen.insertAdjacentHTML('afterend',footerMarkup());
- // Inicio PC contiene un iframe con portada y módulos posteriores que llegan
- // de forma asíncrona. Colocar el pie como hermano de #app podía pintarlo
- // encima de la portada antes de que el iframe terminara de medir su altura.
- // Montarlo como ÚLTIMO hijo de #screen garantiza el orden visual completo.
+ // El footer de PC es siempre el ÚLTIMO hijo del body.
+ // No moverlo dentro de #screen: causaba una carrera con
+ // pc-independent-finish y bloqueaba el scroll al fondo.
  const footer=document.getElementById('ljpc-unified-pc-footer');
- const home=route()==='home'&&!!screen.querySelector('#ljpc-exact-html-home');
- if(footer){
-  if(home){
-   if(footer.parentElement!==screen||footer!==screen.lastElementChild)
-    screen.appendChild(footer);
-  }else if(footer.parentElement!==document.body){
+ if(footer&&(footer.parentElement!==document.body||footer!==document.body.lastElementChild)){
    document.body.appendChild(footer);
-  }
  }
  selectNav();
  updateFrame();
