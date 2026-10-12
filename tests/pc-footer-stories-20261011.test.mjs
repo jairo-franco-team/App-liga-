@@ -20,10 +20,10 @@ test('One PC footer stays at end of body, never bounced into screen',()=>{
  assert.match(finish,/if\(footer\.parentElement!==document\.body\|\|footer!==document\.body\.lastElementChild\)/);
  assert.match(css,/html\.ljpc-unified-pc body #ljpc-unified-pc-footer/);
 });
-test('PC circles are raised, horizontal carousels have working arrows and swiping',()=>{
+test('PC circles clear the fixtures with 15px gap, and horizontal carousels remain interactive',()=>{
  assert.match(home,/data-name="stories list container"/);
  assert.match(home,/data-name="stories wrapper"/);
- assert.match(nav,/\[data-name="stories list container"\]\{margin-top:(?:[0-7])px!important;/);
+ assert.match(nav,/\[data-name="stories list container"\]\{margin-top:15px!important;/);
  assert.doesNotMatch(nav,/margin-top:40px!important/);
  assert.match(home,/id="ljpc-pc-story-rail-fix"/);
  assert.match(home,/overflow-x:auto!important/);
