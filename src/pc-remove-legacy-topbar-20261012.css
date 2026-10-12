@@ -1,0 +1,28 @@
+/* PC ONLY · remove the legacy mobile topbar (back arrow, profile icon,
+   decorative full-width blue/stadium banner) that sits ABOVE the real PC nav.
+   Keep #ljpc-unified-pc-header, fixtures, dropdowns and the mobile/APK intact. */
+html.ljpc-unified-pc body #app.app-shell > header.topbar,
+html.ljpc-unified-pc body #app.app-shell > .topbar,
+html.ljpc-no-legacy-topbar body #app.app-shell > header.topbar,
+html.ljpc-no-legacy-topbar body #app.app-shell > .topbar {
+ display:none!important;
+ visibility:hidden!important;
+ position:static!important;
+ height:0!important;
+ min-height:0!important;
+ max-height:0!important;
+ margin:0!important;
+ padding:0!important;
+ border:0!important;
+ overflow:hidden!important;
+ pointer-events:none!important;
+}
+html.ljpc-unified-pc body #app.app-shell > #ljpc-unified-pc-header,
+html.ljpc-no-legacy-topbar body #app.app-shell > #ljpc-unified-pc-header {
+ margin-top:0!important;
+}
+/* The working desktop navigation remains visible at the top edge. */
+html.ljpc-unified-pc body #ljpc-unified-pc-header,
+html.ljpc-no-legacy-topbar body #ljpc-unified-pc-header {
+ display:block!important;
+}
