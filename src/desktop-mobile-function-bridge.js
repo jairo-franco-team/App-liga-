@@ -291,7 +291,7 @@ function renderFixtures(catId=activeCat,bracket=false){
  const matches=desktopFixtureRows(catId,fixtureView);
  const source='https://www.juventinorosasliga.com/reporte-semanal/';
  const rowHtml=matches.map(x=>{
-   const time=x.rawDate.match(/\\s(\\d{2}:\\d{2})$/)?.[1]||'Hora por confirmar';
+   const time=x.rawDate.match(/\s(\d{2}:\d{2})$/)?.[1]||'Hora por confirmar';
    const label=x.played?x.homeScore+' – '+x.awayScore:x.suspended?'SUSPENDIDO':x.awarded?'GANA '+x.decision.winner:time;
    const kind=x.played?'Resultado registrado':x.suspended?'Jornada suspendida (no disputado)':x.awarded?'Resolución administrativa · DEFAULT':'Programado · pendiente de resultado';
    return '<article class="ljpc-match" data-ljpc-match-round="'+esc(x.round)+'" data-ljpc-match-date="'+esc(x.rawDate)+'">'+
