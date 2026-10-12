@@ -55,6 +55,8 @@ try{
   assert.equal(await page.locator('#screen').getAttribute('data-captured-design')!==null,true,route+' captured canvas');
   const bg=await page.locator('#screen').evaluate(e=>({image:getComputedStyle(e).backgroundImage,attach:getComputedStyle(e).backgroundAttachment}));
   assert.match(bg.image,/linear-gradient/,route+' royal to navy');assert.match(bg.attach,/fixed/,route+' design remains visible at the bottom');
+  console.log('Checking complete captured route '+route);
+  assert.ok(await page.locator('[data-design-card]:visible').count()>0,route+' has visible original controls/panels');
   await page.locator('[data-design-card]:visible').last().scrollIntoViewIfNeeded();await page.waitForTimeout(80);assert.match(await page.locator('#screen').evaluate(e=>getComputedStyle(e).backgroundImage),/url/,'Original artwork remains at bottom');
   const cards=page.locator('[data-design-card]');assert.ok(await cards.count()>0,route+' lower content receives styling');
   const flat=await page.locator('#screen[data-captured-design] button:not([data-design-card])').evaluateAll(es=>es.filter(e=>e.getClientRects().length&&!e.closest('[data-design-paper]')).map(e=>getComputedStyle(e).backgroundImage));
@@ -126,6 +128,8 @@ try{
  for(const route of ['ligaControl','leagueTools','players','v38Alerts','weatherFields']){
   await go(page,route);await page.waitForFunction(()=>{const es=[...document.querySelectorAll('#screen .ljr-design-edge')];return es.length>0&&es.every(e=>e.isConnected&&getComputedStyle(e).pointerEvents==='none');});
   const labels=await page.locator('.ljr-cms-quick-title').evaluateAll(es=>es.map(e=>({width:e.clientWidth,scroll:e.scrollWidth})));assert.ok(labels.every(e=>e.scroll<=e.width+1),route+' labels fit at 360px');
+  console.log('Checking complete captured route '+route);
+  assert.ok(await page.locator('[data-design-card]:visible').count()>0,route+' has visible original controls/panels');
   await page.locator('[data-design-card]:visible').last().scrollIntoViewIfNeeded();await page.screenshot({path:resolve(output,route+'-360-bottom.png')});
  }
  await go(page,'profile');await page.locator('.v12-profile-row').filter({hasText:'Ajustes de la aplicación'}).click();const settings=page.locator('[data-captured-dialog]').last();await settings.waitFor();await settings.locator('[data-close]').click();
