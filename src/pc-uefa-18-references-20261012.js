@@ -208,7 +208,7 @@ function standingsPage(){
  '<button type="button" data-u18-stand-view="criteria" class="'+(state.standMode==='criteria'?'selected':'')+'" aria-pressed="'+(state.standMode==='criteria')+'">Criterios de desempate</button></div>';
  const criteria='<div class="u18-criteria"><h3>Criterios de desempate</h3>'+
  '<p>Los criterios oficiales se consultan en el reglamento vigente de la Liga Juventino Rosas; no se presupone un orden de desempate a partir de la tabla pública.</p>'+
- '<button type="button" data-u18-go="rulebook">Consultar reglamento</button></div>';
+ '<a class="u18-criteria-action" href="#/rulebook" aria-label="Consultar reglamento oficial de la Liga">Consultar reglamento</a></div>';
  const content=state.standTab==='knockout'?bracket():state.standTab==='simulator'?simulation():
  '<div class="u18-panel"><div class="u18-blocktitle"><h2>Clasificación de la fase liga</h2><small>'+escape(CAT[state.cat])+'</small></div>'+
  viewTabs+(state.standMode==='criteria'?criteria:(rows.length?standingsTable(rows):'<p>La clasificación de esta categoría no está disponible.</p>'))+
