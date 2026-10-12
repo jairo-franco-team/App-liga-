@@ -131,7 +131,7 @@ window.addEventListener('message',e=>{
    // extra pixels on each resize or create an unbounded feedback loop.
    const target=Math.ceil(height);
    const prior=parseFloat(frame.style.height)||0;
-   if(Math.abs(target-prior)>8)frame.style.height=target+'px';
+   if(Math.abs(target-prior)>4)frame.style.height=target+'px';
   }
  }else if(e.data.kind==='ready')syncPCExactFixtures();
  else if(e.data.kind==='pan'){
