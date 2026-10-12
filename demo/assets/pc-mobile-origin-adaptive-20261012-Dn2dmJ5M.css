@@ -642,3 +642,92 @@ html.ljpc-unified-pc body.lj-desktop #screen .v60-tool-page :is(.v64-mini-table,
   grid-template-columns:1fr!important;
  }
 }
+
+/* Match-sheet builder: real DESKTOP composition, not a vertically stretched
+ * mobile card. Keep one combined card, its data-v64 bindings and PDF buttons. */
+html.ljpc-unified-pc body.lj-desktop[data-app-route="cedulaBuilder"] #screen#screen .v60-tool-page .v640-cedula-combined{
+ box-sizing:border-box!important;
+ display:grid!important;
+ grid-template-columns:minmax(250px,4fr) minmax(0,6fr)!important;
+ grid-template-rows:auto auto!important;
+ align-items:start!important;align-content:start!important;
+ gap:12px!important;width:100%!important;max-width:100%!important;
+ min-width:0!important;height:auto!important;min-height:0!important;
+ padding:12px!important;margin:0 0 12px!important;border-radius:11px!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="cedulaBuilder"] #screen#screen .v60-tool-page .v640-cedula-combined > .v639-match-card{
+ grid-column:1!important;grid-row:1/span 2!important;
+ width:100%!important;min-width:0!important;max-width:100%!important;
+ height:auto!important;max-height:none!important;
+ margin:0!important;padding:14px!important;
+ border-radius:9px!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="cedulaBuilder"] #screen#screen .v60-tool-page .v640-cedula-combined > .v64-form-grid.one{
+ grid-column:2!important;grid-row:1!important;
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:10px 12px!important;align-items:start!important;align-content:start!important;
+ width:100%!important;max-width:100%!important;min-width:0!important;
+ height:auto!important;min-height:0!important;
+ padding:11px!important;margin:0!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="cedulaBuilder"] #screen#screen .v60-tool-page .v640-cedula-combined > .v64-form-grid.one > label{
+ display:flex!important;flex-direction:column!important;align-items:stretch!important;
+ width:100%!important;min-width:0!important;max-width:100%!important;
+ gap:6px!important;grid-row:auto!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="cedulaBuilder"] #screen#screen .v60-tool-page .v640-cedula-combined > .v64-form-grid.one > label:first-child,
+html.ljpc-unified-pc body.lj-desktop[data-app-route="cedulaBuilder"] #screen#screen .v60-tool-page .v640-cedula-combined > .v64-form-grid.one > label:last-child{
+ grid-column:1/-1!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="cedulaBuilder"] #screen#screen .v60-tool-page .v640-cedula-combined > .v60-actions{
+ grid-column:2!important;grid-row:2!important;align-self:start!important;
+ display:flex!important;flex-wrap:wrap!important;gap:8px!important;
+ width:100%!important;min-width:0!important;max-width:100%!important;
+ margin:0!important;padding:2px 0 0!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="cedulaBuilder"] #screen#screen .v60-tool-page .v640-cedula-combined > .v60-actions .v60-btn{
+ flex:1 1 145px!important;min-height:33px!important;height:auto!important;
+ padding:7px 9px!important;font-size:10.5px!important;border-radius:7px!important;
+ white-space:normal!important;
+}
+@media(max-width:930px){
+ html.ljpc-unified-pc body.lj-desktop[data-app-route="cedulaBuilder"] #screen#screen .v60-tool-page .v640-cedula-combined{
+  grid-template-columns:1fr!important;grid-template-rows:auto auto auto!important;
+ }
+ html.ljpc-unified-pc body.lj-desktop[data-app-route="cedulaBuilder"] #screen#screen .v60-tool-page .v640-cedula-combined > .v639-match-card{
+  grid-column:1!important;grid-row:1!important;
+ }
+ html.ljpc-unified-pc body.lj-desktop[data-app-route="cedulaBuilder"] #screen#screen .v60-tool-page .v640-cedula-combined > .v64-form-grid.one{
+  grid-column:1!important;grid-row:2!important;
+ }
+ html.ljpc-unified-pc body.lj-desktop[data-app-route="cedulaBuilder"] #screen#screen .v60-tool-page .v640-cedula-combined > .v60-actions{
+  grid-column:1!important;grid-row:3!important;
+ }
+}
+@media(max-width:550px){
+ html.ljpc-unified-pc body.lj-desktop[data-app-route="cedulaBuilder"] #screen#screen .v60-tool-page .v640-cedula-combined > .v64-form-grid.one{
+  grid-template-columns:1fr!important;
+ }
+}
+/* Important layers defined by captured and original artwork would otherwise
+ * keep forcing single-column. Mirror only the layout, not their paint. */
+@layer ljr-reference-surfaces{
+ html.ljpc-unified-pc body.lj-desktop[data-app-route="cedulaBuilder"] #screen#screen .v60-tool-page .v640-cedula-combined > .v64-form-grid.one{
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ }
+ @media(max-width:550px){
+  html.ljpc-unified-pc body.lj-desktop[data-app-route="cedulaBuilder"] #screen#screen .v60-tool-page .v640-cedula-combined > .v64-form-grid.one{
+   grid-template-columns:1fr!important;
+  }
+ }
+}
+@layer ljr-captured-design{
+ html.ljpc-unified-pc body.lj-desktop[data-app-route="cedulaBuilder"] #screen#screen .v60-tool-page .v640-cedula-combined > .v64-form-grid.one{
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ }
+ @media(max-width:550px){
+  html.ljpc-unified-pc body.lj-desktop[data-app-route="cedulaBuilder"] #screen#screen .v60-tool-page .v640-cedula-combined > .v64-form-grid.one{
+   grid-template-columns:1fr!important;
+  }
+ }
+}
