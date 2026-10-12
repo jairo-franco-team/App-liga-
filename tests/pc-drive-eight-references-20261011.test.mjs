@@ -104,3 +104,38 @@ test('los accesos de libro y rendimiento se mantienen conectados',()=>{
   assert.match(api.performance(),/data-ljpc8-go="safe-performance"/);
   assert.match(api.performance(),/data-ljpc8-go="pc-team-compare"/);
 });
+
+
+test('goleadores: hero fotográfico y marcador lateral igual a la referencia',()=>{
+  const {api}=load();
+  const result=api.featureScorer();
+  assert.match(result,/class="ljpc8-scorer-photo"/);
+  assert.match(result,/class="ljpc8-scorer-result"/);
+  assert.match(result,/class="ljpc8-scorer-grid"/);
+  assert.match(result,/class="ljpc8-scorer-rank"/);
+});
+test('libro de estadísticas: editorial vertical con fotografía y segunda imagen',()=>{
+  const {api}=load();
+  const result=api.book();
+  assert.match(result,/<article class="ljpc8-book">/);
+  assert.match(result,/class="ljpc8-book-photo"/);
+  assert.match(result,/class="ljpc8-book-second-photo"/);
+  assert.match(result,/data-ljpc8-go="history"/);
+});
+test('Performance Zone: hero fotográfico, círculos de clubes y seis tarjetas reales',()=>{
+  const {api}=load();
+  const result=api.performance();
+  assert.match(result,/class="ljpc8-performance-hero"/);
+  assert.match(result,/class="ljpc8-rail-photo"/);
+  assert.equal((result.match(/class="ljpc8-performance-story"/g)||[]).length,6);
+  assert.match(result,/data-ljpc8-go="safe-performance"/);
+});
+test('fase de clasificación: título encima de dos paneles con datos publicados',()=>{
+  const {api}=load();
+  const result=api.phase();
+  const start=result.indexOf('class="ljpc8-phase-main-title"');
+  const firstPanel=result.indexOf('class="ljpc8-phase-summary"');
+  const secondPanel=result.indexOf('class="ljpc8-phase-chart"');
+  assert.ok(start>=0&&firstPanel>start&&secondPanel>firstPanel);
+  assert.match(result,/Goles por partido/);
+});
