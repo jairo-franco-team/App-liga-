@@ -1,0 +1,16 @@
+/* Rainbow bottom navigation for mobile/APK ONLY.
+   Do not touch geometry, tap targets or desktop/PC browser mode. */
+@media(max-width:1023px){
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) body .bottom-nav .nav-item[data-route="home"] .nav-icon{color:#ff5d83!important}
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) body .bottom-nav .nav-item[data-route="competition"] .nav-icon{color:#ffc858!important}
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) body .bottom-nav .nav-item[data-route="video"] .nav-icon{color:#57efa3!important}
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) body .bottom-nav .nav-item[data-route="fantasy"] .nav-icon{color:#45cfff!important}
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) body .bottom-nav .nav-item[data-route="more"] .nav-icon{color:#b28bff!important}
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) body .bottom-nav .nav-item .nav-icon{opacity:1!important}
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) body .bottom-nav .nav-item .nav-icon svg{color:inherit!important;fill:currentColor!important}
+  /* Reference asks for a larger and vertically centred MÁS label and icon. */
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) body .bottom-nav .nav-item[data-route="more"]{grid-template-rows:26px 15px!important;gap:0!important}
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) body .bottom-nav .nav-item[data-route="more"] .nav-icon,
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) body .bottom-nav .nav-item[data-route="more"] .nav-icon svg{width:26px!important;height:26px!important;min-width:26px!important;min-height:26px!important;max-width:26px!important;max-height:26px!important}
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) body .bottom-nav .nav-item[data-route="more"] small{font-size:12px!important;line-height:15px!important;font-weight:700!important}
+}
