@@ -292,7 +292,7 @@ function drawsPage(){
   '<button type="button" class="u18-button" data-u18-go="bracketBuilder">Abrir generador</button>';
  const controls='<div class="u18-controls u18-drawcontrols">'+catSelect()+
   '<div class="u18-controls-right"><button type="button" data-u18-go="bracketBuilder">Crear cuadro</button></div></div>';
- const promo='<div class="u18-drawpromo"><img loading="lazy" src="./assets/liga-logo-oficial-transparente.png" alt="Escudo de Liga Juventino Rosas">'+
+ const promo='<div class="u18-drawpromo"><img loading="lazy" src="./assets/liga-logo.webp" alt="Escudo de Liga Juventino Rosas">'+
   '<div><strong>LIGA JUVENTINO ROSAS</strong><span>SORTEOS · EQUIPOS · COMPETICIÓN LOCAL</span></div></div>';
  const stage='<div class="u18-drawstage">'+
   '<div class="u18-videotile"><div class="u18-drawcover"><img loading="lazy" src="./assets/home-players-user.png" alt="Fútbol de la Liga Juventino Rosas">'+
@@ -301,8 +301,8 @@ function drawsPage(){
   '<button type="button" data-u18-go="video">Ver Liga TV ↗</button></div>'+
   '<div class="u18-drawright">'+tabs+'<div class="u18-drawdetail">'+detail+'</div></div></div>';
  const recommended='<section class="u18-drawrecommended" aria-label="Recomendado para ti"><h2>Recomendado para ti</h2>'+
-  '<div class="u18-drawreccards"><button type="button" data-u18-go="pc-fixtures"><img loading="lazy" src="./public/home-header-original-v775.jpg" alt="Partidos y jugadores de Juventino Rosas"><span>Calendario de partidos y próximas jornadas <b aria-hidden="true">↗</b></span></button>'+
-  '<button type="button" data-u18-go="history"><img loading="lazy" src="./public/final-trophy-drive.png" alt="Trofeo y campeones de la Liga Juventino Rosas"><span>Finales y campeones de nuestra liga <b aria-hidden="true">↗</b></span></button></div></section>';
+  '<div class="u18-drawreccards"><button type="button" data-u18-go="pc-fixtures"><img loading="lazy" src="./home-header-original-v775.jpg" alt="Partidos y jugadores de Juventino Rosas"><span>Calendario de partidos y próximas jornadas <b aria-hidden="true">↗</b></span></button>'+
+  '<button type="button" data-u18-go="history"><img loading="lazy" src="./final-trophy-drive.png" alt="Trofeo y campeones de la Liga Juventino Rosas"><span>Finales y campeones de nuestra liga <b aria-hidden="true">↗</b></span></button></div></section>';
  const official='<div class="u18-drawofficial"><span>COMPETICIONES DE LA LIGA</span><div>'+
   '<span>Primera Fuerza</span><span>Intermedia</span><span>Segunda Fuerza</span><span>Veteranos 35+</span><span>Veteranos 50+</span></div></div>';
  return shell('Sorteo de la fase liga','Liga Juventino Rosas · '+CAT[state.cat],
