@@ -277,15 +277,17 @@ const vids=[
  ['Noticias en vídeo','./public/video-hero-reference.webp','news','Publicaciones y avisos de la Liga']
 ];
 function videoPage(){
- const filters=[['all','Destacados'],['classics','Clásicos'],['finals','Finales'],['moments','Momentos']];
- const chosen=state.videoTab==='all'?vids:state.videoTab==='classics'?vids.filter(x=>x[0].includes('clásicos')):state.videoTab==='finals'?vids.filter(x=>x[0]==='Finales'):vids.filter(x=>/Momentos|Goles/.test(x[0]));
- return '<section class="u18-video"><div class="u18-videohero"><img loading="lazy" src="./public/video-hero-reference.webp" alt=""><div><small>LIGA TV</small><h1>Los mejores momentos de la Liga</h1><p>Partidos, noticias, historias y vídeos de Juventino Rosas</p><button data-u18-show-original>Ver vídeos de la Liga ▶</button></div></div>'+
- '<div class="u18-bound"><div class="u18-videopills">'+pills(filters,state.videoTab,'data-u18-video-tab')+'</div>'+
- '<div class="u18-video-title"><h2>Selección del editor</h2><button data-u18-go="moments">Ver todos ›</button></div>'+
- '<div class="u18-video-grid">'+chosen.map(v=>'<button class="u18-videocard" type="button" '+(v[2]==='video'?'data-u18-show-original':'data-u18-go="'+v[2]+'"')+'><div class="u18-poster"><img loading="lazy" src="'+v[1]+'" alt=""><span>▶</span></div><b>'+escape(v[0])+'</b><small>'+escape(v[3])+'</small></button>').join('')+'</div>'+
- '<div class="u18-video-title"><h2>Partidos y finales</h2><button data-u18-go="history">Historia ›</button></div>'+
- '<div class="u18-video-grid">'+vids.slice(2,6).map(v=>'<button class="u18-videocard" '+(v[2]==='video'?'data-u18-show-original':'data-u18-go="'+v[2]+'"')+'><div class="u18-poster"><img loading="lazy" src="'+v[1]+'" alt=""><span>▶</span></div><b>'+escape(v[0])+'</b><small>'+escape(v[3])+'</small></button>').join('')+'</div>'+
- '<button type="button" class="u18-video-archive" data-u18-show-original>Abrir reproductor y archivo original de Liga TV ↗</button></div></section>';
+ const rows=[
+  {title:'Selección del editor',cards:vids.slice(0,5)},
+  {title:'Previa de los partidos',cards:[vids[2],vids[3],vids[0],vids[4]]},
+  {title:'Partidos completos',cards:[vids[3],vids[2],vids[1],vids[0]]},
+  {title:'Grandes goles',cards:[vids[4],vids[1],vids[0],vids[5]]}
+ ];
+ const action=v=>v[2]==='video'?'data-u18-show-original':'data-u18-go="'+v[2]+'"';
+ const card=v=>'<button class="u18-videocard" type="button" '+action(v)+' aria-label="'+escape(v[0])+'"><span class="u18-poster"><img loading="lazy" src="'+v[1]+'" alt="" onerror="this.style.display=\'none\'"><span class="u18-poster-play" aria-hidden="true">▶</span></span><b>'+escape(v[0])+'</b><small>'+escape(v[3])+'</small></button>';
+ const rail=(section,i)=>'<section class="u18-tv-rail" data-u18-tv-rail="'+i+'"><div class="u18-video-title"><h2>'+section.title+'</h2></div><div class="u18-tv-carousel"><button type="button" class="u18-tv-arrow" data-u18-tv-shift="-1" data-u18-tv-target="'+i+'" aria-label="Desplazar hacia atrás">‹</button><div class="u18-video-grid" id="u18-tv-row-'+i+'">'+section.cards.map(card).join('')+'</div><button type="button" class="u18-tv-arrow" data-u18-tv-shift="1" data-u18-tv-target="'+i+'" aria-label="Desplazar hacia adelante">›</button></div></section>';
+ return '<section class="u18-video u18-tv-uefa"><div class="u18-videohero"><div><small>LIGA TV · JUVENTINO ROSAS</small><h1>Los mejores momentos de la Liga</h1><p>Partidos, finales, historias y momentos del fútbol de Juventino Rosas</p><button type="button" data-u18-show-original><span aria-hidden="true">▶</span> Ver Liga TV</button><div class="u18-tv-hero-dots" aria-hidden="true"><i class="active"></i><i></i><i></i><i></i><i></i></div></div></div>'+
+ '<div class="u18-bound">'+rows.map(rail).join('')+'<button type="button" class="u18-video-archive" data-u18-show-original>Abrir reproductor y archivo original de Liga TV ↗</button></div></section>';
 }
 
 function teamsData(){
@@ -449,6 +451,7 @@ function localClick(e){
  if(d.u18StandTab){state.standTab=d.u18StandTab;repaint();return;}
  if(d.u18StandView){state.standMode=d.u18StandView==='criteria'?'criteria':'table';repaint();return;}
  if(d.u18DrawTab){state.drawTab=d.u18DrawTab;repaint();return;}
+ if(d.u18TvShift){const row=document.getElementById('u18-tv-row-'+String(d.u18TvTarget||''));if(row){row.scrollBy({left:Number(d.u18TvShift)*Math.max(240,row.clientWidth*.76),behavior:'smooth'});}return;}
  if(d.u18VideoTab){state.videoTab=d.u18VideoTab;repaint();return;}
  if(d.u18Modal){state.filterOpen=d.u18Modal==='filter';state.calendarOpen=d.u18Modal==='calendar';repaint();return;}
  if(d.u18CatQuick){keepCat(d.u18CatQuick);state.scoreOverrides={};repaint();return;}
