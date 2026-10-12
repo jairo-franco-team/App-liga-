@@ -57,3 +57,17 @@ test('Carga unica CSS/JS y mantiene proteccion final de Perfil',()=>{
  assert.ok(html.indexOf(style)>0&&html.indexOf(style)<html.indexOf(profile));
  assert.doesNotMatch(html.slice(html.indexOf(profile)),/<link\s+rel="stylesheet"/);
 });
+
+test('La barra PC forzada cabe en un viewport estrecho sin ocultar los siete botones',()=>{
+ assert.match(css,/grid-template-areas:"brand login" "links links"!important/);
+ assert.match(css,/grid-template-columns:repeat\(4,minmax\(0,1fr\)\)!important/);
+ assert.match(css,/\.ljpc-u-links>details\[open\]/);
+ assert.match(css,/\.ljpc-u-matchlist/);
+ assert.match(css,/overflow-x:auto!important/);
+ assert.match(css,/scroll-snap-align:start!important/);
+ assert.match(js,/height:218px!important/);
+ assert.match(js,/max-height:none!important/);
+ assert.match(js,/flex:0 0 69px!important/);
+ assert.match(html,/pc-forced-handset-layout-20261012\.css\?v=pc-full-visible-20261012-v2/);
+ assert.match(html,/pc-forced-handset-layout-20261012\.js\?v=pc-full-visible-20261012-v2/);
+});
