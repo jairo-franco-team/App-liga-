@@ -8,6 +8,8 @@ function copyStaticReferences() {
     closeBundle() {
       const files = [
         ['src/v606-control-registro-tools.js', 'dist/src/v606-control-registro-tools.js'],
+        // Reglamento oficial: el visor móvil/PC debe apuntar a un PDF publicado de verdad.
+        ['docs/Reglamento_Liga_Juventino_Rosas_2026_2027.pdf', 'dist/docs/Reglamento_Liga_Juventino_Rosas_2026_2027.pdf'],
         ['src/v606-control-registro-tools.css', 'dist/src/v606-control-registro-tools.css'],
         // Fuentes CSS de la barra de jornada: deben sobrevivir al build demo/APK.
         ['src/v1153-matchday-fullwidth-safe-crests.css', 'dist/src/v1153-matchday-fullwidth-safe-crests.css'],
@@ -37,6 +39,11 @@ function copyStaticReferences() {
           mkdirSync(dirname(to), { recursive: true });
           copyFileSync(from, to);
         }
+      }
+      // Evitar 404 al abrir o descargar el Reglamento desde GitHub Pages y la APK.
+      const rulebookPdf = resolve('dist/docs/Reglamento_Liga_Juventino_Rosas_2026_2027.pdf');
+      if (!existsSync(rulebookPdf) || readFileSync(rulebookPdf).subarray(0,5).toString('ascii') !== '%PDF-') {
+        throw new Error('Falta el Reglamento PDF válido en el paquete publicado');
       }
       // Fail the build instead of publishing a PC link that silently returns 404.
       const pcHTML = resolve('dist/pc-exact-original-20261011.html');
