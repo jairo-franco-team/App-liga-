@@ -38,7 +38,7 @@ test('elimina franjas vacías sólo en la ruta Partidos PC',()=>{
 test('sin cambios al modo móvil ni al APK y sin otras rutas PC',()=>{
   assert.match(bridge,/\['mobile','apk'\]\.includes\(qs\(\)\.get\('mode'\)\)/);
   for(const sel of css.match(/(^|\n)(?:html[^\n]*\{)/g)||[]){
-    assert.ok(sel.includes('html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop'),sel);
+    assert.ok(sel.includes('html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop') || sel.includes('html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body.lj-desktop'),sel);
   }
   assert.doesNotMatch(css,/html\.preview-mobile|html\.preview-apk/);
   assert.doesNotMatch(css,/\[data-ljpc-function-route="pc-calendar"\]/);
@@ -48,4 +48,6 @@ test('CSS compacto mantiene llaves emparejadas y puntos de corte',()=>{
   for(const c of css){if(c==='{')balance++;else if(c==='}')balance--;}
   assert.equal(balance,0);
   assert.match(css,/@media\(max-width:620px\)/);
+  assert.match(css,/\.u18-matchcard/);
+  assert.match(css,/\.u18-matchteams/);
 });
