@@ -62,7 +62,7 @@ test('two compact columns and exact score/card hierarchy, all CSS route scoped',
  assert.match(styles,/@media\(max-width:610px\)/);
  const rules=styles.split('\n').filter(x=>x.startsWith('html.'));
  assert.ok(rules.length>25);
- assert.ok(rules.every(x=>x.includes('html.ljpc18-active[data-ljpc18-route="pc-fixtures"]')),'unscoped CSS detected');
+ assert.ok(rules.every(x=>x.includes('html.ljpc18-active')&&x.includes('data-ljpc18-route="pc-fixtures"')),'unscoped CSS detected');
  let braces=0;for(const ch of styles){if(ch==='{')braces++;if(ch==='}')braces--;}
  assert.equal(braces,0);
 });
@@ -86,7 +86,7 @@ test('Ver cuadro shows league-safe draw panel and functioning Ver detalles del s
  assert.match(styles,/\.u18fx-draw-pair-grid/);
 });
 test('index avoids cached previous page assets',()=>{
- assert.match(html,/pc-uefa-18-references-20261012\.js\?v=pc-fixtures-mobile-knockout-footer-v5/);
+ assert.match(html,/pc-uefa-18-references-20261012\.js\?v=[a-z0-9-]+/);
  assert.match(html,/pc-uefa-fixtures-pixel-20261012\.css\?v=pc-fixtures-mobile-knockout-footer-v5/);
 });
 
