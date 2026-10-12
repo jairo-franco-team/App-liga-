@@ -32,7 +32,14 @@
    animation?.cancel();
    const from=window.LJR_NAVIGATION?.direction?.()==='back'?'-100%':'100%';
    // Independent translate survives legacy #screen transform:none!important scroll rules.
-   animation=screen.animate([{translate:from+' 0'},{translate:'0 0'}],{duration:280,easing:'cubic-bezier(.22,.61,.36,1)'});
+   const entering=screen.animate([{translate:from+' 0'},{translate:'0 0'}],{duration:280,easing:'cubic-bezier(.22,.61,.36,1)'});
+   animation=entering;
+   // Expensive layout/scroll restoration can consume a running animation
+   // before its first painted frame. Hold the start until layout is ready.
+   entering.pause();
+   entering.ready.then(()=>requestAnimationFrame(()=>{
+    if(animation===entering&&!staging&&where()===target&&screen===document.getElementById('screen'))entering.play();
+   })).catch(()=>{});
   }
  }
  function check(id){

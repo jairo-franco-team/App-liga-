@@ -82,7 +82,9 @@
    document.querySelectorAll('[data-captured-header]').forEach(el=>el.removeAttribute('data-captured-header'));
    return;
   }
-  const route=document.body?.dataset.appRoute||'';
+  // A late legacy module can leave its previous body marker temporarily.
+  // The requested URL owns the design; never decorate the next page as it.
+  const route=String(location.hash||'').replace(/^#\/?/,'').split('?')[0]||document.body?.dataset.appRoute||'';
   const topbar=document.querySelector('#app>.topbar');
   if(topbar){
    if(['news','search','profile','accountEdit','accountPrivacy','accountPreferences','scheduleChanges','suspensionTool','notifications','weatherFields','credentialBuilder'].includes(route))topbar.dataset.capturedHeader='1';
