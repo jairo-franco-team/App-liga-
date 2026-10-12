@@ -42,14 +42,21 @@ try{
  assert.deepEqual(layouts[1],layouts[0],'classification tabs keep their geometry');assert.deepEqual(layouts[2],layouts[0],'bracket tabs keep their geometry');
  await go('more');const loading=await page.evaluate(()=>{
   window.LJR_MAIN_ROUTE.go('teams');const loader=document.getElementById('ljr-route-loader'),nav=document.querySelector('.bottom-nav'),r=nav.getBoundingClientRect();
-  return {visible:getComputedStyle(loader).display!=='none',nav:document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)?.closest('.bottom-nav')===nav,circle:parseFloat(getComputedStyle(loader.querySelector('i')).width)};
+  return {visible:getComputedStyle(loader).display!=='none',nav:document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)?.closest('.bottom-nav')===nav,circle:parseFloat(getComputedStyle(loader.querySelector('i')).width),animation:getComputedStyle(loader.querySelector('i')).animationName,tinyLoader:document.getElementById('ljr-boot')?getComputedStyle(document.getElementById('ljr-boot')).display:'none'};
  });
  assert.equal(loading.visible,true,'navigation has a loading indicator');assert.equal(loading.nav,true,'loading reference keeps bottom navigation visible and usable');assert.ok(loading.circle>=48,'loading circle is larger');
+ assert.equal(loading.animation,'none','single route loading ring remains fixed, without spinning');
+ assert.equal(loading.tinyLoader,'none','small duplicate bootstrap loader is hidden on mobile');
  await page.waitForTimeout(1100);assert.equal(await page.locator('#ljr-route-loader').isVisible(),false,'loading indicator releases the new view');
  await page.evaluate(()=>{
   function event(type,x){const e=new Event(type,{bubbles:true});Object.defineProperty(e,type==='touchend'?'changedTouches':'touches',{value:[{clientX:x,clientY:350}]});document.querySelector('#screen').dispatchEvent(e)}
   event('touchstart',8);event('touchend',140);
  });await page.waitForTimeout(1100);assert.equal(await page.evaluate(()=>location.hash),'#/more','edge swipe returns to the previous section');
+ // Five individually colored bottom-nav icons, even after other screens render.
+ const rainbow=await page.locator('.bottom-nav .nav-item[data-route] .nav-icon').evaluateAll(nodes=>Object.fromEntries(nodes.map(n=>[n.closest('.nav-item').getAttribute('data-route'),getComputedStyle(n).color])));
+ for(const [route,color] of Object.entries({home:'rgb(255, 93, 131)',competition:'rgb(255, 200, 88)',video:'rgb(87, 239, 163)',fantasy:'rgb(69, 207, 255)',more:'rgb(178, 139, 255)'})){
+  assert.equal(rainbow[route],color,route+' keeps its own rainbow navigation icon color');
+ }
  await go('ligaQR');
  const qr=await page.locator('.v64-qr-frame').boundingBox(),title=await page.locator('.v64-qr-intro').boundingBox();
  assert.ok(title.y+title.height<=qr.y,'QR introduction stays above the code');
