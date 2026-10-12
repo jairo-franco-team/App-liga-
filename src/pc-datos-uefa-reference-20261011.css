@@ -87,3 +87,185 @@ html.ljr-pc-datos-uefa body #screen .ljpc-weekly-confirmed{background:#fff!impor
 html.ljr-pc-datos-uefa body #screen .ljpc-data-head{margin:0!important}
 @media(max-width:1199px){html.ljr-pc-datos-uefa body #screen .ljr-uefa-card{flex-basis:calc((100% - 14px)/2)}}
 @media(max-width:900px){html.ljr-pc-datos-uefa body #screen .ljr-uefa-card{flex-basis:84%}html.ljr-pc-datos-uefa body #screen .ljr-uefa-hero{grid-template-columns:1fr}html.ljr-pc-datos-uefa body #screen .ljr-uefa-leaders{grid-template-columns:1fr}}
+
+
+/* Referencias UEFA #1–#8, exclusivamente PC / #/pc-data.
+   No afectar móvil, APK, ni rutas de inicio, competición o perfil. */
+html.ljr-pc-datos-uefa #screen .ljpc-eight-tabs,
+html.ljr-pc-datos-uefa #screen .ljpc-eight-phase,
+html.ljr-pc-datos-uefa #screen .ljpc-eight-book,
+html.ljr-pc-datos-uefa #screen .ljpc-eight-performance{
+ box-sizing:border-box;font-family:Inter,"Segoe UI",Arial,sans-serif;min-width:0
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-tabs{
+ display:flex;gap:7px;align-items:center;overflow-x:auto;scrollbar-width:thin;
+ border-bottom:1px solid #dae1ed;padding:0 0 10px;max-width:100%
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-pill{
+ flex:0 0 auto;white-space:nowrap;border:1px solid #dbe3f0!important;
+ border-radius:23px!important;background:#fff!important;color:#243f58!important;
+ font:600 11px/1.15 Inter,Arial,sans-serif!important;padding:10px 13px!important;
+ min-height:35px;cursor:pointer
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-pill:first-child,
+html.ljr-pc-datos-uefa #screen .ljpc-eight-pill:focus-visible{
+ border-color:#1245d2!important;color:#0841b7!important
+}
+html.ljr-pc-datos-uefa #screen :is(.ljpc-eight-phase,.ljpc-eight-book,.ljpc-eight-performance,.ljr-uefa-block,.ljr-uefa-hero,.ljr-uefa-explorer){
+ scroll-margin-top:105px
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-phase{overflow:hidden;background:#071b84;color:#fff;border-radius:12px;border:1px solid #1747c5}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-phase-top{
+ display:grid;grid-template-columns:minmax(240px,1fr) minmax(350px,1.4fr);gap:15px;
+ padding:23px 25px;min-height:222px;background:linear-gradient(110deg,#0646e5 0%,#10128e 65%,#070b50 100%)
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-phase-intro small{
+ font-size:10px;letter-spacing:.1em;color:#b9ecff;font-weight:800
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-phase-intro h2{
+ color:#fff!important;margin:8px 0 13px!important;font-size:23px!important;line-height:1.25!important;max-width:330px
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-big-data{
+ display:flex;gap:24px;align-items:flex-start
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-big-data div{
+ display:flex;flex-direction:column;align-items:flex-start;gap:3px
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-big-data strong{color:#fff;font-size:31px;line-height:1.1}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-big-data span{color:#cfe1ff;font-size:10px}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-bars-wrap{min-width:0}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-bars-wrap h3{color:#f5f8ff!important;font-size:12px!important;margin:0 0 11px!important}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-bars{
+ display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:5px;align-items:end;height:133px;min-width:0
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-bar{
+ appearance:none;border:0!important;background:transparent!important;padding:0!important;
+ display:flex;flex-direction:column;gap:3px;align-items:center;justify-content:end;
+ color:#e6f6ff!important;min-width:0;height:100%;cursor:pointer
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-bar>span{
+ height:92px;width:100%;max-width:21px;display:flex;align-items:flex-end;justify-content:center;
+ border-bottom:1px solid #a7d8ff4d
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-bar i{
+ display:block;min-height:4px;width:75%;border-radius:3px 3px 0 0;
+ background:linear-gradient(180deg,#53e6ff,#16a8ff 80%,#3775fc)
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-bar b{font-size:10px;font-weight:850}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-bar small{
+ display:block;font-size:8px;max-width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-phase-bottom{
+ display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 24px;
+ background:#06105f;color:#c4dbf6;font-size:11px
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-phase-bottom button{
+ border:1px solid #52c1f6!important;background:#0c35c2!important;color:#fff!important;
+ border-radius:4px!important;padding:9px 12px!important;font-weight:750;font-size:11px!important
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-book{
+ display:grid;grid-template-columns:1fr minmax(270px,.92fr);min-height:285px;gap:0;
+ border:1px solid #d9e3ef;border-radius:13px;background:#fff;overflow:hidden;color:#182c42
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-book-copy{padding:28px 32px}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-book-copy>span{
+ font:800 10px Inter,Arial,sans-serif;letter-spacing:.1em;color:#1947d2
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-book h2{
+ color:#1a2f41!important;font-size:23px!important;line-height:1.2!important;
+ margin:10px 0 13px!important;max-width:470px
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-book p{
+ font-size:11px;line-height:1.65;color:#566e80;margin:0 0 12px
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-book button{
+ background:#0646b8!important;border:1px solid #0646b8!important;color:#fff!important;
+ border-radius:5px!important;padding:10px 13px!important;display:inline-flex;align-items:center;gap:7px;
+ font:800 11px Inter,Arial,sans-serif!important;cursor:pointer
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-book button svg{width:15px;height:15px;flex:0 0 15px}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-book-cover{overflow:hidden;min-height:260px}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-book-cover img{
+ width:100%;height:100%;max-height:330px;object-fit:cover;display:block
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-performance{
+ background:#fff;border:1px solid #dce4f0;border-radius:12px;overflow:hidden;color:#1a2d42
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-performance-hero{
+ position:relative;min-height:225px;display:flex;align-items:flex-end;overflow:hidden;background:#071158
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-performance-hero:after{
+ content:"";position:absolute;inset:0;background:linear-gradient(90deg,#030724c9,transparent 75%),linear-gradient(0deg,#02041ccb,transparent 80%)
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-performance-hero>img{
+ position:absolute;inset:0;width:100%;height:100%;object-fit:cover
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-performance-hero>div{
+ position:relative;z-index:1;padding:18px 28px;color:#fff
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-performance-hero small{
+ font:800 10px Inter,Arial,sans-serif;letter-spacing:.12em;color:#b2ecff
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-performance-hero h2{
+ font:850 28px/1.1 Inter,Arial,sans-serif!important;color:#fff!important;margin:5px 0!important
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-performance-hero p{color:#eef4ff;font-size:12px;margin:7px 0}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-clubs{
+ display:flex;align-items:center;gap:15px;overflow-x:auto;padding:15px 19px;
+ border-bottom:1px solid #e2e8ef;min-height:95px;scrollbar-width:thin
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-clubs button{
+ flex:0 0 76px;display:flex;flex-direction:column;align-items:center;gap:7px;
+ border:0!important;background:transparent!important;color:#364d62!important;padding:0!important;
+ font-size:9px!important;cursor:pointer
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-clubs button>span{
+ width:52px;height:52px;border:2px solid #0e4fe5;border-radius:50%;
+ display:grid;place-items:center;overflow:hidden;background:#f5f7ff
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-clubs .ljr-uefa-crest{
+ width:42px;height:42px;object-fit:contain
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-clubs button small{
+ white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:74px;font-size:9px!important
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-media{
+ display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;padding:19px 21px 11px
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-media-card{
+ min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:4px;
+ padding:0 0 8px!important;text-align:left!important;border:1px solid #e0e8f2!important;
+ border-radius:8px!important;background:#fff!important;color:#1d3048!important;
+ overflow:hidden;cursor:pointer
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-media-art{width:100%;height:132px;position:relative;background:#0a1f5d;overflow:hidden}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-media-art:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#061044c7,transparent 65%)}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-media-art>img{width:100%;height:100%;object-fit:cover;display:block}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-media-art i{
+ position:absolute;z-index:1;right:10px;top:8px;width:22px;height:22px;display:grid;
+ place-items:center;background:#043db3df;color:white;border-radius:50%;padding:4px
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-media-art svg{width:15px;height:15px}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-media-card>b{
+ color:#263b53;font-size:12px;line-height:1.25;margin:5px 11px 0
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-media-card>small{
+ color:#6b8194;font-size:10px;margin:0 11px 3px;line-height:1.35
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-performance-end{
+ padding:8px 21px 20px;display:flex;gap:9px;justify-content:center;flex-wrap:wrap
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-performance-end button{
+ border-radius:4px!important;background:#062eb5!important;color:#fff!important;
+ border:0!important;padding:10px 17px!important;font-size:11px!important;font-weight:800!important
+}
+html.ljr-pc-datos-uefa #screen .ljpc-eight-muted{font-size:11px;color:#698198}
+@media (max-width:1100px){
+ html.ljr-pc-datos-uefa #screen .ljpc-eight-phase-top{grid-template-columns:1fr}
+ html.ljr-pc-datos-uefa #screen .ljpc-eight-media-art{height:110px}
+}
+@media (max-width:800px){
+ html.ljr-pc-datos-uefa #screen .ljpc-eight-book{grid-template-columns:1fr}
+ html.ljr-pc-datos-uefa #screen .ljpc-eight-media{grid-template-columns:repeat(2,minmax(0,1fr))}
+ html.ljr-pc-datos-uefa #screen .ljpc-eight-bars{grid-template-columns:repeat(9,minmax(35px,1fr));overflow-x:auto}
+}
