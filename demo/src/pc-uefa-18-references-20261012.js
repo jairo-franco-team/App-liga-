@@ -202,9 +202,16 @@ function standingsPage(){
  const tabbar='<div class="u18-switch">'+pills([['league','Fase liga'],['knockout','Fase eliminatoria'],['simulator','Simulador de resultados']],state.standTab,'data-u18-stand-tab')+'</div>';
  const controls='<div class="u18-controls">'+categoryOptions+
  '<div class="u18-controls-right"><button data-u18-go="pc-fixtures">Ver partidos</button><button data-u18-go="tableExport">Descargar tabla ↓</button></div></div>';
- const rows=tableRows(),content=state.standTab==='knockout'?bracket():state.standTab==='simulator'?simulation():
+ const rows=tableRows();
+ const viewTabs='<div class="u18-viewtabs" role="group" aria-label="Vista de clasificación">'+
+ '<button type="button" data-u18-stand-view="table" class="'+(state.standMode==='table'?'selected':'')+'" aria-pressed="'+(state.standMode==='table')+'">Completo</button>'+
+ '<button type="button" data-u18-stand-view="criteria" class="'+(state.standMode==='criteria'?'selected':'')+'" aria-pressed="'+(state.standMode==='criteria')+'">Criterios de desempate</button></div>';
+ const criteria='<div class="u18-criteria"><h3>Criterios de desempate</h3>'+
+ '<p>Los criterios oficiales se consultan en el reglamento vigente de la Liga Juventino Rosas; no se presupone un orden de desempate a partir de la tabla pública.</p>'+
+ '<button type="button" data-u18-go="rulebook">Consultar reglamento</button></div>';
+ const content=state.standTab==='knockout'?bracket():state.standTab==='simulator'?simulation():
  '<div class="u18-panel"><div class="u18-blocktitle"><h2>Clasificación de la fase liga</h2><small>'+escape(CAT[state.cat])+'</small></div>'+
- (rows.length?standingsTable(rows):'<p>La clasificación de esta categoría no está disponible.</p>')+
+ viewTabs+(state.standMode==='criteria'?criteria:(rows.length?standingsTable(rows):'<p>La clasificación de esta categoría no está disponible.</p>'))+
  '<p class="u18-footnote">PJ · partidos; PG · ganados; PE · empates; PP · perdidos; GF/GC · goles; DG · diferencia; PTS · puntos.</p></div>';
  return shell('Clasificación',CAT[state.cat],tabbar+controls+content);
 }
@@ -393,6 +400,7 @@ function localClick(e){
  }
 
  if(d.u18StandTab){state.standTab=d.u18StandTab;repaint();return;}
+ if(d.u18StandView){state.standMode=d.u18StandView==='criteria'?'criteria':'table';repaint();return;}
  if(d.u18DrawTab){state.drawTab=d.u18DrawTab;repaint();return;}
  if(d.u18VideoTab){state.videoTab=d.u18VideoTab;repaint();return;}
  if(d.u18Modal){state.filterOpen=d.u18Modal==='filter';state.calendarOpen=d.u18Modal==='calendar';repaint();return;}
