@@ -298,3 +298,40 @@ html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] .ljpc-u-scorebar {
   margin-bottom:0!important;
   overflow:visible!important;
 }
+
+
+/* Historia pertenece a Más: menú anidado, sólo en el encabezado PC.
+   El diseño móvil y la APK conservan sus estilos y navegación originales. */
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links>details[data-ljpc-u-group="Más"]>.ljpc-u-dropdown{
+ left:auto;right:0;width:236px;max-width:min(236px,calc(100vw - 24px));
+ padding:5px 0;background:#090c58;border-color:#243690;border-radius:9px;
+ box-shadow:0 14px 35px #00072bba;gap:0;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links>details[data-ljpc-u-group="Más"]>.ljpc-u-dropdown>button{
+ border-radius:0;border-bottom:1px solid #ffffff13;
+ min-height:38px;padding:10px 13px;text-align:left;color:#edf3ff;
+ font-size:11px;font-weight:650;background:transparent;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links>details[data-ljpc-u-group="Más"]>.ljpc-u-dropdown>.ljpc-u-history-main{
+ display:flex;align-items:center;justify-content:space-between;
+ background:#10116c;color:#fff;font-weight:800;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-history-main[aria-expanded="true"]>span{
+ transform:rotate(180deg)
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-history-submenu{
+ display:flex;flex-direction:column;gap:0;background:#151779;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-history-submenu[hidden]{
+ display:none!important
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-history-submenu>.ljpc-u-history-child{
+ display:block;width:100%;padding:11px 12px 11px 23px;text-align:left;
+ min-height:37px;border:0;border-bottom:1px solid #ffffff14;
+ border-radius:0;background:transparent;font:650 11px Inter,Arial,sans-serif;
+ color:#e8efff;cursor:pointer;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-history-submenu>.ljpc-u-history-child:hover,
+html.ljpc-unified-pc body #ljpc-unified-pc-header [data-ljpc-u-group="Más"] .ljpc-u-dropdown>button:hover{
+ background:#1a3ead;color:#fff
+}
