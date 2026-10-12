@@ -362,14 +362,14 @@ const toolGroups=[
 /* Funciones incorporadas al móvil: catálogo enlazado sin copiar pantallas ni estilos móviles. */
 const parityAdditions=[
  ["Herramientas recientes de móvil · también en navegador",[
-  ["📝","Estudio de contenido","contentStudio","Plantillas, publicaciones y recursos"],
-  ["🎨","Editor visual","editorVisual","Edición y vista previa"],
-  ["👥","Juegos comunitarios","communityGames","Actividades y participación"],
+  ["📝","Estudio de contenido","publicationCenter","Plantillas, publicaciones y recursos"],
+  ["🎨","Editor visual y CMS","jrControl","Herramientas autorizadas de edición y vista previa"],
+  ["👥","Rankings comunitarios","rankings","Clasificaciones y participación de jugadores"],
   ["📺","Vídeo en ventana flotante","video","Reproductor y Picture in Picture"],
   ["📣","Avisos y encuestas","publicationCenter","Publicaciones y formularios"],
   ["🧩","Preparar mi jornada","matchday","Calendario, partidos y preparación"],
   ["📊","Auditoría y revisión","tool:audit","Herramientas de datos oficiales"],
-  ["💼","Inscripciones y registros","registration","Registros disponibles"],
+  ["💼","Inscripciones y registros","recruitment","Registro y convocatorias"],
   ["🏟️","Campos y condiciones","weatherFields","Pronóstico y canchas"],
   ["🖼️","Descargas y publicaciones","publications","Imágenes y archivos"]
  ]]
