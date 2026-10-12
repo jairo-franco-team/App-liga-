@@ -1,0 +1,50 @@
+/* Dedicated Historia PC panels; never applied to mobile/APK. */
+html.ljpc-unified-pc body.lj-desktop #ljpc-pc-history-hub{
+ color:#eef6ff;min-width:0;width:100%;margin:0 0 14px;font-family:Inter,system-ui,Arial,sans-serif;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .ds-content:has(#ljpc-pc-history-hub){background:linear-gradient(170deg,#071b50,#050e2c 86%);padding:12px 0 18px;min-height:0}
+html.ljpc-unified-pc body.lj-desktop #ljpc-pc-history-hub *{box-sizing:border-box}
+html.ljpc-unified-pc body.lj-desktop #ljpc-pc-history-hub [hidden]{display:none!important}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:17px 19px;border:1px solid #2853ad;border-radius:12px;background:linear-gradient(110deg,#134dc5,#0b267a 55%,#081444)}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-heading small{color:#96eaff;font-size:10px;letter-spacing:.08em;font-weight:800}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-heading h2{color:#fff;font-size:22px;line-height:1.1;margin:6px 0}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-heading p{font-size:11px;margin:0;color:#d6e8ff}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-heading>span{font-size:37px;flex:0 0 auto}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-main-tabs,.ljpc-h-sub-tabs{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-main-tabs{padding:10px 0 9px;border-bottom:1px solid #2b5a9c}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-sub-tabs{padding:9px 0 12px}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-tab{min-height:32px;padding:6px 13px;border:1px solid #3865b7;border-radius:18px;background:#0c2b78;color:#eef6ff;font-weight:700;font-size:11px;cursor:pointer;max-width:100%;white-space:normal}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-tab:hover,html.ljpc-unified-pc body.lj-desktop .ljpc-h-tab:focus-visible{border-color:#61dcff;outline-offset:2px}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-tab.active{background:#22cce9;color:#061949;border-color:#7beaff}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-section{padding:14px 16px 16px;margin-top:10px;border:1px solid #2e58a0;border-radius:11px;background:linear-gradient(140deg,#10398d,#081d59)}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-row h3{font-size:16px;color:white;margin:0 0 3px}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-row p{margin:0;color:#b9d5fc;font-size:11px}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-subpanel{border-top:1px solid #315692;padding-top:13px}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-subpanel h4{margin:0 0 10px;color:#fff;font-size:14px}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-note{font-size:10px;color:#b5cafa;margin:11px 0 2px;line-height:1.5}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-seasons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-season,.ljpc-h-trophy,.ljpc-h-club{min-width:0;padding:10px;border:1px solid #3767b0;border-radius:8px;background:linear-gradient(125deg,#16449a,#092662)}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-season small,.ljpc-h-trophy small{display:block;font-size:10px;color:#9be7ff;margin-bottom:4px}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-season strong,.ljpc-h-trophy strong{font-size:12px;color:#fff;overflow-wrap:anywhere;line-height:1.2}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-trophies{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-trophy span{display:block;margin-top:4px;font-size:10px;color:#c2d9f7}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-teams{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:12px 0}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-club{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:750;overflow-wrap:anywhere}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-club>span:first-child{font-size:16px}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;padding-top:12px}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-link{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0;min-height:57px;border:1px solid #376bb9;background:#104193;color:#fff;padding:10px 27px 10px 12px;margin:8px 0 0;border-radius:9px;text-align:left;cursor:pointer}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-links>.ljpc-h-link{margin:0}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-link strong{font-size:11px;line-height:1.2}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-link small{font-size:10px;color:#d2e4fc}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-link>span{position:absolute;right:11px;top:50%;transform:translateY(-50%);font-size:20px;color:#7ff3fd}
+html.ljpc-unified-pc body.lj-desktop .ljpc-h-link:hover{background:#155bd0;border-color:#50e9ff}
+html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-dropdown .ljpc-u-history-child{padding-left:23px;font-size:10px;color:#cbdeff;border-left:2px solid #3687d9;border-radius:0}
+html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-dropdown .ljpc-u-history-main{font-weight:800;border-top:1px solid #24458b}
+@media(max-width:1180px){
+ html.ljpc-unified-pc body.lj-desktop .ljpc-h-seasons{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:780px){
+ html.ljpc-unified-pc body.lj-desktop .ljpc-h-teams,html.ljpc-unified-pc body.lj-desktop .ljpc-h-seasons{grid-template-columns:repeat(2,minmax(0,1fr))}
+ html.ljpc-unified-pc body.lj-desktop .ljpc-h-links{grid-template-columns:1fr}
+ html.ljpc-unified-pc body.lj-desktop .ljpc-h-trophies{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
