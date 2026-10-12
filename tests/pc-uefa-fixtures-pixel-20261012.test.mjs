@@ -164,3 +164,11 @@ test('PC full-height footer has pale canvas instead of huge dark blue after the 
  assert.match(styles,/data-ljpc18-route="pc-fixtures"/);
  assert.doesNotMatch(styles,/html\.preview-mobile|html\.preview-apk/);
 });
+
+test('native bracket fallback remains complete before canonical mobile knockout initializes',()=>{
+ const markup=source('?mode=desktop',690).bracket();
+ assert.match(markup,/u18fx-draw-pair-grid/);
+ assert.match(markup,/data-u18-go="pc-draws"/);
+ assert.match(markup,/<\/section>/);
+ assert.match(markup,/Ver detalles del sorteo/);
+});
