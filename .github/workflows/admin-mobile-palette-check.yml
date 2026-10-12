@@ -12,6 +12,7 @@ on:
       - 'src/v1384-admin-visual-dark-harmony.css'
       - 'src/v1232-suspension-official-blue.css'
       - 'tests/v1385-admin-palette-regression.test.mjs'
+      - 'tests/v1386-admin-dialog-consistency.test.mjs'
       - 'tests/admin-palette-android-v1353.mjs'
       - 'src/v1420-reference-blue-surfaces.css'
       - 'src/v1437-jr-tools-royal-blue-image2.css'

@@ -18,7 +18,7 @@ test('V1386: paleta de los cuadros administrativos antes de la capa exclusiva V1
  const following=html.slice(html.indexOf(href)+href.length);
  const laterStyles=[...following.matchAll(/<link\s+rel="stylesheet"\s+href="([^"]+)"/g)].map(m=>m[1]);
  assert.equal(laterStyles[0],
-  './src/v1387-notification-buttons-consistent.css?v=20261010-v1387-notice-uniform',
+  './src/v1387-notification-buttons-consistent.css?v=20261012-v1461-r3-clean-mobile-boot',
   'V1387 debe seguir inmediatamente después de V1386');
  // Validar cada hoja que se añade después de V1386, sin bloquear
  // futuras paletas reales por su nombre o fecha de publicación.
