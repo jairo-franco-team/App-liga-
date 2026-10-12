@@ -100,3 +100,50 @@ html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links>details:not([ope
 html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links>details[open]>summary:not(.active){
  color:#48eaf9!important;
 }
+
+
+/* PC ONLY · Eliminación permanente de la cabecera móvil superior.
+   Es la franja con flecha de regreso y perfil encima del menú principal PC.
+   Conservamos #ljpc-unified-pc-header, el carrusel de partidos y el contenido. */
+html.ljpc-unified-pc body #app > header.topbar,
+html.ljpc-unified-pc body #app.app-shell > .topbar,
+html.ljpc-unified-pc body .app-shell > header.topbar {
+ display:none!important;
+ visibility:hidden!important;
+ position:static!important;
+ inset:auto!important;
+ height:0!important;
+ min-height:0!important;
+ max-height:0!important;
+ margin:0!important;
+ padding:0!important;
+ border:0!important;
+ overflow:hidden!important;
+ pointer-events:none!important;
+}
+html.ljpc-unified-pc body #app > header.topbar + #screen {
+ margin-top:0!important;
+}
+/* Más/Gaming/Datos: capa y área táctil por encima de todas las secciones PC.
+   El panel permanece cerrado hasta que JS activa el atributo open. */
+html.ljpc-unified-pc body #ljpc-unified-pc-header{
+ position:relative!important;
+ z-index:2147480000!important;
+ overflow:visible!important;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links > details,
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links > details > summary {
+ pointer-events:auto!important;
+ touch-action:manipulation!important;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links > details[open] {
+ z-index:2147480001!important;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links > details[open] > .ljpc-u-dropdown {
+ visibility:visible!important;
+ pointer-events:auto!important;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links > details:not([open]) > .ljpc-u-dropdown{
+ display:none!important;
+ pointer-events:none!important;
+}
