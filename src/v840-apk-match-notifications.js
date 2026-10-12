@@ -108,12 +108,17 @@ function reconcileInbox(matches){
   const byKey=new Map(matches.map(m=>[m.key,m]));
   const rows=inbox().map(e=>{
     const m=byKey.get(e.key);
+    // Older matches can leave the active feed; preserve that notification as
+    // historical rather than treating a missing row as proof of cancellation.
     if(!m)return e;
+    const confirmed=m.hs!==null&&m.as!==null;
     return {
       ...e,
       home:m.home,away:m.away,hs:m.hs,as:m.as,category:m.category,
       field:m.field,date:m.date,stamp:m.stamp||e.stamp,
-      status:(m.hs!==null&&m.as!==null)?'Finalizado':e.status,
+      // Never keep "Finalizado" on a match whose current official row has
+      // reverted to a pending score. Distinguish goal alerts from finals.
+      status:confirmed?(e.type==='goal'?'Gol':'Finalizado'):'Marcador pendiente de confirmar',
       homeLogo:logoFor(m.home),awayLogo:logoFor(m.away),
       id:m.key+'|'+String(e.type||'final')+'|'+String(m.hs)+'|'+String(m.as)
     };
@@ -186,6 +191,8 @@ async function webNotify(title,options,targetRoute){
 
 async function systemNotify(e){
   if(!shouldAlert(e.type))return false;
+  // A scoreless match must not produce a misleading goal or final push.
+  if((e.type==='final'||e.type==='goal')&&(e.hs==null||e.as==null))return false;
   const title=e.category||'Liga Juventino';
   const score=(e.hs!==null&&e.as!==null)?e.home+' '+e.hs+' vs '+e.away+' '+e.as:e.home+' vs '+e.away;
   const body=score+' · '+e.status;
@@ -349,8 +356,8 @@ function feedMarkup(){
   }
   const filtered=all.filter(e=>
     (view.category==='all'||e.category===view.category)&&
-    (view.type==='all'||(view.type==='goal'&&e.type==='goal')||
-     (view.type==='final'&&(e.type==='final'||e.status==='Finalizado'))||
+    (view.type==='all'||(view.type==='goal'&&e.type==='goal'&&e.hs!==null&&e.as!==null)||
+     (view.type==='final'&&e.hs!==null&&e.as!==null&&(e.type==='final'||e.status==='Finalizado'))||
      (view.type==='live'&&(e.live||e.type==='live')))
   );
   const filteredUnread=filtered.filter(e=>!readSet.has(e.id)).length;
