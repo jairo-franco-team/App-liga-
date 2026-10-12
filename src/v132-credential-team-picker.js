@@ -164,7 +164,7 @@ function renderSheet(){
   const status=$('[data-v132-eligibility]',sheet);
   if(status)status.innerHTML=age===null
     ?'<b>Edad aún no detectada · todas las categorías visibles</b><span>Primera Fuerza · Intermedia · Segunda Fuerza · Veteranos 35+ · Veteranos 50+. Al detectar la edad se ocultarán las categorías que no correspondan.</span>'
-    :'<b>'+age+' años · categorías elegibles</b><span>'+eligible.join(' · ')+'</span>';
+    :'<b>'+age+' años · categorías elegibles</b><span>'+eligible.join(' · ')+(age>50?' · Art. 97: permitido en Veteranos 35+ y 50+ al mismo tiempo si no hay sanción ni inscripción irregular.':age===50?' · Art. 97: confirmar simultaneidad ante la mesa por la expresión «rebasan los 50».':'')+' · Art. 91: revisar equipo y torneo antes de una segunda inscripción.</span>';
   const count=$('[data-v132-count]',sheet);if(count)count.textContent=show.length+' equipos disponibles';
   const catRail=$('[data-v132-cats]',sheet);
   catRail.innerHTML=
