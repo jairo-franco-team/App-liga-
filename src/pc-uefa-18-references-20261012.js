@@ -145,7 +145,7 @@ function bracket(){
    '<button type="button" data-u18-go="pc-draws">Ver detalles del cuadro '+fixtureIcon('next')+'</button></header>'+
    view+'</section>';
  }
- return '<section class="u18fx-draw-section" aria-label="Cuadro y sorteos de la Liga">';+
+ return '<section class="u18fx-draw-section" aria-label="Cuadro y sorteos de la Liga">'+
  '<div class="u18fx-draw-date"><h2>Sorteo de la fase eliminatoria</h2><small>Información oficial de '+escape(CAT[state.cat])+'</small></div>'+
  '<article class="u18fx-draw-card"><header><h3>Sorteo de clasificación</h3><p>Aún no se publicaron enfrentamientos confirmados de esta fase.</p>'+
  '<strong>Resultados del sorteo</strong></header>'+
