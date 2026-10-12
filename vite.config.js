@@ -55,7 +55,7 @@ function copyStaticReferences() {
       if (!existsSync(pcHTML)) throw new Error('Falta portada PC en dist: pc-exact-original-20261011.html');
       const pcMarkup = readFileSync(pcHTML,'utf8');
       // Comprobar también hojas externas enlazadas por el iframe antes de publicar.
-      const pcStyles = [...pcMarkup.matchAll(/<link\\b[^>]*href="\\.\\/([^"?]+\\.css)(?:\\?[^\"]*)?"/gi)].map(m => m[1]);
+      const pcStyles = [...pcMarkup.matchAll(/<link\b[^>]*href="\.\/([^"?]+\.css)(?:\?[^"]*)?"/gi)].map(m => m[1]);
       for (const css of new Set(pcStyles)) {
         if (!existsSync(resolve('dist',css))) throw new Error('CSS faltante en Inicio PC publicado: '+css);
       }
