@@ -13,7 +13,7 @@ function hydrateOfficialDesktop(){
  if(!db?.categories)return false;
  const clubs=new Set(),f=[],r=[];
  const d=new Date(),today=[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');
- for(const c of Object.values(db.categories)){
+ for(const [catId,c] of Object.entries(db.categories)){
   for(const row of c.standings?.[0]?.rows||[])if(row[1])clubs.add(String(row[1]).trim());
   for(const g of c.fixtures||[])for(const row of g.rows||[]){
    if(!Array.isArray(row)||!row[2]||!row[6])continue;
@@ -21,6 +21,8 @@ function hydrateOfficialDesktop(){
    const m=String(row[8]||'').match(/^(\d\d)\/(\d\d)\/(\d{4}) (\d\d:\d\d)$/);
    if(!m||m[4]==='00:00'||c.fixture_decisions?.[String(row[0])])continue;
    const iso=m[3]+'-'+m[2]+'-'+m[1],date=iso+'T'+m[4];
+   const suspended=row.suspended===true||/^(SUSPENDED|SUSPENDIDO)$/i.test(String(row.status||''))||(iso==='2026-10-11'&&['3','4','5'].includes(catId)&&db.weekend_suspension_2026_10_11?.status);
+   if(suspended)continue;
    const played=/^\d+$/.test(String(row[3]))&&/^\d+$/.test(String(row[5]));
    const entry={date,iso,fixture:['Jornada '+row[1]+' · '+m[1]+'/'+m[2]+'/'+m[3],row[2],row[6],m[4],row[7]||'',played?row[3]+'–'+row[5]:'–']};
    if(!played&&iso>=today)f.push(entry);
