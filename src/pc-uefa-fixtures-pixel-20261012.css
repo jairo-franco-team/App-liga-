@@ -493,3 +493,120 @@ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-card .u1
   font-size:9px!important;
  }
 }
+
+
+/* PC v5 — canonical mobile knockout transferred to the desktop fixtures view.
+   Keep the existing mobile knockout DOM/CSS and native trophy unchanged. */
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-mobile-knockout{
+ display:block!important;margin:0 auto 20px!important;padding:0!important;
+ width:100%!important;min-width:0!important;max-width:1100px!important;
+ background:transparent!important;color:#243441!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-ko-heading{
+ display:flex!important;align-items:end!important;justify-content:space-between!important;
+ flex-wrap:wrap!important;gap:12px!important;margin:3px 0 10px!important;
+ padding:0 1px!important;background:transparent!important;color:#20324a!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-ko-heading div{
+ min-width:0!important;max-width:700px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-ko-heading span{
+ font-size:9px!important;font-weight:770!important;letter-spacing:.07em!important;color:#56718c!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-ko-heading h2{
+ font-size:19px!important;line-height:1.15!important;font-weight:850!important;
+ margin:2px 0 4px!important;color:#1e334e!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-ko-heading p{
+ font-size:10px!important;line-height:1.4!important;margin:0!important;color:#62738c!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-ko-heading button{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ white-space:nowrap!important;gap:7px!important;min-height:30px!important;
+ background:#fff!important;color:#073e91!important;border:1px solid #1f57a3!important;
+ border-radius:5px!important;padding:6px 12px!important;margin:0!important;
+ font-size:10px!important;font-weight:700!important;box-shadow:none!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-ko-heading button:hover{
+ background:#edf5ff!important;border-color:#0735a8!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-mobile-knockout .ljr-knockout{
+ --ko-column:clamp(154px,calc((100% - 110px)/5),213px);
+ display:block!important;width:100%!important;min-width:0!important;
+ max-width:none!important;padding:14px 16px 22px!important;margin:0!important;
+ border-radius:11px!important;background:#000040!important;color:#fff!important;
+ min-height:0!important;overflow:hidden!important;box-shadow:0 1px 10px #0b22641f!important;
+ box-sizing:border-box!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-mobile-knockout .ljr-ko-tabs{
+ margin-bottom:8px!important;padding-bottom:5px!important;gap:7px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-mobile-knockout .ljr-ko-tabs button{
+ min-height:31px!important;height:31px!important;padding:0 12px!important;
+ font-size:11px!important;border-radius:7px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-mobile-knockout .ljr-ko-scroll{
+ display:block!important;width:100%!important;min-width:0!important;max-width:100%!important;
+ overflow-x:auto!important;overflow-y:hidden!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-mobile-knockout .ljr-ko-trophy{
+ visibility:visible!important;opacity:1!important;display:block!important;
+}
+/* Figma/reference blues in the TOP of PC fixtures, not a second header. */
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-nav{
+ background:linear-gradient(90deg,#073beb,#081fbd 53%,#060b59)!important;
+ min-height:54px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-hero{
+ background:linear-gradient(105deg,#073beb,#081fbd 53%,#060b59)!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-navlinks button.selected{
+ background:#15e2e9!important;color:#06215b!important;border-radius:14px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-result .u18fx-detail-button{
+ display:inline-flex!important;visibility:visible!important;opacity:1!important;
+ align-items:center!important;justify-content:center!important;
+ padding:5px 7px!important;border-radius:4px!important;font-size:10px!important;
+ min-height:25px!important;pointer-events:auto!important;
+}
+/* The original page bottom is a DARK gradient. It must never paint the tall
+   empty area under the PC footer. Reserve document height ABOVE footer. */
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"]{
+ background:#f2f3f8!important;min-height:100%!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body{
+ background:#f2f3f8!important;background-image:none!important;
+ min-height:100vh!important;min-height:100svh!important;height:auto!important;
+ display:flex!important;flex-direction:column!important;
+ overflow-x:hidden!important;overflow-y:auto!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body > #app{
+ background:#f2f3f8!important;background-image:none!important;
+ height:auto!important;max-height:none!important;min-height:calc(100svh - 245px)!important;
+ flex:1 0 auto!important;overflow:visible!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body > #app > .app-shell,
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body > #app .app-shell{
+ background:#f2f3f8!important;background-image:none!important;
+ height:auto!important;max-height:none!important;min-height:0!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body > #ljpc-unified-pc-footer{
+ display:block!important;flex:0 0 auto!important;margin-top:auto!important;
+ position:relative!important;bottom:auto!important;transform:none!important;
+}
+/* No duplicated blue footer strip should remain after footer in PC mode. */
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body > #ljpc-unified-pc-footer ~ *{
+ background:transparent!important;
+}
+@media(max-width:720px){
+ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-mobile-knockout .ljr-knockout{
+  --ko-column:clamp(146px,calc((100% - 80px)/4),180px);
+  padding:10px 11px 18px!important;border-radius:8px!important;
+ }
+ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-ko-heading{
+  align-items:start!important;gap:8px!important;
+ }
+ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-ko-heading h2{
+  font-size:17px!important;
+ }
+}
