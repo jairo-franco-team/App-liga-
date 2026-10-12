@@ -1,0 +1,323 @@
+/* 2026-10-11 | Layout PC aislado: NUNCA coincide con móvil, app o APK.
+   Reference: royal blue -> deep navy, green-blue stadium cues and cyan accents.
+   Reuses the SAME functional DOM/icons and official team crests without duplication. */
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish{
+ --pcf-blue:#194ca9;--pcf-royal:#235dc4;--pcf-navy:#050c33;
+ --pcf-cyan:#28dcea;--pcf-outline:rgba(98,164,222,.30);
+ --pcf-wrap:1120px;
+ background:linear-gradient(180deg,#040d30 0%,#061744 45%,#041231 100%)!important;
+ background-attachment:scroll!important;
+ overflow-x:hidden!important;
+ scroll-behavior:auto!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish :is(#app,.app-shell,#screen){
+ box-sizing:border-box!important;
+ height:auto!important;max-height:none!important;
+ overflow-y:visible!important;overflow-x:clip!important;
+ transform:none!important;contain:none!important;
+ scroll-behavior:auto!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish :is(#app,.app-shell){
+ min-height:0!important;padding-bottom:0!important;display:block!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen{
+ position:relative!important;inset:auto!important;
+ display:block;clear:both!important;
+ width:100%!important;max-width:none!important;
+ min-height:0; /* JS only expands if native overflow would cover the footer */
+ margin:0!important;
+ padding:0 0 16px!important;
+ background:linear-gradient(160deg,#081c5a,#0a1855 38%,#060f3b)!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="home"] #screen{
+ display:flex!important;flex-flow:column nowrap!important;
+ align-items:stretch!important;gap:9px!important;
+ padding-bottom:12px!important;
+ background:radial-gradient(85% 80% at 4% 20%,rgba(9,113,84,.20),transparent 85%),
+ linear-gradient(180deg,#061c48,#071a53 47%,#050d39)!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen :is(.ds-nav,.ds-scorebar,.ds-sponsors,.ds-footer,.desk-nav,.desk-fixtures,.desk-footer,.ljpc-r-sponsor),
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #ljpc-pc-bottom,
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #ljpc-home-integrated-footer{
+ display:none!important;
+}
+/* One official footer, AFTER the complete page, never beside or above it. */
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #ljpc-unified-pc-footer{
+ display:block!important;position:relative!important;
+ transform:none!important;inset:auto!important;
+ margin:0!important;padding:0!important;
+ float:none!important;clear:both!important;z-index:1!important;
+ width:100%!important;height:auto!important;min-height:0!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish .ljpc-u-footer-columns{
+ grid-template-columns:minmax(185px,1.55fr) repeat(4,minmax(100px,1fr))!important;
+ gap:clamp(9px,1.4vw,18px)!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish .ljpc-u-footer{
+ padding:16px 0 10px!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish .ljpc-u-sponsor{
+ padding:9px 10px 8px!important;font-size:9px!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish .ljpc-u-footnote{
+ margin-top:12px!important;padding-top:9px!important;
+}
+/* Shared header: clickable menu and compact fixtures even on a small desktop viewport. */
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish .ljpc-u-nav>.ljpc-u-wrap{
+ min-height:47px!important;height:auto!important;padding:5px 0!important;gap:9px!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish .ljpc-u-brand img{
+ width:29px!important;height:29px!important;object-fit:contain!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish .ljpc-u-links{
+ gap:1px!important;scrollbar-width:none;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish .ljpc-u-links>button,
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish .ljpc-u-links>details>summary{
+ font-size:10px!important;min-height:28px!important;height:28px!important;
+ border-radius:7px!important;padding:0 7px!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish .ljpc-u-score-wrap{
+ padding-top:5px!important;padding-bottom:5px!important;gap:6px!important
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish .ljpc-u-match{
+ flex-basis:122px!important;min-height:49px!important;
+ padding:4px 6px!important;gap:2px!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish .ljpc-u-match small{
+ font-size:8px!important
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish .ljpc-u-match>span>b{
+ font-size:9px!important
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish .ljpc-u-team-logo{
+ object-fit:contain!important;background:transparent!important
+}
+/* Do not allow route specific shells to constrain native panels to mobile width. */
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen :is(.ds-page,.ds-content,.desktop-page-shell){
+ min-height:0!important;max-height:none!important;
+ max-width:100%!important;width:100%!important;
+ margin:0!important;overflow:visible!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-page{
+ display:block!important;background:transparent!important;color:#f5faff!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen :is(.ds-wrap,.desk-wrap){
+ width:min(var(--pcf-wrap),calc(100% - 24px))!important;
+ max-width:var(--pcf-wrap)!important;margin-inline:auto!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-page-head{
+ padding-block:14px!important
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-content{
+ padding:12px 0 18px!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen :is(.ds-news-grid,.ds-about-grid){
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:10px!important;grid-auto-rows:max-content!important;
+ align-items:stretch!important;align-content:start!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-about-card{
+ display:grid!important;grid-template-columns:110px minmax(0,1fr)!important;
+ gap:0!important;min-height:96px!important;height:auto!important;
+ margin:0!important;border-radius:8px!important;
+ border:1px solid var(--pcf-outline)!important;
+ background:linear-gradient(112deg,#154a9c,#0b255f 65%,#081b51)!important;
+ overflow:hidden!important;color:#eef8ff!important;
+ box-shadow:0 6px 18px rgba(1,13,61,.14)!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-about-art{
+ min-width:0!important;width:110px!important;min-height:96px!important;
+ height:100%!important;background:linear-gradient(150deg,#156b83,#1e58a8 40%,#102b70)!important;
+ display:grid!important;place-items:center!important;
+ border-right:1px solid rgba(163,210,248,.23)!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ljpc-about-icon{
+ display:grid;place-items:center;width:46px;height:46px;border-radius:14px;
+ background:rgba(6,20,75,.36)!important;border:1px solid rgba(125,219,253,.36);
+ color:#e2faff;box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-about-copy{
+ display:flex!important;flex-direction:column!important;align-items:start!important;
+ justify-content:center!important;gap:4px!important;
+ padding:10px 12px!important;width:100%!important;min-width:0!important;
+ color:#eff7ff!important;background:transparent!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-about-copy h3{
+ font-size:13px!important;line-height:1.26!important;color:#fff!important;
+ margin:0!important;overflow-wrap:anywhere!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-about-copy p{
+ color:#c5dbfa!important;font-size:10px!important;line-height:1.35!important;
+ margin:0!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ljpc-about-open{
+ display:inline-flex;align-items:center;justify-content:center;
+ margin:3px 0 0!important;padding:4px 8px!important;min-height:25px!important;
+ border:1px solid rgba(52,223,244,.48)!important;
+ background:#0a3678!important;border-radius:5px!important;
+ font-size:9px!important;font-weight:750!important;color:#72f1ff!important;
+ cursor:pointer!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen :is(.ljpc-about-open,.ds-news):focus-visible{
+ outline:2px solid var(--pcf-cyan)!important;outline-offset:2px!important
+}
+/* Native PC sections: remove huge white blocks, maintain original action handlers. */
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-news{
+ min-width:0!important;min-height:118px!important;height:auto!important;
+ border-radius:8px!important;border:1px solid var(--pcf-outline)!important;
+ padding:0!important;background:linear-gradient(130deg,#1c57b4,#09255f)!important;
+ overflow:hidden!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-news-copy{
+ padding:12px 14px!important;color:#fff!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-news-copy h3{
+ margin:4px 0!important;font-size:15px!important;line-height:1.25!important;color:#fff!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-news-copy p{
+ font-size:11px!important;line-height:1.4!important;color:#d3e6ff!important;margin:3px 0!important;
+}
+/* From the screen recording: native news, history and team widgets had mobile-sized
+   columns. The same widgets remain, but live inside a bounded desktop grid. */
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="news"] #screen > :not(.ds-page):not(#ljpc-pc-top),
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="history"] #screen > :not(.ds-page):not(#ljpc-pc-top),
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="teams"] #screen > :not(.ds-page):not(#ljpc-pc-top){
+ width:min(var(--pcf-wrap),calc(100% - 24px))!important;
+ max-width:var(--pcf-wrap)!important;margin:8px auto!important;
+ min-height:0!important;height:auto!important;box-sizing:border-box!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen :is(
+ .v27-grid,.v26-moments-grid,.v413-grid,.v449-reference-grid,.v105-grid,.v105-cards){
+ gap:8px!important;grid-auto-rows:max-content!important;align-content:start!important
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="teams"] #screen .v27-grid{
+ display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;
+ align-items:stretch!important;gap:8px!important
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="teams"] #screen .v27-grid img{
+ width:42px!important;height:42px!important;object-fit:contain!important;
+ background:transparent!important
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen :is(.v27-section,.v26-moments-page){
+ min-height:0!important;max-width:100%!important;height:auto!important;
+}
+/* No independent overlay/banners on Inicio. Let content create grid row heights. */
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="home"] #screen > :is(
+ #safeHomeExtra,#v105-bottom,.v114-upcoming-slot){
+ width:min(var(--pcf-wrap),calc(100% - 24px))!important;
+ max-width:var(--pcf-wrap)!important;
+ margin:0 auto!important;min-height:0!important;height:auto!important;
+ transform:none!important;position:relative!important;inset:auto!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="home"] #screen > #safeHomeExtra{
+ display:grid!important;
+ grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ grid-auto-rows:max-content!important;align-content:start!important;
+ align-items:stretch!important;gap:9px!important;
+ padding:10px!important;border:1px solid rgba(59,142,174,.35)!important;
+ border-radius:10px!important;
+ background:linear-gradient(105deg,rgba(5,65,85,.91),rgba(8,40,105,.92) 56%,rgba(4,24,73,.95))!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="home"] #screen > #safeHomeExtra > *{
+ position:relative!important;inset:auto!important;transform:none!important;
+ max-width:100%!important;min-width:0!important;
+ height:auto!important;max-height:none!important;
+ margin:0!important;float:none!important;clear:both!important;
+ align-self:stretch!important;
+ grid-row:auto!important;
+ z-index:auto!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="home"] #screen #safeHomeExtra > .v6-section{
+ padding:10px!important;
+ border-radius:7px!important;
+ background:linear-gradient(130deg,#10467e,#092964)!important;
+ border:1px solid rgba(78,167,204,.32)!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="home"] #screen #safeHomeExtra > :is(.v73-home-interleaved,.v6-quick){
+ grid-column:1/-1!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="home"] #screen #safeHomeExtra :is(
+ .v6-section-head,.v6-action-grid,.v6-video-list,.v6-stat-grid){
+ position:relative!important;inset:auto!important;transform:none!important;
+ max-width:100%!important;min-width:0!important;height:auto!important;
+ margin-top:0!important;margin-bottom:6px!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="home"] #screen #safeHomeExtra .v6-action-grid{
+ display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:7px!important
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="home"] #screen #safeHomeExtra .v6-action-card{
+ min-height:48px!important;max-height:none!important;height:auto!important;
+ padding:6px 8px!important;border-radius:7px!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="home"] #screen .v103-upcoming-card{
+ width:100%!important;min-height:0!important;height:auto!important;
+ gap:8px!important;padding:9px!important;border-radius:8px!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="home"] #screen .v103-upcoming-match{
+ min-width:0!important;max-width:100%!important;min-height:0!important;
+ margin:0!important;padding:7px 5px!important
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="home"] #screen .v103-upcoming-team img{
+ width:25px!important;height:25px!important;object-fit:contain!important;
+}
+/* Avoid the visible oversized block with two colors around a smaller blue card. */
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen :is(
+ .v6-section,.v105-card,.v27-section,.v449-panel,.ds-card){
+ box-shadow:none!important
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen :is(
+ .v6-section,.v105-card,.v27-section,.v449-panel,.ds-card) > :is(
+ button,a,.v6-action-card,.v105-copy,.v449-inner){
+ max-width:100%!important;min-width:0!important
+}
+/* Real desktop 1280+: 2 / 4 / 6 compact column families. */
+@media(min-width:1280px){
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-about-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important
+ }
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-about-card{
+  grid-template-columns:94px minmax(0,1fr)!important
+ }
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-about-art{
+  width:94px!important
+ }
+}
+/* Chrome Android with explicit PC preview: keep the PC layout genuinely compact
+   but never clip buttons, remove scroll, or switch to the mobile view. */
+@media(max-width:800px){
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish .ljpc-u-footer-columns{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important
+ }
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish .ljpc-u-footer-brand{
+  grid-column:1/-1!important
+ }
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish .ljpc-u-nav>.ljpc-u-wrap{
+  width:calc(100% - 12px)!important
+ }
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish .ljpc-u-links{
+  overflow-x:auto!important;overflow-y:hidden!important;min-width:0!important
+ }
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-about-grid,
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-news-grid{
+  grid-template-columns:minmax(0,1fr)!important
+ }
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-about-card{
+  grid-template-columns:92px minmax(0,1fr)!important
+ }
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-about-art{
+  width:92px!important
+ }
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="home"] #screen > #safeHomeExtra{
+  grid-template-columns:minmax(0,1fr)!important
+ }
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="home"] #screen #safeHomeExtra > *{
+  grid-column:1/-1!important
+ }
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="home"] #screen #safeHomeExtra .v6-action-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important
+ }
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="teams"] #screen .v27-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important
+ }
+}
