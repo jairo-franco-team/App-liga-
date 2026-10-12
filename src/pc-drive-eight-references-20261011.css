@@ -451,3 +451,352 @@ html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-card .ljpc8-no-data{
 html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-original > .ljpc-eight-tabs{
   display:none!important;
 }
+
+
+/* ===== Fidelity pass: ocho fotografías UEFA de referencia, recreación PC exclusiva. =====
+ * Dimensiones, cajas, filtros, cabeceras y tarjetas. Nunca estilos generales de móvil.
+ * Los clubes y fotografías siguen siendo de la Liga Juventino Rosas. */
+html.ljr-pc-datos-uefa body.lj-desktop:has(.ljpc8-workspace:not([hidden])) #screen .ds-pagehead{
+  display:none!important;
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc-data>.ljpc-categories{
+  display:none!important;
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-tabs{
+  position:relative;min-height:52px;align-items:stretch;gap:0;
+  background:#f2f3f8;border:0;border-bottom:1px solid #dfe3ec;
+  border-radius:0;padding:0 0 0 1px;margin:0 0 14px;
+  overscroll-behavior-x:contain;scrollbar-width:thin
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-tabs button{
+  min-height:48px;padding:9px 13px!important;border-bottom-width:2px!important;
+  background:transparent!important;color:#586677!important;font-size:11px!important;
+  font-weight:650!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-tabs button.active{
+  border-bottom-color:#0646e8!important;background:#fff!important;
+  color:#1247cc!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-cat-picker{
+  margin-left:auto;position:sticky;right:0;z-index:1;flex:0 0 auto;
+  display:flex;align-items:center;gap:7px;padding:4px 7px 4px 12px;
+  background:#f2f3f8;color:#667281;font:600 10px/1.2 Inter,Arial,sans-serif
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-cat-picker select{
+  appearance:auto;min-height:31px;max-width:155px;
+  background:#fff;color:#1942b5;border:1px solid #bdcae6;border-radius:20px;
+  font:750 10px Inter,Arial,sans-serif;padding:6px 9px;cursor:pointer
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-workspace{
+  background:#f2f3f8!important;color:#243743!important;padding:2px 0 26px!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-stats h2{
+  color:#1b3440!important;font-size:29px!important;line-height:1.2!important;
+  letter-spacing:-.025em;margin:5px 0 8px!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-category-note{
+  margin:0 0 13px!important;color:#6a7785!important;font-size:10px!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-metric-line{
+  grid-template-columns:28px minmax(0,1fr) 28px;
+  gap:8px;border-top:1px solid #dde1e9;border-bottom:1px solid #dde1e9;
+  margin:0 0 20px;padding:16px 1px
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-filters{gap:8px}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-pill{
+  background:#fff!important;color:#67727d!important;
+  font-size:11px!important;font-weight:580!important;
+  padding:9px 18px!important;min-height:36px;
+  border:1px solid #fff!important;box-shadow:none!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-pill.active{
+  border:1px solid #1c4ed5!important;background:#fff!important;
+  color:#1342c9!important;padding:9px 18px!important;font-weight:780!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scroll-arrow{
+  background:transparent!important;border:2px solid #9faef4!important;
+  color:#1449d4!important;width:25px;height:25px
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-tablebox{
+  border:1px solid #dce1e9!important;border-radius:12px!important;
+  padding:10px 18px!important;background:#fff!important;
+  box-shadow:none!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-table{
+  min-width:730px;table-layout:fixed
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-table thead th{
+  height:49px!important;padding:7px 9px!important;
+  color:#73818c!important;background:#fff!important;
+  font-size:10px!important;font-weight:540!important;text-align:center!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-table thead th:nth-child(3){
+  font-weight:850!important;color:#1743d9!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-table td{
+  height:61px!important;padding:8px 8px!important;
+  background:#fff!important;border-bottom:1px solid #e5e8ec!important;
+  color:#4a5966!important;font-size:12px!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-table .ljpc8-name{
+  width:31%;text-align:left!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-person{gap:10px}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-person :is(.ljpc8-crest,.ljpc8-player-image){
+  width:33px!important;height:33px!important;flex:0 0 33px;
+  object-fit:cover;border-radius:50%
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-person b{
+  color:#253947!important;font-size:12px!important;font-weight:720!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-person small{
+  color:#8694a1!important;font-size:10px!important
+}
+/* 201635: goleadores con fotografía superior, bloque azul y cifra cyan lateral. */
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer{
+  background:linear-gradient(to bottom,#050b61 0,#132bb1 400px,#f2f3f8 400px,#f2f3f8 100%);
+  padding:0 16px 24px;margin:0 -16px;min-width:0
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer>h2{
+  color:#fff!important;font-size:21px!important;margin:0 -16px 15px!important;
+  padding:12px 16px;background:#090d57!important;font-weight:800!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer-feature{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;
+  margin:0 0 20px
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer-hero{
+  display:flex;flex-direction:column;min-width:0;min-height:0;
+  border-radius:14px!important;overflow:hidden;
+  background:#050b58!important;border:1px solid #2f44b2!important;padding:0!important;
+  box-shadow:none
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer-art{
+  position:relative;display:block;width:100%;height:235px;
+  background:#0b155a;border-radius:0;overflow:hidden
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer-art .ljpc8-scorer-photo{
+  display:block!important;width:100%!important;height:100%!important;
+  border-radius:0!important;object-fit:cover!important;object-position:50% 38%!important;
+  filter:saturate(1.02)
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer-art:after{
+  content:"";position:absolute;inset:0;background:linear-gradient(to bottom,#04073388,transparent 42%);
+  pointer-events:none
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer-label{
+  position:absolute;z-index:2;top:12px;left:13px;
+  color:#e8eaf6;font:750 12px/1.15 Inter,Arial,sans-serif
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer-result{
+  display:grid;grid-template-columns:minmax(0,1fr) 92px;min-height:90px;
+  background:#070d64;color:#fff
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer-hero .ljpc8-scorer-info{
+  display:flex;flex-direction:column;justify-content:center;gap:5px;
+  padding:13px 17px;min-width:0
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer-info small{
+  display:flex;align-items:center;gap:5px;color:#e3e9ff!important;
+  font-size:11px!important;letter-spacing:0;font-weight:500
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer-info small .ljpc8-crest{
+  width:18px;height:18px;flex:0 0 18px
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer-info b{
+  color:white!important;font-size:19px!important;font-weight:850!important;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer-hero .ljpc8-scorer-result>strong{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:6px 8px;border-left:1px solid #27337c;
+  color:#04def4!important;font-size:28px!important;font-weight:850!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer-result>strong small{
+  color:#b6c0e8!important;font-size:13px!important;font-weight:450!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px;
+  margin:0 0 20px
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer-tile{
+  display:grid;grid-template-columns:26px 38px minmax(0,1fr) 78px;gap:10px;
+  align-items:center;min-height:69px;padding:8px 10px!important;
+  background:#fff!important;border-radius:13px!important;border:1px solid #dfe5ed!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer-rank{
+  color:#8191a1;font-size:11px;white-space:nowrap
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer-tile :is(.ljpc8-player-image,.ljpc8-crest){
+  width:38px!important;height:38px!important;flex:0 0 38px!important;
+  border-radius:50%;object-fit:cover
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer-tile-copy b{
+  color:#243747!important;font-size:14px!important;font-weight:750!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer-tile-copy small{
+  color:#8b9aa7!important;font-size:11px!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer-tile>strong{
+  height:45px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border-left:1px solid #e1e5ed;color:#0849e3!important;
+  text-align:center;font-size:21px!important;font-weight:850!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer-tile>strong small{
+  color:#586b7a!important;font-size:11px!important;font-weight:460!important
+}
+/* 201652: artículo vertical editorial, no fichas de dos columnas. */
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-book{
+  display:block;width:min(820px,100%);margin:0 auto;background:transparent!important;
+  border:0!important;border-radius:0!important;padding:22px 0 0!important;
+  overflow:visible!important;box-shadow:none!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-book-copy{
+  display:block;padding:0 30px!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-book h2{
+  color:#243745!important;font-size:34px!important;line-height:1.18!important;
+  max-width:710px!important;font-weight:850!important;margin:0 0 27px!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-book :is(.ljpc8-book-copy p,.ljpc8-book-info p){
+  color:#667786!important;font-size:15px!important;line-height:1.65!important;
+  max-width:none!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-book-copy p{
+  margin:0 0 29px!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-book-photo,
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-book-second-photo{
+  display:block;margin:0 0 28px!important;width:100%;height:auto!important;
+  background:transparent!important;overflow:visible!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-book-photo img,
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-book-second-photo img{
+  display:block;width:100%!important;height:auto!important;
+  aspect-ratio:1.85;object-fit:cover;border-radius:11px!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-book-photo figcaption{
+  padding:8px 31px;color:#8694a0;font:italic 11px/1.45 Inter,Arial,sans-serif
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-book-info{
+  padding:0 30px!important;display:block
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-book-info p{
+  margin:0 0 18px!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-book-footer{
+  display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:7px 30px 42px!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-book-second-photo{margin-bottom:5px!important}
+/* 201658: portada fotográfica, círculo de clubes, noticias en cuadrícula 3x2. */
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-performance{
+  background:#fff!important;border:0!important;border-radius:0!important;
+  padding:0 0 25px!important;overflow:hidden!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-performance-hero{
+  height:385px!important;background:#07095a
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-performance-hero>img{
+  width:100%;height:100%;object-fit:cover;object-position:center 37%;filter:none
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-performance-hero:after{
+  background:linear-gradient(0deg,#080852 0%,#05094199 26%,transparent 64%)!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-performance-overlay{
+  position:absolute;left:22px;right:20px;bottom:23px;z-index:2;color:#fff
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-performance-overlay h2{
+  color:#fff!important;font-size:42px!important;font-weight:550!important;
+  line-height:1.13!important;margin:9px 0 0!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-performance-rail{
+  gap:14px;align-items:flex-start;padding:21px 18px!important;
+  background:#f2f3f8;border-bottom:1px solid #dbe1ea
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-performance-rail button{
+  flex:0 0 88px!important;gap:5px!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-rail-photo{
+  display:flex;align-items:center;justify-content:center;
+  width:67px;height:67px;border:2px solid #0a44ed;border-radius:50%;
+  background:#fff;overflow:hidden;padding:4px
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-performance-rail .ljpc8-crest{
+  display:block;width:55px;height:55px;flex:0 0 55px;
+  border:0!important;border-radius:50%;object-fit:contain;background:transparent!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-performance-rail button>span:last-child{
+  font-size:10px!important;color:#536575!important;line-height:1.2!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-performance-stories{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px!important;padding:21px 20px 18px!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-performance-story{
+  position:relative;display:block!important;width:100%;height:auto!important;min-height:0!important;
+  aspect-ratio:1.16!important;padding:0!important;overflow:hidden!important;
+  border:0!important;border-radius:11px!important;background:#071846!important;
+  box-shadow:none!important;text-align:left!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-performance-story>img{
+  display:block;position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-performance-story-shade{
+  display:block;position:absolute;z-index:1;inset:0;
+  background:linear-gradient(0deg,#051022ee 0%,#02092830 58%,transparent 76%)
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-performance-story>b{
+  position:absolute;z-index:2;left:11px;right:14px;bottom:33px;margin:0!important;
+  color:#fff!important;font-size:15px!important;font-weight:600!important;
+  line-height:1.28;text-shadow:0 1px 3px #08132a
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-performance-story>small{
+  position:absolute;z-index:2;left:11px;right:14px;bottom:11px;margin:0!important;
+  color:#dae7fa!important;font-size:10px!important;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-performance-story>.ljpc8-story-open{
+  z-index:2;right:11px;top:10px;bottom:auto;width:29px;height:29px;
+  border:2px solid #fff;border-radius:50%;color:#fff;
+  display:grid;place-items:center
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-performance-story>.ljpc8-story-open svg{
+  width:18px;height:18px
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-performance > .ljpc8-primary{
+  display:flex!important;margin:5px auto 0
+}
+/* 201646: panel azul y primeras filas de ranking azul oscuro. */
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase{
+  gap:19px!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-hero{
+  background:linear-gradient(110deg,#0740ef 0%,#1022ae 55%,#080a53 100%)!important;
+  padding:30px 20px!important;min-height:260px;grid-template-columns:1fr 1fr;gap:20px
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-hero>div:first-child{
+  padding:17px 16px;border-radius:13px;background:#142ca999;
+  align-items:flex-start;justify-content:center
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-hero h2{
+  font-size:25px!important;max-width:430px;margin:0 0 18px!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-chart{
+  padding:17px 16px!important;border-radius:13px;background:#121b83aa!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-card{border-radius:12px;min-height:245px}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-card .ljpc8-phase-row:first-of-type{
+  background:#080951!important;border-bottom-color:#080951!important
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-card .ljpc8-phase-row:first-of-type :is(b,strong,small){
+  color:#fff!important
+}
+@media (max-width:920px){
+ html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer-feature{grid-template-columns:1fr}
+ html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-scorer-grid{grid-template-columns:1fr}
+ html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-performance-stories{grid-template-columns:repeat(2,minmax(0,1fr))}
+ html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-hero{grid-template-columns:1fr}
+ html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-cat-picker{position:relative}
+}
