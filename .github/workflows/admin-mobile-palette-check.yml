@@ -66,18 +66,25 @@ jobs:
         run: node tests/v1420-reference-blue-mobile.mjs
       - name: Complete repository unit tests
         run: node --test tests/*.test.mjs
-      - name: Build and check complete captured sections and untouched screens
+      - name: Build compiled app
+        id: compiled
         if: ${{ !cancelled() }}
-        run: |
-          npm run build
-          # Mejorar.zip now authorizes Profile/account and varied artwork.
-          # The V1441 suite supersedes the exact V1421/V1440 background assertions
-          # and compares 14 untouched routes against a build without the decorator.
-          node tests/v1441-captured-design.mjs
-          node tests/v1460-mobile-corrections.mjs
-          node tests/onboarding-mobile-v1460.mjs
-          node tests/navigation-motion.mjs
-          node tests/v1438-protected-headers.mjs
+        run: npm run build
+      - name: Check complete captured sections and untouched screens
+        if: ${{ !cancelled() && steps.compiled.outcome == 'success' }}
+        run: node tests/v1441-captured-design.mjs
+      - name: Check mobile surfaces, pagination and return
+        if: ${{ !cancelled() && steps.compiled.outcome == 'success' }}
+        run: node tests/v1460-mobile-corrections.mjs
+      - name: Check APK first installation
+        if: ${{ !cancelled() && steps.compiled.outcome == 'success' }}
+        run: node tests/onboarding-mobile-v1460.mjs
+      - name: Check visible forward and back animation
+        if: ${{ !cancelled() && steps.compiled.outcome == 'success' }}
+        run: node tests/navigation-motion.mjs
+      - name: Check protected original headers
+        if: ${{ !cancelled() && steps.compiled.outcome == 'success' }}
+        run: node tests/v1438-protected-headers.mjs
       - name: Keep mobile screenshots
         if: always()
         uses: actions/upload-artifact@v4

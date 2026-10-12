@@ -63,7 +63,7 @@ try{
  }
  await go(page,'profile');
  const rowPaint=await page.locator('.v12-profile-row:visible,.v569-profile-menu-row:visible,.v1300-menu-row:visible').evaluateAll(es=>es.map(e=>({bg:getComputedStyle(e).backgroundColor,radius:getComputedStyle(e).borderRadius})));
- assert.ok(rowPaint.length>0&&rowPaint.every(p=>p.bg==='rgba(0, 0, 0, 0)'&&p.radius==='0px'),'Profile links share separators without painted nested frames');
+ assert.ok(rowPaint.length>0&&rowPaint.every(p=>p.bg==='rgba(0, 0, 0, 0)'&&p.radius==='0px'),'Profile links share separators without painted nested frames: '+JSON.stringify(rowPaint));
  await page.evaluate(()=>window.LJR_PROFILE.open());await page.waitForTimeout(800);
  const avatar=page.locator('[aria-label="Mi avatar y mi camiseta"]');
  assert.ok(await avatar.locator('.ljr-gamer-avatar').count()>0);

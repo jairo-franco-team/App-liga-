@@ -47,7 +47,7 @@
   mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0)!important;
   mask-composite:exclude!important;
  }
- :is([data-captured-design],[data-captured-dialog],[data-captured-block]) :is(button,select,input:not([type="checkbox"]):not([type="radio"]):not([type="color"]):not([type="range"]),textarea):not([data-design-paper]):not([data-design-paper] *) {
+ :is([data-captured-design],[data-captured-dialog],[data-captured-block]) :where(button,select,input:not([type="checkbox"]):not([type="radio"]):not([type="color"]):not([type="range"]),textarea):not([data-design-paper]):not([data-design-paper] *) {
   background-color:#000040!important;background-image:none!important;
   border-color:rgba(124,168,255,.38)!important;color:#f8fbff!important;-webkit-text-fill-color:currentColor!important;box-shadow:none!important;
  }
