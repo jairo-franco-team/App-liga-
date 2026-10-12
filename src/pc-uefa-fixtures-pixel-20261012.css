@@ -571,7 +571,7 @@ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-result .
 }
 /* The original page bottom is a DARK gradient. It must never paint the tall
    empty area under the PC footer. Reserve document height ABOVE footer. */
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"]{
+:root.ljpc18-active[data-ljpc18-route="pc-fixtures"]{
  background:#f2f3f8!important;min-height:100%!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body{
