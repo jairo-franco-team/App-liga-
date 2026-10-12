@@ -49,13 +49,17 @@ html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-dropdown .l
  html.ljpc-unified-pc body.lj-desktop .ljpc-h-trophies{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 
-/* An opened Historia dropdown must escape the horizontally scrolling PC nav,
-   particularly when Android Chrome requests desktop mode. */
-html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-links:has(>details[data-ljpc-u-group="Historia"][open]){
+/* Más contains Historia, and its nested submenu must remain visible on narrow
+   desktop windows and on Android Chrome in "Desktop site" mode. Mobile/APK are excluded. */
+html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-links:has(>details[data-ljpc-u-group="Más"][open]){
  overflow:visible!important;
 }
-html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header details[data-ljpc-u-group="Historia"]>.ljpc-u-dropdown{
- width:232px;max-height:min(70vh,450px);overflow-y:auto;scrollbar-width:thin;
+html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header details[data-ljpc-u-group="Más"][open]{
+ z-index:180;
+}
+html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header details[data-ljpc-u-group="Más"]>.ljpc-u-dropdown{
+ width:232px;max-height:min(76dvh,530px);overflow-y:auto;
+ scrollbar-width:thin;overscroll-behavior:contain;
 }
 
 /* Native #/history is the live archive on desktop: keep the module intact.
