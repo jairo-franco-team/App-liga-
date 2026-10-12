@@ -125,7 +125,7 @@ function navMarkup(){
    }).join('')+
    '</div></details>':'<button type="button" data-ljpc-u-go="'+r+'" data-ljpc-u-highlight="'+r+'">'+label+'</button>';
  }).join('');
- return '<div id="ljpc-unified-pc-header" aria-label="Cabecera universal de escritorio">'+
+ return '<div id="ljpc-unified-pc-header" role="banner" aria-label="Cabecera universal de escritorio">'+
  '<div class="ljpc-u-nav"><div class="ljpc-u-wrap">'+
  '<button class="ljpc-u-brand" type="button" data-ljpc-u-go="home" aria-label="Liga Juventino Rosas: ir al Inicio"><img alt="" src="'+logo+'"><span>LIGA<br>JUVENTINO</span></button>'+
  '<nav class="ljpc-u-links" aria-label="Navegación PC">'+items+'</nav>'+
@@ -138,7 +138,7 @@ function navMarkup(){
 function footerMarkup(){
  const group=(title,items)=>'<section><h3>'+title+'</h3>'+items.map(([name,r])=>
   '<button data-ljpc-u-go="'+r+'" type="button">'+escapeHtml(name)+'</button>').join('')+'</section>';
- return '<div id="ljpc-unified-pc-footer">'+
+ return '<div id="ljpc-unified-pc-footer" role="group">'+
  '<div class="ljpc-u-sponsor">INFORMACIÓN Y COLABORADORES DE LA LIGA<br><span>LIGA JUVENTINO ROSAS · EQUIPOS PARTICIPANTES · AFICIÓN</span></div>'+
  '<footer class="ljpc-u-footer"><div class="ljpc-u-wrap ljpc-u-footer-columns">'+
  '<section class="ljpc-u-footer-brand"><img src="'+logo+'" alt="Escudo Liga Juventino Rosas"><strong>LIGA JUVENTINO ROSAS</strong><p>Resultados, clasificación, equipos, noticias y juegos de la liga.</p></section>'+
