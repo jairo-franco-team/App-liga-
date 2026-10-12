@@ -112,8 +112,9 @@ test('goleadores: hero fotográfico y marcador lateral igual a la referencia',()
   const result=api.featureScorer();
   assert.match(result,/class="ljpc8-scorer-photo"/);
   assert.match(result,/class="ljpc8-scorer-result"/);
-  assert.match(result,/class="ljpc8-scorer-grid"/);
-  assert.match(result,/class="ljpc8-scorer-rank"/);
+  assert.match(result,/class="ljpc8-scorer-feature"/);
+  assert.match(result,/class="ljpc8-scorer-label"/);
+  assert.equal((result.match(/class="ljpc8-scorer-hero"/g)||[]).length,2);
 });
 test('libro de estadísticas: editorial vertical con fotografía y segunda imagen',()=>{
   const {api}=load();
