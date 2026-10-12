@@ -171,7 +171,7 @@ function shop(){
  '<div class="ljpc-mas-shop"><div><span>TIENDA DE LA LIGA</span><h3>Tu equipo. Tu pasión.</h3><p>Explora camisetas, productos y clubes disponibles en el apartado de tienda.</p>'+
  link('Entrar a la tienda','club-store')+'</div><span class="ljpc-mas-shop-icon" aria-hidden="true">⚽</span></div>';
 }
-const panels={inicio:intro,estadisticas:statistics,rankings,equipos:clubs,videos,titulos,sobre:about,tienda:shop};
+const panels={inicio:intro,estadisticas:statistics,rankings,equipos:clubs,videos,titulos:titles,sobre:about,tienda:shop};
 function baseHTML(){
  return '<section class="ljpc-mas-uefa" data-ljpc-more-uefa aria-label="Más apartados para PC">'+
  '<div class="ljpc-mas-top"><span>MÁS · PORTAL PC</span><h1>Descubre más de la Liga</h1><p>Contenido y herramientas adaptados a escritorio.</p></div>'+
