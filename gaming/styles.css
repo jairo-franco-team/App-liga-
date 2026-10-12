@@ -141,3 +141,26 @@ img{max-width:100%;display:block}svg{width:20px;height:20px;display:block}h1,h2,
 .bracket-panel h3{font-size:clamp(28px,3.5vw,42px);margin:7px 0 13px}.bracket-panel p{color:#c4d1f2;max-width:390px;font-size:13px;margin-bottom:19px}
 @media(max-width:760px){.prediction-center{grid-template-columns:minmax(0,1fr) 100px minmax(0,1fr);gap:5px}.prediction-team img{width:26px;height:26px;flex-basis:26px}.prediction-picks a{width:42px;height:45px;font-size:27px}.prediction-card{padding:12px 9px}.bracket-panel{grid-template-columns:1fr;padding:20px;gap:4px}.bracket-panel .bracket-art{height:200px}.prediction-team b{font-size:12px}}
 @media(max-width:410px){.prediction-center{grid-template-columns:minmax(0,1fr) 86px minmax(0,1fr)}.prediction-picks{gap:4px}.prediction-picks a{width:38px;height:42px}.prediction-team{gap:3px}.prediction-team b{font-size:10px}.prediction-card{min-height:135px}}
+
+/* Perfil: misma estructura de tarjetas dobles y clasificación general del portal de referencia. */
+.profile-score-grid{display:grid;grid-template-columns:1fr 1fr;gap:17px;margin-bottom:22px}
+.profile-score-grid .panel{min-height:215px}.profile-score-grid h3{font-size:17px;margin-bottom:13px}
+.score-list-link{display:flex;align-items:center;justify-content:space-between;padding:12px 4px;border-top:1px solid #333284;gap:9px;font-size:12px}.score-list-link b{color:var(--cyan);font-size:10px}
+.leaderboard{padding:0;overflow:hidden}.leaderboard>.section-head{padding:20px 18px 0}.leaderboard h2{font-size:18px}
+.leaderboard table{border-collapse:collapse;width:100%;font-size:12px}.leaderboard th{background:#10115d;text-align:left;padding:11px 15px;font-size:11px;color:#ccd5ee}
+.leaderboard tr{border-bottom:1px solid #29266f}.leaderboard td{padding:16px}.leaderboard th:last-child,.leaderboard td:last-child{text-align:right}
+.leaderboard .leaderboard-empty{text-align:center!important;padding:45px 15px;color:#abb8da}.leaderboard-empty a{color:var(--cyan);font-weight:750}
+/* Gol del Día clásico: banda verde, gran fotografía central y vistas previas laterales. */
+.goal-day{background:#05043b;padding:0 0 35px;overflow:hidden}
+.goal-header{min-height:73px;background:linear-gradient(90deg,#006913,#008125);display:flex;align-items:center}
+.goal-header .eyebrow{font-size:10px;color:#d0ffde}.goal-header h2{font-size:21px;line-height:1.1;margin:4px 0 0}
+.goal-heading{font-size:clamp(21px,2.7vw,32px);margin:27px 0 24px;font-weight:500}
+.goal-carousel{width:min(100%,1550px);margin:0 auto;display:grid;grid-template-columns:minmax(0,.4fr) minmax(300px,.94fr) minmax(0,.4fr);gap:0;align-items:center;isolation:isolate}
+.goal-carousel>a{position:relative;min-width:0;display:block}.goal-prev,.goal-next{height:410px;overflow:hidden;opacity:.43}
+.goal-prev img,.goal-next img{width:100%;height:100%;object-fit:cover;filter:brightness(.48)}
+.goal-focus{z-index:2;box-shadow:0 10px 20px #0004;background:#0d0a63}
+.goal-focus>img{width:100%;height:440px;object-fit:cover}
+.goal-focus>div{min-height:75px;background:#0e0862;display:flex;align-items:center;gap:12px;padding:11px 18px}
+.goal-focus>div img{width:38px;height:38px;object-fit:contain}.goal-focus b,.goal-focus small{display:block}.goal-focus b{font-size:14px}.goal-focus small{font-size:10px;color:#aebce3;margin-top:2px}
+.goal-dots{display:flex;justify-content:center;gap:10px;padding-top:26px}.goal-dots span{width:5px;height:5px;border-radius:50%;background:#2d378d}.goal-dots span.selected{background:var(--cyan)}
+@media(max-width:760px){.profile-score-grid{grid-template-columns:1fr}.goal-carousel{grid-template-columns:minmax(0,.13fr) minmax(0,.74fr) minmax(0,.13fr)}.goal-prev,.goal-next{height:240px}.goal-focus>img{height:290px}.goal-focus>div{min-height:64px;padding:10px}.goal-header{min-height:65px}.goal-header h2{font-size:17px}}
