@@ -279,10 +279,11 @@ function sync(){
  const signature=route()+'|'+state.cat+'|'+(source()?'loaded':'missing');
  if(lastRef!==root.dataset.loaded||root.children.length===0||root.dataset.signature!==signature){
   root.dataset.signature=signature;root.dataset.loaded=source()?'loaded':'missing';
-  root.innerHTML=source()?markup():'<div class="u18-loading">Cargando datos oficiales de la Liga…</div>';
+  const needsOfficial=!['video','about'].includes(route());
+  root.innerHTML=(!needsOfficial||source())?markup():'<div class="u18-loading">Cargando datos oficiales de la Liga…</div>';
   lastRef=root.dataset.loaded;
  }
- if(!source())load();
+ if(!['video','about'].includes(route())&&!source())load();
 }
 function schedule(){if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;sync()})}
 function localClick(e){
