@@ -5,6 +5,22 @@
  const native=()=>window.Capacitor?.isNativePlatform?.()||new URLSearchParams(location.search).get('mode')==='apk';
  const route=()=>location.hash.replace(/^#\/?/,'').split('?')[0]||'home';
  let queued=false;
+ // A new page always opens at its beginning; never move an actively
+ // scrolling page or react to category/query changes inside the same route.
+ let lastOpenedRoute=route();
+ function resetScrollForNewRoute(){
+  const next=route();
+  if(!mobile()||next===lastOpenedRoute)return;
+  lastOpenedRoute=next;
+  function top(){
+   if(route()!==next)return;
+   const screen=document.getElementById('screen');
+   if(screen&&screen.scrollTop>0)screen.scrollTop=0;
+   if(window.scrollY>0)window.scrollTo({top:0,left:0,behavior:'instant'});
+  }
+  top();
+  requestAnimationFrame(()=>requestAnimationFrame(top));
+ }
  function patch(){
   queued=false;if(!mobile())return;
   const root=document.getElementById('screen');if(!root)return;
@@ -24,7 +40,7 @@
    const controls='[data-v531-view],[data-v531-quiz-back],[data-v531-more-back],[data-v48-game-back]';
    if(records.some(r=>r.target===root||Array.from(r.addedNodes).some(n=>n.nodeType===1&&(n.matches?.(controls)||n.querySelector?.(controls)))))schedule();
   }).observe(document.body,{childList:true,subtree:true});
-  addEventListener('hashchange',schedule);addEventListener('online',schedule);addEventListener('offline',schedule);patch();
+  addEventListener('hashchange',()=>{resetScrollForNewRoute();schedule()});addEventListener('online',schedule);addEventListener('offline',schedule);patch();
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
