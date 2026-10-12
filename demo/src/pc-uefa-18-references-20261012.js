@@ -179,6 +179,22 @@ function fixturesPage(){
  '<div class="u18-bound">'+tabs+actions+'</div>'+(state.fixturesTab==='matches'?dateNav(f):'')+'</header>'+
  '<main class="u18-bound u18fx-content">'+(state.fixturesTab==='matches'?quickFilters+eventCards():bracket())+'</main>'+modal+'</section>';
 }
+/* Recent-result circles use only actual played fixtures with numeric scores. */
+function formForTeam(team, playedMatches){
+ const key=norm(team);
+ const latest=playedMatches.filter(m=>norm(m.home)===key||norm(m.away)===key)
+  .sort((a,b)=>(b.date?.getTime()||0)-(a.date?.getTime()||0)).slice(0,5).reverse();
+ const badges=latest.map(m=>{
+  const home=norm(m.home)===key,our=home?m.hs:m.as,their=home?m.as:m.hs;
+  const status=our>their?'win':our===their?'draw':'loss';
+  const label=status==='win'?'Victoria':status==='draw'?'Empate':'Derrota';
+  const opponent=home?m.away:m.home;
+  return '<span class="u18-form-result u18-result-'+status+'" title="'+escape(label+' '+our+'-'+their+' contra '+opponent)+'" aria-label="'+escape(label+' contra '+opponent)+'">'+(status==='win'?'V':status==='draw'?'E':'D')+'</span>';
+ });
+ return '<div class="u18-form" role="group" aria-label="Últimos resultados de '+escape(team)+'">'+
+  Array(Math.max(0,5-badges.length)).fill('<span class="u18-form-result u18-result-empty" aria-hidden="true"></span>').join('')+
+  badges.join('')+'</div>';
+}
 function standingsTable(rows,simulated=false){
  let data=rows.slice();
  if(simulated){
@@ -195,10 +211,13 @@ function standingsTable(rows,simulated=false){
   data=data.map(r=>{const d=delta.get(norm(r[1]));if(!d)return r;const c=r.slice();for(const [j,v] of [[2,d.pj],[3,d.win],[4,d.draw],[5,d.loss],[6,d.gf],[7,d.gc],[8,d.gf-d.gc],[9,d.pts]])c[j]=(num(c[j])||0)+v;return c;});
   data.sort((a,b)=>(num(b[9])||0)-(num(a[9])||0)||(num(b[8])||0)-(num(a[8])||0)||(num(b[6])||0)-(num(a[6])||0));
  }
+ const playedMatches=fixtures().filter(m=>m.played&&m.hs!==null&&m.as!==null);
  return '<div class="u18-tablewrap"><table class="u18-table"><thead><tr>'+
- ['#','Equipo','PJ','PG','PE','PP','GF','GC','DG','PTS'].map(x=>'<th>'+x+'</th>').join('')+
- '</tr></thead><tbody>'+data.map((r,i)=>'<tr><td class="u18-place">'+(i+1)+'</td><td class="u18-team">'+crest(r[1])+'<b>'+escape(r[1])+'</b></td>'+
- [2,3,4,5,6,7,8,9].map(j=>'<td>'+escape(r[j]===undefined||r[j]===''?'—':r[j])+'</td>').join('')+'</tr>').join('')+
+ ['#','Equipo','PJ','PG','PE','PP','GF','GC','DG','PTS','Últimos resultados'].map(x=>'<th scope="col">'+x+'</th>').join('')+
+ '</tr></thead><tbody>'+data.map((r,i)=>'<tr><td class="u18-place">'+(i+1)+'</td>'+
+ '<td class="u18-team"><button type="button" class="u18-team-open" data-u18-team="'+escape(r[1])+'" title="Ver detalles de '+escape(r[1])+'">'+crest(r[1])+'<b>'+escape(r[1])+'</b></button></td>'+
+ [2,3,4,5,6,7,8,9].map(j=>'<td'+(j===9?' class="u18-points"':'')+'>'+escape(r[j]===undefined||r[j]===''?'—':r[j])+'</td>').join('')+
+ '<td class="u18-form-cell">'+formForTeam(r[1],playedMatches)+'</td></tr>').join('')+
  '</tbody></table></div>';
 }
 function simulation(){
@@ -232,7 +251,7 @@ function standingsPage(){
  '<div class="u18-panel"><div class="u18-blocktitle"><h2>Clasificación de la fase liga</h2><small>'+escape(CAT[state.cat])+'</small></div>'+
  viewTabs+(state.standMode==='criteria'?criteria:(rows.length?standingsTable(rows):'<p>La clasificación de esta categoría no está disponible.</p>'))+
  '<p class="u18-footnote">PJ · partidos; PG · ganados; PE · empates; PP · perdidos; GF/GC · goles; DG · diferencia; PTS · puntos.</p></div>';
- return shell('Clasificación',CAT[state.cat],tabbar+controls+content);
+ return shell('Clasificación',CAT[state.cat],tabbar+controls+content).replace(/<details class="u18-original"[\s\S]*?<\/details>/,'');
 }
 function drawsPage(){
  const rows=tableRows(),squads=rows.filter(r=>r[1]).map(r=>r[1]);
@@ -372,7 +391,7 @@ function sync(){
  let root=screen.querySelector(':scope > .u18-root');
  if(!root){root=document.createElement('div');root.className='u18-root';screen.prepend(root);lastRef=null;}
  if(route()==='pc-fixtures'&&screen.firstElementChild!==root)screen.prepend(root);
- isolateFixturesLegacy(screen,route()==='pc-fixtures');
+ isolateFixturesLegacy(screen,route()==='pc-fixtures'||route()==='pc-standings');
  const signature=route()+'|'+state.cat+'|'+(source()?'loaded':'missing');
  if(lastRef!==root.dataset.loaded||root.children.length===0||root.dataset.signature!==signature){
   root.dataset.signature=signature;root.dataset.loaded=source()?'loaded':'missing';

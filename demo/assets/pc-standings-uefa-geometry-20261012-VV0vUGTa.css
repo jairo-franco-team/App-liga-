@@ -50,3 +50,91 @@ html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-simlayout
 html.ljpc18-active[data-ljpc18-route="pc-standings"] body #ljpc-unified-pc-footer{margin-top:10px!important}
 html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen :is(.u18-switch,.u18-table,.u18-panel,.u18-controls,.u18-viewtabs){animation:none!important;transition:none!important}
 @media(max-width:750px){html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-switch{gap:0!important;padding:7px 6px!important;min-height:47px!important;flex-wrap:wrap!important}html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-switch .u18-pill{font-size:9px!important;min-width:0!important;max-width:140px!important;flex:1 1 0!important;padding:5px 6px!important}html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-switch .u18-pill[data-u18-stand-tab="simulator"]{margin-left:5px!important;flex:0 1 auto!important;font-size:9px!important}html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-controls{padding:9px 11px 5px!important}html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-panel{padding:9px 11px 13px!important}html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table{min-width:600px!important}html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table td{height:45px!important;min-height:45px!important;padding:5px 3px!important;font-size:9px!important}html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table td.u18-team .u18-crest{height:20px!important;width:20px!important;min-width:20px!important;margin-right:4px!important}html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table td.u18-team b{font-size:9px!important}}
+
+/* 2026-10-12 · PC-only standings: one official table, UEFA-proportion results.
+   Scoped to desktop route to leave native/mobile/APK entirely unchanged. */
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen > .u18-root ~ *{
+ display:none!important;visibility:hidden!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-original{
+ display:none!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table{
+ min-width:690px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table th:nth-child(2){
+ width:25%!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table th:last-child{
+ width:113px!important;white-space:normal!important;line-height:1.2!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table td.u18-points{
+ color:#172b41!important;font-weight:800!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table td.u18-team{
+ padding-left:5px!important;overflow:hidden!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table .u18-team-open{
+ appearance:none!important;display:inline-flex!important;align-items:center!important;
+ gap:7px!important;width:100%!important;max-width:100%!important;min-width:0!important;
+ padding:1px!important;border:0!important;background:transparent!important;
+ box-shadow:none!important;color:#273540!important;text-align:left!important;
+ cursor:pointer!important;font-family:inherit!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table .u18-team-open:hover b{
+ color:#0049a8!important;text-decoration:underline!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table .u18-team-open:focus-visible{
+ outline:2px solid #1254c8!important;outline-offset:2px!important;border-radius:3px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table .u18-team-open .u18-crest{
+ margin:0!important;flex:0 0 24px!important;object-fit:contain!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table .u18-team-open b{
+ max-width:calc(100% - 31px)!important;font-weight:600!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table td.u18-form-cell{
+ color:#2c4154!important;font-weight:400!important;padding-left:4px!important;
+ padding-right:4px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-form{
+ display:flex!important;align-items:center!important;justify-content:flex-end!important;
+ flex-wrap:nowrap!important;gap:3px!important;white-space:nowrap!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-form-result{
+ box-sizing:border-box!important;width:16px!important;height:16px!important;
+ flex:0 0 16px!important;border-radius:50%!important;
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ font-family:inherit!important;font-size:9px!important;line-height:1!important;
+ font-weight:800!important;text-transform:uppercase!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-result-win{
+ background:#33ad49!important;color:#fff!important;border:1px solid #33ad49!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-result-draw{
+ background:#989db3!important;color:#fff!important;border:1px solid #989db3!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-result-loss{
+ background:#d93948!important;color:#fff!important;border:1px solid #d93948!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-result-empty{
+ background:transparent!important;border:1px solid #e0e4eb!important;
+}
+@media(max-width:750px){
+ html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table{
+  min-width:690px!important;
+ }
+ html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-form{gap:2px!important}
+ html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-form-result{
+  width:14px!important;height:14px!important;flex-basis:14px!important;font-size:8px!important;
+ }
+ html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table th:last-child{
+  width:90px!important;font-size:8px!important;
+ }
+ html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table .u18-team-open .u18-crest{
+  width:20px!important;height:20px!important;flex-basis:20px!important;
+ }
+ html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-table .u18-team-open b{
+  max-width:calc(100% - 26px)!important;font-size:9px!important;
+ }
+}
