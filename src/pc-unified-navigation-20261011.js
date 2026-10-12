@@ -30,10 +30,13 @@ const MENUS={
   ['Estadísticas históricas','history','history-link'],
   ['Performance Zone','safe-performance']
  ],
- Más:[['Equipos','teams'],['Noticias','news'],['Historia','historia','history-toggle'],
+ Más:[['Historia','historia','history-toggle'],
+ ['Equipos','equipos','history-child'],['Noticias','noticias','history-child'],
+ ['Historia de la liga','historia','history-child'],
  ['Temporadas','temporadas','history-child'],['Estadísticas históricas','estadisticas','history-child'],
- ['Vídeos','videos','history-child'],['Equipos','historicos','history-child'],['Más títulos','titulos','history-child'],
- ['Sobre','about'],['Tienda (clubes)','club-store'],
+ ['Vídeos','videos','history-child'],['Equipos históricos','historicos','history-child'],
+ ['Más títulos','titulos','history-child'],['Sobre','sobre','history-child'],
+ ['Tienda (clubes)','club-store'],
  ['Herramientas PC','pc-tools'],['Match Day','matchday'],['Calendario','pc-calendar'],
  ['Credenciales','credentialBuilder'],['Reglamento','rulebook']]
 };
@@ -115,7 +118,9 @@ function navMarkup(){
      if(kind==='history-toggle')return '<button type="button" class="ljpc-u-history-main" data-ljpc-u-history-toggle aria-controls="ljpc-u-history-submenu" aria-expanded="false">'+escapeHtml(name)+' <span aria-hidden="true">⌄</span></button>'+
       '<div class="ljpc-u-history-submenu" id="ljpc-u-history-submenu" hidden>'+
       group.filter(([,r,k])=>k==='history-child').map(([text,section])=>
-       '<button type="button" class="ljpc-u-history-child" data-ljpc-u-history-section="'+section+'">'+escapeHtml(text)+'</button>').join('')+'</div>';
+       '<button type="button" class="ljpc-u-history-child'+
+        (['temporadas','estadisticas','videos','historicos','titulos'].includes(section)?' ljpc-u-history-inner':'')+
+        '" data-ljpc-u-history-section="'+section+'">'+escapeHtml(text)+'</button>').join('')+'</div>';
      return '<button type="button" data-ljpc-u-go="'+to+'">'+escapeHtml(name)+'</button>';
    }).join('')+
    '</div></details>':'<button type="button" data-ljpc-u-go="'+r+'" data-ljpc-u-highlight="'+r+'">'+label+'</button>';
