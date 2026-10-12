@@ -47,7 +47,7 @@ test('suspended Sunday fixtures never count as future PC fixtures or completed r
 
 test('PC browser loads new parity scripts with independent cache versions', () => {
   assert.match(html, /desktop-parity-runtime-20261008\.js\?v=20261012-pc-mobile-parity-v2/);
-  assert.match(html, /desktop-mobile-function-bridge\.js\?v=20261012-pc-calendar-safe-v5/);
+  assert.match(html, /desktop-mobile-function-bridge\.js\?v=pc-fixtures-compact-rows-oct12-v1/);
   assert.match(html, /desktop-shell\.js\?v=20261012-pc-suspended-v2/);
   assert.match(html, /desktop-sections\.js\?v=20261012-pc-suspended-v2/);
 });

@@ -136,25 +136,27 @@ function render(){
 /* Chrome Android desktop mode: scroll the active vertical container. */
 /* Iframe PC transfiere scroll táctil al documento: evitar medir tres
    scrollHeight/clientHeight en CADA frame, lo que forzaba layouts. */
-let pcScrollOwner=null;
 function scrollDesktopFlow(delta){
  if(!Number.isFinite(delta)||Math.abs(delta)<.1)return;
  const move=box=>{
-  if(!box||!box.isConnected)return false;
+  if(!box||box.isConnected===false)return false;
   const before=box.scrollTop;
   box.scrollTop=before+delta;
   return Math.abs(box.scrollTop-before)>.5;
  };
- if(pcScrollOwner&&move(pcScrollOwner))return;
- pcScrollOwner=null;
+ // Cache the scrollable owner on the function itself; preserve state across
+ // calls while keeping the function independently testable.
+ const last=scrollDesktopFlow._owner;
+ if(last&&move(last))return;
+ scrollDesktopFlow._owner=null;
  const root=document.scrollingElement||document.documentElement;
  const candidates=[root,document.getElementById('app'),document.getElementById('screen')];
  for(const box of candidates){
   if(!box)continue;
-  // Medir altura sólo cuando cambie el dueño o llegue al límite.
   if(box.scrollHeight-box.clientHeight<2)continue;
-  if(box!==root&&['hidden','clip'].includes(getComputedStyle(box).overflowY))continue;
-  if(move(box)){pcScrollOwner=box;return;}
+  if(box!==root&&typeof getComputedStyle==='function'&&
+     ['hidden','clip'].includes(getComputedStyle(box).overflowY))continue;
+  if(move(box)){scrollDesktopFlow._owner=box;return;}
  }
  window.scrollBy({left:0,top:delta,behavior:'instant'});
 }
