@@ -243,3 +243,188 @@ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-brand im
  display:block!important;width:31px!important;height:37px!important;flex:0 0 31px!important;
  object-fit:contain!important;background:none!important;border:0!important;box-shadow:none!important;
 }
+
+/* V2 · Ajuste contra capturas UEFA: azul superior continuo, cromado preciso,
+   botones de detalles obligatorios y cuadro/sorteo compacto. SOLO PC. */
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-utility{
+ width:100%!important;height:24px!important;min-height:24px!important;
+ display:flex!important;align-items:center!important;justify-content:space-between!important;
+ padding:0 18px!important;background:#111!important;border:0!important;
+ color:#f7f7f8!important;font-size:9px!important;font-weight:690!important;line-height:1!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-hero{
+ background:linear-gradient(104deg,#0a37f1 0%,#0a21c9 52%,#050b53 100%)!important;
+ box-shadow:none!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-nav{
+ background:linear-gradient(103deg,#073beb 0%,#081fbd 50%,#060b59 100%)!important;
+ height:55px!important;min-height:55px!important;
+ border-bottom:1px solid #4166ed33!important;box-shadow:none!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-nav-inner{
+ height:55px!important;min-height:55px!important;max-width:1150px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-navlinks button{
+ font-size:11px!important;font-weight:570!important;border-radius:17px!important;
+ min-height:27px!important;height:27px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-navlinks button.selected{
+ background:#15e2e9!important;color:#032d5b!important;font-weight:800!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-tabwrap{
+ padding-top:10px!important;padding-bottom:5px!important;min-height:53px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-switch{
+ width:340px!important;max-width:100%!important;min-height:29px!important;
+ background:#5265bf!important;border:1px solid #8b9def7b!important;
+ border-radius:7px!important;padding:3px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-switch .u18-pill{
+ min-height:21px!important;height:21px!important;line-height:1.1!important;
+ border-radius:5px!important;background:transparent!important;color:#fff!important;
+ font-size:10px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-switch .u18-pill.selected{
+ background:#080e68!important;color:#fff!important;font-weight:750!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-titlebar{
+ min-height:48px!important;padding-top:1px!important;padding-bottom:7px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-titlebar h1{
+ font-size:24px!important;font-weight:810!important;letter-spacing:-.02em!important;
+ text-shadow:none!important;color:white!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-actions button{
+ background:#061c9b38!important;border:1px solid #5285ed!important;color:#3bdafa!important;
+ border-radius:6px!important;padding:7px 10px!important;min-height:34px!important;
+ height:34px!important;font-size:10.5px!important;font-weight:580!important;line-height:1!important;
+ letter-spacing:0!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-actions button:where(:hover,:focus-visible){
+ background:#173bb4!important;border-color:#28e9fa!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-actions .u18fx-icon{
+ stroke-width:1.85!important;width:16px!important;height:16px!important;color:#31dff5!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-dates{
+ min-height:46px!important;padding-top:8px!important;padding-bottom:9px!important;
+ border-bottom:1px solid #ffffff24!important;
+ background:linear-gradient(94deg,#0c29cf04 0%,#05116613 100%)!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen :is(.u18fx-date,.u18fx-arrow){
+ background:#0a107c!important;border:1px solid #ffffff08!important;color:white!important;
+ border-radius:19px!important;min-height:24px!important;height:24px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-date.selected{
+ background:#0c2fa9!important;border:1px solid #04cfed!important;color:#e6faff!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-card{
+ background:#fff!important;border:1px solid #e0e2e8!important;border-radius:12px!important;
+ box-shadow:none!important;min-height:104px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-card-main{
+ grid-template-columns:minmax(0,1fr) 23px 92px!important;gap:7px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-result{
+ display:flex!important;flex-direction:column!important;justify-content:center!important;
+ align-items:center!important;min-width:88px!important;min-height:53px!important;
+ padding-left:8px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-result .u18fx-detail-button{
+ display:inline-flex!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;
+ align-items:center!important;justify-content:center!important;
+ width:auto!important;min-width:69px!important;height:21px!important;min-height:21px!important;
+ margin:0!important;padding:3px 6px!important;line-height:1.1!important;
+ border:0!important;border-radius:2px!important;background:#e9edf9!important;color:#1449a2!important;
+ font:600 10px/1.1 Inter,Arial,sans-serif!important;white-space:nowrap!important;
+ text-decoration:none!important;box-shadow:none!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-result .u18fx-detail-button:hover{
+ background:#d7e5ff!important;color:#063c95!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-section{
+ width:100%!important;margin:0 auto 18px!important;padding:0!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-date{
+ padding:8px 0 13px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-date h2{
+ font-size:15px!important;color:#2a3b48!important;margin:0 0 6px!important;font-weight:700!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-date small{
+ color:#778799!important;font-size:10px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-card{
+ background:#fff!important;border:1px solid #e1e3e8!important;border-radius:11px!important;
+ padding:17px!important;min-width:0!important;margin:0!important;color:#253541!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-card header h3{
+ font-size:17px!important;font-weight:730!important;color:#273f4a!important;margin:0 0 3px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-card header p{
+ font-size:10px!important;color:#7c8795!important;margin:0 0 7px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-card header strong{
+ display:block!important;font-size:13px!important;color:#283c46!important;margin:0 0 14px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-pair-grid{
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:13px 16px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-pair{
+ display:flex!important;align-items:center!important;justify-content:space-evenly!important;gap:7px!important;
+ height:63px!important;min-height:63px!important;min-width:0!important;
+ padding:10px!important;border:1px solid #e2e4e8!important;border-radius:12px!important;
+ background:#fff!important;color:#30424b!important;font-size:11px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-pair span{
+ color:#34414c!important;font-size:11px!important;font-weight:540!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-pair .u18fx-draw-shield{
+ font-size:21px!important;color:#b8bdc9!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-pair b{
+ font-size:11px!important;color:#66727e!important;font-weight:620!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-actions{
+ display:flex!important;justify-content:flex-start!important;gap:10px!important;margin-top:14px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-actions button{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ min-height:34px!important;padding:8px 24px!important;background:#fff!important;
+ color:#0c3b99!important;border:1px solid #5672ae!important;border-radius:5px!important;
+ font-size:11px!important;font-weight:590!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-tools{
+ display:flex!important;align-items:center!important;justify-content:space-between!important;
+ gap:15px!important;margin-top:10px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-tools p{
+ font-size:10px!important;color:#84909d!important;margin:0!important;line-height:1.4!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-tool{
+ display:inline-flex!important;align-items:center!important;gap:6px!important;white-space:nowrap!important;
+ background:#e8edff!important;color:#1646a2!important;border:1px solid #c4d4f7!important;
+ border-radius:4px!important;min-height:30px!important;padding:6px 12px!important;font-size:10px!important;
+}
+@media(max-width:900px){
+ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-titlebar{flex-wrap:wrap!important}
+ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-actions{width:100%!important;justify-content:flex-start!important;flex-wrap:wrap!important}
+}
+@media(max-width:610px){
+ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-card-main{
+  grid-template-columns:minmax(0,1fr) 17px 62px!important;gap:3px!important;
+ }
+ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-result{
+  min-width:59px!important;min-height:48px!important;padding-left:4px!important;
+ }
+ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-result .u18fx-detail-button{
+  min-width:55px!important;height:22px!important;min-height:22px!important;
+  padding:3px 2px!important;font-size:8px!important;
+ }
+ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-pair-grid{gap:8px!important}
+ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-pair{
+  padding:6px!important;gap:4px!important;font-size:9px!important;
+ }
+ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-pair :is(span,b){font-size:9px!important}
+ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-tools{flex-wrap:wrap!important}
+}
