@@ -23,7 +23,9 @@ test('One PC footer stays at end of body, never bounced into screen',()=>{
 test('PC circles clear the fixtures with 15px gap, and horizontal carousels remain interactive',()=>{
  assert.match(home,/data-name="stories list container"/);
  assert.match(home,/data-name="stories wrapper"/);
- assert.match(nav,/\[data-name="stories list container"\]\{margin-top:15px!important;/);
+ assert.match(nav,/html\.ljpc-embedded-home #root \.ucl \[data-name="stories list container"\]\{/);
+ assert.match(nav,/margin-top:24px!important;margin-bottom:0!important/);
+ assert.match(nav,/padding-top:10px!important;padding-bottom:14px!important/);
  assert.doesNotMatch(nav,/margin-top:40px!important/);
  assert.match(home,/id="ljpc-pc-story-rail-fix"/);
  assert.match(home,/overflow-x:auto!important/);
@@ -38,6 +40,14 @@ test('PC circles clear the fixtures with 15px gap, and horizontal carousels rema
  const shell=load('src/desktop-shell.js');
  assert.match(shell,/e\.data\.kind==='pan'/);
  assert.match(shell,/window\.scrollBy\(/);
+});
+test('Iframe selector beats the original embedded !important margin and preserves footer placement',()=>{
+ const embedded=home.match(/html\.ljpc-embedded-home #root \.ucl \[data-name="stories list container"\]/);
+ assert.ok(embedded,'original desktop iframe contains the tighter embedded selector');
+ assert.ok(nav.includes('html.ljpc-embedded-home #root .ucl [data-name="stories list container"]'));
+ assert.match(nav,/clear:both!important/);
+ assert.match(nav,/footer!==document\.body\.lastElementChild/);
+ assert.doesNotMatch(nav,/screen\.appendChild\(footer\)/);
 });
 test('Mobile and APK selectors are never modified by PC-only styles',()=>{
  assert.match(index,/src\/pc-unified-navigation-20261011\.css/);
