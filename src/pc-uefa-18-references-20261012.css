@@ -350,3 +350,63 @@ html.ljpc18-active body .u18-video .u18-video-archive{
  html.ljpc18-active body .u18-controls{align-items:flex-start}
  html.ljpc18-active body .u18-controls-right{margin-left:0}
 }
+
+
+/* Clubes y Sobre: misma maquetación blanca compacta que las capturas PC. */
+html.ljpc18-active body #screen .u18-teamtools{
+ display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:2px 0 14px
+}
+html.ljpc18-active body #screen .u18-teamtools h2{font-size:24px!important;margin:0!important;color:#20353e!important}
+html.ljpc18-active body #screen .u18-teamtools>div{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+html.ljpc18-active body #screen .u18-teamtools :is(input,select){
+ min-height:32px;border:1px solid #d4dce8!important;background:#fff!important;color:#243e55!important;
+ padding:5px 11px!important;border-radius:5px!important;font:600 11px Inter,Arial,sans-serif!important
+}
+html.ljpc18-active body #screen .u18-teamtools input{min-width:176px}
+html.ljpc18-active body #screen .u18-teamcount{
+ color:#8793a4!important;font-size:10px!important;line-height:1.55;margin:0 0 12px
+}
+html.ljpc18-active body #screen .u18-letter{margin-bottom:26px}
+html.ljpc18-active body #screen .u18-letter h3{
+ font-size:14px!important;margin:0 0 12px!important;color:#22364a!important
+}
+html.ljpc18-active body #screen .u18-clubgrid{
+ display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:8px;align-items:stretch
+}
+html.ljpc18-active body #screen .u18-clubgrid>button{
+ min-width:0;min-height:81px;border:0!important;background:transparent!important;
+ color:#314960!important;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+ gap:7px;padding:9px 4px!important;border-radius:5px!important
+}
+html.ljpc18-active body #screen .u18-clubgrid>button:hover{background:#e5ebf8!important}
+html.ljpc18-active body #screen .u18-clubgrid .u18-crest{width:34px!important;height:34px!important;font-size:15px}
+html.ljpc18-active body #screen .u18-clubgrid>button>span:last-child{
+ font-size:9px!important;line-height:1.25;text-align:center;max-width:100%;
+ overflow-wrap:anywhere
+}
+html.ljpc18-active body #screen .u18-aboutgrid{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:14px 0 18px
+}
+html.ljpc18-active body #screen .u18-aboutcard{
+ display:grid;grid-template-columns:110px minmax(0,1fr) 10px;gap:13px;align-items:center;
+ min-width:0;min-height:92px;padding:7px!important;background:#fff!important;
+ border:1px solid #e4e7ef!important;border-radius:6px!important;
+ color:#233c52!important;text-align:left!important
+}
+html.ljpc18-active body #screen .u18-aboutcard img{
+ width:110px;height:77px;object-fit:cover;border-radius:4px
+}
+html.ljpc18-active body #screen .u18-aboutcard>span{display:flex;flex-direction:column;gap:5px}
+html.ljpc18-active body #screen .u18-aboutcard b{font-size:11px!important;font-weight:800!important;line-height:1.3}
+html.ljpc18-active body #screen .u18-aboutcard small{font-size:10px!important;line-height:1.4;color:#728197!important}
+html.ljpc18-active body #screen .u18-aboutcard em{font-style:normal;font-size:16px;color:#074de1}
+html.ljpc18-active body #screen .u18-aboutcard:hover{border-color:#3485da!important;box-shadow:0 5px 13px #243f9220!important}
+@media(max-width:900px){
+ html.ljpc18-active body #screen .u18-clubgrid{grid-template-columns:repeat(6,minmax(0,1fr))}
+}
+@media(max-width:590px){
+ html.ljpc18-active body #screen .u18-clubgrid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ html.ljpc18-active body #screen .u18-aboutgrid{grid-template-columns:minmax(0,1fr)}
+ html.ljpc18-active body #screen .u18-aboutcard{grid-template-columns:85px minmax(0,1fr) 10px}
+ html.ljpc18-active body #screen .u18-aboutcard img{width:85px;height:70px}
+}
