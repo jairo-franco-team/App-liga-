@@ -69,13 +69,23 @@ try{
  assert.ok(await avatar.locator('.ljr-gamer-avatar').count()>0);
  assert.ok((await avatar.locator('.ljr-gamer-avatar').evaluateAll(es=>es.map(e=>getComputedStyle(e).backgroundImage))).every(x=>x.includes('url(')),'Animal avatar sprite artwork survives text styling');
  assert.match(await avatar.locator('[data-avatar-preview]').evaluate(e=>getComputedStyle(e).backgroundImage),/conic-gradient/,'Avatar preview has a single rainbow circle');
+ const avatarGeometry=await avatar.evaluate(e=>{
+  const form=e.querySelector('.ljr-profile-form'),label=form.querySelector('.ljr-photo-upload'),input=label.querySelector('input'),caption=form.querySelector(':scope>p'),gallery=form.querySelector('.ljr-avatar-gallery');
+  const rect=n=>{const r=n.getBoundingClientRect();return {top:r.top,bottom:r.bottom,left:r.left,right:r.right}};
+  const initial=e.querySelector('[data-avatar-preview]>.ljr-profile-initial');
+  let centered=true;if(initial){const range=document.createRange();range.selectNodeContents(initial);const text=range.getBoundingClientRect(),box=initial.getBoundingClientRect();centered=Math.abs((text.left+text.right-box.left-box.right)/2)<5&&Math.abs((text.top+text.bottom-box.top-box.bottom)/2)<12;}
+  return {label:rect(label),input:rect(input),caption:rect(caption),gallery:rect(gallery),centered};
+ });
+ assert.ok(avatarGeometry.input.bottom<=avatarGeometry.label.bottom+1,'Photo input stays inside its own field');
+ assert.ok(avatarGeometry.caption.top>=avatarGeometry.label.bottom+12&&avatarGeometry.gallery.top>=avatarGeometry.caption.bottom+12,'Photo field, avatar heading and gallery do not overlap: '+JSON.stringify(avatarGeometry));
+ assert.ok(avatarGeometry.centered,'Profile initial is visually centered in its rainbow circle');
  await page.screenshot({path:resolve(output,'avatar-dialog.png')});await page.locator('.liga-media-modal [data-close]').last().click();
  await go(page,'v38Weekly');
  const scroll=page.locator('.v553-week-scroll').first();
  await scroll.evaluate(e=>e.scrollLeft=e.scrollWidth);
  const right=await scroll.evaluate(e=>({remaining:e.scrollWidth-e.clientWidth-e.scrollLeft,padding:getComputedStyle(e.querySelector('td:last-child')).paddingRight}));
  assert.ok(right.remaining<=2,'Last weekly match column can be fully reached');assert.ok(parseFloat(right.padding)>=12,'Jornada column keeps room at the right edge');
- await page.screenshot({path:resolve(output,'weekly-last-column.png')});
+ await scroll.scrollIntoViewIfNeeded();await page.screenshot({path:resolve(output,'weekly-last-column.png')});
  await go(page,'search');await page.waitForTimeout(400);
  const rows=page.locator('.v414-player-row');assert.equal(await rows.count(),6,'Only six actual player rows are constructed');
  const more=page.locator('[data-ljr-list-more="search-official"]');
@@ -88,5 +98,8 @@ try{
  assert.equal(await rows.count(),12,'Back retains expanded six-row pages');
  const returned=await page.evaluate(()=>({screen:document.querySelector('#screen').scrollTop,window:window.scrollY}));
  assert.ok(Math.abs(returned.screen-offset.screen)<=2&&Math.abs(returned.window-offset.window)<=2,'Back restores exact previous scroll');
+ await go(page,'notifications');
+ await page.locator('#v105-bottom[data-v105-route="notifications"] .v105-card[data-v105-route="notifications"]').click();
+ assert.ok(await page.evaluate(()=>document.querySelector('.v46-ref-notifications-main').contains(document.activeElement)),'Preferencias actuales focuses a real notification control');
  console.log('V1460: 8 captured sections at 360/412px; transparent wrapper backgrounds, PC isolation, native selector geometry, animal sprites, independent weekly table, 6/12 real search rows and exact back scroll verified.');
 }finally{await browser.close();}
