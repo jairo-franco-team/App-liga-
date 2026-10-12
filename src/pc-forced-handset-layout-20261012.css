@@ -1,0 +1,72 @@
+/* Correccion exclusivamente de ?mode=desktop abierto en Chrome Android estrecho.
+   Modo movil habitual y APK intactos: la clase solo existe en PC forzado. */
+html.ljpc-forced-handset body.lj-desktop{
+  min-width:0!important;max-width:100%!important;overflow-x:hidden!important;
+}
+html.ljpc-forced-handset body.lj-desktop #app,
+html.ljpc-forced-handset body.lj-desktop #screen{
+  box-sizing:border-box!important;min-width:0!important;max-width:100%!important;
+  width:100%!important;overflow-x:clip!important;min-height:0!important;
+}
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header{
+  width:100%!important;max-width:100%!important;overflow:visible!important;
+}
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header .ljpc-u-nav>.ljpc-u-wrap{
+  box-sizing:border-box!important;width:100%!important;max-width:100%!important;
+  min-width:0!important;gap:8px!important;padding:7px 10px!important;
+}
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header .ljpc-u-links{
+  min-width:0!important;max-width:100%!important;overflow-x:auto!important;
+  overflow-y:hidden!important;overscroll-behavior-x:contain;scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+}
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header .ljpc-u-links>button,
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header .ljpc-u-links>details>summary{
+  flex-shrink:0!important;white-space:nowrap!important;
+  font-size:12px!important;min-height:34px!important;padding:6px 9px!important;
+}
+html.ljpc-forced-handset body.lj-desktop #ljpc-unified-pc-header .ljpc-u-scorebar{
+  min-width:0!important;max-width:100%!important;overflow-x:auto!important;
+  overflow-y:hidden!important;scrollbar-width:none;touch-action:pan-x pan-y!important;
+}
+html.ljpc-forced-handset body.lj-desktop[data-app-route="home"] #screen > #safeHomeExtra,
+html.ljpc-forced-handset body.lj-desktop[data-app-route="home"] #screen > #v105-bottom{
+  width:calc(100% - 20px)!important;max-width:100%!important;min-width:0!important;
+  height:auto!important;overflow:visible!important;margin:8px auto!important;
+}
+html.ljpc-forced-handset body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-action-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;
+}
+html.ljpc-forced-handset body.lj-desktop[data-app-route="home"] #screen :is(
+  .v26-moments-sticky,.v621-moments-bg,.v73-home-interleaved,.v73-motion-inner){
+  box-sizing:border-box!important;max-width:100%!important;min-width:0!important;
+  height:auto!important;max-height:none!important;
+}
+html.ljpc-forced-handset body.lj-desktop[data-app-route="home"] #screen :is(
+  .v26-moments-sticky,.v73-home-interleaved){
+  position:relative!important;inset:auto!important;transform:none!important;
+  margin:8px auto!important;clear:both!important;z-index:1!important;
+}
+html.ljpc-forced-handset body.lj-desktop[data-app-route="home"] #screen :is(
+  #safeHomeExtra,#v105-bottom,.v73-home-interleaved,.v26-moments-page) img[src*="home-players"],
+html.ljpc-forced-handset body.lj-desktop[data-app-route="home"] #screen img[src*="home-players-fictional"]{
+  box-sizing:border-box!important;display:block!important;
+  max-width:100%!important;max-height:230px!important;
+  width:100%!important;height:auto!important;object-fit:cover!important;
+}
+html.ljpc-forced-handset body.lj-desktop[data-app-route="home"] #screen :is(
+  .v73-motion-inner,.v105-card,.v6-action-card,.v26-moments-page){
+  min-width:0!important;max-width:100%!important;
+}
+html.ljpc-forced-handset body.lj-desktop #screen #ljpc-exact-html-home{
+  display:block!important;width:100%!important;max-width:100%!important;
+  min-width:0!important;margin:0!important;border:0!important;
+}
+html.ljpc-forced-handset body.lj-desktop #screen .ljpc-data,
+html.ljpc-forced-handset body.lj-desktop #screen .ljr-uefa-root{
+  box-sizing:border-box!important;width:100%!important;min-width:0!important;
+  max-width:100%!important;overflow-x:clip!important;
+}
+html.ljpc-forced-handset body.lj-desktop #screen .ljpc-data-tablebox{
+  max-width:100%!important;overflow-x:auto!important;
+}
