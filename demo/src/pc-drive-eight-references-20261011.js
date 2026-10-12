@@ -110,13 +110,13 @@
     switch(metric){
       case 'clave':return [['Goles', 'goals'],['Cédulas','cedulas'],['Amarillas','yellow'],['Rojas','red']];
       case 'goles':case 'ataque':return [['Goles','goals']];
-      case 'defensa':case 'disciplina':return [['Amarillas','yellow'],['Rojas','red']];
+      case 'disciplina':return [['Amarillas','yellow'],['Rojas','red']];
       default:return null;
     }
   }
   function renderPlayers(){
     const cols=playerColumns(state.playerMetric);
-    if(!cols)return note(state.playerMetric==='porteria'?'Las atajadas y porterías a cero no se registran oficialmente por jugador.':'No se publican registros verificables para este filtro de jugadores.');
+    if(!cols)return note(state.playerMetric==='porteria'?'Las atajadas y porterías a cero no se registran oficialmente por jugador.':state.playerMetric==='defensa'?'Los registros de recuperaciones y acciones defensivas por jugador no están publicados oficialmente.':'No se publican registros verificables para este filtro de jugadores.');
     const rows=players().filter(p=>cols.some(([,k])=>number(p[k])!==null)).sort((a,b)=>{
       for(const [,k] of cols){const d=(number(b[k])??-1)-(number(a[k])??-1);if(d)return d;}
       return a.name.localeCompare(b.name,'es-MX');
