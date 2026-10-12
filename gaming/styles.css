@@ -213,3 +213,15 @@ img{max-width:100%;display:block}svg{width:20px;height:20px;display:block}h1,h2,
 .gaming-profile-two b{font-size:15px}
 @media(max-width:760px){.gaming-uefa-mosaic{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(152px,190px)}.gaming-uefa-lead{grid-row:span 2}.gaming-uefa-wide{grid-column:auto}.gaming-profile-panel-grid{grid-template-columns:1fr}.gaming-uefa-intro h2{font-size:22px}}
 @media(max-width:490px){.gaming-uefa-mosaic{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.gaming-uefa-tile>span{left:9px;bottom:9px}.gaming-uefa-tile strong{font-size:14px}.gaming-profile-uefa-heading h2{font-size:20px}.gaming-profile-tabs{gap:5px}.gaming-profile-tabs a{padding:7px 9px;font-size:10px}}
+
+/* Gol del Día: ganadores anteriores horizontal, estilo referencia PC. */
+.gaming-goal-winners{padding:25px 0 40px;background:#050641}
+.gaming-goal-winners .section-head{align-items:flex-end;margin-bottom:14px}
+.gaming-goal-winners h2{margin:0 0 3px;font-size:24px}
+.gaming-goal-winners .section-head p{margin:0;color:#b0b9dc;font-size:12px}
+.gaming-goal-winner-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.gaming-goal-winner-grid a{display:block;min-width:0;text-decoration:none;color:#fff}
+.gaming-goal-winner-grid img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:5px;background:#0c1b77;display:block}
+.gaming-goal-winner-grid span{display:block;padding:8px 2px;font-size:13px}
+.gaming-goal-winner-grid a:focus-visible{outline:2px solid #14e9f1;outline-offset:4px}
+@media(max-width:680px){.gaming-goal-winner-grid{gap:6px}.gaming-goal-winner-grid span{font-size:10px}}
