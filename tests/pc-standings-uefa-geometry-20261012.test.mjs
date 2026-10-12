@@ -23,7 +23,7 @@ test('standings preserve every category, official columns, simulator, and real c
  assert.doesNotThrow(()=>new vm.Script(script));
  for(const feature of ['Primera Fuerza','Intermedia','Segunda Fuerza','Veteranos 35+','Veteranos 50+',
  'data-u18-stand-tab','data-u18-stand-view="table"','data-u18-stand-view="criteria"',
- 'data-u18-go="rulebook"','data-u18-go="pc-fixtures"','data-u18-go="tableExport"',
+ 'href="#/rulebook"','data-u18-go="pc-fixtures"','data-u18-go="tableExport"',
  'standingsTable(rows)','state.standMode=d.u18StandView']){
    assert.ok(script.includes(feature),'missing real route/handler: '+feature);
  }
