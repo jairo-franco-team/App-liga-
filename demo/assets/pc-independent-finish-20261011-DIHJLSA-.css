@@ -472,3 +472,22 @@ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-news:be
   font-size:10px!important
  }
 }
+
+
+/* V20261011 PC ONLY: the neon mobile header must never reappear over desktop
+   stories, moments or videos when the browser scrolls. */
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #app > .topbar,
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish .app-shell > .topbar,
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen > .topbar,
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="home"] #screen > .v26-moments-sticky{
+ display:none!important;visibility:hidden!important;
+ position:static!important;height:0!important;min-height:0!important;
+ margin:0!important;padding:0!important;pointer-events:none!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen > #ljpc-exact-html-home{
+ display:block!important;margin:0!important;padding:0!important;
+ border:0!important;overflow:hidden!important;max-width:100%!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="home"] #screen{
+ row-gap:0!important;
+}

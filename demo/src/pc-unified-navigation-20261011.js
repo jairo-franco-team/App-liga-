@@ -8,13 +8,17 @@ window.__LJPC_SHARED_SHELL_OCT11__=true;
 const NAV=[
  ['Inicio','home'],['Partidos','pc-fixtures'],['Clasificación','pc-standings'],
  ['Liga TV','video'],['Sorteos','pc-draws'],['Gaming','gamingPortal'],
- ['Datos','pc-data'],['Historia','history'],['Más','pc-tools']
+ ['Datos','pc-data'],['Más','pc-tools']
 ];
 const MENUS={
  Gaming:[['Todos los juegos','gamingPortal'],['Pronostica Seis','predictorSix'],['Fantasy','fantasy'],['Quiniela','quiniela'],['Quiz Arena','quizArena'],['Más o menos','moreLess']],
  Datos:[['Clasificación','pc-standings'],['Goleadores','pc-scorers'],['Estadísticas oficiales','pc-data'],['Estadísticas de equipo','v38Stats'],['Performance Zone','safe-performance']],
- Historia:[['Equipos','equipos'],['Noticias','noticias'],['Historia','historia'],['Temporadas','temporadas','child'],['Estadísticas históricas','estadisticas','child'],['Vídeos','videos','child'],['Equipos históricos','historicos','child'],['Más títulos','titulos','child'],['Sobre','sobre']],
- Más:[['Herramientas PC','pc-tools'],['Match Day','matchday'],['Calendario','pc-calendar'],['Credenciales','credentialBuilder'],['Reglamento','rulebook']]
+ Más:[['Equipos','teams'],['Noticias','news'],['Historia','historia','history-toggle'],
+ ['Temporadas','temporadas','history-child'],['Estadísticas históricas','estadisticas','history-child'],
+ ['Vídeos','videos','history-child'],['Equipos','historicos','history-child'],['Más títulos','titulos','history-child'],
+ ['Sobre','about'],['Tienda (clubes)','club-store'],
+ ['Herramientas PC','pc-tools'],['Match Day','matchday'],['Calendario','pc-calendar'],
+ ['Credenciales','credentialBuilder'],['Reglamento','rulebook']]
 };
 const logo='./assets/branding/escudo-liga-azul-sin-fondo-v1007.png';
 const mode=()=>new URLSearchParams(location.search).get('mode')||'';
@@ -29,7 +33,7 @@ const active=r=>{
  if(['pc-draws','draws','pc-bracket','bracket'].includes(r))return 'pc-draws';
  if(['gamingPortal','fantasy','fantasyTeam','fantasyLeagues','quiniela','predictor','predictorSix','gaming','quizArena','quiz','moreLess','moreLessHub','moreLessGallery'].includes(r))return 'predictorSix';
  if(['safe-data','pc-data','pc-scorers','pc-notifications','scorers','stats','v38Stats','rankings'].includes(r))return 'pc-data';
- if(['teams','following','teamDetail','compareTeams','teamCompare','playerCompare','news','newsDetail','about','history'].includes(r))return 'history';
+ if(['teams','following','teamDetail','compareTeams','teamCompare','playerCompare','news','newsDetail','about','history','club-store'].includes(r))return 'pc-tools';
  if(r==='home')return 'home';
  return 'pc-tools';
 };
@@ -85,9 +89,14 @@ function navMarkup(){
   const group=MENUS[label];
   return group?'<details class="ljpc-u-group" data-ljpc-u-group="'+label+'"><summary data-ljpc-u-highlight="'+r+'">'+
    label+' <span aria-hidden="true">⌄</span></summary><div class="ljpc-u-dropdown" role="group" aria-label="'+label+'">'+
-   group.map(([name,to,kind])=>label==='Historia'
-    ?'<button type="button" class="'+(kind==='child'?'ljpc-u-history-child':'ljpc-u-history-main')+'" data-ljpc-u-history-section="'+to+'">'+escapeHtml(name)+'</button>'
-    :'<button type="button" data-ljpc-u-go="'+to+'">'+escapeHtml(name)+'</button>').join('')+
+   group.map(([name,to,kind])=>{
+     if(kind==='history-child')return '';
+     if(kind==='history-toggle')return '<button type="button" class="ljpc-u-history-main" data-ljpc-u-history-toggle aria-controls="ljpc-u-history-submenu" aria-expanded="false">'+escapeHtml(name)+' <span aria-hidden="true">⌄</span></button>'+
+      '<div class="ljpc-u-history-submenu" id="ljpc-u-history-submenu" hidden>'+
+      group.filter(([,r,k])=>k==='history-child').map(([text,section])=>
+       '<button type="button" class="ljpc-u-history-child" data-ljpc-u-history-section="'+section+'">'+escapeHtml(text)+'</button>').join('')+'</div>';
+     return '<button type="button" data-ljpc-u-go="'+to+'">'+escapeHtml(name)+'</button>';
+   }).join('')+
    '</div></details>':'<button type="button" data-ljpc-u-go="'+r+'" data-ljpc-u-highlight="'+r+'">'+label+'</button>';
  }).join('');
  return '<div id="ljpc-unified-pc-header" aria-label="Cabecera universal de escritorio">'+
@@ -124,6 +133,8 @@ function selectNav(){
  });
  if(previousRoute!==r){
   root.querySelectorAll('details[open]').forEach(x=>x.removeAttribute('open'));
+  root.querySelectorAll('.ljpc-u-history-submenu').forEach(x=>{x.hidden=true});
+  root.querySelectorAll('[data-ljpc-u-history-toggle]').forEach(x=>x.setAttribute('aria-expanded','false'));
   previousRoute=r;
  }
 }
@@ -188,13 +199,27 @@ function refreshFixtures(){
 }
 document.addEventListener('click',e=>{
  if(!desktop()||!(e.target instanceof Element))return;
- const b=e.target.closest('[data-ljpc-u-go],[data-ljpc-u-history-section]');
+ const b=e.target.closest('[data-ljpc-u-go],[data-ljpc-u-history-section],[data-ljpc-u-history-toggle]');
  if(!b)return;
  e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();
+ if(b.hasAttribute('data-ljpc-u-history-toggle')){
+  const submenu=b.parentElement?.querySelector('[data-ljpc-u-history-submenu]')||
+   b.parentElement?.querySelector('#ljpc-u-history-submenu');
+  if(submenu){
+   const open=submenu.hidden;
+   submenu.hidden=!open;
+   b.setAttribute('aria-expanded',String(open));
+  }
+  return;
+ }
  const section=b.dataset.ljpcUHistorySection;
  if(section){
   try{sessionStorage.setItem('ljpc-history-pc-tab',section)}catch(_){}
-  b.closest('details')?.removeAttribute('open');
+  const wrap=b.closest('details');
+  wrap?.removeAttribute('open');
+  const submenu=wrap?.querySelector('#ljpc-u-history-submenu');
+  if(submenu)submenu.hidden=true;
+  wrap?.querySelector('[data-ljpc-u-history-toggle]')?.setAttribute('aria-expanded','false');
   if(route()==='history')window.dispatchEvent(new CustomEvent('ljpc:history-select',{detail:{section}}));
   else go('history');
   return;
