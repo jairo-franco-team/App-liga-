@@ -116,8 +116,9 @@
  }
  function boot(){
   const screen=document.getElementById('screen');
+  // Only monitor the route content: observing body while moving the footer
+  // used to schedule repeated layout writes on every generated navigation update.
   if(screen)new MutationObserver(schedule).observe(screen,{childList:true,subtree:false});
-  if(document.body)new MutationObserver(schedule).observe(document.body,{childList:true,subtree:false});
   window.addEventListener('hashchange',schedule);
   window.addEventListener('resize',schedule);
   window.addEventListener('ljr:official-data',schedule);
