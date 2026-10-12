@@ -119,7 +119,7 @@ function fixtures(catId=calendarCat){
     const decision=cat.fixture_decisions?.[String(r[0])];
     const awarded=!played&&decision?.type==='administrative'&&!!decision.winner;
     const sunday=String(r[8]||'').startsWith('11/10/2026');
-    const suspended=!played&&(r.suspended===true||/^(SUSPENDED|SUSPENDIDO)$/i.test(String(r.status||''))||(sunday&&['3','4','5'].includes(String(catId))&&db?.weekend_suspension_2026_10_11?.status));
+    const suspended=!played&&(r.suspended===true||/^(SUSPENDED|SUSPENDIDO)$/i.test(String(r.status||''))||(sunday&&['3','4','5'].includes(String(catId))&&db?.weekend_suspension_2026_10_11?.status)||(String(catId)==='2'&&String(r[0]||'')==='amistoso-huracan-franco-tavera'&&cat.fixture_annotations?.[String(r[0])]?.status==='SUSPENDED'));
     out.push({id:String(r[0]||''),round:String(r[1]||''),home:String(r[2]||'').trim(),away:String(r[6]||'').trim(),homeScore:hs,awayScore:as,played,awarded,suspended,decision:awarded?decision:null,venue:String(r[7]||'').trim(),rawDate:String(r[8]||''),date:d,cat:String(catId)});
   }
   return out.sort((a,b)=>a.date-b.date);
