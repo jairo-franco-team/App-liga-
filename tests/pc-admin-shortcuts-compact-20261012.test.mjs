@@ -10,7 +10,9 @@ test('Corrige sólo los accesos de administración del escritorio',()=>{
   assert.match(css,/html\.ljpc-unified-pc body\.liga-editor/);
   assert.match(css,/:has\(>button\[data-cms-open\]\)/);
   assert.doesNotMatch(css,/html\.preview-mobile|html\.preview-apk/);
-  assert.doesNotMatch(css,/\{[^}]*display\s*:\s*none\s*!important/);
+  assert.match(css,/html\.ljpc-unified-pc body\.lj-desktop/);
+  assert.match(css,/ljpc-admin-auth/);
+  assert.match(css,/display:none!important/);
 });
 test('Tarjetas compactas prevalecen sobre el antiguo mínimo de 104 px',()=>{
   assert.match(legacy,/min-height:104px!important/);
