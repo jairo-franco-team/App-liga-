@@ -128,7 +128,7 @@ html.ljpc-unified-pc body #app > header.topbar + #screen {
    El panel permanece cerrado hasta que JS activa el atributo open. */
 html.ljpc-unified-pc body #ljpc-unified-pc-header{
  position:relative!important;
- z-index:2147480000!important;
+ z-index:2000!important;
  overflow:visible!important;
 }
 html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links > details,
@@ -137,7 +137,7 @@ html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links > details > summ
  touch-action:manipulation!important;
 }
 html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links > details[open] {
- z-index:2147480001!important;
+ z-index:2100!important;
 }
 html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links > details[open] > .ljpc-u-dropdown {
  visibility:visible!important;
