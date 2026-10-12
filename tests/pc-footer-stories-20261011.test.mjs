@@ -20,12 +20,13 @@ test('One PC footer stays at end of body, never bounced into screen',()=>{
  assert.match(finish,/if\(footer\.parentElement!==document\.body\|\|footer!==document\.body\.lastElementChild\)/);
  assert.match(css,/html\.ljpc-unified-pc body #ljpc-unified-pc-footer/);
 });
-test('PC circles clear the fixtures with 15px gap, and horizontal carousels remain interactive',()=>{
+test('PC circles do not leave an empty band after the fixtures; carousels stay interactive',()=>{
  assert.match(home,/data-name="stories list container"/);
  assert.match(home,/data-name="stories wrapper"/);
  assert.match(nav,/html\.ljpc-embedded-home #root \.ucl \[data-name="stories list container"\]\{/);
- assert.match(nav,/margin-top:24px!important;margin-bottom:0!important/);
- assert.match(nav,/padding-top:10px!important;padding-bottom:14px!important/);
+ assert.match(nav,/const desktop=\(\)=>!\['mobile','apk'\]\.includes\(mode\(\)\)/);
+ assert.match(nav,/margin-top:0!important;margin-bottom:0!important/);
+ assert.match(nav,/padding-top:2px!important;padding-bottom:4px!important/);
  assert.doesNotMatch(nav,/margin-top:40px!important/);
  assert.match(home,/id="ljpc-pc-story-rail-fix"/);
  assert.match(home,/overflow-x:auto!important/);
@@ -45,7 +46,8 @@ test('Iframe selector beats the original embedded !important margin and preserve
  const embedded=home.match(/html\.ljpc-embedded-home #root \.ucl \[data-name="stories list container"\]/);
  assert.ok(embedded,'original desktop iframe contains the tighter embedded selector');
  assert.ok(nav.includes('html.ljpc-embedded-home #root .ucl [data-name="stories list container"]'));
- assert.match(nav,/clear:both!important/);
+ assert.match(nav,/clear:none!important/);
+ assert.doesNotMatch(nav,/clear:both!important/);
  assert.match(nav,/footer!==document\.body\.lastElementChild/);
  assert.doesNotMatch(nav,/screen\.appendChild\(footer\)/);
 });
