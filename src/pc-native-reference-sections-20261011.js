@@ -6,7 +6,7 @@
 if(window.__LJR_PC_REFERENCE_NATIVE_20261011__)return;
 window.__LJR_PC_REFERENCE_NATIVE_20261011__=true;
 const NAV=[
- ['Inicio','home'],['Partidos','pc-fixtures'],['Clasificación','pc-standings'],
+ ['Partidos','pc-fixtures'],['Clasificación','pc-standings'],
  ['Liga TV','video'],['Sorteos','pc-draws'],['Gaming','gamingPortal'],
  ['Datos','pc-data'],['Equipos','teams'],['Noticias','news'],['Más','pc-tools']
 ];
@@ -81,12 +81,8 @@ function shellMarkup(r){
  const title=TITLES[r]||r.replace(/([A-Z])/g,' $1').replace(/[-_]/g,' ');
  const sub=submenu(r);
  const selected=activeGroup(r);
- return '<div class="ljpc-pc-mini"><div class="ljpc-pc-wide">'+
-   '<button type="button" data-ljpc-pc-go="home">LIGA JUVENTINO ROSAS <span aria-hidden="true">⌄</span></button>'+
-   '<button type="button" data-ljpc-pc-go="accountLogin">Iniciar sesión <span aria-hidden="true">◉</span></button>'+
-   '</div></div>'+
-   '<div class="ljpc-pc-navigation"><div class="ljpc-pc-wide">'+
-     '<button type="button" class="ljpc-pc-brand" data-ljpc-pc-go="home" aria-label="Ir a Inicio">'+
+ return '<div class="ljpc-pc-navigation"><div class="ljpc-pc-wide">'+
+     '<button type="button" class="ljpc-pc-brand" data-ljpc-pc-go="home" aria-label="Liga Juventino Rosas: ir al Inicio">'+
        '<img src="'+logo+'" alt="Escudo Liga Juventino Rosas">'+
        '<b>LIGA<br>JUVENTINO<br>ROSAS</b></button>'+
      '<nav aria-label="Menú principal de escritorio">'+NAV.map(([label,route])=>{
