@@ -2,53 +2,69 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import {readFileSync} from 'node:fs';
-
-const read=path=>readFileSync(new URL('../'+path,import.meta.url),'utf8');
+const read=p=>readFileSync(new URL('../'+p,import.meta.url),'utf8');
 const script=read('src/pc-remove-legacy-topbar-20261012.js');
 const css=read('src/pc-remove-legacy-topbar-20261012.css');
-const index=read('index.html');
+const html=read('index.html');
 
 function run(mode,width){
- const events=new Map(),calls=[],values=new Map();
- const style={
-  getPropertyValue:key=>values.get(key)?.value||'',
-  getPropertyPriority:key=>values.get(key)?.priority||'',
-  setProperty:(key,value,priority)=>{calls.push(['set',key,value,priority]);values.set(key,{value,priority})},
-  removeProperty:key=>{calls.push(['remove',key]);values.delete(key)}
+ const operations=[],listeners={},screen={};
+ const app={
+  querySelectorAll:()=>bar.isConnected?[bar]:[],
+  querySelector:()=>screen,
+  insertBefore(node,target){node.isConnected=true;operations.push(['restore',target===screen||target===screen.nextSibling])}
  };
- const bar={style};
+ screen.parentNode=app;
+ const bar={
+  isConnected:true,nextSibling:screen,
+  remove(){this.isConnected=false;operations.push(['detach'])}
+ };
  const document={
-  readyState:'loading',
-  documentElement:{classList:{toggle:(name,value)=>calls.push(['class',name,value])}},
-  querySelector:selector=>selector.startsWith('#app >')?bar:null,
-  getElementById:id=>id==='app'?{}:null,
-  addEventListener:(event,callback)=>events.set(event,callback)
+  readyState:'complete',
+  getElementById:key=>key==='app'?app:null,
+  documentElement:{classList:{toggle:(key,flag)=>operations.push(['class',key,flag])}},
+  addEventListener:(event,fn)=>{listeners[event]=fn}
  };
- const window={addEventListener:()=>{}};
- const context={window,document,location:{search:'?mode='+mode},
-  URLSearchParams,innerWidth:width,WeakMap,MutationObserver:class{observe(){} disconnect(){}},
-  requestAnimationFrame:callback=>callback()};
+ const window={addEventListener:(event,fn)=>{listeners[event]=fn}};
+ const location={search:'?mode='+mode};
+ const context={window,document,location,URLSearchParams,innerWidth:width,
+  MutationObserver:class{observe(){}},
+  requestAnimationFrame:cb=>cb()
+ };
  vm.runInNewContext(script,context);
- events.get('DOMContentLoaded')();
- return {calls,values};
+ return {operations,bar,location,listeners,context};
 }
 
-test('Only desktop hides the old mobile header while the desktop menu stays',()=>{
+test('Legacy banner is actually removed from desktop DOM and cannot reappear from CSS',()=>{
  assert.doesNotThrow(()=>new vm.Script(script));
- for(const mode of ['mobile','apk']){
-  const {calls}=run(mode,1440);
-  assert.ok(!calls.some(x=>x[0]==='set'),mode+' must not mask mobile topbar');
- }
- assert.ok(!run('',390).calls.some(x=>x[0]==='set'));
- const {calls}=run('desktop',390);
- assert.ok(calls.some(x=>x.join('|')==='set|display|none|important'));
- assert.match(css,/html\.ljpc-unified-pc body #app\.app-shell > header\.topbar/);
- assert.match(css,/html\.ljpc-no-legacy-topbar body #app\.app-shell > header\.topbar/);
- assert.match(css,/#ljpc-unified-pc-header/);
- assert.doesNotMatch(css,/html\.preview-mobile|html\.preview-apk/);
+ const desktop=run('desktop',390);
+ assert.equal(desktop.bar.isConnected,false);
+ assert.ok(desktop.operations.some(row=>row[0]==='detach'));
+ assert.match(script,/node\.remove\(\)/);
+ assert.match(script,/querySelectorAll\(':scope > header\.topbar, :scope > \.topbar'\)/);
+ assert.doesNotMatch(script,/document\.querySelectorAll\('\.topbar'\)/);
 });
-test('Both isolated topbar assets are linked before the last protected profile CSS',()=>{
- assert.match(index,/pc-remove-legacy-topbar-20261012\.css\?v=pc-topbar-removed-20261012-v1/);
- assert.match(index,/pc-remove-legacy-topbar-20261012\.js\?v=pc-topbar-removed-20261012-v1/);
- assert.ok(index.indexOf('pc-remove-legacy-topbar-20261012.css')<index.indexOf('profile-first-screenshot-restore.css'));
+
+test('Mobile/APK retain the banner and a return from desktop restores it',()=>{
+ for(const mode of ['mobile','apk']){
+  const result=run(mode,1440);
+  assert.equal(result.bar.isConnected,true,mode+' must retain original header');
+  assert.ok(!result.operations.some(row=>row[0]==='detach'));
+ }
+ const small=run('',390);
+ assert.equal(small.bar.isConnected,true);
+ const desktop=run('desktop',390);
+ desktop.location.search='?mode=mobile';
+ desktop.listeners.resize();
+ assert.equal(desktop.bar.isConnected,true);
+ assert.ok(desktop.operations.some(row=>row[0]==='restore'));
+});
+
+test('Fallback CSS and cache keys are PC-scoped, and protected Perfil stays last',()=>{
+ assert.match(css,/html\.ljpc-no-legacy-topbar body\[data-app-route\] #app > header\.topbar/);
+ assert.match(css,/html\.ljpc-unified-pc body\[data-app-route\] #app > header\.topbar/);
+ assert.doesNotMatch(css,/html\.preview-mobile|html\.preview-apk/);
+ assert.match(html,/pc-remove-legacy-topbar-20261012\.css\?v=pc-topbar-removed-20261012-dom-detach-v2/);
+ assert.match(html,/pc-remove-legacy-topbar-20261012\.js\?v=pc-topbar-removed-20261012-dom-detach-v2/);
+ assert.ok(html.indexOf('pc-remove-legacy-topbar-20261012.css')<html.indexOf('profile-first-screenshot-restore.css'));
 });
