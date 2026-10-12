@@ -225,3 +225,12 @@ img{max-width:100%;display:block}svg{width:20px;height:20px;display:block}h1,h2,
 .gaming-goal-winner-grid span{display:block;padding:8px 2px;font-size:13px}
 .gaming-goal-winner-grid a:focus-visible{outline:2px solid #14e9f1;outline-offset:4px}
 @media(max-width:680px){.gaming-goal-winner-grid{gap:6px}.gaming-goal-winner-grid span{font-size:10px}}
+
+/* Fantasy Football: header and subnavigation taken from provided reference. */
+.gaming-fantasy-uefa-head{background:linear-gradient(90deg,#053b9a,#0a2769);border-bottom:1px solid #2664c4;color:white}
+.gaming-fantasy-title{padding:12px 0}
+.gaming-fantasy-title a{display:block;font-size:10px;color:#cee9ff;text-decoration:none}
+.gaming-fantasy-title h2{margin:2px 0 0;font-size:20px;color:white}
+.gaming-fantasy-subnav{display:flex;gap:20px;overflow-x:auto;scrollbar-width:none;background:#090d53}
+.gaming-fantasy-subnav a{display:flex;align-items:center;min-height:44px;flex:0 0 auto;padding:7px 4px;font-size:12px;font-weight:700;color:#eff4ff;text-decoration:none;border-bottom:3px solid transparent}
+.gaming-fantasy-subnav a.active{color:#56ecf4;border-bottom-color:#00dce9}
