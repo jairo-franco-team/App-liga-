@@ -40,13 +40,15 @@ test('simulator launcher is present once for every category and not duplicated i
 });
 
 test('tiebreaker labels use official league data; administrative deductions are preserved',()=>{
- const {state,standingsPage}=desktopStandings();
+ const {state,standingsPage,tableRows}=desktopStandings();
  state.cat='1';state.standTab='league';state.standMode='criteria';
  const markup=standingsPage();
  for(const label of ['Puntos','Diferencia de goles','Goles marcados','Goles a domicilio','Victorias','Victorias a domicilio']){
   assert.ok(markup.includes(label),'missing: '+label);
  }
- assert.match(markup,/-21/,'do not erase possible official penalty for BOCA JRS');
+ const publishedBoca=tableRows().find(row=>String(row[1]).toUpperCase()==='BOCA JRS');
+ assert.ok(publishedBoca,'official BOCA JRS entry expected');
+ assert.ok(markup.includes('>'+publishedBoca[9]+'</span>'),'preserve official points including possible deductions');
  assert.match(markup,/reglamento vigente de la Liga Juventino Rosas/);
  assert.doesNotMatch(markup,/class="u18-original"/);
 });
@@ -61,4 +63,11 @@ test('desktop-only styles guarantee separate simulator button and light knockout
  assert.ok(styles.includes('background:#f2f3f8!important;background-image:none!important'));
  assert.equal((styles.match(/\{/g)||[]).length,(styles.match(/\}/g)||[]).length);
  assert.doesNotMatch(styles,/body\[data-app-route="competition"\]/);
+});
+
+
+test('desktop theme class is restored if the PC host shell changes the document marker',()=>{
+ assert.match(script,/classList\.contains\('ljpc18-active'\)/);
+ assert.match(script,/attributeFilter:\['class','data-ljpc18-route'\]/);
+ assert.match(script,/dataset\.ljpc18Route!==route\(\)/);
 });
