@@ -5,8 +5,8 @@ const read=p=>readFileSync(new URL('../'+p,import.meta.url),'utf8');
 const original=read('src/pc-unified-navigation-20261011.js');
 const nav=original.match(/const NAV=\[([\s\S]*?)\];/);
 const expected=[...(nav?.[1]||'').matchAll(/\['([^']+)','[^']+'\]/g)].map(m=>m[1]);
-test('Gaming keeps the same eight PC navbar labels and their order on six pages',()=>{
- assert.deepEqual(expected,['Inicio','Partidos','Clasificación','Liga TV','Sorteos','Gaming','Datos','Más']);
+test('Gaming preserves seven PC tabs; the clickable league crest and wordmark replace Inicio on all six pages',()=>{
+ assert.deepEqual(expected,['Partidos','Clasificación','Liga TV','Sorteos','Gaming','Datos','Más']);
  for(const page of ['index.html','about.html','services.html','portfolio.html','blog.html','contact.html']){
   const html=read('gaming/'+page);
   const section=html.match(/<nav class="gaming-pc-links"[^>]*>([\s\S]*?)<\/nav>/);
@@ -17,7 +17,9 @@ test('Gaming keeps the same eight PC navbar labels and their order on six pages'
   assert.deepEqual(names,expected,'Navbar drifted on '+page);
   assert.match(html,/href="header-pc\.css\?v=/);
   assert.match(html,/href="styles\.css\?v=/);
-  assert.match(html,/class="secondary-nav"/);
+  assert.doesNotMatch(html,/<nav class="secondary-nav"/, 'Do not restore the extra upper navigation band');
+  assert.match(html,/<a class="gaming-pc-brand" href="\.\.\/index\.html\?mode=desktop#\/home"/, 'League badge and wordmark must link home');
+  assert.doesNotMatch(onlyTabs,/>Inicio<\/a>/, 'No physical Inicio tab');
  }
 });
 test('PC Gaming header fixes are isolated from original mobile and APK',()=>{
