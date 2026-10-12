@@ -620,3 +620,43 @@ html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desk
  flex-grow:1!important;min-height:calc(100svh - 245px)!important;
  background:#f2f3f8!important;background-image:none!important;
 }
+
+
+/* PC fixtures v6: cover the VERY specific legacy independent-finish blue
+   background in all three places where it could create an empty dark slab.
+   The footer itself keeps its original dark colors; blank page space is LIGHT. */
+html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"]{
+ background:#f2f3f8!important;background-image:none!important;
+ height:auto!important;min-height:100%!important;overflow-y:auto!important;
+}
+html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish{
+ background:#f2f3f8!important;background-image:none!important;
+ background-attachment:scroll!important;
+ height:auto!important;min-height:100svh!important;max-height:none!important;
+ display:flex!important;flex-direction:column!important;
+ margin:0!important;padding:0!important;overflow-x:hidden!important;
+}
+html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish #app,
+html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish .app-shell{
+ background:#f2f3f8!important;background-image:none!important;
+ max-height:none!important;height:auto!important;
+ overflow:visible!important;
+}
+html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish #screen{
+ background:#f2f3f8!important;background-image:none!important;
+ height:auto!important;min-height:0!important;max-height:none!important;
+ margin:0!important;padding:0 0 12px!important;
+ overflow:visible!important;
+}
+html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish #screen > .u18-root{
+ background:#f2f3f8!important;min-height:0!important;
+ margin:0!important;padding:0!important;
+}
+html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish > #app{
+ flex:1 0 auto!important;min-height:calc(100svh - 260px)!important;
+}
+html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer{
+ flex:0 0 auto!important;margin-top:auto!important;margin-bottom:0!important;
+ position:relative!important;bottom:auto!important;
+}
+/* Keep palette and sizing of actual bracket cards, controls and footer intact. */
