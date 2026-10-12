@@ -33,7 +33,7 @@ test('Original HTML bridge and shell parse, route via messages, official fixture
  assert.match(shell,/window\.LJR_PC_NATIVE_ROUTES\?\.has\(r\)/);
  assert.match(shell,/if\(!desktop\(\)\)return/);
  // El identificador cambia cuando se actualiza el diseño PC y se invalida caché.
- assert.match(index,/desktop-shell\.js\?v=20261011-(?:html-exacto-from-upload|navy-original-restore-v1|compact-iframe-v1|carousel-scroll-v2)/);
+ assert.match(index,/desktop-shell\.js\?v=20261011-(?:html-exacto-from-upload|navy-original-restore-v1|compact-iframe-v1|carousel-scroll-v2|tight-layout-v3)/);
  assert.ok(!html.includes('window.top.location='));
 });
 
