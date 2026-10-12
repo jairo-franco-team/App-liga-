@@ -1,0 +1,33 @@
+name: Validar diseño UEFA de partidos PC
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "src/pc-uefa-18-references-20261012.js"
+      - "src/pc-uefa-fixtures-pixel-20261012.css"
+      - "tests/pc-uefa-fixtures-pixel-20261012.test.mjs"
+      - ".github/workflows/pc-uefa-fixtures-pixel-check.yml"
+  pull_request:
+    paths:
+      - "index.html"
+      - "src/pc-uefa-18-references-20261012.js"
+      - "src/pc-uefa-fixtures-pixel-20261012.css"
+      - "tests/pc-uefa-fixtures-pixel-20261012.test.mjs"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fixtures-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validar botones, partidos, marcadores oficiales y aislamiento móvil
+        run: node --test tests/pc-uefa-fixtures-pixel-20261012.test.mjs
