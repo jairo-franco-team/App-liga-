@@ -145,8 +145,9 @@ html,body{min-width:0!important;max-width:100%!important;overflow-x:hidden!impor
  scroll-snap-type:x proximity!important;
 }
 #root .ucl [data-name="moments grid container"] > a{
- flex:0 0 108px!important;width:108px!important;min-width:108px!important;
- height:135px!important;min-height:135px!important;
+ flex:0 0 clamp(69px,19vw,108px)!important;
+ width:clamp(69px,19vw,108px)!important;
+ min-width:69px!important;height:120px!important;min-height:120px!important;
 }
 #root .ucl [data-name="news section container"],
 #root .ucl [data-name="video section container"]{
