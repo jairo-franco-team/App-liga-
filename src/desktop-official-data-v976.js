@@ -119,15 +119,31 @@ function exportCsv(){
 }
 function renderWeeklyOfficial(root){
  const ITEMS=[
-  ['Intermedia','10/10/2026 08:00','ALDAMA FC','ATL. GALEANA','Campo 1 (Empastado)','Jornada 1'],
-  ['Intermedia','10/10/2026 10:00','OSASUNA','DEP. MARAVILLAS','Campo 1 (Empastado)','Jornada 1'],
-  ['Segunda Fuerza','10/10/2026 12:00','SAN ANTONIO FC','TAVERA FC','Campo 1 (Empastado)','Jornada 1'],
-  ['Segunda Fuerza','11/10/2026 08:00','PACHANGAS FC','TAPATIO','Campo 2','Jornada 7'],
-  ['Segunda Fuerza','11/10/2026 10:00','TAVERA FC','SAN JULIAN','San Julian','Jornada 7'],
-  ['Segunda Fuerza','11/10/2026 10:00','DEP. NOPALERO','SAN ANTONIO FC','Campo 2','Jornada 7'],
-  ['Segunda Fuerza','11/10/2026 10:00','SAN JOSE JRS','SAN JUAN FC','San Jose de la Montaña','Jornada 7'],
-  ['Segunda Fuerza','11/10/2026 12:00','BARZA','DEP. ZAPATA','Campo 2','Jornada 7'],
-  ['Segunda Fuerza','11/10/2026 12:00','CELTICOS','DEP. LA LUZ','Campo 1 (Empastado)','Jornada 7']
+  ['Veteranos 35+','17/10/2026 00:00','BOAVISTA','FRANCO-TAVERA-JR','Campo 1 (Empastado)','Jornada 1'],
+  ['Veteranos 35+','17/10/2026 15:30','JUVENTUS','LEYENDAS FC','Campo 3','Jornada 1'],
+  ['Veteranos 35+','17/10/2026 15:30','AMERICA','AGUILARES','Fraccionamiento','Jornada 1'],
+  ['Veteranos 35+','17/10/2026 15:30','HURACAN','CUENDA','Campo 4','Jornada 1'],
+  ['Veteranos 35+','17/10/2026 17:00','PSV','LA TRINIDAD','Campo 4','Jornada 1'],
+  ['Primera Fuerza','18/10/2026 08:00','TERRICOLAS','NAPOLI','Campo 3','Jornada 7'],
+  ['Primera Fuerza','18/10/2026 09:00','GALACTICOS','LINCES','Pozos','Jornada 7'],
+  ['Primera Fuerza','18/10/2026 10:00','HERMANOS','LOBOS CDG','Campo 3','Jornada 7'],
+  ['Primera Fuerza','18/10/2026 10:00','ABEJAS','HERRERAS FC','Pozos','Jornada 7'],
+  ['Primera Fuerza','18/10/2026 12:00','SAN JOSE FC','FRANCO FC','San Jose de la Montaña','Jornada 7'],
+  ['Intermedia','18/10/2026 08:00','LA CUADRILLA','MAZACOTES FC','Fraccionamiento','Jornada 7'],
+  ['Intermedia','18/10/2026 08:00','OSASUNA','POPULARES','Campo 1 (Empastado)','Jornada 7'],
+  ['Intermedia','18/10/2026 10:00','MALVINAS','LA CANCHITA DEPORTES','Campo 1 (Empastado)','Jornada 7'],
+  ['Intermedia','18/10/2026 10:00','SAN ANTONIO JRS','CAPIBARAS','Romerillo','Jornada 7'],
+  ['Intermedia','18/10/2026 10:00','PROMESAS FC','LA HUERTA','Fraccionamiento','Jornada 7'],
+  ['Intermedia','18/10/2026 12:00','DEP. MARAVILLAS','ATL. GALEANA','Campo 3','Jornada 7'],
+  ['Segunda Fuerza','18/10/2026 08:00','PACHANGAS FC','TAPATIO','Campo 2','Jornada 7'],
+  ['Segunda Fuerza','18/10/2026 10:00','SAN JOSE JRS','SAN JUAN FC','San Jose de la Montaña','Jornada 7'],
+  ['Segunda Fuerza','18/10/2026 10:00','DEP. NOPALERO','SAN ANTONIO FC','Campo 2','Jornada 7'],
+  ['Segunda Fuerza','18/10/2026 10:00','TAVERA FC','SAN JULIAN','San Julian','Jornada 7'],
+  ['Segunda Fuerza','18/10/2026 12:00','CELTICOS','DEP. LA LUZ','Campo 1 (Empastado)','Jornada 7'],
+  ['Segunda Fuerza','18/10/2026 12:00','BARZA','DEP. ZAPATA','Campo 2','Jornada 7'],
+  ['Veteranos 50+','17/10/2026 15:30','BOCA JRS','DYNAMO','Campo 4','Jornada 9'],
+  ['Veteranos 50+','17/10/2026 15:30','LA ESPERANZA','BOAVISTA','Tavera','Jornada 9'],
+  ['Veteranos 50+','17/10/2026 17:00','MANCHESTER','TOROS DE CUENDA','Campo 3','Jornada 9']
  ];
  const url='https://www.juventinorosasliga.com/reporte-semanal/';
  const body=ITEMS.map(([category,date,home,away,venue,round])=>'<tr><td>'+esc(category)+'</td><td>'+esc(date)+'</td><td>'+esc(home)+'</td><td>'+esc(away)+'</td><td>'+esc(venue)+'</td><td>'+esc(round)+'</td></tr>').join('');
@@ -136,7 +152,7 @@ function renderWeeklyOfficial(root){
  const section=document.createElement('section');
  section.className='ljpc-weekly-confirmed';
  section.setAttribute('aria-label','Cambios comprobados del reporte semanal');
- section.innerHTML='<h3>Cambios comprobados del rol · 05–11 octubre</h3><p>Comparación con la línea base del 8 de octubre. Intermedia: dos partidos adicionales. Segunda: partido adicional y rol del 11/10 publicado como Jornada 7 en lugar del rol anterior de Jornada 8. Estos datos son programación publicada: no equivalen a resultados ni a partidos disputados.</p><div class="ljpc-data-tablebox"><table class="ljpc-data-table"><thead><tr><th>Categoría</th><th>Fecha y hora</th><th>Local</th><th>Visitante</th><th>Campo</th><th>Jornada</th></tr></thead><tbody>'+body+'</tbody></table></div><p>Primera y Veteranos 50+: sin variaciones verificadas respecto a la base. Veteranos 35+: sin juegos en este reporte semanal. No hay nuevos resultados, sanciones ni goles confirmados en esta revisión.</p><a href="'+url+'" target="_blank" rel="noopener noreferrer">Consultar reporte oficial de la liga ↗</a><small>Revisión documental del 11/10/2026. Sin sincronización automática ni modificación de marcadores, estadísticas o sanciones.</small>';
+ section.innerHTML='<h3>Calendario oficial · 12–18 octubre 2026</h3><p>Reporte semanal publicado por AdminFut: 25 partidos programados de las cinco categorías, incluidos Veteranos 35+ (Jornada 1), Primera/Intermedia/Segunda (Jornada 7) y Veteranos 50+ (Jornada 9). La hora 00:00 de BOAVISTA vs FRANCO-TAVERA-JR aparece así en la fuente y necesita confirmación de horario. Los cruces y fechas pueden reprogramarse y no implican partidos jugados.</p><div class="ljpc-data-tablebox"><table class="ljpc-data-table"><thead><tr><th>Categoría</th><th>Fecha y hora</th><th>Local</th><th>Visitante</th><th>Campo</th><th>Jornada</th></tr></thead><tbody>'+body+'</tbody></table></div><p>Esta lista es solamente informativa: no actualiza marcadores, tabla de puntos, goles, tarjetas, expulsiones ni registros. Si hay diferencia con las jornadas históricas de otros módulos debe validarse antes de sustituir resultados.</p><a href="'+url+'" target="_blank" rel="noopener noreferrer">Consultar reporte oficial de la liga ↗</a><small>Lectura del reporte semanal 12–18/10/2026; fuente pública y sin datos personales.</small>';
  root.appendChild(section);
 }
 function renderTable(root){
