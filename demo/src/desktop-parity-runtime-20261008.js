@@ -359,6 +359,22 @@ const toolGroups=[
     ]
   ]
 ];
+/* Funciones incorporadas al móvil: catálogo enlazado sin copiar pantallas ni estilos móviles. */
+const parityAdditions=[
+ ["Herramientas recientes de móvil · también en navegador",[
+  ["📝","Estudio de contenido","contentStudio","Plantillas, publicaciones y recursos"],
+  ["🎨","Editor visual","editorVisual","Edición y vista previa"],
+  ["👥","Juegos comunitarios","communityGames","Actividades y participación"],
+  ["📺","Vídeo en ventana flotante","video","Reproductor y Picture in Picture"],
+  ["📣","Avisos y encuestas","publicationCenter","Publicaciones y formularios"],
+  ["🧩","Preparar mi jornada","matchday","Calendario, partidos y preparación"],
+  ["📊","Auditoría y revisión","tool:audit","Herramientas de datos oficiales"],
+  ["💼","Inscripciones y registros","registration","Registros disponibles"],
+  ["🏟️","Campos y condiciones","weatherFields","Pronóstico y canchas"],
+  ["🖼️","Descargas y publicaciones","publications","Imágenes y archivos"]
+ ]]
+];
+toolGroups.push(...parityAdditions);
 const ADMIN_PC_TOOLS=new Set(['meeting','sponsors','incidents','officials','new-sanction','motm','delegates','poll','backup-export','audit']);
 function openPCAdminTool(name){
  if(!ADMIN_PC_TOOLS.has(name))return;
