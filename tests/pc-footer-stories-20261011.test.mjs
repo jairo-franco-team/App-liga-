@@ -39,7 +39,10 @@ test('PC circles have separation from matchbar and carousel still works',()=>{
  assert.match(shell,/e\.data\.kind==='pan'/);
  assert.match(shell,/window\.scrollBy\(/);
 });
-test('PC iframe recalculates size after story layout changes',()=>{assert.match(nav,/inner\.dispatchEvent\(new inner\.Event\('resize'\)\)/)});
+test('PC iframe recalculates size after story layout changes',()=>{
+ assert.match(nav,/inner\\.dispatchEvent\\(new inner\\.Event\\('resize'\\)\\)/);
+ assert.match(nav,/inner\\?\\.requestAnimationFrame\\?\\.\\(/);
+});
 
 test('Mobile and APK selectors are never modified by PC-only styles',()=>{
  assert.match(index,/src\/pc-unified-navigation-20261011\.css/);
