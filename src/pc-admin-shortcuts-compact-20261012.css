@@ -1,3 +1,5 @@
+/* Same cascade layer as captured CMS styles, to override their 104px minimum. */
+@layer ljr-captured-design {
 /* Administración secundaria compacta – sólo navegador PC.
    No se sustituyen botones, controladores, permisos ni atributos data-cms.
    Compensa el min-height:104px de la capa visual capturada. */
@@ -82,3 +84,5 @@ html.ljpc-unified-pc body.liga-editor #screen .ljr-cms-entry:has(>button[data-cm
  }
 }
 /* No existe selector global ni regla de display:none: acciones intactas. */
+
+}
