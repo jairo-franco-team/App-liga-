@@ -12,7 +12,7 @@ const official=JSON.parse(read('data/official-live.json'));
 function source(search='?mode=desktop',width=390){
  const win={LJR_OFFICIAL_DATA:official,addEventListener(){}};
  const doc={readyState:'loading',addEventListener(){}};
- const code=script.replace(/\}\)\(\);\s*$/, 'window.__test={active,fixtures,fixturesPage,eventCards,dateNav};\n})();');
+ const code=script.replace(/\}\)\(\);\s*$/, 'window.__test={active,fixtures,fixturesPage,eventCards,dateNav,isolateFixturesLegacy};\n})();');
  assert.notEqual(code,script,'test exports not injected');
  const ctx={window:win,document:doc,location:{hash:'#/pc-fixtures',search},innerWidth:width,
    URLSearchParams,Intl,Date,console,sessionStorage:{getItem(){return null},setItem(){}}};
@@ -86,6 +86,54 @@ test('Ver cuadro shows league-safe draw panel and functioning Ver detalles del s
  assert.match(styles,/\.u18fx-draw-pair-grid/);
 });
 test('index avoids cached previous page assets',()=>{
- assert.match(html,/pc-uefa-18-references-20261012\.js\?v=pc-fixtures-header-detail-draw-v3/);
- assert.match(html,/pc-uefa-fixtures-pixel-20261012\.css\?v=pc-fixtures-header-detail-draw-v3/);
+ assert.match(html,/pc-uefa-18-references-20261012\.js\?v=pc-fixtures-one-design-v4/);
+ assert.match(html,/pc-uefa-fixtures-pixel-20261012\.css\?v=pc-fixtures-one-design-v4/);
+});
+
+
+test('exactly one PC fixtures design; legacy lower block removed, controls merged above',()=>{
+ const page=source().fixturesPage();
+ assert.equal((page.match(/<section class="u18-page u18fx-page"/g)||[]).length,1);
+ assert.equal((page.match(/<h1>Partidos y resultados<\/h1>/g)||[]).length,1);
+ assert.doesNotMatch(page,/Ver herramientas originales de esta sección/);
+ for(const item of ['u18fx-unified-controls','u18fx-category-pills','u18fx-status-pills',
+  'data-u18-cat-quick="3"','data-u18-cat-quick="2"','data-u18-filter="upcoming"',
+  'data-u18-filter="results"','data-u18-filter="all"','data-u18-open-match']){
+  assert.ok(page.includes(item),item);
+ }
+ assert.match(script,/if\(d\.u18CatQuick\)\{keepCat\(d\.u18CatQuick\)/);
+ assert.match(styles,/#screen > :not\(\.u18-root\)/);
+ assert.match(styles,/display:none!important;visibility:hidden!important;pointer-events:none!important/);
+});
+test('legacy desktop fixtures are truly hidden and restored when PC design is left',()=>{
+ const api=source();
+ function element(cls,display=''){
+  let present=new Map(),priority='';
+  return {
+   classList:{contains(name){return cls===name}},
+   dataset:{},
+   style:{
+    getPropertyValue(k){return k==='display'?display:''},
+    getPropertyPriority(k){return k==='display'?priority:''},
+    setProperty(k,v,p=''){if(k==='display'){display=v;priority=p}},
+    removeProperty(k){if(k==='display'){display='';priority=''}}
+   },
+   setAttribute(k,v){present.set(k,v)},
+   getAttribute(k){return present.has(k)?present.get(k):null},
+   hasAttribute(k){return present.has(k)},
+   removeAttribute(k){present.delete(k)}
+  };
+ }
+ const active=element('u18-root'),legacy=element('ds-page','grid');
+ const screen={children:[legacy,active]};
+ api.isolateFixturesLegacy(screen,true);
+ assert.equal(legacy.style.getPropertyValue('display'),'none');
+ assert.equal(legacy.style.getPropertyPriority('display'),'important');
+ assert.equal(legacy.hasAttribute('inert'),true);
+ assert.equal(legacy.getAttribute('aria-hidden'),'true');
+ api.isolateFixturesLegacy(screen,false);
+ assert.equal(legacy.style.getPropertyValue('display'),'grid');
+ assert.equal(legacy.hasAttribute('inert'),false);
+ assert.equal(legacy.hasAttribute('aria-hidden'),false);
+ assert.equal(active.style.getPropertyValue('display'),'');
 });
