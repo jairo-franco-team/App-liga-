@@ -1,0 +1,234 @@
+/* 2026-10-12 · Desktop fidelity for mobile-origin Match Detail, Match Center,
+   Liga TV, Momentos and tool modules. Original mobile/APK rules are untouched.
+   This is layout-only: all routes, click handlers, real scores, videos and
+   permissions remain in the original DOM. */
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-match{
+ box-sizing:border-box!important;
+ width:min(1140px,100%)!important;max-width:1140px!important;min-width:0!important;
+ margin:0 auto!important;padding:0!important;height:auto!important;min-height:0!important;
+ border-radius:10px!important;overflow:hidden!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-top{
+ box-sizing:border-box!important;
+ width:100%!important;height:auto!important;min-height:155px!important;max-height:none!important;
+ padding:12px 20px 13px!important;margin:0!important;
+ background:linear-gradient(115deg,#154bc4,#0b2a93 55%,#071657)!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-actions{
+ display:flex!important;justify-content:space-between!important;align-items:center!important;
+ margin:0 0 9px!important;padding:0!important;min-height:29px!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-icon-btn{
+ box-sizing:border-box!important;width:29px!important;height:29px!important;
+ min-width:29px!important;min-height:29px!important;
+ padding:5px!important;margin:0!important;border-radius:6px!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-icon-btn svg{
+ display:block!important;width:19px!important;height:19px!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-meta{
+ margin:4px 0 7px!important;font-size:11px!important;
+ line-height:1.35!important;text-align:center!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-venue{
+ margin:6px 0 5px!important;padding:6px 0 0!important;
+ font-size:11px!important;line-height:1.35!important;text-align:center!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-scoreline{
+ display:grid!important;grid-template-columns:minmax(0,1fr) 68px minmax(0,1fr)!important;
+ gap:9px!important;align-items:center!important;min-width:0!important;
+ width:min(620px,100%)!important;margin:8px auto 0!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-side{
+ min-width:0!important;gap:7px!important;font-size:13px!important;
+ line-height:1.25!important;white-space:normal!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-side :is(span,b,strong){
+ min-width:0!important;white-space:normal!important;overflow-wrap:break-word!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-team-logo{
+ width:30px!important;height:30px!important;max-width:30px!important;
+ max-height:30px!important;flex:0 0 30px!important;object-fit:contain!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-time{
+ font-size:13px!important;line-height:1.25!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-tabs{
+ width:100%!important;height:38px!important;min-height:38px!important;
+ grid-template-columns:repeat(3,minmax(0,1fr))!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-tab{
+ box-sizing:border-box!important;height:38px!important;
+ min-width:0!important;padding:5px 7px!important;font-size:11px!important;
+ line-height:1.2!important;white-space:normal!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-body{
+ box-sizing:border-box!important;width:100%!important;
+ min-height:0!important;height:auto!important;max-height:none!important;
+ padding:0 0 12px!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-video-info{
+ box-sizing:border-box!important;width:100%!important;min-width:0!important;
+ max-width:100%!important;padding:13px 15px 18px!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-video-info h2{
+ margin:0 0 10px!important;font-size:17px!important;line-height:1.2!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-stadium-photo{
+ box-sizing:border-box!important;width:100%!important;
+ height:auto!important;min-height:130px!important;max-height:275px!important;
+ aspect-ratio:21/7!important;object-fit:cover!important;
+ border-radius:9px!important;background-position:center!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen :is(.v28-video-venue,.v28-video-round,.v28-local-time){
+ box-sizing:border-box!important;width:100%!important;
+ margin:0!important;padding:9px 0!important;font-size:11px!important;
+ line-height:1.35!important;
+}
+/* Original match lower data: information 3-up, officials 3-up, actions 3-up. */
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v569-match-lower{
+ box-sizing:border-box!important;width:100%!important;min-width:0!important;max-width:100%!important;
+ margin:10px auto!important;padding:13px!important;border-radius:9px!important;
+ height:auto!important;min-height:0!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v569-match-lower > header{
+ min-height:0!important;height:auto!important;gap:9px!important;
+ padding:4px 0 9px!important;margin:0 0 9px!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v569-match-lower > header h3{
+ margin:4px 0!important;font-size:14px!important;line-height:1.3!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen :is(.v569-detail-grid,.v569-officials,.v569-match-actions){
+ box-sizing:border-box!important;display:grid!important;
+ grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ grid-auto-rows:minmax(0,auto)!important;
+ gap:8px!important;width:100%!important;min-width:0!important;max-width:100%!important;
+ align-items:stretch!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen :is(.v569-detail-grid,.v569-officials) > div,
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v569-match-actions > button{
+ box-sizing:border-box!important;min-width:0!important;max-width:100%!important;
+ width:100%!important;min-height:42px!important;height:auto!important;
+ margin:0!important;padding:8px 10px!important;border-radius:7px!important;
+ overflow-wrap:anywhere!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v569-match-lower :is(b,small,span){
+ font-size:11px!important;line-height:1.32!important;max-width:100%!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v569-lineup-preview{
+ display:grid!important;grid-template-columns:minmax(0,1fr) 100px minmax(0,1fr)!important;
+ gap:9px!important;align-items:center!important;width:100%!important;min-width:0!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v569-lineup-preview > button{
+ width:100%!important;min-width:0!important;max-width:100%!important;
+ min-height:56px!important;height:auto!important;padding:7px 10px!important;
+}
+/* Connected native match-centre lower cards: keep all real controls. */
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="match"],[data-app-route="matchCenter"],[data-app-route="matchday"]) #screen :is(#v105-bottom,.v105-bottom,.v569-lower,.v73-match-detail-bottom){
+ box-sizing:border-box!important;width:min(1140px,100%)!important;max-width:1140px!important;
+ min-width:0!important;height:auto!important;min-height:0!important;
+ margin:10px auto!important;overflow:visible!important;
+}
+/* Video modules are landscape PC cards, not stretched mobile columns. */
+html.ljpc-unified-pc body.lj-desktop[data-app-route="video"] #screen #v105-bottom[data-v105-route="video"]{
+ box-sizing:border-box!important;width:min(1140px,100%)!important;max-width:1140px!important;
+ min-width:0!important;min-height:0!important;height:auto!important;
+ margin:10px auto!important;padding:14px!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="video"] #screen #v105-bottom[data-v105-route="video"] .v105-head{
+ margin:0 0 10px!important;padding:0!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="video"] #screen #v105-bottom[data-v105-route="video"] .v105-head h2{
+ margin:3px 0 5px!important;font-size:18px!important;line-height:1.25!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="video"] #screen #v105-bottom[data-v105-route="video"] .v105-motion{
+ box-sizing:border-box!important;height:135px!important;min-height:135px!important;max-height:135px!important;
+ border-radius:9px!important;margin:0 0 12px!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="video"] #screen #v105-bottom[data-v105-route="video"] .v105-motion-copy{
+ height:135px!important;min-height:135px!important;max-height:135px!important;
+ padding:10px 13px!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="video"] #screen #v105-bottom[data-v105-route="video"] .v105-motion-copy b{
+ font-size:17px!important;line-height:1.22!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="video"] #screen #v105-bottom[data-v105-route="video"] :is(.v105-video-grid,.v105-grid){
+ box-sizing:border-box!important;display:grid!important;
+ grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ grid-auto-rows:minmax(0,auto)!important;
+ gap:10px!important;width:100%!important;min-width:0!important;
+ max-width:100%!important;align-items:start!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="video"] #screen #v105-bottom[data-v105-route="video"] .v105-video-card{
+ box-sizing:border-box!important;width:100%!important;min-width:0!important;max-width:100%!important;
+ height:auto!important;min-height:0!important;max-height:none!important;
+ padding:0 0 7px!important;margin:0!important;border-radius:9px!important;overflow:hidden!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="video"] #screen #v105-bottom[data-v105-route="video"] .v105-video-card > :is(video,.ljr-video-player){
+ width:100%!important;aspect-ratio:16/9!important;height:auto!important;
+ max-height:200px!important;min-height:0!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="video"] #screen #v105-bottom[data-v105-route="video"] .v105-card{
+ min-width:0!important;width:100%!important;max-width:100%!important;
+ height:auto!important;min-height:55px!important;
+ margin:0!important;padding:8px 10px!important;border-radius:8px!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="video"] #screen #v105-bottom[data-v105-route="video"] .v105-card :is(b,small){
+ white-space:normal!important;overflow-wrap:break-word!important;
+ font-size:11px!important;line-height:1.28!important;
+}
+/* Moments original mobile sprites become a tidy PC gallery with readable labels. */
+html.ljpc-unified-pc body.lj-desktop[data-app-route="moments"] #screen .v26-moments-page{
+ width:min(1140px,100%)!important;max-width:1140px!important;min-width:0!important;
+ margin:0 auto!important;padding:12px 0 18px!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="moments"] #screen .v26-moments-grid{
+ display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+ gap:9px!important;align-items:start!important;min-width:0!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="moments"] #screen .v26-moment-card{
+ box-sizing:border-box!important;width:100%!important;min-width:0!important;max-width:100%!important;
+ height:auto!important;min-height:0!important;max-height:none!important;
+ aspect-ratio:4/4.25!important;
+ position:relative!important;margin:0!important;overflow:hidden!important;
+ border-radius:9px!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="moments"] #screen #v105-bottom[data-v105-route="moments"]{
+ width:min(1140px,100%)!important;max-width:1140px!important;min-width:0!important;
+ height:auto!important;min-height:0!important;margin:8px auto!important;padding:14px!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="moments"] #screen #v105-bottom[data-v105-route="moments"] :is(.v105-grid,.v105-video-grid){
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ gap:10px!important;width:100%!important;min-width:0!important;
+}
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="moments"],[data-app-route="video"]) #screen .v105-video-card :is(b,small){
+ overflow-wrap:break-word!important;max-width:100%!important;line-height:1.3!important;
+}
+/* Changes only by PC viewport, including PC mode forced on a handset. */
+@media(max-width:900px){
+ html.ljpc-unified-pc body.lj-desktop[data-app-route="video"] #screen #v105-bottom[data-v105-route="video"] :is(.v105-video-grid,.v105-grid),
+ html.ljpc-unified-pc body.lj-desktop[data-app-route="moments"] #screen :is(.v26-moments-grid,.v105-grid,.v105-video-grid){
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ }
+ html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen :is(.v569-detail-grid,.v569-officials,.v569-match-actions){
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ }
+}
+@media(max-width:580px){
+ html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-top{
+  min-height:145px!important;padding:9px 10px!important;
+ }
+ html.ljpc-unified-pc body.lj-desktop[data-app-route="video"] #screen #v105-bottom[data-v105-route="video"] :is(.v105-video-grid,.v105-grid){
+  grid-template-columns:1fr!important;
+ }
+ html.ljpc-unified-pc body.lj-desktop[data-app-route="moments"] #screen .v26-moments-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ }
+ html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v569-lineup-preview{
+  grid-template-columns:minmax(0,1fr) 54px minmax(0,1fr)!important;
+ }
+}
+/* Never unhide inputs or panels that are gated by auth or hidden state. */
+html.ljpc-unified-pc body.lj-desktop #screen :is([hidden],.v28-panel:not(.active)){
+ display:none!important;
+}
