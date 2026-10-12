@@ -141,7 +141,12 @@ function scrollDesktopFlow(delta){
  const move=box=>{
   if(!box||box.isConnected===false)return false;
   const before=box.scrollTop;
-  box.scrollTop=before+delta;
+  const max=Math.max(0,box.scrollHeight-box.clientHeight);
+  // On a real page scrollTop stops at the boundary. Mirror that behavior
+  // before mutating: test doubles and unusual layouts may not clamp it.
+  const next=Math.min(max,Math.max(0,before+delta));
+  if(Math.abs(next-before)<.5)return false;
+  box.scrollTop=next;
   return Math.abs(box.scrollTop-before)>.5;
  };
  // Cache the scrollable owner on the function itself; preserve state across
