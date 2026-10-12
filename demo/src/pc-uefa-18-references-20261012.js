@@ -139,7 +139,10 @@ function bracket(){
     signature:String(source()?.captured_at_utc||'')+'|'+state.cat
    });
   }catch(e){view='';}
-  if(view)return '<section class="u18fx-mobile-knockout" aria-label="Cuadro oficial y liguilla '+escape(CAT[state.cat])+'">'+
+  if(view && route()==='pc-standings')return '<section class="u18fx-mobile-knockout u18-standings-bracket" aria-label="Fase eliminatoria de '+escape(CAT[state.cat])+'">'+
+  '<div class="u18-ko-intro">La información es provisional y se actualizará cuando la Liga confirme los enfrentamientos. Las rutas plateada y azul son una representación visual, no un sorteo oficial.</div>'+
+  view+'<p class="u18-ko-footer">Los cruces, fechas y resultados no publicados permanecen por confirmar. <button type="button" data-u18-go="pc-draws">Ver detalles del cuadro →</button></p></section>';
+ if(view)return '<section class="u18fx-mobile-knockout" aria-label="Cuadro oficial y liguilla '+escape(CAT[state.cat])+'">'+
    '<header class="u18fx-ko-heading"><div><span>COMPETICIÓN · '+escape(CAT[state.cat])+'</span><h2>Cuadro y liguilla</h2>'+
    '<p>Mismo cuadro que Competición: etapas, rutas y trofeo. Los cruces se muestran según los datos disponibles.</p></div>'+
    '<button type="button" data-u18-go="pc-draws">Ver detalles del cuadro '+fixtureIcon('next')+'</button></header>'+
@@ -220,6 +223,29 @@ function standingsTable(rows,simulated=false){
  '<td class="u18-form-cell">'+formForTeam(r[1],playedMatches)+'</td></tr>').join('')+
  '</tbody></table></div>';
 }
+function tiebreakerTable(rows){
+ // These are comparison metrics, NOT a replacement for the League's official tie rules.
+ const games=fixtures().filter(m=>m.played&&Number.isFinite(m.hs)&&Number.isFinite(m.as));
+ const away=new Map(),recorded=new Map();
+ for(const m of games){
+  const h=norm(m.home),a=norm(m.away),v=away.get(a)||{goals:0,wins:0};
+  recorded.set(h,(recorded.get(h)||0)+1);recorded.set(a,(recorded.get(a)||0)+1);
+  v.goals+=m.as;if(m.as>m.hs)v.wins++;away.set(a,v);
+ }
+ const heads=['#','Equipo','Puntos','Diferencia de goles','Goles marcados','Goles a domicilio','Victorias','Victorias a domicilio'];
+ const html=rows.map((r,i)=>{
+  const n=norm(r[1]),known=recorded.get(n)||0,pj=num(r[2])||0,full=pj>0&&known>=pj;
+  const road=away.get(n)||{goals:0,wins:0};
+  const values=[r[9],r[8],r[6],full?road.goals:'—',r[3],full?road.wins:'—'];
+  const equalPoints=(rows[i-1]&&num(rows[i-1][9])===num(r[9]))||(rows[i+1]&&num(rows[i+1][9])===num(r[9]));
+  const zone=i===0||i===8?'<tr class="u18-criteria-zone"><th colspan="8" scope="rowgroup">POSICIONES '+(i+1)+' A '+Math.min(i===0?8:rows.length,rows.length)+' · '+escape(CAT[state.cat])+'</th></tr>':'';
+  return zone+'<tr><td class="u18-place">'+(i+1)+'</td><td class="u18-team"><button type="button" class="u18-team-open" data-u18-team="'+escape(r[1])+'">'+crest(r[1])+'<b>'+escape(r[1])+'</b></button></td>'+
+  values.map((v,j)=>'<td'+(equalPoints&&v!=='—'?' class="u18-tie-highlight"':'')+'><span>'+escape(v??'—')+'</span></td>').join('')+'</tr>';
+ }).join('');
+ return '<div class="u18-criteria-description">Estadísticas para comparar posiciones e igualdad de puntos. La resolución oficial de empates corresponde al reglamento de la Liga.</div>'+
+  '<div class="u18-tablewrap u18-criteria-wrap"><table class="u18-table u18-criteria-table"><thead><tr>'+heads.map(x=>'<th scope="col">'+x+'</th>').join('')+'</tr></thead><tbody>'+html+'</tbody></table></div>'+
+  '<div class="u18-criteria-legal"><p>Las clasificaciones son provisionales hasta que la Liga valide los partidos. «—» indica que no se dispone de todos los marcadores necesarios para comprobar los datos de visitante; no significa cero.</p><p>Consulta el <a href="#/rulebook">reglamento vigente de la Liga Juventino Rosas</a> para conocer los criterios y decisiones administrativas aplicables.</p></div>';
+}
 function simulation(){
  const matches=fixtures().filter(m=>!m.played&&!m.decision?.winner).slice(0,24);
  const matchInputs=matches.map(m=>{
@@ -244,9 +270,7 @@ function standingsPage(){
  const viewTabs='<div class="u18-viewtabs" role="group" aria-label="Vista de clasificación">'+
  '<button type="button" data-u18-stand-view="table" class="'+(state.standMode==='table'?'selected':'')+'" aria-pressed="'+(state.standMode==='table')+'">Completo</button>'+
  '<button type="button" data-u18-stand-view="criteria" class="'+(state.standMode==='criteria'?'selected':'')+'" aria-pressed="'+(state.standMode==='criteria')+'">Criterios de desempate</button></div>';
- const criteria='<div class="u18-criteria"><h3>Criterios de desempate</h3>'+
- '<p>Los criterios oficiales se consultan en el reglamento vigente de la Liga Juventino Rosas; no se presupone un orden de desempate a partir de la tabla pública.</p>'+
- '<a class="u18-criteria-action" href="#/rulebook" aria-label="Consultar reglamento oficial de la Liga">Consultar reglamento</a></div>';
+ const criteria=rows.length?tiebreakerTable(rows):'<p>La clasificación de esta categoría no está disponible.</p>';
  const content=state.standTab==='knockout'?bracket():state.standTab==='simulator'?simulation():
  '<div class="u18-panel"><div class="u18-blocktitle"><h2>Clasificación de la fase liga</h2><small>'+escape(CAT[state.cat])+'</small></div>'+
  viewTabs+(state.standMode==='criteria'?criteria:(rows.length?standingsTable(rows):'<p>La clasificación de esta categoría no está disponible.</p>'))+
