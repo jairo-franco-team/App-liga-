@@ -266,29 +266,23 @@ html.ljpc-unified-pc body #ljpc-home-integrated-footer{
   display:none!important;
 }
 
-/* Inicio PC: el único pie debe ir debajo de portada, noticias, partidos,
-   estadísticas y módulos nativos. El #screen ya usa flex-column en PC;
-   su último hijo es el footer y tiene orden explícito para evitar solapes.
-   En modo móvil/APK no existe html.ljpc-unified-pc. */
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen > #ljpc-unified-pc-footer {
+/* El pie universal PC se conserva como último hijo del body, no dentro
+   de #screen. Es un bloque en flujo normal, debajo de portada y módulos. */
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] > #ljpc-unified-pc-footer {
   display:block!important;
   position:relative!important;
-  order:999!important;
-  flex:0 0 auto!important;
-  align-self:stretch!important;
-  grid-column:1/-1!important;
   width:100%!important;
-  min-width:0!important;
   max-width:none!important;
+  min-width:0!important;
   height:auto!important;
   min-height:0!important;
-  margin:0!important;
+  margin:10px 0 0!important;
   padding:0!important;
   inset:auto!important;
   float:none!important;
   transform:none!important;
-  z-index:0!important;
   clear:both!important;
+  z-index:0!important;
 }
 /* The exterior fixture bar and the circle story strip are distinct bands.
    No absolute positioning or transforms on either bar. */
