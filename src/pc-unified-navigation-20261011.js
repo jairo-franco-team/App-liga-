@@ -159,11 +159,55 @@ function selectNav(){
   if(b.tagName==='BUTTON'){if(on)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');}
  });
  if(previousRoute!==r){
-  root.querySelectorAll('details[open]').forEach(x=>{x.open=false;x.querySelector('summary')?.setAttribute('aria-expanded','false')});
+  root.querySelectorAll('details[open]').forEach(closeNavGroup);
   root.querySelectorAll('.ljpc-u-history-submenu').forEach(x=>{x.hidden=true});
   root.querySelectorAll('[data-ljpc-u-history-toggle]').forEach(x=>x.setAttribute('aria-expanded','false'));
   previousRoute=r;
  }
+}
+/* Al desplazar horizontalmente la navegación en Chrome Android PC, overflow-y:hidden
+   recortaba los paneles de Gaming / Datos / Más. Popover los pinta en la top layer
+   sin cambiar las posiciones del encabezado ni afectar la app móvil/APK. */
+function closeNavGroup(details){
+ if(!details)return;
+ const panel=details.querySelector('.ljpc-u-dropdown');
+ try{if(panel?.matches?.(':popover-open'))panel.hidePopover()}catch(_){}
+ panel?.classList.remove('ljpc-u-popup-fallback');
+ details.open=false;
+ details.querySelector('summary')?.setAttribute('aria-expanded','false');
+ details.querySelector('.ljpc-u-history-submenu')?.setAttribute('hidden','');
+ details.querySelector('[data-ljpc-u-history-toggle]')?.setAttribute('aria-expanded','false');
+}
+function placeNavPanel(details){
+ if(!desktop()||!details?.open)return;
+ const nav=details.closest('.ljpc-u-links'),panel=details.querySelector('.ljpc-u-dropdown');
+ const summary=details.querySelector('summary');
+ if(!panel||!summary||!nav)return;
+ const overflow=getComputedStyle(nav);
+ const clipped=/(auto|scroll|hidden|clip)/.test(overflow.overflowX+' '+overflow.overflowY);
+ if(!clipped)return;
+ const rect=summary.getBoundingClientRect();
+ const width=Math.min(details.dataset.ljpcUGroup==='Más'?318:318,Math.max(200,window.innerWidth-24));
+ const x=details.dataset.ljpcUGroup==='Más'?rect.right-width:
+   details.dataset.ljpcUGroup==='Datos'?rect.left+(rect.width-width)/2:rect.left;
+ const left=Math.max(12,Math.min(Math.max(12,window.innerWidth-width-12),x));
+ const top=Math.max(0,Math.min(window.innerHeight-110,rect.bottom+13));
+ panel.style.setProperty('--ljpc-u-popup-left',left+'px');
+ panel.style.setProperty('--ljpc-u-popup-top',top+'px');
+ panel.style.setProperty('--ljpc-u-popup-width',width+'px');
+ panel.style.setProperty('--ljpc-u-popup-max-height',Math.max(96,window.innerHeight-top-12)+'px');
+ if(typeof panel.showPopover==='function'){
+  try{
+   panel.setAttribute('popover','manual');
+   if(!panel.matches(':popover-open'))panel.showPopover();
+   panel.classList.remove('ljpc-u-popup-fallback');
+   return;
+  }catch(_){}
+ }
+ panel.classList.add('ljpc-u-popup-fallback');
+}
+function positionOpenNavPanels(){
+ document.querySelectorAll('#ljpc-unified-pc-header .ljpc-u-links>details[open]').forEach(placeNavPanel);
 }
 function hideIframeHeader(frame){
  if(!frame?.contentDocument)return;
@@ -247,14 +291,12 @@ document.addEventListener('click',e=>{
  const shouldOpen=!details.open;
  const header=document.getElementById('ljpc-unified-pc-header');
  header?.querySelectorAll('.ljpc-u-links > details[open]').forEach(other=>{
-  if(other!==details)other.open=false;
+  if(other!==details)closeNavGroup(other);
  });
- details.open=shouldOpen;
- summary.setAttribute('aria-expanded',String(shouldOpen));
- if(!shouldOpen){
-  details.querySelector('.ljpc-u-history-submenu')?.setAttribute('hidden','');
-  details.querySelector('[data-ljpc-u-history-toggle]')?.setAttribute('aria-expanded','false');
- }
+ if(!shouldOpen){closeNavGroup(details);return;}
+ details.open=true;
+ summary.setAttribute('aria-expanded','true');
+ placeNavPanel(details);
 },true);
 document.addEventListener('click',e=>{
  if(!desktop()||!(e.target instanceof Element))return;
@@ -275,7 +317,7 @@ document.addEventListener('click',e=>{
  if(section){
   try{sessionStorage.setItem('ljpc-history-pc-tab',section)}catch(_){}
   const wrap=b.closest('details');
-  wrap?.removeAttribute('open');
+  closeNavGroup(wrap);
   const submenu=wrap?.querySelector('#ljpc-u-history-submenu');
   if(submenu)submenu.hidden=true;
   wrap?.querySelector('[data-ljpc-u-history-toggle]')?.setAttribute('aria-expanded','false');
@@ -286,20 +328,34 @@ document.addEventListener('click',e=>{
  const dataView=b.dataset.ljpcUDataView;
   if(dataView==='team'||dataView==='player'){
    window.dispatchEvent(new CustomEvent('ljpc:pc-data-view',{detail:{view:dataView}}));
-   b.closest('details')?.removeAttribute('open');
+   closeNavGroup(b.closest('details'));
    if(route()!=='pc-data')go('pc-data');
    return;
   }
   const r=b.dataset.ljpcUGo;
+ closeNavGroup(b.closest('details'));
  if(r==='gamingPortal'){location.assign('./gaming/index.html');return;}
  if(/^[a-z][a-zA-Z0-9_-]*$/.test(r||''))go(r);
 },true);
 document.addEventListener('toggle',e=>{
  if(e.target?.matches?.('#ljpc-unified-pc-header details[open]'))
- document.querySelectorAll('#ljpc-unified-pc-header details[open]').forEach(x=>{if(x!==e.target)x.removeAttribute('open');});
+  document.querySelectorAll('#ljpc-unified-pc-header details[open]').forEach(x=>{if(x!==e.target)closeNavGroup(x);});
+},true);
+document.addEventListener('pointerdown',e=>{
+ if(!desktop()||!(e.target instanceof Element))return;
+ if(e.target.closest('#ljpc-unified-pc-header .ljpc-u-links>details'))return;
+ document.querySelectorAll('#ljpc-unified-pc-header .ljpc-u-links>details[open]').forEach(closeNavGroup);
+},true);
+document.addEventListener('keydown',e=>{
+ if(!desktop()||e.key!=='Escape')return;
+ document.querySelectorAll('#ljpc-unified-pc-header .ljpc-u-links>details[open]').forEach(closeNavGroup);
+},true);
+window.addEventListener('scroll',positionOpenNavPanels,{passive:true});
+document.addEventListener('scroll',e=>{
+ if(e.target?.matches?.('#ljpc-unified-pc-header .ljpc-u-links'))positionOpenNavPanels();
 },true);
 window.addEventListener('hashchange',schedule);
-window.addEventListener('resize',schedule);
+window.addEventListener('resize',()=>{schedule();positionOpenNavPanels()});
 window.addEventListener('ljr:official-data',()=>{refreshFixtures();schedule();});
 function boot(){
  schedule();
