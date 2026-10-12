@@ -321,3 +321,154 @@ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen :is(
   grid-template-columns:repeat(3,minmax(0,1fr))!important
  }
 }
+
+
+/* Pronostica Seis PC — six compact UEFA-style horizontal picks. All original
+   data-v29-pick controls, classes, and official crests remain unchanged. */
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="predictorSix"] #screen .v53-predictor-six{
+ max-width:var(--pcf-wrap)!important;min-height:0!important;
+ margin:9px auto 12px!important;padding:11px 15px 17px!important;
+ background:linear-gradient(155deg,#071eab,#07135a 80%)!important;
+ border-radius:9px!important;border:1px solid rgba(72,139,246,.6)!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="predictorSix"] #screen .v53-p6-grid{
+ display:grid!important;grid-template-columns:1fr!important;
+ gap:7px!important;grid-auto-rows:max-content!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="predictorSix"] #screen .v53-p6-game{
+ aspect-ratio:auto!important;width:100%!important;
+ min-height:82px!important;height:auto!important;
+ grid-template-columns:minmax(0,1fr) 48px 35px 48px minmax(0,1fr)!important;
+ grid-template-rows:auto!important;align-items:center!important;gap:8px!important;
+ padding:8px 12px!important;border-radius:7px!important;
+ border:1px solid rgba(83,148,253,.7)!important;
+ background:linear-gradient(115deg,#0846dc,#071fbd 56%,#092b94)!important;
+ box-shadow:0 2px 8px rgba(0,8,63,.19)!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="predictorSix"] #screen .v53-p6-game>.v53-p6-team{
+ width:48px!important;height:48px!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="predictorSix"] #screen .v53-p6-team img{
+ width:42px!important;height:42px!important;
+ object-fit:contain!important;background:transparent!important
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="predictorSix"] #screen .ljpc-pc-p6name{
+ font-size:clamp(11px,1.3vw,14px)!important;
+ line-height:1.25!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="predictorSix"] #screen .v53-p6-pick{
+ min-width:32px!important;height:25px!important;
+ right:7px!important;bottom:6px!important;font-size:12px!important;
+ background:#0b2c9f!important;border:1px solid #4ecff7!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="predictorSix"] #screen .v53-p6-sponsor{
+ min-height:34px!important;margin-bottom:3px!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="predictorSix"] #screen .v53-p6-actions{
+ gap:8px!important;padding-top:8px!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="predictorSix"] #screen .v53-p6-actions button{
+ min-width:126px!important;min-height:34px!important;height:auto!important;
+ border-radius:6px!important;padding:7px 11px!important;font-size:11px!important;
+}
+/* Other PC tools and tables use the same dark-blue/cyan language, never the
+   stark white mobile fragments observed below the shared footer. */
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen :is(
+ .ds-game-panel,.ds-tie,.ds-match-card,.ds-day,.ds-tab,.ds-select,.ds-table,.ds-card){
+ background:linear-gradient(145deg,#163f92,#0d246c)!important;
+ border-color:var(--pcf-outline)!important;
+ color:#ecf7ff!important;box-shadow:none!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-table :is(th,td){
+ border-color:rgba(130,177,223,.26)!important;
+ color:#e6efff!important;background:rgba(9,30,86,.87)!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-table th{
+ background:#163f92!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-table tr:hover td{
+ background:#2154ae!important
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-teamcell{
+ color:#f2faff!important
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-day b{
+ color:#fff!important
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen :is(
+ .ds-game-grid,.ds-matchlist,.ds-team-grid,.ds-bracket-grid){
+ gap:9px!important;align-content:start!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-game-panel{
+ min-height:100px!important;height:auto!important;
+ padding:13px!important;border-radius:8px!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-game-panel h3{
+ font-size:15px!important;color:#fff!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-game-panel p{
+ font-size:11px!important;line-height:1.4!important;color:#d4e6ff!important
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-game-actions button{
+ min-height:30px!important;border-radius:6px!important;
+ background:linear-gradient(100deg,#14cce9,#65e8ee)!important;
+ border:1px solid #59eff7!important;color:#06285b!important;
+ font-size:10px!important
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-team-grid{
+ grid-template-columns:repeat(7,minmax(0,1fr))!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-club b{
+ font-size:10px!important;color:#e2f0ff!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-crest{
+ background:transparent!important;box-shadow:none!important;
+ width:38px!important;height:38px!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-crest img{
+ width:100%!important;height:100%!important;object-fit:contain!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-pagehead{
+ background:linear-gradient(115deg,#1b509e,#0c3277,#071c54)!important;
+ padding:0!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-pagehead .ds-wrap{
+ padding-block:16px!important
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-pagehead h1{
+ font-size:23px!important;margin:5px 0!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-news-grid>.ds-news.big,
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-news-grid>.ds-news.wide{
+ grid-column:auto!important;grid-row:auto!important
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-news-copy{
+ position:relative!important;inset:auto!important;
+ z-index:2!important;display:flex!important;
+ flex-direction:column!important;align-items:flex-start!important;
+ justify-content:center!important;height:auto!important;min-height:118px!important;
+}
+html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-news:before{
+ pointer-events:none!important;opacity:.7!important
+}
+@media(max-width:800px){
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-team-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important
+ }
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish #screen .ds-game-grid{
+  grid-template-columns:minmax(0,1fr)!important
+ }
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="predictorSix"] #screen .v53-p6-game{
+  grid-template-columns:minmax(0,1fr) 30px 15px 30px minmax(0,1fr)!important;
+  gap:3px!important;padding:5px!important;min-height:66px!important
+ }
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="predictorSix"] #screen .v53-p6-game>.v53-p6-team{
+  width:30px!important;height:34px!important
+ }
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="predictorSix"] #screen .v53-p6-team img{
+  width:30px!important;height:30px!important
+ }
+ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish[data-app-route="predictorSix"] #screen .ljpc-pc-p6name{
+  font-size:10px!important
+ }
+}
