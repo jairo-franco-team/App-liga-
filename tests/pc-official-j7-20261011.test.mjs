@@ -13,33 +13,33 @@ function loadPC(){
  vm.runInNewContext(code,{window:win,document,sessionStorage,location:{hash:'#/pc-fixtures',search:'?mode=desktop'},innerWidth:1280,URLSearchParams,Date,setTimeout(){},clearTimeout(){}},{timeout:5000,filename:'desktop-mobile-function-bridge.js'});
  return win.__pcTest;
 }
-test('modo PC obtiene los seis partidos oficiales Segunda J7 del 11 de octubre',async()=>{
+test('modo PC conserva los seis cruces oficiales de Segunda J7, suspendidos el 11 de octubre',async()=>{
  const pc=loadPC();await pc.loadDb();
- const rows=pc.desktopFixtureRows('4','upcoming',new Date(2026,9,10));
+ const rows=pc.desktopFixtureRows('4','all',new Date(2026,9,10));
  const j7=rows.filter(x=>x.round==='7'&&x.date.getMonth()===9&&x.date.getDate()===11);
  assert.equal(j7.length,6);
  assert.equal(new Set(j7.map(x=>x.home+'|'+x.away)).size,6);
- assert.deepEqual(Array.from(j7.map(x=>x.rawDate)),[
+ assert.deepEqual(Array.from(j7.map(x=>x.rawDate)).sort(),[
   '11/10/2026 08:00','11/10/2026 10:00','11/10/2026 10:00',
   '11/10/2026 10:00','11/10/2026 12:00','11/10/2026 12:00'
- ]);
+ ].sort());
  assert.deepEqual(Array.from(j7.map(x=>x.home+' / '+x.away)).sort(),[
   'BARZA / DEP. ZAPATA','CELTICOS / DEP. LA LUZ',
   'DEP. NOPALERO / SAN ANTONIO FC','PACHANGAS FC / TAPATIO',
   'SAN JOSE JRS / SAN JUAN FC','TAVERA FC / SAN JULIAN'
  ].sort());
- assert.ok(j7.every(x=>!x.played&&x.venue));
- assert.equal(j7.filter(x=>x.round==='8').length,0);
+ assert.ok(j7.every(x=>x.suspended&&!x.played&&x.venue));
 });
-test('modo PC separa próximos y resultados, sin inventar goles',async()=>{
+test('modo PC separa próximos, suspendidos y resultados sin inventar goles',async()=>{
  const pc=loadPC();await pc.loadDb();
  const upcoming=pc.desktopFixtureRows('4','upcoming',new Date(2026,9,10));
  const results=pc.desktopFixtureRows('4','results',new Date(2026,9,10));
- assert.ok(upcoming.every(x=>!x.played&&x.date>=new Date(2026,9,10)));
- assert.ok(results.every(x=>x.played));
- // Otros partidos pendientes pueden preceder a J7 en el registro actualizado.
- assert.ok(upcoming.some(x=>x.round==='7'&&x.rawDate==='11/10/2026 08:00'));
- assert.ok(upcoming.every((x,i)=>!i||upcoming[i-1].date<=x.date),'Próximos en orden cronológico');
+ const suspended=pc.desktopFixtureRows('4','suspended',new Date(2026,9,10));
+ assert.ok(upcoming.every(x=>!x.played&&!x.suspended&&x.date>=new Date(2026,9,10)));
+ assert.ok(results.every(x=>(x.played||x.awarded)&&!x.suspended));
+ assert.equal(suspended.filter(x=>x.round==='7'&&x.rawDate.startsWith('11/10/2026')).length,6);
+ assert.ok(!upcoming.some(x=>x.rawDate.startsWith('11/10/2026')),'No anunciar jornadas suspendidas como próximas');
+ assert.ok(upcoming.every((x,i)=>!i||upcoming[i-1].date<=x.date),'Próximos ordenados cronológicamente');
 });
 test('PC conserva modos móvil y APK y muestra horarios, categorías y calendario',()=>{
  const bridge=load('desktop-mobile-function-bridge.js');
