@@ -101,7 +101,9 @@
    if(!el.hasAttribute('data-captured-dialog'))el.setAttribute('data-captured-dialog',el.matches('.ljr-bc-dialog')?'orbit':el.matches('.ljr-content-studio')?'prism':'cyan');decorate(el);accents(el);
   });
  }
- function queue(){if(!pending){pending=true;requestAnimationFrame(scan);}}
+ // Async page modules can mount inside RAF. Waiting for another RAF then
+ // paints their old surfaces once. Coalesce mutations before the same paint.
+ function queue(){if(!pending){pending=true;queueMicrotask(scan);}}
  function start(){
   // Text-only clocks, SVG effects and our own edges cannot add a new control.
   new MutationObserver(records=>{

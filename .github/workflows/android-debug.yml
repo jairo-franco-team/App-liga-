@@ -63,7 +63,7 @@ jobs:
         run: npx cap sync android
 
       - name: Validate native APK features
-        run: node --test tests/calendar-event.test.mjs tests/android-video-capture.test.mjs tests/android-fcm-preflight.test.mjs tests/android-fcm-conditional-setup.test.mjs
+        run: node --test tests/calendar-event.test.mjs tests/android-video-capture.test.mjs tests/android-fcm-preflight.test.mjs tests/android-fcm-conditional-setup.test.mjs tests/android-asset-dedup.test.mjs
 
       - name: Check Firebase Android readiness without exposing credentials
         env:
@@ -80,11 +80,36 @@ jobs:
           FIREBASE_ANDROID_CONFIG_B64: ${{ secrets.FIREBASE_ANDROID_CONFIG_B64 }}
         run: node native/android/configure-fcm.mjs
 
-      - name: Build debug APK
+      - name: Build baseline debug APK for exact size comparison
         run: |
           chmod +x android/gradlew
-          cd android
-          ./gradlew assembleDebug
+          (cd android && ./gradlew assembleDebug)
+          cp android/app/build/outputs/apk/debug/app-debug.apk "$RUNNER_TEMP/liga-baseline.apk"
+
+      - name: Store identical Android images once and preserve every original URL
+        run: node native/android/prepare-assets.mjs
+
+      - name: Build optimized debug APK
+        run: |
+          node native/android/prepare-assets.mjs --verify-only
+          (cd android && ./gradlew assembleDebug)
+
+      - name: Verify all original asset bytes in APK and measure actual reduction
+        run: python native/android/verify-apk-assets.py --apk android/app/build/outputs/apk/debug/app-debug.apk --baseline "$RUNNER_TEMP/liga-baseline.apk"
+
+      - name: Verify compiled mobile app against the actual optimized Android assets
+        run: |
+          npm install --no-save playwright --no-audit --no-fund
+          npx playwright install --with-deps chromium
+          ANDROID_PUBLIC_DIR=android/app/src/main/assets/public node tests/mobile-clean-boot.mjs
+
+      - name: Upload measured Android asset inventory
+        uses: actions/upload-artifact@v4
+        with:
+          name: Liga-Juventino-Android-Size-Report
+          path: android-asset-report.json
+          if-no-files-found: error
+          retention-days: 30
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4

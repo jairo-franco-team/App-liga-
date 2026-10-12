@@ -2286,7 +2286,18 @@ document.addEventListener('click',e=>{
 function schedule(ms=80){clearTimeout(timer);timer=setTimeout(mount,ms)}
 window.addEventListener('hashchange',()=>schedule(100));
 window.addEventListener('load',()=>schedule(200));
-document.addEventListener('visibilitychange',()=>{if(!document.hidden)$$('[data-v105-motion]').forEach(v=>v.play().catch(()=>{}))});
+document.addEventListener('visibilitychange',()=>{
+ const height=window.innerHeight||document.documentElement.clientHeight;
+ const width=window.innerWidth||document.documentElement.clientWidth;
+ $$('[data-v105-motion]').forEach(v=>{
+  // IntersectionObserver need not fire when returning to an unchanged page.
+  // Resume visible artwork only; actual match/player videos are independent.
+  if(document.hidden){v.pause();return;}
+  const rect=v.getBoundingClientRect();
+  if(rect.bottom>0&&rect.top<height&&rect.right>0&&rect.left<width)v.play().catch(()=>{});
+  else v.pause();
+ });
+});
 const screen=$('#screen');if(screen)new MutationObserver(()=>schedule(90)).observe(screen,{childList:true,subtree:false});
 schedule(150);setTimeout(()=>schedule(0),1200);setTimeout(()=>schedule(0),3500);
 window.LJR_V105={build:BUILD,mount,officialTeams,officialPlayers,openTv:openTvSafe,registerAlerts,scheduleMatch,newSanction};

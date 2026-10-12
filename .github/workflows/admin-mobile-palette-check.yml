@@ -19,6 +19,8 @@ on:
       - 'tests/v1440-drive-background-variety.mjs'
       - 'tests/v1441-captured-design.mjs'
       - 'tests/v1460-mobile-corrections.mjs'
+      - 'tests/mobile-clean-boot.mjs'
+      - 'tests/mobile-no-legacy-flash.test.mjs'
       - 'tests/onboarding-mobile-v1460.mjs'
       - 'src/mobile-list-pages-20261011.*'
       - 'src/apk-first-install*'
@@ -76,6 +78,9 @@ jobs:
       - name: Check mobile surfaces, pagination and return
         if: ${{ !cancelled() && steps.compiled.outcome == 'success' }}
         run: node tests/v1460-mobile-corrections.mjs
+      - name: Check initial paint and delegated route loading
+        if: ${{ !cancelled() && steps.compiled.outcome == 'success' }}
+        run: node tests/mobile-clean-boot.mjs
       - name: Check APK first installation
         if: ${{ !cancelled() && steps.compiled.outcome == 'success' }}
         run: node tests/onboarding-mobile-v1460.mjs
@@ -99,5 +104,6 @@ jobs:
             artifacts/v1441/*.png
             artifacts/v1460/*.png
             artifacts/v1460-onboarding/*.png
+            artifacts/mobile-clean-boot/*
           if-no-files-found: ignore
           retention-days: 14
