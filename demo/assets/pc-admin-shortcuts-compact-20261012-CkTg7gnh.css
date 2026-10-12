@@ -11,7 +11,7 @@ html.ljpc-unified-pc body.liga-editor #screen [data-captured-design] .ljr-cms-en
   grid-auto-rows:minmax(46px,auto)!important;
   gap:6px!important;
   align-items:stretch!important;align-content:start!important;
-  width:min(100% - 24px,1040px)!important;
+  width:min(calc(100% - 24px),1040px)!important;
   max-width:1040px!important;
   min-width:0!important;
   min-height:0!important;height:auto!important;
