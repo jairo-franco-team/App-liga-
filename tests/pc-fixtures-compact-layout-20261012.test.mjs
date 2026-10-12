@@ -9,7 +9,7 @@ const bridge=read('src/desktop-mobile-function-bridge.js');
 const html=read('index.html');
 
 test('carga estilo compacto de partidos PC y renueva el JS en el navegador',()=>{
-  assert.match(html,/pc-fixtures-compact-layout-20261012\.css\?v=pc-fixtures-no-holes-oct12-v1/);
+  assert.match(html,/pc-fixtures-compact-layout-20261012\.css\?v=pc-fixtures-no-holes-oct12-v2/);
   assert.match(html,/desktop-mobile-function-bridge\.js\?v=pc-fixtures-compact-rows-oct12-v1/);
   assert.doesNotThrow(()=>new vm.Script(bridge));
 });
