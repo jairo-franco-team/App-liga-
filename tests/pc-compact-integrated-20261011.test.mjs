@@ -37,10 +37,11 @@ test('Initial 3700 pixel iframe placeholder is removed and height updates ignore
  assert.match(iframe,/frame\.contentWindow\.postMessage/);
  assert.match(iframe,/e\.data\.kind==='height'/);
 });
-test('Compact stylesheet is imported last and Android cache is invalidated',()=>{
+test('Compact stylesheet loads after desktop editorial and before mobile profile final layer',()=>{
  const idx=index.indexOf('pc-compact-integrated-20261011.css?v=20261011-compact-pc-inside-v1');
  assert.ok(idx>index.indexOf('desktop-browser-editorial-20261011.css'));
- assert.ok(idx>index.indexOf('profile-first-screenshot-restore.css'));
+ assert.ok(idx<index.indexOf('</head>'));
+ assert.ok(idx<index.indexOf('profile-first-screenshot-restore.css'));
  assert.ok(index.includes('pc-compact-scroll-guard-20261011.js?v=20261011-no-auto-scroll-v1'));
  assert.match(index,/pc-unified-navigation-20261011\.js\?v=20261011-unified-compact-footer-v1/);
  assert.match(index,/desktop-shell\.js\?v=20261011-compact-iframe-v1/);
