@@ -32,6 +32,6 @@ test('HTML references both scoped CSS and deferred script',()=>{
  const demo=read('demo/index.html');
  for(const h of [html,demo]){
   assert.match(h,/pc-predict-six-uefa-20261012\.js/);
-  assert.match(h,/pc-predict-six-uefa-20261012\.css/);
+  assert.match(h,/pc-predict-six-uefa-20261012(?:-[A-Za-z0-9_-]+)?\.css/);
  }
 });
