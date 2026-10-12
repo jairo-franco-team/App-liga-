@@ -1,0 +1,94 @@
+/* UEFA-style desktop navigation dropdowns. Scoped to PC class added only
+   when desktop layout is active; no mobile or APK selectors are modified. */
+html.ljpc-unified-pc body #ljpc-unified-pc-header{
+ z-index:800!important;overflow:visible!important;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-nav,
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-nav>.ljpc-u-wrap,
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links{
+ overflow:visible!important;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links>details{
+ position:relative;isolation:isolate;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links>details[open]{
+ z-index:1200;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links>details>summary>span{
+ display:inline-block;color:#45e8ff;opacity:1;transition:transform .16s ease;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links>details[open]>summary>span{
+ transform:rotate(180deg);
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links>details[open]::after{
+ content:"";position:absolute;z-index:1202;top:calc(100% + 5px);left:35px;
+ border-left:10px solid transparent;border-right:10px solid transparent;
+ border-bottom:11px solid #0b0d58;pointer-events:none;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links>details[data-ljpc-u-group="Más"][open]::after{
+ left:auto;right:26px;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-dropdown,
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links>details[data-ljpc-u-group="Más"]>.ljpc-u-dropdown{
+ box-sizing:border-box!important;position:absolute!important;z-index:1201!important;
+ top:calc(100% + 15px)!important;left:-22px!important;right:auto!important;
+ display:flex!important;flex-direction:column!important;gap:0!important;
+ width:clamp(264px,24vw,318px)!important;max-width:calc(100vw - 28px)!important;
+ max-height:min(72vh,570px)!important;padding:0!important;
+ overflow-x:hidden!important;overflow-y:auto!important;
+ overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#3854b3 #0b0d58;
+ border:1px solid #252b83!important;border-top:0!important;
+ border-radius:0 0 25px 25px!important;background:#0b0d58!important;
+ box-shadow:0 20px 35px rgba(0,3,26,.38)!important;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links>details[data-ljpc-u-group="Datos"]>.ljpc-u-dropdown{
+ left:50%!important;transform:translateX(-50%)!important;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links>details[data-ljpc-u-group="Más"]>.ljpc-u-dropdown{
+ left:auto!important;right:0!important;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-dropdown>button,
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links>details[data-ljpc-u-group="Más"]>.ljpc-u-dropdown>button,
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-history-submenu>.ljpc-u-history-child{
+ box-sizing:border-box!important;display:flex!important;align-items:center!important;
+ flex:0 0 auto!important;width:100%!important;min-height:48px!important;
+ padding:11px 18px!important;margin:0!important;text-align:left!important;
+ border:0!important;border-bottom:1px solid rgba(128,145,231,.20)!important;
+ border-radius:0!important;background:transparent!important;color:#fff!important;
+ font:650 13.5px/1.25 Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif!important;
+ white-space:normal!important;cursor:pointer!important;
+ transition:background .14s ease,color .14s ease;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-dropdown>button:last-child,
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-history-submenu>.ljpc-u-history-child:last-child{
+ border-bottom:0!important;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-dropdown>button:hover,
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-dropdown>button:focus-visible,
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-history-submenu>.ljpc-u-history-child:hover{
+ background:#142578!important;color:#63e9ff!important;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-dropdown>.ljpc-u-history-main{
+ justify-content:space-between!important;font-weight:750!important;background:#101265!important;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-history-submenu{
+ display:flex;flex-direction:column;gap:0;background:#0d155e!important;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-history-submenu[hidden]{
+ display:none!important;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-history-submenu>.ljpc-u-history-child{
+ min-height:43px!important;padding-left:30px!important;font-size:12px!important;
+}
+@media(max-width:1120px){
+ html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-dropdown,
+ html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links>details[data-ljpc-u-group="Más"]>.ljpc-u-dropdown{
+  width:260px!important;max-height:66vh!important;
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-dropdown>button,
+ html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links>details>summary>span{
+  transition:none!important;
+ }
+}
