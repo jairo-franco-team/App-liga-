@@ -52,6 +52,11 @@ try{
   function event(type,x){const e=new Event(type,{bubbles:true});Object.defineProperty(e,type==='touchend'?'changedTouches':'touches',{value:[{clientX:x,clientY:350}]});document.querySelector('#screen').dispatchEvent(e)}
   event('touchstart',8);event('touchend',140);
  });await page.waitForTimeout(1100);assert.equal(await page.evaluate(()=>location.hash),'#/more','edge swipe returns to the previous section');
+ // Five individually colored bottom-nav icons, even after other screens render.
+ const rainbow=await page.locator('.bottom-nav .nav-item[data-route] .nav-icon').evaluateAll(nodes=>Object.fromEntries(nodes.map(n=>[n.closest('.nav-item').getAttribute('data-route'),getComputedStyle(n).color])));
+ for(const [route,color] of Object.entries({home:'rgb(255, 93, 131)',competition:'rgb(255, 200, 88)',video:'rgb(87, 239, 163)',fantasy:'rgb(69, 207, 255)',more:'rgb(178, 139, 255)'})){
+  assert.equal(rainbow[route],color,route+' keeps its own rainbow navigation icon color');
+ }
  await go('ligaQR');
  const qr=await page.locator('.v64-qr-frame').boundingBox(),title=await page.locator('.v64-qr-intro').boundingBox();
  assert.ok(title.y+title.height<=qr.y,'QR introduction stays above the code');
