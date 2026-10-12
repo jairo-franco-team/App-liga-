@@ -43,7 +43,7 @@ html.ljpc-unified-pc body.lj-desktop #screen :is(.v60-tool-head,.v562-hero,.v726
  max-width:790px!important;margin:0!important;
 }
 /* JR Control public tools: 7 real buttons, displayed as PC rows in columns. */
-html.ljpc-unified-pc body.lj-desktop[data-app-route="jrControl"] #screen .v60-tool-grid{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="jrControl"],[data-app-route="jr-control"]) #screen .v60-tool-grid{
  display:grid!important;
  width:100%!important;
  max-width:100%!important;
@@ -54,7 +54,7 @@ html.ljpc-unified-pc body.lj-desktop[data-app-route="jrControl"] #screen .v60-to
  gap:10px!important;
  padding:0!important;margin:0!important;
 }
-html.ljpc-unified-pc body.lj-desktop[data-app-route="jrControl"] #screen .v60-tool-grid > .v60-tool-card{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="jrControl"],[data-app-route="jr-control"]) #screen .v60-tool-grid > .v60-tool-card{
  box-sizing:border-box!important;
  display:grid!important;
  grid-template-columns:32px minmax(0,1fr)!important;
@@ -66,22 +66,22 @@ html.ljpc-unified-pc body.lj-desktop[data-app-route="jrControl"] #screen .v60-to
  border-radius:var(--pc-adapt-radius)!important;
  overflow:visible!important;cursor:pointer;
 }
-html.ljpc-unified-pc body.lj-desktop[data-app-route="jrControl"] #screen .v60-tool-grid > .v60-tool-card svg{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="jrControl"],[data-app-route="jr-control"]) #screen .v60-tool-grid > .v60-tool-card svg{
  display:block!important;flex:0 0 26px!important;
  width:24px!important;height:24px!important;max-height:24px!important;
 }
-html.ljpc-unified-pc body.lj-desktop[data-app-route="jrControl"] #screen .v60-tool-grid > .v60-tool-card :is(b,small){
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="jrControl"],[data-app-route="jr-control"]) #screen .v60-tool-grid > .v60-tool-card :is(b,small){
  display:block!important;white-space:normal!important;
  overflow-wrap:break-word!important;
  line-height:1.28!important;
 }
-html.ljpc-unified-pc body.lj-desktop[data-app-route="jrControl"] #screen .v60-tool-grid > .v60-tool-card b{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="jrControl"],[data-app-route="jr-control"]) #screen .v60-tool-grid > .v60-tool-card b{
  font-size:12px!important;font-weight:780!important;
 }
-html.ljpc-unified-pc body.lj-desktop[data-app-route="jrControl"] #screen .v60-tool-grid > .v60-tool-card small{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="jrControl"],[data-app-route="jr-control"]) #screen .v60-tool-grid > .v60-tool-card small{
  font-size:10px!important;margin-top:3px!important;
 }
-html.ljpc-unified-pc body.lj-desktop[data-app-route="jrControl"] #screen .v60-note{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="jrControl"],[data-app-route="jr-control"]) #screen .v60-note{
  margin:12px 0!important;max-width:850px!important;font-size:11px!important;
  line-height:1.5!important;
 }
@@ -179,44 +179,44 @@ html.ljpc-unified-pc body.lj-desktop[data-app-route="leagueTools"] #screen .v726
  font-size:11px!important;line-height:1.25!important;white-space:normal!important;
 }
 /* Liga Control / AdminFut: expand constrained phone-width cards into PC grids. */
-html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control]{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control]{
  width:min(1140px,100%)!important;
  max-width:1140px!important;
  min-width:0!important;height:auto!important;min-height:0!important;
  padding:12px 16px 25px!important;margin:0 auto!important;
 }
-html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-panel{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-panel{
  box-sizing:border-box!important;width:100%!important;max-width:100%!important;
  min-width:0!important;height:auto!important;min-height:0!important;
  margin:0 0 11px!important;padding:12px!important;
  border-radius:10px!important;overflow:visible!important;
 }
-html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-title{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-title{
  margin:0 0 10px!important;min-height:0!important;height:auto!important;
  align-items:center!important;flex-wrap:wrap!important;gap:7px!important;
 }
-html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-title h2{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-title h2{
  font-size:15px!important;line-height:1.2!important;margin:2px 0!important;
 }
-html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-sync-grid{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-sync-grid{
  display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
  gap:8px!important;width:100%!important;min-width:0!important;
 }
-html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-sync-grid > article{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-sync-grid > article{
  min-height:60px!important;height:auto!important;padding:8px 10px!important;
  border-radius:8px!important;
 }
-html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-sync-grid b{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-sync-grid b{
  font-size:16px!important;
 }
-html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-list{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-list{
  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
  grid-auto-flow:row!important;grid-auto-rows:minmax(0,auto)!important;
  align-items:stretch!important;align-content:start!important;
  width:100%!important;max-width:100%!important;min-width:0!important;
  gap:9px!important;margin:0!important;padding:0!important;
 }
-html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-list > button.v562-card{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-list > button.v562-card{
  box-sizing:border-box!important;display:grid!important;
  grid-template-columns:30px minmax(0,1fr) 10px!important;
  align-items:center!important;align-self:stretch!important;
@@ -227,51 +227,51 @@ html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app
  padding:9px 10px!important;margin:0!important;
  border-radius:8px!important;overflow:visible!important;text-align:left!important;
 }
-html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-card .v562-icon{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-card .v562-icon{
  box-sizing:border-box!important;width:28px!important;height:28px!important;
  min-width:28px!important;min-height:28px!important;
  font-size:17px!important;border-radius:7px!important;margin:0!important;
 }
-html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-card .v562-icon svg{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-card .v562-icon svg{
  width:18px!important;height:18px!important;max-width:18px!important;max-height:18px!important;
 }
-html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-card-copy{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-card-copy{
  min-width:0!important;max-width:100%!important;display:block!important;
 }
-html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-card-copy b{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-card-copy b{
  font-size:11.5px!important;line-height:1.25!important;
  white-space:normal!important;
 }
-html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-card-copy small{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-card-copy small{
  font-size:9.5px!important;line-height:1.3!important;
  margin-top:3px!important;white-space:normal!important;
 }
-html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v563-tool-search{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v563-tool-search{
  box-sizing:border-box!important;display:grid!important;
  grid-template-columns:minmax(0,1fr)!important;gap:6px!important;
  width:min(470px,100%)!important;max-width:470px!important;
  min-width:0!important;height:auto!important;min-height:0!important;
  margin:0 0 11px!important;padding:0!important;
 }
-html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v563-tool-search > input{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v563-tool-search > input{
  box-sizing:border-box!important;width:100%!important;max-width:100%!important;
  height:35px!important;min-height:35px!important;
  padding:8px 10px!important;font-size:12px!important;
 }
-html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] :is(.v562-main-actions,.v562-selector){
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] :is(.v562-main-actions,.v562-selector){
  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
  gap:8px!important;
 }
-html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-main-actions button{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-main-actions button{
  min-height:35px!important;height:auto!important;
  padding:8px 10px!important;font-size:11px!important;border-radius:7px!important;
 }
-html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v563-admin-direct:not([hidden]){
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v563-admin-direct:not([hidden]){
  width:100%!important;max-width:100%!important;min-width:0!important;
  margin:13px 0 0!important;padding:12px!important;
  border-radius:10px!important;
 }
-html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] :is(.v563-admin-direct,.v563-management) .v562-list{
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] :is(.v563-admin-direct,.v563-management) .v562-list{
  grid-template-columns:repeat(3,minmax(0,1fr))!important;
 }
 /* Admin modal and editors: PC dialog, aligned inputs, compact buttons.
@@ -375,9 +375,9 @@ html.ljpc-unified-pc body.lj-desktop .liga-media-modal [hidden]{
 }
 /* Tablet widths when the user forces desktop mode in a narrow browser. */
 @media(max-width:1020px){
- html.ljpc-unified-pc body.lj-desktop[data-app-route="jrControl"] #screen .v60-tool-grid,
+ html.ljpc-unified-pc body.lj-desktop:is([data-app-route="jrControl"],[data-app-route="jr-control"]) #screen .v60-tool-grid,
  html.ljpc-unified-pc body.lj-desktop[data-app-route="leagueTools"] #screen :is(.v726-quick-grid,.v726-tool-grid),
- html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-list,
+ html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-list,
  html.ljpc-unified-pc body.lj-desktop .liga-media-modal > section.ljr-admin-manage .ljr-admin-action-grid,
  html.ljpc-unified-pc body.lj-desktop .ljpc-mas-uefa :is(.ljpc-mas-tiles,.ljpc-mas-clubs,.ljpc-mas-video-grid){
   grid-template-columns:repeat(2,minmax(0,1fr))!important;
@@ -387,9 +387,9 @@ html.ljpc-unified-pc body.lj-desktop .liga-media-modal [hidden]{
  html.ljpc-unified-pc body.lj-desktop #screen :is(.v60-tool-page,.v726-tools-page,.v562-page){
   width:100%!important;padding:8px 9px 18px!important;
  }
- html.ljpc-unified-pc body.lj-desktop[data-app-route="jrControl"] #screen .v60-tool-grid,
+ html.ljpc-unified-pc body.lj-desktop:is([data-app-route="jrControl"],[data-app-route="jr-control"]) #screen .v60-tool-grid,
  html.ljpc-unified-pc body.lj-desktop[data-app-route="leagueTools"] #screen .v726-tool-grid,
- html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-list{
+ html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-list{
   grid-template-columns:1fr!important;
  }
  html.ljpc-unified-pc body.lj-desktop .liga-media-modal > section.ljr-admin-manage .ljr-admin-action-grid,
@@ -410,52 +410,123 @@ html.ljpc-unified-pc body.lj-desktop .liga-media-modal [hidden]{
  * captured-design & reference-surfaces layers. Reflow here in those layers
  * as well; preserve the same interactive DOM, attributes, visibility gates. */
 @layer ljr-reference-surfaces{
- html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control]{
+ html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control]{
   width:min(1140px,100%)!important;max-width:1140px!important;
   padding:12px 16px 25px!important;min-height:0!important;height:auto!important;
  }
- html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-list{
+ html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-list{
   display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
   gap:9px!important;width:100%!important;
  }
- html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-list > button.v562-card{
+ html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-list > button.v562-card{
   display:grid!important;grid-template-columns:30px minmax(0,1fr) 10px!important;
   height:auto!important;min-height:57px!important;max-height:none!important;
   padding:9px 10px!important;border-radius:8px!important;
  }
  @media(max-width:1020px){
-  html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-list{
+  html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-list{
    grid-template-columns:repeat(2,minmax(0,1fr))!important;
   }
  }
  @media(max-width:620px){
-  html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-list{
+  html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-list{
    grid-template-columns:1fr!important;
   }
  }
 }
 @layer ljr-captured-design{
- html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control]{
+ html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control]{
   width:min(1140px,100%)!important;max-width:1140px!important;
   padding:12px 16px 25px!important;min-height:0!important;height:auto!important;
  }
- html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-list{
+ html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-list{
   display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
   gap:9px!important;
  }
- html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-list > button.v562-card{
+ html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-list > button.v562-card{
   display:grid!important;grid-template-columns:30px minmax(0,1fr) 10px!important;
   height:auto!important;min-height:57px!important;max-height:none!important;
   padding:9px 10px!important;border-radius:8px!important;
  }
  @media(max-width:1020px){
-  html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-list{
+  html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-list{
    grid-template-columns:repeat(2,minmax(0,1fr))!important;
   }
  }
  @media(max-width:620px){
-  html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"]) #screen#screen .v562-page[data-v563-control] .v562-list{
+  html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-list{
    grid-template-columns:1fr!important;
   }
+ }
+}
+
+/* PC tools dashboard: use available width; no mobile-sized oversized buttons. */
+html.ljpc-unified-pc body.lj-desktop #screen .ljpc-toolhub{
+ width:min(1160px,100%)!important;
+ max-width:1160px!important;min-width:0!important;
+ margin:0 auto!important;padding:10px 10px 20px!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .ljpc-toolhub :is(.ljpc-hub-group,.ljpc-hub-head){
+ width:100%!important;min-width:0!important;max-width:100%!important;
+ height:auto!important;min-height:0!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .ljpc-toolhub .ljpc-hub-group{
+ margin:0 0 14px!important;padding:12px!important;border-radius:10px!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .ljpc-toolhub .ljpc-hub-grid{
+ display:grid!important;
+ grid-template-columns:repeat(4,minmax(0,1fr))!important;
+ grid-auto-rows:minmax(0,auto)!important;
+ width:100%!important;min-width:0!important;max-width:100%!important;
+ align-items:stretch!important;align-content:start!important;gap:8px!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .ljpc-toolhub .ljpc-hub-btn{
+ box-sizing:border-box!important;
+ display:grid!important;grid-template-columns:25px minmax(0,1fr)!important;
+ gap:8px!important;align-items:center!important;text-align:left!important;
+ min-height:53px!important;height:auto!important;width:100%!important;
+ min-width:0!important;max-width:100%!important;
+ padding:8px 10px!important;margin:0!important;border-radius:8px!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .ljpc-toolhub .ljpc-hub-btn>span:first-child{
+ font-size:19px!important;line-height:1!important;
+ width:23px!important;min-width:23px!important;
+ overflow:visible!important;text-align:center!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .ljpc-toolhub .ljpc-hub-btn .ljpc-hub-copy{
+ display:flex!important;flex-direction:column!important;
+ min-width:0!important;max-width:100%!important;gap:2px!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .ljpc-toolhub .ljpc-hub-btn b{
+ font-size:11.5px!important;line-height:1.25!important;
+ white-space:normal!important;overflow-wrap:break-word!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .ljpc-toolhub .ljpc-hub-btn small{
+ font-size:9.5px!important;line-height:1.3!important;
+ white-space:normal!important;overflow-wrap:break-word!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .ljpc-toolhub .ljpc-hub-controls{
+ display:flex!important;align-items:center!important;flex-wrap:wrap!important;
+ gap:8px!important;width:100%!important;min-width:0!important;
+ margin:8px 0 14px!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .ljpc-toolhub .ljpc-hub-controls input{
+ box-sizing:border-box!important;height:34px!important;min-height:34px!important;
+ max-width:500px!important;min-width:150px!important;width:min(500px,100%)!important;
+ padding:7px 10px!important;font-size:12px!important;border-radius:7px!important;
+}
+@media(max-width:1080px){
+ html.ljpc-unified-pc body.lj-desktop #screen .ljpc-toolhub .ljpc-hub-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ }
+}
+@media(max-width:760px){
+ html.ljpc-unified-pc body.lj-desktop #screen .ljpc-toolhub .ljpc-hub-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ }
+}
+@media(max-width:475px){
+ html.ljpc-unified-pc body.lj-desktop #screen .ljpc-toolhub .ljpc-hub-grid{
+  grid-template-columns:1fr!important;
  }
 }
