@@ -61,3 +61,13 @@ test('vertical gestures are batched once per animation frame',()=>{
  assert.match(html,/queueVerticalPan\(e\.deltaY\)/);
  assert.match(shell,/scrollDesktopFlow\(dy\)/);
 });
+
+test('forced PC mode on Android unlocks the mobile 100dvh overflow lock',()=>{
+ const mobileScrollCss=fs.readFileSync(new URL('../src/v768-scroll-chrome.css',import.meta.url),'utf8');
+ assert.match(mobileScrollCss,/@media\(max-width:1023px\)/);
+ assert.match(mobileScrollCss,/height:100dvh!important/);
+ assert.match(css,/@media\(max-width:1023px\)/);
+ assert.match(css,/html\.ljpc-unified-pc:has\(body\.lj-desktop\.ljpc-independent-finish\)/);
+ assert.match(css,/overflow-x:hidden!important;overflow-y:auto!important/);
+ assert.match(css,/overflow-x:hidden!important;overflow-y:visible!important/);
+});
