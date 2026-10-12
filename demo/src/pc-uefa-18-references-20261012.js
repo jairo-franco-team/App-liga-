@@ -84,28 +84,46 @@ function dateLabel(k){
  const d=new Date(k+'T12:00:00');
  return new Intl.DateTimeFormat('es-MX',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(d);
 }
+
+function fixtureIcon(k){
+ const d={bell:'M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9 M10 21h4',calendar:'M3 5h18v16H3z M7 3v4 M17 3v4 M3 10h18 M12 13v5 M9.5 15.5h5',filter:'M4 6h16 M7 12h10 M10 18h4',prev:'m15 18-6-6 6-6',next:'m9 18 6-6-6-6'};
+ return '<svg class="u18fx-icon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+d[k]+'"/></svg>';
+}
 function dateNav(list){
- const keys=[...new Set(list.filter(m=>m.day).map(m=>m.day))].sort().slice(-18);
- return '<div class="u18-datebar" aria-label="Fechas de partido"><button type="button" data-u18-day="" class="'+(!state.chosenDays.length?'selected':'')+'">Todas</button>'+
- keys.map(k=>'<button type="button" data-u18-day="'+k+'" class="'+(state.chosenDays.includes(k)?'selected':'')+'">'+
- escape(new Intl.DateTimeFormat('es-MX',{day:'2-digit',month:'short'}).format(new Date(k+'T12:00:00')))+'</button>').join('')+'</div>';
+ const dates=[...new Set(list.filter(x=>x.day).map(x=>x.day))].sort();
+ const active=state.chosenDays[0]||'';
+ const label=d=>new Intl.DateTimeFormat('es-MX',{weekday:'short',day:'numeric',month:'short'}).format(new Date(d+'T12:00:00'));
+ return '<nav class="u18fx-dates" aria-label="Fechas de partido"><button type="button" class="u18fx-arrow" data-u18-date-shift="-1" aria-label="Anterior">'+fixtureIcon('prev')+'</button>'+
+ '<div class="u18fx-date-scroll"><button type="button" data-u18-day="" class="u18fx-date'+(!active?' selected':'')+'" aria-pressed="'+(!active)+'">Todas las fechas</button>'+
+ dates.map(k=>'<button type="button" data-u18-day="'+k+'" class="u18fx-date'+(active===k?' selected':'')+'" aria-pressed="'+(active===k)+'">'+escape(label(k))+'</button>').join('')+'</div>'+
+ '<button type="button" class="u18fx-arrow" data-u18-date-shift="1" aria-label="Siguiente">'+fixtureIcon('next')+'</button></nav>';
 }
 function eventCards(){
  let rows=fixtures();
  if(state.fixtureType==='upcoming')rows=rows.filter(m=>!m.played&&!m.decision?.winner);
  if(state.fixtureType==='results')rows=rows.filter(m=>m.played||m.decision?.winner);
  if(state.chosenDays.length)rows=rows.filter(m=>state.chosenDays.includes(m.day));
- if(!state.chosenDays.length)rows=state.fixtureType==='upcoming'?rows.slice(0,50):rows.slice(-80).reverse();
- const groups=new Map();
- rows.forEach(m=>{const key=m.day||'unknown';if(!groups.has(key))groups.set(key,[]);groups.get(key).push(m);});
+ else rows=rows.slice(-90);
  if(!rows.length)return '<div class="u18-empty-state">No hay partidos publicados con estos filtros. Selecciona otra categoría o fecha.</div>';
- return [...groups].map(([day,games])=>'<section class="u18-matchday"><div class="u18-daycopy"><small>'+escape(dateLabel(day))+'</small><h3>'+escape(games[0]?.round?'Jornada '+games[0].round:'Partidos')+'</h3><span>'+escape(CAT[state.cat])+' · '+games.length+' encuentros</span></div>'+
- '<div class="u18-fixturegrid">'+games.map(m=>'<article class="u18-matchcard"><div class="u18-matchmeta">'+escape(m.venue||'Sede por confirmar')+
- ' · '+escape(m.time||'Horario por confirmar')+'</div><div class="u18-matchteams">'+crest(m.home)+'<span>'+escape(m.home)+'</span>'+
- '<b>'+escape(m.played?m.hs+' : '+m.as:'— : —')+'</b><span>'+escape(m.away)+'</span>'+crest(m.away)+'</div>'+
- (m.decision?.winner?'<small class="u18-decision">Resolución administrativa: '+escape(m.decision.winner)+'</small>':
- '<small class="u18-decision">'+(m.played?'Resultado registrado':'Programado · pendiente de resultado')+'</small>')+
- '</article>').join('')+'</div></section>').join('');
+ const groups=new Map();
+ rows.forEach(m=>{const k=m.day||'unknown';if(!groups.has(k))groups.set(k,[]);groups.get(k).push(m);});
+ return [...groups].map(([day,games])=>'<section class="u18fx-matchday">'+
+ '<div class="u18fx-dayhead"><h2>'+escape(dateLabel(day))+'</h2><p>'+escape(CAT[state.cat])+
+ (games[0]?.round?' · Jornada '+escape(games[0].round):'')+'</p></div>'+
+ '<div class="u18fx-grid">'+games.map(m=>{
+ const status=m.decision?.winner?'Resolución':m.played?'Final':'Programado';
+ return '<article class="u18fx-card">'+
+ '<div class="u18fx-card-caption">'+escape(m.venue||'Sede por confirmar')+' · '+escape(m.time||'Horario por confirmar')+'</div>'+
+ '<div class="u18fx-card-main"><div class="u18fx-team-lines">'+
+ '<div class="u18fx-team-line">'+crest(m.home)+'<span title="'+escape(m.home)+'">'+escape(m.home)+'</span></div>'+
+ '<div class="u18fx-team-line">'+crest(m.away)+'<span title="'+escape(m.away)+'">'+escape(m.away)+'</span></div></div>'+
+ '<div class="u18fx-scores"><strong>'+escape(m.played?m.hs:'–')+'</strong><strong>'+escape(m.played?m.as:'–')+'</strong></div>'+
+ '<div class="u18fx-result"><span>'+status+'</span>'+
+ '<button type="button" data-u18-open-match="'+escape(m.id)+'">Ver detalles</button></div></div>'+
+ (m.decision?.winner?'<div class="u18fx-footnote">Resolución administrativa · '+escape(m.decision.winner)+'</div>':
+ !m.played?'<div class="u18fx-footnote">Pendiente de resultado</div>':'')+
+ '</article>';
+ }).join('')+'</div></section>').join('');
 }
 function bracket(){
  return '<div class="u18-bracket"><div class="u18-brackethead"><h2>Fase eliminatoria</h2><p>La visualización del cuadro utiliza únicamente cruces oficiales publicados; no completa equipos ni marcadores faltantes.</p></div>'+
@@ -116,18 +134,23 @@ function bracket(){
 }
 function fixturesPage(){
  const f=fixtures();
- const actions='<div class="u18-controls"><div class="u18-controls-left">'+catSelect()+'</div>'+
- '<div class="u18-controls-right"><button data-u18-go="pc-notifications">Notificaciones ◉</button>'+
- '<button data-u18-modal="calendar">Añadir al calendario ▦</button><button class="u18-accent" data-u18-modal="filter">Filtrar ▾</button></div></div>';
- const filter=state.filterOpen||state.calendarOpen?'<div class="u18-modal-layer" data-u18-dismiss><div class="u18-modal" role="dialog" aria-modal="true" aria-label="'+(state.filterOpen?'Filtrar partidos':'Añadir al calendario')+'">'+
+ const nav=[['pc-fixtures','Partidos'],['pc-standings','Clasificación'],['video','Liga TV'],['pc-draws','Sorteos'],['fantasy','Gaming'],['pc-data','Datos'],['more','Más']];
+ const navigation='<nav class="u18fx-nav" aria-label="Navegación de PC"><div class="u18fx-nav-inner"><div class="u18fx-brand"><b>LJR</b><span>LIGA<br>JUVENTINO ROSAS</span></div><div class="u18fx-navlinks">'+nav.map(([key,label])=>'<button type="button" data-u18-go="'+key+'"'+(key==='pc-fixtures'?' class="selected"':'')+'>'+label+'</button>').join('')+'</div></div></nav>';
+ const tabs='<div class="u18fx-tabwrap"><div class="u18fx-switch">'+pills([['matches','Partidos y resultados'],['bracket','Ver cuadro']],state.fixturesTab,'data-u18-fixture-tab')+'</div><div class="u18fx-cat">'+catSelect()+'</div></div>';
+ const actions='<div class="u18fx-titlebar"><h1>Partidos y resultados</h1><div class="u18fx-actions">'+
+ '<button type="button" data-u18-go="pc-notifications">Notificaciones '+fixtureIcon('bell')+'</button>'+
+ '<button type="button" data-u18-modal="calendar">Añadir al calendario '+fixtureIcon('calendar')+'</button>'+
+ '<button type="button" data-u18-modal="filter">Filtrar '+fixtureIcon('filter')+'</button></div></div>';
+ const modal=state.filterOpen||state.calendarOpen?'<div class="u18-modal-layer" data-u18-dismiss><div class="u18-modal" role="dialog" aria-modal="true" aria-label="'+(state.filterOpen?'Filtrar partidos':'Añadir al calendario')+'">'+
  '<div class="u18-modal-title"><h3>'+(state.filterOpen?'Filtrar':'Añadir al calendario')+'</h3><button type="button" data-u18-modal="close" aria-label="Cerrar">×</button></div>'+
- '<p>'+(state.filterOpen?'Ordenar encuentros y elegir el tipo de partidos que quieres ver.':'Selecciona un encuentro de la fuente oficial para añadirlo a tu calendario.')+'</p>'+
- (state.filterOpen?'<div class="u18-radio">'+pills([['all','Todos'],['upcoming','Próximos'],['results','Resultados']],state.fixtureType,'data-u18-filter')+'</div>':
+ '<p>'+(state.filterOpen?'Elige los partidos que quieres ver.':'Selecciona un encuentro oficial para añadirlo a tu calendario.')+'</p>'+
+ (state.filterOpen?'<div class="u18-radio">'+pills([['all','Todos'],['upcoming','Próximos'],['results','Resultados']],state.fixtureType,'data-u18-filter')+'</div><div class="u18fx-modal-cat">'+catSelect()+'</div>':
  '<div class="u18-modal-list">'+f.filter(x=>x.date&&!x.played).slice(0,24).map(x=>'<button data-u18-calendar="'+escape(x.id)+'">'+crest(x.home)+'<span>'+escape(x.home)+' - '+escape(x.away)+'<small>'+escape(dateLabel(x.day)+' · '+x.time)+'</small></span></button>').join('')+'</div>')+
  '<footer><button class="u18-button" data-u18-modal="close">Cerrar</button></footer></div></div>':'';
- const tabs='<div class="u18-switch">'+pills([['matches','Partidos y resultados'],['bracket','Ver cuadro']],state.fixturesTab,'data-u18-fixture-tab')+'</div>';
- return shell('Partidos y resultados',CAT[state.cat],tabs+actions+
- (state.fixturesTab==='matches'?dateNav(f)+eventCards():bracket())+filter);
+ return '<section class="u18-page u18fx-page" aria-label="Partidos y resultados"><header class="u18fx-hero">'+navigation+
+ '<div class="u18-bound">'+tabs+actions+'</div>'+dateNav(f)+'</header>'+
+ '<main class="u18-bound u18fx-content">'+(state.fixturesTab==='matches'?eventCards():bracket())+
+ '<details class="u18-original"'+(state.showClassic?' open':'')+'><summary>Ver herramientas originales de esta sección</summary><p>La información original de la Liga permanece disponible.</p></details></main>'+modal+'</section>';
 }
 function standingsTable(rows,simulated=false){
  let data=rows.slice();
@@ -309,6 +332,27 @@ function localClick(e){
   return;
  }
  if(d.u18FixtureTab){state.fixturesTab=d.u18FixtureTab;repaint();return;}
+ if(d.u18DateShift!==undefined){
+  const days=[...new Set(fixtures().filter(m=>m.day).map(m=>m.day))].sort();
+  if(!days.length)return;
+  const at=days.indexOf(state.chosenDays[0]);
+  const step=Number(d.u18DateShift)<0?-1:1;
+  const next=at<0?(step<0?days.length-1:0):Math.min(days.length-1,Math.max(0,at+step));
+  state.chosenDays=[days[next]];repaint();return;
+ }
+ if(d.u18OpenMatch){
+  const m=fixtures().find(x=>x.id===d.u18OpenMatch);if(!m)return;
+  try{sessionStorage.setItem('lj-match-detail',JSON.stringify({
+   id:m.id,from:'#/pc-fixtures',home:m.home,away:m.away,
+   date:m.day?m.day.split('-').reverse().join('/'):'',time:m.time,
+   venue:m.venue,category:CAT[state.cat],jornada:'Jornada '+m.round
+  }));}catch(_){}
+  if(typeof window.LJR_MATCH_CENTER?.open==='function'){
+   try{window.LJR_MATCH_CENTER.open(m.id);return;}catch(_){}
+  }
+  go('matchCenter');return;
+ }
+
  if(d.u18StandTab){state.standTab=d.u18StandTab;repaint();return;}
  if(d.u18DrawTab){state.drawTab=d.u18DrawTab;repaint();return;}
  if(d.u18VideoTab){state.videoTab=d.u18VideoTab;repaint();return;}
