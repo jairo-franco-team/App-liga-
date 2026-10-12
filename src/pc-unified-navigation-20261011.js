@@ -165,6 +165,11 @@ function sync(){
  }
  if(!document.getElementById('ljpc-unified-pc-footer'))
   screen.insertAdjacentHTML('afterend',footerMarkup());
+ // Todos los módulos originales se montan de forma asíncrona. El pie único
+ // pertenece al documento DESPUÉS de #app, nunca entre la portada y sus
+ // funciones nativas: conservar el nodo preserva listeners y enlaces.
+ const footer=document.getElementById('ljpc-unified-pc-footer');
+ if(footer&&footer.parentElement!==document.body)document.body.appendChild(footer);
  selectNav();
  updateFrame();
 }
