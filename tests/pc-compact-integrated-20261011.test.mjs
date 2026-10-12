@@ -45,7 +45,7 @@ test('Compact stylesheet loads after desktop editorial and before mobile profile
  assert.ok(idx<index.indexOf('profile-first-screenshot-restore.css'));
  assert.ok(index.includes('pc-compact-scroll-guard-20261011.js?v=20261011-no-auto-scroll-v1'));
  assert.match(index,/pc-unified-navigation-20261011\.js\?v=[a-z0-9._-]+(?:&[a-z0-9._-]+=[a-z0-9._-]+)*/i);
- assert.match(index,/desktop-shell\.js\?v=20261011-(?:compact-iframe-v1|carousel-scroll-v2|tight-layout-v3)/);
+ assert.match(index,/desktop-shell\.js\?v=20261011-(?:compact-iframe-v1|carousel-scroll-v2|tight-layout-v3)(?:&[a-z0-9_-]+=[a-z0-9_-]+)*/i);
 });
 function runGuard(mode,gesture){
  const handlers={};const scroll=[];
