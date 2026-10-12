@@ -158,3 +158,44 @@ html.ljpc-unified-pc body #ljpc-unified-pc-header
  background:#091344!important;
  border-left:2px solid #2da8ed!important;
 }
+
+
+/* Corrección PC 12/10: top-layer para menús recortados por overflow-x:auto.
+   Popover sólo se activa cuando la navegación es horizontalmente desplazable.
+   Conserva las mismas fuentes, color azul y tamaño de botones del desplegable. */
+html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header
+ .ljpc-u-links>details[open]>.ljpc-u-dropdown:popover-open,
+html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header
+ .ljpc-u-links>details[open]>.ljpc-u-dropdown.ljpc-u-popup-fallback {
+ position:fixed!important;
+ inset:auto!important;
+ top:var(--ljpc-u-popup-top,60px)!important;
+ left:var(--ljpc-u-popup-left,12px)!important;
+ right:auto!important;
+ bottom:auto!important;
+ transform:none!important;
+ margin:0!important;
+ width:var(--ljpc-u-popup-width,300px)!important;
+ max-width:calc(100vw - 24px)!important;
+ max-height:var(--ljpc-u-popup-max-height,65vh)!important;
+ z-index:2147483647!important;
+ display:flex!important;
+ visibility:visible!important;
+ opacity:1!important;
+ pointer-events:auto!important;
+ overflow-x:hidden!important;
+ overflow-y:auto!important;
+ background:#0b0d58!important;
+ border:1px solid #252b83!important;
+ border-radius:0 0 25px 25px!important;
+ box-shadow:0 20px 35px rgba(0,3,26,.38)!important;
+}
+html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header
+ .ljpc-u-links>details[open]>.ljpc-u-dropdown:popover-open::backdrop{
+ background:transparent!important;
+ pointer-events:none!important;
+}
+html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header
+ .ljpc-u-links>details[open]:has(>.ljpc-u-dropdown:popover-open)::after{
+ display:none!important;
+}
