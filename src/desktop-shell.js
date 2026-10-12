@@ -85,10 +85,25 @@ function syncPCExactFixtures(){
  if(!frame?.contentWindow)return;
  frame.contentWindow.postMessage({ljpcExact:true,kind:'fixtures',fixtures:pcExactFixtures()},location.origin);
 }
+/* El encabezado neón pertenece al móvil. En PC sólo se conserva la cabecera
+ * #ljpc-unified-pc-header y su barra funcional de navegación/partidos. */
+function hideNativeMobileHeader(){
+ if(!desktop())return;
+ const topbar=document.querySelector('#app > header.topbar');
+ if(!topbar)return;
+ topbar.style.setProperty('display','none','important');
+ topbar.style.setProperty('height','0px','important');
+ topbar.style.setProperty('min-height','0px','important');
+ topbar.style.setProperty('max-height','0px','important');
+ topbar.style.setProperty('visibility','hidden','important');
+ topbar.setAttribute('aria-hidden','true');
+ topbar.inert=true;
+}
 function render(){
  if(!desktop())return;
  document.body.classList.add('lj-desktop');
  document.documentElement.classList.toggle('ljpc-forced-desktop',mode()==='desktop');
+ hideNativeMobileHeader();
  const h=host();if(!h)return;
  const r=route();
  if(window.LJR_PC_NATIVE_ROUTES?.has(r))return;
