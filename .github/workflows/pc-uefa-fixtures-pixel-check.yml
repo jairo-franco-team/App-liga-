@@ -7,6 +7,8 @@ on:
       - "index.html"
       - "src/pc-uefa-18-references-20261012.js"
       - "src/pc-uefa-fixtures-pixel-20261012.css"
+      - "src/pc-independent-finish-20261011.js"
+      - "src/pc-footer-flow-columns-20261012.js"
       - "tests/pc-uefa-fixtures-pixel-20261012.test.mjs"
       - ".github/workflows/pc-uefa-fixtures-pixel-check.yml"
   pull_request:
@@ -14,6 +16,8 @@ on:
       - "index.html"
       - "src/pc-uefa-18-references-20261012.js"
       - "src/pc-uefa-fixtures-pixel-20261012.css"
+      - "src/pc-independent-finish-20261011.js"
+      - "src/pc-footer-flow-columns-20261012.js"
       - "tests/pc-uefa-fixtures-pixel-20261012.test.mjs"
   workflow_dispatch:
 
