@@ -40,6 +40,79 @@ html,body,#root{background:#040c1c!important;color:#f4f8ff}
 }
 #root .ucl [data-name="sponsors band"]{background:#0a2842!important;color:#e0f3ff!important}
 </style>
+
+<style id="ljpc-pc-story-rail-fix">
+/* Únicamente HTML de portada PC, aislado del modo móvil y APK. */
+html,body{height:auto!important;min-height:0!important;overscroll-behavior-y:auto!important}
+#root .ucl [data-name="hero and content section"]{
+ background:
+ radial-gradient(520px 270px at 0% 14%,rgba(13,161,104,.34),transparent 80%),
+ radial-gradient(550px 290px at 98% 12%,rgba(24,97,207,.37),transparent 80%),
+ linear-gradient(120deg,#082756 0%,#082765 52%,#071c4c 100%)!important;
+}
+#root .ucl [data-name="stories list container"]{
+ width:min(100%,1090px)!important;margin-top:7px!important;margin-bottom:0!important;
+ padding-top:4px!important;padding-bottom:6px!important;gap:8px!important;
+}
+#root .ucl [data-name="stories wrapper"]{
+ display:flex!important;flex:1 1 auto!important;min-width:0!important;
+ max-width:950px!important;justify-content:flex-start!important;
+ align-items:flex-start!important;gap:14px!important;
+ overflow-x:auto!important;overflow-y:hidden!important;
+ padding:3px 6px 7px!important;scrollbar-width:none!important;
+ scroll-snap-type:x proximity;overscroll-behavior-x:contain;
+ -webkit-overflow-scrolling:touch;touch-action:pan-x pan-y;
+}
+#root .ucl [data-name="stories wrapper"]::-webkit-scrollbar,
+#root .ucl [data-name="match cards list"]::-webkit-scrollbar{display:none!important}
+#root .ucl [data-name="stories wrapper"] > a{
+ flex:0 0 89px!important;width:89px!important;min-width:89px!important;
+ max-width:89px!important;scroll-snap-align:start!important;
+ text-decoration:none!important;color:#edf7ff!important;
+}
+#root .ucl [data-name="story ring"]{
+ width:65px!important;height:65px!important;
+ background:linear-gradient(135deg,#42e7ec,#247af1 60%,#0b3382)!important;
+ box-shadow:0 0 0 1px rgba(119,205,249,.32)!important;
+}
+#root .ucl [data-name="story ring"] img{width:100%!important;height:100%!important;object-fit:cover!important}
+#root .ucl [data-name="stories list container"] > button{
+ flex:0 0 30px!important;width:30px!important;height:30px!important;
+ min-width:30px!important;padding:0!important;border-radius:50%!important;
+ border:1px solid #43dfea!important;color:#dcfaff!important;
+ background:#0e3b86!important;cursor:pointer!important;
+ display:grid!important;place-items:center!important;
+ box-shadow:0 0 0 1px rgba(37,165,218,.12)!important;
+}
+#root .ucl [data-name="stories list container"] > button:disabled,
+#root .ucl [data-name="fixtures strip container"] button:disabled{
+ opacity:.45!important;cursor:default!important
+}
+#root .ucl [data-name="stories list container"] > button:not(:disabled):hover{
+ background:#1466b7!important;border-color:#7df7ff!important;
+}
+#root .ucl [data-name="stories list container"] > button:focus-visible{
+ outline:2px solid #a7f7ff!important;outline-offset:3px!important
+}
+#root .ucl [data-name="responsible gambling banner wrapper"]{
+ margin-top:9px!important;margin-bottom:0!important
+}
+#root .ucl [data-name="hero section container"]{
+ margin-top:12px!important;padding-bottom:13px!important
+}
+#root .ucl [data-name="match cards list"]{
+ overflow-x:auto!important;overflow-y:hidden!important;
+ scroll-behavior:smooth;scrollbar-width:none!important;
+ max-width:670px!important;overscroll-behavior-x:contain;
+ -webkit-overflow-scrolling:touch;touch-action:pan-x pan-y;
+}
+#root .ucl [data-name="match cards list"] > *{flex-shrink:0!important}
+@media(prefers-reduced-motion:reduce){
+ #root .ucl [data-name="stories wrapper"],#root .ucl [data-name="match cards list"]{
+  scroll-behavior:auto!important;scroll-snap-type:none!important
+ }
+}
+</style>
 </head><body>
   <div id="root"><style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
@@ -1332,4 +1405,89 @@ if(window.ResizeObserver)new ResizeObserver(requestHeight).observe(document.body
 document.querySelectorAll('img').forEach(i=>i.addEventListener('load',requestHeight,{once:true}));
 requestHeight();
 })();
-</script></body></html>
+</script>
+<script id="ljpc-story-fixtures-interaction">
+/* Flechas, rueda, ratón y deslizamiento táctil de carruseles PC.
+   La página móvil es distinta y NO carga este archivo. */
+(function(){
+'use strict';
+const origin=location.origin;
+const byName=name=>document.querySelector('[data-name="'+name+'"]');
+const rails=[
+ {element:'stories wrapper',prev:'previous story button',next:'next story button'},
+ {element:'match cards list',prev:'previous fixtures button',next:'next fixtures button'}
+];
+function smooth(){return !(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)}
+function setupRail(config){
+ const list=byName(config.element),prev=byName(config.prev),next=byName(config.next);
+ if(!list||!prev||!next)return;
+ const status=()=>{
+  const maximum=Math.max(0,list.scrollWidth-list.clientWidth);
+  prev.disabled=list.scrollLeft<=2||maximum<=2;
+  next.disabled=list.scrollLeft>=maximum-2||maximum<=2;
+  prev.setAttribute('aria-label','Deslizar a la izquierda');
+  next.setAttribute('aria-label','Deslizar a la derecha');
+ };
+ const move=direction=>{
+  const child=list.querySelector(':scope > *');
+  const step=child?Math.max(child.getBoundingClientRect().width+14,list.clientWidth*.72):list.clientWidth*.72;
+  list.scrollBy({left:direction*step,behavior:smooth()?'smooth':'auto'});
+  requestAnimationFrame(status);
+ };
+ prev.addEventListener('click',()=>move(-1));
+ next.addEventListener('click',()=>move(1));
+ list.addEventListener('scroll',status,{passive:true});
+ window.addEventListener('resize',status);
+ // Ratón puede agarrar y arrastrar; táctil utiliza scroll horizontal nativo.
+ let pointer=null;let draggedUntil=0;
+ list.addEventListener('pointerdown',e=>{
+  if(e.pointerType!=='mouse'||e.button!==0)return;
+  pointer={id:e.pointerId,x:e.clientX,initial:list.scrollLeft,moved:false};
+ });
+ list.addEventListener('pointermove',e=>{
+  if(!pointer||pointer.id!==e.pointerId)return;
+  const delta=e.clientX-pointer.x;
+  if(Math.abs(delta)>5)pointer.moved=true;
+  if(pointer.moved){list.scrollLeft=pointer.initial-delta;e.preventDefault();}
+ });
+ const finish=()=>{if(pointer?.moved)draggedUntil=performance.now()+350;pointer=null};
+ list.addEventListener('pointerup',finish);
+ list.addEventListener('pointercancel',finish);
+ list.addEventListener('pointerleave',finish);
+ list.addEventListener('click',e=>{
+  if(performance.now()<draggedUntil){e.preventDefault();e.stopPropagation();}
+ },true);
+ if(window.ResizeObserver)new ResizeObserver(status).observe(list);
+ status();
+}
+rails.forEach(setupRail);
+// Chrome Android en "Sitio para computadora": el iframe está ajustado a su
+// altura, así que reenviamos el gesto vertical al documento PC exterior.
+let contact=null;
+document.addEventListener('touchstart',e=>{
+ if(e.touches.length!==1)return;
+ const t=e.touches[0];contact={x:t.clientX,y:t.clientY};
+},{passive:true});
+document.addEventListener('touchmove',e=>{
+ if(!contact||e.touches.length!==1||window.parent===window)return;
+ const t=e.touches[0],dx=t.clientX-contact.x,dy=t.clientY-contact.y;
+ if(Math.abs(dy)>2&&Math.abs(dy)>Math.abs(dx)*1.15){
+  e.preventDefault();
+  window.parent.postMessage({ljpcExact:true,kind:'pan',dy:-dy},origin);
+  contact={x:t.clientX,y:t.clientY};
+ }
+},{passive:false});
+document.addEventListener('touchend',()=>{contact=null},{passive:true});
+document.addEventListener('touchcancel',()=>{contact=null},{passive:true});
+document.addEventListener('wheel',e=>{
+ if(window.parent===window)return;
+ if(e.shiftKey&&Math.abs(e.deltaX)>0)return;
+ // Rueda vertical dentro del iframe debe desplazar también toda la portada.
+ if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){
+  e.preventDefault();
+  window.parent.postMessage({ljpcExact:true,kind:'pan',dy:Math.max(-250,Math.min(250,e.deltaY))},origin);
+ }
+},{passive:false});
+})();
+</script>
+</body></html>
