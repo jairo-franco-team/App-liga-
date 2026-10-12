@@ -352,3 +352,26 @@ html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen :is(
 ){
   box-sizing:border-box!important;
 }
+
+/* PC REPARACIÓN: el iframe ya contiene Inicio completo.
+   Los módulos nativos se siguen montando en #screen por scripts antiguos;
+   provocaban doble página, cientos de nodos pintados y desplazamiento pesado.
+   Ocultarlos SOLAMENTE mientras exista el Inicio PC evita duplicados sin
+   tocar rutas, datos, APK, móvil ni el propio iframe. */
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen:has(> #ljpc-exact-html-home) > :not(#ljpc-exact-html-home) {
+  display:none!important;
+  visibility:hidden!important;
+  contain:strict!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen:has(> #ljpc-exact-html-home) {
+  gap:0!important;
+  padding:0!important;
+  max-width:100%!important;
+  background:#f2f3f7!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen > #ljpc-exact-html-home{
+  order:0!important;
+  flex:0 0 auto!important;
+  max-width:100%!important;
+  margin:0!important;
+}
