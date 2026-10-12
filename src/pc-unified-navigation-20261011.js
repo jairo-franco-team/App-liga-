@@ -173,15 +173,15 @@ function hideIframeHeader(frame){
    const style=doc.createElement('style');style.id='ljpc-u-iframe-hide';
    style.textContent='[data-name="top bar wrapper"],[data-name="header navigation wrapper"],'+
     '[data-name="fixtures strip container"],[data-name="sponsors band"],[data-name="footer"]{display:none!important}'+
-    /* Respiro visible bajo la banda de partidos: evita anillos encimados,
-       mantiene el carrusel compacto y conserva intacto móvil/APK. */
-    /* El HTML PC tiene márgenes !important de mayor especificidad.
-       Este selector con contexto del iframe sí prevalece y baja los
-       círculos sin modificar el carrusel ni la app móvil. */
+    /* Inicio PC: después de ocultar las barras duplicadas NO reservar
+       una franja vacía entre los partidos y las historias.
+       clear:both empujaba todo el contenido por debajo de elementos flotantes. */
+    'html.ljpc-embedded-home #root .ucl [data-name="hero and content section"]{'+
+    'margin-top:0!important;padding-top:0!important;min-height:0!important}'+
     'html.ljpc-embedded-home #root .ucl [data-name="stories list container"]{'+
-    'margin-top:24px!important;margin-bottom:0!important;'+
-    'padding-top:10px!important;padding-bottom:14px!important;'+
-    'position:relative!important;transform:none!important;clear:both!important}'+
+    'margin-top:0!important;margin-bottom:0!important;'+
+    'padding-top:2px!important;padding-bottom:4px!important;'+
+    'position:relative!important;transform:none!important;clear:none!important}'+
     'html.ljpc-embedded-home #root .ucl [data-name="stories wrapper"]{'+
     'align-items:flex-start!important}';
    doc.head.appendChild(style);
