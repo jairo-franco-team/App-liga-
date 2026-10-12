@@ -1531,18 +1531,31 @@ function setupRail(config){
 rails.forEach(setupRail);
 // Chrome Android en "Sitio para computadora": el iframe está ajustado a su
 // altura, así que reenviamos el gesto vertical al documento PC exterior.
-let contact=null;
+let contact=null,pendingPan=0,panScheduled=false;
+function queueVerticalPan(value){
+ if(window.parent===window||!Number.isFinite(value))return;
+ pendingPan+=value;
+ if(panScheduled)return;
+ panScheduled=true;
+ requestAnimationFrame(()=>{
+  panScheduled=false;
+  const dy=pendingPan;pendingPan=0;
+  // One parent message per animation frame rather than each pixel of touch.
+  if(Math.abs(dy)>0.1)window.parent.postMessage({ljpcExact:true,kind:'pan',dy:Math.max(-300,Math.min(300,dy))},origin);
+ });
+}
 document.addEventListener('touchstart',e=>{
  if(e.touches.length!==1)return;
- const t=e.touches[0];contact={x:t.clientX,y:t.clientY};
+ const t=e.touches[0];contact={x:t.clientX,y:t.clientY,vertical:false};
 },{passive:true});
 document.addEventListener('touchmove',e=>{
  if(!contact||e.touches.length!==1||window.parent===window)return;
  const t=e.touches[0],dx=t.clientX-contact.x,dy=t.clientY-contact.y;
- if(Math.abs(dy)>2&&Math.abs(dy)>Math.abs(dx)*1.15){
-  e.preventDefault();
-  window.parent.postMessage({ljpcExact:true,kind:'pan',dy:-dy},origin);
-  contact={x:t.clientX,y:t.clientY};
+ if(!contact.vertical&&Math.abs(dy)<5)return;
+ if(contact.vertical||Math.abs(dy)>Math.abs(dx)*1.15){
+  contact.vertical=true;e.preventDefault();
+  queueVerticalPan(-dy);
+  contact.x=t.clientX;contact.y=t.clientY;
  }
 },{passive:false});
 document.addEventListener('touchend',()=>{contact=null},{passive:true});
@@ -1550,10 +1563,9 @@ document.addEventListener('touchcancel',()=>{contact=null},{passive:true});
 document.addEventListener('wheel',e=>{
  if(window.parent===window)return;
  if(e.shiftKey&&Math.abs(e.deltaX)>0)return;
- // Rueda vertical dentro del iframe debe desplazar también toda la portada.
  if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){
   e.preventDefault();
-  window.parent.postMessage({ljpcExact:true,kind:'pan',dy:Math.max(-250,Math.min(250,e.deltaY))},origin);
+  queueVerticalPan(e.deltaY);
  }
 },{passive:false});
 })();
