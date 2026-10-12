@@ -135,7 +135,7 @@ function bracket(){
 function fixturesPage(){
  const f=fixtures();
  const nav=[['pc-fixtures','Partidos'],['pc-standings','Clasificación'],['video','Liga TV'],['pc-draws','Sorteos'],['fantasy','Gaming'],['pc-data','Datos'],['more','Más']];
- const navigation='<nav class="u18fx-nav" aria-label="Navegación de PC"><div class="u18fx-nav-inner"><div class="u18fx-brand"><b>LJR</b><span>LIGA<br>JUVENTINO ROSAS</span></div><div class="u18fx-navlinks">'+nav.map(([key,label])=>'<button type="button" data-u18-go="'+key+'"'+(key==='pc-fixtures'?' class="selected"':'')+'>'+label+'</button>').join('')+'</div></div></nav>';
+ const navigation='<nav class="u18fx-nav" aria-label="Navegación de PC"><div class="u18fx-nav-inner"><div class="u18fx-brand"><img src="./assets/branding/escudo-liga-azul-sin-fondo-v1007.png" loading="eager" alt="Escudo Liga Juventino Rosas"><span>LIGA<br>JUVENTINO ROSAS</span></div><div class="u18fx-navlinks">'+nav.map(([key,label])=>'<button type="button" data-u18-go="'+key+'"'+(key==='pc-fixtures'?' class="selected"':'')+'>'+label+'</button>').join('')+'</div></div></nav>';
  const tabs='<div class="u18fx-tabwrap"><div class="u18fx-switch">'+pills([['matches','Partidos y resultados'],['bracket','Ver cuadro']],state.fixturesTab,'data-u18-fixture-tab')+'</div><div class="u18fx-cat">'+catSelect()+'</div></div>';
  const actions='<div class="u18fx-titlebar"><h1>Partidos y resultados</h1><div class="u18fx-actions">'+
  '<button type="button" data-u18-go="pc-notifications">Notificaciones '+fixtureIcon('bell')+'</button>'+
