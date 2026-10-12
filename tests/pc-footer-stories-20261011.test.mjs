@@ -20,11 +20,11 @@ test('One PC footer stays at end of body, never bounced into screen',()=>{
  assert.match(finish,/if\(footer\.parentElement!==document\.body\|\|footer!==document\.body\.lastElementChild\)/);
  assert.match(css,/html\.ljpc-unified-pc body #ljpc-unified-pc-footer/);
 });
-test('PC circles are raised, horizontal carousels have working arrows and swiping',()=>{
+test('PC story circles are separated below fixtures and carousel arrows still work',()=>{
  assert.match(home,/data-name="stories list container"/);
  assert.match(home,/data-name="stories wrapper"/);
- assert.match(nav,/\[data-name="stories list container"\]\{margin-top:7px!important;/);
- assert.doesNotMatch(nav,/margin-top:40px!important/);
+ assert.match(nav,/\[data-name="stories list container"\]\{margin-top:19px!important;/);
+ assert.match(nav,/padding-top:9px!important;padding-bottom:12px!important/);
  assert.match(home,/id="ljpc-pc-story-rail-fix"/);
  assert.match(home,/overflow-x:auto!important/);
  assert.match(home,/scroll-snap-type:x proximity/);
@@ -42,6 +42,6 @@ test('PC circles are raised, horizontal carousels have working arrows and swipin
 test('Mobile and APK selectors are never modified by PC-only styles',()=>{
  assert.match(index,/src\/pc-unified-navigation-20261011\.css/);
  assert.match(nav,/const desktop=\(\)=>!\['mobile','apk'\]\.includes\(mode\(\)\)/);
- assert.match(css,/html\.ljpc-unified-pc body\.lj-desktop\[data-app-route="home"\] #screen > #ljpc-unified-pc-footer/);
+ assert.match(css,/html\.ljpc-unified-pc body\.lj-desktop\[data-app-route="home"\] > #ljpc-unified-pc-footer/);
  assert.doesNotMatch(css,/html\.preview-mobile|html\.preview-apk/);
 });
