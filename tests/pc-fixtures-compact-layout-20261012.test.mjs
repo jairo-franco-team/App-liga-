@@ -38,7 +38,7 @@ test('elimina franjas vacías sólo en la ruta Partidos PC',()=>{
 test('sin cambios al modo móvil ni al APK y sin otras rutas PC',()=>{
   assert.match(bridge,/\['mobile','apk'\]\.includes\(qs\(\)\.get\('mode'\)\)/);
   for(const sel of css.match(/(^|\n)(?:html[^\n]*\{)/g)||[]){
-    assert.ok(sel.includes('html.ljpc-unified-pc body.lj-desktop'),sel);
+    assert.ok(sel.includes('html.ljpc-unified-pc:not(.ljpc18-active) body.lj-desktop'),sel);
   }
   assert.doesNotMatch(css,/html\.preview-mobile|html\.preview-apk/);
   assert.doesNotMatch(css,/\[data-ljpc-function-route="pc-calendar"\]/);
