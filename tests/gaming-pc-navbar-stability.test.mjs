@@ -13,7 +13,7 @@ test('Gaming keeps the same eight PC navbar labels and their order on six pages'
   assert.ok(section,'Missing desktop navbar: '+page);
   const onlyTabs=section[1].replace(/<div role="group"[^>]*>[\s\S]*?<\/div>/g,'');
   const names=[...onlyTabs.matchAll(/<(?:a|summary)[^>]*>([\s\S]*?)<\/(?:a|summary)>/g)]
-   .map(m=>m[1].replace(/<[^>]+>/g,'').trim());
+   .map(m=>m[1].replace(/<[^>]+>/g,'').replace(/[⌄▼]/g,'').trim());
   assert.deepEqual(names,expected,'Navbar drifted on '+page);
   assert.match(html,/href="header-pc\.css\?v=/);
   assert.match(html,/href="styles\.css\?v=/);
