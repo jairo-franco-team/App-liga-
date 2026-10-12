@@ -22,5 +22,5 @@ test('Admin session required; remembered token alone is insufficient',()=>{
 test('Mobile and APK modes excluded',()=>{
  assert.match(gate,/mode!=='mobile'&&mode!=='apk'/);
  assert.match(gate,/classList\.contains\('ljpc-unified-pc'\)/);
- assert.match(gate,/classList\.contains\('lj-desktop'\)/);
+ assert.doesNotMatch(gate,/classList\.contains\('lj-desktop'\)/);
 });

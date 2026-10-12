@@ -9,7 +9,7 @@
  let scheduled=false;
  function desktop(){
    const mode=new URLSearchParams(location.search).get('mode')?.toLowerCase();
-   return mode!=='mobile'&&mode!=='apk'&&root.classList.contains('ljpc-unified-pc')&&document.body?.classList.contains('lj-desktop');
+   return mode!=='mobile'&&mode!=='apk'&&root.classList.contains('ljpc-unified-pc');
  }
  function sync(){
    scheduled=false;
