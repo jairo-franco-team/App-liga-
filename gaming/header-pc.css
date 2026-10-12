@@ -164,3 +164,23 @@
   .gaming-pc-header .gaming-pc-links>details>summary{font-size:10px;min-height:37px;padding-inline:8px}
   .gaming-pc-header .gaming-pc-links>details>div{top:61px}
 }
+
+/* Sync Gaming upper nav exactly with the current eight-item PC header. */
+@media(min-width:761px){
+ .gaming-pc-header .gaming-pc-links{overflow:visible}
+ .gaming-pc-header .gaming-pc-links>details>div{
+  position:absolute;top:calc(100% + 7px);left:0;right:auto;
+  max-height:min(70vh,640px);overflow-y:auto;overscroll-behavior:contain
+ }
+ .gaming-pc-header .gaming-pc-links>details.gaming-pc-games>div,
+ .gaming-pc-header .gaming-pc-links>details.gaming-pc-data>div{left:0;right:auto}
+ .gaming-pc-header .gaming-pc-links>details.gaming-pc-more>div{left:auto;right:0}
+}
+@media(max-width:760px){
+ .gaming-pc-header .gaming-pc-links>details.gaming-pc-games>div,
+ .gaming-pc-header .gaming-pc-links>details.gaming-pc-data>div,
+ .gaming-pc-header .gaming-pc-links>details.gaming-pc-more>div{
+  position:fixed;top:61px;right:9px;left:auto;
+  max-height:calc(100dvh - 72px);overflow-y:auto
+ }
+}
