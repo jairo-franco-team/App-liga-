@@ -1,0 +1,319 @@
+/* Módulo UEFA de Más: alcance 100% PC y sólo cuando la clase se activa por JS.
+   No se toca ninguna regla global de la vista móvil ni modo APK. */
+html.ljpc-more-uefa-pc .ljpc-mas-uefa{
+ --more-ink:#15233e;--more-grey:#66738a;--more-border:#e2e7f0;--more-blue:#0836ad;
+ display:block;width:100%;max-width:1160px;margin:0 auto 27px;overflow:hidden;
+ box-sizing:border-box;background:#f5f6fa!important;color:var(--more-ink)!important;
+ border:1px solid #193e8544;border-radius:12px;
+ font-family:Inter,"Segoe UI",Arial,sans-serif;
+ box-shadow:0 12px 28px #020b2938
+}
+html.ljpc-more-uefa-pc .ljpc-mas-uefa *,
+html.ljpc-more-uefa-pc .ljpc-mas-uefa *:before,
+html.ljpc-more-uefa-pc .ljpc-mas-uefa *:after{box-sizing:border-box}
+html.ljpc-more-uefa-pc .ljpc-mas-uefa :is(h1,h2,h3,h4,p){margin-top:0}
+html.ljpc-more-uefa-pc .ljpc-mas-uefa button,
+html.ljpc-more-uefa-pc .ljpc-mas-uefa select{font-family:inherit;cursor:pointer}
+html.ljpc-more-uefa-pc .ljpc-mas-uefa button:focus-visible,
+html.ljpc-more-uefa-pc .ljpc-mas-uefa select:focus-visible{
+ outline:2px solid #11c9ff!important;outline-offset:3px!important
+}
+html.ljpc-more-uefa-pc .ljpc-mas-top{
+ padding:24px 31px;background:linear-gradient(108deg,#07104b,#1234af 75%,#102262);
+ color:#fff;min-height:115px
+}
+html.ljpc-more-uefa-pc .ljpc-mas-top>span{
+ display:block;color:#5ef0f9;font-size:10px;font-weight:800;letter-spacing:.13em;margin-bottom:8px
+}
+html.ljpc-more-uefa-pc .ljpc-mas-top h1{
+ color:#fff!important;font:850 28px/1.2 Inter,Arial,sans-serif!important;
+ margin:0 0 6px!important
+}
+html.ljpc-more-uefa-pc .ljpc-mas-top p{
+ color:#dae5ff!important;font:400 12px/1.5 Inter,Arial,sans-serif;margin:0
+}
+html.ljpc-more-uefa-pc .ljpc-mas-menu{
+ display:flex;gap:0;align-items:stretch;overflow-x:auto;scrollbar-width:thin;
+ background:#fff;border-bottom:1px solid #dce3f1;padding:0 19px;
+}
+html.ljpc-more-uefa-pc .ljpc-mas-menu button{
+ appearance:none;min-height:57px;flex:0 0 auto;padding:14px 16px!important;
+ border:0!important;border-radius:0!important;border-bottom:3px solid transparent!important;
+ background:#fff!important;color:#263a60!important;
+ font-size:13px!important;font-weight:750!important;white-space:nowrap
+}
+html.ljpc-more-uefa-pc .ljpc-mas-menu button:hover,
+html.ljpc-more-uefa-pc .ljpc-mas-menu button.active{
+ border-bottom-color:#064bef!important;color:#0646c5!important;background:#f6f9ff!important
+}
+html.ljpc-more-uefa-pc .ljpc-mas-main{padding:28px 30px 22px;min-height:340px}
+html.ljpc-more-uefa-pc .ljpc-mas-heading{margin:0 0 23px}
+html.ljpc-more-uefa-pc .ljpc-mas-heading>span{
+ font:850 10px/1.5 Inter,Arial,sans-serif;letter-spacing:.13em;color:#064fc7
+}
+html.ljpc-more-uefa-pc .ljpc-mas-heading h2{
+ color:#17213d!important;font:850 24px/1.2 Inter,Arial,sans-serif!important;
+ margin:6px 0!important;letter-spacing:-.025em
+}
+html.ljpc-more-uefa-pc .ljpc-mas-heading p{
+ color:#63718a!important;font:450 13px/1.55 Inter,Arial,sans-serif;margin:0
+}
+html.ljpc-more-uefa-pc .ljpc-mas-feature{
+ display:grid;grid-template-columns:1.15fr .85fr;min-height:270px;overflow:hidden;
+ background:linear-gradient(115deg,#08114d,#082d9c 70%,#080b4c);
+ color:#fff;border-radius:10px;margin-bottom:21px;
+}
+html.ljpc-more-uefa-pc .ljpc-mas-feature>div:first-child{
+ display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:29px 34px
+}
+html.ljpc-more-uefa-pc .ljpc-mas-feature small{
+ font:850 10px Inter,Arial,sans-serif;letter-spacing:.1em;color:#63e5ff;margin-bottom:13px
+}
+html.ljpc-more-uefa-pc .ljpc-mas-feature h3{
+ color:#fff!important;font:850 26px/1.13 Inter,Arial,sans-serif!important;max-width:350px;margin:0 0 12px!important
+}
+html.ljpc-more-uefa-pc .ljpc-mas-feature p{
+ color:#cfdaff!important;font:450 13px/1.55 Inter,Arial,sans-serif;max-width:390px;margin:0 0 18px
+}
+html.ljpc-more-uefa-pc .ljpc-mas-feature-art{
+ min-height:220px;display:flex;flex-direction:column;justify-content:center;align-items:center;
+ gap:9px;color:#ebf8ff;
+ background:radial-gradient(circle at center,#0ad6fb55 0%,#0b30c455 40%,transparent 70%),
+ repeating-linear-gradient(115deg,transparent 0 70px,#ffffff0a 70px 71px);
+}
+html.ljpc-more-uefa-pc .ljpc-mas-feature-art>span{
+ font-size:104px;line-height:1;text-shadow:0 10px 25px #0009
+}
+html.ljpc-more-uefa-pc .ljpc-mas-feature-art>b{
+ letter-spacing:.16em;text-align:center;font-size:12px;line-height:1.3
+}
+html.ljpc-more-uefa-pc .ljpc-mas-button{
+ border:1px solid #83c7ff!important;background:#0958dc!important;color:#fff!important;
+ padding:11px 17px!important;border-radius:5px!important;font:800 12px Inter,Arial,sans-serif!important;
+ display:inline-flex;gap:16px;align-items:center;justify-content:space-between;
+ min-height:39px;box-shadow:none!important
+}
+html.ljpc-more-uefa-pc .ljpc-mas-button:hover{background:#003aa4!important}
+html.ljpc-more-uefa-pc .ljpc-mas-button span,
+html.ljpc-more-uefa-pc .ljpc-mas-plain span{font-size:18px;line-height:1}
+html.ljpc-more-uefa-pc .ljpc-mas-tiles{
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:22px
+}
+html.ljpc-more-uefa-pc .ljpc-mas-tile{
+ min-width:0;min-height:152px;padding:16px!important;border:1px solid #e0e5ef!important;
+ background:#fff!important;color:#1b2b47!important;border-radius:9px!important;
+ display:flex;flex-direction:column;align-items:flex-start;position:relative;
+ text-align:left!important;gap:7px;box-shadow:0 3px 10px #0a255a0c!important
+}
+html.ljpc-more-uefa-pc .ljpc-mas-tile:hover,
+html.ljpc-more-uefa-pc .ljpc-mas-club:hover,
+html.ljpc-more-uefa-pc .ljpc-mas-about:hover{
+ border-color:#86a8ea!important;box-shadow:0 6px 20px #275bc21d!important
+}
+html.ljpc-more-uefa-pc .ljpc-mas-tile-icon{
+ display:grid;place-items:center;width:32px;height:32px;border-radius:6px;
+ background:#e9f0ff;color:#1650c6;font-size:22px;font-weight:700
+}
+html.ljpc-more-uefa-pc .ljpc-mas-tile strong{
+ color:#172642;font-size:14px;line-height:1.25;margin-top:3px
+}
+html.ljpc-more-uefa-pc .ljpc-mas-tile small{
+ color:#68778c;font-size:11px;line-height:1.35;max-width:93%;font-weight:450
+}
+html.ljpc-more-uefa-pc .ljpc-mas-tile-arrow{
+ position:absolute;top:12px;right:13px;color:#1864bf;font-size:15px
+}
+html.ljpc-more-uefa-pc .ljpc-mas-duo{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin:17px 0 8px
+}
+html.ljpc-more-uefa-pc .ljpc-mas-duo article{
+ background:#fff;border:1px solid #e2e8f1;border-radius:9px;padding:20px;min-width:0
+}
+html.ljpc-more-uefa-pc .ljpc-mas-duo h3{
+ font-size:16px!important;color:#1b2c48!important;margin:0 0 10px!important
+}
+html.ljpc-more-uefa-pc .ljpc-mas-duo p{
+ color:#66758a!important;font-size:12px;line-height:1.5;margin:0 0 14px
+}
+html.ljpc-more-uefa-pc .ljpc-mas-filterbar{
+ display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:-4px 0 22px;
+ padding:13px;background:#fff;border:1px solid #e1e8f0;border-radius:8px
+}
+html.ljpc-more-uefa-pc .ljpc-mas-category-label{
+ color:#324761;font:750 12px Inter,Arial,sans-serif
+}
+html.ljpc-more-uefa-pc .ljpc-mas-filterbar select{
+ min-width:175px;width:auto;max-width:260px;min-height:39px;
+ background:#fff!important;color:#1b3155!important;border:1px solid #c5d0e3!important;
+ border-radius:5px!important;padding:8px 12px!important;font:650 12px Inter,Arial,sans-serif
+}
+html.ljpc-more-uefa-pc .ljpc-mas-filterbar .ljpc-mas-button{margin-left:auto}
+html.ljpc-more-uefa-pc .ljpc-mas-rankgrid{
+ display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-bottom:26px
+}
+html.ljpc-more-uefa-pc .ljpc-mas-ranking{
+ background:#fff;border:1px solid #e2e6ef;border-radius:8px;overflow:hidden;min-width:0;
+ display:flex;flex-direction:column;box-shadow:0 3px 15px #10284c09
+}
+html.ljpc-more-uefa-pc .ljpc-mas-ranking-head{
+ display:flex;justify-content:space-between;align-items:center;gap:10px;
+ padding:15px 15px 12px;border-bottom:1px solid #ebedf5
+}
+html.ljpc-more-uefa-pc .ljpc-mas-ranking-head strong{font-size:12px;color:#1c2b48}
+html.ljpc-more-uefa-pc .ljpc-mas-ranking-head span{font-size:10px;color:#8390a3;text-align:right}
+html.ljpc-more-uefa-pc .ljpc-mas-rank-row{
+ display:flex;align-items:center;gap:8px;min-height:50px;padding:8px 11px;
+ border-bottom:1px solid #edf0f5;color:#1f304d
+}
+html.ljpc-more-uefa-pc .ljpc-mas-rank-row>small{font-size:10px;color:#697b9a;font-weight:850;width:19px;flex-shrink:0}
+html.ljpc-more-uefa-pc .ljpc-mas-crest{
+ display:flex;width:30px;height:30px;flex:0 0 30px;align-items:center;justify-content:center
+}
+html.ljpc-more-uefa-pc .ljpc-mas-crest img{
+ width:29px;height:29px;object-fit:contain;background:transparent!important;border-radius:0
+}
+html.ljpc-more-uefa-pc .ljpc-mas-crest-fallback{
+ display:grid;place-items:center;width:27px;height:27px;border:1px solid #ccdafa;
+ border-radius:50%;font-weight:800;font-size:13px;background:#eef3fc;color:#1b50af
+}
+html.ljpc-more-uefa-pc .ljpc-mas-rank-row>span:not(.ljpc-mas-crest){
+ display:flex;flex-direction:column;min-width:0;flex:1;gap:2px
+}
+html.ljpc-more-uefa-pc .ljpc-mas-rank-row b{
+ font-size:11px;line-height:1.2;text-overflow:ellipsis;white-space:nowrap;overflow:hidden
+}
+html.ljpc-more-uefa-pc .ljpc-mas-rank-row em{
+ font-size:10px;line-height:1.15;font-style:normal;color:#75819a;text-overflow:ellipsis;white-space:nowrap;overflow:hidden
+}
+html.ljpc-more-uefa-pc .ljpc-mas-rank-row>strong{font-size:13px;color:#1d3c86}
+html.ljpc-more-uefa-pc .ljpc-mas-plain{
+ display:flex;justify-content:space-between;align-items:center;margin:auto 0 0;
+ width:100%;min-height:43px;border:0!important;border-top:1px solid #edf0f5!important;
+ border-radius:0!important;background:#fff!important;color:#135acc!important;
+ padding:10px 14px!important;font:750 11px Inter,Arial,sans-serif!important;text-align:left
+}
+html.ljpc-more-uefa-pc .ljpc-mas-plain:hover{background:#f4f8ff!important}
+html.ljpc-more-uefa-pc .ljpc-mas-empty{
+ padding:18px;color:#60728a!important;font:500 12px/1.6 Inter,Arial,sans-serif
+}
+html.ljpc-more-uefa-pc .ljpc-mas-subheading{
+ font-size:16px!important;font-weight:850!important;color:#1b2844!important;margin:19px 0 13px!important
+}
+html.ljpc-more-uefa-pc .ljpc-mas-help{padding:19px;gap:12px}
+html.ljpc-more-uefa-pc .ljpc-mas-help h3{font-size:15px;color:#1c2d4a!important;margin:0!important}
+html.ljpc-more-uefa-pc .ljpc-mas-help p{color:#63738a!important;font-size:12px;line-height:1.6;margin:0}
+html.ljpc-more-uefa-pc .ljpc-mas-help .ljpc-mas-button{margin-top:auto}
+html.ljpc-more-uefa-pc .ljpc-mas-clubs{
+ display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9px
+}
+html.ljpc-more-uefa-pc .ljpc-mas-club{
+ min-width:0;min-height:91px;border:1px solid #e1e7ef!important;border-radius:8px!important;
+ display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+ padding:10px 7px!important;background:#fff!important;color:#293a58!important;text-align:center!important
+}
+html.ljpc-more-uefa-pc .ljpc-mas-club strong{
+ display:block;font-size:10px;line-height:1.2;max-width:100%;overflow-wrap:anywhere
+}
+html.ljpc-more-uefa-pc .ljpc-mas-bottom-action{display:flex;justify-content:center;margin:24px 0 10px}
+html.ljpc-more-uefa-pc .ljpc-mas-video-feature{
+ display:flex;align-items:center;gap:32px;padding:23px 32px;min-height:190px;margin-bottom:24px;
+ border-radius:8px;background:linear-gradient(120deg,#03123f,#145fca);color:#fff
+}
+html.ljpc-more-uefa-pc .ljpc-mas-video-feature>span{
+ display:grid;place-items:center;width:120px;height:120px;flex-shrink:0;
+ border:1px solid #72eaff99;border-radius:50%;background:#ffffff1a;font-size:50px
+}
+html.ljpc-more-uefa-pc .ljpc-mas-video-feature small{
+ font-size:11px;color:#7af1ff;font-weight:850;letter-spacing:.12em
+}
+html.ljpc-more-uefa-pc .ljpc-mas-video-feature h3{
+ font-size:21px!important;color:#fff!important;margin:8px 0 14px!important
+}
+html.ljpc-more-uefa-pc .ljpc-mas-video-grid{
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px
+}
+html.ljpc-more-uefa-pc .ljpc-mas-video{
+ min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:8px;
+ padding:0 0 12px!important;border:1px solid #e0e7f0!important;border-radius:8px!important;
+ overflow:hidden;background:#fff!important;text-align:left!important;color:#1e2e4b!important
+}
+html.ljpc-more-uefa-pc .ljpc-mas-video-thumb{
+ display:grid;place-items:center;width:100%;aspect-ratio:16/9;
+ color:#d8f8ff;font-size:43px;background:radial-gradient(circle at 65% 30%,#1e8cff,#040c56 72%)
+}
+html.ljpc-more-uefa-pc .ljpc-mas-video b{font-size:12px;padding:0 12px}
+html.ljpc-more-uefa-pc .ljpc-mas-video small{font-size:11px;line-height:1.3;color:#66738c;padding:0 12px}
+html.ljpc-more-uefa-pc .ljpc-mas-titles-grid,
+html.ljpc-more-uefa-pc .ljpc-mas-about-grid{
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px
+}
+html.ljpc-more-uefa-pc .ljpc-mas-titles-grid button,
+html.ljpc-more-uefa-pc .ljpc-mas-about{
+ background:#fff!important;color:#23365c!important;border:1px solid #dde5f0!important;
+ border-radius:8px!important;padding:20px!important;display:flex;align-items:flex-start;
+ flex-direction:column;gap:8px;text-align:left!important;min-width:0
+}
+html.ljpc-more-uefa-pc .ljpc-mas-titles-grid button>span,
+html.ljpc-more-uefa-pc .ljpc-mas-about>span{font-size:27px}
+html.ljpc-more-uefa-pc .ljpc-mas-titles-grid button strong,
+html.ljpc-more-uefa-pc .ljpc-mas-about b{font-size:13px}
+html.ljpc-more-uefa-pc .ljpc-mas-titles-grid button small,
+html.ljpc-more-uefa-pc .ljpc-mas-about small{font-size:11px;line-height:1.45;color:#738099}
+html.ljpc-more-uefa-pc .ljpc-mas-about-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+html.ljpc-more-uefa-pc .ljpc-mas-about{min-height:160px;position:relative}
+html.ljpc-more-uefa-pc .ljpc-mas-about em{
+ position:absolute;bottom:17px;right:19px;font-size:20px;color:#1859c4;font-style:normal
+}
+html.ljpc-more-uefa-pc .ljpc-mas-shop{
+ display:grid;grid-template-columns:1fr 250px;gap:20px;min-height:290px;
+ background:linear-gradient(120deg,#061958,#0d48b0 65%,#06144c);color:#fff;
+ border-radius:8px;overflow:hidden
+}
+html.ljpc-more-uefa-pc .ljpc-mas-shop>div{padding:35px;align-self:center}
+html.ljpc-more-uefa-pc .ljpc-mas-shop>div>span{
+ color:#80e9ff;font-size:10px;font-weight:900;letter-spacing:.14em
+}
+html.ljpc-more-uefa-pc .ljpc-mas-shop h3{
+ color:#fff!important;font:850 29px/1.2 Inter,Arial,sans-serif!important;margin:11px 0!important
+}
+html.ljpc-more-uefa-pc .ljpc-mas-shop p{
+ font-size:13px;line-height:1.6;color:#c9dfff!important;margin:0 0 17px
+}
+html.ljpc-more-uefa-pc .ljpc-mas-shop-icon{
+ display:grid;place-items:center;font-size:125px;
+ background:radial-gradient(circle at center,#30c7ff66 0%,transparent 72%)
+}
+html.ljpc-more-uefa-pc .ljpc-mas-original{
+ padding:13px 30px;background:#e9edf6;border-top:1px solid #dce2ee
+}
+html.ljpc-more-uefa-pc .ljpc-mas-original b{display:block;font-size:13px;color:#1d3057}
+html.ljpc-more-uefa-pc .ljpc-mas-original p{
+ color:#728099!important;font-size:11px;margin:4px 0 0
+}
+@media(max-width:1050px){
+ html.ljpc-more-uefa-pc .ljpc-mas-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+ html.ljpc-more-uefa-pc .ljpc-mas-clubs{grid-template-columns:repeat(4,minmax(0,1fr))}
+ html.ljpc-more-uefa-pc .ljpc-mas-rankgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ html.ljpc-more-uefa-pc .ljpc-mas-video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:650px){
+ /* Sólo se aplica si el visitante fuerza ?mode=desktop en una pantalla estrecha. */
+ html.ljpc-more-uefa-pc .ljpc-mas-top{padding:19px}
+ html.ljpc-more-uefa-pc .ljpc-mas-main{padding:18px 14px}
+ html.ljpc-more-uefa-pc .ljpc-mas-menu{padding:0 5px}
+ html.ljpc-more-uefa-pc .ljpc-mas-menu button{padding:12px!important}
+ html.ljpc-more-uefa-pc .ljpc-mas-feature{grid-template-columns:1fr}
+ html.ljpc-more-uefa-pc .ljpc-mas-feature-art{min-height:130px}
+ html.ljpc-more-uefa-pc .ljpc-mas-tiles,
+ html.ljpc-more-uefa-pc .ljpc-mas-rankgrid,
+ html.ljpc-more-uefa-pc .ljpc-mas-duo,
+ html.ljpc-more-uefa-pc .ljpc-mas-video-grid,
+ html.ljpc-more-uefa-pc .ljpc-mas-about-grid,
+ html.ljpc-more-uefa-pc .ljpc-mas-titles-grid{grid-template-columns:1fr}
+ html.ljpc-more-uefa-pc .ljpc-mas-clubs{grid-template-columns:repeat(2,minmax(0,1fr))}
+ html.ljpc-more-uefa-pc .ljpc-mas-shop{grid-template-columns:1fr}
+ html.ljpc-more-uefa-pc .ljpc-mas-shop-icon{font-size:70px;min-height:90px}
+ html.ljpc-more-uefa-pc .ljpc-mas-video-feature{padding:18px;gap:16px}
+ html.ljpc-more-uefa-pc .ljpc-mas-video-feature>span{width:76px;height:76px;font-size:28px}
+ html.ljpc-more-uefa-pc .ljpc-mas-original{padding:13px 17px}
+}
