@@ -98,6 +98,20 @@ function hideNativeMobileHeader(){
  topbar.style.setProperty('visibility','hidden','important');
  topbar.setAttribute('aria-hidden','true');
  topbar.inert=true;
+ // Retirarlo del DOM del escritorio: el estilo V7 vuelve a forzar
+ // display:block!important durante los cambios de ruta/altura.
+ topbar.remove?.();
+}
+let nativeHeaderObserver=null;
+function watchNativeMobileHeader(){
+ if(!desktop()||nativeHeaderObserver||typeof MutationObserver==='undefined')return;
+ const app=document.getElementById('app');
+ if(!app)return;
+ // Sólo hijos directos; observar todo #screen provocaría lag al hacer scroll.
+ nativeHeaderObserver=new MutationObserver(()=>{
+  if(app.querySelector(':scope > header.topbar'))hideNativeMobileHeader();
+ });
+ nativeHeaderObserver.observe(app,{childList:true});
 }
 function render(){
  if(!desktop())return;
@@ -105,6 +119,7 @@ function render(){
  document.documentElement.classList.toggle('ljpc-forced-desktop',mode()==='desktop');
  hideNativeMobileHeader();
  const h=host();if(!h)return;
+ watchNativeMobileHeader();
  const r=route();
  if(window.LJR_PC_NATIVE_ROUTES?.has(r))return;
  if(r==='home'){
