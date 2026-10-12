@@ -278,7 +278,8 @@ function desktopFixtureRows(catId,view='upcoming',referenceDate=new Date()){
  const all=fixtures(catId);
  const today=new Date(referenceDate.getFullYear(),referenceDate.getMonth(),referenceDate.getDate());
  if(view==='upcoming')return all.filter(x=>!x.played&&!x.awarded&&!x.suspended&&x.date>=today).slice(0,100);
- if(view==='results')return all.filter(x=>x.played||x.awarded).reverse().slice(0,100);
+ if(view==='results')return all.filter(x=>(x.played||x.awarded)&&!x.suspended).reverse().slice(0,100);
+ if(view==='suspended')return all.filter(x=>x.suspended).reverse().slice(0,100);
  return all.slice().reverse().slice(0,100);
 }
 function renderFixtures(catId=activeCat,bracket=false){
@@ -297,13 +298,13 @@ function renderFixtures(catId=activeCat,bracket=false){
      '<div class="ljpc-team">'+crest(x.away)+'<span>'+esc(pretty(x.away))+'</span></div>'+
      '<div class="ljpc-muted">'+esc(x.venue||'Sede por confirmar')+'</div></div>';
  }).join('');
- const viewTabs=[['upcoming','Próximos'],['results','Resultados'],['all','Todos']];
+ const viewTabs=[['upcoming','Próximos'],['results','Resultados'],['suspended','Suspendidos'],['all','Todos']];
  wrap.innerHTML='<div class="ljpc-function-root" data-ljpc-function-route="pc-fixtures">'+
    '<div class="ljpc-toolbar"><div class="ljpc-cat-tabs">'+CAT_ORDER.map(id=>'<button class="ljpc-chip '+(id===catId?'active':'')+'" data-ljpc-fixture-cat="'+id+'">'+esc(categoryName(id))+'</button>').join('')+'</div>'+
    '<div class="ljpc-toolbar-group"><button class="ljpc-btn" data-ljpc-to-calendar>Calendario</button><button class="ljpc-btn primary" data-ljpc-to-standings>Clasificación</button><button class="ljpc-btn" data-ljpc-bracket>Cuadro</button></div></div>'+
    '<div class="ljpc-toolbar"><div class="ljpc-toolbar-group">'+viewTabs.map(([id,label])=>'<button class="ljpc-chip '+(fixtureView===id?'active':'')+'" data-ljpc-fixture-view="'+id+'">'+label+'</button>').join('')+
    '</div><a class="ljpc-official-link" href="'+source+'" target="_blank" rel="noopener noreferrer">Consultar reporte oficial ↗</a></div>'+
-   '<section class="ljpc-panel"><h3>'+esc(categoryName(catId))+' · '+matches.length+' '+(fixtureView==='upcoming'?'partidos próximos':fixtureView==='results'?'resultados':'encuentros')+'</h3>'+
+   '<section class="ljpc-panel"><h3>'+esc(categoryName(catId))+' · '+matches.length+' '+(fixtureView==='upcoming'?'partidos próximos':fixtureView==='results'?'resultados':fixtureView==='suspended'?'partidos suspendidos':'encuentros')+'</h3>'+
    (rowHtml||'<p class="ljpc-muted">No hay partidos publicados en este filtro. Puedes consultar otra categoría o ver Todos.</p>')+
    '</section></div>';
  wrap.querySelectorAll('[data-ljpc-fixture-cat]').forEach(b=>b.addEventListener('click',()=>{fixtureView='upcoming';renderFixtures(rememberCat(b.dataset.ljpcFixtureCat),false)}));
