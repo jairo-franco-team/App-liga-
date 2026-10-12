@@ -7,11 +7,11 @@ if(window.__LJR_PC_REFERENCE_NATIVE_20261011__)return;
 window.__LJR_PC_REFERENCE_NATIVE_20261011__=true;
 const NAV=[
  ['Inicio','home'],['Partidos','pc-fixtures'],['Clasificación','pc-standings'],
- ['Liga TV','video'],['Sorteos','pc-draws'],['Gaming','predictorSix'],
+ ['Liga TV','video'],['Sorteos','pc-draws'],['Gaming','gamingPortal'],
  ['Datos','pc-data'],['Equipos','teams'],['Noticias','news'],['Más','pc-tools']
 ];
 const DROPDOWNS={
- Gaming:[['Pronostica Seis','predictorSix'],['Fantasy','fantasy'],['Quiniela','quiniela'],['Quiz Arena','quizArena'],['Más o menos','moreLess']],
+ Gaming:[['Todos los juegos','gamingPortal'],['Pronostica Seis','predictorSix'],['Fantasy','fantasy'],['Quiniela','quiniela'],['Quiz Arena','quizArena'],['Más o menos','moreLess']],
  Datos:[['Clasificación','pc-standings'],['Máximos goleadores','pc-scorers'],['Estadísticas oficiales','pc-data'],['Match Center','matchCenter'],['Performance Zone','safe-performance']],
  Más:[['Herramientas PC','pc-tools'],['Calendario','pc-calendar'],['Historia','history'],['Notificaciones','pc-notifications'],['Reglamento','rulebook']]
 };
@@ -176,6 +176,7 @@ document.addEventListener('click',e=>{
  const r=el.dataset.ljpcPcGo;
  if(!/^[A-Za-z][A-Za-z0-9-]*$/.test(r||''))return;
  e.preventDefault();e.stopPropagation();
+ if(r==='gamingPortal'){location.assign('./gaming/index.html');return;}
  location.hash='#/'+(DESKTOP_ALIAS[r]||r);
 },true);
 document.addEventListener('keydown',e=>{
