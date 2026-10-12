@@ -29,10 +29,12 @@ test('home original HTML retains its content while duplicate header, score and f
  assert.doesNotMatch(script,/contentDocument\.body\.innerHTML\s*=/);
 });
 test('same nav labels and logo are used on all PC pages',()=>{
- for(const name of ['Inicio','Partidos','Clasificación','Liga TV','Sorteos','Gaming','Datos','Equipos','Noticias','Historia','Sobre','Más']){
+ for(const name of ['Partidos','Clasificación','Liga TV','Sorteos','Gaming','Datos','Equipos','Noticias','Historia','Sobre','Más']){
   assert.ok(script.includes("'"+name+"'"),name);
  }
  assert.match(script,/escudo-liga-azul-sin-fondo-v1007\.png/);
+ assert.doesNotMatch(script,/\['Inicio','home'\]/, 'Inicio should be opened from the league brand, not a tab');
+ assert.match(script,/class="ljpc-u-brand"[^\n]*data-ljpc-u-go="home"/, 'Badge and name should open home');
  assert.match(script,/function selectNav\(\)/);
  assert.match(script,/function fixturesHTML\(\)/);
  assert.match(script,/fixture_decisions/);
