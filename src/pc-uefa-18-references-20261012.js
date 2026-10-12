@@ -146,6 +146,10 @@ function fixturesPage(){
  '<button type="button" data-u18-go="pc-notifications">Notificaciones '+fixtureIcon('bell')+'</button>'+
  '<button type="button" data-u18-modal="calendar">Añadir al calendario '+fixtureIcon('calendar')+'</button>'+
  '<button type="button" data-u18-modal="filter">Filtrar '+fixtureIcon('filter')+'</button></div></div>';
+ const quickFilters='<div class="u18fx-unified-controls" aria-label="Filtros de partidos"><div class="u18fx-category-pills" role="group" aria-label="Categorías de la Liga">'+
+ Object.entries(CAT).map(([k,v])=>'<button type="button" data-u18-cat-quick="'+k+'" class="'+(state.cat===k?'selected':'')+'" aria-pressed="'+(state.cat===k)+'">'+escape(v)+'</button>').join('')+
+ '</div><div class="u18fx-status-pills" role="group" aria-label="Tipo de partidos">'+
+ pills([['upcoming','Próximos'],['results','Resultados'],['all','Todos']],state.fixtureType,'data-u18-filter')+'</div></div>';
  const modal=state.filterOpen||state.calendarOpen?'<div class="u18-modal-layer" data-u18-dismiss><div class="u18-modal" role="dialog" aria-modal="true" aria-label="'+(state.filterOpen?'Filtrar partidos':'Añadir al calendario')+'">'+
  '<div class="u18-modal-title"><h3>'+(state.filterOpen?'Filtrar':'Añadir al calendario')+'</h3><button type="button" data-u18-modal="close" aria-label="Cerrar">×</button></div>'+
  '<p>'+(state.filterOpen?'Elige los partidos que quieres ver.':'Selecciona un encuentro oficial para añadirlo a tu calendario.')+'</p>'+
@@ -154,8 +158,7 @@ function fixturesPage(){
  '<footer><button class="u18-button" data-u18-modal="close">Cerrar</button></footer></div></div>':'';
  return '<section class="u18-page u18fx-page" aria-label="Partidos y resultados"><header class="u18fx-hero">'+navigation+
  '<div class="u18-bound">'+tabs+actions+'</div>'+dateNav(f)+'</header>'+
- '<main class="u18-bound u18fx-content">'+(state.fixturesTab==='matches'?eventCards():bracket())+
- '<details class="u18-original"'+(state.showClassic?' open':'')+'><summary>Ver herramientas originales de esta sección</summary><p>La información original de la Liga permanece disponible.</p></details></main>'+modal+'</section>';
+ '<main class="u18-bound u18fx-content">'+(state.fixturesTab==='matches'?quickFilters+eventCards():bracket())+'</main>'+modal+'</section>';
 }
 function standingsTable(rows,simulated=false){
  let data=rows.slice();
@@ -290,9 +293,40 @@ function repaint(){
  original.innerHTML=markup();
  if(seen)original.querySelector('[data-u18-score="'+seen.id+'"][data-side="'+seen.side+'"]')?.focus();
 }
+/* El contenido original de PC comparte #screen con el diseño UEFA. Nunca
+   exponer dos listas completas ni tarjetas administrativas sueltas.
+   Conservar DOM original para otras rutas, restaurando estilos al salir. */
+function isolateFixturesLegacy(screen,enabled){
+ if(!screen)return;
+ for(const child of Array.from(screen.children)){
+  if(child.classList?.contains('u18-root'))continue;
+  if(enabled){
+   if(child.dataset.u18PcLegacyHidden!=='1'){
+    child.dataset.u18PcLegacyHidden='1';
+    child.dataset.u18PcLegacyDisplay=child.style.getPropertyValue('display')||'';
+    child.dataset.u18PcLegacyPriority=child.style.getPropertyPriority('display')||'';
+    child.dataset.u18PcLegacyAria=child.getAttribute('aria-hidden')??'';
+    child.dataset.u18PcLegacyInert=child.hasAttribute('inert')?'1':'0';
+   }
+   child.style.setProperty('display','none','important');
+   child.setAttribute('aria-hidden','true');
+   child.setAttribute('inert','');
+  }else if(child.dataset.u18PcLegacyHidden==='1'){
+   const display=child.dataset.u18PcLegacyDisplay,priority=child.dataset.u18PcLegacyPriority;
+   if(display)child.style.setProperty('display',display,priority);
+   else child.style.removeProperty('display');
+   if(child.dataset.u18PcLegacyAria)child.setAttribute('aria-hidden',child.dataset.u18PcLegacyAria);
+   else child.removeAttribute('aria-hidden');
+   if(child.dataset.u18PcLegacyInert==='0')child.removeAttribute('inert');
+   for(const key of ['u18PcLegacyHidden','u18PcLegacyDisplay','u18PcLegacyPriority','u18PcLegacyAria','u18PcLegacyInert'])
+    delete child.dataset[key];
+  }
+ }
+}
 function sync(){
  const screen=document.getElementById('screen');
  if(!active()||!screen){
+  isolateFixturesLegacy(screen,false);
   document.documentElement.classList.remove('ljpc18-active');
   delete document.documentElement.dataset.ljpc18Route;
   screen?.querySelector(':scope > .u18-root')?.remove();
@@ -300,12 +334,14 @@ function sync(){
  }
  if(currentRoute!==route()){
   currentRoute=route();state.showClassic=false;state.chosenDays=[];chooseCat();
+  if(currentRoute==='pc-fixtures')try{window.scrollTo({top:0,behavior:'instant'});}catch(_){}
   screen.querySelector(':scope > .u18-root')?.classList.remove('u18-show-classic');
  }
  document.documentElement.classList.add('ljpc18-active');
  document.documentElement.dataset.ljpc18Route=route();
  let root=screen.querySelector(':scope > .u18-root');
  if(!root){root=document.createElement('div');root.className='u18-root';screen.prepend(root);lastRef=null;}
+ isolateFixturesLegacy(screen,route()==='pc-fixtures');
  const signature=route()+'|'+state.cat+'|'+(source()?'loaded':'missing');
  if(lastRef!==root.dataset.loaded||root.children.length===0||root.dataset.signature!==signature){
   root.dataset.signature=signature;root.dataset.loaded=source()?'loaded':'missing';
@@ -359,6 +395,7 @@ function localClick(e){
  if(d.u18DrawTab){state.drawTab=d.u18DrawTab;repaint();return;}
  if(d.u18VideoTab){state.videoTab=d.u18VideoTab;repaint();return;}
  if(d.u18Modal){state.filterOpen=d.u18Modal==='filter';state.calendarOpen=d.u18Modal==='calendar';repaint();return;}
+ if(d.u18CatQuick){keepCat(d.u18CatQuick);state.scoreOverrides={};repaint();return;}
  if(d.u18Filter){state.fixtureType=d.u18Filter;state.filterOpen=false;repaint();return;}
  if(d.u18Day!==undefined){state.chosenDays=d.u18Day?[d.u18Day]:[];repaint();return;}
  if(d.u18Reset!==undefined){state.scoreOverrides={};repaint();return;}
