@@ -50,6 +50,9 @@ jobs:
       - name: Build web app
         run: npm run build
 
+      - name: Optimize APK media copies without changing artwork or URLs
+        run: node scripts/optimize-apk-media.mjs dist
+
       - name: Create Android project
         run: npx cap add android
 
@@ -106,12 +109,15 @@ jobs:
           ANDROID_PUBLIC_DIR=android/app/src/main/assets/public node tests/mobile-clean-boot.mjs
           node tests/navigation-motion.mjs
           node tests/mobile-shell.mjs
+          node tests/mobile-reference-corrections.mjs
 
       - name: Upload measured Android asset inventory
         uses: actions/upload-artifact@v4
         with:
           name: Liga-Juventino-Android-Size-Report
-          path: android-asset-report.json
+          path: |
+            android-asset-report.json
+            android-media-optimization.json
           if-no-files-found: error
           retention-days: 30
 

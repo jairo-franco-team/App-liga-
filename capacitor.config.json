@@ -3,8 +3,8 @@
   "appName": "Liga Juventino",
   "webDir": "dist",
   "android": {
-    "adjustMarginsForEdgeToEdge": "force",
-    "backgroundColor": "#0D238B"
+    "adjustMarginsForEdgeToEdge": "disable",
+    "backgroundColor": "#000040"
   },
   "server": {
     "androidScheme": "https"

@@ -20,7 +20,7 @@ function avatar(a=account()){
  return '<span class="ljr-profile-initial">'+esc((a.name||a.alias||'L').trim().slice(0,1).toUpperCase())+'</span>';
 }
 const PROFILE='.profile-button,.ljr-profile-control,[data-route="profile"],[data-v415-top-profile],button[aria-label="Perfil"],button[aria-label="Mi cuenta"],button[aria-label="Mi perfil"]';
-const BACK='.back-button,.ljr-back-control,.v35-back,.v46-back,.v41-back,.v27-back,.v31-back,.v32-back,.v501-back,[data-v415-top-back],button[aria-label^="Volver"],button[aria-label^="Regresar"],button[aria-label^="Atrás"]';
+const BACK='[data-v28-back],.v26-moments-sticky-back,.back-button,.ljr-back-control,.v35-back,.v46-back,.v41-back,.v27-back,.v31-back,.v32-back,.v501-back,[data-v415-top-back],button[aria-label^="Volver"],button[aria-label^="Regresar"],button[aria-label^="Atrás"]';
 let syncing=false,timer;
 function sync(header,custom=false){
  if(!header||syncing)return;
@@ -30,6 +30,9 @@ function sync(header,custom=false){
   const top=document.querySelector('#app>.topbar');
   if(top)for(const [key,value] of [['display','none'],['visibility','hidden'],['opacity','0']])top.style.setProperty(key,value,'important');
   return;
+ }
+ if(route()==='following'&&document.body.classList.contains('v28-follow-picker-open')){
+  document.body.dataset.headerOwner='overlay';const top=document.querySelector('#app>.topbar');if(top)top.style.setProperty('display','none','important');return;
  }
  // Rankings includes its own back/share controls, title and category tabs.
  // Do not inject the 88px universal chrome or reparent its buttons.
@@ -61,7 +64,7 @@ function sync(header,custom=false){
  }
  syncing=true;
  try{
- if(HEADERLESS_GAMES.has(route())){
+ if(HEADERLESS_GAMES.has(route())||(matchMedia('(max-width:1023px)').matches&&new URLSearchParams(location.search).get('mode')!=='desktop'&&['teams','teamDetail','playerDetail'].includes(route()))){
   const top=document.querySelector('#app>.topbar');
   document.body.dataset.headerOwner='overlay';
   if(top){
@@ -113,9 +116,10 @@ window.LJR_CHROME={sync,avatar};
 function patch(){
  if(!document.body.classList.contains('ljr-v777'))document.body.classList.add('ljr-v777');
  if(route()==='quizArena'){const game=document.querySelector('.v766-quiz-start');if(game&&!game.querySelector('.ljr-quiz-head')){const head=document.createElement('header');head.className='ljr-quiz-head';const back=game.querySelector('.v766-back');if(back)head.append(back);game.prepend(head);window.LJR_SCROLL_CHROME?.refresh?.()}}
- const custom=document.querySelector('#screen .v22-fantasy-master,#screen .v33-about-tools,#screen .ljr-quiz-head,#screen .ljr-scroll-header'),top=document.querySelector('#app>.topbar');
+ const owned={following:'.v28-head,.v46-follow-head',moments:'.v26-moments-sticky','club-store':'.v431-store-head,.v510-store-head',history:'.v620-history-top'};
+ const custom=(owned[route()]&&document.querySelector(owned[route()]))||document.querySelector('#screen .v22-fantasy-master,#screen .v33-about-tools,#screen .ljr-quiz-head,#screen .ljr-scroll-header'),top=document.querySelector('#app>.topbar');
  sync(custom||top,!!custom);
- document.querySelectorAll('.bottom-nav .nav-item').forEach(b=>{const label=b.querySelector('[data-nav-label],.nav-label,small,span:last-child');if(label&&label.children.length===0){const labels={home:'inicio',competition:'competición',video:'vídeo',fantasy:'fantasy',more:'más'};const value=labels[b.dataset.route];if(value&&label.textContent!==value)label.textContent=value}});
+ document.querySelectorAll('.bottom-nav .nav-item').forEach(b=>{const label=b.querySelector('[data-nav-label],.nav-label,small,span:last-child');if(label&&label.children.length===0){const labels={home:'Inicio',competition:'Competición',video:'Vídeo',fantasy:'Fantasy',more:'Más'};const value=labels[b.dataset.route];if(value&&label.textContent!==value)label.textContent=value}});
  document.querySelectorAll('.v726-hero-pills,.v105-footnote').forEach(n=>n.remove());
  if(route()==='profile'){
   const a=account();document.body.dataset.authState=a?'signed-in':'guest';

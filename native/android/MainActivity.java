@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import androidx.activity.OnBackPressedCallback;
 import androidx.core.view.WindowInsetsControllerCompat;
+import androidx.core.view.WindowCompat;
 import com.getcapacitor.BridgeActivity;
 
 public class MainActivity extends BridgeActivity {
@@ -18,8 +19,12 @@ public class MainActivity extends BridgeActivity {
         registerPlugin(LigaBiometricPlugin.class);
         registerPlugin(LigaNotificationsPlugin.class);
         registerPlugin(LigaCalendarPlugin.class);
+        registerPlugin(LigaInsetsPlugin.class);
         super.onCreate(savedInstanceState);
-        getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(13, 35, 139)));
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
+        getWindow().setNavigationBarColor(Color.TRANSPARENT);
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.rgb(0, 0, 64)));
         new WindowInsetsControllerCompat(getWindow(), getWindow().getDecorView()).setAppearanceLightStatusBars(false);
         // Android's button and either system edge gesture use the app's own
         // history, including direct-entry games, instead of finishing Activity.

@@ -35,7 +35,7 @@ try{
  assert.ok(await page.locator('.v620-history-top').evaluate(e=>e.getBoundingClientRect().height)<height,'history collapses on scroll');
  await go('competition');const layouts=[];
  for(const tab of ['fixtures','standings','bracket']){
-  await page.evaluate(tab=>{const state=window.LJR_MAIN_ROUTE.state;state.competitionTab=tab;localStorage.setItem('competitionTab',tab);window.LJR_MAIN_ROUTE.render()},tab);await page.waitForTimeout(850);
+  await page.evaluate(tab=>{const state=window.LJR_MAIN_ROUTE.state;state.competitionTab=tab;localStorage.setItem('competitionTab',tab);window.LJR_MAIN_ROUTE.render()},tab);await page.waitForFunction(()=>!document.documentElement.classList.contains('ljr-route-staging')&&!document.body.classList.contains('ljr-nav-animating'));await page.waitForTimeout(1250);
   layouts.push(await page.evaluate(()=>{const e=document.querySelector('#screen>.tabs');const r=e.getBoundingClientRect();return [r.x,r.y,r.width,r.height]}));
  }
  assert.deepEqual(layouts[1],layouts[0],'classification tabs keep their geometry');assert.deepEqual(layouts[2],layouts[0],'bracket tabs keep their geometry');
@@ -51,9 +51,8 @@ try{
  assert.ok(title.y+title.height<=qr.y,'QR introduction stays above the code');
  assert.equal(await page.locator('.v64-qr-frame img').evaluate(e=>e.complete&&e.naturalWidth>0),true,'bundled QR loads with every external request blocked');
  await go('quizArena');
- assert.equal(await page.locator('#ljr-game-back').isVisible(),true,'quiz splash has a back arrow');
- assert.equal(await page.locator('.v1390-before-start summary').isVisible(),true,'quiz ranking is in the visible game portal');
- assert.equal(await page.locator('#ljr-game-back').evaluate(e=>{const r=e.getBoundingClientRect();return document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)===e}),true,'quiz portal does not cover the back arrow');
+ assert.equal(await page.locator('#ljr-game-back').count(),0,'quiz splash has no newly injected arrow');
+ assert.equal(await page.locator('.v1390-before-start summary').isVisible(),true,'quiz ranking remains in the visible game portal');
  await page.locator('[data-v531-quiz-start]').first().click();await page.waitForTimeout(500);
  const originalBack=page.locator('#v612-quiz-portal [data-v531-view="hub"] [data-v531-quiz-back]');
  assert.equal(await originalBack.evaluate(e=>{const r=e.getBoundingClientRect();return e.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2))}),true,'the game fallback arrow never covers its original hub arrow');

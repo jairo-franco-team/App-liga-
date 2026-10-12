@@ -12,7 +12,7 @@
   let compact=false;
   const syncCompact=()=>{
     const route=document.body?.dataset.appRoute;
-    const enabled=matchMedia('(max-width:1023px)').matches&&!['competition','quiz','quizArena','moreLess','predictorSix','fantasy','video','simulator'].includes(route);
+    const enabled=matchMedia('(max-width:1023px)').matches&&!['competition','quiz','quizArena','moreLess','predictorSix','fantasy','video','simulator','more','teams','teamDetail','playerDetail'].includes(route);
     const top=Math.max(document.getElementById('screen')?.scrollTop||0,window.scrollY||0);
     const next=enabled&&(compact?top>24:top>100);
     if(next===compact)return false;
@@ -57,7 +57,7 @@
     const nav=document.querySelector('.bottom-nav');
     const navHeight=visible(nav)?nav.getBoundingClientRect().height:0;
     const navValue=Math.max(0,navHeight)+'px';if(body.style.getPropertyValue('--v774-nav-h')!==navValue)body.style.setProperty('--v774-nav-h',navValue);
-    const header=routeOverlay?null:(custom||document.querySelector('#app>.topbar'));
+    const header=['teamDetail','playerDetail'].includes(route)||routeOverlay?null:(custom||document.querySelector('#app>.topbar'));
     window.LJR_CHROME?.sync?.(header,!!custom);
     /* Rankings owns a two-row header + tabs in normal document flow. Never force the
        global fixed 88px chrome on it: that moves tabs over the standings card. */
@@ -66,7 +66,7 @@
     // Every mobile route gets a scroll surface, including routes with their own header.
     body.classList.toggle('v768-scroll-root',true);
     {
-      const value=(route==='rankings'||routeOverlay?0:(!overlay(header)&&visible(header)?header.getBoundingClientRect().height:0))+'px';
+      const value=(['rankings','teamDetail','playerDetail'].includes(route)||routeOverlay?0:(!overlay(header)&&visible(header)?header.getBoundingClientRect().height:0))+'px';
       if(body.style.getPropertyValue('--v768-head-h')!==value)body.style.setProperty('--v768-head-h',value);
     }
     if(header!==observedHeader||nav!==observedNav){sizes.disconnect();if(header)sizes.observe(header);if(nav)sizes.observe(nav);observedHeader=header;observedNav=nav;}

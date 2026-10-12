@@ -1,5 +1,5 @@
 /* One mobile chrome contract. Desktop artwork and exported documents keep
-   their existing styles. Native Android reserves system bars separately. */
+   their existing styles. Native Android paints edge-to-edge and measures safe control insets. */
 @layer ljr-mobile-shell {
 @media(max-width:1023px){
  html body button#ljr-game-back{position:fixed!important;display:grid!important;visibility:visible!important;opacity:1!important;top:calc(24px + env(safe-area-inset-top,0px))!important;left:12px!important;width:40px!important;height:40px!important;z-index:2147483644!important;color:#fff!important;background:transparent!important;border:0!important;border-radius:0!important;pointer-events:auto!important;box-shadow:none!important}
@@ -44,7 +44,6 @@
  html body[data-app-route="search"] :is(.v412-search,.v412-quick-grid){margin-top:12px!important}
  html body[data-app-route="teamDetail"] .v42-actions{gap:10px!important;margin-bottom:12px!important}
  html body[data-app-route="teamDetail"] .v42-tabs{gap:8px!important;padding:6px 8px!important}
- html body[data-app-route="teamDetail"] .v42-actions button{background:#143fa8!important;color:white!important;border:1px solid #3b69bd!important;border-radius:12px!important}
  html body :is(.v400-stats-fallback,.v400-leader){background:linear-gradient(145deg,#1946ac,#11286c)!important;color:#fff!important}
  html body[data-app-route="accountLogin"] :is(.v569-card,.v569-form,.v569-page,.v569-card>button){border-color:#254e9b!important;outline:none!important;background-color:transparent!important}
  html body[data-app-route="ligaQR"] .v64-qr-intro{position:relative!important;inset:auto!important;display:block!important;transform:none!important;margin:0 0 14px!important}
@@ -72,9 +71,9 @@
  html body #screen :is([data-captured-design],[data-design-layout]){background-attachment:scroll!important}
 }
 }
-#ljr-route-loader{display:none;position:fixed;inset:0;z-index:2147483646;background:#080d51;color:#fff;place-items:center;pointer-events:auto}
-#ljr-route-loader>i{width:30px;height:30px;border:3px solid #ffffff25;border-top-color:#fff;border-radius:50%;animation:ljr-shell-spin .7s linear infinite}
-#ljr-route-loader>span{position:absolute;top:calc(50% + 30px);font-size:13px;color:#bdcfee}
+#ljr-route-loader{display:none;position:fixed;inset:0;z-index:2147483646;background:#000040;color:#fff;place-items:center;pointer-events:auto}
+#ljr-route-loader>i{width:48px;height:48px;border:5px solid transparent;border-top-color:#fff;border-right-color:#fff;border-radius:50%;animation:ljr-shell-spin .7s linear infinite}
+#ljr-route-loader>span{display:none}
 html.ljr-route-staging #ljr-route-loader,html.ljr-preboot #ljr-route-loader{display:grid}
 @keyframes ljr-shell-spin{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){#ljr-route-loader>i{animation:none;border-top-color:#32d9ee}}
@@ -84,3 +83,93 @@ html.ljr-route-staging #ljr-route-loader,html.ljr-preboot #ljr-route-loader{disp
 .ljr-offline-hub>header,.ljr-offline-hub>article{padding:16px;border:1px solid #3562a8;border-radius:16px;background:linear-gradient(145deg,#143ca0,#0b205e)}
 .ljr-offline-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.ljr-offline-grid button{padding:14px 10px;min-height:58px;border:1px solid #3f6cb4;border-radius:12px;background:#123580;color:#fff;font:inherit;font-size:13px}
 .ljr-game-back{position:fixed;top:calc(22px + env(safe-area-inset-top,0px));left:12px;width:40px;height:40px;display:grid;place-items:center;border:0;background:#082471a8;border-radius:12px;color:white;z-index:150;font-size:25px}
+
+@layer ljr-mobile-shell {
+@media(max-width:1023px){
+ html body #app>.topbar{border-bottom:0!important}
+ html body:is([data-app-route="teams"],[data-app-route="teamDetail"],[data-app-route="playerDetail"],.v28-follow-picker-open) #app>.topbar{display:none!important;height:0!important;min-height:0!important;max-height:0!important}
+ html body:is([data-app-route="teams"],[data-app-route="teamDetail"],[data-app-route="playerDetail"],.v28-follow-picker-open){--v768-head-h:0px!important}
+ html body:is([data-app-route="teams"],[data-app-route="teamDetail"],[data-app-route="playerDetail"],.v28-follow-picker-open) #screen{top:0!important;padding-top:0!important}
+ html body[data-app-route="teams"] .v27-teams-head{height:auto!important;min-height:92px!important;max-height:none!important;padding:calc(18px + env(safe-area-inset-top,0px)) 16px 12px!important;background:linear-gradient(180deg,#1032a3,#080b61)!important;position:relative!important}
+ html body[data-app-route="teams"] .v27-teams-head .v27-back{display:none!important}
+ html body[data-app-route="teams"] .v27-teams-head h1{display:none!important}
+ html body[data-app-route="teams"] .v27-search{position:relative!important;inset:auto!important;width:100%!important;margin:0!important;height:44px!important}
+ html body[data-app-route="teams"] .v27-section{content-visibility:auto;contain-intrinsic-size:auto 500px}
+ html body[data-app-route="following"] .v28-head.ljr-scroll-header{height:calc(108px + env(safe-area-inset-top,0px))!important;min-height:calc(108px + env(safe-area-inset-top,0px))!important;max-height:none!important;padding:calc(68px + env(safe-area-inset-top,0px)) 16px 10px!important;display:block!important}
+ html body[data-app-route="following"].ljr-header-compact #app #screen .v28-head.ljr-scroll-header h1{padding-left:44px!important;padding-right:76px!important;font-size:20px!important;overflow:hidden!important;text-overflow:ellipsis!important;width:100%!important}
+ html body[data-app-route="following"].ljr-header-compact .v28-head.ljr-scroll-header{height:calc(72px + env(safe-area-inset-top,0px))!important;min-height:calc(72px + env(safe-area-inset-top,0px))!important;padding:calc(22px + env(safe-area-inset-top,0px)) 16px 8px!important}
+ html body .v28-add{min-width:220px!important;max-width:100%!important;height:48px!important;margin-top:22px!important;padding:0 24px!important;gap:12px!important;border:1px solid #17dbe9!important;border-radius:14px!important;background:transparent!important;color:#17dbe9!important;font-size:17px!important;box-shadow:none!important}
+ html body.v28-follow-picker-open .v28-picker-top{padding-top:calc(16px + env(safe-area-inset-top,0px))!important}
+ html body[data-app-route="moments"] .v26-moments-sticky .v561-moments-title{top:calc(70px + env(safe-area-inset-top,0px))!important;left:18px!important;right:70px!important;font-size:23px!important;line-height:1.15!important}
+ html body[data-app-route="moments"].ljr-header-compact .v26-moments-sticky .v561-moments-title{top:calc(24px + env(safe-area-inset-top,0px))!important;left:60px!important;font-size:20px!important}
+ html body[data-app-route="moments"] .v26-moments-sticky{max-height:none!important;border:0!important;box-shadow:0 10px 14px -12px #04065c!important}
+ html body[data-app-route="club-store"] :is(.v431-store-head,.v510-store-head){background-color:#113496!important;max-height:none!important}
+ html body[data-app-route="club-store"].ljr-header-compact #app #screen :is(.v431-store-head,.v510-store-head) h1{padding-left:44px!important;padding-right:60px!important;max-width:100%!important;font-size:18px!important}
+ html body[data-app-route="club-store"].ljr-header-compact :is(.v431-store-head,.v510-store-head) :is(small,p){display:none!important}
+ html body:is([data-app-route="notifications"],[data-app-route="safe-notifications"],[data-app-route="stats"]) #screen{background-color:#0a1973!important}
+ html body:is([data-app-route="stats"],[data-app-route="safe-data"]) :is(.v33-data-head,.v520-stats-topbar){background:linear-gradient(180deg,#143caa,#0a1973)!important}
+ html body[data-app-route="teamDetail"] .v42-actions{grid-template-columns:1fr 1fr 38px!important;gap:8px!important;margin-top:16px!important}
+ html body[data-app-route="teamDetail"] .v42-actions button{height:36px!important;min-height:36px!important;border-radius:7px!important;font-size:13px!important;border:0!important;background:rgba(255,255,255,.17)!important;color:#fff!important;padding:0 10px!important}
+ html body[data-app-route="teamDetail"] .v42-actions .v42-follow{background:#fff!important;color:#0a1056!important}
+ html body[data-app-route="teamDetail"] .v42-share svg{width:21px!important;height:21px!important}
+ html body[data-app-route="playerDetail"] :is(.v386-hero-actions,.v385-head-actions){display:grid!important;grid-template-columns:minmax(0,1fr) 38px!important;gap:8px!important}
+ html body[data-app-route="playerDetail"] :is(.v386-compare,.v385-head-compare){height:36px!important;min-height:36px!important;background:#fff!important;color:#0a1056!important;font-size:13px!important;border-radius:7px!important;padding:0 12px!important}
+ html body[data-app-route="playerDetail"] :is(.v379-share,.v385-head-share){width:38px!important;height:36px!important;min-height:36px!important;background:rgba(255,255,255,.17)!important;border:0!important;border-radius:7px!important;padding:7px!important}
+ html body[data-app-route="playerDetail"] :is(.v379-share,.v385-head-share) svg{width:22px!important;height:22px!important}
+ html body[data-app-route="fantasyTeam"] [data-v576-back]{visibility:hidden!important;pointer-events:none!important}
+ html body[data-app-route="fantasyTeam"] #ljr-game-back{top:calc(4px + env(safe-area-inset-top,0px))!important;font-size:28px!important}
+ html body[data-app-route="fantasyTeam"] .v576-builder-head{padding-top:env(safe-area-inset-top,0px)!important;height:calc(54px + env(safe-area-inset-top,0px))!important}
+ html body:is([data-app-route="profile"],[data-app-route="accountLogin"]) :is(.v12-profile-card,.v569-card,.v569-form,.v569-page){border:0!important;outline:0!important;box-shadow:none!important}
+ html body[data-app-route="profile"] .v12-profile-card{margin-top:12px!important}
+ html body .v64-upload-field{grid-template-columns:minmax(0,1fr) 84px!important;grid-template-rows:auto auto auto!important}
+ html body .v64-upload-field>b{grid-column:1/-1!important;grid-row:1!important;font-size:13px!important;white-space:normal!important}
+ html body .v64-upload-field>input[type="file"]{min-width:0!important;width:100%!important;height:auto!important;min-height:44px!important;padding:7px!important;font-size:11px!important}
+ html body .v64-upload-field>input[type="file"]::file-selector-button{font-size:11px!important;padding:8px!important;max-width:100%!important;margin-right:5px!important}
+ html body .v64-upload-field>.v563-photo-note{grid-row:3!important;grid-column:1/-1!important;margin:0!important;font-size:11px!important;line-height:1.4!important;white-space:normal!important}
+ html body[data-app-route="video"] :is(.v412-tv-profile,.v412-tv-account,[data-v412-profile],.v197-tv-profile,.v197-tv-account){width:38px!important;height:38px!important;min-width:38px!important;min-height:38px!important}
+ html body .bottom-nav .nav-item:nth-child(1){--nav-rainbow:#baa0f0}
+ html body .bottom-nav .nav-item:nth-child(2){--nav-rainbow:#eed28b}
+ html body .bottom-nav .nav-item:nth-child(3){--nav-rainbow:#f392b9}
+ html body .bottom-nav .nav-item:nth-child(4){--nav-rainbow:#70d7bb}
+ html body .bottom-nav .nav-item:nth-child(5){--nav-rainbow:#86dff7}
+ html body .bottom-nav .nav-item :is(svg,.nav-icon){color:var(--nav-rainbow)!important;stroke:var(--nav-rainbow)!important;filter:none!important}
+ html body .bottom-nav .nav-item.active :is(svg,.nav-icon){color:#16dfef!important;stroke:#16dfef!important}
+ html body *{scrollbar-width:none!important}html body *::-webkit-scrollbar{width:0!important;height:0!important;background:transparent!important}
+}
+}
+@layer ljr-mobile-shell {
+@media(max-width:1023px){
+ html body .bottom-nav :is(small,span){text-transform:none!important}
+ html body[data-app-route="teams"] .v27-teams-head{background-image:linear-gradient(180deg,#102781,#080b61)!important;box-shadow:none!important;border:0!important;outline:none!important}
+ html body[data-app-route="playerDetail"] .v379-back{display:grid!important;visibility:visible!important;opacity:1!important;position:absolute!important;top:calc(18px + env(safe-area-inset-top,0px))!important;left:14px!important;width:36px!important;height:36px!important;z-index:10!important}
+ html body[data-app-route="more"] #app>.topbar{height:calc(108px + env(safe-area-inset-top,0px))!important;min-height:calc(108px + env(safe-area-inset-top,0px))!important;max-height:calc(108px + env(safe-area-inset-top,0px))!important}
+ html body.ljr-native-insets :is(.v531-page,.v589-page,.v22-fantasy-master,.v379-hero){box-sizing:border-box!important;padding-top:calc(18px + env(safe-area-inset-top,0px))!important}
+ html body.ljr-native-insets[data-app-route="video"] :is(.v427-tv-page,.v428-tv-page,.v412-tv-reference){padding-top:env(safe-area-inset-top,0px)!important}
+ html body.ljr-native-insets .bottom-nav{padding-bottom:env(safe-area-inset-bottom,0px)!important}
+ html body .cms-help-hint{font-size:13px;line-height:1.5;color:#cedbf8}
+}
+}
+@layer ljr-mobile-shell {
+@media(max-width:1023px){
+ html body[data-app-route="video"] .v17-tv-profile{position:fixed!important;left:auto!important;right:18px!important;top:calc(26px + env(safe-area-inset-top,0px))!important;width:38px!important;height:38px!important;min-width:38px!important;min-height:38px!important;z-index:130!important;background:transparent!important;border:0!important}
+ html body[data-app-route="video"] .v17-tv-profile-icon{width:30px!important;height:30px!important;object-fit:contain!important}
+}
+}
+html.ljr-insets-loading #ljr-route-loader{display:grid}
+
+#ljr-route-loader>i{width:56px;height:56px;border:0}#ljr-route-loader>i>svg{width:100%;height:100%;display:block}
+@layer ljr-mobile-shell {
+@media(max-width:1023px){
+ html body.ljr-v777[data-app-route="home"] #app>.topbar{height:calc(128px + env(safe-area-inset-top,0px))!important;min-height:calc(128px + env(safe-area-inset-top,0px))!important;max-height:calc(128px + env(safe-area-inset-top,0px))!important;background-image:linear-gradient(180deg,transparent 58%,#04065c 100%),url('../public/profile/home-header.webp')!important;border:0!important}
+ html body.ljr-v777[data-app-route="home"] #app>.topbar::before{content:""!important;position:absolute!important;inset:auto!important;left:18px!important;top:calc(30px + env(safe-area-inset-top,0px))!important;width:46px!important;height:46px!important;background:url('../assets/reference/predictor-v36/liga-crest-white.webp') center/contain no-repeat!important;border:0!important;transform:none!important;opacity:1!important}
+ html body.ljr-v777[data-app-route="home"].ljr-header-compact #app>.topbar{height:var(--ljr-head-height)!important;min-height:var(--ljr-head-height)!important;max-height:var(--ljr-head-height)!important}
+ html body.ljr-v777[data-app-route="home"].ljr-header-compact #app>.topbar::before{top:calc(14px + env(safe-area-inset-top,0px))!important;width:34px!important;height:34px!important}
+}
+}
+@layer ljr-mobile-shell {
+@media(max-width:1023px){
+ html body .v64-upload-field{grid-column:1/-1!important}
+ html body.v369-compare-open #screen>.v42-team-page{visibility:hidden!important;pointer-events:none!important}
+ html body .v369-compare-topbar{padding-top:calc(13px + env(safe-area-inset-top,0px))!important;min-height:calc(58px + env(safe-area-inset-top,0px))!important}
+}
+}

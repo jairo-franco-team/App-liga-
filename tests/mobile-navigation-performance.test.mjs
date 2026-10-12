@@ -118,10 +118,10 @@ test('app back traverses an owned browser entry so the Android back stack has no
  n.history.back=()=>{backs++};n.history.replaceState=()=>{replaces++};n.window.LJR_NAVIGATION.back();
  assert.equal(backs,1);assert.equal(replaces,0);
 });
-test('team directory constructs six tiles per category group and keeps every matching club searchable',()=>{
+test('team directory renders all category groups and keeps every matching club searchable',()=>{
  const src=read('src/v27-teams-drive-reference.js'),fn=src.slice(src.indexOf('  function teamsMarkup(){'),src.indexOf('  function teamStrip('));
  const rows=Array.from({length:27},(_,i)=>({id:i,name:'Club '+i,short:'Club '+i}));const context={window:{LJR_MOBILE_LISTS:pager()},query:'',FIRST_GRID:rows,LIBRE_TEAMS:rows,V27_TEAMS:[],followedIds:()=>[],team:()=>({}),esc,backIcon:()=>'',searchIcon:()=>'',tile:(t,f)=>f?'':'<button class="team-tile">'+t.name+'</button>'};
- let html=vm.runInNewContext(fn+';teamsMarkup()',context);assert.equal((html.match(/class="team-tile"/g)||[]).length,12);assert.equal((html.match(/Ver más/g)||[]).length,2);
+ let html=vm.runInNewContext(fn+';teamsMarkup()',context);assert.equal((html.match(/class="team-tile"/g)||[]).length,54);assert.equal((html.match(/Ver más/g)||[]).length,0);
  context.query='Club 26';html=vm.runInNewContext(fn+';teamsMarkup()',context);assert.match(html,/Club 26/);assert.equal((html.match(/class="team-tile"/g)||[]).length,2);
 });
 test('Ver más keeps the reader at the same offset when a list renderer replaces its page',()=>{

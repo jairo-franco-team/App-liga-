@@ -2,7 +2,21 @@ import fs from 'node:fs';
 import path from 'node:path';
 const destination='android/app/src/main/java/mx/ligajuventino/app';
 fs.mkdirSync(destination,{recursive:true});
-for(const name of ['MainActivity.java','LigaPiPPlugin.java','LigaBiometricPlugin.java','LigaSpeechPlugin.java','LigaNotificationsPlugin.java','LigaCalendarPlugin.java']) fs.copyFileSync(path.join('native/android',name),path.join(destination,name));
+for(const name of ['MainActivity.java','LigaPiPPlugin.java','LigaBiometricPlugin.java','LigaSpeechPlugin.java','LigaNotificationsPlugin.java','LigaCalendarPlugin.java','LigaInsetsPlugin.java']) fs.copyFileSync(path.join('native/android',name),path.join(destination,name));
+// Preserve the original icon's artwork and color. A drawable backplate darkens
+// only the unwanted white raster seam along its bottom edge, in every density.
+const resources='android/app/src/main/res';
+for(const folder of (fs.existsSync(resources)?fs.readdirSync(resources):[]).filter(name=>/^mipmap-/.test(name))){
+  for(const name of ['ic_launcher','ic_launcher_round','ic_launcher_foreground']){
+    const png=path.join(resources,folder,name+'.png');if(!fs.existsSync(png))continue;
+    const drawable=path.join(resources,folder.replace('mipmap-','drawable-'));
+    fs.mkdirSync(drawable,{recursive:true});
+    fs.copyFileSync(png,path.join(drawable,'ljr_original_'+name+'.png'));
+    fs.unlinkSync(png);
+    fs.writeFileSync(path.join(resources,folder,name+'.xml'),
+      '<?xml version="1.0" encoding="utf-8"?>\n<layer-list xmlns:android="http://schemas.android.com/apk/res/android"><item><bitmap android:src="@drawable/ljr_original_'+name+'" android:gravity="fill" /></item><item android:height="1dp" android:gravity="bottom"><shape><solid android:color="#02065F" /></shape></item></layer-list>\n');
+  }
+}
 const manifest='android/app/src/main/AndroidManifest.xml';
 let xml=fs.readFileSync(manifest,'utf8');
 xml=xml.replace(/<activity\b[^>]*android:name="\.MainActivity"[^>]*>/,tag=>tag.includes('android:supportsPictureInPicture')?tag:tag.replace('<activity','<activity android:supportsPictureInPicture="true" android:resizeableActivity="true"'));

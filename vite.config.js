@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import { copyFileSync, mkdirSync, existsSync, cpSync, readFileSync, writeFileSync } from 'node:fs';
+import { copyFileSync, mkdirSync, existsSync, cpSync, readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 
 function copyStaticReferences() {
@@ -8,7 +8,7 @@ function copyStaticReferences() {
     closeBundle() {
       const files = [
         ['src/v606-control-registro-tools.js', 'dist/src/v606-control-registro-tools.js'],
-        // Reglamento oficial: el visor móvil/PC debe apuntar a un PDF publicado de verdad.
+        // Reglamento oficial: conservar el PDF publicado por la actualización paralela.
         ['docs/Reglamento_Liga_Juventino_Rosas_2026_2027.pdf', 'dist/docs/Reglamento_Liga_Juventino_Rosas_2026_2027.pdf'],
         ['src/v606-control-registro-tools.css', 'dist/src/v606-control-registro-tools.css'],
         // Fuentes CSS de la barra de jornada: deben sobrevivir al build demo/APK.
@@ -40,10 +40,12 @@ function copyStaticReferences() {
           copyFileSync(from, to);
         }
       }
-      // Evitar 404 al abrir o descargar el Reglamento desde GitHub Pages y la APK.
       const rulebookPdf = resolve('dist/docs/Reglamento_Liga_Juventino_Rosas_2026_2027.pdf');
-      if (!existsSync(rulebookPdf) || readFileSync(rulebookPdf).subarray(0,5).toString('ascii') !== '%PDF-') {
-        throw new Error('Falta el Reglamento PDF válido en el paquete publicado');
+      if (!existsSync(rulebookPdf) || readFileSync(rulebookPdf).subarray(0,5).toString('ascii') !== '%PDF-') throw new Error('Falta el Reglamento PDF válido en el paquete publicado');
+      // Native edge-to-edge uses measured system insets; web retains env() fallback.
+      for (const name of readdirSync(resolve('dist/assets')).filter(n=>n.endsWith('.css'))) {
+        const file=resolve('dist/assets',name);
+        writeFileSync(file,readFileSync(file,'utf8').replace(/env\(safe-area-inset-(top|bottom|left|right)(?:,[^)]*)?\)/g,(value,side)=>'var(--ljr-native-'+side+', '+value+')'));
       }
       // Fail the build instead of publishing a PC link that silently returns 404.
       const pcHTML = resolve('dist/pc-exact-original-20261011.html');
