@@ -16,7 +16,7 @@ const route=()=>String(location.hash||'').replace(/^#\/?/,'').split('?')[0]||'ho
 const desktop=()=>{const mode=new URLSearchParams(location.search).get('mode');return mode!=='mobile'&&mode!=='apk'&&(mode==='desktop'||innerWidth>=1024);};
 const active=()=>desktop()&&allowed.has(route());
 const go=r=>{location.hash='#/'+r;};
-function source(){const d=window.LJR_OFFICIAL_DATA||window.LJR_OFFICIAL_API?.getData?.()||db;return d?.categories?d:null;}
+function source(){const local=window.LJR_OFFICIAL_DATA;if(local?.categories)return local;const api=window.LJR_OFFICIAL_API?.getData?.();if(api?.categories)return api;return db?.categories?db:null;}
 function load(){
  if(source()||loading)return;
  loading=true;
@@ -119,23 +119,28 @@ function eventCards(){
  '<div class="u18fx-team-line">'+crest(m.away)+'<span title="'+escape(m.away)+'">'+escape(m.away)+'</span></div></div>'+
  '<div class="u18fx-scores"><strong>'+escape(m.played?m.hs:'–')+'</strong><strong>'+escape(m.played?m.as:'–')+'</strong></div>'+
  '<div class="u18fx-result"><span>'+status+'</span>'+
- '<button type="button" data-u18-open-match="'+escape(m.id)+'">Ver detalles</button></div></div>'+
+ '<button type="button" class="u18fx-detail-button" data-u18-open-match="'+escape(m.id)+'" aria-label="Ver detalles del partido '+escape(m.home)+' contra '+escape(m.away)+'">Ver detalles</button></div></div>'+
  (m.decision?.winner?'<div class="u18fx-footnote">Resolución administrativa · '+escape(m.decision.winner)+'</div>':
  !m.played?'<div class="u18fx-footnote">Pendiente de resultado</div>':'')+
  '</article>';
  }).join('')+'</div></section>').join('');
 }
 function bracket(){
- return '<div class="u18-bracket"><div class="u18-brackethead"><h2>Fase eliminatoria</h2><p>La visualización del cuadro utiliza únicamente cruces oficiales publicados; no completa equipos ni marcadores faltantes.</p></div>'+
- '<div class="u18-bracketdiagram"><div><b>Octavos</b><span>Por confirmar</span></div><div><b>Cuartos</b><span>Por confirmar</span></div>'+
- '<div><b>Semifinales</b><span>Por confirmar</span></div><div><b>Final</b><span>🏆</span></div></div>'+
- '<div class="u18-panel"><strong>Cuadro de la Liga</strong><p>Abre la herramienta de cuadros para consultar o crear un sorteo de prueba, sin modificar los resultados oficiales.</p>'+
- '<button class="u18-button" data-u18-go="bracketBuilder">Abrir generador de cuadros ›</button></div></div>';
+ return '<section class="u18fx-draw-section" aria-label="Cuadro y sorteos de la Liga">'+
+ '<div class="u18fx-draw-date"><h2>Sorteo de la fase eliminatoria</h2><small>Información oficial de '+escape(CAT[state.cat])+'</small></div>'+
+ '<article class="u18fx-draw-card"><header><h3>Sorteo de clasificación</h3><p>Aún no se publicaron enfrentamientos confirmados de esta fase.</p>'+
+ '<strong>Resultados del sorteo</strong></header>'+
+ '<div class="u18fx-draw-pair-grid">'+['Octavos','Cuartos','Semifinales','Final'].map((label,i)=>
+ '<div class="u18fx-draw-pair"><span>'+escape(label)+'</span><span class="u18fx-draw-shield" aria-hidden="true">♢</span><b>Por confirmar</b></div>').join('')+'</div>'+
+ '<div class="u18fx-draw-actions"><button type="button" data-u18-go="pc-draws">Ver detalles del sorteo</button></div></article>'+
+ '<div class="u18fx-draw-tools"><p>El cuadro solo muestra fases generales. No se inventan cruces, equipos ni fechas.</p>'+
+ '<button type="button" class="u18fx-draw-tool" data-u18-go="bracketBuilder">Abrir generador de cuadros '+fixtureIcon('next')+'</button></div>'+
+ '</section>';
 }
 function fixturesPage(){
  const f=fixtures();
  const nav=[['pc-fixtures','Partidos'],['pc-standings','Clasificación'],['video','Liga TV'],['pc-draws','Sorteos'],['fantasy','Gaming'],['pc-data','Datos'],['more','Más']];
- const navigation='<nav class="u18fx-nav" aria-label="Navegación de PC"><div class="u18fx-nav-inner"><div class="u18fx-brand"><img src="./assets/branding/escudo-liga-azul-sin-fondo-v1007.png" loading="eager" alt="Escudo Liga Juventino Rosas"><span>LIGA<br>JUVENTINO ROSAS</span></div><div class="u18fx-navlinks">'+nav.map(([key,label])=>'<button type="button" data-u18-go="'+key+'"'+(key==='pc-fixtures'?' class="selected"':'')+'>'+label+'</button>').join('')+'</div></div></nav>';
+ const navigation='<div class="u18fx-utility"><span>Liga Juventino Rosas</span><span>Fútbol municipal · Guanajuato</span></div><nav class="u18fx-nav" aria-label="Navegación de PC"><div class="u18fx-nav-inner"><div class="u18fx-brand"><img src="./assets/branding/escudo-liga-azul-sin-fondo-v1007.png" loading="eager" alt="Escudo Liga Juventino Rosas"><span>LIGA<br>JUVENTINO ROSAS</span></div><div class="u18fx-navlinks">'+nav.map(([key,label])=>'<button type="button" data-u18-go="'+key+'"'+(key==='pc-fixtures'?' class="selected"':'')+'>'+label+'</button>').join('')+'</div></div></nav>';
  const tabs='<div class="u18fx-tabwrap"><div class="u18fx-switch">'+pills([['matches','Partidos y resultados'],['bracket','Ver cuadro']],state.fixturesTab,'data-u18-fixture-tab')+'</div><div class="u18fx-cat">'+catSelect()+'</div></div>';
  const actions='<div class="u18fx-titlebar"><h1>Partidos y resultados</h1><div class="u18fx-actions">'+
  '<button type="button" data-u18-go="pc-notifications">Notificaciones '+fixtureIcon('bell')+'</button>'+
