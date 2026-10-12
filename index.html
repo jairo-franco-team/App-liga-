@@ -922,6 +922,8 @@ html body.v587-fantasy-team-open .v576-field-row.por{
   <link rel="stylesheet" href="./src/pc-native-reference-sections-20261011.css?v=pc-native-ref-phase1-20261011" />
   <!-- Diseño editorial exclusivo del navegador PC (CSS, no cambia funcionalidad ni móvil). -->
   <link rel="stylesheet" href="./src/desktop-browser-editorial-20261011.css?v=pc-editorial-20261011" media="screen" />
+  <!-- PC-only compact layout. Scoped selectors outrank mobile rules; the mobile Perfil stylesheet keeps its required final position. -->
+  <link rel="stylesheet" href="./src/pc-compact-integrated-20261011.css?v=20261011-compact-pc-inside-v1" media="screen" />
   <!-- PC: document scroll, non-sticky footer; overrides stale mobile scroll roots. -->
   <link rel="stylesheet" href="./src/pc-unified-navigation-20261011.css?v=pc-footer-natural-scroll-20261011-v1" />
 </head>
@@ -2099,9 +2101,6 @@ html body.v587-fantasy-team-open .v576-field-row.por{
 
   <!-- V1455: Referencias Mi UEFA adaptadas a Mi Liga + viewport compacto legible para Chrome Android. -->
   <script defer src="./src/v1455-account-uefa-compact.js?v=20261011-v1460-mobile-corrections"></script>
-  <!-- PC ONLY: final stylesheet after legacy mobile themes.
-       Keeps all native widgets inside the same compact green/navy desktop canvas. -->
-  <link rel="stylesheet" href="./src/pc-compact-integrated-20261011.css?v=20261011-compact-pc-inside-v1" media="screen" />
   <script defer src="./src/pc-compact-scroll-guard-20261011.js?v=20261011-no-auto-scroll-v1"></script>
 </body>
 </html>
