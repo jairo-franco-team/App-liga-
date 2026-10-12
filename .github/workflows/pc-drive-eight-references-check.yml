@@ -1,0 +1,34 @@
+name: Validar referencias de estadísticas PC
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "src/pc-drive-eight-references-20261011.js"
+      - "src/pc-drive-eight-references-20261011.css"
+      - "tests/pc-drive-eight-references-20261011.test.mjs"
+      - ".github/workflows/pc-drive-eight-references-check.yml"
+  pull_request:
+    paths:
+      - "index.html"
+      - "src/pc-drive-eight-references-20261011.js"
+      - "src/pc-drive-eight-references-20261011.css"
+      - "tests/pc-drive-eight-references-20261011.test.mjs"
+      - ".github/workflows/pc-drive-eight-references-check.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  desktop-statistics-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Comprobar tablas, navegación, datos y aislamiento móvil/APK
+        run: node --test tests/pc-drive-eight-references-20261011.test.mjs
