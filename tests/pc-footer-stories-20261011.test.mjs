@@ -12,20 +12,32 @@ const index=load('index.html');
 test('Universal PC header and footer script remains parseable',()=>{
  assert.doesNotThrow(()=>new vm.Script(nav));
 });
-test('Home PC footer is appended LAST inside screen after native modules',()=>{
- assert.match(nav,/const home=route\(\)==='home'&&!!screen\.querySelector\('#ljpc-exact-html-home'\)/);
- assert.match(nav,/if\(home\)\{[\s\S]*?footer!==screen\.lastElementChild\)[\s\S]*?screen\.appendChild\(footer\)/);
- assert.match(nav,/else if\(footer\.parentElement!==document\.body\)/);
- assert.doesNotMatch(nav,/if\(footer&&footer\.parentElement!==document\.body\)document\.body\.appendChild/);
- assert.match(css,/#screen > #ljpc-unified-pc-footer \{[\s\S]*?order:999!important;/);
- assert.match(css,/#screen > #ljpc-unified-pc-footer \{[\s\S]*?align-self:stretch!important;/);
+test('One PC footer stays at end of body, never bounced into screen',()=>{
+ const finish=load('src/pc-independent-finish-20261011.js');
+ assert.match(nav,/footer!==document\.body\.lastElementChild/);
+ assert.match(nav,/document\.body\.appendChild\(footer\)/);
+ assert.doesNotMatch(nav,/screen\.appendChild\(footer\)/);
+ assert.match(finish,/if\(footer\.parentElement!==document\.body\|\|footer!==document\.body\.lastElementChild\)/);
+ assert.match(css,/html\.ljpc-unified-pc body #ljpc-unified-pc-footer/);
 });
-test('Circles use their own vertical space below scoreboard',()=>{
+test('PC circles are raised, horizontal carousels have working arrows and swiping',()=>{
  assert.match(home,/data-name="stories list container"/);
  assert.match(home,/data-name="stories wrapper"/);
- assert.match(nav,/\[data-name="stories list container"\]\{margin-top:40px!important;/);
- assert.match(nav,/padding-top:12px!important;padding-bottom:16px!important/);
- assert.match(nav,/\[data-name="stories wrapper"\]\{align-items:flex-start!important\}/);
+ assert.match(nav,/\[data-name="stories list container"\]\{margin-top:7px!important;/);
+ assert.doesNotMatch(nav,/margin-top:40px!important/);
+ assert.match(home,/id="ljpc-pc-story-rail-fix"/);
+ assert.match(home,/overflow-x:auto!important/);
+ assert.match(home,/scroll-snap-type:x proximity/);
+ const script=home.match(/<script id="ljpc-story-fixtures-interaction">([\s\S]*?)<\/script>/)?.[1];
+ assert.ok(script,'interactive carousel script present');
+ assert.doesNotThrow(()=>new vm.Script(script));
+ for(const label of ['previous story button','next story button','previous fixtures button','next fixtures button'])assert.ok(script.includes(label),label);
+ assert.match(script,/list\.scrollBy\(/);
+ assert.match(script,/addEventListener\('touchmove'/);
+ assert.match(script,/kind:'pan'/);
+ const shell=load('src/desktop-shell.js');
+ assert.match(shell,/e\.data\.kind==='pan'/);
+ assert.match(shell,/window\.scrollBy\(/);
 });
 test('Mobile and APK selectors are never modified by PC-only styles',()=>{
  assert.match(index,/src\/pc-unified-navigation-20261011\.css/);
