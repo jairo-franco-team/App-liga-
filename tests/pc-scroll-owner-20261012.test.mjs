@@ -17,7 +17,14 @@ const run=(root,app,screen,delta)=>{
  fn(delta);
  return fallback;
 };
-const box=(scrollHeight,clientHeight,scrollTop=0)=>({scrollHeight,clientHeight,scrollTop});
+// Browser scrollTop is clamped at the scroll boundary; a plain object is not.
+const box=(scrollHeight,clientHeight,initial=0)=>{
+ let top=initial;
+ return {scrollHeight,clientHeight,
+  get scrollTop(){return top},
+  set scrollTop(value){top=Math.max(0,Math.min(Math.max(0,scrollHeight-clientHeight),value))}
+ };
+};
 test('desktop scroll bridge advances document when available',()=>{
  const root=box(5000,700,100);
  const fallback=run(root,null,null,180);
