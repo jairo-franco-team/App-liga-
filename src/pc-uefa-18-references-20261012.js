@@ -206,9 +206,9 @@ function videoPage(){
  return '<section class="u18-video"><div class="u18-videohero"><img loading="lazy" src="./public/video-hero-reference.webp" alt=""><div><small>LIGA TV</small><h1>Los mejores momentos de la Liga</h1><p>Partidos, noticias, historias y vídeos de Juventino Rosas</p><button data-u18-show-original>Ver vídeos de la Liga ▶</button></div></div>'+
  '<div class="u18-bound"><div class="u18-videopills">'+pills(filters,state.videoTab,'data-u18-video-tab')+'</div>'+
  '<div class="u18-video-title"><h2>Selección del editor</h2><button data-u18-go="moments">Ver todos ›</button></div>'+
- '<div class="u18-video-grid">'+chosen.map(v=>'<button class="u18-videocard" type="button" data-u18-go="'+v[2]+'"><div class="u18-poster"><img loading="lazy" src="'+v[1]+'" alt=""><span>▶</span></div><b>'+escape(v[0])+'</b><small>'+escape(v[3])+'</small></button>').join('')+'</div>'+
+ '<div class="u18-video-grid">'+chosen.map(v=>'<button class="u18-videocard" type="button" '+(v[2]==='video'?'data-u18-show-original':'data-u18-go="'+v[2]+'"')+'><div class="u18-poster"><img loading="lazy" src="'+v[1]+'" alt=""><span>▶</span></div><b>'+escape(v[0])+'</b><small>'+escape(v[3])+'</small></button>').join('')+'</div>'+
  '<div class="u18-video-title"><h2>Partidos y finales</h2><button data-u18-go="history">Historia ›</button></div>'+
- '<div class="u18-video-grid">'+vids.slice(2,6).map(v=>'<button class="u18-videocard" data-u18-go="'+v[2]+'"><div class="u18-poster"><img loading="lazy" src="'+v[1]+'" alt=""><span>▶</span></div><b>'+escape(v[0])+'</b><small>'+escape(v[3])+'</small></button>').join('')+'</div>'+
+ '<div class="u18-video-grid">'+vids.slice(2,6).map(v=>'<button class="u18-videocard" '+(v[2]==='video'?'data-u18-show-original':'data-u18-go="'+v[2]+'"')+'><div class="u18-poster"><img loading="lazy" src="'+v[1]+'" alt=""><span>▶</span></div><b>'+escape(v[0])+'</b><small>'+escape(v[3])+'</small></button>').join('')+'</div>'+
  '<button type="button" class="u18-video-archive" data-u18-show-original>Abrir reproductor y archivo original de Liga TV ↗</button></div></section>';
 }
 function markup(){return route()==='pc-fixtures'?fixturesPage():route()==='pc-standings'?standingsPage():route()==='pc-draws'?drawsPage():videoPage();}
