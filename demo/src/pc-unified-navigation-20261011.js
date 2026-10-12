@@ -360,7 +360,11 @@ window.addEventListener('ljr:official-data',()=>{refreshFixtures();schedule();})
 function boot(){
  schedule();
  const app=document.getElementById('app');
- if(app)new MutationObserver(schedule).observe(app,{subtree:true,childList:true});
+ // Observar sólo cambios estructurales. El árbol completo cambia con noticias,
+ // imágenes y paneles y disparaba sync() constantemente durante el desplazamiento.
+ if(app)new MutationObserver(schedule).observe(app,{childList:true});
+ const screen=document.getElementById('screen');
+ if(screen)new MutationObserver(schedule).observe(screen,{childList:true});
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
