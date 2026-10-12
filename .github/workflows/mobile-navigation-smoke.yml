@@ -1,0 +1,29 @@
+name: Verify visible mobile navigation and exact back position
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'src/v776-navigation.js'
+      - 'src/v929-route-paint-guard.js'
+      - 'src/main.js'
+      - 'tests/navigation-motion.mjs'
+      - '.github/workflows/mobile-navigation-smoke.yml'
+permissions:
+  contents: read
+jobs:
+  navigation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Prepare compiled browser verification
+        run: |
+          npm install --no-save playwright --no-audit --no-fund
+          npx playwright install --with-deps chromium
+          npm run build
+      - name: Verify visible forward and reverse animation and exact return
+        run: node tests/navigation-motion.mjs

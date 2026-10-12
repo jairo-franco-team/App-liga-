@@ -9,8 +9,9 @@ const require=createRequire(import.meta.url);
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const b=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_EXECUTABLE_PATH||undefined,args:['--no-sandbox']});
+let page;
 try {
- const page=await b.newPage({viewport:{width:412,height:915},isMobile:true,hasTouch:true});
+ page=await b.newPage({viewport:{width:412,height:915},isMobile:true,hasTouch:true});
  // Install before boot so asynchronously replaced screen nodes are also observed.
  await page.addInitScript(()=>{
   const original=Element.prototype.animate;
@@ -71,4 +72,13 @@ try {
  assert.equal(await page.evaluate(()=>location.hash),'#/more');assert.deepEqual(errors,[]);
  assert.equal(await page.evaluate(()=>{const api=window.LJR_OFFICIAL_API;return api.getData().categories===api.getData().categories}),true,'official reads reuse unchanged data');
  console.log('PASS: visible forward/reverse page slides, leagueData back alias and exact previous scroll; rapid navigation stable');
+}catch(error){
+ console.error('Navigation motion diagnostic:',JSON.stringify(await page?.evaluate(()=>({
+  route:location.hash,direction:window.LJR_NAVIGATION?.direction?.(),
+  staging:document.documentElement.classList.contains('ljr-route-staging'),
+  reduced:document.body.dataset.v1300Reduced,
+  records:window.__entryMotion?.map(r=>({...r,samples:r.samples.slice(0,8)})),
+  screen:document.getElementById('screen')?{visibility:getComputedStyle(document.getElementById('screen')).visibility,translate:getComputedStyle(document.getElementById('screen')).translate,scrollTop:document.getElementById('screen').scrollTop}:null
+ }))));
+ throw error;
 }finally{await b.close()}
