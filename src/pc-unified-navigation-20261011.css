@@ -335,3 +335,12 @@ html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-history-submenu>.ljpc-
 html.ljpc-unified-pc body #ljpc-unified-pc-header [data-ljpc-u-group="Más"] .ljpc-u-dropdown>button:hover{
  background:#1a3ead;color:#fff
 }
+
+
+/* Previene que un encabezado PC cacheado muestre Historia junto a Más. */
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links >
+details[data-ljpc-u-group="Historia"],
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links >
+button[data-ljpc-u-go="history"]{
+ display:none!important;
+}
