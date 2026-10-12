@@ -117,7 +117,7 @@ function patch(){
  if(!document.body.classList.contains('ljr-v777'))document.body.classList.add('ljr-v777');
  if(route()==='quizArena'){const game=document.querySelector('.v766-quiz-start');if(game&&!game.querySelector('.ljr-quiz-head')){const head=document.createElement('header');head.className='ljr-quiz-head';const back=game.querySelector('.v766-back');if(back)head.append(back);game.prepend(head);window.LJR_SCROLL_CHROME?.refresh?.()}}
  const owned={following:'.v28-head,.v46-follow-head',moments:'.v26-moments-sticky','club-store':'.v431-store-head,.v510-store-head',history:'.v620-history-top'};
- const custom=(owned[route()]&&document.querySelector(owned[route()]))||document.querySelector('#screen .v22-fantasy-master,#screen .v33-about-tools,#screen .ljr-quiz-head,#screen .ljr-scroll-header'),top=document.querySelector('#app>.topbar');
+ const custom=(matchMedia('(max-width:1023px)').matches&&new URLSearchParams(location.search).get('mode')!=='desktop'&&owned[route()]&&document.querySelector(owned[route()]))||document.querySelector('#screen .v22-fantasy-master,#screen .v33-about-tools,#screen .ljr-quiz-head,#screen .ljr-scroll-header'),top=document.querySelector('#app>.topbar');
  sync(custom||top,!!custom);
  document.querySelectorAll('.bottom-nav .nav-item').forEach(b=>{const label=b.querySelector('[data-nav-label],.nav-label,small,span:last-child');if(label&&label.children.length===0){const labels={home:'Inicio',competition:'Competición',video:'Vídeo',fantasy:'Fantasy',more:'Más'};const value=labels[b.dataset.route];if(value&&label.textContent!==value)label.textContent=value}});
  document.querySelectorAll('.v726-hero-pills,.v105-footnote').forEach(n=>n.remove());
