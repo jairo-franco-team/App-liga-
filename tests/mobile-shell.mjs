@@ -9,11 +9,18 @@ const browser=await chromium.launch({headless:true,executablePath:process.env.CH
 try{
  const page=await browser.newPage({viewport:{width:412,height:915},isMobile:true,hasTouch:true});
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ let blockOptionalBundle=false;
  await page.route('**/*',async r=>{
   const u=new URL(r.request().url());if(u.origin!=='https://mobile.test')return r.abort();
   const name=u.pathname==='/'?'index.html':u.pathname.slice(1),file=path.resolve(root,'dist',name);
+  if(blockOptionalBundle&&/^assets\/index-.*\.js$/.test(name))return r.abort();
   try{await r.fulfill({body:fs.readFileSync(file),contentType:({'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.png':'image/png','.svg':'image/svg+xml','.webp':'image/webp','.jpg':'image/jpeg'})[path.extname(file)]||'application/octet-stream'})}catch{await r.fulfill({status:404,body:'missing'})}
  });
+ blockOptionalBundle=true;
+ await page.goto('https://mobile.test/?mode=apk&boot-isolation=1#/home',{waitUntil:'domcontentloaded'});
+ await page.waitForFunction(()=>window.LJR_MAIN_ROUTE?.go,null,{timeout:5000});
+ assert.equal(await page.locator('#screen').evaluate(e=>e.children.length>0),true,'core navigation and Home work before optional feature bundles finish');
+ blockOptionalBundle=false;
  await page.goto('https://mobile.test/?mode=apk#/home',{waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>window.LJR_MAIN_ROUTE?.go&&!document.documentElement.classList.contains('ljr-preboot'));
  const go=async r=>{await page.evaluate(r=>window.LJR_MAIN_ROUTE.go(r),r);await page.waitForTimeout(950)};
@@ -47,6 +54,9 @@ try{
  assert.equal(await page.locator('#ljr-game-back').isVisible(),true,'quiz splash has a back arrow');
  assert.equal(await page.locator('.v1390-before-start summary').isVisible(),true,'quiz ranking is in the visible game portal');
  assert.equal(await page.locator('#ljr-game-back').evaluate(e=>{const r=e.getBoundingClientRect();return document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)===e}),true,'quiz portal does not cover the back arrow');
+ await page.locator('[data-v531-quiz-start]').first().click();await page.waitForTimeout(500);
+ const originalBack=page.locator('#v612-quiz-portal [data-v531-view="hub"] [data-v531-quiz-back]');
+ assert.equal(await originalBack.evaluate(e=>{const r=e.getBoundingClientRect();return e.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2))}),true,'the game fallback arrow never covers its original hub arrow');
  await go('quiniela');
  const rank=page.locator('[data-v1390-ranking]');assert.equal(await rank.count(),1,'game ranking is unique');
  assert.equal(await page.locator('[data-ljr-offline-link]').count()>0,true,'offline section is available');

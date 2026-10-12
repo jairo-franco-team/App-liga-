@@ -6,6 +6,10 @@ Competición y los diseños independientes de PC conservan sus paletas.
 
 ## Causas corregidas
 
+- Inicio y el navegador principal ahora se cargan aparte del paquete de
+  funciones secundarias. Una prueba bloquea ese paquete y comprueba que Inicio
+  y la navegación siguen disponibles. Se conserva el alcance privado del
+  código y la sustitución de la clave pública de Street View durante el build.
 - Android no reservaba espacio para las barras del sistema. Capacitor 7 ahora
   usa `android.adjustMarginsForEdgeToEdge=force`. La ventana mantiene iconos
   claros sobre azul y el contenido queda fuera de la hora, batería y recorte.
@@ -37,6 +41,8 @@ Competición y los diseños independientes de PC conservan sus paletas.
   oculta la plantilla antigua durante el montaje.
 - Los juegos tienen regreso accesible. Pronostica Seis mantiene sus subpantallas
   propias y vuelve al historial al salir; su menú de tres puntos se oculta.
+  La flecha adicional sólo aparece cuando falta una propia: no cubre la flecha
+  del menú interno de Quiz Arena ni interrumpe su confirmación de salida.
 - El ranking local se presenta antes de iniciar en un cuadro azul desplegable,
   incluido el portal real de Quiz Arena. No se inventan puntos ni victorias.
 - El texto del QR se mantiene arriba. El código está incluido en la APK y ya

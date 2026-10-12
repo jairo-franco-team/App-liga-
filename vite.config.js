@@ -110,7 +110,12 @@ function copyStaticReferences() {
           throw new Error('Classic script referenced by index.html is missing: src/' + relativeScript);
         }
         mkdirSync(dirname(to), { recursive: true });
-        copyFileSync(from, to);
+        if (relativeScript === 'main.js') {
+          // Keep the public Maps key that Vite previously substituted, while
+          // letting the independent core remain valid as a classic script.
+          const mapsKey = JSON.stringify(process.env.VITE_GOOGLE_STREETVIEW_API_KEY || '');
+          writeFileSync(to, 'window.LJR_STREETVIEW_API_KEY=' + mapsKey + ';\n' + readFileSync(from, 'utf8'));
+        } else copyFileSync(from, to);
       }
 
       // V230 — reconstruir como archivo binario real la foto de La Esperanza.
