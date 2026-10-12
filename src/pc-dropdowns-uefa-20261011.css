@@ -92,3 +92,11 @@ html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-history-submenu>.ljpc-
   transition:none!important;
  }
 }
+
+/* Keep native <details> closed-state behavior despite the panel display rules. */
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links>details:not([open])>.ljpc-u-dropdown{
+ display:none!important;
+}
+html.ljpc-unified-pc body #ljpc-unified-pc-header .ljpc-u-links>details[open]>summary:not(.active){
+ color:#48eaf9!important;
+}
