@@ -42,7 +42,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: admin-palette-mobile
+  group: admin-palette-mobile-${{ github.sha }}
   cancel-in-progress: true
 
 jobs:
