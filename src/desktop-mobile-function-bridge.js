@@ -291,14 +291,18 @@ function renderFixtures(catId=activeCat,bracket=false){
  const matches=desktopFixtureRows(catId,fixtureView);
  const source='https://www.juventinorosasliga.com/reporte-semanal/';
  const rowHtml=matches.map(x=>{
-   const time=x.rawDate.match(/\s(\d{2}:\d{2})$/)?.[1]||'Hora por confirmar';
+   const time=x.rawDate.match(/\\s(\\d{2}:\\d{2})$/)?.[1]||'Hora por confirmar';
    const label=x.played?x.homeScore+' – '+x.awayScore:x.suspended?'SUSPENDIDO':x.awarded?'GANA '+x.decision.winner:time;
-   const kind=x.played?'Resultado':x.suspended?'Jornada suspendida (no disputado)':x.awarded?'Resolución administrativa · DEFAULT':'Programado / pendiente de resultado';
-   return '<div class="ljpc-match" data-ljpc-match-round="'+esc(x.round)+'" data-ljpc-match-date="'+esc(x.rawDate)+'">'+
-     '<div class="ljpc-team">'+crest(x.home)+'<span>'+esc(pretty(x.home))+'</span></div>'+
-     '<div class="ljpc-score"><b>'+esc(label)+'</b><small>'+esc(formatDate(x.date))+' · Jornada '+esc(x.round)+'</small><small>'+kind+'</small></div>'+
-     '<div class="ljpc-team">'+crest(x.away)+'<span>'+esc(pretty(x.away))+'</span></div>'+
-     '<div class="ljpc-muted">'+esc(x.venue||'Sede por confirmar')+'</div></div>';
+   const kind=x.played?'Resultado registrado':x.suspended?'Jornada suspendida (no disputado)':x.awarded?'Resolución administrativa · DEFAULT':'Programado · pendiente de resultado';
+   return '<article class="ljpc-match" data-ljpc-match-round="'+esc(x.round)+'" data-ljpc-match-date="'+esc(x.rawDate)+'">'+
+     '<div class="ljpc-team ljpc-team-home">'+crest(x.home)+'<span>'+esc(pretty(x.home))+'</span></div>'+
+     '<div class="ljpc-team ljpc-team-away">'+crest(x.away)+'<span>'+esc(pretty(x.away))+'</span></div>'+
+     '<div class="ljpc-score"><b>'+esc(label)+'</b></div>'+
+     '<div class="ljpc-match-details">'+
+       '<span class="ljpc-match-date">'+esc(formatDate(x.date))+' · Jornada '+esc(x.round)+'</span>'+
+       '<span class="ljpc-match-status">'+esc(kind)+'</span>'+
+       '<span class="ljpc-match-venue">'+esc(x.venue||'Sede por confirmar')+'</span>'+
+     '</div></article>';
  }).join('');
  const viewTabs=[['upcoming','Próximos'],['results','Resultados'],['suspended','Suspendidos'],['all','Todos']];
  wrap.innerHTML='<div class="ljpc-function-root" data-ljpc-function-route="pc-fixtures">'+
