@@ -213,3 +213,16 @@ html body .ljr-install-overlay .ljr-install-shell{
 @media(prefers-reduced-motion:reduce){
  .ljr-install-page *, .ljr-install-overlay *{transition:none!important;animation:none!important}
 }
+
+/* Mobile: show the full "Comprobar actualización" label without cutting the button. */
+@media(max-width:520px){
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) body
+    .ljr-install-advisor-actions{grid-template-columns:minmax(0,1fr)!important;gap:7px!important}
+  html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) body
+    .ljr-install-advisor-actions button{
+      box-sizing:border-box!important;width:100%!important;min-width:0!important;
+      min-height:46px!important;height:auto!important;overflow:visible!important;
+      padding:10px 12px!important;white-space:normal!important;
+      overflow-wrap:break-word!important;text-align:center!important;line-height:1.3!important
+    }
+}
