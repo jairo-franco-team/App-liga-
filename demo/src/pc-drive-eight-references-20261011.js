@@ -214,27 +214,37 @@
   }
   function phase(){
     const all=stand(),goals=all.reduce((n,r)=>n+(number(r[6])||0),0);
-    const played=all.reduce((n,r)=>n+(number(r[2])||0),0);
-    const matches=all.length&&played%2===0?String(played/2):'—';
+    const appearances=all.reduce((n,r)=>n+(number(r[2])||0),0);
+    const matches=all.length&&appearances%2===0?appearances/2:null;
+    const average=matches&&matches>0?(goals/matches).toLocaleString('es-MX',{minimumFractionDigits:2,maximumFractionDigits:2}):'—';
     const ranked=all.filter(r=>number(r[6])!==null).sort((a,b)=>(number(b[6])||0)-(number(a[6])||0)).slice(0,10);
     const high=Math.max(1,...ranked.map(r=>number(r[6])||0));
     const bars=ranked.length?ranked.map(r=>{
-      const x=number(r[6])||0,h=Math.max(4,Math.round(x/high*100));
-      return '<button type="button" data-ljpc8-go="pc-standings" title="'+esc(r[1])+' · '+x+' goles"><span class="ljpc8-bar-area"><i style="height:'+h+'%"></i></span><strong>'+x+'</strong><small>'+esc(r[1])+'</small></button>';
-    }).join(''):note('Todavía no hay goles registrados oficialmente en esta categoría.');
+      const n=number(r[6])||0,h=Math.max(5,Math.round(n/high*100));
+      return '<button type="button" data-ljpc8-go="pc-standings" title="'+esc(r[1])+' · '+n+' goles"><span class="ljpc8-bar-area"><i style="height:'+h+'%"></i></span><strong>'+n+'</strong><small>'+esc(r[1])+'</small></button>';
+    }).join(''):note('Sin goles publicados para la categoría.');
     const topPlayers=scorers().slice().sort((a,b)=>(number(b[3])||0)-(number(a[3])||0)).slice(0,5);
-    const teamCard=(metric,title,index)=>{
-      const arr=all.filter(r=>number(r[index])!==null).sort((a,b)=>(number(b[index])||0)-(number(a[index])||0)).slice(0,5);
-      return '<article class="ljpc8-phase-card"><h3>'+esc(title)+'</h3>'+(arr.length?arr.map((r,i)=>'<div class="ljpc8-phase-row"><small>'+String(i+1).padStart(2,'0')+'</small>'+logo(r[1])+'<b>'+esc(r[1])+'</b><strong>'+value(r[index])+'</strong></div>').join(''):note())+'<button type="button" data-ljpc8-go="pc-standings">Ranking completo ›</button></article>';
+    const teamCard=(title,index)=>{
+      const list=all.filter(r=>number(r[index])!==null).sort((a,b)=>(number(b[index])||0)-(number(a[index])||0)).slice(0,5);
+      return '<article class="ljpc8-phase-card"><h3>'+esc(title)+'</h3>'+
+        (list.length?list.map((r,i)=>'<div class="ljpc8-phase-row"><small>'+(i+1)+'</small>'+logo(r[1])+'<b>'+esc(r[1])+'</b><strong>'+value(r[index])+'</strong></div>').join(''):note())+
+        '<button type="button" data-ljpc8-go="pc-standings">Ranking completo ›</button></article>';
     };
-    return '<section class="ljpc8-phase"><div class="ljpc8-phase-hero"><div><small>DATOS · '+categoryCaption()+'</small><h2>Estadísticas de la fase de clasificación</h2><div class="ljpc8-phase-numbers"><span><strong>'+(all.length?goals:'—')+'</strong>Goles registrados</span><span><strong>'+matches+'</strong>Partidos contabilizados</span></div></div><div class="ljpc8-phase-chart"><h3>¿Quiénes marcaron más goles?</h3><div class="ljpc8-phase-bars">'+bars+'</div></div></div>'+
+    return '<section class="ljpc8-phase"><div class="ljpc8-phase-hero">'+
+      '<h2 class="ljpc8-phase-main-title">Estadísticas de la fase de clasificación</h2>'+
+      '<div class="ljpc8-phase-summary"><h3>Goles</h3><strong>'+(all.length?goals:'—')+'</strong><span>Goles totales</span>'+
+      '<div class="ljpc8-phase-numbers"><span><strong>'+average+'</strong>Goles por partido</span>'+
+      '<span><strong>'+(matches===null?'—':matches)+'</strong>Partidos contabilizados</span></div></div>'+
+      '<div class="ljpc8-phase-chart"><h3>Clubes que marcaron más goles</h3><div class="ljpc8-phase-bars">'+bars+'</div></div></div>'+
       '<div class="ljpc8-phase-title"><h2>Estadísticas de equipo</h2><button type="button" data-ljpc8-page="equipos">Ver todas ›</button></div>'+
-      '<div class="ljpc8-phase-cards">'+teamCard('goles','Goles',6)+teamCard('puntos','Puntos',9)+teamCard('victorias','Victorias',3)+'</div>'+
-      '<div class="ljpc8-phase-title"><h2>Estadísticas de jugadores</h2><button type="button" data-ljpc8-page="jugadores">Ver todas ›</button></div>'+
+      '<div class="ljpc8-phase-cards">'+teamCard('Goles',6)+teamCard('Puntos',9)+teamCard('Victorias',3)+'</div>'+
+      '<div class="ljpc8-phase-title"><h2>Estadísticas de jugador</h2><button type="button" data-ljpc8-page="jugadores">Ver todas ›</button></div>'+
       '<div class="ljpc8-phase-cards">'+
-      '<article class="ljpc8-phase-card"><h3>Goles</h3>'+(topPlayers.length?topPlayers.map((r,i)=>'<div class="ljpc8-phase-row"><small>'+String(i+1).padStart(2,'0')+'</small>'+playerImage(r[1],r[2])+'<b>'+esc(r[1])+'</b><strong>'+value(r[3])+'</strong></div>').join(''):note())+'<button type="button" data-ljpc8-page="goleador">Ranking completo ›</button></article>'+
-      '<article class="ljpc8-phase-card ljpc8-phase-feature"><h3>Estadísticas oficiales</h3><p>Explora los datos registrados de equipos y jugadores. Las métricas que faltan se muestran sin cifras estimadas.</p><button type="button" data-ljpc8-page="jugadores">Ver jugadores ›</button></article>'+
-      '<article class="ljpc8-phase-card ljpc8-phase-feature"><h3>Palmarés de la Liga</h3><p>Conoce a los campeones de Primera, Intermedia, Segunda y Veteranos.</p><button type="button" data-ljpc8-go="history">Ver historia ›</button></article></div></section>';
+      '<article class="ljpc8-phase-card"><h3>Goles</h3>'+
+      (topPlayers.length?topPlayers.map((r,i)=>'<div class="ljpc8-phase-row"><small>'+(i+1)+'</small>'+playerImage(r[1],r[2])+'<b>'+esc(r[1])+'</b><strong>'+value(r[3])+'</strong></div>').join(''):note())+
+      '<button type="button" data-ljpc8-page="goleador">Ranking completo ›</button></article>'+
+      '<article class="ljpc8-phase-card ljpc8-phase-feature"><h3>Estadísticas oficiales</h3><p>Consulta los registros deportivos publicados para los equipos y los jugadores.</p><button type="button" data-ljpc8-page="jugadores">Ver jugadores ›</button></article>'+
+      '<article class="ljpc8-phase-card ljpc8-phase-feature"><h3>Historia de la Liga</h3><p>Palmarés, finales y temporadas de la Liga Juventino Rosas.</p><button type="button" data-ljpc8-go="history">Ver historia ›</button></article></div></section>';
   }
   const pages={equipos:()=>statistics('equipos'),jugadores:()=>statistics('jugadores'),goleador:featureScorer,fase:phase,libro:book,rendimiento:performance};
   function paint(root,force=false){
