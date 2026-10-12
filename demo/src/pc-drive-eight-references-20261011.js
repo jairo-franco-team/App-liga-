@@ -258,14 +258,14 @@
     const root=document.querySelector('#screen .ljr-uefa-root');
     if(!root)return;
     if(!official()){ensureData();return;}
-    const cat=category();if(state.category!==cat){state.category=cat;state.revision++;}
+    const cat=category();if(state.category!==cat){state.category=cat;state.revision++;}const picker=root.querySelector('[data-ljpc8-category]');if(picker&&picker.value!==cat)picker.value=cat;
     if(pendingMenuPage){state.page=pendingMenuPage;pendingMenuPage=null;}
     if(!root.querySelector(':scope > .ljpc8-tabs')){
       const original=document.createElement('div');original.className='ljpc8-original';
       while(root.firstChild)original.append(root.firstChild);
       const bar=document.createElement('div');bar.className='ljpc8-tabs';bar.setAttribute('role','tablist');
       bar.setAttribute('aria-label','Secciones de estadísticas para PC');
-      bar.innerHTML=PAGES.map(([key,title])=>'<button role="tab" type="button" data-ljpc8-page="'+key+'" aria-selected="'+(key==='resumen')+'">'+esc(title)+'</button>').join('');
+      bar.innerHTML=PAGES.map(([key,title])=>'<button role="tab" type="button" data-ljpc8-page="'+key+'" aria-selected="'+(key==='resumen')+'">'+esc(title)+'</button>').join('')+'<label class="ljpc8-cat-picker">Categoría <select data-ljpc8-category aria-label="Categoría oficial">'+Object.entries(CATEGORIES).map(([id,name])=>'<option value="'+id+'"'+(id===cat?' selected':'')+'>'+esc(name)+'</option>').join('')+'</select></label>';
       const space=document.createElement('div');space.className='ljpc8-workspace';space.hidden=true;
       root.append(bar,original,space);
     }
@@ -282,6 +282,15 @@
     const next=hit.dataset.ljpc8Go;
     if(next==='pc-data'){state.page='equipos';paint(hit.closest('.ljr-uefa-root'));return;}
     if(/^[a-z][A-Za-z0-9-]*$/.test(next||''))location.hash='#/'+next;
+  });
+  document.addEventListener('change',e=>{
+    if(!active()||!e.target?.matches?.('[data-ljpc8-category]'))return;
+    const next=e.target.value;
+    if(!(next in CATEGORIES))return;
+    const original=document.querySelector('#screen .ljpc-data [data-ljpc-cat="'+next+'"]');
+    if(original){original.click();return;}
+    try{sessionStorage.setItem('ljpc-selected-category',next)}catch(_){}
+    state.category=next;state.revision++;schedule();
   });
   document.addEventListener('click',e=>{
     if(!active()||!e.target?.closest?.('.ljpc-categories'))return;
