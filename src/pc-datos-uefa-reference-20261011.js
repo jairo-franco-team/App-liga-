@@ -122,6 +122,67 @@ function renderExplorer(){
  const data=records(state.cat);const current=main.querySelector('#ljr-uefa-explorer');
  if(current)current.outerHTML=explorer(data);
 }
+
+/* Ocho referencias PC: gráficas, guía y zona deportiva.
+   Exclusivo del módulo #/pc-data; reutiliza únicamente datos oficiales. */
+function enrichEightReferences(dashboard,d){
+ const chartIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg>';
+ const bookIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>';
+ const roots=dashboard.querySelectorAll('.ljr-uefa-block');
+ if(roots[0])roots[0].id='ljpc-eight-teams';
+ if(roots[1])roots[1].id='ljpc-eight-players';
+ if(roots[2])roots[2].id='ljpc-eight-goals';
+ const mainHero=dashboard.querySelector('.ljr-uefa-hero');
+ if(mainHero)mainHero.id='ljpc-eight-overview';
+ const nav=document.createElement('nav');
+ nav.className='ljpc-eight-tabs';
+ nav.setAttribute('aria-label','Estadísticas y contenidos del portal PC');
+ const tabs=[
+  ['ljpc-eight-teams','Estadísticas de equipo'],
+  ['ljpc-eight-players','Estadísticas de jugadores'],
+  ['ljpc-eight-goals','Máximo goleador'],
+  ['ljpc-eight-phase','Fase de clasificación'],
+  ['ljr-uefa-explorer','Tablas completas'],
+  ['ljpc-eight-book','Libro de estadísticas'],
+  ['ljpc-eight-performance','Performance Zone']
+ ];
+ nav.innerHTML=tabs.map(([target,label])=>
+  '<button type="button" data-ljpc-eight-target="'+target+'" class="ljpc-eight-pill">'+esc(label)+'</button>'
+ ).join('');
+ dashboard.prepend(nav);
+ const teams=d.teams.filter(r=>numeric(r[6])!==null).slice().sort((a,b)=>numeric(b[6])-numeric(a[6])).slice(0,9);
+ const maxGoals=Math.max(1,...teams.map(r=>numeric(r[6])||0));
+ const totalGoals=d.teams.reduce((sum,r)=>sum+(numeric(r[6])||0),0);
+ const totalPlayed=d.teams.reduce((sum,r)=>sum+(numeric(r[2])||0),0);
+ const matchCount=d.teams.length&&totalPlayed%2===0?String(totalPlayed/2):'—';
+ const bars=teams.length?teams.map(r=>{
+  const goal=numeric(r[6])||0,height=Math.max(5,Math.round(goal/maxGoals*100));
+  return '<button type="button" data-ljpc-eight-go="pc-standings" class="ljpc-eight-bar" title="'+esc(r[1])+' · '+goal+' goles"><span><i style="height:'+height+'%"></i></span><b>'+goal+'</b><small>'+esc(String(r[1]).slice(0,13))+'</small></button>';
+ }).join(''):'<p class="ljpc-eight-muted">Sin goles publicados para esta categoría.</p>';
+ const phase=document.createElement('section');
+ phase.className='ljpc-eight-phase';phase.id='ljpc-eight-phase';
+ phase.innerHTML='<div class="ljpc-eight-phase-top"><div class="ljpc-eight-phase-intro"><small>ESTADÍSTICAS DE LA FASE DE CLASIFICACIÓN</small><h2>Estadísticas de la fase de clasificación</h2><div class="ljpc-eight-big-data"><div><strong>'+(d.teams.length?totalGoals:'—')+'</strong><span>Goles registrados</span></div><div><strong>'+matchCount+'</strong><span>Partidos contabilizados</span></div></div></div><div class="ljpc-eight-bars-wrap"><h3>Clubes con más goles</h3><div class="ljpc-eight-bars">'+bars+'</div></div></div><div class="ljpc-eight-phase-bottom"><span>Datos reales de '+esc(d.c.name||'la categoría seleccionada')+' · Sin estimaciones</span><button type="button" data-ljpc-eight-go="pc-standings">Ver clasificación completa <span aria-hidden="true">›</span></button></div>';
+ const book=document.createElement('section');
+ book.className='ljpc-eight-book';book.id='ljpc-eight-book';
+ book.innerHTML='<div class="ljpc-eight-book-copy"><span>GUÍA OFICIAL · LIGA JUVENTINO ROSAS</span><h2>Libro de estadísticas de la Liga Juventino Rosas</h2><p>Consulta las tablas, las estadísticas de equipo y jugador, las jornadas y los registros disponibles de cada categoría en un solo lugar.</p><p>Los resultados provienen de los datos oficiales publicados. Las métricas que no estén registradas se señalan como no disponibles.</p><button type="button" data-ljpc-eight-csv>'+bookIcon+' Descargar estadísticas CSV</button></div><div class="ljpc-eight-book-cover"><img src="./deportiva-sur-partido.jpg" alt="Partido de fútbol de la liga" loading="lazy" decoding="async"></div>';
+ const clubs=d.teams.slice(0,10).filter(r=>r[1]).map(r=>'<button type="button" data-ljpc-eight-go="teams" title="'+esc(r[1])+'"><span>'+crest(r[1],r[1],false,d.c)+'</span><small>'+esc(r[1])+'</small></button>').join('');
+ const media=[
+  ['pc-scorers','Máximos goleadores','Clasificación individual de la temporada','./deportiva-sur-partido.jpg'],
+  ['pc-standings','Clasificación actual','Todos los clubes por categoría','./home-feature-reference.webp'],
+  ['pc-fixtures','Partidos y jornadas','Consulta el calendario oficial','./deportiva-sur-partido.jpg'],
+  ['history','Historia de la liga','Campeones y finales históricas','./home-feature-reference.webp'],
+  ['pc-data','Estadísticas de clubes','Goles, puntos y encuentros','./deportiva-sur-partido.jpg'],
+  ['video','Liga TV','Vídeos y transmisiones disponibles','./video-hero-reference.webp']
+ ];
+ const performance=document.createElement('section');
+ performance.className='ljpc-eight-performance';performance.id='ljpc-eight-performance';
+ performance.innerHTML='<div class="ljpc-eight-performance-hero"><img src="./deportiva-sur-partido.jpg" alt="" loading="lazy" decoding="async"><div><small>LIGA JUVENTINO ROSAS</small><h2>Performance Zone</h2><p>Datos, equipos, jugadores y mejores momentos de nuestra liga.</p></div></div><div class="ljpc-eight-clubs" aria-label="Accesos a clubes">'+(clubs||'<span class="ljpc-eight-muted">Los clubes se mostrarán cuando exista clasificación oficial.</span>')+'</div><div class="ljpc-eight-media">'+media.map(([go,title,caption,img])=>'<button type="button" data-ljpc-eight-go="'+go+'" class="ljpc-eight-media-card"><span class="ljpc-eight-media-art"><img alt="" src="'+img+'" loading="lazy" decoding="async"><i>'+chartIcon+'</i></span><b>'+esc(title)+'</b><small>'+esc(caption)+'</small></button>').join('')+'</div><div class="ljpc-eight-performance-end"><button type="button" data-ljpc-eight-go="safe-performance">Abrir zona de rendimiento <span aria-hidden="true">›</span></button><button type="button" data-ljpc-eight-go="video">Ver Liga TV <span aria-hidden="true">›</span></button></div>';
+ const explorer=dashboard.querySelector('#ljr-uefa-explorer');
+ if(explorer)explorer.before(phase);
+ dashboard.querySelectorAll('.ljr-uefa-book').forEach(x=>x.remove());
+ dashboard.append(book,performance);
+}
+
 function enhance(){
  const on=active(),html=document.documentElement;
  html.classList.toggle('ljr-pc-datos-uefa',on);
@@ -142,6 +203,7 @@ function enhance(){
  dashboard.innerHTML=hero(d)+carousel('team',d)+carousel('player',d)+leaders(d)+explorer(d)+
  '<section class="ljr-uefa-book"><div><b>Libro de estadísticas de la Liga Juventino Rosas</b><p>Consulta tablas oficiales, estadísticas registradas y archivos exportables sin modificar los resultados.</p></div><button type="button" data-ljr-download>Descargar tabla CSV ↗</button></section>'+
  '<section class="ljr-uefa-book"><div><b>Performance Zone · Liga Juventino Rosas</b><p>Explora el análisis deportivo en la sección existente.</p></div><button type="button" data-ljr-go="safe-performance">Abrir Performance Zone ›</button></section>';
+ enrichEightReferences(dashboard,d);
  const cats=host.querySelector('.ljpc-categories');
  if(cats)cats.after(dashboard);else host.prepend(dashboard);
  const details=document.createElement('details');details.className='ljr-uefa-official-details';
@@ -173,6 +235,26 @@ document.addEventListener('click',e=>{
   location.hash='#/'+hit.dataset.ljrGo;
  }
 });
+
+document.addEventListener('click',function(e){
+ if(!active()||!(e.target instanceof Element))return;
+ const hit=e.target.closest('[data-ljpc-eight-target],[data-ljpc-eight-go],[data-ljpc-eight-csv]');
+ if(!hit)return;
+ if(hit.hasAttribute('data-ljpc-eight-target')){
+  const id=hit.dataset.ljpcEightTarget;
+  document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});
+ }else if(hit.hasAttribute('data-ljpc-eight-go')){
+  const destination=hit.dataset.ljpcEightGo;
+  if(/^[a-zA-Z][a-zA-Z0-9-]*$/.test(destination))location.hash='#/'+destination;
+ }else if(hit.hasAttribute('data-ljpc-eight-csv')){
+  const original=document.querySelector('#screen .ljpc-data [data-ljpc-csv]');
+  if(original){
+   document.querySelector('.ljr-uefa-official-details')?.setAttribute('open','');
+   original.click();
+  }
+ }
+},true);
+
 window.addEventListener('ljpc:pc-data-view',e=>{
   const view=e.detail?.view;
   if(view!=='team'&&view!=='player')return;
