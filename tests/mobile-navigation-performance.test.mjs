@@ -160,3 +160,37 @@ test('the app reduced-motion preference disables WAAPI slides even when the OS p
  assert.equal(motion({storedReduced:true}).length,0,'stored active-account preference applies before its body flag mounts');
  assert.equal(motion({appReduced:false,storedReduced:false}).length,1);
 });
+
+test('mobile forward routes start at the top while Back preserves the prior scroll offset',()=>{
+ const listeners={};const frames=[];let direction='forward';
+ const el={scrollTop:320,querySelector:()=>null};
+ const location={hash:'#/home',search:'?mode=apk'};
+ const window={scrollY:510,Capacitor:null,LJR_NAVIGATION:{direction:()=>direction},
+   scrollTo({top}){this.scrollY=top}};
+ const document={readyState:'complete',body:{append(){}},
+   getElementById:id=>id==='screen'?el:null};
+ const sandbox={window,document,location,URLSearchParams,innerWidth:412,
+   MutationObserver:class{observe(){}},
+   addEventListener:(name,fn)=>(listeners[name]??=[]).push(fn),
+   requestAnimationFrame:fn=>(frames.push(fn),frames.length),
+   queueMicrotask:fn=>fn()};
+ vm.runInNewContext(read('src/mobile-shell.js'),sandbox);
+ location.hash='#/teams';
+ for(const fn of listeners.hashchange)fn();
+ assert.equal(el.scrollTop,0,'new page starts from its beginning');
+ assert.equal(window.scrollY,0,'window scroll is reset for a new page');
+ while(frames.length)frames.shift()();
+ el.scrollTop=244;window.scrollY=460;direction='back';
+ location.hash='#/home';
+ for(const fn of listeners.hashchange)fn();
+ while(frames.length)frames.shift()();
+ assert.equal(el.scrollTop,244,'Back does not erase scroll restored by navigation');
+ assert.equal(window.scrollY,460,'Back preserves original window offset');
+});
+
+test('player comparison remains vertically scrollable so the final change-player button cannot be cut off',()=>{
+ const css=read('src/mobile-static-loader-safe-insets-20261012.css');
+ assert.match(css,/data-app-route="playerCompare"/);
+ assert.match(css,/overflow-y:auto!important/);
+ assert.match(css,/\.v123-change-player/);
+});
