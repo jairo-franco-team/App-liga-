@@ -24,6 +24,23 @@ test('History PC stays inside Mas without adding a top-level navigation item',()
  assert.match(nav,/data-ljpc-u-history-section/);
 });
 
+test('Equipos Noticias Historia Sobre belong inside Historia instead of direct Más siblings',()=>{
+ const start=nav.indexOf(' Más:[['),end=nav.indexOf('const logo=',start);
+ assert.ok(start>=0&&end>start);
+ const more=nav.slice(start,end);
+ assert.ok(more.indexOf("['Historia','historia','history-toggle']")>=0);
+ for(const [title,section] of [
+  ['Equipos','equipos'],['Noticias','noticias'],
+  ['Historia de la liga','historia'],['Sobre','sobre']
+ ]){
+  assert.ok(more.includes("['"+title+"','"+section+"','history-child']"),title+' must be nested under Historia');
+ }
+ assert.doesNotMatch(more,/\['Equipos','teams'\]|\['Noticias','news'\]|\['Sobre','about'\]/);
+ for(const section of ['temporadas','estadisticas','videos','historicos','titulos'])
+  assert.ok(nav.includes("'"+section+"'"),'missing historical subsection '+section);
+ assert.match(nav,/ljpc-u-history-inner/);
+});
+
 test('Mas dropdown is scrollable and does not clip Historia in narrow desktop layout',()=>{
  assert.match(css,/details\[data-ljpc-u-group="Más"\]\[open\]/);
  assert.match(css,/overflow:visible!important/);
