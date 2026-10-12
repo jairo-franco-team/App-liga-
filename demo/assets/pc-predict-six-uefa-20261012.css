@@ -1,0 +1,299 @@
+/* 2026-10-12. UEFA-inspired geometry, Liga Juventino Rosas content.
+   Scoped exclusively to browser desktop mode; no mobile or APK rules. */
+@layer ljr-reference-surfaces {
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen{
+  display:block!important;width:100%!important;max-width:none!important;
+  min-height:0!important;height:auto!important;overflow:visible!important;
+  background:#070b59!important;padding:0!important;margin:0!important;color:#fff!important;
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui,
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui *{box-sizing:border-box!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui{
+  display:block!important;position:relative!important;z-index:2!important;
+  width:100%!important;max-width:none!important;min-width:0!important;
+  margin:0!important;padding:0!important;
+  background:#070957!important;color:#fff!important;
+  font-family:Inter,Arial,sans-serif!important;font-size:13px!important;line-height:1.4!important;
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-bound{width:min(1080px,calc(100% - 34px));margin-inline:auto!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui :is(h1,h2,h3,h4,p){margin-top:0}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui button{font:inherit!important;cursor:pointer!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui button:focus-visible{
+  outline:2px solid #11deee!important;outline-offset:2px!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-head{
+  background:#183e81!important;border-bottom:1px solid rgba(255,255,255,.12)!important;
+  padding:12px 0 15px!important;color:#fff!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-back{font-size:11px!important;color:#cbdffb!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-heading{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-top:5px}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui h1{font-size:24px!important;color:#fff!important;font-weight:800!important;line-height:1.1!important;margin:0!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-heading p{font-size:11px!important;color:#b5d3ff!important;margin:4px 0 0!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-sponsor{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;color:#e7f3ff;white-space:nowrap}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-sponsor img{width:31px;height:31px;object-fit:contain}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-nav{
+  display:block!important;width:100%!important;background:#0c0b5a!important;border-bottom:1px solid #19198a!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-navrow{display:flex!important;gap:16px!important;align-items:center!important;overflow-x:auto!important;scrollbar-width:none}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-navrow button{
+  position:relative;display:block;border:0!important;background:transparent!important;
+  padding:12px 5px!important;min-height:42px!important;border-radius:0!important;
+  white-space:nowrap!important;font-size:12px!important;color:#e8efff!important;
+  font-weight:600!important;box-shadow:none!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-navrow button.active{color:#14e0ef!important;font-weight:800!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-navrow button.active:after{
+  content:"";position:absolute;bottom:0;left:0;right:0;height:3px;background:#13d9ed;border-radius:3px 3px 0 0
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-hero{
+  min-height:360px!important;background:
+   radial-gradient(ellipse 58% 90% at 36% 48%,rgba(33,104,255,.38),transparent 70%),
+   radial-gradient(ellipse 40% 60% at 8% 85%,rgba(43,81,250,.42),transparent 75%),
+   linear-gradient(100deg,#0b41f0,#0e2ed3 52%,#020751)!important;
+  color:#fff!important;text-align:center!important;position:relative!important;overflow:hidden!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-hero:before{
+  content:"";position:absolute;left:-50px;right:-50px;top:15%;height:72%;
+  border-radius:50%;border:2px solid rgba(101,158,255,.16);transform:rotate(-14deg);pointer-events:none
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-hero-inner{
+  position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:11px!important;min-height:360px!important;padding:20px 12px 28px!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-hero h2{
+  max-width:720px;font-size:24px!important;line-height:1.17!important;font-weight:800!important;
+  margin:0!important;color:#fff!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-hero p{
+  max-width:650px;font-size:12px!important;line-height:1.6!important;color:#e4eaff!important;margin:0 0 8px!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-btn{
+  display:inline-flex!important;justify-content:center!important;align-items:center!important;
+  min-width:160px!important;min-height:35px!important;padding:9px 16px!important;
+  border-radius:5px!important;font-size:11px!important;font-weight:750!important;text-decoration:none!important;
+  box-shadow:none!important;transition:filter .15s ease!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-btn:hover{filter:brightness(1.13)}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-btn.cyan{background:#08deeb!important;color:#002455!important;border:1px solid #08deeb!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-btn.solid{background:#1043ec!important;color:#fff!important;border:1px solid #1043ec!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-btn.outline{background:transparent!important;color:#1440ba!important;border:1px solid #1440ba!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-six{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:7px!important;width:186px!important;margin:0 auto 8px!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-six span{
+  display:flex!important;align-items:center;justify-content:center;gap:2px;width:56px;height:47px;
+  background:linear-gradient(145deg,#125aff,#0824c2)!important;border:1px solid rgba(106,183,255,.4)!important;
+  box-shadow:0 6px 12px rgba(0,0,80,.18);border-radius:4px!important;color:#98d8ff
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-six i{font-style:normal;font-size:17px;font-weight:600}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-light{
+  background:#f0f2f9!important;color:#233744!important;padding:28px 0 40px!important;min-height:310px
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-light h2{
+  color:#243946!important;font-size:23px!important;font-weight:850!important;text-align:center!important;margin:0 0 24px!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-features,
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-prize-grid{
+  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:20px!important;align-items:start!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-features article,
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-prize-grid article{
+  min-width:0!important;background:transparent!important;border:0!important;
+  text-align:center!important;color:#243946!important;padding:8px 12px!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-features .p6-six{transform:scale(.73);transform-origin:center;height:102px;margin-top:-5px}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-light h3{font-size:15px!important;font-weight:800!important;color:#243946!important;margin:7px 0 8px!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-light p{font-size:12px!important;line-height:1.5!important;color:#687580!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-art-boost{height:100px;font-size:83px;font-weight:900;color:#a500ec;line-height:1}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-art-score{height:100px;display:flex;align-items:center;justify-content:center;gap:8px}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-art-score b{background:#0c4aff;color:#fff;padding:13px 16px;border-radius:6px;font-size:24px}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-art-score small{background:#193c9b;color:#fff;padding:10px;border-radius:5px}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-bottom-actions{
+  margin:30px auto 0!important;display:grid!important;justify-content:center!important;gap:8px!important;width:240px!important;
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-bottom-actions .p6-btn{width:100%!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-prize-art{
+  position:relative;display:flex;align-items:center;justify-content:center;margin:5px 0 6px;height:118px
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-prize-cup{font-size:96px;filter:drop-shadow(4px 12px 10px #001c816b)}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-prize-ticket{
+  margin-left:-30px;transform:rotate(-18deg);background:#f5f9ff;color:#0b2886;display:block;
+  font-size:12px;line-height:1.1;letter-spacing:1px;font-weight:850;border-radius:3px;padding:14px 17px;
+  border:1px dashed #547ee9;box-shadow:0 10px 14px #010d6660
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-prize-ticket b{font-size:16px}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-prize-graphic{font-size:68px;height:100px;display:grid;place-items:center}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-rules-art{height:110px;display:flex;align-items:center;justify-content:center;gap:20px}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-rules-art>span{font-size:25px}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-rules-art>div{display:grid;place-items:center;background:linear-gradient(115deg,#1042e1,#18166f);width:140px;height:93px;transform:rotate(8deg);border-radius:10px;border:1px solid #4b7def;box-shadow:4px 10px 20px #00075080;font-size:32px;font-weight:900}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-rules-art small{font-size:8px;letter-spacing:1px}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-score-rules{
+  width:min(670px,100%);margin:20px auto!important;padding:15px!important;
+  background:#fff!important;border:1px solid #dbe0ee!important;border-radius:8px!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-score-rules h3{margin:0 0 10px!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-score-rules>div{display:flex;justify-content:space-between;gap:14px;padding:8px 0;border-top:1px solid #e4e7f1;font-size:11px}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-score-rules b{color:#113ed7;white-space:nowrap}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-leagues{
+  background:#070942!important;color:#fff!important;padding:22px 0 55px!important;min-height:430px!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-leagues h2{font-size:23px!important;color:#fff!important;margin:0 0 10px!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-leagues hr{border:0;border-top:2px solid #3158ad;margin:0 0 22px}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-league-width{width:min(670px,100%);margin-inline:auto}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-leagues h3{color:#fff!important;font-size:17px!important;margin:16px 0!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-league-feature{
+  padding:16px!important;border-radius:6px!important;overflow:hidden!important;
+  border:1px solid #294cff!important;
+  background:radial-gradient(ellipse at right bottom,rgba(21,80,231,.9),transparent 45%),linear-gradient(115deg,#092bd0,#09095c)!important;
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-league-feature h4{font-size:15px!important;color:#fff!important;margin:0!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-league-feature p{font-size:11px!important;color:#e0eaff!important;margin:4px 0 12px!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-actions{display:flex;align-items:end;gap:8px;flex-wrap:wrap;margin-top:8px}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-actions label{display:grid;gap:3px;font-size:10px;color:#e8edff;flex:1 1 180px}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui input{
+  height:35px!important;background:#fff!important;color:#0a2058!important;border:1px solid #99baff!important;border-radius:4px!important;padding:6px 8px!important;min-width:0!important;
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-actions .p6-btn{min-width:170px!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-notice{font-size:12px;color:#66ecff!important;margin:10px 0!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-public-league,
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-league-list article{
+  display:flex;align-items:center;gap:12px;background:#14156e;border-radius:5px;padding:12px;margin:8px 0;min-height:51px;color:#fff
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-public-league span:first-child{font-size:22px}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-public-league div{display:grid;gap:2px;flex:1 1 auto}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-public-league small{font-size:10px;color:#adb8e1}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-league-list article{justify-content:space-between;flex-wrap:wrap;font-size:11px}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-league-list code{color:#85eaff}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-achieve-art{font-size:92px!important;line-height:1.1}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-achievements>div>p{font-size:12px!important;color:#bdc6f3!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-progress{display:grid;gap:8px;width:min(700px,100%);margin:20px auto}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-progress article{display:flex;align-items:center;gap:12px;background:#101167;border-radius:6px;padding:12px 15px}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-progress article>div{flex:1}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-progress h3{margin:0;color:#fff;font-size:13px}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-progress p{font-size:10px;color:#bfc9ee;margin:0}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-medal{font-size:23px;color:#15ddeb}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-overlay{position:fixed!important;inset:0!important;z-index:2147483610!important;background:#000b!important;display:grid!important;place-items:center!important;padding:16px!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-modal{position:relative!important;width:min(480px,100%)!important;max-height:80vh!important;overflow-y:auto!important;padding:21px!important;border-radius:6px!important;color:#fff!important;background:linear-gradient(135deg,#0d38d7,#0a0a6c)!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-modal h2{font-size:19px!important;color:#fff!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-modal .p6-close{position:absolute;right:9px;top:8px;border:1px solid #cde7ff;background:transparent;color:#fff;border-radius:50%;width:25px;height:25px;font-size:19px}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-modal-summary{display:flex;align-items:center;gap:15px;background:#0a0a60;border-radius:5px;padding:15px;margin:11px 0}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-modal-summary>b{font-size:28px;border-radius:50%;border:2px solid #5058ae;padding:13px}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-modal-summary small{font-size:10px}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-modal details{background:#0c0b5e;border-radius:5px;margin:7px 0;padding:10px;font-size:12px}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-modal summary{display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:12px}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-modal summary span{font-size:11px;white-space:nowrap}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-modal details p{padding:8px 4px 0;font-size:11px;color:#c5ceff}
+ /* Native predictor stays mounted; real scoring/fixtures continue working. */
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen[data-pc6-tab="predictions"] > .v589-page:not(.predictions),
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen:not([data-pc6-tab="predictions"]) > .v589-page{display:none!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen[data-pc6-tab="predictions"] > .v589-page.predictions{
+  display:block!important;width:min(1080px,calc(100% - 34px))!important;max-width:1080px!important;
+  min-height:0!important;height:auto!important;margin:0 auto!important;padding:0 0 30px!important;background:#070a54!important;overflow:visible!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen > .v589-page.predictions > .v589-top,
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen > .v589-page.predictions > .v589-switch,
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen > .v589-page.predictions > .v589-sponsor{display:none!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen > .v589-page.predictions .v589-journeys{
+  position:relative!important;top:auto!important;height:auto!important;min-height:57px!important;
+  display:flex!important;gap:8px!important;align-items:center!important;background:#070a54!important;
+  border-bottom:1px solid #5965ad!important;overflow-x:auto!important;margin:0 0 14px!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen > .v589-page.predictions .v589-journeys button{
+  flex:0 0 auto!important;min-width:72px!important;width:auto!important;max-width:140px!important;
+  height:52px!important;min-height:52px!important;padding:8px 10px!important;
+  font-size:11px!important;font-weight:650!important;background:transparent!important;
+  border:0!important;border-radius:0!important;color:#d8e1fb!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen > .v589-page.predictions .v589-journeys button.active{color:#fff!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen > .v589-page.predictions .v589-journeys button.active:after{height:3px!important;background:#06d9ec!important;left:0!important;right:0!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen > .v589-page.predictions .v589-list{width:100%!important;max-width:none!important;padding:0 0 18px!important;background:#070a54!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen > .v589-page.predictions .v589-list>h2{font-size:19px!important;margin:0 0 13px!important;color:#fff!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen > .v589-page.predictions .v589-match-card{
+  box-sizing:border-box!important;display:block!important;position:relative!important;
+  width:100%!important;max-width:none!important;min-height:145px!important;height:auto!important;
+  margin:0 0 10px!important;border-radius:5px!important;border:1px solid #183eff!important;
+  background:radial-gradient(ellipse at 80% 40%,rgba(36,81,255,.7),transparent 58%),linear-gradient(122deg,#0c36ea,#0920bd 62%,#070a96)!important;
+  overflow:hidden!important;padding:10px 15px 12px!important;color:#fff!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen > .v589-page.predictions .v589-match-card .v871-game-category{
+  font-size:10px!important;display:inline-block!important;padding:2px 8px!important;
+  border-radius:4px!important;background:#263fe480!important;color:#dce7ff!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen > .v589-page.predictions .v589-card-head{
+  display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;
+  min-height:20px!important;margin:0 0 8px!important;color:#deeeff!important;font-size:10px!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen > .v589-page.predictions .v589-teams{
+  display:grid!important;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)!important;
+  align-items:center!important;gap:12px!important;max-width:650px!important;margin:0 auto!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen > .v589-page.predictions .v589-teams .v589-team{
+  display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:9px!important;min-width:0!important;text-align:center!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen > .v589-page.predictions .v589-team img{
+  width:34px!important;height:34px!important;max-width:34px!important;object-fit:contain!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen > .v589-page.predictions .v589-team b{font-size:14px!important;font-weight:750!important;color:#fff!important;white-space:normal!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen > .v589-page.predictions .v589-score-pair{
+  display:flex!important;gap:8px!important;justify-content:center!important;align-items:center!important;
+  padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen > .v589-page.predictions .v589-score-pair span{
+  display:grid!important;place-items:center!important;width:39px!important;height:39px!important;
+  border:2px solid #62dfff!important;border-radius:6px!important;
+  font-size:22px!important;font-weight:800!important;color:#fff!important;
+  background:#0b3ae5!important;box-shadow:none!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen > .v589-page.predictions .v589-popular{
+  margin:9px auto 2px!important;max-width:440px!important;text-align:center!important;
+  font-size:10px!important;color:#ccd9ff!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen > .v589-page.predictions .v589-card-foot{
+  min-height:26px!important;font-size:10px!important;padding:4px 8px!important;
+  border-radius:4px!important;color:#dfeaff!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen > .v589-page.predictions .v589-overlay{
+  position:fixed!important;inset:0!important;z-index:2147483600!important
+ }
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-predict-intro{background:#070a54!important;padding:13px 0!important}
+ html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-predict-intro p{font-size:11px!important;color:#c6d9ff!important;margin:0!important}
+ /* Authentication: admin shortcuts must not be visible with only a visitor/login session. */
+ html.ljpc-unified-pc:not(.ljpc-admin-auth) body[data-app-route="predictorSix"] #screen .ljr-cms-entry{display:none!important}
+ html.ljpc-unified-pc.ljpc-admin-auth body[data-app-route="predictorSix"] #screen .ljr-cms-entry{
+  display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:6px!important;grid-auto-rows:38px!important;max-width:1000px!important;
+  margin:5px auto!important;padding:6px!important;border:0!important;background:#0b195b!important
+ }
+ html.ljpc-unified-pc.ljpc-admin-auth body[data-app-route="predictorSix"] #screen .ljr-cms-entry>button{
+  box-sizing:border-box!important;min-width:0!important;min-height:38px!important;
+  height:38px!important;max-height:38px!important;display:flex!important;align-items:center!important;
+  gap:7px!important;padding:5px 9px!important;border-radius:7px!important;
+  font-size:11px!important;line-height:1.15!important;color:#f1f8ff!important;
+  background:linear-gradient(115deg,#1548a7,#0b2166)!important;border:1px solid #399ad06e!important;
+  overflow:hidden!important;white-space:nowrap!important;box-shadow:none!important
+ }
+ html.ljpc-unified-pc.ljpc-admin-auth body[data-app-route="predictorSix"] #screen .ljr-cms-entry :is(.ljr-cms-quick-icon,.v1108-cms-icon){
+  width:21px!important;height:21px!important;min-width:21px!important;min-height:21px!important;flex:0 0 21px!important
+ }
+ html.ljpc-unified-pc.ljpc-admin-auth body[data-app-route="predictorSix"] #screen .ljr-cms-entry :is(.ljr-cms-quick-title,.v1108-cms-title){
+  white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+  min-width:0!important;max-width:none!important;font-size:11px!important
+ }
+ @media(max-width:980px){
+  html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-features,
+  html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-prize-grid{gap:10px!important}
+  html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-bound{width:calc(100% - 22px)}
+  html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-hero h2{font-size:20px!important}
+  html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen > .v589-page.predictions .v589-teams{gap:5px!important}
+  html.ljpc-unified-pc body[data-app-route="predictorSix"] #screen > .v589-page.predictions .v589-team b{font-size:11px!important}
+  html.ljpc-unified-pc.ljpc-admin-auth body[data-app-route="predictorSix"] #screen .ljr-cms-entry{grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:36px!important}
+  html.ljpc-unified-pc.ljpc-admin-auth body[data-app-route="predictorSix"] #screen .ljr-cms-entry>button{height:36px!important;min-height:36px!important}
+ }
+ @media(max-width:730px){
+  html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-features,
+  html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-prize-grid{grid-template-columns:1fr 1fr!important}
+  html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-navrow{gap:10px!important}
+  html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-navrow button{font-size:10.5px!important;padding:10px 2px!important}
+  html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-features article:last-child,
+  html.ljpc-unified-pc body[data-app-route="predictorSix"] #ljpc-six-ui .p6-prize-grid article:last-child{grid-column:1/-1}
+  html.ljpc-unified-pc.ljpc-admin-auth body[data-app-route="predictorSix"] #screen .ljr-cms-entry{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ }
+}
