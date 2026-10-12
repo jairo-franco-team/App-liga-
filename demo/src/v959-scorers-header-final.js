@@ -112,7 +112,7 @@ function bindScreen(){
 
 function sync(){
   if(route()!=='scorers'){
-    document.body?.classList.remove('v959-compact');
+    if(document.body?.classList.contains('v959-compact'))document.body.classList.remove('v959-compact');
     const bar=document.querySelector('#app > .topbar, .app-shell > .topbar');
     bar?.querySelectorAll(':scope > .v959-back,:scope > .v959-title,:scope > .v959-profile').forEach(n=>n.remove());
     return;

@@ -9,6 +9,7 @@ const route=()=>location.hash||'#/home';
 const keys=['v62-category','v62-data-tab','v35-history-tab','v194-scorers-category','v40-category','v42-team-tab','v379-player-profile-tab','v412-search-mode','v412-search-player-cat','v66-player-cat','v66-player-team','v27-category','v27-search','v32-category','v33-category'];
 const read=()=>{try{return JSON.parse(sessionStorage.getItem(STORE)||'null')}catch{return null}};
 const esc=s=>window.CSS&&CSS.escape?CSS.escape(s):String(s).replace(/[^a-zA-Z0-9_-]/g,'\\$&');
+const scrolledNodes=new Set();
 function pathFor(el){
  if(el.id)return '#'+esc(el.id);
  if(el.dataset.scrollKey)return '[data-scroll-key="'+esc(el.dataset.scrollKey)+'"]';
@@ -23,7 +24,10 @@ function pathFor(el){
 }
 function surfaces(){
  const root=screen();if(!root)return [];
- return [root,...root.querySelectorAll('*')].filter(el=>{
+ // Scroll events already identify nested scroll surfaces. Measuring every
+ // descendant here forced layout for the entire roster on every navigation.
+ return [root,...scrolledNodes].filter(el=>{
+  if(el!==root&&!root.contains?.(el)){scrolledNodes.delete(el);return false}
   if(el.scrollHeight<=el.clientHeight+3&&el.scrollWidth<=el.clientWidth+3)return false;
   if(el===root)return true;
   const s=getComputedStyle(el);
@@ -69,9 +73,9 @@ function track(event){
  // Offsets must be synchronous: a hash swap can happen before a debounce fires.
  const root=screen();active.y=root?.scrollTop||0;active.x=root?.scrollLeft||0;
  active.windowY=Math.max(0,window.scrollY||document.scrollingElement?.scrollTop||0);active.windowX=window.scrollX||0;
- Object.assign(active,viewState());
  const target=event?.target;
  if(target?.nodeType===1&&target!==root&&root?.contains?.(target)){
+  scrolledNodes.add(target);
   const selector=pathFor(target);const item={selector,y:target.scrollTop||0,x:target.scrollLeft||0};
   active.surfaces=(active.surfaces||[]).filter(p=>p.selector!==selector);active.surfaces.push(item);
  }
@@ -114,6 +118,8 @@ function leaving(page,push=true){
 }
 function changed(url){
  if(url===active.url){if(restoring)apply(restoring.entry);return}
+ // Direct hash changes still see the outgoing app state before its renderer.
+ Object.assign(active,viewState());
  if(restoring)cancelRestore();
  if(pending===url){active=blank(url);return}
  if(entries.length&&entries[entries.length-1].url===url){
@@ -138,6 +144,7 @@ function rendered(){
  }
 }
 function back(){
+ window.LJR_VISUAL_STABILITY?.begin?.(entries.at(-1)?.url||'#/home');
  remember();
  if(restoring)cancelRestore();
  const mobile=!location.search.includes('mode=desktop')&&(location.search.includes('mode=apk')||window.matchMedia?.('(max-width: 760px)').matches);
@@ -190,4 +197,21 @@ const watch=()=>{if(screen())observer.observe(screen(),{childList:true,subtree:t
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',watch,{once:true});else watch();
 window.addEventListener('beforeunload',()=>{remember();save()});
 window.LJR_NAVIGATION={leaving,rendered,back,remember,direction:()=>direction};
+// Web fallback for either inward edge swipe. Horizontal rails, games' card
+// gestures and form controls retain their own gestures away from the edges.
+let edgeStart=null;
+document.addEventListener('touchstart',event=>{
+ const mobile=!location.search.includes('mode=desktop')&&(location.search.includes('mode=apk')||window.matchMedia?.('(max-width:1023px)').matches);
+ const touch=event.touches?.[0];
+ if(!mobile||event.touches?.length!==1||!touch||event.target?.closest?.('input,textarea,select,[role="dialog"],.modal,.liga-media-modal')){edgeStart=null;return}
+ const width=window.innerWidth||0;
+ edgeStart=touch.clientX<=22?{x:touch.clientX,y:touch.clientY,side:1}:touch.clientX>=width-22?{x:touch.clientX,y:touch.clientY,side:-1}:null;
+},{passive:true});
+document.addEventListener('touchend',event=>{
+ const start=edgeStart;edgeStart=null;const touch=event.changedTouches?.[0];
+ if(!start||!touch)return;
+ const dx=(touch.clientX-start.x)*start.side,dy=Math.abs(touch.clientY-start.y);
+ if(dx>=80&&dy<45&&dx>dy*2){window.LJR_APP_BACK?window.LJR_APP_BACK():back()}
+},{passive:true});
+document.addEventListener('touchcancel',()=>{edgeStart=null},{passive:true});
 })();
