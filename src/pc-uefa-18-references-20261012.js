@@ -226,7 +226,10 @@ function sync(){
   screen?.querySelector(':scope > .u18-root')?.remove();
   currentRoute='';return;
  }
- if(currentRoute!==route()){currentRoute=route();state.showClassic=false;state.chosenDays=[];chooseCat();}
+ if(currentRoute!==route()){
+  currentRoute=route();state.showClassic=false;state.chosenDays=[];chooseCat();
+  screen.querySelector(':scope > .u18-root')?.classList.remove('u18-show-classic');
+ }
  document.documentElement.classList.add('ljpc18-active');
  let root=screen.querySelector(':scope > .u18-root');
  if(!root){root=document.createElement('div');root.className='u18-root';screen.prepend(root);lastRef=null;}
@@ -243,16 +246,21 @@ function localClick(e){
  const button=e.target.closest?.('.u18-root button, .u18-root [data-u18-dismiss]');
  if(!button)return;
  const command=button.closest('button')||button;
- if(command.matches('[data-u18-dismiss]')){state.filterOpen=false;state.calendarOpen=false;repaint();return;}
+ if(command.matches('[data-u18-dismiss]')){
+  if(e.target!==command)return;
+  state.filterOpen=false;state.calendarOpen=false;repaint();return;
+ }
  e.preventDefault();
  e.stopPropagation();
  const d=command.dataset;
  if(d.u18Go){go(d.u18Go);return;}
- if(d.u18ShowOriginal!==undefined){state.showClassic=true;
+ if(d.u18ShowOriginal!==undefined){
+  state.showClassic=true;
   const root=document.querySelector('#screen > .u18-root');
   root?.classList.add('u18-show-classic');
   root?.scrollIntoView({behavior:'smooth',block:'start'});
-  return;}
+  return;
+ }
  if(d.u18FixtureTab){state.fixturesTab=d.u18FixtureTab;repaint();return;}
  if(d.u18StandTab){state.standTab=d.u18StandTab;repaint();return;}
  if(d.u18DrawTab){state.drawTab=d.u18DrawTab;repaint();return;}
