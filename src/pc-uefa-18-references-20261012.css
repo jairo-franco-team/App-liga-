@@ -1,0 +1,352 @@
+/* Referencias de 18 capturas UEFA; CSS exclusivamente escritorio.
+   No se toca modo móvil/APK ni la barra de Inicio. */
+html.ljpc18-active body {--u18-blue:#0a31e9;--u18-deep:#080b52;--u18-accent:#12d6df;
+ --u18-page:#f1f2f7;--u18-line:#e0e4eb;--u18-ink:#233741;--u18-muted:#66758a}
+html.ljpc18-active body #app > header.topbar {display:none!important}
+html.ljpc18-active body #ljpc-unified-pc-header{z-index:1600!important}
+html.ljpc18-active body #ljpc-unified-pc-header .ljpc-u-nav>.ljpc-u-wrap{
+ height:48px!important;min-height:48px!important;gap:12px!important
+}
+html.ljpc18-active body #ljpc-unified-pc-header .ljpc-u-brand img{width:32px!important;height:32px!important}
+html.ljpc18-active body #ljpc-unified-pc-header .ljpc-u-links>button,
+html.ljpc18-active body #ljpc-unified-pc-header .ljpc-u-links>details>summary{
+ height:29px!important;min-height:29px!important;border-radius:16px!important;padding:0 10px!important;
+ font-size:10px!important
+}
+html.ljpc18-active body #ljpc-unified-pc-header .ljpc-u-scorebar{display:none!important}
+html.ljpc18-active body #screen{
+ width:100%!important;max-width:none!important;min-height:0!important;height:auto!important;
+ background:var(--u18-page)!important;color:var(--u18-ink)!important;
+ display:block!important;padding:0!important;margin:0!important;box-shadow:none!important;
+ overflow:visible!important;position:relative!important
+}
+html.ljpc18-active body #screen > :not(.u18-root){display:none!important}
+html.ljpc18-active body #screen:has(> .u18-root .u18-original[open]) > :not(.u18-root),
+html.ljpc18-active body #screen:has(> .u18-root.u18-show-classic) > :not(.u18-root){
+ display:block!important;width:min(1100px,calc(100% - 28px))!important;margin:10px auto 16px!important;
+}
+html.ljpc18-active body #screen > .u18-root{display:block!important;width:100%!important;min-width:0!important}
+html.ljpc18-active body .u18-root,html.ljpc18-active body .u18-root *{box-sizing:border-box}
+html.ljpc18-active body .u18-root{font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif!important;font-size:12px;line-height:1.4}
+html.ljpc18-active body .u18-root :is(h1,h2,h3,h4,p){margin-top:0}
+html.ljpc18-active body .u18-root h1{font-size:25px!important;font-weight:830!important;line-height:1.15!important}
+html.ljpc18-active body .u18-root h2{font-size:17px!important;line-height:1.3!important;font-weight:800!important}
+html.ljpc18-active body .u18-root h3{font-size:13px!important;font-weight:780!important}
+html.ljpc18-active body .u18-root button,html.ljpc18-active body .u18-root select,
+html.ljpc18-active body .u18-root input{font-family:inherit}
+html.ljpc18-active body .u18-root button{cursor:pointer}
+html.ljpc18-active body .u18-root button:focus-visible,
+html.ljpc18-active body .u18-root a:focus-visible,
+html.ljpc18-active body .u18-root :is(select,input):focus-visible{
+ outline:2px solid var(--u18-accent)!important;outline-offset:2px!important
+}
+html.ljpc18-active body .u18-bound{width:min(1060px,calc(100% - 32px));max-width:1060px;margin-inline:auto}
+html.ljpc18-active body .u18-page{background:var(--u18-page);min-height:64vh;padding:0 0 42px}
+html.ljpc18-active body .u18-bluehead{
+ padding:16px 0 18px;color:white;background:linear-gradient(110deg,#1034eb,#071c9f 58%,#070849);
+ border-bottom:1px solid #0d33c7;box-shadow:0 4px 9px #0a184124
+}
+html.ljpc18-active body .u18-bluehead h1{margin:0!important;color:#fff!important;letter-spacing:-.02em}
+html.ljpc18-active body .u18-bluehead p{margin:5px 0 0;color:#c5d5ff!important;font-size:11px}
+html.ljpc18-active body .u18-body{padding:17px 0 15px;display:block}
+html.ljpc18-active body .u18-switch,
+html.ljpc18-active body .u18-controls,
+html.ljpc18-active body .u18-controls-right,
+html.ljpc18-active body .u18-radio,
+html.ljpc18-active body .u18-videopills{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+html.ljpc18-active body .u18-switch{
+ margin:-17px 0 0;padding:0 0 10px;justify-content:center;
+ background:linear-gradient(90deg,#13117b,#111282);
+ border:1px solid #192bb4;border-radius:0 0 7px 7px;min-height:42px
+}
+html.ljpc18-active body .u18-switch .u18-pill{
+ border-color:transparent!important;color:#eaf3ff!important;background:transparent!important;
+ border-radius:17px!important;font-size:11px!important;padding:8px 20px!important
+}
+html.ljpc18-active body .u18-switch .u18-pill.selected{
+ color:#062662!important;background:var(--u18-accent)!important;font-weight:850!important
+}
+html.ljpc18-active body .u18-pill{
+ border:1px solid #dce3ef!important;min-height:32px;padding:7px 14px!important;border-radius:18px!important;
+ background:#fff!important;color:#304563!important;font-size:10px!important;font-weight:740!important;
+ box-shadow:none!important
+}
+html.ljpc18-active body .u18-pill:hover{border-color:#133fd8!important}
+html.ljpc18-active body .u18-pill.selected{
+ border-color:#0b40da!important;color:#063eac!important;background:#e4eafe!important
+}
+html.ljpc18-active body .u18-controls{
+ justify-content:space-between;gap:12px;margin:16px 0 14px;padding:0;
+}
+html.ljpc18-active body .u18-controls-right{margin-left:auto}
+html.ljpc18-active body .u18-cat-label{display:flex;gap:8px;align-items:center;color:#4a6175;font-size:10px;font-weight:750}
+html.ljpc18-active body .u18-cat-label select{
+ appearance:auto;max-width:210px;min-height:30px;border:1px solid #d0dbeb!important;
+ border-radius:5px!important;background:#fff!important;color:#203b60!important;
+ font-size:11px!important;font-weight:700!important;padding:5px 9px!important
+}
+html.ljpc18-active body .u18-controls-right button,
+html.ljpc18-active body .u18-button,
+html.ljpc18-active body .u18-drawright button,
+html.ljpc18-active body .u18-video button{
+ border:1px solid #2456bd!important;background:#fff!important;color:#092e91!important;
+ border-radius:4px!important;min-height:30px;padding:6px 12px!important;
+ font-size:10px!important;font-weight:750!important;box-shadow:none!important;
+}
+html.ljpc18-active body .u18-controls-right .u18-accent,
+html.ljpc18-active body .u18-button,
+html.ljpc18-active body .u18-videohero button{
+ background:#08dce5!important;color:#051b50!important;border-color:#07c9e0!important
+}
+html.ljpc18-active body .u18-datebar{display:flex;gap:7px;overflow-x:auto;scrollbar-width:thin;
+ padding:5px 0 13px;border-bottom:1px solid var(--u18-line);margin-bottom:13px}
+html.ljpc18-active body .u18-datebar button{
+ white-space:nowrap;min-width:53px;min-height:29px;border:1px solid #d8dfec!important;
+ border-radius:17px!important;background:#e4e5ef!important;color:#3c4260!important;
+ padding:5px 12px!important;font-size:10px!important;font-weight:760!important
+}
+html.ljpc18-active body .u18-datebar button.selected{
+ background:#091d98!important;color:#fff!important;border-color:#091d98!important
+}
+html.ljpc18-active body .u18-matchday{margin:12px 0 17px}
+html.ljpc18-active body .u18-daycopy{padding:4px 2px 11px;color:#394964}
+html.ljpc18-active body .u18-daycopy small{font-size:10px;font-weight:820}
+html.ljpc18-active body .u18-daycopy h3{margin:4px 0!important}
+html.ljpc18-active body .u18-daycopy span{color:#8391a3;font-size:10px}
+html.ljpc18-active body .u18-fixturegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+html.ljpc18-active body .u18-matchcard{
+ min-width:0;background:#fff;color:#1e3448;border:1px solid #e1e5ee;border-radius:5px;
+ padding:9px 13px;min-height:83px;box-shadow:none
+}
+html.ljpc18-active body .u18-matchmeta{font-size:9px;color:#8b98aa;font-weight:600;margin-bottom:6px}
+html.ljpc18-active body .u18-matchteams{
+ display:grid;grid-template-columns:19px minmax(0,1fr) 58px minmax(0,1fr) 19px;
+ gap:8px;align-items:center;text-align:center
+}
+html.ljpc18-active body .u18-matchteams span{
+ min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px;font-weight:730
+}
+html.ljpc18-active body .u18-matchteams b{font-size:14px;font-weight:800;color:#112c72}
+html.ljpc18-active body .u18-crest{
+ width:20px;height:20px;object-fit:contain;display:inline-grid;place-items:center;flex:0 0 20px;
+ border:0;background:transparent;vertical-align:middle;font-size:12px;color:#134a9d
+}
+html.ljpc18-active body .u18-empty{border:1px solid #d9e0ed;border-radius:50%;background:#eaf1fa}
+html.ljpc18-active body .u18-decision{display:block;text-align:center;margin:7px 0 0;color:#8997a8;font-size:9px}
+html.ljpc18-active body .u18-empty-state{background:#fff;border:1px solid #e1e5ef;border-radius:6px;color:#6a7a91;padding:23px;text-align:center}
+html.ljpc18-active body .u18-panel{border:1px solid #e0e4ec;border-radius:7px;background:#fff;padding:15px 17px;margin:11px 0 17px;color:#263b54}
+html.ljpc18-active body .u18-panel p{font-size:11px;line-height:1.6;color:#63778c!important}
+html.ljpc18-active body .u18-blocktitle{display:flex;justify-content:space-between;align-items:center}
+html.ljpc18-active body .u18-blocktitle h2{margin:0 0 14px!important}
+html.ljpc18-active body .u18-blocktitle small{color:#8795a7;font-size:10px}
+html.ljpc18-active body .u18-tablewrap{width:100%;max-width:100%;overflow:auto;background:#fff;border-radius:3px}
+html.ljpc18-active body .u18-table{width:100%;min-width:575px;border-collapse:collapse;color:#2c4154}
+html.ljpc18-active body .u18-table thead{background:#f7f8fa;border-bottom:1px solid #e1e5ed}
+html.ljpc18-active body .u18-table th{
+ text-align:center;padding:12px 6px;color:#8995a7;font-weight:770;font-size:9px;white-space:nowrap
+}
+html.ljpc18-active body .u18-table th:nth-child(2){text-align:left}
+html.ljpc18-active body .u18-table td{
+ padding:9px 6px;border-bottom:1px solid #edf0f4;font-size:10px;text-align:center;white-space:nowrap;
+ height:43px
+}
+html.ljpc18-active body .u18-table td.u18-team{
+ display:flex;align-items:center;gap:8px;min-width:170px;text-align:left;
+}
+html.ljpc18-active body .u18-table td.u18-team b{
+ overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10.5px
+}
+html.ljpc18-active body .u18-table tr:hover{background:#f7faff}
+html.ljpc18-active body .u18-table .u18-place{color:#99a7b4;font-size:10px}
+html.ljpc18-active body .u18-table td:last-child{color:#0a389d;font-weight:800}
+html.ljpc18-active body .u18-footnote{margin:12px 0 0;color:#8091a4;font-size:9px}
+html.ljpc18-active body .u18-bracket{padding:16px 0}
+html.ljpc18-active body .u18-brackethead{margin:0 0 14px}
+html.ljpc18-active body .u18-brackethead p{font-size:11px;color:#6e7b90!important}
+html.ljpc18-active body .u18-bracketdiagram{
+ min-height:310px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+ gap:9px;padding:20px;background:#f7f8fc;border:1px solid #e1e6ee;border-radius:7px;align-items:center
+}
+html.ljpc18-active body .u18-bracketdiagram>div{
+ display:grid;align-items:center;gap:14px;min-height:145px;padding:12px 10px;
+ background:linear-gradient(180deg,#fff,#f5f7fc);border:1px solid #dfe6f1;border-left:3px solid #3065e5;
+ border-radius:5px;text-align:center
+}
+html.ljpc18-active body .u18-bracketdiagram b{font-size:11px;color:#234b9a}
+html.ljpc18-active body .u18-bracketdiagram span{font-size:12px;color:#9aa8b7}
+html.ljpc18-active body .u18-simlayout{
+ display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:13px;margin:17px 0
+}
+html.ljpc18-active body .u18-simleft,.u18-simright{
+ min-width:0;background:#fff;padding:14px;border:1px solid #e2e6ee;border-radius:6px
+}
+html.ljpc18-active body .u18-simhead{display:flex;justify-content:space-between;align-items:center}
+html.ljpc18-active body .u18-simhead h3{margin:0!important}
+html.ljpc18-active body .u18-simleft>p,
+html.ljpc18-active body .u18-simright>p{
+ color:#78879b;font-size:10px;line-height:1.4
+}
+html.ljpc18-active body .u18-simhead button{
+ border:1px solid #d3e1ef;background:#fff;color:#1955a7;border-radius:5px;padding:5px 8px;font-size:10px
+}
+html.ljpc18-active body .u18-simrow{
+ display:grid;grid-template-columns:minmax(0,1fr) 31px 5px 31px minmax(0,1fr);
+ align-items:center;gap:5px;min-height:43px;border-bottom:1px solid #eef0f4;
+}
+html.ljpc18-active body .u18-simrow>span{
+ display:flex;align-items:center;gap:5px;font-size:9.5px;color:#455b70;white-space:nowrap;overflow:hidden
+}
+html.ljpc18-active body .u18-simrow .u18-simaway{justify-content:flex-end;text-align:right}
+html.ljpc18-active body .u18-simrow input{
+ width:30px;height:28px;border:1px solid #d8e1ef!important;background:#f4f6fa!important;
+ border-radius:5px!important;color:#243f6f!important;text-align:center;font-size:12px!important;
+ padding:3px!important
+}
+html.ljpc18-active body .u18-simrow input::-webkit-inner-spin-button{display:none}
+html.ljpc18-active body .u18-simrow i{font-style:normal;text-align:center}
+html.ljpc18-active body .u18-simrow .u18-crest{width:17px;height:17px}
+html.ljpc18-active body .u18-simright h3{margin:0 0 7px!important}
+html.ljpc18-active body .u18-drawstage{
+ display:grid;grid-template-columns:minmax(220px,1.1fr) minmax(0,1fr);gap:12px;margin:14px 0 25px;align-items:start
+}
+html.ljpc18-active body .u18-videotile{
+ background:#06105a;border:1px solid #26398c;border-radius:5px;overflow:hidden;
+ padding:0 0 14px;color:#fff
+}
+html.ljpc18-active body .u18-film{
+ width:100%;min-height:206px;aspect-ratio:16/9;
+ display:grid;place-items:center;background:radial-gradient(circle at 55% 50%,#2b53e9 0%,#09103d 65%);
+}
+html.ljpc18-active body .u18-film span{
+ width:51px;height:51px;display:grid;place-items:center;border-radius:50%;
+ color:#fff;background:#1ab8e4;box-shadow:0 0 30px #0c77db88;font-size:25px
+}
+html.ljpc18-active body .u18-videotile b{display:block;font-size:12px;margin:13px 15px 8px}
+html.ljpc18-active body .u18-videotile>button{
+ margin:0 15px;background:#1ad6e6!important;border:0!important;border-radius:4px!important;
+ color:#082568!important;font-size:10px!important;padding:7px 13px!important
+}
+html.ljpc18-active body .u18-drawright{
+ background:#fff;border:1px solid #e0e5eb;border-radius:6px;overflow:hidden;
+}
+html.ljpc18-active body .u18-drawtabs{display:flex;align-items:center;gap:0;overflow-x:auto;border-bottom:1px solid #e5e8ee}
+html.ljpc18-active body .u18-drawright .u18-drawtabs button{
+ flex:0 0 auto;border:0!important;border-bottom:2px solid transparent!important;
+ border-radius:0!important;background:transparent!important;color:#50617d!important;padding:14px 10px!important
+}
+html.ljpc18-active body .u18-drawright .u18-drawtabs button.selected{
+ border-bottom-color:#0c47e8!important;color:#0a389d!important;font-weight:800!important
+}
+html.ljpc18-active body .u18-drawdetail{padding:15px;min-height:202px}
+html.ljpc18-active body .u18-drawdetail h3{color:#243950;margin:0 0 12px}
+html.ljpc18-active body .u18-drawdetail p{font-size:11px;color:#5f728b;line-height:1.7}
+html.ljpc18-active body .u18-entrants{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px
+}
+html.ljpc18-active body .u18-entrants>div{
+ display:flex;align-items:center;gap:7px;min-height:29px;font-size:10px;color:#3a506a;
+ background:#f7f9fc;border-radius:5px;padding:4px 6px
+}
+html.ljpc18-active body .u18-entrants .u18-crest{width:17px;height:17px}
+html.ljpc18-active body .u18-original{
+ margin:24px 0 0;padding:10px 12px;
+ border-top:1px solid #e2e7ee;color:#536c86;font-size:10px
+}
+html.ljpc18-active body .u18-original summary{cursor:pointer;color:#154eaf;font-weight:800}
+html.ljpc18-active body .u18-original p{font-size:10px;line-height:1.5;margin:8px 0}
+html.ljpc18-active body .u18-modal-layer{
+ position:fixed;inset:0;display:grid;place-items:center;padding:15px;
+ background:#06143b99;z-index:2300;backdrop-filter:blur(2px)
+}
+html.ljpc18-active body .u18-modal{
+ display:grid;gap:13px;width:min(510px,100%);max-height:min(80vh,580px);
+ overflow:auto;background:#fff;border:1px solid #e8ebf2;border-radius:7px;padding:19px;
+ box-shadow:0 18px 55px #0007
+}
+html.ljpc18-active body .u18-modal-title{display:flex;justify-content:space-between;align-items:center}
+html.ljpc18-active body .u18-modal-title h3{font-size:16px!important;margin:0!important}
+html.ljpc18-active body .u18-modal-title button{
+ border:0!important;color:#6c7e96;background:transparent!important;font-size:19px
+}
+html.ljpc18-active body .u18-modal p{font-size:11px;color:#6a7d91}
+html.ljpc18-active body .u18-modal-list{display:grid;gap:6px;max-height:340px;overflow:auto}
+html.ljpc18-active body .u18-modal-list>button{
+ display:flex;align-items:center;gap:7px;border:1px solid #e2e8ee!important;
+ background:#fff!important;color:#24456a!important;text-align:left!important;padding:10px!important
+}
+html.ljpc18-active body .u18-modal-list>button:hover{border-color:#0b57c7!important}
+html.ljpc18-active body .u18-modal-list small{display:block;font-size:10px;color:#8793a2}
+html.ljpc18-active body .u18-modal footer{display:flex;justify-content:center}
+html.ljpc18-active body .u18-loading{padding:50px 20px;text-align:center;color:#385270}
+html.ljpc18-active body #screen .u18-video{background:#050747!important;color:#fff!important;min-height:70vh;padding-bottom:55px}
+html.ljpc18-active body .u18-videohero{
+ min-height:295px;position:relative;isolation:isolate;display:flex;align-items:flex-end;
+ overflow:hidden;background:linear-gradient(115deg,#08165b,#020336);padding:40px max(20px,calc((100% - 1040px)/2))
+}
+html.ljpc18-active body .u18-videohero>img{
+ position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;opacity:.6
+}
+html.ljpc18-active body .u18-videohero:after{
+ content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#020637 10%,#08093d68 90%),linear-gradient(0deg,#040647,transparent)
+}
+html.ljpc18-active body .u18-videohero>div{max-width:450px;padding:15px 0}
+html.ljpc18-active body .u18-videohero small{font-size:11px;font-weight:900;color:#18dbe8;letter-spacing:.11em}
+html.ljpc18-active body .u18-videohero h1{
+ color:#fff!important;font-size:27px!important;max-width:450px;margin:7px 0!important
+}
+html.ljpc18-active body .u18-videohero p{color:#e3e7ff!important;font-size:12px;line-height:1.5}
+html.ljpc18-active body .u18-videohero button{border:0!important;min-height:32px;padding:7px 17px!important}
+html.ljpc18-active body .u18-video .u18-bound{padding-top:20px}
+html.ljpc18-active body .u18-videopills{margin:0 0 22px}
+html.ljpc18-active body .u18-videopills .u18-pill{
+ background:#071070!important;color:#f0f4ff!important;border-color:#273d9e!important
+}
+html.ljpc18-active body .u18-videopills .u18-pill.selected{
+ background:#09d6e7!important;color:#051858!important;border-color:#0fcddd!important
+}
+html.ljpc18-active body .u18-video-title{
+ display:flex;align-items:center;justify-content:space-between;gap:10px;margin:22px 0 12px
+}
+html.ljpc18-active body .u18-video-title h2{margin:0!important;color:white!important;font-size:16px!important}
+html.ljpc18-active body .u18-video-title button{
+ border:0!important;background:transparent!important;color:#92ddff!important
+}
+html.ljpc18-active body .u18-video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin-bottom:18px}
+html.ljpc18-active body .u18-video .u18-videocard{
+ min-width:0;padding:0 0 10px!important;border:1px solid #162b86!important;
+ border-radius:6px!important;overflow:hidden;background:#060c59!important;color:#fff!important;
+ display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left!important
+}
+html.ljpc18-active body .u18-videocard .u18-poster{
+ position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#0c1b9e
+}
+html.ljpc18-active body .u18-videocard .u18-poster>img{width:100%;height:100%;object-fit:cover}
+html.ljpc18-active body .u18-videocard .u18-poster>span{
+ position:absolute;inset:0;display:grid;place-items:center;font-size:24px;color:#fff;text-shadow:0 0 15px #000
+}
+html.ljpc18-active body .u18-video .u18-videocard b,
+html.ljpc18-active body .u18-video .u18-videocard small{padding:0 9px;line-height:1.3}
+html.ljpc18-active body .u18-video .u18-videocard b{font-size:12px;font-weight:800}
+html.ljpc18-active body .u18-video .u18-videocard small{font-size:10px;color:#9db6da}
+html.ljpc18-active body .u18-video .u18-video-archive{
+ display:block;margin:22px auto 0;background:#0b42cd!important;color:#fff!important;border-color:#246eea!important;
+ border-radius:5px!important
+}
+@media(max-width:950px){
+ html.ljpc18-active body .u18-bound{width:calc(100% - 22px)}
+ html.ljpc18-active body .u18-fixturegrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ html.ljpc18-active body .u18-simlayout{grid-template-columns:minmax(0,1fr)}
+ html.ljpc18-active body .u18-drawstage{grid-template-columns:minmax(0,1fr)}
+ html.ljpc18-active body .u18-video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:590px){
+ /* Únicamente para quien fuerce ?mode=desktop en un navegador estrecho. */
+ html.ljpc18-active body .u18-matchteams{grid-template-columns:17px 1fr 36px 1fr 17px;gap:4px}
+ html.ljpc18-active body .u18-fixturegrid{grid-template-columns:minmax(0,1fr)}
+ html.ljpc18-active body .u18-bracketdiagram{grid-template-columns:repeat(2,minmax(0,1fr))}
+ html.ljpc18-active body .u18-entrants{grid-template-columns:minmax(0,1fr)}
+ html.ljpc18-active body .u18-video-grid{grid-template-columns:minmax(0,1fr)}
+ html.ljpc18-active body .u18-bluehead h1{font-size:21px!important}
+ html.ljpc18-active body .u18-controls{align-items:flex-start}
+ html.ljpc18-active body .u18-controls-right{margin-left:0}
+}
