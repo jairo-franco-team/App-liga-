@@ -33,7 +33,8 @@ test('Proximos partidos and lower video/cards have PC row sizes but retain nativ
 test('Initial 3700 pixel iframe placeholder is removed and height updates ignore tiny fluctuations',()=>{
  assert.doesNotMatch(iframe,/height:3700px;min-height:1200px/);
  assert.match(iframe,/height:900px;min-height:0/);
- assert.match(iframe,/Math\.abs\(target-prior\)>4/);
+ // 8px hysteresis is the current no-feedback iframe resize guard; retain compatibility with the original 4px guard.
+ assert.match(iframe,/Math\.abs\(target-prior\)>(?:4|8)/);
  assert.match(iframe,/frame\.contentWindow\.postMessage/);
  assert.match(iframe,/e\.data\.kind==='height'/);
 });
