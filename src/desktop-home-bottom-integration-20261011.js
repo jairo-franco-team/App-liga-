@@ -35,7 +35,8 @@
    const frame=document.getElementById('ljpc-exact-html-home');
    const footer=document.getElementById(FOOTER_ID);
    const nativeExtras=!!screen?.querySelector(':scope > #safeHomeExtra, :scope > #v105-bottom[data-v105-route="home"]');
-   const active=desktop()&&route()==='home'&&!!frame&&nativeExtras;
+   const active=desktop()&&route()==='home'&&!!frame&&nativeExtras&&
+     !document.getElementById('ljpc-unified-pc-footer');
    try{
      const doc=frame?.contentDocument;
      if(doc?.body)doc.body.classList.toggle('ljpc-supplements-active',active);
