@@ -445,3 +445,9 @@ html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-card .ljpc8-no-data{
  html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-phase-bars button{grid-template-rows:88px 16px 16px}
  html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-bar-area{height:88px}
 }
+
+/* PC8: la navegación compacta nueva sustituye visualmente las pestañas
+   duplicadas del resumen anterior, sin eliminar sus datos ni controladores. */
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljpc8-original > .ljpc-eight-tabs{
+  display:none!important;
+}
