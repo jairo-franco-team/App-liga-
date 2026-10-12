@@ -118,3 +118,26 @@ img{max-width:100%;display:block}svg{width:20px;height:20px;display:block}h1,h2,
 .gaming-side-panel .checklist{gap:7px}.gaming-side-panel .checklist>div{padding:9px}
 @media(max-width:760px){.gaming-hub-grid{grid-template-columns:1fr}.gaming-hub-primary,.gaming-hub-aside{gap:11px}.gaming-hub-feature{min-height:210px;padding:15px}.gaming-hub-top{min-height:93px}.gaming-hub-section{padding:13px 0 32px}.gaming-hub-media{height:148px}.gaming-hub-aside{grid-template-columns:repeat(2,minmax(0,1fr))}.gaming-quick-games{grid-template-columns:1fr}.gaming-quick-games a{height:65px}.gaming-quick-games span{font-size:16px}}
 @media(max-width:480px){.gaming-hub-aside{grid-template-columns:1fr}.gaming-quick-games{grid-template-columns:repeat(3,minmax(0,1fr))}.gaming-quick-games a{height:74px}.gaming-hub-feature{grid-template-columns:1.2fr .8fr;min-height:210px}.gaming-hub-copy h3{font-size:19px}.gaming-six-board b{width:42px;height:46px;font-size:27px}.gaming-fantasy-photo img{height:172px}}
+
+/* Pronostica Seis: UEFA-reference horizontal score boxes and electric blue match rows. */
+.predictions-section{background:#05043b}
+.predict-tabs{display:flex;gap:25px;overflow-x:auto;margin:5px 0 17px;border-bottom:1px solid #313271;scrollbar-width:none}
+.predict-tabs a{padding:12px 0;white-space:nowrap;border-bottom:3px solid transparent;color:#e1e7fe;font-weight:700;font-size:12px}
+.predict-tabs a.active{color:var(--cyan);border-bottom-color:var(--cyan)}
+.prediction-list{display:grid;gap:13px;margin-top:19px}
+.prediction-card{position:relative;overflow:hidden;background:linear-gradient(135deg,#0633ec,#0b28cc 45%,#060b9d);border-radius:7px;padding:13px 17px;min-height:151px;isolation:isolate}
+.prediction-card:before{content:"";position:absolute;width:270px;height:270px;left:32%;top:-105px;border:45px solid #6cbdf315;transform:rotate(-25deg);z-index:-1;pointer-events:none}
+.prediction-caption{display:flex;justify-content:space-between;gap:10px;color:#d8e3ff;font-size:11px;opacity:.9}
+.prediction-center{display:grid;grid-template-columns:minmax(0,1fr) 118px minmax(0,1fr);align-items:center;gap:13px;min-height:87px}
+.prediction-team{display:flex;align-items:center;justify-content:flex-end;gap:9px;min-width:0}.prediction-team.away{justify-content:flex-start}
+.prediction-team b{font-size:clamp(12px,1.7vw,20px);line-height:1.2}.prediction-team img{width:38px;height:38px;object-fit:contain;flex:0 0 38px}
+.prediction-picks{display:flex;gap:8px;align-items:center;justify-content:center}
+.prediction-picks a{display:grid;place-items:center;width:49px;height:51px;border:2px solid var(--cyan);border-radius:7px;color:#fff;font-weight:500;font-size:35px;background:#0928c7}
+.prediction-picks a:hover{background:var(--cyan);color:#021450}
+.prediction-foot{text-align:center;font-size:11px;color:#d8e2ff}
+.bracket-section{background:radial-gradient(500px 390px at 50% 40%,#1521bb90,transparent 80%),#07043b}
+.bracket-panel{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;background:linear-gradient(125deg,#090c78,#070b4d);border-radius:11px;border:1px solid #343798;padding:25px 40px;min-height:340px}
+.bracket-panel .bracket-art{height:295px;display:grid;place-items:center}.bracket-panel img{max-height:100%;max-width:100%;object-fit:contain;filter:drop-shadow(0 15px 20px #0005)}
+.bracket-panel h3{font-size:clamp(28px,3.5vw,42px);margin:7px 0 13px}.bracket-panel p{color:#c4d1f2;max-width:390px;font-size:13px;margin-bottom:19px}
+@media(max-width:760px){.prediction-center{grid-template-columns:minmax(0,1fr) 100px minmax(0,1fr);gap:5px}.prediction-team img{width:26px;height:26px;flex-basis:26px}.prediction-picks a{width:42px;height:45px;font-size:27px}.prediction-card{padding:12px 9px}.bracket-panel{grid-template-columns:1fr;padding:20px;gap:4px}.bracket-panel .bracket-art{height:200px}.prediction-team b{font-size:12px}}
+@media(max-width:410px){.prediction-center{grid-template-columns:minmax(0,1fr) 86px minmax(0,1fr)}.prediction-picks{gap:4px}.prediction-picks a{width:38px;height:42px}.prediction-team{gap:3px}.prediction-team b{font-size:10px}.prediction-card{min-height:135px}}
