@@ -46,6 +46,24 @@ def main():
     report['savedApkBytes'] = report['baselineApkBytes'] - report['optimizedApkBytes']
     if report['savedApkBytes'] <= 0:
         raise ValueError('Android APK optimization did not reduce actual APK bytes')
+    with ZipFile(args.baseline) as baseline:
+        report['removedBaselineCompressedBytes'] = sum(
+            baseline.getinfo('assets/public/' + name).compress_size
+            for name in report['aliases']
+        )
+    # Adding the alias map, its Java implementation and signing metadata has a
+    # small cost. Do not accept a correctly indexed APK retaining deleted payload
+    # space: Zipflinger fills holes with unnamed virtual ZIP entries in incremental
+    # builds, so an inventory check alone cannot prove a smaller download.
+    native_overhead_budget = max(256_000, report['removedBaselineCompressedBytes'] // 20)
+    report['minimumExpectedApkSavings'] = max(0, report['removedBaselineCompressedBytes'] - native_overhead_budget)
+    if report['savedApkBytes'] < report['minimumExpectedApkSavings']:
+        raise ValueError(
+            'APK retained incremental ZIP padding: actual reduction '
+            + str(report['savedApkBytes']) + ' bytes; removed packaged image data '
+            + str(report['removedBaselineCompressedBytes'])
+            + ' bytes. Build the optimized APK with Gradle clean assembleDebug.'
+        )
     report_path.write_text(json.dumps(report, indent=2) + '\n')
     lines = [
         '| Android size measurement | Bytes | MB (decimal) |',

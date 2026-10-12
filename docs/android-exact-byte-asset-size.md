@@ -21,6 +21,10 @@ Measured against the web build from main `087658a` on 12 October 2026:
 
 The removed image data occupies approximately 24,843,916 bytes even if every removed image were ZIP-deflated at level 6. This is an estimate of potential APK savings; APK signing, native classes and package compression add overhead. The workflow measures the **actual two APK file sizes from the same build** and writes the exact reduction to the Actions summary and `Liga-Juventino-Android-Size-Report` artifact. No estimated APK size is presented as a completed Gradle measurement.
 
+The optimized package must be rebuilt with `./gradlew clean assembleDebug`. The first CI attempt compiled both native versions successfully and verified every final asset, but an incremental second build reduced the actual APK by only 137,588 bytes (183,620,236 → 183,482,648 bytes). APKflinger retained deleted payload space as unnamed virtual ZIP entries. Google's [Zipflinger documentation](https://android.googlesource.com/platform/tools/base/+/refs/heads/mirror-goog-studio-master-dev/zipflinger/README.md) describes this behavior. A clean package rebuild removes that space without touching media or app functionality.
+
+The final verifier now reads the actual compressed sizes of removed image entries from the baseline APK and requires the actual APK reduction to cover those bytes, allowing only a bounded overhead budget for the native alias implementation and signing. A regression fixture with correct indexed media and two megabytes of orphaned ZIP padding fails this check. Merely proving missing central-directory entries is insufficient.
+
 ## Native behavior
 
 `LigaAssetAliases` uses the installed Capacitor 7 Android `Bridge.Builder.setRouteProcessor` API. `WebViewLocalServer` invokes this processor immediately before opening packaged assets. It serves the retained canonical image stream through Capacitor's existing request and response implementation. The original URL, query string, MIME detection, content headers and Range handling remain intact. WebView, fetch/XHR, CSS/image loading, canvas and service-worker requests share this server path. Videos are excluded from deduplication.

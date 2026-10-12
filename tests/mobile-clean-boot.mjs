@@ -13,8 +13,8 @@ const aliases=native?JSON.parse(readFileSync(resolve(dist,'../liga-asset-aliases
 mkdirSync(out,{recursive:true});
 const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
 const missing=[];
-const delegated=['accountPrivacy','accountPreferences','accountAdvisor','accountCloud','leagueData','about','televisados'];
-const themes={accountPrivacy:'orbit',accountPreferences:'cyan',accountAdvisor:'facets',televisados:'sport',accountEdit:'orbit',profile:'prism',news:'prism',search:'cyan',scheduleChanges:'facets',notifications:'cyan'};
+const delegated=['accountPrivacy','accountPreferences','accountAdvisor','accountCloud','leagueData','safe-about','televisados'];
+const themes={ligaControl:'sport',leagueTools:'facets',discipline:'facets',recruitment:'sport',refereeOffline:'sport',cedulas:'orbit',players:'orbit',v38Weekly:'cyan',bracketBuilder:'facets',publicationCenter:'prism',profile:'prism',accountPassword:'orbit',accountDevices:'facets',accountSecurity:'prism',accountPrivacy:'orbit',accountPreferences:'cyan',accountAdvisor:'facets',notifications:'cyan',permissionBuilder:'orbit',matchCenter:'sport',quiniela:'prism',matchday:'sport',agendaBuilder:'cyan',weatherFields:'cyan',cedulaBuilder:'orbit',rulebook:'facets',ligaQR:'prism',televisados:'sport',v38Alerts:'cyan',suspensionTool:'facets',accountEdit:'orbit',news:'prism',search:'cyan',scheduleChanges:'facets',credentialBuilder:'orbit'};
 try{
  const page=await browser.newPage({viewport:{width:412,height:915},isMobile:true,hasTouch:true});
  await page.route('**/*',async route=>{
@@ -53,7 +53,7 @@ try{
   assert.equal(result.placeholder,false,route+' must mount actual content');assert.ok(result.text?.length>15,route+' has real controls/content');
   assert.deepEqual(result.audit.homeWrites,[],route+' cold boot cannot construct Home');assert.deepEqual(result.audit.wrongFrames,[],route+' has no visible legacy frame');
  }
- for(const route of ['accountEdit','profile','news','search','scheduleChanges','notifications',...delegated]){
+ for(const route of [...Object.keys(themes),...delegated]){
   await page.evaluate(r=>window.LJR_MAIN_ROUTE.go(r),route);await page.waitForTimeout(1100);
   const audit=await page.evaluate(()=>window.__cleanBoot);
   assert.deepEqual(audit.homeWrites,[],'No delegated page constructs Home during navigation');
@@ -77,6 +77,6 @@ try{
  const critical=missing.filter(name=>/\.(?:js|css|png|jpe?g|webp|svg|woff2)(?:$|\?)/i.test(name));
  assert.deepEqual([...new Set(critical)],[],'No missing packaged script, design, logo or font');
  await page.screenshot({path:resolve(out,native?'native-packaged.png':'compiled-mobile.png')});
- writeFileSync(resolve(out,native?'native-report.json':'web-report.json'),JSON.stringify({native,frames:audit.frames,delegatedRoutes:delegated,homeWrites:audit.homeWrites,wrongFrames:audit.wrongFrames,aliasesVerified:Object.keys(aliases).length,missing},null,2));
- console.log(JSON.stringify({native,visibleFrames:audit.frames,initialRoutes:delegated.length,aliasURLsVerified:Object.keys(aliases).length,legacyFrames:audit.wrongFrames.length}));
+ writeFileSync(resolve(out,native?'native-report.json':'web-report.json'),JSON.stringify({native,frames:audit.frames,delegatedRoutes:delegated,capturedRoutes:Object.keys(themes),homeWrites:audit.homeWrites,wrongFrames:audit.wrongFrames,aliasesVerified:Object.keys(aliases).length,missing},null,2));
+ console.log(JSON.stringify({native,visibleFrames:audit.frames,initialRoutes:delegated.length,capturedRoutes:Object.keys(themes).length,aliasURLsVerified:Object.keys(aliases).length,legacyFrames:audit.wrongFrames.length}));
 }finally{await browser.close();}

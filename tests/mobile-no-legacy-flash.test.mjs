@@ -12,7 +12,7 @@ function renderRoute(route, mode='apk') {
  context.render();return {html:screen.innerHTML,homeCalls};
 }
 test('mobile delegated sections never construct Home before their own content',()=>{
- for(const route of ['accountPrivacy','accountPreferences','accountAdvisor','accountCloud','leagueData','about','televisados']){
+ for(const route of ['accountPrivacy','accountPreferences','accountAdvisor','accountCloud','leagueData','safe-about','televisados']){
   const result=renderRoute(route);assert.equal(result.homeCalls,0,route+' must not build Home');assert.match(result.html,/data-(ljr-reference|v569-auth)-mount/);
  }
 });

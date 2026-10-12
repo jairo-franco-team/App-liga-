@@ -6706,7 +6706,7 @@ function render(){
   // and exposes the previous design while their real controls are mounting.
   if(mobileDisplay){
     ['accountPrivacy','accountPreferences','accountAdvisor','accountCloud',
-      'leagueData','about','televisados'].forEach(route=>moduleRoutes.add(route));
+      'leagueData','televisados'].forEach(route=>moduleRoutes.add(route));
   }
   const delegated=moduleRoutes.has(state.route)||state.route.startsWith('v4-');
   screen.innerHTML=views[state.route]?views[state.route]():

@@ -97,15 +97,21 @@ test('unexpected native generated code aborts before deleting any asset', () => 
 
 test('final APK verification measures ZIP bytes and rejects missing or corrupted reachable media', () => {
   const verifier = new URL('../native/android/verify-apk-assets.py', import.meta.url).pathname;
-  for (const corruption of ['none', 'missing', 'changed']) {
+  for (const corruption of ['none', 'missing', 'changed', 'padded']) {
     const f = fixture();
     try {
       const baseline = path.join(f.root, 'baseline.apk');
       const apk = path.join(f.root, 'optimized.apk');
+      if (corruption === 'padded') {
+        for (const name of ['assets/photo-abcd1234.png', 'assets/history/same.png', 'assets/season/team.png', 'icons/logo.png']) {
+          fs.writeFileSync(path.join(f.publicDir, name), Buffer.alloc(700_000, 42));
+        }
+      }
       const zip = String.raw`
 import pathlib, sys, zipfile
 root, output, corruption = sys.argv[1:]
-with zipfile.ZipFile(output, 'w', compression=zipfile.ZIP_STORED) as archive:
+if corruption == 'padded': pathlib.Path(output).write_bytes(b'\0' * 2_000_000)
+with zipfile.ZipFile(output, 'a' if corruption == 'padded' else 'w', compression=zipfile.ZIP_STORED) as archive:
     archive.writestr('classes.dex', b'fixture native code')
     for file in pathlib.Path(root).rglob('*'):
         if not file.is_file(): continue
@@ -129,7 +135,7 @@ with zipfile.ZipFile(output, 'w', compression=zipfile.ZIP_STORED) as archive:
         assert.equal(report.verifiedApkPublicBytes, report.afterPublicBytes);
       } else {
         assert.notEqual(result.status, 0);
-        assert.match(result.stderr, /Missing Android asset|Changed Android asset/);
+        assert.match(result.stderr, /Missing Android asset|Changed Android asset|retained incremental ZIP padding/);
       }
     } finally { fs.rmSync(f.root, { recursive: true, force: true }); }
   }
