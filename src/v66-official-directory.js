@@ -1353,7 +1353,7 @@ function v436CategoryPanel(team,logo){
      '<div class="v436-breadcrumb">Atrás <b>›</b> Inicio <b>›</b> Entrenamiento</div>'+
      '<h2>Entrenamiento</h2><p class="v436-desc">Colección de entrenamiento de '+esc(team)+' para preparar cada partido con el estilo del equipo.</p>'+
      '<button type="button" class="v436-show-more">Ver más</button>'+
-     '<div class="v436-filter-chips"><button class="active" data-v436-chip>TODO</button><button data-v436-chip>HOMBRE</button><button data-v436-chip>MUJER</button><button data-v436-chip>JUVENIL</button></div>'+
+     '<div class="v436-filter-chips"><button class="active" data-v436-chip>TODO</button><button data-v436-chip>HOMBRE</button><button data-v436-chip>MUJER</button><button data-v436-chip>ABIERTA</button></div>'+
      '<div class="v436-sort-row"><button type="button" data-v436-sort>⌃⌄ <span>Recomendados</span></button><button type="button" data-v436-filter-toggle>☷ <span>Filtrar</span></button></div>'+
      '<div class="v436-products">'+
        v436Product("Playera de entrenamiento",team+" · Training","training",logo,"Mex$1,300.00","Nuevo")+
