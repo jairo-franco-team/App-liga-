@@ -6,7 +6,7 @@
 if(window.__LJPC_SHARED_SHELL_OCT11__)return;
 window.__LJPC_SHARED_SHELL_OCT11__=true;
 const NAV=[
- ['Inicio','home'],['Partidos','pc-fixtures'],['Clasificación','pc-standings'],
+ ['Partidos','pc-fixtures'],['Clasificación','pc-standings'],
  ['Liga TV','video'],['Sorteos','pc-draws'],['Gaming','gamingPortal'],
  ['Datos','pc-data'],['Más','pc-tools']
 ];
@@ -127,7 +127,7 @@ function navMarkup(){
  }).join('');
  return '<div id="ljpc-unified-pc-header" aria-label="Cabecera universal de escritorio">'+
  '<div class="ljpc-u-nav"><div class="ljpc-u-wrap">'+
- '<button class="ljpc-u-brand" type="button" data-ljpc-u-go="home"><img alt="" src="'+logo+'"><span>LIGA<br>JUVENTINO</span></button>'+
+ '<button class="ljpc-u-brand" type="button" data-ljpc-u-go="home" aria-label="Liga Juventino Rosas: ir al Inicio"><img alt="" src="'+logo+'"><span>LIGA<br>JUVENTINO</span></button>'+
  '<nav class="ljpc-u-links" aria-label="Navegación PC">'+items+'</nav>'+
  '<button class="ljpc-u-login" type="button" data-ljpc-u-go="accountLogin">Iniciar sesión <span aria-hidden="true">◉</span></button>'+
  '</div></div><div class="ljpc-u-scorebar"><div class="ljpc-u-wrap ljpc-u-score-wrap">'+
