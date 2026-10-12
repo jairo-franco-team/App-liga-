@@ -410,3 +410,26 @@ html.ljpc18-active body #screen .u18-aboutcard:hover{border-color:#3485da!import
  html.ljpc18-active body #screen .u18-aboutcard{grid-template-columns:85px minmax(0,1fr) 10px}
  html.ljpc18-active body #screen .u18-aboutcard img{width:85px;height:70px}
 }
+
+
+/* Prioridad sobre estilos de páginas nativas antiguas, sólo al estar activa esta vista PC. */
+html.ljpc18-active body.lj-desktop,
+html.ljpc18-active.ljpc-pc-native-mode body.ljpc-native-route{
+ background:#f1f2f7!important;
+}
+html.ljpc18-active[data-ljpc18-route="video"] body.lj-desktop,
+html.ljpc18-active[data-ljpc18-route="video"].ljpc-pc-native-mode body.ljpc-native-route{
+ background:#050747!important;
+}
+html.ljpc18-active.ljpc-pc-native-mode body.ljpc-native-route #screen{
+ max-width:none!important;width:100%!important;margin:0!important;padding:0!important;
+ border:0!important;overflow:visible!important;background:#f1f2f7!important;
+}
+html.ljpc18-active.ljpc-pc-native-mode body.ljpc-native-route #screen > :not(.u18-root){
+ display:none!important;
+}
+html.ljpc18-active.ljpc-pc-native-mode body.ljpc-native-route #screen:has(> .u18-root .u18-original[open]) > :not(.u18-root),
+html.ljpc18-active.ljpc-pc-native-mode body.ljpc-native-route #screen:has(> .u18-root.u18-show-classic) > :not(.u18-root){
+ display:block!important;
+}
+html.ljpc18-active[data-ljpc18-route="video"] body #screen{background:#050747!important}
