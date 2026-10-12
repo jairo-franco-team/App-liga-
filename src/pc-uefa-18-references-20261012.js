@@ -263,7 +263,8 @@ function simulation(){
 }
 function standingsPage(){
  const categoryOptions=catSelect();
- const tabbar='<div class="u18-switch">'+pills([['league','Fase liga'],['knockout','Fase eliminatoria'],['simulator','Simulador de resultados']],state.standTab,'data-u18-stand-tab')+'</div>';
+ const tabbar='<div class="u18-switch" role="group" aria-label="Fase de la competición">'+pills([['league','Fase liga'],['knockout','Fase eliminatoria']],state.standTab,'data-u18-stand-tab')+'</div>';
+ const simulateAction=state.standTab==='league'?'<button type="button" class="u18-sim-launch" data-u18-stand-tab="simulator" aria-label="Abrir simulador de resultados">Simulador de resultados</button>':'';
  const controls='<div class="u18-controls">'+categoryOptions+
  '<div class="u18-controls-right"><button data-u18-go="pc-fixtures">Ver partidos</button><button data-u18-go="tableExport">Descargar tabla ↓</button></div></div>';
  const rows=tableRows();
@@ -275,7 +276,7 @@ function standingsPage(){
  '<div class="u18-panel"><div class="u18-blocktitle"><h2>Clasificación de la fase liga</h2><small>'+escape(CAT[state.cat])+'</small></div>'+
  viewTabs+(state.standMode==='criteria'?criteria:(rows.length?standingsTable(rows):'<p>La clasificación de esta categoría no está disponible.</p>'))+
  '<p class="u18-footnote">PJ · partidos; PG · ganados; PE · empates; PP · perdidos; GF/GC · goles; DG · diferencia; PTS · puntos.</p></div>';
- return shell('Clasificación',CAT[state.cat],tabbar+controls+content).replace(/<details class="u18-original"[\s\S]*?<\/details>/,'');
+ return shell('Clasificación',CAT[state.cat],tabbar+controls+content+simulateAction).replace(/<details class="u18-original"[\s\S]*?<\/details>/,'');
 }
 function drawsPage(){
  const rows=tableRows(),squads=rows.filter(r=>r[1]).map(r=>r[1]);
