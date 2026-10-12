@@ -148,12 +148,13 @@ function selectNav(){
  const root=document.getElementById('ljpc-unified-pc-header');if(!root)return;
  const r=route(),selected=active(r);
  root.querySelectorAll('[data-ljpc-u-highlight]').forEach(b=>{
+  if(b.tagName==='SUMMARY')b.setAttribute('aria-expanded',String(!!b.parentElement?.open));
   const on=b.dataset.ljpcUHighlight===selected;
   b.classList.toggle('active',on);
   if(b.tagName==='BUTTON'){if(on)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');}
  });
  if(previousRoute!==r){
-  root.querySelectorAll('details[open]').forEach(x=>x.removeAttribute('open'));
+  root.querySelectorAll('details[open]').forEach(x=>{x.open=false;x.querySelector('summary')?.setAttribute('aria-expanded','false')});
   root.querySelectorAll('.ljpc-u-history-submenu').forEach(x=>{x.hidden=true});
   root.querySelectorAll('[data-ljpc-u-history-toggle]').forEach(x=>x.setAttribute('aria-expanded','false'));
   previousRoute=r;
@@ -223,6 +224,27 @@ function refreshFixtures(){
  if(!el||!desktop())return;
  el.innerHTML=fixturesHTML();
 }
+/* Los tres menús PC se abren de forma explícita. En ciertos navegadores el
+   clic delegado cancelaba el comportamiento nativo de <details>. */
+document.addEventListener('click',e=>{
+ if(!desktop()||!(e.target instanceof Element))return;
+ const summary=e.target.closest('#ljpc-unified-pc-header .ljpc-u-links > details > summary');
+ if(!summary)return;
+ const details=summary.parentElement;
+ if(!details||details.tagName!=='DETAILS')return;
+ e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();
+ const shouldOpen=!details.open;
+ const header=document.getElementById('ljpc-unified-pc-header');
+ header?.querySelectorAll('.ljpc-u-links > details[open]').forEach(other=>{
+  if(other!==details)other.open=false;
+ });
+ details.open=shouldOpen;
+ summary.setAttribute('aria-expanded',String(shouldOpen));
+ if(!shouldOpen){
+  details.querySelector('.ljpc-u-history-submenu')?.setAttribute('hidden','');
+  details.querySelector('[data-ljpc-u-history-toggle]')?.setAttribute('aria-expanded','false');
+ }
+},true);
 document.addEventListener('click',e=>{
  if(!desktop()||!(e.target instanceof Element))return;
  const b=e.target.closest('[data-ljpc-u-go],[data-ljpc-u-history-section],[data-ljpc-u-history-toggle]');
