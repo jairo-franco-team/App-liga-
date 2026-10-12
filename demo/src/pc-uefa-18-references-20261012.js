@@ -6,8 +6,8 @@ if(window.__LJPC_UEFA_18_REFERENCE__)return;
 window.__LJPC_UEFA_18_REFERENCE__=true;
 const CAT={'3':'Primera Fuerza','5':'Intermedia','4':'Segunda Fuerza','2':'Veteranos 35+','1':'Veteranos 50+'};
 const BASE='https://raw.githubusercontent.com/jairofrancog7-star/Liga_Futbol/main/';
-const allowed=new Set(['pc-fixtures','pc-standings','pc-draws','video']);
-const state={cat:'3',fixturesTab:'matches',fixtureType:'all',filterOpen:false,calendarOpen:false,chosenDays:[],standTab:'league',standMode:'table',drawTab:'results',videoTab:'all',scoreOverrides:{},showClassic:false};
+const allowed=new Set(['pc-fixtures','pc-standings','pc-draws','video','teams','about']);
+const state={cat:'3',fixturesTab:'matches',fixtureType:'all',filterOpen:false,calendarOpen:false,chosenDays:[],standTab:'league',standMode:'table',drawTab:'results',videoTab:'all',scoreOverrides:{},showClassic:false,teamsQuery:'',teamsCat:'all'};
 let db=null,loading=false,pending=false,currentRoute='',lastRef=null;
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const norm=s=>String(s??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
@@ -211,7 +211,50 @@ function videoPage(){
  '<div class="u18-video-grid">'+vids.slice(2,6).map(v=>'<button class="u18-videocard" '+(v[2]==='video'?'data-u18-show-original':'data-u18-go="'+v[2]+'"')+'><div class="u18-poster"><img loading="lazy" src="'+v[1]+'" alt=""><span>▶</span></div><b>'+escape(v[0])+'</b><small>'+escape(v[3])+'</small></button>').join('')+'</div>'+
  '<button type="button" class="u18-video-archive" data-u18-show-original>Abrir reproductor y archivo original de Liga TV ↗</button></div></section>';
 }
-function markup(){return route()==='pc-fixtures'?fixturesPage():route()==='pc-standings'?standingsPage():route()==='pc-draws'?drawsPage():videoPage();}
+
+function teamsData(){
+ const all=new Map();
+ for(const [id,c] of Object.entries(source()?.categories||{})){
+  if(state.teamsCat!=='all'&&id!==state.teamsCat)continue;
+  const add=n=>{
+   n=String(n||'').trim();if(!n)return;
+   const key=norm(n);if(!all.has(key))all.set(key,n);
+  };
+  for(const g of c.standings||[])for(const r of g.rows||[])if(Array.isArray(r))add(r[1]);
+  for(const g of c.fixtures||[])for(const r of g.rows||[])if(Array.isArray(r)){add(r[2]);add(r[6]);}
+ }
+ const arr=[...all.values()].filter(n=>norm(n).includes(norm(state.teamsQuery)));
+ return arr.sort((a,b)=>a.localeCompare(b,'es-MX'));
+}
+function teamsPage(){
+ const arr=teamsData(),groups=new Map();
+ arr.forEach(n=>{const letter=n.normalize('NFD').replace(/[\u0300-\u036f]/g,'')[0]?.toUpperCase()||'#';if(!groups.has(letter))groups.set(letter,[]);groups.get(letter).push(n);});
+ const body='<div class="u18-teamtools"><h2>Equipos</h2><div><input data-u18-team-query type="search" placeholder="Buscar" value="'+escape(state.teamsQuery)+'" aria-label="Buscar equipo">'+
+ '<select data-u18-teams-cat aria-label="Categoría">'+
+ '<option value="all"'+(state.teamsCat==='all'?' selected':'')+'>Todas las categorías</option>'+
+ Object.entries(CAT).map(([id,name])=>'<option value="'+id+'"'+(state.teamsCat===id?' selected':'')+'>'+escape(name)+'</option>').join('')+
+ '</select></div></div><p class="u18-teamcount">'+arr.length+' equipos encontrados · Fuente de equipos de la Liga Juventino Rosas.</p>'+
+ ([...groups].length?[...groups].map(([letter,names])=>
+ '<div class="u18-letter"><h3>'+escape(letter)+'</h3><div class="u18-clubgrid">'+names.map(n=>'<button type="button" data-u18-team="'+escape(n)+'">'+crest(n)+
+ '<span>'+escape(n)+'</span></button>').join('')+'</div></div>').join(''):'<p class="u18-empty-state">No hay equipos oficiales que coincidan con la búsqueda.</p>');
+ return shell('Equipos','Directorio de clubes',body,false);
+}
+function aboutPage(){
+ const cards=[
+ ['Guía de campos','Consulta las sedes y sus accesos.','venues','./public/deportiva-sur-partido.jpg'],
+ ['Reglamento','Normas oficiales de la Liga Juventino Rosas.','rulebook','./public/home-feature-reference.webp'],
+ ['Historia de la Liga','Temporadas, finales y campeones.','history','./assets/home-players-user.png'],
+ ['Partidos importantes','Consulta el calendario oficial de encuentros.','pc-fixtures','./public/deportiva-sur-partido.jpg'],
+ ['Estadísticas y clasificación','Datos verificados por categoría.','pc-data','./public/home-feature-reference.webp'],
+ ['Vídeos de la Liga','Jugadas, momentos y recuerdos.','video','./public/video-hero-reference.webp'],
+ ['Noticias y avisos','Comunicados oficiales de la competición.','news','./assets/moments/moments-original-a.png'],
+ ['Más títulos','Consulta el archivo de reconocimientos.','history','./assets/moments/moments-original-b.png']
+ ];
+ return shell('Sobre','Liga Juventino Rosas, Guanajuato',
+ '<div class="u18-aboutgrid">'+cards.map(([title,detail,r,img])=>'<button type="button" data-u18-go="'+r+'" class="u18-aboutcard">'+
+ '<img loading="lazy" src="'+img+'" alt=""><span><b>'+escape(title)+'</b><small>'+escape(detail)+'</small></span><em aria-hidden="true">›</em></button>').join('')+'</div>',false);
+}
+function markup(){return route()==='pc-fixtures'?fixturesPage():route()==='pc-standings'?standingsPage():route()==='pc-draws'?drawsPage():route()==='teams'?teamsPage():route()==='about'?aboutPage():videoPage();}
 function repaint(){
  const original=document.querySelector('#screen > .u18-root');
  if(!original||!active())return;
@@ -223,6 +266,7 @@ function sync(){
  const screen=document.getElementById('screen');
  if(!active()||!screen){
   document.documentElement.classList.remove('ljpc18-active');
+  delete document.documentElement.dataset.ljpc18Route;
   screen?.querySelector(':scope > .u18-root')?.remove();
   currentRoute='';return;
  }
@@ -231,15 +275,17 @@ function sync(){
   screen.querySelector(':scope > .u18-root')?.classList.remove('u18-show-classic');
  }
  document.documentElement.classList.add('ljpc18-active');
+ document.documentElement.dataset.ljpc18Route=route();
  let root=screen.querySelector(':scope > .u18-root');
  if(!root){root=document.createElement('div');root.className='u18-root';screen.prepend(root);lastRef=null;}
  const signature=route()+'|'+state.cat+'|'+(source()?'loaded':'missing');
  if(lastRef!==root.dataset.loaded||root.children.length===0||root.dataset.signature!==signature){
   root.dataset.signature=signature;root.dataset.loaded=source()?'loaded':'missing';
-  root.innerHTML=source()?markup():'<div class="u18-loading">Cargando datos oficiales de la Liga…</div>';
+  const needsOfficial=!['video','about'].includes(route());
+  root.innerHTML=(!needsOfficial||source())?markup():'<div class="u18-loading">Cargando datos oficiales de la Liga…</div>';
   lastRef=root.dataset.loaded;
  }
- if(!source())load();
+ if(!['video','about'].includes(route())&&!source())load();
 }
 function schedule(){if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;sync()})}
 function localClick(e){
@@ -254,6 +300,7 @@ function localClick(e){
  e.stopPropagation();
  const d=command.dataset;
  if(d.u18Go){go(d.u18Go);return;}
+ if(d.u18Team){const team=d.u18Team;try{if(typeof window.LJR_OFFICIAL_API?.openTeam==='function'){window.LJR_OFFICIAL_API.openTeam(team);return;}localStorage.setItem('v62-team-name',team);}catch(_){}go('teamDetail');return;}
  if(d.u18ShowOriginal!==undefined){
   state.showClassic=true;
   const root=document.querySelector('#screen > .u18-root');
@@ -281,6 +328,12 @@ function localClick(e){
  }
 }
 function localInput(e){
+ if(e.target.matches?.('[data-u18-teams-cat]')){state.teamsCat=e.target.value;repaint();return;}
+ if(e.target.matches?.('[data-u18-team-query]')){
+  const p=e.target.selectionStart;state.teamsQuery=e.target.value;repaint();
+  const n=document.querySelector('#screen > .u18-root [data-u18-team-query]');
+  n?.focus();try{n?.setSelectionRange(p,p)}catch(_){}return;
+ }
  if(e.target.matches?.('[data-u18-cat]')){keepCat(e.target.value);state.scoreOverrides={};repaint();return;}
  if(e.target.matches?.('[data-u18-score]')){
   const id=e.target.dataset.u18Score,s=+e.target.dataset.side;
@@ -291,7 +344,7 @@ function localInput(e){
 }
 document.addEventListener('click',e=>{if(!active()||!e.target.closest?.('.u18-root'))return;localClick(e);});
 document.addEventListener('change',e=>{if(active())localInput(e)});
-document.addEventListener('input',e=>{if(active()&&e.target.matches?.('[data-u18-score]'))localInput(e)});
+document.addEventListener('input',e=>{if(active()&&e.target.matches?.('[data-u18-score],[data-u18-team-query]'))localInput(e)});
 window.addEventListener('hashchange',schedule);
 window.addEventListener('resize',schedule);
 window.addEventListener('ljr:official-data',()=>{db=null;lastRef=null;schedule();});
