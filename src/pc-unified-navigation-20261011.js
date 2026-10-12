@@ -167,12 +167,17 @@ function hideIframeHeader(frame){
    const style=doc.createElement('style');style.id='ljpc-u-iframe-hide';
    style.textContent='[data-name="top bar wrapper"],[data-name="header navigation wrapper"],'+
     '[data-name="fixtures strip container"],[data-name="sponsors band"],[data-name="footer"]{display:none!important}'+
-    /* Carrusel PC pegado a la franja de partidos, sin huecos. */
-    '[data-name="stories list container"]{margin-top:7px!important;'+
-    'padding-top:4px!important;padding-bottom:5px!important;'+
+    /* Círculos separados de partidos sin huecos grandes. */
+    '[data-name="stories list container"]{margin-top:19px!important;'+
+    'padding-top:9px!important;padding-bottom:12px!important;'+
     'position:relative!important;transform:none!important}'+
     '[data-name="stories wrapper"]{align-items:flex-start!important}';
    doc.head.appendChild(style);
+   // Recalcular altura del iframe tras bajar historias y ocultar barras.
+   const inner=doc.defaultView;
+   inner?.requestAnimationFrame?.(()=>{
+    inner.dispatchEvent(new inner.Event('resize'));
+   });
   }
  }catch(_){/* An isolated document must keep working if access is unavailable. */}
 }
