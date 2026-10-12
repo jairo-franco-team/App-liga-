@@ -7,12 +7,12 @@ if(window.__LJPC_SHARED_SHELL_OCT11__)return;
 window.__LJPC_SHARED_SHELL_OCT11__=true;
 const NAV=[
  ['Inicio','home'],['Partidos','pc-fixtures'],['Clasificación','pc-standings'],
- ['Liga TV','video'],['Sorteos','pc-draws'],['Gaming','predictorSix'],
+ ['Liga TV','video'],['Sorteos','pc-draws'],['Gaming','gamingPortal'],
  ['Datos','pc-data'],['Equipos','teams'],['Noticias','news'],
  ['Historia','history'],['Sobre','about'],['Más','pc-tools']
 ];
 const MENUS={
- Gaming:[['Pronostica Seis','predictorSix'],['Fantasy','fantasy'],['Quiniela','quiniela'],['Quiz Arena','quizArena'],['Más o menos','moreLess']],
+ Gaming:[['Todos los juegos','gamingPortal'],['Pronostica Seis','predictorSix'],['Fantasy','fantasy'],['Quiniela','quiniela'],['Quiz Arena','quizArena'],['Más o menos','moreLess']],
  Datos:[['Clasificación','pc-standings'],['Goleadores','pc-scorers'],['Estadísticas oficiales','pc-data'],['Estadísticas de equipo','v38Stats'],['Performance Zone','safe-performance']],
  Más:[['Herramientas PC','pc-tools'],['Match Day','matchday'],['Calendario','pc-calendar'],['Credenciales','credentialBuilder'],['Reglamento','rulebook']]
 };
@@ -27,7 +27,7 @@ const active=r=>{
  if(['pc-standings','standings','positions'].includes(r))return 'pc-standings';
  if(['video','moments'].includes(r))return 'video';
  if(['pc-draws','draws','pc-bracket','bracket'].includes(r))return 'pc-draws';
- if(['fantasy','fantasyTeam','fantasyLeagues','quiniela','predictor','predictorSix','gaming','quizArena','quiz','moreLess','moreLessHub','moreLessGallery'].includes(r))return 'predictorSix';
+ if(['gamingPortal','fantasy','fantasyTeam','fantasyLeagues','quiniela','predictor','predictorSix','gaming','quizArena','quiz','moreLess','moreLessHub','moreLessGallery'].includes(r))return 'predictorSix';
  if(['safe-data','pc-data','pc-scorers','pc-notifications','scorers','stats','v38Stats','rankings'].includes(r))return 'pc-data';
  if(['teams','following','teamDetail','compareTeams','teamCompare','playerCompare'].includes(r))return 'teams';
  if(['news','newsDetail'].includes(r))return 'news';
@@ -192,6 +192,7 @@ document.addEventListener('click',e=>{
  if(!b)return;
  e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();
  const r=b.dataset.ljpcUGo;
+ if(r==='gamingPortal'){location.assign('./gaming/index.html');return;}
  if(/^[a-z][a-zA-Z0-9_-]*$/.test(r||''))go(r);
 },true);
 document.addEventListener('toggle',e=>{
