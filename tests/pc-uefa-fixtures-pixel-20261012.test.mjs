@@ -9,10 +9,10 @@ const styles=read('src/pc-uefa-fixtures-pixel-20261012.css');
 const html=read('index.html');
 const official=JSON.parse(read('data/official-live.json'));
 
-function source(search='?mode=desktop',width=390){
- const win={LJR_OFFICIAL_DATA:official,addEventListener(){}};
+function source(search='?mode=desktop',width=390,knockout=null){
+ const win={LJR_OFFICIAL_DATA:official,LJR_KNOCKOUT:knockout,addEventListener(){}};
  const doc={readyState:'loading',addEventListener(){}};
- const code=script.replace(/\}\)\(\);\s*$/, 'window.__test={active,fixtures,fixturesPage,eventCards,dateNav,isolateFixturesLegacy};\n})();');
+ const code=script.replace(/\}\)\(\);\s*$/, 'window.__test={active,fixtures,fixturesPage,eventCards,dateNav,bracket,isolateFixturesLegacy};\n})();');
  assert.notEqual(code,script,'test exports not injected');
  const ctx={window:win,document:doc,location:{hash:'#/pc-fixtures',search},innerWidth:width,
    URLSearchParams,Intl,Date,console,sessionStorage:{getItem(){return null},setItem(){}}};
@@ -62,7 +62,7 @@ test('two compact columns and exact score/card hierarchy, all CSS route scoped',
  assert.match(styles,/@media\(max-width:610px\)/);
  const rules=styles.split('\n').filter(x=>x.startsWith('html.'));
  assert.ok(rules.length>25);
- assert.ok(rules.every(x=>x.includes('html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body')),'unscoped CSS detected');
+ assert.ok(rules.every(x=>x.includes('html.ljpc18-active[data-ljpc18-route="pc-fixtures"]')),'unscoped CSS detected');
  let braces=0;for(const ch of styles){if(ch==='{')braces++;if(ch==='}')braces--;}
  assert.equal(braces,0);
 });
@@ -86,8 +86,8 @@ test('Ver cuadro shows league-safe draw panel and functioning Ver detalles del s
  assert.match(styles,/\.u18fx-draw-pair-grid/);
 });
 test('index avoids cached previous page assets',()=>{
- assert.match(html,/pc-uefa-18-references-20261012\.js\?v=pc-fixtures-one-design-v4/);
- assert.match(html,/pc-uefa-fixtures-pixel-20261012\.css\?v=pc-fixtures-one-design-v4/);
+ assert.match(html,/pc-uefa-18-references-20261012\.js\?v=pc-fixtures-mobile-knockout-footer-v5/);
+ assert.match(html,/pc-uefa-fixtures-pixel-20261012\.css\?v=pc-fixtures-mobile-knockout-footer-v5/);
 });
 
 
@@ -136,4 +136,31 @@ test('legacy desktop fixtures are truly hidden and restored when PC design is le
  assert.equal(legacy.hasAttribute('inert'),false);
  assert.equal(legacy.hasAttribute('aria-hidden'),false);
  assert.equal(active.style.getPropertyValue('display'),'');
+});
+
+
+test('PC Ver cuadro uses the exact mobile knockout renderer with trophy, real club crests and five stages',()=>{
+ const sandbox={window:{}};
+ vm.runInNewContext(read('src/knockout-reference.js'),sandbox,{timeout:5000});
+ const knockout=sandbox.window.LJR_KNOCKOUT;
+ const actual=source('?mode=desktop',690,knockout).bracket();
+ for(const key of ['u18fx-mobile-knockout','ljr-knockout','ljr-ko-tabs','ljr-ko-board',
+   'ljr-ko-trophy','data-ko-column="playoff"','data-ko-column="octavos"',
+   'data-ko-column="cuartos"','data-ko-column="semifinal"','data-ko-column="final"',
+   'data-u18-go="pc-draws"']){
+  assert.ok(actual.includes(key),'Missing canonical mobile bracket part '+key);
+ }
+ assert.doesNotMatch(actual,/u18fx-draw-pair-grid/,'No provisional generic bracket should be present');
+ assert.match(script,/window\.LJR_KNOCKOUT\.init\(ko\)/);
+ assert.match(script,/if\(command\.closest\('\.ljr-ko-tabs'\)\)return/);
+ assert.match(styles,/\.ljr-ko-trophy\{/);
+});
+test('PC full-height footer has pale canvas instead of huge dark blue after the footer',()=>{
+ for(const key of ['body > #app','body > #ljpc-unified-pc-footer',
+ 'background:#f2f3f8!important','min-height:100svh!important',
+ 'flex-direction:column!important','margin-top:auto!important']){
+  assert.ok(styles.includes(key),'Missing PC footer layout '+key);
+ }
+ assert.match(styles,/data-ljpc18-route="pc-fixtures"/);
+ assert.doesNotMatch(styles,/html\.preview-mobile|html\.preview-apk/);
 });
