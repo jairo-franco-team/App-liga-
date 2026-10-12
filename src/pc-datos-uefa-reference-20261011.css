@@ -1,0 +1,89 @@
+/* PC Datos · referencias UEFA de 11/10/2026. AISLADO: la clase solo se aplica
+   a #/pc-data en modo escritorio; no existe en móvil ni APK. */
+html.ljr-pc-datos-uefa body #screen > .ds-page{background:#eff2f8!important;color:#152c43!important}
+html.ljr-pc-datos-uefa body #screen .ds-content{background:#eff2f8!important;padding-bottom:24px!important}
+html.ljr-pc-datos-uefa body #screen .ds-content > .ds-wrap{max-width:1180px!important;width:calc(100% - 40px)!important;margin:auto!important;padding:18px 0 26px!important}
+html.ljr-pc-datos-uefa body #screen .ds-pagehead{background:#eff2f8!important;color:#172e41!important;padding-top:20px!important;padding-bottom:12px!important}
+html.ljr-pc-datos-uefa body #screen .ds-pagehead h1{color:#172e41!important;font-size:29px!important;font-weight:820!important}
+html.ljr-pc-datos-uefa body #screen .ljpc-data{font-family:Inter,"Segoe UI",Arial,sans-serif!important;color:#152b41!important;width:100%!important;min-width:0!important}
+html.ljr-pc-datos-uefa body #screen .ljpc-data .ljpc-categories{display:flex!important;gap:8px!important;flex-wrap:wrap!important;margin:0 0 15px!important}
+html.ljr-pc-datos-uefa body #screen .ljpc-data .ljpc-category{background:#fff!important;color:#123b69!important;padding:9px 15px!important;min-height:38px!important;border:1px solid #d9e2f1!important;border-radius:24px!important;box-shadow:none!important;font-size:11px!important}
+html.ljr-pc-datos-uefa body #screen .ljpc-data .ljpc-category.active{color:white!important;background:#0756c7!important;border-color:#0756c7!important}
+html.ljr-pc-datos-uefa body #screen .ljpc-data button{transition:background-color .15s,border-color .15s,transform .15s!important}
+html.ljr-pc-datos-uefa body #screen .ljpc-data button:focus-visible{outline:2px solid #0ccfea!important;outline-offset:2px!important}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-root{display:grid;gap:20px;min-width:0}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-hero{background:linear-gradient(107deg,#0739ed 2%,#0b1a8c 56%,#070b4e 100%);color:white;border-radius:13px;padding:23px 26px;display:grid;grid-template-columns:minmax(180px,1fr) minmax(360px,1.8fr);gap:16px;align-items:stretch;overflow:hidden}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-hero h2{color:#fff!important;font-size:24px!important;line-height:1.2;margin:2px 0 12px!important;max-width:300px}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-hero .ljr-uefa-kicker{font-size:10px;letter-spacing:.11em;font-weight:850;color:#95eaff;text-transform:uppercase}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-hero p{font-size:11px;color:#d8e8ff;margin:5px 0;line-height:1.45}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-hero-metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-stat{border-radius:12px;padding:17px 19px;min-width:0;background:linear-gradient(135deg,#172fba,#0a146d);border:1px solid #95c8ff2b}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-stat small{font-size:10px;font-weight:700;color:#eaf2ff}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-stat strong{display:block;color:white;font-size:31px;font-weight:850;line-height:1.25;margin:5px 0}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-stat span{font-size:10px;color:#b4caef}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-block{min-width:0}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-heading{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0 0 11px}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-heading h2{font-size:21px!important;font-weight:850!important;color:#152f40!important;margin:0!important;line-height:1.25!important}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-actions{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-arrow{width:29px;height:29px;border-radius:50%!important;border:2px solid #1146d1!important;background:#f8faff!important;color:#123db6!important;display:grid!important;place-items:center!important;cursor:pointer;font-size:18px!important;padding:0!important;line-height:1}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-arrow:disabled{opacity:.35;cursor:default}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-carousel{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:#a1b8d6 transparent;padding:0 1px 8px;min-width:0}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-card{flex:0 0 calc((100% - 28px)/3);min-width:255px;background:#fff;border:1px solid #dee5ee;border-radius:12px;overflow:hidden;scroll-snap-align:start;display:flex;flex-direction:column}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-cardhead{background:#080c55;color:white;padding:12px 13px;min-height:52px;display:flex;align-items:center;justify-content:space-between;gap:9px}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-cardhead b{font-size:12px;font-weight:760}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-cardhead span{font-size:9px;color:#97eaff}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-rows{padding:2px 13px;flex:1;min-height:190px}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-row{display:grid;grid-template-columns:20px 27px minmax(0,1fr) auto;gap:8px;align-items:center;min-height:36px;padding:5px 0;border-bottom:1px solid #e7ebf1;font-size:11px}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-row:last-child{border-bottom:0}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-rank{font-size:10px;color:#8290a0}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-crest{width:27px;height:27px;border-radius:50%;object-fit:contain;background:transparent;display:block}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-crest-fallback{display:grid;place-items:center;background:#e2ebfc;color:#12449a;font-size:9px;font-weight:800}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-row-copy{min-width:0;overflow:hidden}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-row-copy b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#253b4c;font-size:11px;font-weight:760}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-row-copy small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:9px;color:#6f8193}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-row strong{color:#1337af;font-size:13px}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-cardfoot{background:white!important;border:0!important;padding:12px 14px!important;text-align:left!important;color:#0b40c6!important;font-size:11px!important;font-weight:800!important;cursor:pointer}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-cardfoot:hover{text-decoration:underline}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-leaders{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-feature{display:flex;align-items:center;gap:15px;background:linear-gradient(120deg,#12155a,#071042);border-radius:12px;padding:18px 19px;min-width:0;color:white;min-height:102px}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-feature .ljr-uefa-crest{width:60px;height:60px;flex:0 0 60px}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-feature-copy{min-width:0;flex:1}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-feature-copy small{font-size:10px;color:#b7d7ff}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-feature-copy b{display:block;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-feature strong{font-size:26px;color:#1ee3f2}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-feature strong small{display:block;color:#b4c7e0;font-size:10px;font-weight:500;text-align:right}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-explorer{background:#fff;border:1px solid #dce4ed;border-radius:13px;padding:18px;min-width:0}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-switch{display:flex;align-items:center;gap:8px;margin-bottom:13px}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-switch button{border:1px solid #c9daed!important;border-radius:19px!important;background:#f1f5fb!important;color:#214564!important;padding:9px 17px!important;font-size:11px!important;font-weight:750!important}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-switch button.active{background:#0a4ec3!important;color:#fff!important;border-color:#0a4ec3!important}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-filterline{display:grid;grid-template-columns:29px minmax(0,1fr) 29px;gap:7px;align-items:center;border-bottom:1px solid #e1e6ee;padding:0 0 14px;margin-bottom:10px}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-filters{display:flex;align-items:center;gap:8px;overflow-x:auto;scrollbar-width:none;min-width:0;scroll-behavior:smooth}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-filters::-webkit-scrollbar{display:none}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-filter{flex:0 0 auto!important;white-space:nowrap;background:#f0f2f7!important;border:1px solid transparent!important;border-radius:22px!important;padding:9px 14px!important;color:#495b70!important;font-size:11px!important}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-filter.active{background:#fff!important;border-color:#1952db!important;color:#0c3ba9!important;font-weight:800!important}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-table-scroll{width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-table{width:100%;border-collapse:collapse;min-width:670px}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-table th{padding:11px 10px;background:white!important;color:#526579;font-size:10px!important;text-align:center!important;font-weight:550;white-space:nowrap;border:0!important}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-table th:nth-child(2){text-align:left!important}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-table th.ljr-uefa-important{color:#1550c8!important;font-weight:800!important}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-table td{padding:8px 10px!important;height:49px;white-space:nowrap;text-align:center;font-size:12px!important;color:#243b4d;background:#fff;border-bottom:1px solid #e5e9ef!important}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-table td:nth-child(2){text-align:left!important;font-weight:700}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-table tr:last-child td{border-bottom:0!important}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-table .ljr-uefa-name{display:inline-flex;gap:8px;align-items:center;max-width:320px;text-align:left}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-table .ljr-uefa-name span{white-space:nowrap;max-width:260px;text-overflow:ellipsis;overflow:hidden}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-empty{font-size:12px;color:#597080;padding:22px;background:#f6f8fc;border-radius:9px}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-note{font-size:11px;color:#687f90;line-height:1.4;margin:9px 0 0}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-official-details{background:#fff;border:1px solid #dbe4ef;border-radius:12px;margin-top:20px;padding:0 14px}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-official-details summary{cursor:pointer;list-style:none;position:relative;padding:15px 10px;font-weight:750;font-size:12px;color:#1850a5}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-official-details summary:after{content:"⌄";position:absolute;right:8px;font-size:17px}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-official-details[open] summary:after{content:"⌃"}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-official-details .ljpc-tabs{margin:9px 0!important}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-official-details .ljpc-data-tablebox{box-shadow:none!important}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-book{display:grid;grid-template-columns:1fr auto;align-items:center;gap:15px;background:linear-gradient(115deg,#0a236e,#08114c);color:#f6f9ff;padding:17px 20px;border-radius:12px}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-book b{font-size:16px}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-book p{font-size:11px;color:#b8d8ff;margin:5px 0}
+html.ljr-pc-datos-uefa body #screen .ljr-uefa-book button{border-radius:22px!important;padding:10px 15px!important;color:#0c2862!important;background:#b9f3ff!important;border:0!important;font-size:11px!important;font-weight:850!important}
+html.ljr-pc-datos-uefa body #screen .ljpc-weekly-confirmed{background:#fff!important;color:#253b52!important}
+html.ljr-pc-datos-uefa body #screen .ljpc-data-head{margin:0!important}
+@media(max-width:1199px){html.ljr-pc-datos-uefa body #screen .ljr-uefa-card{flex-basis:calc((100% - 14px)/2)}}
+@media(max-width:900px){html.ljr-pc-datos-uefa body #screen .ljr-uefa-card{flex-basis:84%}html.ljr-pc-datos-uefa body #screen .ljr-uefa-hero{grid-template-columns:1fr}html.ljr-pc-datos-uefa body #screen .ljr-uefa-leaders{grid-template-columns:1fr}}
