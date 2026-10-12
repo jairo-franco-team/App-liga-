@@ -175,10 +175,15 @@ function hideIframeHeader(frame){
     '[data-name="fixtures strip container"],[data-name="sponsors band"],[data-name="footer"]{display:none!important}'+
     /* Respiro visible bajo la banda de partidos: evita anillos encimados,
        mantiene el carrusel compacto y conserva intacto móvil/APK. */
-    '[data-name="stories list container"]{margin-top:15px!important;'+
-    'padding-top:9px!important;padding-bottom:12px!important;'+
-    'position:relative!important;transform:none!important}'+
-    '[data-name="stories wrapper"]{align-items:flex-start!important}';
+    /* El HTML PC tiene márgenes !important de mayor especificidad.
+       Este selector con contexto del iframe sí prevalece y baja los
+       círculos sin modificar el carrusel ni la app móvil. */
+    'html.ljpc-embedded-home #root .ucl [data-name="stories list container"]{'+
+    'margin-top:24px!important;margin-bottom:0!important;'+
+    'padding-top:10px!important;padding-bottom:14px!important;'+
+    'position:relative!important;transform:none!important;clear:both!important}'+
+    'html.ljpc-embedded-home #root .ucl [data-name="stories wrapper"]{'+
+    'align-items:flex-start!important}';
    doc.head.appendChild(style);
    // Recalcular altura del iframe tras bajar historias y ocultar barras.
    const inner=doc.defaultView;
