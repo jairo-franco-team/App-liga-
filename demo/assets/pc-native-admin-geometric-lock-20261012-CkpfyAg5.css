@@ -1,0 +1,169 @@
+/* PC-only native tools layout. Revision 2026-10-12.
+   The independent browser has two supported shells:
+   - html.ljpc-unified-pc body.lj-desktop
+   - html.ljpc-pc-native-mode body.ljpc-native-route
+   Chrome Android with ?mode=desktop can also set html.ljpc-forced-desktop.
+   Never matches the original ?mode=mobile or ?mode=apk rendering.
+   This file styles existing controls only. No auth or event changes. */
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen :is(.v60-tool-page,.v726-tools-page,.v562-page[data-v563-control]){
+ box-sizing:border-box!important;
+ width:min(1120px,calc(100% - 22px))!important;
+ max-width:1120px!important;min-width:0!important;
+ height:auto!important;min-height:0!important;
+ margin:0 auto!important;padding:12px 14px 22px!important;
+}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen :is(.v60-tool-grid,.v726-tool-grid,.v726-quick-grid,.v562-page[data-v563-control] .v562-list){
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ align-items:stretch!important;align-content:start!important;
+ grid-auto-flow:row!important;grid-auto-rows:minmax(0,auto)!important;
+ width:100%!important;min-width:0!important;max-width:100%!important;
+ gap:9px!important;margin:0!important;padding:0!important;
+}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen :is(.v60-tool-card,.v562-page[data-v563-control] button.v562-card,.v726-tool-card,.v726-quick-card){
+ box-sizing:border-box!important;
+ width:100%!important;min-width:0!important;max-width:100%!important;
+ height:auto!important;min-height:55px!important;max-height:none!important;
+ margin:0!important;border-radius:9px!important;
+ overflow-wrap:break-word!important;
+}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen .v562-page[data-v563-control] button.v562-card{
+ display:grid!important;
+ grid-template-columns:29px minmax(0,1fr) 12px!important;
+ gap:8px!important;align-items:center!important;
+ padding:8px 10px!important;text-align:left!important;
+}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen .v562-page[data-v563-control] .v562-icon{
+ width:27px!important;height:27px!important;
+ min-width:27px!important;min-height:27px!important;
+ border-radius:7px!important;display:grid!important;place-items:center!important;
+ font-size:17px!important;
+}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen .v562-page[data-v563-control] .v562-icon svg{
+ width:17px!important;height:17px!important;
+}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen .v562-page[data-v563-control] .v562-card-copy{
+ display:block!important;min-width:0!important;max-width:100%!important;
+}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen .v562-page[data-v563-control] .v562-card-copy b{
+ font-size:11.5px!important;line-height:1.28!important;
+ white-space:normal!important;
+}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen .v562-page[data-v563-control] .v562-card-copy small{
+ font-size:9.5px!important;line-height:1.3!important;
+ white-space:normal!important;overflow-wrap:anywhere!important;
+}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen .v562-page[data-v563-control] .v562-panel{
+ box-sizing:border-box!important;
+ width:100%!important;min-width:0!important;max-width:100%!important;
+ height:auto!important;min-height:0!important;
+ margin:0 0 11px!important;padding:12px!important;border-radius:10px!important;
+}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen .v562-page[data-v563-control] .v562-sync-grid{
+ display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+ gap:8px!important;
+}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen .v60-tool-card{
+ display:grid!important;grid-template-columns:29px minmax(0,1fr)!important;
+ gap:9px!important;align-items:center!important;
+ padding:9px 10px!important;text-align:left!important;
+}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen .v60-tool-card svg{
+ width:22px!important;height:22px!important;max-width:22px!important;
+}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen :is(.v60-tool-card,.v726-tool-card,.v726-quick-card) :is(b,small){
+ white-space:normal!important;overflow-wrap:anywhere!important;line-height:1.3!important;
+}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen .v726-tool-card .v734-tool-open{
+ box-sizing:border-box!important;
+ display:grid!important;grid-template-columns:29px minmax(0,1fr) 12px!important;
+ align-items:center!important;gap:8px!important;
+ width:100%!important;min-width:0!important;max-width:100%!important;
+ min-height:50px!important;height:auto!important;
+ padding:8px 10px!important;text-align:left!important;
+}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen .v726-tool-icon{
+ width:27px!important;height:27px!important;min-width:27px!important;
+ min-height:27px!important;margin:0!important;
+}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen .v726-tool-icon svg{
+ width:17px!important;height:17px!important;
+}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen .v726-tool-card .v734-tool-details{
+ box-sizing:border-box!important;
+ width:100%!important;min-height:27px!important;height:auto!important;
+ padding:4px 8px!important;font-size:10px!important;
+}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen .v60-tool-page .v64-form-grid{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ gap:9px!important;min-width:0!important;
+}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen .v60-tool-page .v64-form-grid.one{
+ grid-template-columns:repeat(2,minmax(0,1fr))!important;
+}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen .v60-tool-page .v64-form-grid :is(input,select,textarea){
+ box-sizing:border-box!important;width:100%!important;min-width:0!important;
+ max-width:100%!important;font-size:12px!important;border-radius:7px!important;
+}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen .v60-tool-page :is(.v60-actions,.v64-stack-actions){
+ display:flex!important;flex-wrap:wrap!important;align-items:center!important;
+ justify-content:flex-start!important;gap:8px!important;
+}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen .v60-tool-page :is(.v60-actions,.v64-stack-actions) button{
+ width:auto!important;max-width:100%!important;min-height:32px!important;
+ height:auto!important;padding:6px 10px!important;font-size:11px!important;
+ border-radius:7px!important;
+}
+/* PC Tools uses a distinct independent screen; do not rely on data-app-route. */
+:is(html.ljpc-unified-pc,html.ljpc-forced-desktop) body #screen .ljpc-toolhub{
+ box-sizing:border-box!important;
+ width:min(1120px,calc(100% - 22px))!important;
+ max-width:1120px!important;min-width:0!important;
+ margin:0 auto!important;padding:10px 12px 22px!important;
+}
+:is(html.ljpc-unified-pc,html.ljpc-forced-desktop) body #screen .ljpc-toolhub .ljpc-hub-grid{
+ display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+ width:100%!important;min-width:0!important;max-width:100%!important;
+ gap:8px!important;align-items:stretch!important;
+ grid-auto-flow:row!important;
+}
+:is(html.ljpc-unified-pc,html.ljpc-forced-desktop) body #screen .ljpc-toolhub .ljpc-hub-btn{
+ box-sizing:border-box!important;
+ display:grid!important;grid-template-columns:24px minmax(0,1fr) 10px!important;
+ align-items:center!important;text-align:left!important;gap:8px!important;
+ min-width:0!important;max-width:100%!important;width:100%!important;
+ height:auto!important;min-height:52px!important;max-height:none!important;
+ padding:8px 9px!important;margin:0!important;border-radius:8px!important;
+}
+:is(html.ljpc-unified-pc,html.ljpc-forced-desktop) body #screen .ljpc-toolhub .ljpc-hub-btn :is(b,small){
+ display:block!important;min-width:0!important;max-width:100%!important;
+ white-space:normal!important;overflow-wrap:anywhere!important;line-height:1.3!important;
+}
+:is(html.ljpc-unified-pc,html.ljpc-forced-desktop) body #screen .ljpc-toolhub .ljpc-hub-btn b{font-size:11px!important}
+:is(html.ljpc-unified-pc,html.ljpc-forced-desktop) body #screen .ljpc-toolhub .ljpc-hub-btn small{font-size:9px!important}
+:is(html.ljpc-unified-pc,html.ljpc-forced-desktop) body #screen .ljpc-toolhub .ljpc-hub-btn > span:first-child{
+ font-size:18px!important;line-height:1!important;
+ width:22px!important;max-width:22px!important;
+}
+:is(html.ljpc-unified-pc,html.ljpc-forced-desktop) body #screen .ljpc-toolhub .ljpc-hub-controls input{
+ box-sizing:border-box!important;min-width:0!important;
+ width:min(480px,100%)!important;max-width:100%!important;
+ height:34px!important;min-height:34px!important;font-size:12px!important;
+}
+@media(max-width:1000px){
+ :is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen :is(.v60-tool-grid,.v726-tool-grid,.v726-quick-grid,.v562-page[data-v563-control] .v562-list),
+ :is(html.ljpc-unified-pc,html.ljpc-forced-desktop) body #screen .ljpc-toolhub .ljpc-hub-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ }
+}
+@media(max-width:610px){
+ :is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen :is(.v60-tool-grid,.v726-tool-grid,.v726-quick-grid,.v562-page[data-v563-control] .v562-list),
+ :is(html.ljpc-unified-pc,html.ljpc-forced-desktop) body #screen .ljpc-toolhub .ljpc-hub-grid,
+ :is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen .v60-tool-page :is(.v64-form-grid,.v64-form-grid.one){
+  grid-template-columns:1fr!important;
+ }
+}
+/* Never override authorization, hidden forms, collapsed menus, or visibility. */
+/* Preserve the semantic hidden attribute even against important layout rules. */
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop,html.ljpc-unified-pc) body #screen [hidden]{
+ display:none!important;
+}
