@@ -15,7 +15,7 @@ const MENUS={
   ['Todos los juegos','gamingPortal'],
   ['Fantasy Football','fantasy'],
   ['Pronostica Seis','predictorSix'],
-  ['Bracket','pc-bracket'],
+  ['Bracket','bracketBuilder'],
   ['Gol del Día','moments'],
   ['Quiniela','quiniela'],
   ['Quiz Arena','quizArena'],
