@@ -23,6 +23,14 @@ function adjust(){
    footer.style.setProperty('--ljpc-footer-clearance','0px');
    return;
  }
+ // Compact PC classification also has real flow height. Never add clearance
+ // for a fixed simulator or native-hidden cards; mobile/APK never enter pc().
+ if(document.documentElement.classList.contains('ljpc18-active')&&
+    document.documentElement.dataset.ljpc18Route==='pc-standings'&&
+    screen.querySelector(':scope > .u18-root')){
+   footer.style.setProperty('--ljpc-footer-clearance','0px');
+   return;
+ }
  const currentBottom=screen.querySelector('#v105-bottom');
  if(ro&&currentBottom&&observedBottom!==currentBottom){
   if(observedBottom)ro.unobserve(observedBottom);
