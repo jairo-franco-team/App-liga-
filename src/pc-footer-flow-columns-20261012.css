@@ -93,3 +93,27 @@ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-
     font-size:11px!important;
   }
 }
+
+
+/* PC footer naturally follows ALL content. Never pinned, never after an empty blue slab. */
+html.ljpc-unified-pc body.lj-desktop > #ljpc-unified-pc-footer{
+ position:relative!important;inset:auto!important;top:auto!important;bottom:auto!important;
+ margin:0!important;padding:0!important;transform:none!important;
+ display:block!important;height:auto!important;min-height:0!important;
+ clear:both!important;float:none!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen{
+ height:auto!important;min-height:0!important;max-height:none!important;
+ overflow-y:visible!important;
+}
+/* No second information footer may appear before the single shared footer. */
+html.ljpc-unified-pc body.lj-desktop #ljpc-pc-bottom,
+html.ljpc-unified-pc body.lj-desktop #screen .desk-footer,
+html.ljpc-unified-pc body.lj-desktop #screen .ds-footer,
+html.ljpc-unified-pc body.lj-desktop #ljpc-home-integrated-footer{
+ display:none!important;
+}
+html.ljpc-unified-pc body.lj-desktop > #ljpc-unified-pc-footer .ljpc-u-sponsor,
+html.ljpc-unified-pc body.lj-desktop > #ljpc-unified-pc-footer .ljpc-u-footer{
+ width:100%!important;max-width:100%!important;
+}
