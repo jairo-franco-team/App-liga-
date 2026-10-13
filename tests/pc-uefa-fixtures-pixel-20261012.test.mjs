@@ -203,7 +203,7 @@ test('only PC fixtures skip inflated footer clearance gap; other routes keep cal
  assert.match(footer,/screen\.querySelector\(':scope > \.u18-root'\)/);
  assert.match(footer,/footer\.style\.setProperty\('--ljpc-footer-clearance','0px'\)/);
  assert.match(footer,/const next=clearance\(bottom,natural\)/);
- assert.match(html,/pc-footer-flow-columns-20261012\.js\?v=pc-fixtures-height-guard-v7/);
+ assert.match(html,/pc-footer-flow-columns-20261012\.js\?v=pc-standings-footer-clearance-v8/);
 });
 
 
