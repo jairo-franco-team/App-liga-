@@ -22,3 +22,10 @@ test('JR Control and management panels use dense columns without replacing click
  assert.match(css,/#screen \[hidden\]\{\s*display:none!important/);
  assert.doesNotMatch(css,/pointer-events:none|visibility:visible|display:block!important\s*;\s*\/\*.*admin/);
 });
+
+test('Mid-sized PC layouts retain compact three-column tools before tablet collapse',()=>{
+ assert.match(css,/@media\(min-width:821px\) and \(max-width:1100px\)/);
+ assert.match(css,/@media\(max-width:820px\)/);
+ assert.match(css,/\.ljpc-toolhub \.ljpc-hub-grid\{\s*grid-template-columns:repeat\(3,minmax\(0,1fr\)\)!important/);
+ assert.match(css,/@media\(max-width:610px\)/);
+});
