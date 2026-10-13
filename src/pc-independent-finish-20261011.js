@@ -92,7 +92,14 @@
   // expand their screen from old shell bounds: doing so leaves a huge empty
   // navy area after the compact table/footer in forced desktop browser mode.
   // These guards never match the native competition route, mobile or APK.
-  if((r==='pc-fixtures'||r==='pc-standings')&&screen.querySelector(':scope > .u18-root')){
+  if(r==='pc-fixtures'&&screen.querySelector(':scope > .u18-root')){
+    if(screen.dataset.ljpcFinishMinHeight==='1'){
+      screen.style.removeProperty('min-height');
+      delete screen.dataset.ljpcFinishMinHeight;
+    }
+    return;
+  }
+  if(r==='pc-standings'&&screen.querySelector(':scope > .u18-root')){
     if(screen.dataset.ljpcFinishMinHeight==='1'){
       screen.style.removeProperty('min-height');
       delete screen.dataset.ljpcFinishMinHeight;
