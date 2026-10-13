@@ -362,3 +362,104 @@ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa{
  #ljpc-fantasy-uefa .pcfy-bottom-metrics strong{font-size:14px}
  #ljpc-fantasy-uefa .pcfy-continue{width:100%;min-width:0}
 }
+
+
+/* Desktop Fantasy adopts the established mobile-card visual language:
+   compact rounded blue cards, fine borders and restrained shadows.
+   The rule only applies to the PC-only Fantasy root. */
+@media(min-width:1024px){
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa{
+  border:1px solid rgba(116,164,255,.42)!important;border-radius:12px!important;
+  background:linear-gradient(180deg,#102b73 0%,#08124e 100%)!important;
+  box-shadow:0 12px 28px rgba(0,5,37,.24)!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-heading{
+  margin:0!important;padding:15px 18px!important;
+  background:linear-gradient(110deg,#184ba7,#102a83 68%,#081b69)!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-tabs{
+  background:#09194f!important;padding:0 12px!important;height:46px!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-body{
+  background:linear-gradient(180deg,#0a1c60,#071348)!important;padding:12px!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-cols{
+  gap:12px!important;align-items:stretch!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-team-panel,
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-players-panel{
+  overflow:hidden!important;border:1px solid rgba(106,157,245,.35)!important;
+  border-radius:9px!important;background:#09164d!important;min-width:0!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-team-toolbar{
+  min-height:68px!important;padding:11px 12px!important;gap:8px!important;
+  background:linear-gradient(110deg,#163b96,#102771)!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-team-toolbar h2{font-size:17px!important}
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-team-buttons button{
+  border-radius:6px!important;border:1px solid rgba(153,193,255,.35)!important;
+  background:#204bb0!important;box-shadow:0 2px 5px rgba(0,0,0,.12)!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-advice{
+  background:#10245f!important;border-bottom:1px solid rgba(106,157,245,.22)!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-pitch{
+  height:435px!important;min-height:435px!important;padding:12px 9px 4px!important;
+  background:repeating-linear-gradient(180deg,rgba(255,255,255,.035) 0 54px,rgba(0,0,0,.025) 54px 108px),linear-gradient(180deg,#1ac4ae,#119a94)!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-slot-main{
+  min-height:78px!important;border-radius:7px!important;padding:3px!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-shirt{width:45px!important;height:48px!important}
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-slot-name{
+  min-height:18px!important;border-radius:4px!important;font-size:9px!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-players-toolbar{
+  min-height:0!important;padding:11px!important;background:#0b1b59!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-filterbar label{
+  padding:0!important;font-size:9px!important;gap:4px!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-filterbar select{
+  border-radius:6px!important;background-color:#142e7d!important;border-color:#3856a1!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-search{
+  border-radius:7px!important;background:#07113e!important;border-color:#354b92!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-selected-position{
+  background:#10205e!important;border-color:#263f82!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-table-head{
+  background:#142b78!important;border-bottom:1px solid #3854a1!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-player-list{
+  height:435px!important;background:#081345!important;padding:5px!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-player-row{
+  min-height:49px!important;margin:0 0 4px!important;width:100%!important;
+  border:1px solid rgba(93,132,216,.23)!important;border-radius:6px!important;
+  background:linear-gradient(100deg,#102363,#0c1a53)!important;padding:5px 8px!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-player-row:nth-child(even){
+  background:linear-gradient(100deg,#13296e,#0e1b56)!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-player-row:hover:not(:disabled){
+  background:#1a398b!important;border-color:#3b78cf!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-avatar{
+  width:30px!important;height:30px!important;flex-basis:30px!important;border:1px solid #7eaddb!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-bottom{
+  margin:0!important;padding:11px 15px!important;
+  background:linear-gradient(100deg,#173da3,#0c1a68)!important;border-top:1px solid #315cbd!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-continue{
+  border-radius:6px!important;box-shadow:0 3px 9px rgba(0,0,0,.16)!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-disclaimer{
+  background:#091448!important;padding:10px 15px!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-info{
+  margin:0!important;border-radius:8px!important;background:#0b194e!important;
+ }
+}
