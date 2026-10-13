@@ -59,7 +59,7 @@ test('Mobile and APK selectors are never modified by PC-only styles',()=>{
 });
 
 test('PC carousel status updates are frame-batched and avoid redundant DOM writes',()=>{
- const script=home.match(/<script id="ljpc-story-fixtures-interaction">([\\s\\S]*?)<\\/script>/)?.[1];
+ const script=home.match(/<script id="ljpc-story-fixtures-interaction">([\s\S]*?)<\/script>/)?.[1];
  assert.ok(script);
  assert.match(script,/let statusPending=false/);
  assert.match(script,/if\(statusPending\)return/);
