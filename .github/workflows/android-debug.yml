@@ -83,6 +83,27 @@ jobs:
           FIREBASE_ANDROID_CONFIG_B64: ${{ secrets.FIREBASE_ANDROID_CONFIG_B64 }}
         run: node native/android/configure-fcm.mjs
 
+      # Optional, for future updates using one stable certificate. No private key
+      # is stored in the public repository or generated on an ephemeral runner.
+      - name: Restore optional persistent Android signing keystore
+        env:
+          LJR_ANDROID_DEBUG_KEYSTORE_B64: ${{ secrets.LJR_ANDROID_DEBUG_KEYSTORE_B64 }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${LJR_ANDROID_DEBUG_KEYSTORE_B64:-}" ]]; then
+            echo "LJR_APK_SIGNING_STATUS=temporary debug key; old installs may not accept updates" >> "$GITHUB_ENV"
+            echo "::warning::No persistent Android signing keystore configured. APK update compatibility is not guaranteed."
+            exit 0
+          fi
+          umask 077
+          mkdir -p "$HOME/.android"
+          printf "%s" "$LJR_ANDROID_DEBUG_KEYSTORE_B64" | base64 --decode > "$HOME/.android/debug.keystore"
+          if ! keytool -list -keystore "$HOME/.android/debug.keystore" -storepass android -alias androiddebugkey > /dev/null 2>&1; then
+            echo "::error::The private signing keystore is invalid or not a standard Android debug key."
+            exit 1
+          fi
+          echo "LJR_APK_SIGNING_STATUS=persistent debug key (future installs using same signature)" >> "$GITHUB_ENV"
       - name: Build baseline debug APK for exact size comparison
         run: |
           chmod +x android/gradlew
@@ -136,7 +157,7 @@ jobs:
         run: |
           cp android/app/build/outputs/apk/debug/app-debug.apk Liga-Juventino.apk
           APP_BUILD=$(sed -n 's/.*<meta name="app-build" content="\([^"]*\)".*/\1/p' index.html | head -n1)
-          NOTES="APK Android de Liga Juventino actualizado automáticamente desde main. Build: ${APP_BUILD:-desconocido}. Commit: ${GITHUB_SHA}. Incluye las funciones nativas actuales, entre ellas creación automática de partidos en Google Calendar. Estado de Push remoto APK: ${LJR_APK_FCM_STATUS:-pendiente de configuración y prueba en Android}."
+          NOTES="APK Android de Liga Juventino actualizado automáticamente desde main. Build: ${APP_BUILD:-desconocido}. Commit: ${GITHUB_SHA}. Incluye las funciones nativas actuales, entre ellas creación automática de partidos en Google Calendar. Estado de Push remoto APK: ${LJR_APK_FCM_STATUS:-pendiente de configuración y prueba en Android}. Firma APK: ${LJR_APK_SIGNING_STATUS:-no verificada}."
           if gh release view android-latest >/dev/null 2>&1; then
             gh release upload android-latest Liga-Juventino.apk --clobber
             gh release edit android-latest --title "Liga Juventino Android" --notes "$NOTES"
