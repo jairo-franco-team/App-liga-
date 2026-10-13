@@ -191,7 +191,7 @@ test('PC-only footer white gap overrides the stronger dark independent-finish ba
 test('PC fixture root removes stale independent-finish min-height without calculating fake page height',()=>{
  const independent=read('src/pc-independent-finish-20261011.js');
  assert.doesNotThrow(()=>new vm.Script(independent));
- assert.match(independent,/if\(r==='pc-fixtures'&&screen\.querySelector\(':scope > \.u18-root'\)\)/);
+ assert.match(independent,/if\(\(r==='pc-fixtures'\|\|r==='pc-standings'\)\&\&screen[.]querySelector\(':scope > [.]u18-root'\)\)/);
  assert.match(independent,/screen\.style\.removeProperty\('min-height'\)/);
  assert.match(independent,/delete screen\.dataset\.ljpcFinishMinHeight/);
  assert.match(html,/pc-independent-finish-20261011\.js\?v=pc-fixtures-height-guard-v7/);
