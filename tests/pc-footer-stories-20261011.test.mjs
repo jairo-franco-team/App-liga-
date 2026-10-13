@@ -57,3 +57,14 @@ test('Mobile and APK selectors are never modified by PC-only styles',()=>{
  assert.match(css,/html\.ljpc-unified-pc body\.lj-desktop\[data-app-route="home"\] > #ljpc-unified-pc-footer/);
  assert.doesNotMatch(css,/html\.preview-mobile|html\.preview-apk/);
 });
+
+test('PC carousel status updates are frame-batched and avoid redundant DOM writes',()=>{
+ const script=home.match(/<script id="ljpc-story-fixtures-interaction">([\\s\\S]*?)<\\/script>/)?.[1];
+ assert.ok(script);
+ assert.match(script,/let statusPending=false/);
+ assert.match(script,/if\(statusPending\)return/);
+ assert.match(script,/if\(prev\.disabled!==disablePrev\)prev\.disabled=disablePrev/);
+ assert.match(script,/if\(next\.disabled!==disableNext\)next\.disabled=disableNext/);
+ assert.match(script,/addEventListener\('scroll',status,\{passive:true\}\)/);
+ assert.doesNotThrow(()=>new vm.Script(script));
+});
