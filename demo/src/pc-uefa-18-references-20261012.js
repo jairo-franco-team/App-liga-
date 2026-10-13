@@ -264,7 +264,7 @@ function simulation(){
 function standingsPage(){
  const categoryOptions=catSelect();
  const tabbar='<div class="u18-switch" role="group" aria-label="Fase de la competición">'+pills([['league','Fase liga'],['knockout','Fase eliminatoria']],state.standTab,'data-u18-stand-tab')+'</div>';
- const simulateAction=state.standTab==='league'?'<button type="button" class="u18-sim-launch" data-u18-stand-tab="simulator" aria-label="Abrir simulador de resultados">Simulador de resultados</button>':'';
+ const simulateAction=state.standTab==='league'?'<div class="u18-sim-actions"><button type="button" class="u18-sim-launch" data-u18-stand-tab="simulator" aria-label="Abrir simulador de resultados">Simulador de resultados</button></div>':'';
  const controls='<div class="u18-controls">'+categoryOptions+
  '<div class="u18-controls-right"><button data-u18-go="pc-fixtures">Ver partidos</button><button data-u18-go="tableExport">Descargar tabla ↓</button></div></div>';
  const rows=tableRows();

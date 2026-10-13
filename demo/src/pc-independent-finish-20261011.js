@@ -88,10 +88,18 @@
   }
   enhanceAbout();
   normalizeFooter();
-  // This route owns a real flow-sized desktop knockout. An earlier mobile
-  // shell can leave a huge inline min-height on #screen. Do not preserve or
-  // recompute it for the modern PC fixture root; other routes stay unchanged.
+  // UEFA-style PC fixtures and standings have flow-sized layouts. Do not
+  // expand their screen from old shell bounds: doing so leaves a huge empty
+  // navy area after the compact table/footer in forced desktop browser mode.
+  // These guards never match the native competition route, mobile or APK.
   if(r==='pc-fixtures'&&screen.querySelector(':scope > .u18-root')){
+    if(screen.dataset.ljpcFinishMinHeight==='1'){
+      screen.style.removeProperty('min-height');
+      delete screen.dataset.ljpcFinishMinHeight;
+    }
+    return;
+  }
+  if(r==='pc-standings'&&screen.querySelector(':scope > .u18-root')){
     if(screen.dataset.ljpcFinishMinHeight==='1'){
       screen.style.removeProperty('min-height');
       delete screen.dataset.ljpcFinishMinHeight;
