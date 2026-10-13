@@ -71,3 +71,31 @@ test('desktop theme class is restored if the PC host shell changes the document 
  assert.match(script,/attributeFilter:\['class','data-ljpc18-route'\]/);
  assert.match(script,/dataset\.ljpc18Route!==route\(\)/);
 });
+
+test('light knockout is applied with PC-only inline important styles after the native renderer',()=>{
+ const from=script.indexOf('function paintPcStandingsBracket('),to=script.indexOf('function repaint(){',from);
+ assert.ok(from>0&&to>from,'standings-only paint helper exists');
+ const method=script.slice(from,to);
+ const make=()=>({properties:new Map(),style:{},querySelectorAll(){return []}});
+ const create=()=>{const e=make();e.style.setProperty=(key,val,priority)=>e.properties.set(key,[val,priority]);return e;};
+ const bracket=create(),knockout=create(),card=create(),page=create(),root=create();
+ root.querySelector=selector=>selector==='.u18-standings-bracket'?bracket:null;
+ root.querySelectorAll=()=>[page];
+ bracket.querySelectorAll=selector=>{
+  if(selector==='.ljr-knockout')return [knockout];
+  if(selector.includes('.ljr-ko-card,.ljr-ko-club'))return [card];
+  return [knockout];
+ };
+ vm.runInNewContext(method+';paintPcStandingsBracket(root);',
+  {route:()=> 'pc-standings',desktop:()=>true,root},{timeout:1500});
+ assert.deepEqual(bracket.properties.get('background'),['#f2f3f8','important']);
+ assert.deepEqual(knockout.properties.get('--ko-ground'),['#f2f3f8','important']);
+ assert.deepEqual(card.properties.get('background'),['#fff','important']);
+ assert.deepEqual(page.properties.get('background'),['#f2f3f8','important']);
+ const mobile=create();mobile.querySelector=()=>{throw Error('native mobile DOM must not be inspected');};
+ vm.runInNewContext(method+';paintPcStandingsBracket(root);',
+  {route:()=> 'competition',desktop:()=>false,root:mobile},{timeout:1500});
+ assert.equal(mobile.properties.size,0);
+ assert.match(script,/paintPcStandingsBracket\(original\)/);
+ assert.match(script,/paintPcStandingsBracket\(root\)/);
+});
