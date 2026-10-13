@@ -689,3 +689,62 @@ html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desk
 html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish #screen > .u18-root > .u18-page.u18fx-page .u18fx-mobile-knockout > .ljr-knockout{
  background:#000040!important;
 }
+
+
+/* PC v9 — final fix for the navy flex-gap BETWEEN bracket and footer.
+   Route-scoped, without relying on runtime body finish classes. The knockout
+   stays navy; page/canvas stays pale and flow-sized; footer keeps own colors. */
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"],
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body,
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body > #app,
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body > #app > .app-shell,
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen,
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > .u18-root,
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > .u18-root > .u18-page.u18fx-page,
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > .u18-root > .u18-page.u18fx-page > main.u18fx-content{
+ background-color:#f2f3f8!important;
+ background-image:none!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen,
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > .u18-root,
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > .u18-root > .u18-page.u18fx-page,
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > .u18-root > .u18-page.u18fx-page > main.u18fx-content{
+ height:auto!important;
+ min-height:0!important;
+ max-height:none!important;
+ flex:0 0 auto!important;
+ align-self:stretch!important;
+ overflow:visible!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > .u18-root > .u18-page.u18fx-page{
+ display:block!important;
+ padding-bottom:0!important;
+ margin-bottom:0!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > .u18-root > .u18-page.u18fx-page > main.u18fx-content{
+ display:block!important;
+ box-sizing:border-box!important;
+ margin:0 auto!important;
+ padding-top:18px!important;
+ padding-bottom:18px!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > .u18-root > .u18-page.u18fx-page > main.u18fx-content > .u18fx-mobile-knockout{
+ height:auto!important;
+ min-height:0!important;
+ margin-bottom:0!important;
+ padding-bottom:0!important;
+ background:transparent!important;
+ background-image:none!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > .u18-root > .u18-page.u18fx-page .ljr-knockout{
+ background:#000040!important;
+}
+/* Stretch only the light app canvas, so a short page never exposes dark navy. */
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body > #app{
+ flex:1 0 auto!important;
+ min-height:0!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body > #ljpc-unified-pc-footer{
+ flex:0 0 auto!important;
+ margin-top:auto!important;
+}
