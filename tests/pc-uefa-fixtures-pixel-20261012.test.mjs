@@ -87,7 +87,7 @@ test('Ver cuadro shows league-safe draw panel and functioning Ver detalles del s
 });
 test('index avoids cached previous page assets',()=>{
  assert.match(html,/pc-uefa-18-references-20261012\.js\?v=[a-z0-9-]+/);
- assert.match(html,/pc-uefa-fixtures-pixel-20261012\.css\?v=pc-fixtures-mobile-knockout-footer-v6/);
+ assert.match(html,/pc-uefa-fixtures-pixel-20261012\.css\?v=pc-fixtures-pale-gap-v8/);
 });
 
 
@@ -204,4 +204,17 @@ test('only PC fixtures skip inflated footer clearance gap; other routes keep cal
  assert.match(footer,/footer\.style\.setProperty\('--ljpc-footer-clearance','0px'\)/);
  assert.match(footer,/const next=clearance\(bottom,natural\)/);
  assert.match(html,/pc-footer-flow-columns-20261012\.js\?v=pc-fixtures-height-guard-v7/);
+});
+
+
+test('PC bracket gets pale editorial gap outside native navy trophy and footer',()=>{
+ const scope='html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish #screen > .u18-root > .u18-page.u18fx-page';
+ assert.match(styles,/PC v8 · Fondo editorial claro/);
+ assert.ok(styles.includes(scope+'{'));
+ assert.ok(styles.includes(scope+' > main.u18-bound.u18fx-content{'));
+ assert.ok(styles.includes('background-color:#f2f3f8!important'));
+ assert.ok(styles.includes('background-image:none!important'));
+ assert.ok(styles.includes(scope+' .u18fx-mobile-knockout > .ljr-knockout{'));
+ assert.ok(styles.includes('background:#000040!important'));
+ assert.match(html,/pc-uefa-fixtures-pixel-20261012\.css\?v=pc-fixtures-pale-gap-v8/);
 });
