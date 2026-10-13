@@ -18,12 +18,12 @@ test('mid-size and narrow desktop flows never place five sections on top of each
  assert.match(css,/grid-template-columns:repeat\(2,minmax\(0,1fr\)\)!important/);
  assert.match(css,/\.ljpc-u-footer-brand\{\s*grid-column:1\/-1!important/s);
 });
-test('footer is in normal document flow and checks actual last-card positions',()=>{
+test('footer remains in document flow without an artificial last-card spacer',()=>{
  assert.match(css,/> #ljpc-unified-pc-footer\{\s*display:block!important;position:relative!important/);
  assert.match(css,/margin:var\(--ljpc-footer-clearance,12px\) 0 0!important/);
- assert.match(js,/getBoundingClientRect\(\)/);
- assert.match(js,/#v105-bottom \.v105-grid > :last-child/);
- assert.match(js,/footRect\.top-prev/);
+ assert.match(js,/footer\.style\.setProperty\('--ljpc-footer-clearance','0px'\)/);
+ assert.match(js,/document\.body\.appendChild\(footer\)/);
+ assert.doesNotMatch(js,/getBoundingClientRect\(\)|footRect\.top-prev/);
  assert.doesNotThrow(()=>new vm.Script(js));
 });
 test('footer controls remain routed and mobile/apk are explicitly excluded',()=>{
