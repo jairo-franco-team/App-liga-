@@ -106,7 +106,10 @@ test('light knockout is applied with PC-only inline important styles after the n
 
 test('desktop classification has no artificially expanded screen and leaves native modes unchanged',()=>{
  const flow=read('src/pc-independent-finish-20261011.js');
- assert.match(flow,/\(r==='pc-fixtures'\|\|r==='pc-standings'\)/);
+ assert.match(flow,/if\(r==='pc-fixtures'&&screen\.querySelector/);
+ assert.match(flow,/if\(r==='pc-standings'&&screen\.querySelector/);
+ const footer=read('src/pc-footer-flow-columns-20261012.js');
+ assert.match(footer,/dataset\.ljpc18Route==='pc-standings'/);
  assert.match(flow,/screen\.dataset\.ljpcFinishMinHeight==='1'/);
  assert.match(styles,/\[data-ljpc18-route="pc-standings"\]/);
  assert.match(styles,/\.u18-sim-actions\{/);
