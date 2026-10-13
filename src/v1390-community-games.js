@@ -197,8 +197,10 @@ document.addEventListener('click',e=>{
 function init(){
  const host=$('#screen')||document.body;
  new MutationObserver(records=>{
-  const selector='[data-v531-view],.v589-page,.v766-quiz-start,.v22-fantasy-master';
-  if(records.some(r=>r.target===host||Array.from(r.addedNodes).some(n=>n.nodeType===1&&(n.matches?.(selector)||n.querySelector?.(selector)))))schedule();
+  // Quiniela mounts inside a delegated placeholder AFTER hashchange; its nested
+  // DOM replacement is not a direct #screen child and was previously missed.
+  const selector='[data-v531-view],.v589-page,.v766-quiz-start,.v22-fantasy-master,[data-v561-quiniela-mount],.v618-quiniela,.v619-quiniela-modern';
+  if(records.some(r=>r.target===host||r.target?.matches?.('[data-v561-quiniela-mount],.v618-quiniela')||Array.from(r.addedNodes).some(n=>n.nodeType===1&&(n.matches?.(selector)||n.querySelector?.(selector)))))schedule();
  }).observe(document.body,{childList:true,subtree:true});
  window.addEventListener('hashchange',()=>{selectedGame='all';schedule()});
  window.addEventListener('ljr:official-data',()=>{reconcilePronostica();schedule()});
