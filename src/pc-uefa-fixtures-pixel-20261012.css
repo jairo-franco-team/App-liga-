@@ -660,3 +660,32 @@ html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desk
  position:relative!important;bottom:auto!important;
 }
 /* Keep palette and sizing of actual bracket cards, controls and footer intact. */
+
+
+/* PC v8 · Fondo editorial claro entre el cuadro y el pie.
+   Sólo #/pc-fixtures; jamás aplica a móvil ni APK. Mantener fondo azul
+   dentro de .ljr-knockout y los degradados del footer intactos. */
+html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish #screen > .u18-root > .u18-page.u18fx-page{
+ background:#f2f3f8!important;
+ background-image:none!important;
+ min-height:0!important;
+ height:auto!important;
+}
+html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish #screen > .u18-root > .u18-page.u18fx-page > main.u18-bound.u18fx-content{
+ background:#f2f3f8!important;
+ background-color:#f2f3f8!important;
+ background-image:none!important;
+ min-height:0!important;
+ height:auto!important;
+ flex:0 0 auto!important;
+ padding-bottom:18px!important;
+}
+html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish #screen > .u18-root > .u18-page.u18fx-page > main.u18fx-content > .u18fx-mobile-knockout{
+ background:transparent!important;
+ background-image:none!important;
+ margin-bottom:0!important;
+ padding-bottom:0!important;
+}
+html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish #screen > .u18-root > .u18-page.u18fx-page .u18fx-mobile-knockout > .ljr-knockout{
+ background:#000040!important;
+}
