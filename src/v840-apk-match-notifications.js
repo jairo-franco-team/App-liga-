@@ -195,7 +195,10 @@ async function systemNotify(e){
   if((e.type==='final'||e.type==='goal')&&(e.hs==null||e.as==null))return false;
   const title=e.category||'Liga Juventino';
   const score=(e.hs!==null&&e.as!==null)?e.home+' '+e.hs+' vs '+e.away+' '+e.as:e.home+' vs '+e.away;
-  const body=score+' · '+e.status;
+  // Android escribe «ahora» según la hora de entrega, no la hora del partido.
+  // Mostrar la fecha deportiva evita confundir un resultado recibido tarde con uno en vivo.
+  const gameDate=String(e.date||'').match(/^\d{1,2}\/\d{1,2}\/\d{4}/)?.[0]||'';
+  const body=score+' · '+e.status+(gameDate?' · Partido del '+gameDate:'');
   if(Capacitor.isNativePlatform()){
     try{
       const perm=read(PERM,{});
