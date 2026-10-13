@@ -1,5 +1,8 @@
 /* Rainbow bottom navigation for mobile/APK ONLY.
    Do not touch geometry, tap targets or desktop/PC browser mode. */
+/* Use the SAME cascade layer as mobile-shell.css: layered !important rules
+   outrank unlayered !important regardless of selector specificity. */
+@layer ljr-mobile-shell {
 @media(max-width:1023px){
   html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) body .bottom-nav .nav-item[data-route="home"] .nav-icon{color:#ff5d83!important}
   html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) body .bottom-nav .nav-item[data-route="competition"] .nav-icon{color:#ffc858!important}
@@ -13,4 +16,6 @@
   html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) body .bottom-nav .nav-item[data-route="more"] .nav-icon,
   html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) body .bottom-nav .nav-item[data-route="more"] .nav-icon svg{width:26px!important;height:26px!important;min-width:26px!important;min-height:26px!important;max-width:26px!important;max-height:26px!important}
   html:not(.ljpc-unified-pc):not(.ljpc-header-free-desktop) body .bottom-nav .nav-item[data-route="more"] small{font-size:12px!important;line-height:15px!important;font-weight:700!important}
+}
+
 }
