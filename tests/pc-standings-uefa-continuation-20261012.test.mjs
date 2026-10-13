@@ -32,6 +32,9 @@ test('simulator launcher is present once for every category and not duplicated i
   assert.match(page,/data-u18-stand-tab="knockout"/);
   const switchContents=page.match(/<div class="u18-switch"[^>]*>([\s\S]*?)<\/div>/)?.[1]||'';
   assert.ok(!switchContents.includes('simulator'),'simulator must be outside the phase switch');
+  assert.match(page,/<div class="u18-sim-actions"><button type="button" class="u18-sim-launch"/);
+  assert.ok(page.lastIndexOf('u18-sim-actions')>page.lastIndexOf('u18-panel'),'simulator follows complete table');
+
  }
  state.standTab='knockout';
  assert.doesNotMatch(standingsPage(),/class="u18-sim-launch"/);
@@ -56,8 +59,9 @@ test('tiebreaker labels use official league data; administrative deductions are 
 test('desktop-only styles guarantee separate simulator button and light knockout',()=>{
  const prefix='html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen';
  assert.ok(styles.includes(prefix+' .u18-sim-launch'));
- assert.ok(styles.includes('position:fixed!important'));
- assert.ok(styles.includes('pc-standings-roundup-20261012-v5'));
+ assert.match(styles,/\.u18-sim-launch\{\s*position:relative!important/);
+ assert.doesNotMatch(styles,/\.u18-sim-launch\{\s*position:fixed!important/);
+ assert.ok(styles.includes('pc-standings-inline-simulator-20261012-v8'));
  assert.ok(styles.includes('min-width:0!important;table-layout:fixed!important'));
  assert.ok(styles.includes(prefix+' .u18-standings-bracket .ljr-ko-board'));
  assert.ok(styles.includes('background:#f2f3f8!important;background-image:none!important'));
@@ -98,4 +102,14 @@ test('light knockout is applied with PC-only inline important styles after the n
  assert.equal(mobile.properties.size,0);
  assert.match(script,/paintPcStandingsBracket\(original\)/);
  assert.match(script,/paintPcStandingsBracket\(root\)/);
+});
+
+test('desktop classification has no artificially expanded screen and leaves native modes unchanged',()=>{
+ const flow=read('src/pc-independent-finish-20261011.js');
+ assert.match(flow,/\(r==='pc-fixtures'\|\|r==='pc-standings'\)/);
+ assert.match(flow,/screen\.dataset\.ljpcFinishMinHeight==='1'/);
+ assert.match(styles,/\[data-ljpc18-route="pc-standings"\]/);
+ assert.match(styles,/\.u18-sim-actions\{/);
+ assert.match(styles,/padding-bottom:12px!important/);
+ assert.doesNotMatch(styles,/body\[data-app-route="competition"\]|\[mode="mobile"\]/);
 });
