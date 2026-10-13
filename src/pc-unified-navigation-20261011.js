@@ -187,7 +187,7 @@ function placeNavPanel(details){
  const clipped=/(auto|scroll|hidden|clip)/.test(overflow.overflowX+' '+overflow.overflowY);
  if(!clipped)return;
  const rect=summary.getBoundingClientRect();
- const width=Math.min(details.dataset.ljpcUGroup==='Más'?318:318,Math.max(200,window.innerWidth-24));
+ const width=Math.min(details.dataset.ljpcUGroup==='Datos'?252:details.dataset.ljpcUGroup==='Más'?236:260,Math.max(200,window.innerWidth-24));
  const x=details.dataset.ljpcUGroup==='Más'?rect.right-width:
    details.dataset.ljpcUGroup==='Datos'?rect.left+(rect.width-width)/2:rect.left;
  const left=Math.max(12,Math.min(Math.max(12,window.innerWidth-width-12),x));
