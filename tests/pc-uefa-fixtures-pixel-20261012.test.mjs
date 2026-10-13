@@ -197,13 +197,13 @@ test('PC fixture root removes stale independent-finish min-height without calcul
  assert.match(independent,/delete screen\.dataset\.ljpcFinishMinHeight/);
  assert.match(html,/pc-independent-finish-20261011\.js\?v=pc-standings-height-guard-v8/);
 });
-test('only PC fixtures skip inflated footer clearance gap; other routes keep calculator',()=>{
+test('desktop footer follows visible content naturally without fake clearance gaps',()=>{
  const footer=read('src/pc-footer-flow-columns-20261012.js');
  assert.doesNotThrow(()=>new vm.Script(footer));
- assert.match(footer,/document\.documentElement\.dataset\.ljpc18Route==='pc-fixtures'/);
- assert.match(footer,/screen\.querySelector\(':scope > \.u18-root'\)/);
+ assert.match(footer,/if\(!pc\(\)\)/,'guard must leave mobile and APK untouched');
  assert.match(footer,/footer\.style\.setProperty\('--ljpc-footer-clearance','0px'\)/);
- assert.match(footer,/const next=clearance\(bottom,natural\)/);
+ assert.match(footer,/document\.body\.appendChild\(footer\)/);
+ assert.doesNotMatch(footer,/const next=clearance\(bottom,natural\)/);
  assert.match(html,/pc-footer-flow-columns-20261012\.js\?v=pc-standings-footer-clearance-v8/);
 });
 
