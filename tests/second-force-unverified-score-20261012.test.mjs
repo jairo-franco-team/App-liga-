@@ -8,5 +8,5 @@ test('San Antonio FC vs Tavera FC remains pending until the league confirms the 
   assert.ok(match,'The October 10 Second Force fixture must remain in the official schedule');
   assert.equal(match[3],'-','Home score must remain unconfirmed');
   assert.equal(match[5],'-','Away score must remain unconfirmed');
-  assert.match(data.official_weekly_sync?.pending_matches_2026_10_10||/pending/i,/San Antonio FC-Tavera FC 12:00/);
+  assert.match(String(data.official_weekly_sync?.pending_matches_2026_10_10||''),/San Antonio FC-Tavera FC 12:00/);
 });
