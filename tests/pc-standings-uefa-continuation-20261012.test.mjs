@@ -109,7 +109,7 @@ test('desktop classification has no artificially expanded screen and leaves nati
  assert.match(flow,/if\(r==='pc-fixtures'&&screen\.querySelector/);
  assert.match(flow,/if\(r==='pc-standings'&&screen\.querySelector/);
  const footer=read('src/pc-footer-flow-columns-20261012.js');
- assert.match(footer,/dataset\.ljpc18Route==='pc-standings'/);
+ assert.match(footer,/footer\.style\.setProperty\('--ljpc-footer-clearance','0px'\)/);
  assert.match(flow,/screen\.dataset\.ljpcFinishMinHeight==='1'/);
  assert.match(styles,/\[data-ljpc18-route="pc-standings"\]/);
  assert.match(styles,/\.u18-sim-actions\{/);
