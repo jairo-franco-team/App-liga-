@@ -12,7 +12,7 @@ test('UEFA reference geometry is limited to desktop PC classification with no fi
  assert.ok(css.includes(prefix));
  const rules=css.split('\n').filter(x=>x.startsWith('html.'));
  assert.ok(rules.length>=35);
- assert.ok(rules.every(x=>x.includes(prefix)),'only pc-standings route may be styled');
+ assert.ok(rules.every(x=>x.includes('[data-ljpc18-route="pc-standings"]')),'only pc-standings route may be styled');
  assert.match(css,/\.u18-page\{min-height:0!important/);
  assert.match(css,/\.u18-switch/);
  assert.match(css,/\.u18-table/);
