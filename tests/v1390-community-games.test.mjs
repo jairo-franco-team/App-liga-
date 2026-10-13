@@ -51,3 +51,38 @@ test('anonymous sessions do not create public or registered leaderboard entries'
  assert.equal(h.ranking.rankings('quiniela').length,0);
  assert.equal(h.ranking.scope,'local');
 });
+
+test('delegated Quiniela mount triggers ranking injection after async route rendering',()=>{
+ const frames=[];let observer, mounted=false, panel=null;
+ const storage={getItem:()=>null,setItem(){}};
+ const screen={append(node){panel=node;node.parentNode=this}};
+ const document={
+  readyState:'complete',
+  body:{},
+  querySelector(selector){
+   if(selector==='#screen')return mounted?screen:null;
+   if(selector==='[data-v1390-ranking]')return panel;
+   return null;
+  },
+  querySelectorAll:()=>[],
+  createElement(){return {dataset:{},classList:{toggle(){}},hidden:false,innerHTML:'',parentNode:null}},
+  addEventListener(){}
+ };
+ const window={addEventListener(){}};
+ const context={window,document,location:{hash:'#/quiniela',search:'?mode=apk'},
+  innerWidth:412,URLSearchParams,localStorage:storage,Date,Math,Number,String,JSON,Array,Object,Map,Set,Intl,
+  requestAnimationFrame:fn=>(frames.push(fn),frames.length),
+  MutationObserver:class{constructor(callback){observer=callback}observe(){}}
+ };
+ vm.runInNewContext(readFileSync(new URL('../src/v1390-community-games.js',import.meta.url),'utf8'),context);
+ assert.equal(frames.length,1,'initial boot scheduled once');
+ frames.shift()();
+ assert.equal(panel,null,'empty screen is not populated before delegated game mounts');
+ mounted=true;
+ const mountNode={nodeType:1,matches:s=>s.includes('[data-v561-quiniela-mount]'),querySelector:()=>null};
+ observer([{target:{},addedNodes:[mountNode]}]);
+ assert.equal(frames.length,1,'late Quiniela insertion schedules ranking after rendering');
+ frames.shift()();
+ assert.ok(panel,'ranking now mounts into the real screen');
+ assert.match(panel.innerHTML,/Ranking de mejores jugadores/);
+});
