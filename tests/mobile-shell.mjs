@@ -68,6 +68,9 @@ try{
  const originalBack=page.locator('#v612-quiz-portal [data-v531-view="hub"] [data-v531-quiz-back]');
  assert.equal(await originalBack.evaluate(e=>{const r=e.getBoundingClientRect();return e.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2))}),true,'the game fallback arrow never covers its original hub arrow');
  await go('quiniela');
+ // Quiniela is a delegated async mount; check AFTER the game has mounted and
+ // the ranking observer has been notified, not at an arbitrary RAF boundary.
+ await page.waitForFunction(()=>document.querySelectorAll('[data-v1390-ranking]').length===1,null,{timeout:6000});
  const rank=page.locator('[data-v1390-ranking]');assert.equal(await rank.count(),1,'game ranking is unique');
  assert.equal(await page.locator('[data-ljr-offline-link]').count()>0,true,'offline section is available');
  assert.deepEqual(errors,[],'no JavaScript errors');
