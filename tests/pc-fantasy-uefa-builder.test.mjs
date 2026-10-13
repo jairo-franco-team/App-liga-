@@ -69,7 +69,8 @@ test('Fantasy desktop renders complete 15-slot pitch and player filters',()=>{
 test('Fantasy desktop can add a real roster player and updates saved lineup',()=>{
  const app=boot('desktop');
  const html=app.mounted().innerHTML;
- const encoded=html.match(/data-pcfy-pick="([^"]+)"/)?.[1];
+ const encoded=[...html.matchAll(/data-pcfy-pick="([^"]+)"/g)].map(m=>m[1])
+  .find(v=>JSON.parse(decodeURIComponent(v)).name==='Juan Pérez');
  assert.ok(encoded,'Roster selection must be available');
  const target=new app.ElementFake({pcfyPick:encoded});
  for(const fn of app.listeners.get('click')||[]){
