@@ -163,3 +163,7 @@
  }
 }
 /* Never override authorization, hidden forms, collapsed menus, or visibility. */
+/* Preserve the semantic hidden attribute even against important layout rules. */
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop,html.ljpc-unified-pc) body #screen [hidden]{
+ display:none!important;
+}
