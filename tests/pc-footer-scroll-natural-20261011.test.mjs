@@ -20,7 +20,10 @@ test('PC scroll belongs to the document and no separate #screen scroll leaves fo
 });
 
 test('Footer scroll CSS is loaded last to override mobile layout and defeat stale cache',()=>{
- const idx=page.indexOf('pc-unified-navigation-20261011.css?v=pc-data-menu-compact-20261012-v1');
+ // Asset cache IDs change with PC updates; assert the stylesheet path and
+ // proper ordering, not an obsolete single version string.
+ const match=page.match(/pc-unified-navigation-20261011\\.css\\?v=[a-z0-9._-]+/i);
+ const idx=match? page.indexOf(match[0]):-1;
  assert.ok(idx>0);
  assert.ok(idx>page.indexOf('desktop-browser-editorial-20261011.css'));
  assert.ok(idx>page.indexOf('v637-home-competition-scroll-lock.css'));
