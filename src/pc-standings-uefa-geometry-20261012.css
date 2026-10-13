@@ -370,15 +370,23 @@ html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-switch > 
 }
 
 
-/* pc-standings-roundup-20261012-v5 · desktop route only.
-   Simulator is a standalone floating button, not a third tab/ghost grid cell. */
+/* pc-standings-inline-simulator-20261012-v8 · ONLY desktop PC standings.
+   Keep the simulator outside the 2-tab switch but immediately below the
+   standings panel, not fixed at the bottom of a tall desktop viewport. */
+html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-sim-actions{
+ position:relative!important;inset:auto!important;display:flex!important;
+ align-items:center!important;justify-content:center!important;
+ min-height:34px!important;width:100%!important;max-width:100%!important;
+ margin:12px auto 3px!important;padding:0!important;
+ background:transparent!important;transform:none!important;
+}
 html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-sim-launch{
- position:fixed!important;
- inset:auto auto max(15px,env(safe-area-inset-bottom)) 50%!important;
- transform:translateX(-50%)!important;
- z-index:2147481000!important;
+ position:relative!important;
+ inset:auto!important;
+ transform:none!important;
+ z-index:2!important;
  display:inline-flex!important;align-items:center!important;justify-content:center!important;
- min-width:165px!important;min-height:34px!important;width:max-content!important;max-width:calc(100vw - 24px)!important;
+ min-width:165px!important;min-height:34px!important;width:max-content!important;max-width:calc(100% - 24px)!important;
  margin:0!important;padding:7px 15px!important;box-sizing:border-box!important;
  border-radius:7px!important;border:1px solid #3f77ec!important;
  background:#073cdb!important;color:#fff!important;
@@ -390,8 +398,17 @@ html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-sim-launc
  outline:3px solid #17d8ed!important;outline-offset:3px!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-standings"] body #screen .u18-page:has(.u18-sim-launch)>.u18-body{
- padding-bottom:64px!important;
+ padding-bottom:12px!important;
 }
+/* End the PC page at the content and match the dark footer color under a
+   taller viewport, avoiding a second saturated-blue empty screen. */
+html.ljpc-unified-pc.ljpc18-active[data-ljpc18-route="pc-standings"] body.lj-desktop.ljpc-independent-finish{
+ background:#03102b!important;background-image:none!important;
+}
+html.ljpc-unified-pc.ljpc18-active[data-ljpc18-route="pc-standings"] body.lj-desktop.ljpc-independent-finish :is(#app,#screen,.app-shell){
+ min-height:0!important;max-height:none!important;height:auto!important;
+}
+
 /* Space-efficient criterion columns: keep all eight visible on small desktop previews
    while retaining horizontal scrolling when genuinely narrower than 620px. */
 @media(min-width:620px) and (max-width:900px){
