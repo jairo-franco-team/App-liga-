@@ -149,7 +149,14 @@
  width:min(480px,100%)!important;max-width:100%!important;
  height:34px!important;min-height:34px!important;font-size:12px!important;
 }
-@media(max-width:1000px){
+/* Three columns on mid-sized PC browsers instead of jumping from four
+   straight to oversized two-column cards at widths below 1100px. */
+@media(min-width:821px) and (max-width:1100px){
+ :is(html.ljpc-unified-pc,html.ljpc-forced-desktop) body #screen .ljpc-toolhub .ljpc-hub-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ }
+}
+@media(max-width:820px){
  :is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen :is(.v60-tool-grid,.v726-tool-grid,.v726-quick-grid,.v562-page[data-v563-control] .v562-list),
  :is(html.ljpc-unified-pc,html.ljpc-forced-desktop) body #screen .ljpc-toolhub .ljpc-hub-grid{
   grid-template-columns:repeat(2,minmax(0,1fr))!important;
