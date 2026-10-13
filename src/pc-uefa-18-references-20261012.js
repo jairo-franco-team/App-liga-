@@ -376,6 +376,37 @@ function aboutPage(){
  '<img loading="lazy" src="'+img+'" alt=""><span><b>'+escape(title)+'</b><small>'+escape(detail)+'</small></span><em aria-hidden="true">›</em></button>').join('')+'</div>',false);
 }
 function markup(){return route()==='pc-fixtures'?fixturesPage():route()==='pc-standings'?standingsPage():route()==='pc-draws'?drawsPage():route()==='teams'?teamsPage():route()==='about'?aboutPage():videoPage();}
+/* Desktop standings only. Later global PC styles must not recolor the light
+   UEFA-like bracket. Inline important declarations beat earlier/later !important
+   selectors; markup is discarded when leaving the PC standings route. */
+function paintPcStandingsBracket(root){
+ if(route()!=='pc-standings'||!desktop()||!root)return;
+ const bracket=root.querySelector('.u18-standings-bracket');
+ if(!bracket)return;
+ const apply=(nodes,properties)=>{
+  for(const node of nodes)for(const [name,value] of Object.entries(properties))
+   node.style.setProperty(name,value,'important');
+ };
+ const within=selector=>Array.from(bracket.querySelectorAll(selector));
+ const canvas='#f2f3f8',ink='#273849';
+ apply([root,...Array.from(root.querySelectorAll('.u18-page,.u18-body'))],{
+  'background':canvas,'background-image':'none'
+ });
+ apply([bracket,...within('.ljr-knockout,.ljr-ko-board,.ljr-ko-scroll,.ljr-ko-track,.ljr-ko-column,.ljr-ko-round')],{
+  'background':canvas,'background-image':'none','color':ink
+ });
+ apply(within('.ljr-knockout'),{
+  '--ko-ground':canvas,'--ko-card':'#fff','--ko-muted':'#8290a0','--ko-cyan':'#1358d6'
+ });
+ apply(within('.ljr-ko-card,.ljr-ko-club'),{
+  'background':'#fff','background-image':'none','color':ink
+ });
+ apply(within('.ljr-ko-rail span,.ljr-ko-versus'),{
+  'background':canvas,'color':'#8895a6'
+ });
+ apply(within('.ljr-ko-club strong,.ljr-ko-opponent b'),{'color':ink});
+ apply(within('.ljr-ko-date,.ljr-ko-note,.ljr-ko-winner strong'),{'color':'#7f8c9d'});
+}
 function repaint(){
  const original=document.querySelector('#screen > .u18-root');
  if(!original||!active())return;
@@ -385,6 +416,7 @@ function repaint(){
  original.innerHTML=markup();
  const ko=original.querySelector('.u18fx-mobile-knockout .ljr-knockout');
  if(ko&&window.LJR_KNOCKOUT?.init)window.LJR_KNOCKOUT.init(ko);
+  paintPcStandingsBracket(original);
  if(seen)original.querySelector('[data-u18-score="'+seen.id+'"][data-side="'+seen.side+'"]')?.focus();
 }
 /* El contenido original de PC comparte #screen con el diseño UEFA. Nunca
@@ -445,6 +477,7 @@ function sync(){
   root.innerHTML=(!needsOfficial||source())?markup():'<div class="u18-loading">Cargando datos oficiales de la Liga…</div>';
   const ko=root.querySelector('.u18fx-mobile-knockout .ljr-knockout');
   if(ko&&window.LJR_KNOCKOUT?.init)window.LJR_KNOCKOUT.init(ko);
+  paintPcStandingsBracket(root);
   lastRef=root.dataset.loaded;
  }
  if(!['video','about'].includes(route())&&!source())load();
