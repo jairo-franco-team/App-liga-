@@ -194,7 +194,7 @@ test('PC fixture root removes stale independent-finish min-height without calcul
  assert.match(independent,/if\(\(r==='pc-fixtures'\|\|r==='pc-standings'\)\&\&screen[.]querySelector\(':scope > [.]u18-root'\)\)/);
  assert.match(independent,/screen\.style\.removeProperty\('min-height'\)/);
  assert.match(independent,/delete screen\.dataset\.ljpcFinishMinHeight/);
- assert.match(html,/pc-independent-finish-20261011\.js\?v=pc-fixtures-height-guard-v7/);
+ assert.match(html,/pc-independent-finish-20261011\.js\?v=pc-standings-height-guard-v8/);
 });
 test('only PC fixtures skip inflated footer clearance gap; other routes keep calculator',()=>{
  const footer=read('src/pc-footer-flow-columns-20261012.js');
