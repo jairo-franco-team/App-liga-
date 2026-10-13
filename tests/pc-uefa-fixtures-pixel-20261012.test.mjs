@@ -87,7 +87,7 @@ test('Ver cuadro shows league-safe draw panel and functioning Ver detalles del s
 });
 test('index avoids cached previous page assets',()=>{
  assert.match(html,/pc-uefa-18-references-20261012\.js\?v=[a-z0-9-]+/);
- assert.match(html,/pc-uefa-fixtures-pixel-20261012\.css\?v=pc-fixtures-pale-gap-v8/);
+ assert.match(html,/pc-uefa-fixtures-pixel-20261012\.css\?v=pc-fixtures-pale-gap-v9/);
 });
 
 
@@ -218,4 +218,20 @@ test('PC bracket gets pale editorial gap outside native navy trophy and footer',
  assert.ok(styles.includes(scope+' .u18fx-mobile-knockout > .ljr-knockout{'));
  assert.ok(styles.includes('background:#000040!important'));
  assert.match(html,/pc-uefa-fixtures-pixel-20261012\.css\?v=pc-fixtures-pale-gap-v8/);
+});
+
+test('v9 sets all PC fixture ancestors to pale background without shrinking/affecting knockout',()=>{
+ const route='html.ljpc18-active[data-ljpc18-route="pc-fixtures"]';
+ for(const fragment of [
+  route+' body > #app,',
+  route+' body #screen,',
+  route+' body #screen > .u18-root,',
+  route+' body #screen > .u18-root > .u18-page.u18fx-page,',
+  route+' body #screen > .u18-root > .u18-page.u18fx-page > main.u18fx-content{'
+ ])assert.ok(styles.includes(fragment),'Missing exact background ancestor rule: '+fragment);
+ assert.match(styles,/background-color:#f2f3f8!important/);
+ assert.match(styles,/background-image:none!important/);
+ assert.match(styles,/flex:0 0 auto!important/);
+ assert.match(styles,/\.ljr-knockout\{\s*background:#000040!important/);
+ assert.match(html,/pc-uefa-fixtures-pixel-20261012\.css\?v=pc-fixtures-pale-gap-v9/);
 });
