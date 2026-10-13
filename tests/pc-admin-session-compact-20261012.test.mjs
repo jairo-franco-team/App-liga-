@@ -13,14 +13,14 @@ test('PC administration shortcuts are four compact columns, not 104px cards',()=
  assert.match(css,/ljpc-admin-auth/);
 });
 test('Admin session required; remembered token alone is insufficient',()=>{
- assert.match(gate,/Boolean\(window\.LJR_MEDIA\?\.admin\)/);
- assert.match(gate,/classList\.toggle\('ljpc-admin-auth',signedIn\)/);
+ assert.match(gate,/result\?\.admin/);
+ assert.match(gate,/classList\.toggle\('ljpc-admin-auth',Boolean\(allowed&&desktop\(\)\)\)/);
  assert.doesNotMatch(gate,/localStorage|sessionStorage/);
  assert.match(css,/display:none!important/);
  assert.match(html,/pc-admin-session-gate-20261012\.js/);
 });
 test('Mobile and APK modes excluded',()=>{
- assert.match(gate,/mode!=='mobile'&&mode!=='apk'/);
+ assert.match(gate,/mode\(\)!=='mobile'&&mode\(\)!=='apk'/);
  assert.match(gate,/classList\.contains\('ljpc-unified-pc'\)/);
  assert.doesNotMatch(gate,/classList\.contains\('lj-desktop'\)/);
 });

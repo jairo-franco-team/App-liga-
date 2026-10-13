@@ -1,0 +1,112 @@
+/* Fantasy PC exclusive: untangle mobile fullscreen layout from desktop document flow.
+   Original assets/click handlers remain in v14-fantasy-reference.js. */
+html.ljpc-unified-pc body[data-app-route="fantasy"] #screen{
+ position:relative!important;inset:auto!important;width:100%!important;max-width:none!important;
+ height:auto!important;max-height:none!important;min-height:0!important;overflow:visible!important;
+ padding:8px 0 16px!important;background:linear-gradient(180deg,#081b65,#061041)!important;
+}
+html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master[data-v23-fantasy]{
+ display:grid!important;box-sizing:border-box!important;
+ grid-template-columns:repeat(6,minmax(0,1fr))!important;
+ grid-template-rows:110px 84px 106px 66px!important;
+ align-items:center!important;
+ position:relative!important;inset:auto!important;top:auto!important;left:auto!important;right:auto!important;bottom:auto!important;
+ width:min(1060px,calc(100% - 24px))!important;max-width:1060px!important;
+ height:410px!important;max-height:410px!important;min-height:0!important;
+ padding:15px clamp(12px,2vw,26px)!important;margin:8px auto 14px!important;
+ transform:none!important;scale:1!important;float:none!important;
+ border:1px solid rgba(110,192,255,.45)!important;border-radius:12px!important;
+ background:radial-gradient(ellipse at 70% 45%,#164dd2a1,transparent 68%),linear-gradient(115deg,#1746a6,#0c246e 65%,#071343)!important;
+ box-shadow:0 12px 32px #010a3a91!important;overflow:hidden!important;isolation:isolate!important;
+}
+html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master .v22-fantasy-bg{
+ position:absolute!important;inset:0 0 0 auto!important;left:auto!important;
+ display:block!important;width:50%!important;height:100%!important;max-width:50%!important;max-height:100%!important;
+ object-fit:cover!important;object-position:50% 57%!important;transform:none!important;
+ border-radius:0 12px 12px 0!important;filter:saturate(1.08) contrast(1.03)!important;pointer-events:none!important;
+}
+html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master::after{
+ content:"";position:absolute;inset:0 40% 0 44%;z-index:1;
+ background:linear-gradient(90deg,#0c2876,transparent)!important;pointer-events:none!important;
+}
+html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master .v22-hero{
+ position:relative!important;inset:auto!important;left:auto!important;top:auto!important;
+ grid-column:1/4!important;grid-row:1!important;z-index:3!important;
+ display:flex!important;justify-content:flex-start!important;align-items:center!important;
+ width:100%!important;height:100%!important;max-width:100%!important;
+ transform:none!important;padding:0!important;pointer-events:none!important;
+}
+html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master .v22-hero h1{
+ position:relative!important;inset:auto!important;left:auto!important;top:auto!important;
+ transform:none!important;margin:0!important;
+ font:900 clamp(33px,5vw,62px)/1 Impact,"Arial Narrow",Arial,sans-serif!important;
+ color:#fff!important;white-space:nowrap!important;letter-spacing:-.03em!important;text-shadow:0 3px 9px #00075bbd!important;
+}
+html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master .v22-neon{display:none!important}
+html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master .v22-league{
+ position:relative!important;inset:auto!important;grid-column:1/4!important;grid-row:2!important;z-index:3!important;
+ display:flex!important;flex-direction:column!important;align-items:flex-start!important;
+ justify-content:center!important;width:100%!important;height:auto!important;min-width:0!important;
+ transform:none!important;text-align:left!important;gap:4px!important;padding:0!important;margin:0!important;
+}
+html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master .v22-league strong{
+ font-size:clamp(12px,1.5vw,18px)!important;line-height:1.05!important;font-weight:800!important;
+}
+html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master .v22-league strong:nth-child(2){
+ font-size:clamp(16px,1.85vw,23px)!important
+}
+html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master .v22-league span{
+ margin:4px 0 0!important;padding:0!important;font-size:10px!important;letter-spacing:.14em!important;
+}
+html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master .v22-sponsor{
+ position:relative!important;inset:auto!important;grid-column:1/4!important;grid-row:3!important;z-index:3!important;
+ display:flex!important;flex-direction:row!important;justify-content:flex-start!important;align-items:center!important;
+ width:100%!important;height:auto!important;margin:0!important;padding:0!important;gap:10px!important;transform:none!important;
+}
+html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master .v22-sponsor>span{
+ font-size:11px!important;margin:0!important;white-space:nowrap!important;
+}
+html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master .v22-sponsor img{
+ width:45px!important;height:45px!important;max-height:45px!important;object-fit:contain!important;
+}
+html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master .v22-shirt-hit{
+ display:flex!important;position:relative!important;inset:auto!important;
+ top:auto!important;left:auto!important;right:auto!important;bottom:auto!important;
+ grid-row:4!important;z-index:4!important;width:calc(100% - 5px)!important;height:38px!important;
+ min-width:0!important;min-height:38px!important;max-height:38px!important;
+ align-items:center!important;justify-content:center!important;
+ transform:none!important;margin:0!important;padding:4px!important;border-radius:7px!important;
+ background:linear-gradient(120deg,#1954e7,#153b9d)!important;border:1px solid #52cbea!important;
+ color:#fff!important;box-shadow:none!important;white-space:nowrap!important;cursor:pointer!important;
+}
+html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master .v22-shirt-hit::after{
+ content:"JUGAR FANTASY";font:800 9px/1 Inter,Arial,sans-serif;color:#fff;
+}
+html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master .v22-shirt-hit-left{grid-column:1!important}
+html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master .v22-shirt-hit-center{grid-column:2!important}
+html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master .v22-shirt-hit-right{grid-column:3!important}
+html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master .v22-shirt-hit-center::after{content:"MI EQUIPO"}
+html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master .v22-shirt-hit-right::after{content:"COMENZAR"}
+html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master .v22-shirt-hit:hover{
+ background:#176de0!important;border-color:#11ecff!important;
+}
+@media(max-width:860px){
+ html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master[data-v23-fantasy]{
+  height:320px!important;max-height:320px!important;
+  grid-template-rows:80px 74px 79px 52px!important;padding:10px 12px!important;
+ }
+ html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master .v22-hero h1{font-size:clamp(26px,6vw,47px)!important}
+ html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master .v22-shirt-hit{
+  height:34px!important;min-height:34px!important;padding:3px 1px!important;
+ }
+ html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master .v22-shirt-hit::after{font-size:7.5px!important}
+ html.ljpc-unified-pc body[data-app-route="fantasy"] #screen > .v22-fantasy-master .v22-sponsor img{width:32px!important;height:32px!important}
+}
+/* The CMS can be shown ONLY after the dedicated gate verifies the session. */
+@layer ljr-reference-surfaces{
+ html.ljpc-unified-pc:not(.ljpc-admin-auth) body #screen .ljr-cms-entry{display:none!important}
+}
+@layer ljr-captured-design{
+ html.ljpc-unified-pc:not(.ljpc-admin-auth) body #screen .ljr-cms-entry,
+ html.ljpc-unified-pc:not(.ljpc-admin-auth) body #screen [data-captured-design] .ljr-cms-entry{display:none!important}
+}
