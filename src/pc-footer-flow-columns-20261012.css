@@ -117,3 +117,56 @@ html.ljpc-unified-pc body.lj-desktop > #ljpc-unified-pc-footer .ljpc-u-sponsor,
 html.ljpc-unified-pc body.lj-desktop > #ljpc-unified-pc-footer .ljpc-u-footer{
  width:100%!important;max-width:100%!important;
 }
+
+
+/* V3: asegurar que el contenido real de CADA ruta PC determine el final
+   del documento; el pie compartido queda después de #screen, no flotando
+   junto a una pantalla corta ni detrás de un contenedor con altura fija. */
+html.ljpc-unified-pc body.lj-desktop{
+  min-height:100vh!important;
+  height:auto!important;
+  overflow-x:clip!important;
+  overflow-y:visible!important;
+  display:flex!important;
+  flex-direction:column!important;
+}
+html.ljpc-unified-pc body.lj-desktop > #app{
+  flex:0 0 auto!important;
+  min-height:0!important;
+  height:auto!important;
+  overflow:visible!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen{
+  position:relative!important;
+  display:flow-root!important;
+  flex:0 0 auto!important;
+  width:100%!important;
+  min-height:0!important;
+  height:auto!important;
+  max-height:none!important;
+  overflow:visible!important;
+  contain:none!important;
+}
+html.ljpc-unified-pc body.lj-desktop > #ljpc-unified-pc-footer{
+  flex:0 0 auto!important;
+  order:9999!important;
+  position:relative!important;
+  inset:auto!important;
+  top:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  left:auto!important;
+  margin-top:18px!important;
+  transform:none!important;
+}
+/* Enrutadores pueden montar el panel final como hijo directo de #screen.
+   Evitar que un layout heredado lo saque del flujo vertical en PC. */
+html.ljpc-unified-pc body.lj-desktop #screen > .ljpc-page-bottom,
+html.ljpc-unified-pc body.lj-desktop #screen > [data-ljpc-bottom-panel]{
+  position:relative!important;
+  inset:auto!important;
+  transform:none!important;
+  clear:both!important;
+  float:none!important;
+  max-height:none!important;
+}
