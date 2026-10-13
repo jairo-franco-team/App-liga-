@@ -232,3 +232,66 @@ html.ljpc-unified-pc body.lj-desktop:is([data-app-route="moments"],[data-app-rou
 html.ljpc-unified-pc body.lj-desktop #screen :is([hidden],.v28-panel:not(.active)){
  display:none!important;
 }
+
+
+/* pc-moments-geometry-safe-20261012-v2
+   The #/moments PC route sometimes carries html.ljpc-forced-desktop and
+   body.ljpc-native-route WITHOUT body[data-app-route="moments"] or
+   html.ljpc-unified-pc during first render. Scope by the original
+   Moments component rather than the transient route attribute.
+   Mobile/apk never receive the forced desktop class.
+   Preserve original sprite aspect ratios, short tiles and click handlers. */
+html.ljpc-forced-desktop body.ljpc-native-route #screen .v26-moments-page,
+html.ljpc-unified-pc body.lj-desktop #screen .v26-moments-page{
+  box-sizing:border-box!important;
+  width:min(1040px,calc(100% - 28px))!important;
+  min-width:0!important;
+  max-width:1040px!important;
+  height:auto!important;
+  margin:0 auto!important;
+  padding:12px 0 20px!important;
+}
+html.ljpc-forced-desktop body.ljpc-native-route #screen .v26-moments-page > .v26-moments-grid,
+html.ljpc-unified-pc body.lj-desktop #screen .v26-moments-page > .v26-moments-grid{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  grid-auto-flow:row!important;
+  grid-auto-rows:max-content!important;
+  align-items:start!important;
+  align-content:start!important;
+  gap:10px!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+}
+html.ljpc-forced-desktop body.ljpc-native-route #screen .v26-moments-page .v26-moment-card,
+html.ljpc-unified-pc body.lj-desktop #screen .v26-moments-page .v26-moment-card{
+  box-sizing:border-box!important;
+  position:relative!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  aspect-ratio:368 / 538!important;
+  border-radius:9px!important;
+  overflow:hidden!important;
+  cursor:pointer!important;
+}
+html.ljpc-forced-desktop body.ljpc-native-route #screen .v26-moments-page .v26-moment-card.v26-moment-short,
+html.ljpc-unified-pc body.lj-desktop #screen .v26-moments-page .v26-moment-card.v26-moment-short{
+  aspect-ratio:368 / 335!important;
+}
+@media(max-width:950px){
+ html.ljpc-forced-desktop body.ljpc-native-route #screen .v26-moments-page > .v26-moments-grid,
+ html.ljpc-unified-pc body.lj-desktop #screen .v26-moments-page > .v26-moments-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ }
+}
+@media(max-width:620px){
+ html.ljpc-forced-desktop body.ljpc-native-route #screen .v26-moments-page > .v26-moments-grid,
+ html.ljpc-unified-pc body.lj-desktop #screen .v26-moments-page > .v26-moments-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:8px!important;
+ }
+}
