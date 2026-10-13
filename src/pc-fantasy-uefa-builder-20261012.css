@@ -463,3 +463,62 @@ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa{
   margin:0!important;border-radius:8px!important;background:#0b194e!important;
  }
 }
+
+
+/* 2026-10-12 — copy the mobile Fantasy pitch/shirt proportions to PC only.
+   The APK and native mobile selectors are intentionally untouched. */
+@media (min-width:1024px){
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-pitch{
+  height:435px!important;min-height:435px!important;
+  padding:9px 8px 5px!important;
+  background:repeating-linear-gradient(180deg,rgba(255,255,255,.035) 0 54px,rgba(0,0,0,.025) 54px 108px),linear-gradient(180deg,#20c7b0 0%,#15ad9c 50%,#149a91 100%)!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-pitch:before{
+  inset:8px 9px!important;border:1px solid rgba(225,255,248,.58)!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-pitch-row{gap:1px!important}
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-slot{width:19%!important;max-width:68px!important}
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-row-del .pcfy-slot{width:28%!important;max-width:82px!important}
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-row-por .pcfy-slot{width:42%!important;max-width:86px!important}
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-slot-main{
+  min-height:0!important;padding:1px 1px 2px!important;border-radius:4px!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-shirt{
+  width:42px!important;height:48px!important;color:#0b7f91!important;
+  filter:drop-shadow(0 2px 2px rgba(0,35,55,.24))!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-shirt>svg{
+  width:42px!important;height:48px!important;
+  fill:#eaf7ff!important;stroke:#82b8d4!important;stroke-width:1.35!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-empty .pcfy-shirt>svg{
+  fill:#d8f0f3!important;stroke:#6eb9c2!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-shirt>img{
+  top:43%!important;width:13px!important;height:13px!important;max-height:13px!important;
+  padding:1px!important;border-radius:50%!important;background:rgba(255,255,255,.88)!important;
+  object-fit:contain!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-plus{
+  top:45%!important;font-size:19px!important;color:#158c9c!important;
+  text-shadow:0 1px rgba(255,255,255,.65)!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-slot-name{
+  position:relative!important;z-index:3!important;width:100%!important;
+  min-height:17px!important;padding:3px 2px!important;border-radius:3px!important;
+  background:#102b68!important;font-size:8px!important;line-height:1.1!important;
+  box-shadow:0 1px 2px rgba(0,30,45,.18)!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-filled .pcfy-slot-name{
+  background:#123577!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-slot-main>small{
+  position:relative!important;z-index:3!important;font-size:7px!important;
+  padding-top:2px!important;line-height:1.05!important;
+ }
+ html.ljpc-fantasy-uefa-active body #ljpc-fantasy-uefa .pcfy-remove{
+  top:0!important;right:0!important;width:15px!important;height:15px!important;
+  font-size:11px!important;line-height:13px!important;border:1px solid #fff!important;
+  box-shadow:0 1px 3px rgba(0,0,0,.18)!important;
+ }
+}
