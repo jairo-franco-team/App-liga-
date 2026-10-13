@@ -13,12 +13,12 @@ const norm=v=>String(v??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLo
 const route=()=>String(location.hash||'').replace(/^#\/?/,'').split('?')[0]||'home';
 const isPC=()=>{const m=new URLSearchParams(location.search).get('mode');return m!=='mobile'&&m!=='apk'&&(m==='desktop'||innerWidth>=1024)};
 const active=()=>isPC()&&['fantasy','fantasyTeam'].includes(route());
-const data=()=>{try{return window.LJR_OFFICIAL_API?.getData?.()||window.LJR_OFFICIAL_DATA||dbFallback||{}}catch(_){return window.LJR_OFFICIAL_DATA||dbFallback||{}}};
+const data=()=>{try{const api=window.LJR_OFFICIAL_API?.getData?.();if(api?.categories)return api;if(window.LJR_OFFICIAL_DATA?.categories)return window.LJR_OFFICIAL_DATA;return dbFallback||{};}catch(_){return window.LJR_OFFICIAL_DATA?.categories?window.LJR_OFFICIAL_DATA:dbFallback||{}}};
 function loadFallback(){
  if(loading||data()?.categories)return;
  loading=true;
  fetch('./data/official-live.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('data');return r.json()})
- .then(d=>{if(d?.categories){dbFallback=d;schedule();}})
+ .then(d=>{if(d?.categories){dbFallback=d;players=catalog();rerender();schedule();}})
  .catch(()=>{}).finally(()=>{loading=false});
 }
 function pPosition(raw){
@@ -253,7 +253,7 @@ function auto(){
    rows.push({...item,slot:s.id});used.add(identity(item));
   }
   if(ok&&rows.length===15){
-   save(rows);state.notice='Plantilla completada. Puedes cambiar cualquier jugador.';rerender();return;
+   if(save(rows)){state.notice='Plantilla completada. Puedes cambiar cualquier jugador.';rerender();}return;
   }
  }
  state.notice='No hay suficientes jugadores compatibles dentro del presupuesto disponible.';rerender();

@@ -1491,18 +1491,29 @@ function smooth(){return !(window.matchMedia&&window.matchMedia('(prefers-reduce
 function setupRail(config){
  const list=byName(config.element),prev=byName(config.prev),next=byName(config.next);
  if(!list||!prev||!next)return;
+ // Read dimensions once per animation frame, and mutate buttons only
+ // when their state changes. Keeps Tailwind's observer and Chrome layout
+ // from receiving redundant mutations on every carousel scroll event.
+ let statusPending=false;
  const status=()=>{
-  const maximum=Math.max(0,list.scrollWidth-list.clientWidth);
-  prev.disabled=list.scrollLeft<=2||maximum<=2;
-  next.disabled=list.scrollLeft>=maximum-2||maximum<=2;
-  prev.setAttribute('aria-label','Deslizar a la izquierda');
-  next.setAttribute('aria-label','Deslizar a la derecha');
+  if(statusPending)return;
+  statusPending=true;
+  requestAnimationFrame(()=>{
+   statusPending=false;
+   const maximum=Math.max(0,list.scrollWidth-list.clientWidth);
+   const disablePrev=list.scrollLeft<=2||maximum<=2;
+   const disableNext=list.scrollLeft>=maximum-2||maximum<=2;
+   if(prev.disabled!==disablePrev)prev.disabled=disablePrev;
+   if(next.disabled!==disableNext)next.disabled=disableNext;
+   if(prev.getAttribute('aria-label')!=='Deslizar a la izquierda')prev.setAttribute('aria-label','Deslizar a la izquierda');
+   if(next.getAttribute('aria-label')!=='Deslizar a la derecha')next.setAttribute('aria-label','Deslizar a la derecha');
+  });
  };
  const move=direction=>{
   const child=list.querySelector(':scope > *');
   const step=child?Math.max(child.getBoundingClientRect().width+14,list.clientWidth*.72):list.clientWidth*.72;
   list.scrollBy({left:direction*step,behavior:smooth()?'smooth':'auto'});
-  requestAnimationFrame(status);
+  status();
  };
  prev.addEventListener('click',()=>move(-1));
  next.addEventListener('click',()=>move(1));
