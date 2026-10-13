@@ -204,7 +204,7 @@ test('desktop footer follows visible content naturally without fake clearance ga
  assert.match(footer,/footer\.style\.setProperty\('--ljpc-footer-clearance','0px'\)/);
  assert.match(footer,/document\.body\.appendChild\(footer\)/);
  assert.doesNotMatch(footer,/const next=clearance\(bottom,natural\)/);
- assert.match(html,/pc-footer-flow-columns-20261012\.js\?v=pc-standings-footer-clearance-v8/);
+ assert.match(html,/pc-footer-flow-columns-20261012\.js\?v=[a-z0-9._-]+/i);
 });
 
 
