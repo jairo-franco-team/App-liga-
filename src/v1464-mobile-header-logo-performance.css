@@ -1,0 +1,46 @@
+/* V1464 — Correcciones acotadas a móvil/APK. No altera el modo PC. */
+@media screen and (max-width: 700px) {
+  /* La cabecera y sus controles permanecen en su propio contexto de apilado. */
+  body[data-app-route="home"] .topbar {
+    position: sticky !important;
+    top: 0 !important;
+    transform: none !important;
+    z-index: 1000 !important;
+    isolation: isolate !important;
+  }
+  body[data-app-route="home"] .topbar .profile-button {
+    position: absolute !important;
+    right: 2.2% !important;
+    top: 12% !important;
+    z-index: 1002 !important;
+    transform: none !important;
+  }
+  /* Las tarjetas/círculos de historias comienzan debajo de la cabecera,
+     no pueden quedar por encima de ella ni recortarse en su borde. */
+  body[data-app-route="home"] #screen > .stories {
+    position: relative !important;
+    top: auto !important;
+    transform: none !important;
+    z-index: 1 !important;
+    overflow: visible !important;
+    margin-top: 0 !important;
+    padding-top: 3px !important;
+  }
+  body[data-app-route="home"] #screen > .stories :is(.story,.story-card,.story-item) {
+    position: relative;
+    z-index: 1;
+  }
+}
+/* Los logos históricos conservan la transparencia que traiga el archivo PNG. */
+.v704-legacy-logo,
+.v704-ranking-logo,
+.v704-era-logo,
+.v704-season-logo,
+.v704-season-card-logo,
+.v704-final-logo,
+.v704-directory-logo,
+.v704-retro-logo,
+.v704-record-logo {
+  background: transparent !important;
+  object-fit: contain;
+}
