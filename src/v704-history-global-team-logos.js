@@ -83,7 +83,9 @@ const LEGACY_CARD_LOGOS={
   'mazacotes':'./assets/history/team-logos/legacy-2015-mazacotes.webp',
   'mazacotes fc':'./assets/history/team-logos/legacy-2015-mazacotes.webp',
 
-  'lobos cdg':'./assets/official-logos/lobos-cdg.png',
+  'lobos cdg':'./assets/season-2026/lobos-cdg.webp',
+  'galacticos':'./assets/season-2026/galacticos.webp',
+  'galacticos de pozos':'./assets/season-2026/galacticos.webp',
   'lobos jrs':'./assets/teams/lobos-jr-cerrito-gasca.webp',
   'lobos jr':'./assets/teams/lobos-jr-cerrito-gasca.webp'
 };
