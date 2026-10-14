@@ -327,8 +327,8 @@ function patchArchives(root){
 
     if(!keep){
       keep=img(src,name,'v704-legacy-logo');
-      keep.loading='eager';
-      keep.fetchPriority='high';
+      keep.loading='lazy';
+      keep.fetchPriority='low';
       holder.replaceChildren(keep);
     }else{
       current.filter(x=>x!==keep).forEach(x=>x.remove());
@@ -336,9 +336,9 @@ function patchArchives(root){
       keep.src=src;
       keep.alt=name;
       keep.className='v704-legacy-logo';
-      keep.loading='eager';
+      keep.loading='lazy';
       keep.decoding='async';
-      keep.fetchPriority='high';
+      keep.fetchPriority='low';
       keep.dataset.v704HistoryLogo='1';
     }
 
