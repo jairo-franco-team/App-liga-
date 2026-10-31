@@ -84,7 +84,6 @@ function dateLabel(k){
  const d=new Date(k+'T12:00:00');
  return new Intl.DateTimeFormat('es-MX',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(d);
 }
-
 function fixtureIcon(k){
  const d={bell:'M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9 M10 21h4',calendar:'M3 5h18v16H3z M7 3v4 M17 3v4 M3 10h18 M12 13v5 M9.5 15.5h5',filter:'M4 6h16 M7 12h10 M10 18h4',prev:'m15 18-6-6 6-6',next:'m9 18 6-6-6-6'};
  return '<svg class="u18fx-icon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+d[k]+'"/></svg>';
@@ -126,9 +125,6 @@ function eventCards(){
  }).join('')+'</div></section>').join('');
 }
 function bracket(){
- // The competition mobile bracket is the canonical League design (with trophy).
- // Reuse its rendering, official fixtures, club crests and 5 interactive stages;
- // PC only: do not fork, repaint or modify the original mobile route.
  const ko=window.LJR_KNOCKOUT;
  if(ko?.render){
   let view='';
@@ -142,7 +138,7 @@ function bracket(){
   if(view && route()==='pc-standings')return '<section class="u18fx-mobile-knockout u18-standings-bracket" aria-label="Fase eliminatoria de '+escape(CAT[state.cat])+'">'+
   '<div class="u18-ko-intro">La información es provisional y se actualizará cuando la Liga confirme los enfrentamientos. Las rutas plateada y azul son una representación visual, no un sorteo oficial.</div>'+
   view+'<p class="u18-ko-footer">Los cruces, fechas y resultados no publicados permanecen por confirmar. <button type="button" data-u18-go="pc-draws">Ver detalles del cuadro →</button></p></section>';
- if(view)return '<section class="u18fx-mobile-knockout" aria-label="Cuadro oficial y liguilla '+escape(CAT[state.cat])+'">'+
+  if(view)return '<section class="u18fx-mobile-knockout" aria-label="Cuadro oficial y liguilla '+escape(CAT[state.cat])+'">'+
    '<header class="u18fx-ko-heading"><div><span>COMPETICIÓN · '+escape(CAT[state.cat])+'</span><h2>Cuadro y liguilla</h2>'+
    '<p>Mismo cuadro que Competición: etapas, rutas y trofeo. Los cruces se muestran según los datos disponibles.</p></div>'+
    '<button type="button" data-u18-go="pc-draws">Ver detalles del cuadro '+fixtureIcon('next')+'</button></header>'+
@@ -152,7 +148,7 @@ function bracket(){
  '<div class="u18fx-draw-date"><h2>Sorteo de la fase eliminatoria</h2><small>Información oficial de '+escape(CAT[state.cat])+'</small></div>'+
  '<article class="u18fx-draw-card"><header><h3>Sorteo de clasificación</h3><p>Aún no se publicaron enfrentamientos confirmados de esta fase.</p>'+
  '<strong>Resultados del sorteo</strong></header>'+
- '<div class="u18fx-draw-pair-grid">'+['Octavos','Cuartos','Semifinales','Final'].map((label,i)=>
+ '<div class="u18fx-draw-pair-grid">'+['Octavos','Cuartos','Semifinales','Final'].map(label=>
  '<div class="u18fx-draw-pair"><span>'+escape(label)+'</span><span class="u18fx-draw-shield" aria-hidden="true">♢</span><b>Por confirmar</b></div>').join('')+'</div>'+
  '<div class="u18fx-draw-actions"><button type="button" data-u18-go="pc-draws">Ver detalles del sorteo</button></div></article>'+
  '<div class="u18fx-draw-tools"><p>El cuadro solo muestra fases generales. No se inventan cruces, equipos ni fechas.</p>'+
@@ -182,7 +178,6 @@ function fixturesPage(){
  '<div class="u18-bound">'+tabs+actions+'</div>'+(state.fixturesTab==='matches'?dateNav(f):'')+'</header>'+
  '<main class="u18-bound u18fx-content">'+(state.fixturesTab==='matches'?quickFilters+eventCards():bracket())+'</main>'+modal+'</section>';
 }
-/* Recent-result circles use only actual played fixtures with numeric scores. */
 function formForTeam(team, playedMatches){
  const key=norm(team);
  const latest=playedMatches.filter(m=>norm(m.home)===key||norm(m.away)===key)
@@ -224,7 +219,6 @@ function standingsTable(rows,simulated=false){
  '</tbody></table></div>';
 }
 function tiebreakerTable(rows){
- // These are comparison metrics, NOT a replacement for the League's official tie rules.
  const games=fixtures().filter(m=>m.played&&Number.isFinite(m.hs)&&Number.isFinite(m.as));
  const away=new Map(),recorded=new Map();
  for(const m of games){
@@ -240,7 +234,7 @@ function tiebreakerTable(rows){
   const equalPoints=(rows[i-1]&&num(rows[i-1][9])===num(r[9]))||(rows[i+1]&&num(rows[i+1][9])===num(r[9]));
   const zone=i===0||i===8?'<tr class="u18-criteria-zone"><th colspan="8" scope="rowgroup">POSICIONES '+(i+1)+' A '+Math.min(i===0?8:rows.length,rows.length)+' · '+escape(CAT[state.cat])+'</th></tr>':'';
   return zone+'<tr><td class="u18-place">'+(i+1)+'</td><td class="u18-team"><button type="button" class="u18-team-open" data-u18-team="'+escape(r[1])+'">'+crest(r[1])+'<b>'+escape(r[1])+'</b></button></td>'+
-  values.map((v,j)=>'<td'+(equalPoints&&v!=='—'?' class="u18-tie-highlight"':'')+'><span>'+escape(v??'—')+'</span></td>').join('')+'</tr>';
+  values.map(v=>'<td'+(equalPoints&&v!=='—'?' class="u18-tie-highlight"':'')+'><span>'+escape(v??'—')+'</span></td>').join('')+'</tr>';
  }).join('');
  return '<div class="u18-criteria-description">Estadísticas para comparar posiciones e igualdad de puntos. La resolución oficial de empates corresponde al reglamento de la Liga.</div>'+
   '<div class="u18-tablewrap u18-criteria-wrap"><table class="u18-table u18-criteria-table"><thead><tr>'+heads.map(x=>'<th scope="col">'+x+'</th>').join('')+'</tr></thead><tbody>'+html+'</tbody></table></div>'+
@@ -312,12 +306,12 @@ function drawsPage(){
     '<p>El diseño clásico se conserva para administración.</p><button type="button" data-u18-open-draw-original>Mostrar herramientas anteriores</button>');
 }
 const vids=[
- ['Destacados','./public/video-hero-reference.webp','video','Clips y transmisiones de la Liga'],
+ ['Destacados','./video-hero-reference.webp','video','Clips y transmisiones de la Liga'],
  ['Momentos de la Liga','./assets/moments/moments-original-a.png','moments','Recuerdos y celebraciones'],
- ['Partidos clásicos','./public/home-feature-reference.webp','history','Archivo histórico de encuentros'],
+ ['Partidos clásicos','./home-feature-reference.webp','history','Archivo histórico de encuentros'],
  ['Finales','./assets/home-players-user.png','history','Campeones y partidos decisivos'],
  ['Goles destacados','./assets/moments/moments-original-b.png','moments','Momentos de fútbol local'],
- ['Noticias en vídeo','./public/video-hero-reference.webp','news','Publicaciones y avisos de la Liga']
+ ['Noticias en vídeo','./video-hero-reference.webp','news','Publicaciones y avisos de la Liga']
 ];
 function videoPage(){
  const rows=[
@@ -329,10 +323,9 @@ function videoPage(){
  const action=v=>v[2]==='video'?'data-u18-show-original':'data-u18-go="'+v[2]+'"';
  const card=v=>'<button class="u18-videocard" type="button" '+action(v)+' aria-label="'+escape(v[0])+'"><span class="u18-poster"><img loading="lazy" src="'+v[1]+'" alt="" onerror="this.style.display=\'none\'"><span class="u18-poster-play" aria-hidden="true">▶</span></span><b>'+escape(v[0])+'</b><small>'+escape(v[3])+'</small></button>';
  const rail=(section,i)=>'<section class="u18-tv-rail" data-u18-tv-rail="'+i+'"><div class="u18-video-title"><h2>'+section.title+'</h2></div><div class="u18-tv-carousel"><button type="button" class="u18-tv-arrow" data-u18-tv-shift="-1" data-u18-tv-target="'+i+'" aria-label="Desplazar hacia atrás">‹</button><div class="u18-video-grid" id="u18-tv-row-'+i+'">'+section.cards.map(card).join('')+'</div><button type="button" class="u18-tv-arrow" data-u18-tv-shift="1" data-u18-tv-target="'+i+'" aria-label="Desplazar hacia adelante">›</button></div></section>';
- return '<section class="u18-video u18-tv-uefa"><div class="u18-videohero"><div><small>LIGA TV · JUVENTINO ROSAS</small><h1>Los mejores momentos de la Liga</h1><p>Partidos, finales, historias y momentos del fútbol de Juventino Rosas</p><button type="button" data-u18-show-original><span aria-hidden="true">▶</span> Ver Liga TV</button><div class="u18-tv-hero-dots" aria-hidden="true"><i class="active"></i><i></i><i></i><i></i><i></i></div></div></div>'+
+ return '<section class="u18-video u18-tv-uefa"><div class="u18-videohero"><img loading="eager" src="./deportiva-sur-partido.jpg" alt=""><div><small>LIGA TV · JUVENTINO ROSAS</small><h1>Los mejores momentos de la Liga</h1><p>Partidos, finales, historias y momentos del fútbol de Juventino Rosas</p><button type="button" data-u18-show-original><span aria-hidden="true">▶</span> Ver Liga TV</button><div class="u18-tv-hero-dots" aria-hidden="true"><i class="active"></i><i></i><i></i><i></i><i></i></div></div></div>'+
  '<div class="u18-bound">'+rows.map(rail).join('')+'<button type="button" class="u18-video-archive" data-u18-show-original>Abrir reproductor y archivo original de Liga TV ↗</button></div></section>';
 }
-
 function teamsData(){
  const all=new Map();
  for(const [id,c] of Object.entries(source()?.categories||{})){
@@ -362,12 +355,12 @@ function teamsPage(){
 }
 function aboutPage(){
  const cards=[
- ['Guía de campos','Consulta las sedes y sus accesos.','venues','./public/deportiva-sur-partido.jpg'],
- ['Reglamento','Normas oficiales de la Liga Juventino Rosas.','rulebook','./public/home-feature-reference.webp'],
+ ['Guía de campos','Consulta las sedes y sus accesos.','venues','./deportiva-sur-partido.jpg'],
+ ['Reglamento','Normas oficiales de la Liga Juventino Rosas.','rulebook','./home-feature-reference.webp'],
  ['Historia de la Liga','Temporadas, finales y campeones.','history','./assets/home-players-user.png'],
- ['Partidos importantes','Consulta el calendario oficial de encuentros.','pc-fixtures','./public/deportiva-sur-partido.jpg'],
- ['Estadísticas y clasificación','Datos verificados por categoría.','pc-data','./public/home-feature-reference.webp'],
- ['Vídeos de la Liga','Jugadas, momentos y recuerdos.','video','./public/video-hero-reference.webp'],
+ ['Partidos importantes','Consulta el calendario oficial de encuentros.','pc-fixtures','./deportiva-sur-partido.jpg'],
+ ['Estadísticas y clasificación','Datos verificados por categoría.','pc-data','./home-feature-reference.webp'],
+ ['Vídeos de la Liga','Jugadas, momentos y recuerdos.','video','./video-hero-reference.webp'],
  ['Noticias y avisos','Comunicados oficiales de la competición.','news','./assets/moments/moments-original-a.png'],
  ['Más títulos','Consulta el archivo de reconocimientos.','history','./assets/moments/moments-original-b.png']
  ];
@@ -376,9 +369,6 @@ function aboutPage(){
  '<img loading="lazy" src="'+img+'" alt=""><span><b>'+escape(title)+'</b><small>'+escape(detail)+'</small></span><em aria-hidden="true">›</em></button>').join('')+'</div>',false);
 }
 function markup(){return route()==='pc-fixtures'?fixturesPage():route()==='pc-standings'?standingsPage():route()==='pc-draws'?drawsPage():route()==='teams'?teamsPage():route()==='about'?aboutPage():videoPage();}
-/* Desktop standings only. Later global PC styles must not recolor the light
-   UEFA-like bracket. Inline important declarations beat earlier/later !important
-   selectors; markup is discarded when leaving the PC standings route. */
 function paintPcStandingsBracket(root){
  if(route()!=='pc-standings'||!desktop()||!root)return;
  const bracket=root.querySelector('.u18-standings-bracket');
@@ -416,12 +406,9 @@ function repaint(){
  original.innerHTML=markup();
  const ko=original.querySelector('.u18fx-mobile-knockout .ljr-knockout');
  if(ko&&window.LJR_KNOCKOUT?.init)window.LJR_KNOCKOUT.init(ko);
-  paintPcStandingsBracket(original);
+ paintPcStandingsBracket(original);
  if(seen)original.querySelector('[data-u18-score="'+seen.id+'"][data-side="'+seen.side+'"]')?.focus();
 }
-/* El contenido original de PC comparte #screen con el diseño UEFA. Nunca
-   exponer dos listas completas ni tarjetas administrativas sueltas.
-   Conservar DOM original para otras rutas, restaurando estilos al salir. */
 function isolateFixturesLegacy(screen,enabled){
  if(!screen)return;
  for(const child of Array.from(screen.children)){
@@ -463,7 +450,6 @@ function sync(){
   if(currentRoute==='pc-fixtures')try{window.scrollTo({top:0,behavior:'instant'});}catch(_){}
   screen.querySelector(':scope > .u18-root')?.classList.remove('u18-show-classic');
  }
- // Reassert the PC-only marker only when needed: other desktop shell updates can reset <html> classes.
  if(!document.documentElement.classList.contains('ljpc18-active'))document.documentElement.classList.add('ljpc18-active');
  if(document.documentElement.dataset.ljpc18Route!==route())document.documentElement.dataset.ljpc18Route=route();
  let root=screen.querySelector(':scope > .u18-root');
@@ -487,8 +473,6 @@ function localClick(e){
  const button=e.target.closest?.('.u18-root button, .u18-root [data-u18-dismiss]');
  if(!button)return;
  const command=button.closest('button')||button;
- // Stage tabs are owned by the original mobile knockout; allow its native
- // event handler to handle scrolling and selection, without PC delegation.
  if(command.closest('.ljr-ko-tabs'))return;
  if(command.matches('[data-u18-dismiss]')){
   if(e.target!==command)return;
@@ -524,7 +508,6 @@ function localClick(e){
   }));}catch(_){}
   go('match');return;
  }
-
  if(d.u18StandTab){state.standTab=d.u18StandTab;repaint();return;}
  if(d.u18StandView){state.standMode=d.u18StandView==='criteria'?'criteria':'table';repaint();return;}
  if(d.u18DrawTab){state.drawTab=d.u18DrawTab;repaint();return;}
@@ -570,7 +553,6 @@ window.addEventListener('resize',schedule);
 window.addEventListener('ljr:official-data',()=>{db=null;lastRef=null;schedule();});
 function boot(){
  schedule();
- // The desktop shell may change html classes after the UEFA view mounts. Restore only in PC routes.
  if(typeof MutationObserver==='function')new MutationObserver(()=>{
   if(active()&&(!document.documentElement.classList.contains('ljpc18-active')||document.documentElement.dataset.ljpc18Route!==route()))schedule();
  }).observe(document.documentElement,{attributes:true,attributeFilter:['class','data-ljpc18-route']});
