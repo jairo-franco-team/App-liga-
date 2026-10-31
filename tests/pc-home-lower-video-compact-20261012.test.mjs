@@ -32,6 +32,5 @@ test('CSS is loaded once before final profile stylesheet',()=>{
  const path='src/pc-home-lower-video-compact-20261012.css';
  assert.equal(html.split(path).length-1,1);
  assert.ok(html.indexOf(path)<html.indexOf('src/profile-first-screenshot-restore.css'));
- const tail=html.slice(html.indexOf('src/profile-first-screenshot-restore.css')).replace(/<link[^>]*v1464-mobile-header-logo-performance\.css[^>]*>/gi,'');
- assert.doesNotMatch(tail,/<link\s+rel="stylesheet"/);
+ assert.doesNotMatch(html.slice(html.indexOf('src/profile-first-screenshot-restore.css')),/<link\s+rel="stylesheet"/);
 });

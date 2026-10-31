@@ -1,426 +1,272 @@
-/* ==========================================================================
-   PC HOME ONLY — Paleta de referencia UEFA Champions League (es.uefa.com)
-   y scroll ligero sin repintados costosos.
-   Este archivo solo se carga dentro de pc-exact-original-20261011.html
-   (iframe de Inicio en escritorio). No se incluye en index.html ni afecta
-   a móvil o APK.
-   ========================================================================== */
-
-/* Evitar múltiples desenfoques de 80-100 px repintados durante el scroll. */
-#root .ucl :is([data-name="background glows container"],[data-name="background glow wrapper"],[data-name="footer atmosphere wrapper"])
- [data-name*="glow orb"],
-#root .ucl [data-name*="glow"]{
- filter:none!important;
- -webkit-filter:none!important;
- backdrop-filter:none!important;
- -webkit-backdrop-filter:none!important;
- pointer-events:none!important;
-}
-
-#root .ucl [data-name="match card 1"],
-#root .ucl [data-name="match card 2"],
-#root .ucl [data-name="match card 3"],
-#root .ucl [data-name="match card 4"],
-#root .ucl [data-name="match card 5"],
-#root .ucl [data-name="match card 6"],
-#root .ucl [data-name="featured article card"],
-#root .ucl [data-name="headlines card"],
-#root .ucl [data-name*="news card"],
-#root .ucl [data-name*="video card"],
-#root .ucl [data-name*="moment card"]{
- backdrop-filter:none!important;
- -webkit-backdrop-filter:none!important;
-}
-
-/* Lienzo general al estilo UEFA Champions League: cabecera/hero azul noche
-   profundo + secciones editoriales sobre gris frío claro + bloque de vídeo en
-   azul real intenso + cierre nocturno. */
-html,
-body,
-#root,
+/* Portada PC dentro del iframe pc-exact-original-20261011.html.
+   Referencia: diseño oficial UEFA Champions League (es.uefa.com/uefachampionsleague/).
+   Ninguna regla afecta al shell móvil ni al APK.
+   Mantener los <a>, data-pc-route, carruseles y partidos sin alteraciones. */
+:root{color-scheme:light}
+html,body{scroll-behavior:auto!important}
 #root .ucl[data-name="page layout container"]{
- background:#f1f3f8!important;
- color:#0c1333!important;
- font-family:"Inter","Segoe UI",Roboto,Helvetica,Arial,sans-serif!important;
+ --green:#00e5ff;--blue:#0e3eda;--pc-paper:#f2f3f7;--pc-ink:#070e3d;
+ --pc-blue:#0e3eda;--pc-navy:#040836;
+ background:var(--pc-paper)!important;color:var(--pc-ink)!important;
 }
-
-/* Hero superior + tira de historias: azul medianoche y azul real UEFA */
 #root .ucl [data-name="stories wrapper"]{
  background:linear-gradient(180deg,#030726 0%,#061158 56%,#091c84 100%)!important;
- border-bottom:1px solid rgba(0,229,255,.16)!important;
- padding-top:10px!important;
- padding-bottom:10px!important;
+ border-bottom:1px solid rgba(0,229,255,.2)!important;
 }
-
 #root .ucl [data-name="stories list container"] [data-name*="story ring"]{
  background:linear-gradient(135deg,#00e5ff 0%,#1448ff 54%,#0a1e8f 100%)!important;
- padding:2.5px!important;
- border-radius:999px!important;
- box-shadow:0 0 12px rgba(0,229,255,.28)!important;
+ box-shadow:0 0 12px rgba(0,229,255,.32)!important;
 }
-
-#root .ucl [data-name="stories list container"] [data-name*="story item"]:hover [data-name*="story ring"]{
- background:linear-gradient(135deg,#5ef2ff 0%,#00e5ff 48%,#2b5cff 100%)!important;
- transform:translateY(-1px);
-}
-
-#root .ucl [data-name="stories list container"] span{
- color:#e8f0ff!important;
- font-weight:600!important;
- letter-spacing:.01em!important;
-}
-
+#root .ucl [data-name="hero and content section"],
 #root .ucl [data-name="hero section container"]{
  background:linear-gradient(180deg,#061158 0%,#0b219c 36%,#050a3c 100%)!important;
- border-bottom:1px solid rgba(0,229,255,.2)!important;
- position:relative!important;
- box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 14px 32px rgba(3,7,38,.18)!important;
+ color:#f7faff!important;overflow:hidden;
+ border-bottom:1px solid rgba(0,229,255,.22)!important;
 }
-
-#root .ucl [data-name="background glows container"]{
- background:
-  radial-gradient(circle at 18% 18%,rgba(0,229,255,.22),transparent 42%),
-  radial-gradient(circle at 82% 24%,rgba(24,78,255,.38),transparent 46%),
-  linear-gradient(180deg,#040836 0%,#0a1f96 46%,#040938 100%)!important;
- opacity:1!important;
-}
-
 #root .ucl [data-name="featured article card"]{
  background:#050b3b!important;
- border:1px solid rgba(0,229,255,.24)!important;
+ border:1px solid rgba(0,229,255,.28)!important;
  border-radius:14px!important;
  box-shadow:0 18px 40px rgba(2,6,32,.48)!important;
- overflow:hidden!important;
 }
-
-#root .ucl [data-name="featured article card"] [data-name="featured overlay gradient"]{
- background:linear-gradient(0deg,rgba(3,7,38,.96) 0%,rgba(6,16,74,.62) 48%,rgba(5,10,44,.08) 100%)!important;
-}
-
 #root .ucl [data-name="featured article card"] [data-name="featured category"]{
  background:rgba(0,229,255,.16)!important;
  color:#00e5ff!important;
- border:1px solid rgba(0,229,255,.42)!important;
- border-radius:999px!important;
- padding:3px 10px!important;
- font-weight:700!important;
- text-transform:uppercase!important;
- letter-spacing:.05em!important;
+ border:1px solid rgba(0,229,255,.44)!important;
 }
-
 #root .ucl [data-name="headlines card"]{
  background:linear-gradient(180deg,#08135c 0%,#050a3a 100%)!important;
- border:1px solid rgba(0,229,255,.22)!important;
+ border:1px solid rgba(0,229,255,.24)!important;
  border-radius:14px!important;
  box-shadow:0 18px 36px rgba(3,8,38,.42)!important;
 }
-
 #root .ucl [data-name="headlines title"]{
  color:#ffffff!important;
- font-weight:800!important;
- letter-spacing:.02em!important;
- border-bottom:1px solid rgba(0,229,255,.18)!important;
- padding-bottom:8px!important;
+ border-bottom:1px solid rgba(0,229,255,.2)!important;
 }
-
-#root .ucl [data-name*="headline item"]{
- border-bottom:1px solid rgba(255,255,255,.08)!important;
- transition:background-color .16s ease!important;
-}
-
-#root .ucl [data-name*="headline item"]:hover{
- background:rgba(0,229,255,.08)!important;
-}
-
-#root .ucl [data-name*="headline item"] span{
- color:#f4f7ff!important;
-}
-
 #root .ucl [data-name="view more button"]{
  color:#00e5ff!important;
- font-weight:700!important;
 }
-
-/* Momentos: superficie editorial clara como la sección bajo el hero en UEFA */
-#root .ucl [data-name="moments section container"]{
- background:#f1f3f8!important;
- border-top:0!important;
- border-bottom:1px solid #dfe4f0!important;
- content-visibility:auto;
- contain-intrinsic-size:320px;
+/* Evitar múltiples desenfoques de 80-100 px repintados durante el scroll. */
+#root .ucl :is([data-name="background glows container"],[data-name="background glow wrapper"],[data-name="footer atmosphere wrapper"])
+ [data-name*="glow orb"],
+#root .ucl :is([data-name="background glows container"],[data-name="background glow wrapper"],[data-name="footer atmosphere wrapper"])
+ [data-name*="glow"][class*="blur-"]{
+ display:none!important;
+ filter:none!important;
+ backdrop-filter:none!important;
 }
-
-#root .ucl [data-name="moments section container"] [data-name="moments title"]{
- color:#070e3d!important;
- font-weight:800!important;
- letter-spacing:-.01em!important;
-}
-
-#root .ucl [data-name*="moment card"]{
- border:1px solid rgba(11,26,94,.16)!important;
- border-radius:12px!important;
- box-shadow:0 8px 20px rgba(7,16,64,.12)!important;
- overflow:hidden!important;
- transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease!important;
-}
-
-#root .ucl [data-name*="moment card"]:hover{
- transform:translateY(-2px);
- border-color:#0e3eda!important;
- box-shadow:0 12px 26px rgba(14,62,218,.22)!important;
-}
-
-#root .ucl [data-name="moments section container"] [data-name="previous moments button"]{
- background:#e3e8f4!important;
- border:1px solid #cbd3e6!important;
- color:#0b1548!important;
- border-radius:999px!important;
-}
-
-#root .ucl [data-name="moments section container"] [data-name="next moments button"]{
- background:linear-gradient(135deg,#0e3eda 0%,#1d56ff 100%)!important;
- border:1px solid #0e3eda!important;
- color:#fff!important;
- border-radius:999px!important;
- box-shadow:0 4px 12px rgba(14,62,218,.3)!important;
-}
-
-/* Noticias: tarjetas blancas con texto azul marino oscuro sobre lienzo #f1f3f8 */
+#root .ucl [data-name="moments section container"],
 #root .ucl [data-name="news section container"]{
- background:#f1f3f8!important;
- border-top:0!important;
- border-bottom:1px solid #dfe4f0!important;
+ background:#f1f3f8!important;color:var(--pc-ink)!important;
+ border:0!important;box-shadow:none!important;
  content-visibility:auto;
- contain-intrinsic-size:560px;
 }
-
-#root .ucl [data-name="news section container"] [data-name="section title"]{
- color:#070e3d!important;
- font-weight:800!important;
- letter-spacing:-.01em!important;
+#root .ucl [data-name="moments section container"]{
+ padding-top:18px!important;padding-bottom:8px!important;
 }
-
-#root .ucl [data-name="news section container"] :is(
- [data-name="featured news card 1"],
- [data-name="featured news card 2"],
- [data-name="news card 1"],
- [data-name="news card 2"],
- [data-name="news card 3"],
- [data-name="news card 4"],
- [data-name="news card 5"],
- [data-name="news card 6"],
- [data-name="news card 7"],
- [data-name="news card 8"]
-){
- background:#ffffff!important;
- border:1px solid #dde3f0!important;
- border-radius:12px!important;
- box-shadow:0 6px 18px rgba(8,16,58,.06)!important;
- color:#0c1333!important;
- overflow:hidden!important;
- transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease!important;
+#root .ucl [data-name="news section container"]{
+ padding-top:10px!important;padding-bottom:22px!important;
 }
-
-#root .ucl [data-name="news section container"] :is(
- [data-name="featured news card 1"],
- [data-name="featured news card 2"],
- [data-name="news card 1"],
- [data-name="news card 2"],
- [data-name="news card 3"],
- [data-name="news card 4"],
- [data-name="news card 5"],
- [data-name="news card 6"],
- [data-name="news card 7"],
- [data-name="news card 8"]
-):hover{
- transform:translateY(-2px);
- border-color:#1438d8!important;
- box-shadow:0 12px 26px rgba(14,62,218,.13)!important;
+#root .ucl [data-name="moments section container"] [data-name="section title"],
+#root .ucl [data-name="news section container"] [data-name="section title"],
+#root .ucl [data-name="moments section container"] [data-name="moments title"]{
+ color:#070e3d!important;font-size:18px!important;font-weight:800!important;
+ line-height:1.28!important;text-shadow:none!important;
 }
-
+#root .ucl [data-name="moments section container"] [data-name="view all link"]{
+ color:#0e3eda!important;font-weight:700!important;
+}
+#root .ucl [data-name="moments grid container"]{
+ display:flex!important;gap:9px!important;overflow-x:auto!important;
+ overflow-y:hidden!important;scroll-snap-type:x proximity!important;
+ padding:2px 0 7px!important;overscroll-behavior-x:contain!important;
+ scrollbar-width:none!important;-webkit-overflow-scrolling:touch;
+}
+#root .ucl [data-name="moments grid container"]::-webkit-scrollbar{display:none}
+#root .ucl [data-name="moments grid container"]>a{
+ box-sizing:border-box!important;flex:0 0 clamp(115px,17.5%,190px)!important;
+ width:clamp(115px,17.5%,190px)!important;
+ scroll-snap-align:start!important;min-width:0!important;
+ height:183px!important;min-height:183px!important;
+ border:1px solid rgba(14,62,218,.18)!important;border-radius:12px!important;
+ box-shadow:0 6px 16px rgba(7,14,61,.1)!important;
+}
+#root .ucl [data-name="moments grid container"]>a:hover{
+ border-color:#0e3eda!important;
+}
+#root .ucl [data-name="moments grid container"]>a [data-name="card image"]{
+ width:100%!important;height:100%!important;object-fit:cover!important;
+}
+#root .ucl [data-name="moments grid container"] [data-name="card badge"]{
+ background:#00e5ff!important;color:#040836!important;font-weight:800!important;
+}
+#root .ucl [data-name="news section container"] [data-name="news card bottom container"],
 #root .ucl [data-name="news section container"] [data-name="news card content"],
-#root .ucl [data-name="news section container"] [data-name="news card bottom container"]{
- background:#ffffff!important;
+#root .ucl [data-name="news section container"] [data-name^="news card "]:not([data-name="news card image"]){
+ box-shadow:0 6px 18px rgba(8,16,58,.06)!important;
+ border-radius:12px!important;
 }
-
+#root .ucl [data-name="news section container"] [data-name="news card bottom container"],
+#root .ucl [data-name="news section container"] [data-name="news card content"]{
+ background:#fff!important;color:var(--pc-ink)!important;
+}
 #root .ucl [data-name="news section container"] [data-name="news card title"],
 #root .ucl [data-name="news section container"] [data-name="featured news card 2"] [data-name="news card title"]{
- color:#070e3d!important;
- font-weight:700!important;
+ color:#070e3d!important;font-weight:750!important;
 }
-
 #root .ucl [data-name="news section container"] [data-name="news card category"]{
- color:#0e3eda!important;
- font-weight:700!important;
- text-transform:uppercase!important;
- letter-spacing:.04em!important;
+ color:#0e3eda!important;font-weight:750!important;text-transform:uppercase!important;
 }
-
-#root .ucl [data-name="news section container"] [data-name="featured news card 1"] [data-name="news card title"]{
- color:#ffffff!important;
+#root .ucl [data-name="news section container"] [data-name="view all news link"]{
+ color:#0e3eda!important;background:transparent!important;
+ border:1px solid #0e3eda!important;border-radius:999px!important;
 }
-
-#root .ucl [data-name="news section container"] [data-name="featured news card 1"] [data-name="news card category"]{
- color:#00e5ff!important;
+#root .ucl [data-name="news section container"] :is(
+ [data-name="news row 1 container"],[data-name="news row 2 container"]){
+ gap:10px!important;
 }
-
-/* Vídeos destacados: bloque azul real UEFA (UEFA.tv style) */
 #root .ucl [data-name="video section container"]{
+ position:relative!important;margin-top:0!important;
+ padding-top:0!important;padding-bottom:0!important;
  background:linear-gradient(135deg,#123cff 0%,#0b1ca8 44%,#060d73 100%)!important;
- border-top:1px solid rgba(0,229,255,.22)!important;
- border-bottom:1px solid rgba(255,255,255,.14)!important;
- box-shadow:inset 0 1px 0 rgba(255,255,255,.1)!important;
+ color:white!important;overflow:hidden;
+ border-top:1px solid rgba(0,229,255,.24)!important;
  content-visibility:auto;
- contain-intrinsic-size:340px;
 }
-
+#root .ucl [data-name="video section container"]>[data-name="background glow wrapper"]{
+ display:none!important;
+}
 #root .ucl [data-name="video highlights section"]{
- background:transparent!important;
+ padding-top:25px!important;padding-bottom:27px!important;
+ color:#fff!important;min-width:0!important;
 }
-
 #root .ucl [data-name="video highlights section"] [data-name="section title"]{
+ color:#fff!important;font-weight:800!important;font-size:18px!important;
+}
+#root .ucl [data-name="video highlights grid"],
+#root .ucl [data-name="spotlight videos grid"]{
+ display:flex!important;gap:11px!important;
+ overflow-x:auto!important;overflow-y:hidden!important;
+ scroll-snap-type:x proximity!important;overscroll-behavior-x:contain!important;
+ padding:2px 1px 10px!important;scrollbar-width:none!important;
+ -webkit-overflow-scrolling:touch;
+}
+#root .ucl [data-name="video highlights grid"]::-webkit-scrollbar,
+#root .ucl [data-name="spotlight videos grid"]::-webkit-scrollbar{display:none}
+#root .ucl [data-name="video highlights grid"]>a,
+#root .ucl [data-name="spotlight videos grid"]>a{
+ box-sizing:border-box!important;
+ flex:0 0 calc((100% - 22px)/3)!important;
+ width:calc((100% - 22px)/3)!important;min-width:0!important;
+ scroll-snap-align:start!important;box-shadow:none!important;
+ border-radius:12px!important;backdrop-filter:none!important;
+ -webkit-backdrop-filter:none!important;
+}
+#root .ucl [data-name="video highlights grid"]>a{
+ background:#081254!important;border:1px solid rgba(0,229,255,.24)!important;
  color:#fff!important;
- font-weight:800!important;
- font-size:18px!important;
- letter-spacing:-.01em!important;
 }
-
-#root .ucl [data-name="video highlights section"] [data-name="see more link"]{
- color:#00e5ff!important;
- font-weight:700!important;
-}
-
-#root .ucl [data-name="video highlights section"] [data-name*="video card"]{
- background:#081254!important;
- border:1px solid rgba(0,229,255,.22)!important;
- border-radius:12px!important;
- box-shadow:0 10px 24px rgba(3,7,38,.36)!important;
- overflow:hidden!important;
- transition:transform .18s ease,border-color .18s ease!important;
-}
-
-#root .ucl [data-name="video highlights section"] [data-name*="video card"]:hover{
- transform:translateY(-2px);
+#root .ucl [data-name="video highlights grid"]>a:hover{
  border-color:#00e5ff!important;
 }
-
-#root .ucl [data-name="video highlights section"] [data-name="video card content"]{
- background:linear-gradient(180deg,#091560 0%,#060e46 100%)!important;
+#root .ucl [data-name="video highlights section"] [data-name="view all videos link"]{
+ background:transparent!important;color:#00e5ff!important;
+ border-color:#00e5ff!important;border-radius:999px!important;
 }
-
-#root .ucl [data-name="video highlights section"] [data-name="video title"]{
- color:#fff!important;
- font-weight:700!important;
-}
-
-#root .ucl [data-name="video highlights section"] [data-name="video category"]{
- color:#00e5ff!important;
- font-weight:700!important;
-}
-
-/* Segunda sección de vídeo / resumen sobre superficie clara tipo UEFA */
 #root .ucl [data-name="spotlight videos section"]{
- background:#f1f3f8!important;
- border-top:0!important;
- border-bottom:1px solid #dfe4f0!important;
+ color:var(--pc-ink)!important;
+ background:var(--pc-paper)!important;
+ padding-top:26px!important;padding-bottom:28px!important;
+ max-width:none!important;
+ padding-left:max(16px,calc((100% - 1060px)/2))!important;
+ padding-right:max(16px,calc((100% - 1060px)/2))!important;
  content-visibility:auto;
- contain-intrinsic-size:620px;
 }
-
 #root .ucl [data-name="spotlight videos section"] [data-name="section title"]{
- color:#070e3d!important;
- font-weight:800!important;
+ color:#070e3d!important;font-weight:800!important;font-size:18px!important;
 }
-
-#root .ucl [data-name="spotlight videos section"] [data-name="see all link"]{
- color:#0e3eda!important;
- font-weight:700!important;
+#root .ucl [data-name="spotlight videos grid"]>a{
+ background:white!important;color:var(--pc-ink)!important;
+ border:1px solid #dde2eb!important;
+ box-shadow:0 6px 16px rgba(8,16,58,.06)!important;
 }
-
-#root .ucl [data-name="spotlight videos section"] :is(
- [data-name="spotlight video card 1"],
- [data-name="spotlight video card 2"],
- [data-name="spotlight video card 3"],
- [data-name="spotlight video card 4"],
- [data-name="Promo Card 1"],
- [data-name="Promo Card 2"]
-){
- background:#ffffff!important;
- border:1px solid #dde3f0!important;
- border-radius:12px!important;
- box-shadow:0 6px 18px rgba(8,16,58,.06)!important;
- overflow:hidden!important;
+#root .ucl [data-name="spotlight videos grid"]>a :is(p,span,b,strong){
+ color:var(--pc-ink)!important;text-shadow:none!important;
 }
-
-#root .ucl [data-name="spotlight videos section"] [data-name="video card content"]{
- background:#ffffff!important;
+#root .ucl [data-name="spotlight videos section"] [data-name="view all videos link"]{
+ color:#0e3eda!important;background:transparent!important;
+ border:1px solid #0e3eda!important;border-radius:999px!important;
 }
-
-#root .ucl [data-name="spotlight videos section"] [data-name="video title"]{
- color:#070e3d!important;
- font-weight:700!important;
+#root .ucl [data-name="video section container"] [data-name="navigation buttons container"] button{
+ width:25px!important;height:25px!important;min-width:25px!important;
+ border-color:currentColor!important;color:inherit!important;
+ background:transparent!important;
 }
-
-#root .ucl [data-name="spotlight videos section"] [data-name="video time"]{
- color:#586589!important;
-}
-
-#root .ucl [data-name="Promo Card 1"] [data-name="promo title"],
-#root .ucl [data-name="Promo Card 2"] [data-name="promo title"]{
- color:#ffffff!important;
-}
-
-/* Bloques de categorías / registro en azul real UEFA con acento cyan */
 #root .ucl [data-name="banner container"]{
  background:linear-gradient(125deg,#07145e 0%,#0e3eda 58%,#06104a 100%)!important;
- border:1px solid rgba(0,229,255,.32)!important;
- border-radius:14px!important;
- box-shadow:0 12px 28px rgba(6,16,74,.22)!important;
+ border:1px solid rgba(0,229,255,.32)!important;border-radius:14px!important;
 }
-
 #root .ucl [data-name="banner cta button"]{
- background:#00e5ff!important;
- color:#040836!important;
- font-weight:800!important;
- border-radius:999px!important;
+ background:#00e5ff!important;color:#040836!important;font-weight:800!important;
 }
-
-#root .ucl [data-name="registration section container"]{
- background:linear-gradient(135deg,#050a3a 0%,#0b219c 55%,#0e3eda 100%)!important;
- border-top:1px solid rgba(0,229,255,.22)!important;
- content-visibility:auto;
- contain-intrinsic-size:260px;
-}
-
-#root .ucl [data-name="registration card"]{
- background:rgba(5,10,54,.84)!important;
- border:1px solid rgba(0,229,255,.24)!important;
- border-radius:14px!important;
-}
-
-/* Módulos adicionales de Inicio (#safeHomeExtra) adaptados a estética UEFA */
 #root .ucl #safeHomeExtra{
  background:#f1f3f8!important;
- border-top:1px solid #dfe4f0!important;
 }
-
 #root .ucl #safeHomeExtra .v100-fav-card,
 #root .ucl #safeHomeExtra .v100-pulse,
 #root .ucl #safeHomeExtra .v100-status,
 #root .ucl #safeHomeExtra .v105-card{
  background:linear-gradient(180deg,#08135c 0%,#050a3a 100%)!important;
- border:1px solid rgba(0,229,255,.22)!important;
- border-radius:12px!important;
- box-shadow:0 8px 20px rgba(5,10,54,.16)!important;
+ border:1px solid rgba(0,229,255,.22)!important;border-radius:12px!important;
 }
-
-/* Pie de página: azul noche UEFA Champions League */
-#root .ucl [data-name="sponsors band"]{
- background:#050b38!important;
- border-top:1px solid rgba(0,229,255,.16)!important;
+/* Fondo profundo del pie, sin cambiar ligas, nombres ni accesos. */
+#root .ucl [data-name="sponsors band"]{background:#050b38!important;color:#cbd6f6!important}
+#root .ucl [data-name="sponsors label"]{color:#00e5ff!important}
+#root .ucl [data-name="footer"]{
+ background:linear-gradient(160deg,#07115c 0%,#05083b 100%)!important;
+ color:#f4f7ff!important;
 }
-
-#root .ucl [data-name="footer"],
-#root .ucl [data-name="footer atmosphere wrapper"]{
- background:linear-gradient(180deg,#050b38 0%,#030624 100%)!important;
+/* Cada tarjeta no necesita sombras gigantes ni filtros de composición.
+   Mantener hover simple y la navegación intacta. */
+#root .ucl :is(
+ [data-name="moments grid container"],[data-name="news section container"],
+ [data-name="video highlights grid"],[data-name="spotlight videos grid"]) :is(a,button){
+ -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+ transition-property:border-color,opacity!important;
+ transition-duration:100ms!important;
+}
+@media(max-width:820px){
+ #root .ucl [data-name="moments section container"],
+ #root .ucl [data-name="news section container"]{
+   padding-left:10px!important;padding-right:10px!important;
+ }
+ #root .ucl [data-name="moments grid container"]>a{
+   flex:0 0 clamp(69px,19vw,108px)!important;
+   width:clamp(69px,19vw,108px)!important;
+   height:120px!important;min-height:120px!important;
+ }
+ #root .ucl [data-name="news section container"] :is(
+  [data-name="news row 1 container"],[data-name="news row 2 container"]){
+   gap:7px!important;min-width:0!important;
+ }
+ #root .ucl [data-name="video highlights section"],
+ #root .ucl [data-name="spotlight videos section"]{
+   padding-left:10px!important;padding-right:10px!important;
+ }
+ #root .ucl [data-name="video highlights grid"]>a,
+ #root .ucl [data-name="spotlight videos grid"]>a{
+   flex-basis:calc((100% - 16px)/3)!important;
+   width:calc((100% - 16px)/3)!important;
+ }
+ #root .ucl [data-name="video highlights grid"],
+ #root .ucl [data-name="spotlight videos grid"]{gap:8px!important}
+ #root .ucl :is(
+  [data-name="video highlights section"],[data-name="spotlight videos section"])
+  [data-name="section title"]{font-size:16px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ #root .ucl *,#root .ucl *::before,#root .ucl *::after{
+   scroll-behavior:auto!important;animation:none!important;
+ }
 }

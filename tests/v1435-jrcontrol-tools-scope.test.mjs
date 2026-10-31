@@ -1,27 +1,28 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-
-const css=readFileSync(new URL('../src/v1435-jrcontrol-tools-single-surface.css',import.meta.url),'utf8');
-const home=readFileSync(new URL('../src/v1434-home-competition-original-colors.css',import.meta.url),'utf8');
-const html=readFileSync(new URL('../index.html',import.meta.url),'utf8');
-
+const read=(p)=>readFileSync(new URL('../'+p,import.meta.url),'utf8');
+const css=read('src/v1435-jrcontrol-tools-single-surface.css');
+const html=read('index.html');
+const home=read('src/v1434-home-competition-original-colors.css');
 test('V1435 sólo afecta JR Control y Más herramientas',()=>{
+  assert.match(css,/data-app-route="ligaControl"/);
+  assert.match(css,/data-app-route="adminFut"/);
   assert.match(css,/data-app-route="leagueTools"/);
-  assert.match(css,/data-v563-control/);
-  assert.match(css,/\.v561-modal/);
-  assert.doesNotMatch(css,/data-app-route="home"|data-app-route="competition"|data-app-route="teams"|data-app-route="matches"|data-app-route="standings"/);
+  assert.match(css,/\.v562-page\[data-v563-control\]/);
+  assert.match(css,/\.v726-tool-card\.v734-tool-card/);
+  assert.doesNotMatch(css,/data-app-route="(?:home|competition|profile|teams|fantasy|more)"/);
+  assert.doesNotMatch(css,/pointer-events\s*:|display\s*:|position\s*:|visibility\s*:/);
 });
-
 test('V1435 elimina fondos interiores sin ocultar acciones',()=>{
+  assert.match(css,/\.v734-tool-go/);
+  assert.match(css,/\.v734-tool-details/);
   assert.match(css,/background:transparent!important/);
-  assert.match(css,/border-bottom:1px solid rgba\(165,204,255,\.22\)!important/);
-  assert.doesNotMatch(css,/display\s*:\s*none|visibility\s*:\s*hidden|pointer-events\s*:\s*none/);
+  assert.doesNotMatch(css,/linear-gradient\(/);
+  assert.match(css,/\.v563-tool-search > input/);
 });
-
 test('Inicio y Competición recuperados y Perfil queda al final',()=>{
-  assert.match(home,/body\[data-app-route="home"\]/);
-  assert.match(home,/body\[data-app-route="competition"\]/);
+  assert.match(home,/background-color:#000144!important/);
   assert.match(home,/background-color:#000040!important/);
   const a='src/v1434-home-competition-original-colors.css?v=20261011-v1434-restaurar-marino-original';
   const b='src/v1435-jrcontrol-tools-single-surface.css?v=';
@@ -29,7 +30,6 @@ test('Inicio y Competición recuperados y Perfil queda al final',()=>{
   assert.equal(html.split(b).length-1,1);
   assert.ok(html.indexOf(a)<html.indexOf(b));
   assert.ok(html.indexOf(b)<html.indexOf(c));
-  const tail=html.slice(html.indexOf(c)+c.length).replace(/<link[^>]*v1464-mobile-header-logo-performance\.css[^>]*>/gi,'');
-  assert.doesNotMatch(tail,/<link\s+rel="stylesheet"/);
+  assert.doesNotMatch(html.slice(html.indexOf(c)+c.length),/<link\s+rel="stylesheet"/);
   assert.doesNotMatch(html,/v1434-teams-gradient-global-background\.css/);
 });

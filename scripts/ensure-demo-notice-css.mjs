@@ -4,7 +4,13 @@
 import {readFileSync,writeFileSync,copyFileSync,mkdirSync} from 'node:fs';
 const demoFile='demo/index.html';
 let demo=readFileSync(demoFile,'utf8');
-const prod=readFileSync('index.html','utf8');
+let prod=readFileSync('index.html','utf8');
+const lateMobileLink='<link rel="stylesheet" href="./src/v1464-mobile-header-logo-performance.css?v=20261013-v1464-mobile-header-logo-performance" />';
+const profileAnchor='  <link rel="stylesheet" href="./src/profile-first-screenshot-restore.css';
+if(prod.includes(lateMobileLink)&&prod.indexOf(lateMobileLink)>prod.indexOf(profileAnchor)){
+ prod=prod.replace('\n  '+lateMobileLink,'').replace(lateMobileLink,'').replace(profileAnchor,'  '+lateMobileLink+'\n'+profileAnchor);
+ writeFileSync('index.html',prod);
+}
 if(!demo.includes('</head>')||!prod.includes('</head>'))
  throw new Error('Falta el encabezado de HTML.');
 mkdirSync('demo/src',{recursive:true});

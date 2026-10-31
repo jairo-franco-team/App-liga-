@@ -55,8 +55,7 @@ test('Carga unica CSS/JS y mantiene proteccion final de Perfil',()=>{
  assert.equal(html.split(style).length-1,1);
  assert.equal(html.split(script).length-1,1);
  assert.ok(html.indexOf(style)>0&&html.indexOf(style)<html.indexOf(profile));
- const tail=html.slice(html.indexOf(profile)).replace(/<link[^>]*v1464-mobile-header-logo-performance\.css[^>]*>/gi,'');
- assert.doesNotMatch(tail,/<link\s+rel="stylesheet"/);
+ assert.doesNotMatch(html.slice(html.indexOf(profile)),/<link\s+rel="stylesheet"/);
 });
 
 test('La barra PC forzada cabe en un viewport estrecho sin ocultar los siete botones',()=>{
