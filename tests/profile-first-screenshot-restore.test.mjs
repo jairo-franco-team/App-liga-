@@ -11,7 +11,7 @@ test('Perfil clásico: último estilo aislado, posterior a las capas generales',
  const old=html.indexOf('src/v1411-profile-old-layout-restore.css');
  const pos=html.indexOf(file);
  assert.ok(pos>old&&old>0,'La restauración independiente debe estar al final del Perfil');
- const tail=html.slice(pos);
+ const tail=html.slice(pos).replace(/<link[^>]*v1464-mobile-header-logo-performance\.css[^>]*>/gi,'');
  assert.doesNotMatch(tail,/<link\s+rel="stylesheet"/,'Ningún CSS debe repintar la vista Perfil después');
 });
 

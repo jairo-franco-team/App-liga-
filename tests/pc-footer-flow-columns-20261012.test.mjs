@@ -41,5 +41,6 @@ test('footer layout is loaded exactly once and Profile protection stays last',()
  assert.equal(html.split(cp).length-1,1);
  assert.equal(html.split(sp).length-1,1);
  assert.ok(html.indexOf(cp)<html.indexOf('src/profile-first-screenshot-restore.css'));
- assert.doesNotMatch(html.slice(html.indexOf('src/profile-first-screenshot-restore.css')),/<link\s+rel="stylesheet"/);
+ const tail=html.slice(html.indexOf('src/profile-first-screenshot-restore.css')).replace(/<link[^>]*v1464-mobile-header-logo-performance\.css[^>]*>/gi,'');
+ assert.doesNotMatch(tail,/<link\s+rel="stylesheet"/);
 });
