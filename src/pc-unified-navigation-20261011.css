@@ -1,12 +1,12 @@
 /* Unified PC chrome modeled on user's Clasificación reference (first screenshot).
    Strictly scoped: zero impact to mode=mobile and mode=apk. */
 html.ljpc-unified-pc body #app{
- --ljpc-u-navy:#030b28;--ljpc-u-blue:#104bea;--ljpc-u-cyan:#16e0ea;
- --ljpc-u-green:#28ea86;
+ --ljpc-u-navy:#0b1337;--ljpc-u-blue:#2e22ce;--ljpc-u-cyan:#00e5ff;
+ --ljpc-u-green:#00e5ff;
 }
 html.ljpc-unified-pc body #ljpc-unified-pc-header{
  position:relative;z-index:140;width:100%;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
- background:#030b28;color:#f6faff;
+ background:#0b1337;color:#f6faff;
 }
 html.ljpc-unified-pc body #ljpc-unified-pc-header *,
 html.ljpc-unified-pc body #ljpc-unified-pc-footer *{box-sizing:border-box}
@@ -14,7 +14,7 @@ html.ljpc-unified-pc body .ljpc-u-wrap{
  width:min(1120px,calc(100% - 42px));margin:0 auto;max-width:1120px;
 }
 html.ljpc-unified-pc body .ljpc-u-nav{
- background:linear-gradient(100deg,#104afa 0%,#092eaf 50%,#07135e 100%);
+ background:linear-gradient(90deg,#2e22ce 0%,#2414b8 52%,#1a0079 100%);
  box-shadow:0 1px #345abf66,0 8px 22px #01092c36;
 }
 html.ljpc-unified-pc body .ljpc-u-nav>.ljpc-u-wrap{
@@ -43,17 +43,17 @@ html.ljpc-unified-pc body .ljpc-u-links>details>summary{
  text-decoration:none;white-space:nowrap;transition:background .15s;
 }
 html.ljpc-unified-pc body .ljpc-u-links>button:hover,
-html.ljpc-unified-pc body .ljpc-u-links>details>summary:hover{background:#1644c2}
+html.ljpc-unified-pc body .ljpc-u-links>details>summary:hover{background:#3b2df0}
 html.ljpc-unified-pc body .ljpc-u-links>button.active,
 html.ljpc-unified-pc body .ljpc-u-links>details>summary.active{
- background:#17dce9;color:#061447;font-weight:850
+ background:#00e5ff;color:#061447;font-weight:850
 }
 html.ljpc-unified-pc body .ljpc-u-links details summary::-webkit-details-marker{display:none}
 html.ljpc-unified-pc body .ljpc-u-links>details{position:relative;flex:0 0 auto}
 html.ljpc-unified-pc body .ljpc-u-links>details>summary>span{font-size:12px;opacity:.85}
 html.ljpc-unified-pc body .ljpc-u-dropdown{
  position:absolute;z-index:1000;top:calc(100% + 7px);left:0;
- width:215px;padding:6px;background:#071252;border:1px solid #3159a5;
+ width:215px;padding:6px;background:#0b1337;border:1px solid #3159a5;
  border-radius:8px;box-shadow:0 14px 35px #00092da6;
  display:flex;flex-direction:column;gap:2px
 }
@@ -61,20 +61,20 @@ html.ljpc-unified-pc body .ljpc-u-dropdown button{
  padding:10px;text-align:left;border:0;border-radius:5px;background:transparent;
  color:#f0f6ff;font-size:11px;font-weight:650;cursor:pointer
 }
-html.ljpc-unified-pc body .ljpc-u-dropdown button:hover{background:#1947a3;color:#43efa5}
+html.ljpc-unified-pc body .ljpc-u-dropdown button:hover{background:#2e22ce;color:#00e5ff}
 html.ljpc-unified-pc body .ljpc-u-login{
  flex:0 0 auto;min-height:31px;padding:0 9px;border:1px solid #a9caff59;
- background:#10448d99;border-radius:7px;color:#fff;font:750 9px Inter,Arial,sans-serif;
+ background:#1a007999;border-radius:7px;color:#fff;font:750 9px Inter,Arial,sans-serif;
  cursor:pointer;white-space:nowrap
 }
-html.ljpc-unified-pc body .ljpc-u-login:hover{background:#135bc2}
+html.ljpc-unified-pc body .ljpc-u-login:hover{background:#2e22ce}
 html.ljpc-unified-pc body #ljpc-unified-pc-header button:focus-visible,
 html.ljpc-unified-pc body #ljpc-unified-pc-header summary:focus-visible,
 html.ljpc-unified-pc body #ljpc-unified-pc-footer button:focus-visible{
  outline:2px solid #20e7fa;outline-offset:2px
 }
 html.ljpc-unified-pc body .ljpc-u-scorebar{
- background:#071638;border-top:1px solid #ffffff16;border-bottom:1px solid #476cba44;
+ background:#0b1337;border-top:1px solid #ffffff16;border-bottom:1px solid #476cba44;
 }
 html.ljpc-unified-pc body .ljpc-u-score-wrap{
  display:flex;align-items:center;gap:10px;padding-top:8px;padding-bottom:9px;
@@ -85,8 +85,8 @@ html.ljpc-unified-pc body .ljpc-u-matchlist{
 }
 html.ljpc-unified-pc body .ljpc-u-matchlist::-webkit-scrollbar{display:none}
 html.ljpc-unified-pc body .ljpc-u-match{
- flex:0 0 128px;min-height:54px;border:1px solid #294d89;border-radius:6px;
- background:linear-gradient(130deg,#0d234d,#0a1533);padding:6px 7px;
+ flex:0 0 128px;min-height:54px;border:1px solid #26387a;border-radius:6px;
+ background:linear-gradient(130deg,#111d4a,#0b1337);padding:6px 7px;
  display:flex;flex-direction:column;justify-content:center;gap:3px;
  text-align:left;color:#f2f6ff;cursor:pointer;font-family:inherit;
 }
@@ -106,13 +106,13 @@ html.ljpc-unified-pc body .ljpc-u-team-fallback{
  width:16px;height:16px;object-fit:contain;flex:0 0 16px;display:grid;
  place-items:center;font-size:10px;background:transparent;border-radius:50%
 }
-html.ljpc-unified-pc body .ljpc-u-match:hover{border-color:#28d5e8}
+html.ljpc-unified-pc body .ljpc-u-match:hover{border-color:#00e5ff}
 html.ljpc-unified-pc body .ljpc-u-all{
- flex:0 0 auto;border:1px solid #28e69d88;background:transparent;
- color:#3af4ab;border-radius:6px;min-height:31px;padding:0 10px;
+ flex:0 0 auto;border:1px solid #00e5ff99;background:transparent;
+ color:#00e5ff;border-radius:6px;min-height:31px;padding:0 10px;
  font-size:9px;font-weight:800;cursor:pointer;white-space:nowrap
 }
-html.ljpc-unified-pc body .ljpc-u-all:hover{background:#0e6847}
+html.ljpc-unified-pc body .ljpc-u-all:hover{background:#1a0079}
 html.ljpc-unified-pc body #ljpc-unified-pc-footer{
  background:#030a20;width:100%;position:relative;z-index:2;
  font-family:Inter,system-ui,"Segoe UI",Arial,sans-serif;color:#d7e7ff
@@ -126,7 +126,7 @@ html.ljpc-unified-pc body .ljpc-u-sponsor span{
  color:#aacbdc;font-size:9px;font-weight:650;display:block;margin-top:5px
 }
 html.ljpc-unified-pc body .ljpc-u-footer{
- background:linear-gradient(180deg,#061234,#030919);padding:26px 0 12px;
+ background:linear-gradient(180deg,#0b1337,#050824);padding:26px 0 12px;
 }
 html.ljpc-unified-pc body .ljpc-u-footer-columns{
  display:grid;grid-template-columns:1.55fr repeat(4,minmax(0,1fr));gap:19px
@@ -147,7 +147,7 @@ html.ljpc-unified-pc body .ljpc-u-footer-columns button{
  border:0;background:transparent;color:#e5efff;font-size:8.5px;
  font-weight:550;cursor:pointer;padding:0;text-align:left
 }
-html.ljpc-unified-pc body .ljpc-u-footer-columns button:hover{color:#2deaa7}
+html.ljpc-unified-pc body .ljpc-u-footer-columns button:hover{color:#00e5ff}
 html.ljpc-unified-pc body .ljpc-u-footnote{
  border-top:1px solid #344e8055;margin-top:23px;padding-top:12px;
  text-align:center;color:#b3c6e1;font-size:8px
