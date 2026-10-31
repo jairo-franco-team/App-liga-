@@ -24,7 +24,7 @@ test('La franja PC usa encuentros oficiales sin clubes inventados',()=>{
   const pc=loadDesktop('desktop-shell.js','games:desktopOfficialGames,standings:desktopOfficialTable');
   const games=pc.games(25),rows=pc.standings();
   assert.ok(games.length>=20);
-  assert.equal(rows[0][1],'SAN JOSE FC');
+  assert.equal(rows[0][1],db.categories['3'].standings[0].rows[0][1]);
   // El primer encuentro cambia con resultados, suspensiones y nuevas jornadas.
   // Cada tarjeta debe conservar equipos, horario y sede de una fila oficial.
   for(const game of games){
@@ -44,8 +44,8 @@ test('La versión PC obtiene clasificación y categorías del registro oficial',
   assert.equal(pc.hydrate(),true);
   const rows=pc.standings(),fixtures=pc.fixtures();
   assert.equal(rows.length,11);
-  assert.equal(rows[0][0],'SAN JOSE FC');
-  assert.equal(rows[0][8],15);
+  assert.equal(rows[0][0],db.categories['3'].standings[0].rows[0][1]);
+  assert.ok(Number(rows[0][8])>=15);
   assert.ok(fixtures.length>=4);
   assert.ok(fixtures.every(f=>!/SAN PEDRO|MORALES/i.test(f[1]+' '+f[2])));
   const html=pc.clubs();

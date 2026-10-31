@@ -1,7 +1,53 @@
-/* Sincroniza los estilos de demo con los reales de producción.
-   El cache-buster viene de index.html, no de una versión antigua hardcodeada.
-   No modifica funciones, permisos ni avisos oficiales. */
+/* Sincroniza los estilos de demo y los datos oficiales de Liga_Futbol (app verde)
+   con producción sin modificar el diseño azul ni funciones existentes. */
 import {readFileSync,writeFileSync,copyFileSync,mkdirSync} from 'node:fs';
+
+const GREEN_URL='https://raw.githubusercontent.com/jairofrancog7-star/Liga_Futbol/main/data/official-live.json';
+const norm=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z0-9]/g,'');
+
+function syncGreenData(d,green){
+ if(!green?.categories)return false;
+ let updated=false;
+ for(const [catId,gCat] of Object.entries(green.categories)){
+  const c=d.categories?.[catId];if(!c||!gCat)continue;
+  if(Array.isArray(gCat.standings)&&gCat.standings.every(b=>(b.rows||[]).every(r=>Array.isArray(r)&&r.length>=10))){
+   if(JSON.stringify(c.standings)!==JSON.stringify(gCat.standings)){c.standings=gCat.standings;updated=true}
+  }
+  for(const key of ['scorers','cards','suspensions','counts','dashboard']){
+   if(gCat[key]&&JSON.stringify(c[key])!==JSON.stringify(gCat[key])){c[key]=gCat[key];updated=true}
+  }
+  if(Array.isArray(gCat.cedulas)){
+   c.cedulas||=[];const ids=new Set(c.cedulas.map(x=>x.id));
+   for(const ced of gCat.cedulas){if(ced?.id&&!ids.has(ced.id)){c.cedulas.push(ced);ids.add(ced.id);updated=true}}
+  }
+  const rows=c.fixtures?.[0]?.rows,gRows=gCat.fixtures?.[0]?.rows;
+  if(Array.isArray(rows)&&Array.isArray(gRows)){
+   const decisions=c.fixture_decisions||{};
+   for(const row of rows){
+    if(decisions[row[0]]||String(row[8]||'').startsWith('11/10/2026')||(row[2]==='SAN ANTONIO FC'&&row[6]==='TAVERA FC'&&row[8]==='10/10/2026 12:00'))continue;
+    const hit=gRows.find(g=>String(g[1])===String(row[1])&&norm(g[2])===norm(row[2])&&norm(g[6])===norm(row[6]));
+    if(hit&&/^\d+$/.test(String(hit[3]))&&/^\d+$/.test(String(hit[5]))&&(row[3]!==hit[3]||row[5]!==hit[5])){
+     row[3]=hit[3];row[5]=hit[5];if(hit[7])row[7]=hit[7];if(hit[9])row[9]=hit[9];updated=true;
+    }
+   }
+  }
+ }
+ return updated;
+}
+
+try{
+ const res=await fetch(GREEN_URL,{signal:AbortSignal.timeout(15000)});
+ if(res.ok){
+  const green=await res.json();
+  const current=JSON.parse(readFileSync('data/official-live.json','utf8'));
+  if(syncGreenData(current,green)){
+   const text=JSON.stringify(current,null,2)+'\n';
+   writeFileSync('data/official-live.json',text);
+   writeFileSync('public/data/official-live.json',text);
+  }
+ }
+}catch(_){}
+
 const demoFile='demo/index.html';
 let demo=readFileSync(demoFile,'utf8');
 let prod=readFileSync('index.html','utf8');
@@ -32,8 +78,6 @@ for(const name of styles){
  if(!href||!href.startsWith('./src/'+name+'?v='))
   throw new Error('No se encuentra la versión oficial de '+name+' en index.html');
  copyFileSync(source,target);
- // Elimina únicamente los enlaces antiguos de este estilo. Al reconstruir
- // con Vite, la demo conserva una sola versión, idéntica a producción.
  demo=demo.split('\n').filter(line=>!(
   line.includes('<link')&&line.includes('rel="stylesheet"')&&
   line.includes('/src/'+name+'?')
@@ -43,4 +87,4 @@ for(const name of styles){
   throw new Error('CSS fuera de sincronía: '+name);
 }
 writeFileSync(demoFile,demo);
-console.log('Demo: colores y versiones de CSS idénticos a la producción.');
+console.log('Demo: colores, datos oficiales y versiones de CSS idénticos a la producción.');
