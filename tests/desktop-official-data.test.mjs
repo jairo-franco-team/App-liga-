@@ -8,60 +8,50 @@ class FixedDate extends Date {
   constructor(...args){super(...(args.length?args:['2026-10-08T10:00:00-06:00']))}
   static now(){return new Date('2026-10-08T10:00:00-06:00').getTime()}
 }
-function setup(hash='#/home',width=1366){
-  const screen={innerHTML:'',querySelector:()=>null,querySelectorAll:()=>[],appendChild(){}};
-  const listeners={};
-  const window={
-    innerWidth:width,
-    location:{hash,search:'?mode=desktop'},
-    localStorage:{getItem:()=>null,setItem(){}},
-    sessionStorage:{getItem:()=>null,setItem(){},removeItem(){}},
-    addEventListener:(k,fn)=>{(listeners[k]=listeners[k]||[]).push(fn)},
-    fetch:async()=>({ok:true,json:async()=>structuredClone(db)}),
-    Date:FixedDate,
-    setTimeout:(fn)=>{fn();return 1},
-    clearTimeout(){}
-  };
-  window.document={
-    body:{classList:{contains:k=>k==='lj-desktop',add(){},remove(){},toggle(){}},dataset:{}},
-    documentElement:{classList:{contains:()=>false}},
-    getElementById:id=>id==='screen'?screen:null,
-    querySelector:s=>s==='#screen'?screen:null,
-    querySelectorAll:()=>[],
-    addEventListener(){},
-    createElement:()=>({className:'',dataset:{},style:{},setAttribute(){},appendChild(){},addEventListener(){},querySelector:()=>({textContent:''}),querySelectorAll:()=>[]})
-  };
-  window.MutationObserver=class{observe(){}};
-  const code=fs.readFileSync(new URL('../src/desktop-official-data-v976.js',import.meta.url),'utf8');
-  vm.runInNewContext(code,{...window,window,document:window.document,Date:FixedDate,fetch:window.fetch,MutationObserver:window.MutationObserver,URLSearchParams,setTimeout:window.setTimeout,clearTimeout:window.clearTimeout});
-  return {window,screen,listeners};
+function loadDesktop(path,expose){
+  const source=fs.readFileSync(new URL('../src/'+path,import.meta.url),'utf8');
+  const injected=source.replace(/\}\)\(\);\s*$/, 'window.__test={'+expose+'};\n})();');
+  assert.notEqual(injected,source,'El módulo PC debe exponer funciones para la prueba');
+  const window={LJR_OFFICIAL_DATA:db,addEventListener(){}};
+  const document={addEventListener(){},querySelector(){return null},body:{classList:{add(){},contains(){return false}}}};
+  vm.runInNewContext(injected,{
+    window,document,location:{hash:'#/home',search:'?mode=desktop'},innerWidth:1280,
+    URLSearchParams,Date:FixedDate,setTimeout(){return 0},clearTimeout(){}
+  },{filename:path,timeout:5000});
+  return window.__test;
 }
-
-test('PC official data runtime replaces mock statistics and renders real five-category standings',()=>{
-  const w=setup('#/pc-standings');
-  assert.ok(w.window.LJR_PC_OFFICIAL_DATA);
-  assert.match(w.screen.innerHTML,/Clasificación oficial · Primera Fuerza/);
-  assert.match(w.screen.innerHTML,/SAN JOSE FC/);
-  assert.match(w.screen.innerHTML,/GALACTICOS/);
-  assert.match(w.screen.innerHTML,/-21/);
-  assert.doesNotMatch(w.screen.innerHTML,/Relámpago|Juan Pérez|Carlos Ruiz/);
+test('La franja PC usa encuentros oficiales sin clubes inventados',()=>{
+  const pc=loadDesktop('desktop-shell.js','games:desktopOfficialGames,standings:desktopOfficialTable');
+  const games=pc.games(25),rows=pc.standings();
+  assert.ok(games.length>=20);
+  assert.equal(rows[0][1],'SAN JOSE FC');
+  // El primer encuentro cambia con resultados, suspensiones y nuevas jornadas.
+  // Cada tarjeta debe conservar equipos, horario y sede de una fila oficial.
+  for(const game of games){
+    const category=db.categories[game.id];
+    assert.equal(game.category,category.name);
+    assert.ok(category.fixtures.some(group=>group.rows.some(row=>
+      row[2]===game.home && row[6]===game.away && row[7]===game.field &&
+      String(row[8]).endsWith(' '+game.time))), 'Tarjeta con procedencia oficial');
+  }
+  assert.ok(games.every((game,i)=>!i||games[i-1].sort<=game.sort),'Orden cronológico');
+  assert.ok(games.every(g=>g.sort>='2026-10-08'));
+  assert.ok(games.every(g=>!/(?:SAN PEDRO|MORALES)/i.test(g.home+' '+g.away)));
+  assert.ok(games.every(g=>!g.sort.endsWith('00:00')));
 });
-
-test('Registros view renders official rosters and real player profile fields without placeholders',()=>{
-  const w=setup('#/pc-registrations');
-  const sanJoseCount=db.categories['3'].rosters['SAN JOSE FC'].length;
-  assert.match(w.screen.innerHTML,/SAN JOSE FC/);
-  assert.match(w.screen.innerHTML,new RegExp(sanJoseCount+' jugadores'));
-  assert.match(w.screen.innerHTML,new RegExp('Plantilla oficial publicada \\('+sanJoseCount+'\\)'));
-  assert.match(w.screen.innerHTML,/Gibran Ulises/);
-  assert.doesNotMatch(w.screen.innerHTML,/CURP|INE|carta firmada|18 jugadores demo/);
-});
-
-test('Matches view separates played scores from upcoming fixtures with official countdown',()=>{
-  const w=setup('#/pc-fixtures');
-  assert.match(w.screen.innerHTML,/Próximos partidos oficiales/);
-  assert.match(w.screen.innerHTML,/Resultados oficiales registrados/);
-  assert.match(w.screen.innerHTML,/Faltan 3d 00h/);
-  assert.match(w.screen.innerHTML,/FRANCO FC/);
-  assert.match(w.screen.innerHTML,/GALACTICOS/);
+test('La versión PC obtiene clasificación y categorías del registro oficial',()=>{
+  const pc=loadDesktop('desktop-sections.js','hydrate:hydrateOfficialDesktop,fixtures:()=>fixtures,standings:()=>standings,clubs:teamsPage');
+  assert.equal(pc.hydrate(),true);
+  const rows=pc.standings(),fixtures=pc.fixtures();
+  assert.equal(rows.length,11);
+  assert.equal(rows[0][0],'SAN JOSE FC');
+  assert.equal(rows[0][8],15);
+  assert.ok(fixtures.length>=4);
+  assert.ok(fixtures.every(f=>!/SAN PEDRO|MORALES/i.test(f[1]+' '+f[2])));
+  const html=pc.clubs();
+  assert.match(html,/Primera Fuerza/);
+  assert.match(html,/Intermedia/);
+  assert.match(html,/Veteranos 35\+/);
+  assert.match(html,/Veteranos 50\+/);
+  assert.doesNotMatch(html,/San Pedro|Morales|Juvenil/i);
 });
