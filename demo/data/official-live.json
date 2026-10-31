@@ -4307,7 +4307,9 @@
           "JOEL TOLEDO CAMPOS",
           "JONY TORRECILLAS RODRIGUEZ",
           "MARTIN ARMANDO TORRECILLAS RODRIGUEZ",
-          "EDUARDO ZAVALA ACOSTA"
+          "EDUARDO ZAVALA ACOSTA",
+          "EDUARDO FLORES RUIZ",
+          "JOSE MIGUEL RAMIREZ PEREZ"
         ],
         "BOAVISTA": [
           "DAVID ARELLANO ALVAREZ",
@@ -5156,6 +5158,16 @@
             "position": "Mediocampista",
             "dorsal": "—",
             "photo": "https://res.cloudinary.com/rdk7ndhb/image/upload/v1/jugadores/WhatsApp_Image_2026-10-21_at_4.53.29_PM_xsopgo"
+          },
+          {
+            "name": "EDUARDO FLORES RUIZ",
+            "position": "Mediocampista",
+            "dorsal": "—"
+          },
+          {
+            "name": "JOSE MIGUEL RAMIREZ PEREZ",
+            "position": "Mediocampista",
+            "dorsal": "—"
           }
         ],
         "BOAVISTA": [
