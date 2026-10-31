@@ -4,6 +4,7 @@
   <!-- PC: detectar escritorio antes del primer dibujo del encabezado móvil. -->
   <script id="ljpc-desktop-head-early">
     (function(){
+      if(typeof history!=='undefined'&&history.replaceState&&!location.search&&location.hash==='#/more'){history.replaceState(null,'',(location.pathname||'/')+'?mode=apk#/more');}
       var mode=new URLSearchParams(location.search).get('mode')||'';
       if(mode==='desktop'||(mode!=='mobile'&&mode!=='apk'&&window.innerWidth>=1024)){
         document.documentElement.classList.add('ljpc-header-free-desktop');
