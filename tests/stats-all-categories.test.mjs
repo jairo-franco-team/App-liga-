@@ -45,12 +45,14 @@ test('selection survives reload and invalid category requests preserve the curre
 });
 test('goalkeeper substitutes appear even when absent from roster, without duplicate records',async()=>{
  const data=structuredClone(official);
- data.categories['3'].player_profiles.NAPOLI.push({name:'Portero suplente de prueba',position:'Portero',photo:'https://example.test/keeper.jpg'});
+ const firstTeam=Object.keys(data.categories['3'].player_profiles)[0]||'NAPOLI';
+ data.categories['3'].player_profiles[firstTeam].unshift({name:'Portero suplente de prueba',position:'Portero',photo:'https://example.test/keeper.jpg'});
+ const totalKeepers=Object.values(data.categories['3'].player_profiles).flat().filter(p=>p.position==='Portero').length;
  const {api,screen}=app(data);
  await api.setTab('player');
  const keepers=card(screen.innerHTML,'saves');
  assert.match(keepers,/Portero suplente de prueba/);
- assert.match(keepers,/--v33-card-rows:4/);
+ assert.match(keepers,new RegExp('--v33-card-rows:'+Math.min(5,totalKeepers)));
  assert.equal([...keepers.matchAll(/data-v33-player="Portero suplente de prueba"/g)].length,1);
  assert.ok([...keepers.matchAll(/<strong[^>]*>([^<]+)<\/strong>/g)].every(m=>m[1]==='—'));
 });

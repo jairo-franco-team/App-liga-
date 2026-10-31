@@ -11,6 +11,9 @@ if(prod.includes(lateMobileLink)&&prod.indexOf(lateMobileLink)>prod.indexOf(prof
  prod=prod.replace('\n  '+lateMobileLink,'').replace(lateMobileLink,'').replace(profileAnchor,'  '+lateMobileLink+'\n'+profileAnchor);
  writeFileSync('index.html',prod);
 }
+mkdirSync('demo/data',{recursive:true});
+copyFileSync('data/official-live.json','public/data/official-live.json');
+copyFileSync('data/official-live.json','demo/data/official-live.json');
 if(!demo.includes('</head>')||!prod.includes('</head>'))
  throw new Error('Falta el encabezado de HTML.');
 mkdirSync('demo/src',{recursive:true});
