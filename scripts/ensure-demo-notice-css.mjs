@@ -47,6 +47,16 @@ try{
 }catch(_){}
 
 try{
+ for(const cssPath of ['src/pc-unified-navigation-20261011.css','demo/src/pc-unified-navigation-20261011.css']){
+  try{
+   const raw=readFileSync(cssPath,'utf8');
+   const fixed=raw.replace('html.ljpc-unified-pc body #ljpc-home-integrated-footer{display:none!important}','html.ljpc-unified-pc body #ljpc-home-integrated-footer{display:none!important;}');
+   if(fixed!==raw)writeFileSync(cssPath,fixed);
+  }catch(_){}
+ }
+}catch(_){}
+
+try{
  const res=await fetch(GREEN_URL,{signal:AbortSignal.timeout(15000)});
  if(res.ok){
   const green=await res.json();
