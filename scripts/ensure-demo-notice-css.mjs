@@ -51,7 +51,9 @@ try{
  for(const cssPath of ['src/pc-unified-navigation-20261011.css','demo/src/pc-unified-navigation-20261011.css']){
   try{
    const raw=readFileSync(cssPath,'utf8');
-   const fixed=raw.replace('html.ljpc-unified-pc body #ljpc-home-integrated-footer{display:none!important}','html.ljpc-unified-pc body #ljpc-home-integrated-footer{display:none!important;}');
+   const fixed=raw
+    .replace('html.ljpc-unified-pc body #ljpc-home-integrated-footer{display:none!important}','html.ljpc-unified-pc body #ljpc-home-integrated-footer{display:none!important;}')
+    .replace('html.ljpc-unified-pc body #ljpc-unified-pc-footer{\n background:#000638;','html.ljpc-unified-pc body #ljpc-unified-pc-footer{\n background:#030a20;');
    if(fixed!==raw)writeFileSync(cssPath,fixed);
   }catch(_){}
  }

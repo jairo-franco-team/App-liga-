@@ -28,9 +28,9 @@
  }
  function patch(){
   queued=false;if(!mobile())return;
-  document.documentElement.classList.add('preview-mobile','preview-apk');
-  document.documentElement.classList.remove('ljpc-unified-pc','ljpc-forced-desktop','ljpc-forced-handset','preview-desktop');
-  document.body?.classList.remove('lj-desktop','preview-desktop');
+  document.documentElement?.classList?.add('preview-mobile','preview-apk');
+  document.documentElement?.classList?.remove('ljpc-unified-pc','ljpc-forced-desktop','ljpc-forced-handset','preview-desktop');
+  document.body?.classList?.remove('lj-desktop','preview-desktop');
   const root=document.getElementById('screen');if(!root)return;
   const r=route();
   if(native()&&['more','appInstall','quiniela','leagueTools'].includes(r)&&!root.querySelector('[data-ljr-offline-link]')){
