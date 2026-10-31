@@ -3,7 +3,7 @@
   "categories": {
     "1": {
       "teams": 6,
-      "players": 126
+      "players": 119
     },
     "2": {
       "teams": 11,
@@ -22,22 +22,8 @@
       "players": 340
     }
   },
-  "cedulasChecked": 120,
+  "cedulasChecked": 110,
   "cedulaScoreDifferences": [
-    {
-      "category": "1",
-      "id": 46,
-      "home": "BOCA JRS",
-      "away": "TOROS DE CUENDA",
-      "score": [
-        "0",
-        "1"
-      ],
-      "previous": [
-        "-",
-        "1"
-      ]
-    },
     {
       "category": "1",
       "id": 49,
