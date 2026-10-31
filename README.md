@@ -5,17 +5,17 @@ Aplicación web/PWA y APK de la Liga Municipal de Fútbol Juventino Rosas.
 ## 📲 Abrir o descargar la aplicación
 
 ### 1. APK para Android
-**[⬇️ Descargar Liga Juventino (APK)](https://github.com/jairofrancog7-star/App-liga-/releases/download/android-latest/Liga-Juventino.apk)**
+**[⬇️ Descargar Liga Juventino (APK)](https://github.com/jairo-franco-team/App-liga-/releases/download/android-latest/Liga-Juventino.apk)**
 
 Instala la aplicación en tu teléfono Android. Si Android indica que no puede actualizar la app por un conflicto de firma, no desinstales la versión existente sin respaldar tus datos.
 
 ### 2. Versión completa para computadora (Web PC)
-**[💻 Abrir Liga Juventino para PC](https://jairofrancog7-star.github.io/App-liga-/?mode=desktop&refresh=pc-standings-inline-simulator-footer-v8#/home)**
+**[💻 Abrir Liga Juventino para PC](https://jairo-franco-team.github.io/App-liga-/?mode=desktop&refresh=pc-standings-inline-simulator-footer-v8#/home)**
 
 Vista para pantallas grandes, con tablas y estadísticas.
 
 ### 3. Versión web para celular
-**[📱 Abrir versión móvil — Menú](https://jairofrancog7-star.github.io/App-liga-/#/more)**
+**[📱 Abrir versión móvil — Menú](https://jairo-franco-team.github.io/App-liga-/#/more)**
 
 Versión adaptada para abrirse desde el navegador del teléfono.
 
@@ -35,4 +35,4 @@ La interfaz base y las funciones existentes se mantienen; los cambios V7 se carg
 
 ## Seguimiento de correcciones
 
-Consulta los errores pendientes de la APK y el avance de las correcciones en [el issue de seguimiento #144](https://github.com/jairofrancog7-star/App-liga-/issues/144).
+Consulta los errores pendientes de la APK y el avance de las correcciones en [el issue de seguimiento #144](https://github.com/jairo-franco-team/App-liga-/issues/144).
