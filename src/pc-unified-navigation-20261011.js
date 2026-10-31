@@ -87,7 +87,7 @@ function upcoming(){
    matches.push({key:iso,cat:id,round:r[1],home:r[2],away:r[6],time:m[4],day:m[1]+'/'+m[2]+'/'+m[3]});
   }
  }
- return matches.sort((a,b)=>a.key.localeCompare(b.key)).slice(0,6);
+ return matches.sort((a,b)=>a.key.localeCompare(b.key)).slice(0,8);
 }
 function crest(n){
  const u=logoUrl(n);
@@ -165,9 +165,6 @@ function selectNav(){
   previousRoute=r;
  }
 }
-/* Al desplazar horizontalmente la navegación en Chrome Android PC, overflow-y:hidden
-   recortaba los paneles de Gaming / Datos / Más. Popover los pinta en la top layer
-   sin cambiar las posiciones del encabezado ni afectar la app móvil/APK. */
 function closeNavGroup(details){
  if(!details)return;
  const panel=details.querySelector('.ljpc-u-dropdown');
@@ -217,25 +214,32 @@ function hideIframeHeader(frame){
    const style=doc.createElement('style');style.id='ljpc-u-iframe-hide';
    style.textContent='[data-name="top bar wrapper"],[data-name="header navigation wrapper"],'+
     '[data-name="fixtures strip container"],[data-name="sponsors band"],[data-name="footer"]{display:none!important}'+
-    /* Inicio PC: después de ocultar las barras duplicadas NO reservar
-       una franja vacía entre los partidos y las historias.
-       clear:both empujaba todo el contenido por debajo de elementos flotantes. */
     'html.ljpc-embedded-home #root .ucl [data-name="hero and content section"]{'+
-    'margin-top:0!important;padding-top:0!important;min-height:0!important}'+
+    'margin-top:0!important;padding-top:10px!important;min-height:0!important;'+
+    'background:linear-gradient(180deg,#0a1061 0%,#05187d 54%,#041e91 100%)!important}'+
     'html.ljpc-embedded-home #root .ucl [data-name="stories list container"]{'+
-    'margin-top:0!important;margin-bottom:0!important;'+
-    'padding-top:2px!important;padding-bottom:4px!important;'+
-    'position:relative!important;transform:none!important;clear:none!important}'+
+    'width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;'+
+    'margin:0 auto!important;padding:6px 0 8px!important;gap:12px!important;'+
+    'position:relative!important;transform:none!important;clear:none!important;justify-content:space-between!important}'+
     'html.ljpc-embedded-home #root .ucl [data-name="stories wrapper"]{'+
-    'align-items:flex-start!important}';
+    'max-width:1296px!important;width:100%!important;gap:14px!important;'+
+    'justify-content:space-between!important;align-items:flex-start!important}'+
+    'html.ljpc-embedded-home #root .ucl [data-name="stories wrapper"] > a{'+
+    'flex:0 0 94px!important;width:94px!important;min-width:94px!important;max-width:94px!important}'+
+    'html.ljpc-embedded-home #root .ucl [data-name="story ring"]{'+
+    'width:88px!important;height:88px!important;min-width:88px!important;min-height:88px!important}'+
+    'html.ljpc-embedded-home #root .ucl [data-name="hero section container"]{'+
+    'width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;'+
+    'grid-template-columns:minmax(0,1fr) 488px!important;gap:24px!important}'+
+    'html.ljpc-embedded-home #root .ucl :is([data-name="moments section container"],[data-name="news section container"],[data-name="video highlights section"]){'+
+    'width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important}';
    doc.head.appendChild(style);
-   // Recalcular altura del iframe tras bajar historias y ocultar barras.
    const inner=doc.defaultView;
    inner?.requestAnimationFrame?.(()=>{
     inner.dispatchEvent(new inner.Event('resize'));
    });
   }
- }catch(_){/* An isolated document must keep working if access is unavailable. */}
+ }catch(_){}
 }
 function updateFrame(){
  const iframe=document.querySelector('#screen #ljpc-exact-html-home');
@@ -263,9 +267,6 @@ function sync(){
  }
  if(!document.getElementById('ljpc-unified-pc-footer'))
   screen.insertAdjacentHTML('afterend',footerMarkup());
- // El footer de PC es siempre el ÚLTIMO hijo del body.
- // No moverlo dentro de #screen: causaba una carrera con
- // pc-independent-finish y bloqueaba el scroll al fondo.
  const footer=document.getElementById('ljpc-unified-pc-footer');
  if(footer&&(footer.parentElement!==document.body||footer!==document.body.lastElementChild)){
    document.body.appendChild(footer);
@@ -279,8 +280,6 @@ function refreshFixtures(){
  if(!el||!desktop())return;
  el.innerHTML=fixturesHTML();
 }
-/* Los tres menús PC se abren de forma explícita. En ciertos navegadores el
-   clic delegado cancelaba el comportamiento nativo de <details>. */
 document.addEventListener('click',e=>{
  if(!desktop()||!(e.target instanceof Element))return;
  const summary=e.target.closest('#ljpc-unified-pc-header .ljpc-u-links > details > summary');
@@ -360,8 +359,6 @@ window.addEventListener('ljr:official-data',()=>{refreshFixtures();schedule();})
 function boot(){
  schedule();
  const app=document.getElementById('app');
- // Observar sólo cambios estructurales. El árbol completo cambia con noticias,
- // imágenes y paneles y disparaba sync() constantemente durante el desplazamiento.
  if(app)new MutationObserver(schedule).observe(app,{childList:true});
  const screen=document.getElementById('screen');
  if(screen)new MutationObserver(schedule).observe(screen,{childList:true});
