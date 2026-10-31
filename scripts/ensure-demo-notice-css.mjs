@@ -60,7 +60,7 @@ try{
  for(const jsPath of ['src/pc-unified-navigation-20261011.js','demo/src/pc-unified-navigation-20261011.js']){
   try{
    const raw=readFileSync(jsPath,'utf8');
-   const fixed=raw.replace("'margin:0 auto!important;padding:6px 0 8px!important;gap:12px!important;'","'margin:0 auto!important;margin-top:0!important;margin-bottom:0!important;padding:6px 0 8px!important;gap:12px!important;'");
+   const fixed=raw.replace("'margin:0 auto!important;padding:6px 0 8px!important;gap:12px!important;'","'margin:0 auto!important;margin-top:0!important;margin-bottom:0!important;padding-top:2px!important;padding-bottom:4px!important;padding:6px 0 8px!important;gap:12px!important;'");
    if(fixed!==raw)writeFileSync(jsPath,fixed);
   }catch(_){}
  }
