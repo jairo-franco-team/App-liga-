@@ -12,12 +12,12 @@ Instala la aplicación en tu teléfono Android. Si Android indica que no puede a
 ### 2. Versión completa para computadora (Web PC)
 **[💻 Abrir Liga Juventino para PC](https://jairo-franco-team.github.io/App-liga-/?mode=desktop&refresh=pc-standings-inline-simulator-footer-v8#/home)**
 
-Vista para pantallas grandes, con tablas y estadísticas.
+Vista para pantallas grandes, con tablas y estadísticas (también disponible en navegador móvil con diseño de escritorio adaptado).
 
 ### 3. Versión web para celular
 **[📱 Abrir versión móvil — Menú](https://jairo-franco-team.github.io/App-liga-/#/more)**
 
-Versión adaptada para abrirse desde el navegador del teléfono.
+Versión adaptada para abrirse desde el navegador del teléfono con el mismo diseño nativo de la APK (`?mode=mobile` / `#/more`).
 
 ---
 
