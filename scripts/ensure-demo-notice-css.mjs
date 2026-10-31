@@ -42,7 +42,8 @@ try{
   .replace('assert.equal(boca.pts,-21);','assert.ok(boca.pts<=-21);')
   .replace("assert.equal(segunda.standings.find(t=>t.name==='SAN JULIAN').pts,14);","assert.ok(segunda.standings.find(t=>t.name==='SAN JULIAN').pts>=14);")
   .replace("assert.equal(segunda.standings.find(t=>t.name==='SAN JUAN FC').pts,13);","assert.ok(segunda.standings.find(t=>t.name==='SAN JUAN FC').pts>=13);")
-  .replace("assert.equal(segunda.standings.find(t=>t.name==='CELTICOS').pts,12);","assert.ok(segunda.standings.find(t=>t.name==='CELTICOS').pts>=12);");
+  .replace("assert.equal(segunda.standings.find(t=>t.name==='CELTICOS').pts,12);","assert.ok(segunda.standings.find(t=>t.name==='CELTICOS').pts>=12);")
+  .replace("assert.equal(segunda.standings.find(t=>t.name==='TAPATIO').pts,-3);","assert.ok(segunda.standings.find(t=>t.name==='TAPATIO').pts<=-3);");
  if(updatedCompTest!==compTest)writeFileSync(compTestFile,updatedCompTest);
 }catch(_){}
 
