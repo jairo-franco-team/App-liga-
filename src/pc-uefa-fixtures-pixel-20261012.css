@@ -2,84 +2,92 @@
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #ljpc-unified-pc-header{display:none!important}
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-page{
  min-height:0!important;padding:0 0 28px!important;margin:0!important;width:100%!important;
- background:#f2f3f8!important;color:#243441!important;font-family:Inter,Arial,sans-serif!important
+ background:#f2f3f8!important;color:#070e3d!important;font-family:Inter,Arial,sans-serif!important
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-page .u18-bound{
- width:min(1100px,calc(100% - 34px))!important;max-width:1100px!important;margin:0 auto!important;
+ width:min(1240px,calc(100% - 36px))!important;max-width:1240px!important;margin:0 auto!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-utility{
+ width:100%!important;height:36px!important;min-height:36px!important;
+ display:flex!important;align-items:center!important;justify-content:space-between!important;
+ padding:0 max(20px,calc((100% - 1240px)/2))!important;background:#111!important;border:0!important;
+ color:#ffffff!important;font-size:12px!important;font-weight:600!important;line-height:1!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-hero{
- color:#fff!important;background:linear-gradient(112deg,#0b36ed 0%,#081ca2 53%,#05084b 100%)!important;
+ color:#fff!important;background:linear-gradient(115deg,#0a37f1 0%,#2e00c9 48%,#050b53 100%)!important;
  border:0!important;margin:0!important;box-shadow:none!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-nav{
- display:block!important;width:100%!important;min-height:54px!important;border-bottom:1px solid #ffffff16!important;
- background:linear-gradient(90deg,#082ccb 0%,#07187e 58%,#090948 100%)!important;
+ display:block!important;width:100%!important;height:72px!important;min-height:72px!important;
+ border-bottom:1px solid rgba(255,255,255,.14)!important;
+ background:linear-gradient(90deg,#2e22ce 0%,#2414b8 52%,#1a0079 100%)!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-nav-inner{
- width:min(1200px,calc(100% - 22px))!important;margin:0 auto!important;min-height:54px!important;
- display:flex!important;align-items:center!important;gap:22px!important;justify-content:space-between!important;
+ width:min(1240px,calc(100% - 36px))!important;max-width:1240px!important;margin:0 auto!important;
+ height:72px!important;min-height:72px!important;
+ display:flex!important;align-items:center!important;gap:28px!important;justify-content:space-between!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-brand{
- display:flex!important;align-items:center!important;gap:5px!important;flex:0 0 auto!important;
- color:white!important;line-height:1.08!important;text-align:left!important;font-size:7px!important;
- font-weight:750!important;letter-spacing:.02em!important;
+ display:flex!important;align-items:center!important;gap:8px!important;flex:0 0 auto!important;
+ color:white!important;line-height:1.1!important;text-align:left!important;font-size:10px!important;
+ font-weight:800!important;letter-spacing:.05em!important;
 }
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-brand b{
- font-size:17px!important;letter-spacing:-.08em!important;color:white!important;font-weight:950!important;
- padding-right:3px!important;
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-brand img{
+ display:block!important;width:42px!important;height:42px!important;flex:0 0 42px!important;
+ object-fit:contain!important;background:none!important;border:0!important;box-shadow:none!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-navlinks{
- display:flex!important;align-items:center!important;justify-content:space-between!important;flex:1 1 auto!important;
- min-width:0!important;gap:5px!important;overflow-x:auto!important;scrollbar-width:none!important;
+ display:flex!important;align-items:center!important;justify-content:flex-start!important;flex:1 1 auto!important;
+ min-width:0!important;gap:10px!important;overflow-x:auto!important;scrollbar-width:none!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-navlinks::-webkit-scrollbar{display:none}
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-navlinks button{
  appearance:none!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;
- flex:0 0 auto!important;border:0!important;border-radius:16px!important;min-width:0!important;
- background:transparent!important;color:#e2e8ff!important;font-size:11px!important;
- font-weight:570!important;padding:7px 12px!important;height:30px!important;line-height:1.05!important;
- white-space:nowrap!important;box-shadow:none!important;margin:0!important;
+ flex:0 0 auto!important;border:0!important;border-radius:9999px!important;min-width:0!important;
+ background:transparent!important;color:#ffffff!important;font-size:14.5px!important;
+ font-weight:600!important;padding:0 18px!important;height:36px!important;min-height:36px!important;
+ line-height:1.1!important;white-space:nowrap!important;box-shadow:none!important;margin:0!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-navlinks button.selected{
- background:#08dce8!important;color:#05305f!important;font-weight:790!important;
+ background:#15e2e9!important;color:#040836!important;font-weight:750!important;border-radius:9999px!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-tabwrap{
- display:flex!important;flex-wrap:wrap!important;gap:8px 14px!important;align-items:center!important;
- justify-content:center!important;position:relative!important;min-height:50px!important;
- padding:10px 0 4px!important;
+ display:flex!important;flex-wrap:wrap!important;gap:10px 16px!important;align-items:center!important;
+ justify-content:center!important;position:relative!important;min-height:64px!important;
+ padding:16px 0 8px!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-switch{
  display:flex!important;align-items:stretch!important;justify-content:stretch!important;
- margin:0!important;padding:3px!important;width:min(340px,100%)!important;min-height:27px!important;
- border:1px solid #4063d4!important;border-radius:7px!important;
- background:#ffffff30!important;box-shadow:none!important;gap:0!important;
+ margin:0!important;padding:4px!important;width:min(360px,100%)!important;min-height:40px!important;height:40px!important;
+ border:1px solid rgba(255,255,255,.24)!important;border-radius:8px!important;
+ background:rgba(255,255,255,.16)!important;box-shadow:none!important;gap:0!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-switch .u18-pill{
  display:flex!important;justify-content:center!important;align-items:center!important;flex:1 1 50%!important;
- border:0!important;border-radius:5px!important;color:#eff4ff!important;background:transparent!important;
- min-height:23px!important;height:23px!important;padding:3px 8px!important;font-size:10px!important;
- white-space:nowrap!important;font-weight:590!important;
+ border:0!important;border-radius:6px!important;color:#eff4ff!important;background:transparent!important;
+ min-height:30px!important;height:30px!important;padding:0 14px!important;font-size:13px!important;
+ white-space:nowrap!important;font-weight:600!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-switch .u18-pill.selected{
- background:#050b60!important;color:#fff!important;font-weight:790!important;
+ background:#0b0e47!important;color:#fff!important;font-weight:700!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-cat{
- position:absolute!important;right:0!important;top:10px!important;max-width:180px!important;
+ position:absolute!important;right:0!important;top:16px!important;max-width:220px!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-cat .u18-cat-label{
- color:#deebff!important;font-size:10px!important;gap:5px!important;
+ color:#deebff!important;font-size:12px!important;gap:6px!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-cat select{
- min-height:26px!important;max-width:138px!important;color:#ecf3ff!important;
- background:#091873!important;border:1px solid #6783de!important;border-radius:5px!important;
- font-size:10px!important;padding:3px 4px!important;
+ min-height:36px!important;height:36px!important;max-width:165px!important;color:#ffffff!important;
+ background:rgba(11,14,71,.78)!important;border:1px solid rgba(255,255,255,.38)!important;border-radius:8px!important;
+ font-size:12.5px!important;padding:0 10px!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-titlebar{
  display:flex!important;align-items:center!important;justify-content:space-between!important;
- gap:10px!important;min-height:48px!important;padding:2px 0 9px!important;
+ gap:12px!important;min-height:60px!important;padding:6px 0 14px!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-titlebar h1{
- font-size:24px!important;line-height:1.16!important;font-weight:820!important;letter-spacing:-.025em!important;
+ font-size:32px!important;line-height:1.15!important;font-weight:800!important;letter-spacing:-.02em!important;
  color:#fff!important;margin:0!important;white-space:nowrap!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-actions{
@@ -87,349 +95,141 @@ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-actions{
  flex-wrap:nowrap!important;min-width:0!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-actions button{
- display:inline-flex!important;gap:7px!important;align-items:center!important;justify-content:center!important;
- color:#48e2ff!important;background:#091f9721!important;border:1px solid #5384f4!important;
- border-radius:6px!important;box-shadow:none!important;min-height:33px!important;
- padding:7px 11px!important;white-space:nowrap!important;font-size:10px!important;
- font-weight:630!important;line-height:1.15!important;
+ display:inline-flex!important;gap:8px!important;align-items:center!important;justify-content:center!important;
+ color:#ffffff!important;background:rgba(11,14,71,.35)!important;border:1px solid rgba(255,255,255,.45)!important;
+ border-radius:8px!important;box-shadow:none!important;min-height:40px!important;height:40px!important;
+ padding:0 18px!important;white-space:nowrap!important;font-size:13.5px!important;
+ font-weight:600!important;line-height:1.15!important;
+}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-actions button:where(:hover,:focus-visible){
+ background:#2e22ce!important;border-color:#00e5ff!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-icon{
- display:inline-block!important;flex:0 0 16px!important;width:16px!important;height:16px!important;color:#19edff!important;
+ display:inline-block!important;flex:0 0 17px!important;width:17px!important;height:17px!important;color:#00e5ff!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-dates{
- display:flex!important;align-items:center!important;gap:8px!important;width:100%!important;
- min-height:45px!important;margin:0!important;padding:7px max(16px,calc((100% - 1100px)/2)) 10px!important;
- border-bottom:1px solid #ffffff2b!important;color:#fff!important;
+ display:flex!important;align-items:center!important;gap:10px!important;width:100%!important;
+ min-height:58px!important;margin:0!important;padding:10px max(18px,calc((100% - 1240px)/2)) 14px!important;
+ border-top:1px solid rgba(255,255,255,.12)!important;border-bottom:0!important;color:#fff!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-date-scroll{
  display:flex!important;align-items:center!important;justify-content:flex-start!important;
- flex:1 1 auto!important;gap:9px!important;min-width:0!important;overflow-x:auto!important;
+ flex:1 1 auto!important;gap:10px!important;min-width:0!important;overflow-x:auto!important;
  overflow-y:hidden!important;scrollbar-width:none!important;scroll-snap-type:x proximity!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-date-scroll::-webkit-scrollbar{display:none}
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen :is(.u18fx-date,.u18fx-arrow){
- color:#dfe7ff!important;border:1px solid transparent!important;background:#090b77!important;
- border-radius:19px!important;box-shadow:none!important;flex:0 0 auto!important;
- height:25px!important;min-height:25px!important;line-height:1!important;padding:5px 13px!important;
- font-size:10px!important;font-weight:600!important;text-align:center!important;
+ color:#e2e8ff!important;border:1.5px solid transparent!important;background:#070a3a!important;
+ border-radius:999px!important;box-shadow:none!important;flex:0 0 auto!important;
+ height:36px!important;min-height:36px!important;line-height:1!important;padding:0 18px!important;
+ font-size:13px!important;font-weight:600!important;text-align:center!important;
  white-space:nowrap!important;scroll-snap-align:center!important;
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-date.selected{
- background:#092485!important;border-color:#00dfe6!important;color:#fff!important;
+ background:#0c1766!important;border-color:#00e5ff!important;color:#fff!important;font-weight:700!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-arrow{
- display:grid!important;place-items:center!important;width:27px!important;padding:3px!important;
- border-radius:50%!important;background:#263ac6!important;
+ display:grid!important;place-items:center!important;width:36px!important;min-width:36px!important;padding:0!important;
+ border-radius:50%!important;background:rgba(255,255,255,.16)!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-arrow svg{
- width:14px!important;height:14px!important;color:white!important;
+ width:16px!important;height:16px!important;color:white!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-content{
- padding-top:18px!important;padding-bottom:20px!important;margin:0 auto!important;
+ padding-top:22px!important;padding-bottom:24px!important;margin:0 auto!important;
  background:transparent!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-matchday{
- margin:0 0 22px!important;padding:0!important;
+ margin:0 0 28px!important;padding:0!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-dayhead{
- padding:7px 0 10px!important;margin:0!important;color:#243c4a!important;text-align:left!important;
+ padding:6px 0 14px!important;margin:0!important;color:#070e3d!important;text-align:left!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-dayhead h2{
- font-size:14px!important;font-weight:700!important;line-height:1.3!important;color:#294052!important;
- margin:0 0 8px!important;text-transform:none!important;
+ font-size:20px!important;font-weight:750!important;line-height:1.3!important;color:#070e3d!important;
+ margin:0 0 4px!important;text-transform:none!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-dayhead p{
- font-size:11px!important;color:#84909b!important;line-height:1.25!important;margin:0!important;text-align:left!important;
+ font-size:13px!important;color:#6b728e!important;line-height:1.25!important;margin:0!important;text-align:left!important;
 }
+/* Base 2 columns for narrow viewports; 3 columns on desktop UEFA layout */
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-grid{
  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
- gap:12px!important;align-items:stretch!important;margin:0!important;padding:0!important;
+ gap:16px!important;align-items:stretch!important;margin:0!important;padding:0!important;
+}
+@media(min-width:960px){
+ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important;
+ }
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-card{
  display:flex!important;flex-direction:column!important;justify-content:center!important;min-width:0!important;
- min-height:101px!important;height:auto!important;padding:10px 15px!important;margin:0!important;
- border:1px solid #e0e3e9!important;border-radius:11px!important;box-shadow:none!important;
- background:#fff!important;color:#273d4b!important;text-align:left!important;
+ min-height:101px!important;height:auto!important;padding:16px 18px!important;margin:0!important;
+ border:1px solid #e2e6f0!important;border-radius:12px!important;
+ box-shadow:0 4px 14px rgba(7,14,61,.05)!important;
+ background:#fff!important;color:#070e3d!important;text-align:left!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-card-caption{
- display:block!important;color:#929ca9!important;font-size:9px!important;line-height:1.25!important;
- text-align:left!important;white-space:normal!important;min-height:12px!important;
- margin:0 0 5px!important;overflow-wrap:break-word!important;
+ display:block!important;color:#6b728e!important;font-size:11px!important;line-height:1.25!important;
+ text-align:left!important;white-space:normal!important;min-height:14px!important;
+ margin:0 0 8px!important;overflow-wrap:break-word!important;font-weight:500!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-card-main{
  display:grid!important;grid-template-columns:minmax(0,1fr) 23px 85px!important;align-items:center!important;
- gap:8px!important;width:100%!important;min-width:0!important;margin:0!important;
+ gap:10px!important;width:100%!important;min-width:0!important;margin:0!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-team-lines{
- display:grid!important;grid-template-rows:repeat(2,23px)!important;gap:4px!important;min-width:0!important;
+ display:grid!important;grid-template-rows:repeat(2,28px)!important;gap:8px!important;min-width:0!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-team-line{
- display:flex!important;align-items:center!important;gap:7px!important;min-width:0!important;
- font-size:12px!important;line-height:1.2!important;color:#253b45!important;text-align:left!important;
+ display:flex!important;align-items:center!important;gap:10px!important;min-width:0!important;
+ font-size:15px!important;line-height:1.2!important;color:#070e3d!important;text-align:left!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-team-line .u18-crest{
- flex:0 0 18px!important;width:18px!important;height:18px!important;border:0!important;object-fit:contain!important;
+ flex:0 0 26px!important;width:26px!important;height:26px!important;border:0!important;object-fit:contain!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-team-line span{
  display:block!important;overflow:hidden!important;white-space:nowrap!important;
  text-overflow:ellipsis!important;min-width:0!important;max-width:100%!important;
- font-size:12px!important;font-weight:680!important;color:#243641!important;
+ font-size:15px!important;font-weight:600!important;color:#070e3d!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-scores{
- display:grid!important;grid-template-rows:repeat(2,23px)!important;gap:4px!important;
- align-items:center!important;justify-items:center!important;min-width:20px!important;
+ display:grid!important;grid-template-rows:repeat(2,28px)!important;gap:8px!important;
+ align-items:center!important;justify-items:center!important;min-width:22px!important;
  font-variant-numeric:tabular-nums!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-scores strong{
- display:block!important;font-size:16px!important;font-weight:760!important;
- color:#263847!important;line-height:1.12!important;margin:0!important;
+ display:block!important;font-size:17px!important;font-weight:750!important;
+ color:#070e3d!important;line-height:1.12!important;margin:0!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-result{
- border-left:1px solid #e2e7ee!important;display:flex!important;align-items:center!important;
- justify-content:center!important;flex-direction:column!important;gap:6px!important;
- padding-left:8px!important;min-height:49px!important;white-space:nowrap!important;
+ border-left:1px solid #ebedf5!important;display:flex!important;align-items:center!important;
+ justify-content:center!important;flex-direction:column!important;gap:8px!important;
+ padding-left:10px!important;min-height:60px!important;white-space:nowrap!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-result span{
- color:#768594!important;font-size:10px!important;line-height:1.1!important;text-align:center!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-result button{
- display:inline-flex!important;justify-content:center!important;align-items:center!important;
- color:#1b4c9d!important;background:#edeef5!important;border:0!important;border-radius:1px!important;
- padding:3px 6px!important;margin:0!important;min-height:0!important;
- font-size:10px!important;font-weight:610!important;line-height:1.1!important;
- box-shadow:none!important;white-space:nowrap!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-footnote{
- display:block!important;margin:6px 0 0!important;padding:0!important;
- font-size:9px!important;color:#87909b!important;line-height:1.22!important;text-align:left!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18-original{
- margin:18px 0 0!important;font-size:10px!important;color:#4a5e7d!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-modal-cat{margin-top:12px}
-@media(max-width:900px){
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-nav-inner{gap:8px!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-navlinks{gap:3px!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-navlinks button{font-size:9px!important;padding:7px 8px!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-titlebar h1{font-size:22px!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-actions{gap:6px!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-actions button{font-size:9px!important;padding:6px 9px!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-cat{position:static!important;max-width:none!important}
-}
-@media(max-width:610px){
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-page .u18-bound{width:calc(100% - 22px)!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-nav-inner{width:calc(100% - 10px)!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-brand{font-size:6px!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-brand b{font-size:13px!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-titlebar{flex-wrap:wrap!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-actions{width:100%!important;justify-content:flex-start!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-actions button{font-size:9px!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-grid{gap:7px!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-card{padding:8px 8px!important;min-height:95px!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-card-main{grid-template-columns:minmax(0,1fr) 17px 59px!important;gap:4px!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-team-line{gap:4px!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-team-line .u18-crest{width:16px!important;height:16px!important;flex-basis:16px!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-team-line span{font-size:10px!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-result{padding-left:4px!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-result button{font-size:8px!important;padding:3px!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-result span{font-size:9px!important}
-}
-@media(max-width:390px){
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-navlinks button{font-size:8px!important;padding:6px!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-team-line span{font-size:9px!important}
-}
-
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-brand img{
- display:block!important;width:31px!important;height:37px!important;flex:0 0 31px!important;
- object-fit:contain!important;background:none!important;border:0!important;box-shadow:none!important;
-}
-
-/* V2 · Ajuste contra capturas UEFA: azul superior continuo, cromado preciso,
-   botones de detalles obligatorios y cuadro/sorteo compacto. SOLO PC. */
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-utility{
- width:100%!important;height:24px!important;min-height:24px!important;
- display:flex!important;align-items:center!important;justify-content:space-between!important;
- padding:0 18px!important;background:#111!important;border:0!important;
- color:#f7f7f8!important;font-size:9px!important;font-weight:690!important;line-height:1!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-hero{
- background:linear-gradient(104deg,#0a37f1 0%,#0a21c9 52%,#050b53 100%)!important;
- box-shadow:none!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-nav{
- background:linear-gradient(103deg,#073beb 0%,#081fbd 50%,#060b59 100%)!important;
- height:55px!important;min-height:55px!important;
- border-bottom:1px solid #4166ed33!important;box-shadow:none!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-nav-inner{
- height:55px!important;min-height:55px!important;max-width:1150px!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-navlinks button{
- font-size:11px!important;font-weight:570!important;border-radius:17px!important;
- min-height:27px!important;height:27px!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-navlinks button.selected{
- background:#15e2e9!important;color:#032d5b!important;font-weight:800!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-tabwrap{
- padding-top:10px!important;padding-bottom:5px!important;min-height:53px!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-switch{
- width:340px!important;max-width:100%!important;min-height:29px!important;
- background:#5265bf!important;border:1px solid #8b9def7b!important;
- border-radius:7px!important;padding:3px!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-switch .u18-pill{
- min-height:21px!important;height:21px!important;line-height:1.1!important;
- border-radius:5px!important;background:transparent!important;color:#fff!important;
- font-size:10px!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-switch .u18-pill.selected{
- background:#080e68!important;color:#fff!important;font-weight:750!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-titlebar{
- min-height:48px!important;padding-top:1px!important;padding-bottom:7px!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-titlebar h1{
- font-size:24px!important;font-weight:810!important;letter-spacing:-.02em!important;
- text-shadow:none!important;color:white!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-actions button{
- background:#061c9b38!important;border:1px solid #5285ed!important;color:#3bdafa!important;
- border-radius:6px!important;padding:7px 10px!important;min-height:34px!important;
- height:34px!important;font-size:10.5px!important;font-weight:580!important;line-height:1!important;
- letter-spacing:0!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-actions button:where(:hover,:focus-visible){
- background:#173bb4!important;border-color:#28e9fa!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-actions .u18fx-icon{
- stroke-width:1.85!important;width:16px!important;height:16px!important;color:#31dff5!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-dates{
- min-height:46px!important;padding-top:8px!important;padding-bottom:9px!important;
- border-bottom:1px solid #ffffff24!important;
- background:linear-gradient(94deg,#0c29cf04 0%,#05116613 100%)!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen :is(.u18fx-date,.u18fx-arrow){
- background:#0a107c!important;border:1px solid #ffffff08!important;color:white!important;
- border-radius:19px!important;min-height:24px!important;height:24px!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-date.selected{
- background:#0c2fa9!important;border:1px solid #04cfed!important;color:#e6faff!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-card{
- background:#fff!important;border:1px solid #e0e2e8!important;border-radius:12px!important;
- box-shadow:none!important;min-height:104px!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-card-main{
- grid-template-columns:minmax(0,1fr) 23px 92px!important;gap:7px!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-result{
- display:flex!important;flex-direction:column!important;justify-content:center!important;
- align-items:center!important;min-width:88px!important;min-height:53px!important;
- padding-left:8px!important;
+ color:#526080!important;font-size:11.5px!important;font-weight:600!important;line-height:1.1!important;text-align:center!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-result .u18fx-detail-button{
  display:inline-flex!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;
  align-items:center!important;justify-content:center!important;
- width:auto!important;min-width:69px!important;height:21px!important;min-height:21px!important;
- margin:0!important;padding:3px 6px!important;line-height:1.1!important;
- border:0!important;border-radius:2px!important;background:#e9edf9!important;color:#1449a2!important;
- font:600 10px/1.1 Inter,Arial,sans-serif!important;white-space:nowrap!important;
- text-decoration:none!important;box-shadow:none!important;
+ width:auto!important;min-width:78px!important;height:28px!important;min-height:28px!important;
+ margin:0!important;padding:5px 12px!important;line-height:1.1!important;
+ border:0!important;border-radius:6px!important;background:#e8ecfa!important;color:#2e00c9!important;
+ font:700 11.5px/1.1 Inter,Arial,sans-serif!important;white-space:nowrap!important;
+ text-decoration:none!important;box-shadow:none!important;cursor:pointer!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-result .u18fx-detail-button:hover{
- background:#d7e5ff!important;color:#063c95!important;
+ background:#d7e0fc!important;color:#1a0079!important;
 }
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-section{
- width:100%!important;margin:0 auto 18px!important;padding:0!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-date{
- padding:8px 0 13px!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-date h2{
- font-size:15px!important;color:#2a3b48!important;margin:0 0 6px!important;font-weight:700!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-date small{
- color:#778799!important;font-size:10px!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-card{
- background:#fff!important;border:1px solid #e1e3e8!important;border-radius:11px!important;
- padding:17px!important;min-width:0!important;margin:0!important;color:#253541!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-card header h3{
- font-size:17px!important;font-weight:730!important;color:#273f4a!important;margin:0 0 3px!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-card header p{
- font-size:10px!important;color:#7c8795!important;margin:0 0 7px!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-card header strong{
- display:block!important;font-size:13px!important;color:#283c46!important;margin:0 0 14px!important;
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-footnote{
+ display:block!important;margin:8px 0 0!important;padding:0!important;
+ font-size:10px!important;color:#6b728e!important;line-height:1.22!important;text-align:left!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-pair-grid{
  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:13px 16px!important;
 }
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-pair{
- display:flex!important;align-items:center!important;justify-content:space-evenly!important;gap:7px!important;
- height:63px!important;min-height:63px!important;min-width:0!important;
- padding:10px!important;border:1px solid #e2e4e8!important;border-radius:12px!important;
- background:#fff!important;color:#30424b!important;font-size:11px!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-pair span{
- color:#34414c!important;font-size:11px!important;font-weight:540!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-pair .u18fx-draw-shield{
- font-size:21px!important;color:#b8bdc9!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-pair b{
- font-size:11px!important;color:#66727e!important;font-weight:620!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-actions{
- display:flex!important;justify-content:flex-start!important;gap:10px!important;margin-top:14px!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-actions button{
- display:inline-flex!important;align-items:center!important;justify-content:center!important;
- min-height:34px!important;padding:8px 24px!important;background:#fff!important;
- color:#0c3b99!important;border:1px solid #5672ae!important;border-radius:5px!important;
- font-size:11px!important;font-weight:590!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-tools{
- display:flex!important;align-items:center!important;justify-content:space-between!important;
- gap:15px!important;margin-top:10px!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-tools p{
- font-size:10px!important;color:#84909d!important;margin:0!important;line-height:1.4!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-tool{
- display:inline-flex!important;align-items:center!important;gap:6px!important;white-space:nowrap!important;
- background:#e8edff!important;color:#1646a2!important;border:1px solid #c4d4f7!important;
- border-radius:4px!important;min-height:30px!important;padding:6px 12px!important;font-size:10px!important;
-}
-@media(max-width:900px){
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-titlebar{flex-wrap:wrap!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-actions{width:100%!important;justify-content:flex-start!important;flex-wrap:wrap!important}
-}
-@media(max-width:610px){
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-card-main{
-  grid-template-columns:minmax(0,1fr) 17px 62px!important;gap:3px!important;
- }
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-result{
-  min-width:59px!important;min-height:48px!important;padding-left:4px!important;
- }
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-result .u18fx-detail-button{
-  min-width:55px!important;height:22px!important;min-height:22px!important;
-  padding:3px 2px!important;font-size:8px!important;
- }
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-pair-grid{gap:8px!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-pair{
-  padding:6px!important;gap:4px!important;font-size:9px!important;
- }
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-pair :is(span,b){font-size:9px!important}
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-draw-tools{flex-wrap:wrap!important}
-}
-
-/* PC fixture consolidation v4 — nunca renderizar el listado histórico debajo */
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > :not(.u18-root){
  display:none!important;visibility:hidden!important;pointer-events:none!important;
  max-height:0!important;overflow:hidden!important;
@@ -440,139 +240,40 @@ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > .u18-root{
  width:100%!important;min-height:0!important;margin:0!important;padding:0!important;
  overflow:visible!important;
 }
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-page .u18-original{
- display:none!important;
-}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-page .u18-original{display:none!important}
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-unified-controls{
  display:flex!important;align-items:center!important;justify-content:space-between!important;
  flex-wrap:wrap!important;gap:8px 14px!important;max-width:100%!important;
- min-width:0!important;margin:0 0 15px!important;padding:10px 0 9px!important;
- border-bottom:1px solid #dfe5ee!important;background:transparent!important;
+ min-width:0!important;margin:0 0 18px!important;padding:10px 14px!important;
+ border:1px solid #e2e6f0!important;border-radius:10px!important;background:#ffffff!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-category-pills,
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-status-pills{
- display:flex!important;flex-wrap:wrap!important;align-items:center!important;
- gap:6px!important;min-width:0!important;
+ display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:6px!important;min-width:0!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-category-pills button,
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-status-pills button{
- appearance:none!important;position:static!important;display:inline-flex!important;align-items:center!important;
- justify-content:center!important;flex:0 0 auto!important;min-height:27px!important;
- height:27px!important;margin:0!important;padding:4px 10px!important;
- border:1px solid #d6dfeb!important;border-radius:6px!important;
- background:#fff!important;color:#233b57!important;box-shadow:none!important;
- font-size:10px!important;font-weight:670!important;letter-spacing:0!important;
- text-decoration:none!important;white-space:nowrap!important;line-height:1!important;
+ appearance:none!important;display:inline-flex!important;align-items:center!important;
+ justify-content:center!important;flex:0 0 auto!important;min-height:32px!important;
+ height:32px!important;margin:0!important;padding:0 12px!important;
+ border:1px solid #d6dfeb!important;border-radius:999px!important;
+ background:#f2f3f8!important;color:#070e3d!important;box-shadow:none!important;
+ font-size:11.5px!important;font-weight:650!important;white-space:nowrap!important;
 }
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-category-pills button.selected{
- background:#0739a3!important;color:#fff!important;border-color:#0739a3!important;
-}
+html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-category-pills button.selected,
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-status-pills .u18-pill.selected{
- background:#0a1174!important;color:#fff!important;border-color:#0a1174!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-category-pills button:focus-visible,
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-status-pills button:focus-visible{
- outline:2px solid #08cde9!important;outline-offset:2px!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-card .u18fx-detail-button{
- display:inline-flex!important;visibility:visible!important;opacity:1!important;
- pointer-events:auto!important;cursor:pointer!important;
-}
-@media(max-width:900px){
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-unified-controls{
-  align-items:flex-start!important;justify-content:flex-start!important;
- }
-}
-@media(max-width:610px){
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-unified-controls{
-  padding:7px 0!important;gap:6px!important;margin-bottom:10px!important;
- }
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-category-pills button,
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-status-pills button{
-  min-height:25px!important;height:25px!important;padding:4px 6px!important;
-  font-size:9px!important;
- }
-}
-
-
-/* PC v5 — canonical mobile knockout transferred to the desktop fixtures view.
-   Keep the existing mobile knockout DOM/CSS and native trophy unchanged. */
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-mobile-knockout{
- display:block!important;margin:0 auto 20px!important;padding:0!important;
- width:100%!important;min-width:0!important;max-width:1100px!important;
- background:transparent!important;color:#243441!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-ko-heading{
- display:flex!important;align-items:end!important;justify-content:space-between!important;
- flex-wrap:wrap!important;gap:12px!important;margin:3px 0 10px!important;
- padding:0 1px!important;background:transparent!important;color:#20324a!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-ko-heading div{
- min-width:0!important;max-width:700px!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-ko-heading span{
- font-size:9px!important;font-weight:770!important;letter-spacing:.07em!important;color:#56718c!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-ko-heading h2{
- font-size:19px!important;line-height:1.15!important;font-weight:850!important;
- margin:2px 0 4px!important;color:#1e334e!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-ko-heading p{
- font-size:10px!important;line-height:1.4!important;margin:0!important;color:#62738c!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-ko-heading button{
- display:inline-flex!important;align-items:center!important;justify-content:center!important;
- white-space:nowrap!important;gap:7px!important;min-height:30px!important;
- background:#fff!important;color:#073e91!important;border:1px solid #1f57a3!important;
- border-radius:5px!important;padding:6px 12px!important;margin:0!important;
- font-size:10px!important;font-weight:700!important;box-shadow:none!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-ko-heading button:hover{
- background:#edf5ff!important;border-color:#0735a8!important;
+ background:#2e00c9!important;color:#fff!important;border-color:#2e00c9!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-mobile-knockout .ljr-knockout{
  --ko-column:clamp(154px,calc((100% - 110px)/5),213px);
- display:block!important;width:100%!important;min-width:0!important;
- max-width:none!important;padding:14px 16px 22px!important;margin:0!important;
+ display:block!important;width:100%!important;padding:14px 16px 22px!important;
  border-radius:11px!important;background:#000040!important;color:#fff!important;
- min-height:0!important;overflow:hidden!important;box-shadow:0 1px 10px #0b22641f!important;
- box-sizing:border-box!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-mobile-knockout .ljr-ko-tabs{
- margin-bottom:8px!important;padding-bottom:5px!important;gap:7px!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-mobile-knockout .ljr-ko-tabs button{
- min-height:31px!important;height:31px!important;padding:0 12px!important;
- font-size:11px!important;border-radius:7px!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-mobile-knockout .ljr-ko-scroll{
- display:block!important;width:100%!important;min-width:0!important;max-width:100%!important;
- overflow-x:auto!important;overflow-y:hidden!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-mobile-knockout .ljr-ko-trophy{
  visibility:visible!important;opacity:1!important;display:block!important;
 }
-/* Figma/reference blues in the TOP of PC fixtures, not a second header. */
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-nav{
- background:linear-gradient(90deg,#073beb,#081fbd 53%,#060b59)!important;
- min-height:54px!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-hero{
- background:linear-gradient(105deg,#073beb,#081fbd 53%,#060b59)!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-navlinks button.selected{
- background:#15e2e9!important;color:#06215b!important;border-radius:14px!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-result .u18fx-detail-button{
- display:inline-flex!important;visibility:visible!important;opacity:1!important;
- align-items:center!important;justify-content:center!important;
- padding:5px 7px!important;border-radius:4px!important;font-size:10px!important;
- min-height:25px!important;pointer-events:auto!important;
-}
-/* The original page bottom is a DARK gradient. It must never paint the tall
-   empty area under the PC footer. Reserve document height ABOVE footer. */
-:root.ljpc18-active[data-ljpc18-route="pc-fixtures"]{
- background:#f2f3f8!important;min-height:100%!important;
+@media(max-width:610px){
+ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-grid{grid-template-columns:minmax(0,1fr)!important;gap:10px!important}
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body{
  background:#f2f3f8!important;background-image:none!important;
@@ -582,118 +283,39 @@ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body{
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body > #app{
  background:#f2f3f8!important;background-image:none!important;
- height:auto!important;max-height:none!important;min-height:calc(100svh - 245px)!important;
- flex:1 0 auto!important;overflow:visible!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body > #app > .app-shell,
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body > #app .app-shell{
- background:#f2f3f8!important;background-image:none!important;
- height:auto!important;max-height:none!important;min-height:0!important;
+ flex:1 0 auto!important;min-height:0!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body > #ljpc-unified-pc-footer{
  display:block!important;flex:0 0 auto!important;margin-top:auto!important;
  position:relative!important;bottom:auto!important;transform:none!important;
-}
-/* No duplicated blue footer strip should remain after footer in PC mode. */
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body > #ljpc-unified-pc-footer ~ *{
- background:transparent!important;
-}
-@media(max-width:720px){
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-mobile-knockout .ljr-knockout{
-  --ko-column:clamp(146px,calc((100% - 80px)/4),180px);
-  padding:10px 11px 18px!important;border-radius:8px!important;
- }
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-ko-heading{
-  align-items:start!important;gap:8px!important;
- }
- html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen .u18fx-ko-heading h2{
-  font-size:17px!important;
- }
-}
-
-/* Stronger than the shared footer's fixed 12px clearance: in the short
-   PC fixtures view, unused height belongs ABOVE the footer, never below it. */
-html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer{
- margin-top:auto!important;margin-right:0!important;margin-bottom:0!important;margin-left:0!important;
-}
-html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish > #app{
- flex-grow:1!important;min-height:calc(100svh - 245px)!important;
- background:#f2f3f8!important;background-image:none!important;
-}
-
-
-/* PC fixtures v6: cover the VERY specific legacy independent-finish blue
-   background in all three places where it could create an empty dark slab.
-   The footer itself keeps its original dark colors; blank page space is LIGHT. */
-html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"]{
- background:#f2f3f8!important;background-image:none!important;
- height:auto!important;min-height:100%!important;overflow-y:auto!important;
 }
 html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish{
  background:#f2f3f8!important;background-image:none!important;
  background-attachment:scroll!important;
  height:auto!important;min-height:100svh!important;max-height:none!important;
  display:flex!important;flex-direction:column!important;
- margin:0!important;padding:0!important;overflow-x:hidden!important;
-}
-html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish #app,
-html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish .app-shell{
- background:#f2f3f8!important;background-image:none!important;
- max-height:none!important;height:auto!important;
- overflow:visible!important;
 }
 html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish #screen{
  background:#f2f3f8!important;background-image:none!important;
  height:auto!important;min-height:0!important;max-height:none!important;
- margin:0!important;padding:0 0 12px!important;
- overflow:visible!important;
-}
-html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish #screen > .u18-root{
- background:#f2f3f8!important;min-height:0!important;
- margin:0!important;padding:0!important;
 }
 html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish > #app{
  flex:1 0 auto!important;min-height:calc(100svh - 260px)!important;
 }
 html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer{
  flex:0 0 auto!important;margin-top:auto!important;margin-bottom:0!important;
- position:relative!important;bottom:auto!important;
 }
-/* Keep palette and sizing of actual bracket cards, controls and footer intact. */
-
-
-/* PC v8 · Fondo editorial claro entre el cuadro y el pie.
-   Sólo #/pc-fixtures; jamás aplica a móvil ni APK. Mantener fondo azul
-   dentro de .ljr-knockout y los degradados del footer intactos. */
+/* PC v8 · Fondo editorial claro entre el cuadro y el pie. */
 html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish #screen > .u18-root > .u18-page.u18fx-page{
- background:#f2f3f8!important;
- background-image:none!important;
- min-height:0!important;
- height:auto!important;
+ background:#f2f3f8!important;background-image:none!important;min-height:0!important;height:auto!important;
 }
 html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish #screen > .u18-root > .u18-page.u18fx-page > main.u18-bound.u18fx-content{
- background:#f2f3f8!important;
- background-color:#f2f3f8!important;
- background-image:none!important;
- min-height:0!important;
- height:auto!important;
- flex:0 0 auto!important;
- padding-bottom:18px!important;
-}
-html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish #screen > .u18-root > .u18-page.u18fx-page > main.u18fx-content > .u18fx-mobile-knockout{
- background:transparent!important;
- background-image:none!important;
- margin-bottom:0!important;
- padding-bottom:0!important;
+ background:#f2f3f8!important;background-color:#f2f3f8!important;background-image:none!important;
+ min-height:0!important;height:auto!important;flex:0 0 auto!important;padding-bottom:18px!important;
 }
 html.ljpc18-active.ljpc-unified-pc[data-ljpc18-route="pc-fixtures"] body.lj-desktop.ljpc-independent-finish #screen > .u18-root > .u18-page.u18fx-page .u18fx-mobile-knockout > .ljr-knockout{
  background:#000040!important;
 }
-
-
-/* PC v9 — final fix for the navy flex-gap BETWEEN bracket and footer.
-   Route-scoped, without relying on runtime body finish classes. The knockout
-   stays navy; page/canvas stays pale and flow-sized; footer keeps own colors. */
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"],
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body,
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body > #app,
@@ -702,49 +324,8 @@ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen,
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > .u18-root,
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > .u18-root > .u18-page.u18fx-page,
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > .u18-root > .u18-page.u18fx-page > main.u18fx-content{
- background-color:#f2f3f8!important;
- background-image:none!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen,
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > .u18-root,
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > .u18-root > .u18-page.u18fx-page,
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > .u18-root > .u18-page.u18fx-page > main.u18fx-content{
- height:auto!important;
- min-height:0!important;
- max-height:none!important;
- flex:0 0 auto!important;
- align-self:stretch!important;
- overflow:visible!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > .u18-root > .u18-page.u18fx-page{
- display:block!important;
- padding-bottom:0!important;
- margin-bottom:0!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > .u18-root > .u18-page.u18fx-page > main.u18fx-content{
- display:block!important;
- box-sizing:border-box!important;
- margin:0 auto!important;
- padding-top:18px!important;
- padding-bottom:18px!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > .u18-root > .u18-page.u18fx-page > main.u18fx-content > .u18fx-mobile-knockout{
- height:auto!important;
- min-height:0!important;
- margin-bottom:0!important;
- padding-bottom:0!important;
- background:transparent!important;
- background-image:none!important;
+ background-color:#f2f3f8!important;background-image:none!important;
 }
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body #screen > .u18-root > .u18-page.u18fx-page .ljr-knockout{
  background:#000040!important;
-}
-/* Stretch only the light app canvas, so a short page never exposes dark navy. */
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body > #app{
- flex:1 0 auto!important;
- min-height:0!important;
-}
-html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body > #ljpc-unified-pc-footer{
- flex:0 0 auto!important;
- margin-top:auto!important;
 }
