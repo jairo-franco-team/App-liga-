@@ -1,9 +1,8 @@
 /* Small route-specific additions; no polling and no layout scan on scroll. */
 (()=>{
  'use strict';
- const modeParam=()=>(new URLSearchParams(location.search).get('mode')||'').toLowerCase();
- const mobile=()=>modeParam()!=='desktop'&&(['mobile','apk'].includes(modeParam())||innerWidth<1024);
- const native=()=>window.Capacitor?.isNativePlatform?.()||['apk','mobile'].includes(modeParam())||mobile();
+ const mobile=()=>new URLSearchParams(location.search).get('mode')!=='desktop'&&(['mobile','apk'].includes(new URLSearchParams(location.search).get('mode'))||innerWidth<1024);
+ const native=()=>window.Capacitor?.isNativePlatform?.()||new URLSearchParams(location.search).get('mode')==='apk';
  const route=()=>location.hash.replace(/^#\/?/,'').split('?')[0]||'home';
  let queued=false;
  // A new page always opens at its beginning; never move an actively
@@ -28,10 +27,6 @@
  }
  function patch(){
   queued=false;if(!mobile())return;
-  document.documentElement?.classList?.add('preview-mobile','preview-apk');
-  document.documentElement?.classList?.remove('ljpc-unified-pc','ljpc-forced-desktop','ljpc-forced-handset','preview-desktop');
-  document.body?.classList?.add('preview-mobile','preview-apk');
-  document.body?.classList?.remove('lj-desktop','preview-desktop');
   const root=document.getElementById('screen');if(!root)return;
   const r=route();
   if(native()&&['more','appInstall','quiniela','leagueTools'].includes(r)&&!root.querySelector('[data-ljr-offline-link]')){

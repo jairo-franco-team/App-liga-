@@ -2,7 +2,7 @@
 (function(){
 'use strict';
 const clubs=["SAN JOSE FC","JUVENTUS","HERMANOS","LINCES","NAPOLI","FRANCO FC","HERRERAS FC","ABEJAS","LOBOS CDG","TERRICOLAS","GALACTICOS"];
-const desktop=()=>!['mobile','apk'].includes((new URLSearchParams(location.search).get('mode')||'').toLowerCase())&&(document.body.classList.contains('lj-desktop')||new URLSearchParams(location.search).get('mode')==='desktop'||innerWidth>=1024);
+const desktop=()=>document.body.classList.contains('lj-desktop')||new URLSearchParams(location.search).get('mode')==='desktop'||innerWidth>=1024;
 const go=r=>{location.hash='#/'+r};
 
 function buildStoreSubmenu(){
