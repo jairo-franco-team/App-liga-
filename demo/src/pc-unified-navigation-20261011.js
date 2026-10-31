@@ -219,7 +219,7 @@ function hideIframeHeader(frame){
     'background:linear-gradient(180deg,#0a1061 0%,#05187d 54%,#041e91 100%)!important}'+
     'html.ljpc-embedded-home #root .ucl [data-name="stories list container"]{'+
     'width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;'+
-    'margin:0 auto!important;padding:6px 0 8px!important;gap:12px!important;'+
+    'margin:0 auto!important;margin-top:0!important;margin-bottom:0!important;padding:6px 0 8px!important;gap:12px!important;'+
     'position:relative!important;transform:none!important;clear:none!important;justify-content:space-between!important}'+
     'html.ljpc-embedded-home #root .ucl [data-name="stories wrapper"]{'+
     'max-width:1296px!important;width:100%!important;gap:14px!important;'+
