@@ -1,44 +1,48 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
-import {runInNewContext} from 'node:vm';
+import fs from 'node:fs';
+import vm from 'node:vm';
 
-const script=readFileSync(new URL('../src/v971-global-official-player-media.js',import.meta.url),'utf8');
-function registry(){
- const data={captured_at_utc:'2026-10-08T00:00:00Z',categories:{
-   '3':{name:'Primera Fuerza',player_profiles:{
-     'FRANCO FC':[{name:'José García',position:'Delantero',dorsal:'9',photo:'https://res.cloudinary.com/rdk7ndhb/image/upload/v1/jugadores/real-franco'}],
-     'JUVENTUS':[{name:'José García',position:'Defensa',dorsal:'4',photo:'https://res.cloudinary.com/rdk7ndhb/image/upload/v1/jugadores/real-juventus'}]
-   }},
-   '5':{name:'Intermedia',player_profiles:{
-     'ATL. GALEANA':[{name:'María López',position:'Portero',dorsal:'1',photo:'https://res.cloudinary.com/rdk7ndhb/image/upload/v1/jugadores/real-galeana'}],
-     'LA CUADRILLA':[{name:'Sin Foto',position:'Medio',dorsal:'10'}]
-   }}
- }};
- const w={LJR_OFFICIAL_DATA:data};
- const doc={readyState:'loading',addEventListener(){}};
- runInNewContext(script,{window:w,document:doc,location:{hash:'#/scorers?cat=3'},localStorage:{getItem:()=>''},URLSearchParams,requestAnimationFrame:()=>0,setTimeout:()=>0,MutationObserver:class{}});
- return w.LJR_V971_PLAYER_INTEGRATION;
+const root=new URL('../',import.meta.url);
+const data=JSON.parse(fs.readFileSync(new URL('public/data/official-live.json',root),'utf8'));
+const script=fs.readFileSync(new URL('src/v971-global-official-player-media.js',root),'utf8');
+
+function load(){
+ const context={
+  window:{LJR_OFFICIAL_DATA:data,addEventListener(){}},
+  document:{readyState:'complete',body:{},querySelectorAll:()=>[],addEventListener(){}},
+  MutationObserver:function(){this.observe=()=>{};},
+  fetch:async()=>({ok:true,json:async()=>data}),
+  setTimeout:()=>0,
+  clearTimeout(){}
+ };
+ context.globalThis=context.window;
+ vm.runInNewContext(script,context);
+ return context;
 }
-test('portrait lookup uses exact player and team, not another club with the same name',()=>{
- const api=registry();
- assert.match(api.find('José García','FRANCO FC','3').photo,/real-franco$/);
- assert.match(api.find('José García','JUVENTUS','3').photo,/real-juventus$/);
- assert.equal(api.find('José García'),null,'ambiguous names cannot inherit another club photo');
- assert.equal(api.find('José García','OTHER TEAM','3'),null);
+
+test('uses official Liga Juventino player photos from the public database without inventing data',()=>{
+ const ctx=load();
+ const api=ctx.window.LJR_PLAYER_MEDIA;
+ assert.ok(api,'LJR_PLAYER_MEDIA must be exposed');
+ assert.match(api.photo('Jesus Conejo','LINCES','3'),/^https:\/\/res\.cloudinary\.com\/rdk7ndhb\/image\/upload\/.*\/jugadores\//);
+ assert.equal(api.photo('No registrado','LINCES','3'),'');
+ assert.equal(api.position('No registrado','LINCES','3'),'');
+ const html=api.avatar('Jesus Conejo',{team:'LINCES',catId:'3'});
+ assert.match(html,/res\.cloudinary\.com\/rdk7ndhb\/image\/upload/);
+ assert.match(html,/data-player-photo="1"/);
 });
-test('registration category, public position and dorsal are retained, without CURP',()=>{
- const api=registry();
- const p=api.find('María López','ATL GALEANA','5');
- assert.equal(p.cat,'5');
- assert.equal(p.position,'Portero');
- assert.equal(p.dorsal,'1');
- assert.match(p.photo,/real-galeana$/);
- assert.equal(api.find('Sin Foto','LA CUADRILLA','5').photo,'');
- assert.ok(api.all().every(x=>!('curp' in x)&&!('documento' in x)));
+
+test('Main renderer uses official photo avatars across scorers, cards, lineups and player profile',()=>{
+ const main=fs.readFileSync(new URL('src/main.js',root),'utf8');
+ assert.match(main,/function officialPlayerAvatar\(/);
+ assert.match(main,/officialPlayerAvatar\(s\.player,\{team:s\.team/);
+ assert.match(main,/officialPlayerAvatar\(p\.name,\{team:t\.name/);
+ assert.match(main,/officialPlayerAvatar\(player\.name,\{team:team\?\.name/);
 });
-test('photographs from non-player folders or untrusted sources are not reused',()=>{
- const other=registry();
- assert.equal(other.find('No registrado','FRANCO FC','3'),null);
- assert.equal(other.all().filter(p=>p.photo).length,3);
+
+test('Global styles center player faces inside circular frames',()=>{
+ const css=fs.readFileSync(new URL('src/v971-global-official-player-media.css',root),'utf8');
+ assert.match(css,/object-fit:cover!important/);
+ assert.match(css,/object-position:center 18%!important/);
 });
