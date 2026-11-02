@@ -102,10 +102,10 @@ if(prod.includes(earlyAnchor)&&!prod.includes('?mode=apk#/more')){
 if(demo.includes(earlyAnchor)&&!demo.includes('?mode=apk#/more')){
  demo=demo.replace(earlyAnchor,apkMoreGuard+earlyAnchor);
 }
-prod=prod.replaceAll('pc-history-hub-20261011.css?v=pc-history-hub-oct11-v2"','pc-history-hub-20261011.css?v=pc-history-hub-oct11-v2&rea=20261102v4"')
- .replaceAll('pc-history-hub-20261011.js?v=pc-history-hub-oct11-v2"','pc-history-hub-20261011.js?v=pc-history-hub-oct11-v2&rea=20261102v4"');
-demo=demo.replaceAll('pc-history-hub-20261011.css?v=pc-history-hub-oct11-v2"','pc-history-hub-20261011.css?v=pc-history-hub-oct11-v2&rea=20261102v4"')
- .replaceAll('pc-history-hub-20261011.js?v=pc-history-hub-oct11-v2"','pc-history-hub-20261011.js?v=pc-history-hub-oct11-v2&rea=20261102v4"');
+prod=prod.replace(/pc-history-hub-20261011\.css\?v=pc-history-hub-oct11-v2(?:&rea=[A-Za-z0-9_-]+)?"/g,'pc-history-hub-20261011.css?v=pc-history-hub-oct11-v2&rea=20261102v6"')
+ .replace(/pc-history-hub-20261011\.js\?v=pc-history-hub-oct11-v2(?:&rea=[A-Za-z0-9_-]+)?"/g,'pc-history-hub-20261011.js?v=pc-history-hub-oct11-v2&rea=20261102v6"');
+demo=demo.replace(/pc-history-hub-20261011\.css\?v=pc-history-hub-oct11-v2(?:&rea=[A-Za-z0-9_-]+)?"/g,'pc-history-hub-20261011.css?v=pc-history-hub-oct11-v2&rea=20261102v6"')
+ .replace(/pc-history-hub-20261011\.js\?v=pc-history-hub-oct11-v2(?:&rea=[A-Za-z0-9_-]+)?"/g,'pc-history-hub-20261011.js?v=pc-history-hub-oct11-v2&rea=20261102v6"');
 writeFileSync('index.html',prod);
 
 const lateMobileLink='<link rel="stylesheet" href="./src/v1464-mobile-header-logo-performance.css?v=20261013-v1464-mobile-header-logo-performance" />';
@@ -120,7 +120,7 @@ copyFileSync('data/official-live.json','demo/data/official-live.json');
 if(!demo.includes('</head>')||!prod.includes('</head>'))
  throw new Error('Falta el encabezado de HTML.');
 mkdirSync('demo/src',{recursive:true});
-for(const extra of ['pc-history-hub-20261011.js','pc-history-hub-20261011.css']){
+for(const extra of ['pc-history-hub-20261011.js','pc-history-hub-20261011.css','pc-drive-eight-references-20261011.js','pc-drive-eight-references-20261011.css']){
  try{copyFileSync('src/'+extra,'demo/src/'+extra);}catch(_){}
 }
 const styles=[

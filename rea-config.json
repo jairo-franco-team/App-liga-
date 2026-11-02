@@ -1,6 +1,6 @@
 {
-  "enabled": false,
+  "enabled": true,
   "mode": "inspect-and-bundle",
-  "target_url": "https://es.uefa.com/uefachampionsleague/",
+  "target_url": "https://es.uefa.com/uefachampionsleague/statistics/clubs/",
   "target_path": "src"
 }

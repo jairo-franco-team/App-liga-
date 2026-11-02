@@ -1,6 +1,4 @@
-/* Desktop-only Historia & Más hub: clones the Spanish UEFA reference screenshots
-   (Temporadas/Destacados, Rankings y estadísticas históricas, Vídeos, Equipos por Categoría y A-Z,
-   Más títulos, Noticias Bento Grid y Sobre 2 columnas).
+/* Desktop-only Historia & Más hub + UEFA statistics/clubs exact clone (1392px).
    Never changes the original mobile Historia, routes or styles. */
 (function(){
 'use strict';
@@ -15,8 +13,60 @@ const route=()=>String(location.hash||'').replace(/^#\/?/,'').split('?')[0]||'ho
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const norm=s=>String(s??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
 const sections=['equipos','noticias','historia','sobre'];
-const subs=['temporadas','estadisticas','videos','historicos','titulos'];
-const state={teamsQuery:'',activeVideo:0};
+const subs=['temporadas','clubes','estadisticas','videos','historicos','titulos'];
+const state={teamsQuery:'',activeVideo:0,clubCat:'3',clubMetric:'clave'};
+
+const CLUB_METRICS=[
+ ['clave','Estadísticas clave'],
+ ['goles','Goles'],
+ ['ataque','Ataque'],
+ ['defensa','Defensa'],
+ ['porteria','Portería'],
+ ['disciplina','Disciplina']
+];
+
+const FALLBACK_STANDINGS={
+ '3':[
+  [1,'Linces',8,6,0,2,19,8,11,18],
+  [2,'San José FC',8,5,1,2,17,10,7,16],
+  [3,'Juventus',8,5,1,2,26,14,12,16],
+  [4,'Herreras FC',8,4,2,2,15,11,4,14],
+  [5,'Hermanos',8,4,1,3,16,12,4,13],
+  [6,'Lobos CDG',9,4,1,4,14,15,-1,13],
+  [7,'Galácticos de Pozos',8,3,2,3,13,13,0,11],
+  [8,'Real DHP',8,3,1,4,11,14,-3,10]
+ ],
+ '5':[
+  [1,'La Canchita Deportes',8,6,1,1,22,9,13,19],
+  [2,'La Cuadrilla',8,5,2,1,24,11,13,17],
+  [3,'Franco FC',8,5,1,2,18,10,8,16],
+  [4,'Promesas FC',8,4,2,2,15,12,3,14],
+  [5,'San Antonio Jrs',8,4,1,3,14,13,1,13],
+  [6,'Atl. Galeana',8,3,2,3,12,13,-1,11]
+ ],
+ '4':[
+  [1,'Tavera FC',8,6,1,1,35,10,25,19],
+  [2,'Célticos',8,5,1,2,25,12,13,16],
+  [3,'San Antonio FC',8,5,0,3,21,14,7,15],
+  [4,'San Julián',8,4,2,2,16,12,4,14],
+  [5,'San Juan FC',8,4,1,3,15,14,1,13]
+ ],
+ '2':[
+  [1,'Deportivo CG',8,6,1,1,20,8,12,19],
+  [2,'Dep. Nopalero',8,5,2,1,18,9,9,17],
+  [3,'Pozos FC',8,4,2,2,15,11,4,14],
+  [4,'América',8,4,1,3,14,13,1,13]
+ ],
+ '1':[
+  [1,'La Esperanza',9,7,0,2,21,8,13,21],
+  [2,'Dynamo',10,6,2,2,20,10,10,20],
+  [3,'Manchester',10,5,3,2,18,11,7,18],
+  [4,'Boavista',10,5,2,3,17,12,5,17],
+  [5,'Toros de Cuenda',10,4,3,3,15,13,2,15],
+  [6,'PSV',9,4,2,3,16,14,2,14],
+  [7,'Huracán',9,3,2,4,13,15,-2,11]
+ ]
+};
 
 const seasons=[
  ['2025/26','Linces','Primera Fuerza · Torneo actual'],
@@ -109,6 +159,100 @@ function abbr(name){
  return words.slice(0,3).map(w=>w[0]).join('').toUpperCase();
 }
 
+/* Barra horizontal secundaria UEFA (1392px) para navegar todas las secciones */
+function renderSubnavBar(){
+ const items=[
+  ['temporadas','Temporadas','sub'],
+  ['clubes','Estadísticas de clubes','sub'],
+  ['estadisticas','Rankings históricos','sub'],
+  ['videos','Vídeos','sub'],
+  ['historicos','Equipos','sub'],
+  ['titulos','Más títulos','sub'],
+  ['noticias','Noticias','sec'],
+  ['sobre','Sobre','sec']
+ ];
+ return '<nav class="ljpc-uh-subnav-bar" aria-label="Navegación de Historia y Estadísticas de Clubes">'
+  +'<div class="ljpc-uh-bound ljpc-uh-subnav-inner">'
+   +items.map(([id,label,kind])=>'<button type="button" class="ljpc-uh-subnav-tab" '+(kind==='sub'?'data-ljpc-h-sub="'+id+'"':'data-ljpc-h-section="'+id+'"')+'>'+esc(label)+'</button>').join('')
+  +'</div>'
+ +'</nav>';
+}
+
+/* Clon exacto de https://es.uefa.com/uefachampionsleague/statistics/clubs/ */
+function getClubRowsForCategory(catId){
+ const d=db();
+ if(catId==='all'){
+  const all=[];
+  for(const [cid,cname] of Object.entries(CAT)){
+   const live=d?.categories?.[cid]?.standings?.[0]?.rows;
+   const src=(Array.isArray(live)&&live.length?live:FALLBACK_STANDINGS[cid]||[]);
+   src.forEach(r=>{if(Array.isArray(r)&&r[1])all.push({row:r,catName:cname});});
+  }
+  return all;
+ }
+ const live=d?.categories?.[catId]?.standings?.[0]?.rows;
+ const src=(Array.isArray(live)&&live.length?live:FALLBACK_STANDINGS[catId]||FALLBACK_STANDINGS['3']);
+ const cname=CAT[catId]||'Primera Fuerza';
+ return src.filter(r=>Array.isArray(r)&&r[1]).map(r=>({row:r,catName:cname}));
+}
+
+function renderClubesStats(){
+ const colsByMetric={
+  clave:[['Partidos jugados',2],['Ganados',3],['Empatados',4],['Perdidos',5],['Goles a favor',6],['Goles en contra',7],['Diferencia de goles',8],['Puntos',9]],
+  goles:[['Goles a favor',6],['Goles en contra',7],['Diferencia de goles',8],['Partidos jugados',2],['Puntos',9]],
+  ataque:[['Goles anotados',6],['Victorias',3],['Partidos jugados',2],['Diferencia de goles',8],['Puntos',9]],
+  defensa:[['Goles recibidos',7],['Partidos jugados',2],['Empates',4],['Derrotas',5],['Puntos',9]],
+  porteria:[['Goles recibidos',7],['Partidos jugados',2],['Victorias',3],['Empates',4]],
+  disciplina:[['Partidos jugados',2],['Ganados',3],['Empatados',4],['Perdidos',5],['Puntos',9]]
+ };
+ const cols=colsByMetric[state.clubMetric]||colsByMetric.clave;
+ const sortIdx=state.clubMetric==='clave'?9:cols[0][1];
+ const asc=state.clubMetric==='defensa'||state.clubMetric==='porteria';
+ const items=getClubRowsForCategory(state.clubCat).slice().sort((a,b)=>{
+  const va=Number(a.row[sortIdx])||0,vb=Number(b.row[sortIdx])||0;
+  if(vb!==va)return (vb-va)*(asc?-1:1);
+  return (Number(b.row[8])||0)-(Number(a.row[8])||0);
+ });
+ const catTabs=[['all','Todas las categorías'],...Object.entries(CAT)];
+ return '<div class="ljpc-uh-bound ljpc-uh-pad-page ljpc-uh-club-stats">'
+  +'<div class="ljpc-uh-club-head">'
+   +'<div>'
+    +'<h2 class="ljpc-uh-page-title">Estadísticas de clubes</h2>'
+    +'<p class="ljpc-uh-subnote">Rendimiento oficial por club · Geometría UEFA Champions League Statistics (1392px)</p>'
+   +'</div>'
+   +'<div class="ljpc-uh-club-cats" role="tablist" aria-label="Categorías oficiales">'
+    +catTabs.map(([cid,cname])=>'<button type="button" class="ljpc-uh-cat-pill'+(state.clubCat===cid?' is-active':'')+'" data-ljpc-club-cat="'+cid+'">'+esc(cname)+'</button>').join('')
+   +'</div>'
+  +'</div>'
+  +'<div class="ljpc-uh-metric-bar">'
+   +'<div class="ljpc-uh-metric-pills" role="tablist" aria-label="Métricas de clubes">'
+    +CLUB_METRICS.map(([mid,mlabel])=>'<button type="button" class="ljpc-uh-metric-pill'+(state.clubMetric===mid?' is-active':'')+'" data-ljpc-club-metric="'+mid+'">'+esc(mlabel)+'</button>').join('')
+   +'</div>'
+  +'</div>'
+  +'<div class="ljpc-uh-club-tablebox">'
+   +'<table class="ljpc-uh-club-table">'
+    +'<thead><tr>'
+     +'<th class="is-rank">#</th>'
+     +'<th class="is-club">Club</th>'
+     +cols.map(([label,idx],i)=>'<th class="'+(idx===sortIdx||i===0?'is-primary':'')+'">'+esc(label)+'</th>').join('')
+    +'</tr></thead>'
+    +'<tbody>'
+     +items.map(({row,catName},idx)=>'<tr data-ljpc-open-team="'+esc(row[1])+'">'
+      +'<td class="is-rank">'+String(idx+1).padStart(2,'0')+'</td>'
+      +'<td class="is-club">'
+       +'<div class="ljpc-uh-club-cell">'
+        +crest(row[1],'ljpc-uh-club-crest34')
+        +'<div><b>'+esc(row[1])+'</b><small>'+esc(catName)+' · ('+esc(abbr(row[1]))+')</small></div>'
+       +'</div>'
+      +'</td>'
+      +cols.map(([,cidx],i)=>'<td class="'+(cidx===sortIdx||i===0?'is-primary':'')+'">'+esc(row[cidx]??'0')+'</td>').join('')
+     +'</tr>').join('')
+    +'</tbody>'
+   +'</table>'
+  +'</div>'
+ +'</div>';
+}
+
 /* 1. CAPTURA 1 (061749): Temporadas / Destacados */
 function renderTemporadas(){
  const topSeasons=seasons.slice(0,7);
@@ -140,7 +284,7 @@ function renderTemporadas(){
     +'</div>'
    +'</article>'
    +'<section class="ljpc-uh-white-card">'
-    +'<div class="ljpc-uh-card-head"><h3>Comparar estadísticas de club</h3></div>'
+    +'<div class="ljpc-uh-card-head"><h3>Comparar estadísticas de club</h3><button type="button" class="ljpc-uh-text-link" data-ljpc-h-sub="clubes">Tabla completa de clubes ›</button></div>'
     +'<div class="ljpc-uh-h2h-grid">'
      +h2hPairs.map(([a,b])=>'<button type="button" class="ljpc-uh-h2h-item" data-ds-route="compareTeams">'
       +'<span class="ljpc-uh-h2h-tag">Enfrentamiento directo</span>'
@@ -174,22 +318,22 @@ function renderTemporadas(){
       +'<strong class="ljpc-uh-side-val">'+item.titles+'</strong>'
      +'</div>').join('')
     +'</div>'
-    +'<button type="button" class="ljpc-uh-outline-btn" data-ljpc-h-sub="estadisticas">Ver más estadísticas</button>'
+    +'<button type="button" class="ljpc-uh-outline-btn" data-ljpc-h-sub="clubes">Ver estadísticas de clubes</button>'
    +'</section>'
    +'<section class="ljpc-uh-white-card">'
     +'<div class="ljpc-uh-card-head"><h3>Libro de estadísticas</h3></div>'
     +'<div class="ljpc-uh-book-banner"><img src="./deportiva-sur-partido.jpg" alt="" loading="lazy"><span>ARCHIVO OFICIAL<br>LIGA JUVENTINO ROSAS</span></div>'
     +'<div class="ljpc-uh-book-links">'
+     +'<button type="button" data-ljpc-h-sub="clubes">Estadísticas de clubes (UEFA) ↗</button>'
      +'<button type="button" data-ljpc-h-sub="titulos">Campeones y finales históricas ↗</button>'
      +'<button type="button" data-ds-route="pc-data">Récords y centro de datos ↗</button>'
-     +'<button type="button" data-ds-route="rulebook">Reglamento oficial 2026/27 ↗</button>'
     +'</div>'
    +'</section>'
   +'</aside>'
  +'</div>';
 }
 
-/* 2. CAPTURA 2 (061757): Rankings y estadísticas históricas */
+/* 2. CAPTURA 2 (061757): Rankings y estadísticas históricas + Tabla UEFA de clubes */
 function renderEstadisticas(){
  const teamCards=[
   {title:'Más títulos',unit:'Títulos',rows:[
@@ -248,7 +392,7 @@ function renderEstadisticas(){
     +'<div class="ljpc-uh-rank-txt"><b>'+esc(r[0])+'</b><small>'+esc(r[1])+'</small></div>'
     +'<strong>'+esc(r[2])+'</strong>'
    +'</div>').join('')
-   +'<button type="button" class="ljpc-uh-rank-more" data-ds-route="pc-data">Mostrar más ›</button>'
+   +'<button type="button" class="ljpc-uh-rank-more" data-ljpc-h-sub="clubes">Mostrar más ›</button>'
   +'</div>'
  +'</article>';
  return '<div class="ljpc-uh-bound ljpc-uh-pad-page">'
@@ -261,7 +405,8 @@ function renderEstadisticas(){
    +'<h3 class="ljpc-uh-sec-title">Estadísticas de jugador</h3>'
    +'<div class="ljpc-uh-rank-grid4">'+playerCards.map(renderCard).join('')+'</div>'
   +'</section>'
- +'</div>';
+ +'</div>'
+ +renderClubesStats();
 }
 
 /* 3. CAPTURA 3 (061804): Vídeos */
@@ -338,6 +483,7 @@ function collectTeamsByCategory(){
   for(const g of c?.standings||[])for(const r of g.rows||[])if(Array.isArray(r))add(r[1]);
   for(const g of c?.fixtures||[])for(const r of g.rows||[])if(Array.isArray(r)){add(r[2]);add(r[6]);}
   for(const t of Object.keys(c?.rosters||{}))add(t);
+  (FALLBACK_STANDINGS[cid]||[]).forEach(r=>add(r[1]));
   byCat.set(cname,list.sort((a,b)=>a.localeCompare(b,'es')));
  }
  return {byCat,all:[...all.values()].sort((a,b)=>a.name.localeCompare(b.name,'es'))};
@@ -466,10 +612,12 @@ function renderSobre(){
 
 function markup(){
  return '<section id="ljpc-pc-history-hub" class="ljpc-h-hub" aria-label="Historia y secciones de la liga en PC">'
+  +renderSubnavBar()
   +'<section class="ljpc-h-section" data-ljpc-h-panel="equipos" hidden>'+renderEquipos()+'</section>'
   +'<section class="ljpc-h-section" data-ljpc-h-panel="noticias" hidden>'+renderNoticias()+'</section>'
   +'<section class="ljpc-h-section" data-ljpc-h-panel="historia">'
    +'<div class="ljpc-h-subpanel" data-ljpc-h-subpanel="temporadas">'+renderTemporadas()+'</div>'
+   +'<div class="ljpc-h-subpanel" data-ljpc-h-subpanel="clubes" hidden>'+renderClubesStats()+'</div>'
    +'<div class="ljpc-h-subpanel" data-ljpc-h-subpanel="estadisticas" hidden>'+renderEstadisticas()+'</div>'
    +'<div class="ljpc-h-subpanel" data-ljpc-h-subpanel="videos" hidden>'+renderVideos()+'</div>'
    +'<div class="ljpc-h-subpanel" data-ljpc-h-subpanel="historicos" hidden>'+renderEquipos()+'</div>'
@@ -487,11 +635,11 @@ function choose(name){
  const sub=inSub?name:'temporadas';
  document.getElementById('screen')?.classList?.toggle?.('ljpc-h-show-other',true);
  hub.querySelectorAll('[data-ljpc-h-section]').forEach(el=>{
-  const active=el.dataset.ljpcHSection===main;el.classList.toggle('active',active);el.setAttribute('aria-selected',String(active));
+  const active=el.dataset.ljpcHSection===main&&!inSub;el.classList.toggle('active',active);el.setAttribute('aria-selected',String(active));
  });
  hub.querySelectorAll('[data-ljpc-h-panel]').forEach(el=>{el.hidden=el.dataset.ljpcHPanel!==main});
  hub.querySelectorAll('[data-ljpc-h-sub]').forEach(el=>{
-  const active=el.dataset.ljpcHSub===sub;el.classList.toggle('active',active);el.setAttribute('aria-selected',String(active));
+  const active=main==='historia'&&el.dataset.ljpcHSub===sub;el.classList.toggle('active',active);el.setAttribute('aria-selected',String(active));
  });
  hub.querySelectorAll('[data-ljpc-h-subpanel]').forEach(el=>{el.hidden=el.dataset.ljpcHSubpanel!==sub});
  if(route()==='history'){try{sessionStorage.setItem(KEY,name)}catch(_){}}
@@ -528,6 +676,20 @@ let pending=false;
 function schedule(){if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;mount()})}
 document.addEventListener('click',e=>{
  if(!pc()||!['history','teams','news','about'].includes(route())||!(e.target instanceof Element))return;
+ const clubCatBtn=e.target.closest('#ljpc-pc-history-hub [data-ljpc-club-cat]');
+ if(clubCatBtn){
+  e.preventDefault();
+  state.clubCat=clubCatBtn.dataset.ljpcClubCat||'3';
+  repaintHub();
+  return;
+ }
+ const clubMetricBtn=e.target.closest('#ljpc-pc-history-hub [data-ljpc-club-metric]');
+ if(clubMetricBtn){
+  e.preventDefault();
+  state.clubMetric=clubMetricBtn.dataset.ljpcClubMetric||'clave';
+  repaintHub();
+  return;
+ }
  const vidBtn=e.target.closest('#ljpc-pc-history-hub [data-ljpc-vid-idx]');
  if(vidBtn){
   e.preventDefault();

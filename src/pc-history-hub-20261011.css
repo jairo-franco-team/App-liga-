@@ -1,4 +1,4 @@
-/* Dedicated Historia & Más PC panels modeled on the 12 Spanish UEFA screenshots (REA);
+/* Dedicated Historia & Más PC panels + UEFA statistics/clubs exact geometry (1392px);
    never applied to mobile/APK. */
 html.ljpc-unified-pc body.lj-desktop #ljpc-pc-history-hub{
  color:#070e3d;min-width:0;width:100%;margin:0;padding:0 0 42px;
@@ -14,15 +14,87 @@ html.ljpc-unified-pc body.lj-desktop #screen > #ljpc-pc-history-hub{
  width:100%!important;max-width:none!important;margin:0!important;
  height:auto!important;min-height:0!important;overflow:visible!important;
 }
-/* Ocultar siempre .ds-page, .ds-hero ('< Liga Juventino Rosas / Historia') y vistas heredadas cuando #ljpc-pc-history-hub está activo */
 html.ljpc-unified-pc body.lj-desktop[data-app-route="history"] #screen > :not(#ljpc-pc-history-hub),
 html.ljpc-unified-pc body.lj-desktop #screen:has(> #ljpc-pc-history-hub) > :not(#ljpc-pc-history-hub){
  display:none!important;
 }
-/* En UEFA (065724, 065727, 065744), la tira de partidos (Scorebar) SOLO aparece en Inicio (home) */
 html.ljpc-unified-pc body.lj-desktop[data-app-route]:not([data-app-route="home"]) #ljpc-unified-pc-header .ljpc-u-scorebar{
  display:none!important;
 }
+
+/* Barra horizontal secundaria UEFA (1392px, 52px de alto) */
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-subnav-bar{
+ background:#ffffff;border-bottom:1px solid #dfe3ec;width:100%;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-subnav-inner{
+ display:flex;align-items:stretch;gap:4px;overflow-x:auto;scrollbar-width:none;min-height:52px;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-subnav-inner::-webkit-scrollbar{display:none}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-subnav-tab{
+ appearance:none;flex:0 0 auto;min-height:52px;padding:0 18px;border:0;
+ border-bottom:3px solid transparent;background:transparent;color:#39465b;
+ font:650 14px/1 Inter,sans-serif;white-space:nowrap;cursor:pointer;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-subnav-tab:hover{color:#0438f0;background:#f5f8ff}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-subnav-tab.active{
+ color:#0438f0;border-bottom-color:#0438f0;font-weight:800;
+}
+
+/* Estadísticas de Clubes (https://es.uefa.com/uefachampionsleague/statistics/clubs/) */
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-club-head{
+ display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:18px;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-club-cats{
+ display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-cat-pill{
+ height:36px;padding:0 16px;border-radius:999px;border:1px solid #d5ddec;
+ background:#ffffff;color:#39465b;font:650 13px Inter,sans-serif;cursor:pointer;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-cat-pill.is-active{
+ background:#0438f0;border-color:#0438f0;color:#ffffff;font-weight:800;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-metric-bar{
+ padding:14px 0;margin-bottom:20px;border-top:1px solid #dde2ec;border-bottom:1px solid #dde2ec;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-metric-pills{
+ display:flex;align-items:center;gap:10px;overflow-x:auto;scrollbar-width:none;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-metric-pill{
+ height:40px;padding:0 20px;border-radius:999px;border:1.5px solid transparent;
+ background:#ffffff;color:#526080;font:650 13.5px Inter,sans-serif;cursor:pointer;white-space:nowrap;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-metric-pill.is-active{
+ border-color:#0438f0;color:#0438f0;font-weight:800;background:#ffffff;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-club-tablebox{
+ background:#ffffff;border:1px solid #dce1ec;border-radius:14px;padding:14px 22px;
+ box-shadow:0 4px 16px rgba(7,14,61,.05);overflow-x:auto;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-club-table{
+ width:100%;min-width:780px;border-collapse:collapse;table-layout:fixed;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-club-table thead th{
+ height:52px;padding:8px 10px;border-bottom:2px solid #dfe3ef;
+ color:#667085;font:600 12.5px/1.25 Inter,sans-serif;text-align:center;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-club-table thead th.is-rank{width:48px;text-align:center}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-club-table thead th.is-club{width:30%;text-align:left}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-club-table thead th.is-primary{color:#0438f0;font-weight:800}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-club-table tbody tr{cursor:pointer}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-club-table tbody tr:hover td{background:#f5f8fc}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-club-table tbody td{
+ height:62px;padding:8px 10px;border-bottom:1px solid #eaecf2;
+ color:#070e3d;font:500 14.5px/1.2 Inter,sans-serif;text-align:center;font-variant-numeric:tabular-nums;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-club-table tbody tr:last-child td{border-bottom:0}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-club-table tbody td.is-rank{color:#667085;font-weight:600}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-club-table tbody td.is-club{text-align:left}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-club-table tbody td.is-primary{color:#0438f0;font-weight:800;font-size:15.5px}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-club-cell{display:flex;align-items:center;gap:12px;min-width:0}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-club-crest34{width:34px;height:34px;flex:0 0 34px;object-fit:contain}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-club-cell b{display:block;font-size:15px;font-weight:700;color:#070e3d;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html.ljpc-unified-pc body.lj-desktop .ljpc-uh-club-cell small{display:block;font-size:11.5px;color:#667085}
 
 html.ljpc-unified-pc body.lj-desktop .ljpc-h-section,
 html.ljpc-unified-pc body.lj-desktop .ljpc-h-subpanel{
@@ -336,8 +408,7 @@ html.ljpc-unified-pc body.lj-desktop .ljpc-uh-about-card img{width:100%;height:1
 html.ljpc-unified-pc body.lj-desktop .ljpc-uh-about-card span{padding:0 22px}
 html.ljpc-unified-pc body.lj-desktop .ljpc-uh-about-card b{font-size:16px;font-weight:750;color:#070e3d;line-height:1.3}
 
-/* 8. Menús desplegables UEFA (Capturas 065724 Datos, 065727 Gaming, 065744 Más):
-   310px de ancho, fondo #0a0a60, filas amplias de 52px y submenú Historia en #171779 */
+/* 8. Menús desplegables UEFA (310px, #0a0a60, filas 52px) */
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-links:has(>details[data-ljpc-u-group="Más"][open]){
  overflow:visible!important;
 }
@@ -362,7 +433,6 @@ html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header details[data-ljpc-u
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header details[data-ljpc-u-group]>.ljpc-u-dropdown>button:hover{
  background:#0438f0!important;color:#0beafb!important;
 }
-/* Ocultar visualmente los 7 botones administrativos extra en el desplegable Más para mostrar exactamente los 5 de la captura 065744 */
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header details[data-ljpc-u-group="Más"]>.ljpc-u-dropdown>button[data-ljpc-u-go="pc-tools"],
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header details[data-ljpc-u-group="Más"]>.ljpc-u-dropdown>button[data-ljpc-u-go="pc-calendar"],
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header details[data-ljpc-u-group="Más"]>.ljpc-u-dropdown>button[data-ljpc-u-go="cedulas"],
@@ -387,6 +457,60 @@ html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-dropdown .l
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-dropdown .ljpc-u-history-child:hover{
  background:#0438f0!important;color:#0beafb!important;
 }
+
+/* 9. Geometría exacta UEFA statistics/clubs/ (1392px) en #/pc-data (.ljpc8-*) */
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljr-uefa-root .ljpc8-tabs{
+ min-height:52px!important;border-radius:10px!important;border:1px solid #dce2ee!important;margin:0 0 22px!important;
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljr-uefa-root .ljpc8-tabs button{
+ min-height:52px!important;padding:0 18px!important;font-size:14px!important;font-weight:650!important;color:#39465b!important;
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljr-uefa-root .ljpc8-tabs button.active{
+ color:#0438f0!important;border-bottom:3px solid #0438f0!important;font-weight:800!important;
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljr-uefa-root :is(.ljpc8-stats,.ljpc8-scorer) h2{
+ font-size:34px!important;font-weight:800!important;color:#070e3d!important;margin:10px 0 8px!important;
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljr-uefa-root .ljpc8-category-note{
+ font-size:13px!important;color:#667085!important;margin:0 0 18px!important;
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljr-uefa-root .ljpc8-metric-line{
+ grid-template-columns:32px minmax(0,1fr) 32px!important;gap:10px!important;padding:14px 0!important;margin-bottom:22px!important;
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljr-uefa-root .ljpc8-scroll-arrow{
+ width:32px!important;height:32px!important;border:2px solid #0438f0!important;color:#0438f0!important;
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljr-uefa-root .ljpc8-pill{
+ min-height:40px!important;padding:0 20px!important;font-size:13.5px!important;font-weight:650!important;color:#526080!important;
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljr-uefa-root .ljpc8-pill.active{
+ border:1.5px solid #0438f0!important;color:#0438f0!important;font-weight:800!important;padding:0 20px!important;
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljr-uefa-root .ljpc8-tablebox{
+ border-radius:14px!important;padding:16px 24px!important;border:1px solid #dce1ec!important;
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljr-uefa-root .ljpc8-table thead th{
+ height:52px!important;font-size:12.5px!important;font-weight:600!important;color:#667085!important;
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljr-uefa-root .ljpc8-table thead th:nth-child(3){
+ color:#0438f0!important;font-weight:800!important;
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljr-uefa-root .ljpc8-table td{
+ height:62px!important;font-size:14.5px!important;font-weight:500!important;color:#070e3d!important;
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljr-uefa-root .ljpc8-table td.ljpc8-leading{
+ font-size:15.5px!important;font-weight:800!important;color:#0438f0!important;
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljr-uefa-root .ljpc8-person :is(.ljpc8-crest,.ljpc8-player-image){
+ width:34px!important;height:34px!important;flex:0 0 34px!important;border-radius:0!important;object-fit:contain!important;
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljr-uefa-root .ljpc8-person b{
+ font-size:15px!important;font-weight:700!important;color:#070e3d!important;
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen .ljr-uefa-root .ljpc8-person small{
+ font-size:11.5px!important;color:#667085!important;
+}
+
 @media(max-width:1020px){
  html.ljpc-unified-pc body.lj-desktop .ljpc-uh-two-col,
  html.ljpc-unified-pc body.lj-desktop .ljpc-uh-video-stage,
