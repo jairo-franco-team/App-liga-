@@ -64,6 +64,18 @@ try{
    if(fixed!==raw)writeFileSync(jsPath,fixed);
   }catch(_){}
  }
+ for(const gFile of ['gaming/blog.html','demo/gaming/blog.html','gaming/portfolio.html','demo/gaming/portfolio.html','gaming/services.html','demo/gaming/services.html']){
+  try{
+   const raw=readFileSync(gFile,'utf8');
+   const fixed=raw
+    .replaceAll('${gameRoutes.fantasy}','../index.html?mode=desktop#/fantasy')
+    .replaceAll('${gameRoutes.predictor}','../index.html?mode=desktop#/predictorSix')
+    .replaceAll('${gameRoutes.quiz}','../index.html?mode=desktop#/quizArena')
+    .replaceAll('${gameRoutes.moments}','../index.html?mode=desktop#/moments')
+    .replaceAll('${gameRoutes.rankings}','../index.html?mode=desktop#/rankings');
+   if(fixed!==raw)writeFileSync(gFile,fixed);
+  }catch(_){}
+ }
 }catch(_){}
 
 try{
@@ -103,6 +115,9 @@ copyFileSync('data/official-live.json','demo/data/official-live.json');
 if(!demo.includes('</head>')||!prod.includes('</head>'))
  throw new Error('Falta el encabezado de HTML.');
 mkdirSync('demo/src',{recursive:true});
+for(const extra of ['pc-history-hub-20261011.js','pc-history-hub-20261011.css']){
+ try{copyFileSync('src/'+extra,'demo/src/'+extra);}catch(_){}
+}
 const styles=[
  'v1211-notice-recurrence.css',
  'v1212-notice-series-cancel.css',
