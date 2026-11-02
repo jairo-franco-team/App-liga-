@@ -8,11 +8,89 @@ const mode=()=>new URLSearchParams(location.search).get('mode')||'';
 const pc=()=>!['mobile','apk'].includes(mode())&&
   document.documentElement.classList.contains('ljpc-unified-pc')&&
   document.body?.classList.contains('lj-desktop');
-let queued=false,watching=false,ro=null,observedBottom=null,toolsExpanded=false;
+let queued=false,watching=false,ro=null,observedBottom=null,toolsExpanded=false,megaOpen=false;
+
+const ALL_APK_SECTIONS=[
+ {
+  group:'ACCESOS RÁPIDOS',
+  title:'Lo que más se consulta',
+  items:[
+   ['🛠️','Centro de Herramientas APK/PC','Todas las funciones ordenadas por categoría','leagueTools','COMPLETO'],
+   ['🛡️','Equipos','Directorio oficial de clubes registrados','teams','CLUBES'],
+   ['🏃','Jugadores','Plantillas y registros de jugadores','players','PLANTILLAS'],
+   ['🏆','Liguilla / Cuadro','Cuadro eliminatorio y sorteos','bracketBuilder','LIGUILLA'],
+   ['📰','Avisos y Noticias','Noticias y comunicados oficiales','news','AVISOS'],
+   ['⏰','Avisos AUTO','Programar avisos con fecha y hora','v38Alerts','AUTO'],
+   ['🎨','Publicar Diseños PNG','Diseños PNG HD y comunicados','publicationCenter','PNG HD']
+  ]
+ },
+ {
+  group:'COMPETICIÓN',
+  title:'Competición y estadísticas',
+  items:[
+   ['📊','Posiciones','Clasificación oficial por categoría: PJ, PTS y DG','pc-standings','TABLA'],
+   ['⚽','Goleo','Ranking de goleadores por jugador y categoría','pc-scorers','GOLEO'],
+   ['📅','Jornadas y Partidos','Calendario, resultados y próximos encuentros','pc-fixtures','PARTIDOS'],
+   ['🔴','Match Center','Marcador, cronología, alineaciones y contexto en vivo','v4-matchcenter','EN VIVO'],
+   ['📥','Exportar tabla','Genera la tabla completa para descargar en PNG y CSV','tableExport','PNG / CSV'],
+   ['🎯','Quiniela','Juego de pronósticos por partido y resultados','quiniela','JUEGO']
+  ]
+ },
+ {
+  group:'OPERACIÓN',
+  title:'Partido y jornada',
+  items:[
+   ['📋','Match Day','Checklist para preparar y cerrar una jornada','matchday','JORNADA'],
+   ['🗓️','Preparar mi jornada','Organiza cruces, agenda y datos antes de publicar','agendaBuilder','AGENDA'],
+   ['📐','Tácticas (Pizarra 2D)','Pizarra 2D para preparar formaciones y alineaciones','tactics','CANCHA'],
+   ['⛅','Clima y estado oficial','Pronóstico, terreno y condiciones de los campos','v38Weather','CLIMA'],
+   ['📍','Dónde se juega (Sedes)','Directorio de campos y comunidades con ubicación','venues','SEDES'],
+   ['🎬','Jornada animada','Vista dinámica con accesos rápidos para presentar la jornada','motionHub','VISUAL'],
+   ['⚠️','Aviso de suspensión','Prepara un aviso claro de partido o jornada suspendida','suspensionTool','AVISO'],
+   ['📆','Calendario Mensual PC','Vista mensual interactiva por categoría','pc-calendar','MES']
+  ]
+ },
+ {
+  group:'DOCUMENTOS',
+  title:'Documentos y publicaciones',
+  items:[
+   ['📄','Generar cédula','Crea la cédula y plantilla del partido lista para impresión','cedulaBuilder','DOCUMENTO'],
+   ['✅','Permisos y autorizaciones','Genera permisos para jugador o delegado en PDF, PNG o SVG','permissionBuilder','PDF / PNG'],
+   ['🪪','Generar credencial','Crea la credencial del jugador con fotografía, equipo y categoría','credentialBuilder','CREDENCIAL'],
+   ['📖','Reglamento','Consulta y descarga el reglamento oficial vigente en PDF','rulebook','OFICIAL'],
+   ['🖼️','Centro de publicaciones','Diseños PNG HD, resultados, notificaciones y avisos','publicationCenter','DISEÑOS / PNG']
+  ]
+ },
+ {
+  group:'CONSULTA',
+  title:'Información y archivo',
+  items:[
+   ['🏛️','Historia y Archivo','Temporadas, campeones, finales, récords y palmarés','history','ARCHIVO'],
+   ['🔍','Buscador General','Encuentra rápidamente equipos, jugadores, partidos, campos y noticias','search','BUSCAR'],
+   ['⚖️','Comparar clubes','Compara estadísticas frente a frente entre dos equipos','pc-team-compare','COMPARAR'],
+   ['🔔','Notificaciones','Configura alertas de goles, inicio, medio tiempo y final','pc-notifications','ALERTAS'],
+   ['🛍️','Tienda de clubes','Artículos y personalización de clubes de la Liga','club-store','TIENDA']
+  ]
+ },
+ {
+  group:'GESTIÓN Y ADMIN',
+  title:'Administración de la Liga',
+  items:[
+   ['📈','Panel de Liga','Resumen operativo de tabla, equipos y actividad general','v38Stats','ADMIN'],
+   ['🟨','Tarjetas y castigados','Consulta disciplina, amarillas, rojas, sanciones y castigados','discipline','DISCIPLINA'],
+   ['➕','Registro (Altas)','Altas y control de equipos y jugadores desde administración','recruitment','ALTAS'],
+   ['🎛️','JR Control','Centro operativo para administrar procesos internos y tareas','jrControl','CONTROL'],
+   ['🏁','Modo árbitro offline','Trabaja con partidos, borradores y cola de cédulas sin conexión','refereeOffline','ÁRBITRO'],
+   ['📑','Cédulas arbitrales','Consulta, captura y revisa las cédulas de los partidos','cedulas','CÉDULAS'],
+   ['🗞️','Reportes semanales','Revisa juegos de la semana, avisos y reportes operativos','v38Weekly','REPORTE'],
+   ['📲','Descargar / Instalar App','Abre el QR y opciones para instalar la app de la Liga','ligaQR','APP']
+  ]
+ }
+];
 
 const MASTER_LOCK_CSS=`
 /* ==========================================================================
-   REA UEFA Champions League Master Desktop Scale & PC Tools Restoration
+   REA UEFA Champions League Master Desktop Scale & Complete APK->PC Sections
    Applies to ALL PC sections: Home, Fixtures, Standings, Draws, Liga TV,
    Moments, Gaming, Fantasy, Predictor Six, Stats/Data, History, More & Tools
    ========================================================================== */
@@ -83,10 +161,17 @@ html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-login{
   align-items:center!important;gap:6px!important;z-index:1810!important;
 }
 /* Re-enable ALL PC Tools inside the Más dropdown (overriding pc-history-hub display:none) */
+html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header details[data-ljpc-u-group="Más"] > .ljpc-u-dropdown{
+  width:310px!important;max-height:78vh!important;overflow-y:auto!important;
+}
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header details[data-ljpc-u-group="Más"] > .ljpc-u-dropdown > button{
   display:flex!important;align-items:center!important;justify-content:space-between!important;
-  min-height:44px!important;padding:10px 18px!important;font:650 14.5px/1.25 Inter,sans-serif!important;
+  min-height:42px!important;padding:9px 16px!important;font:650 14px/1.25 Inter,sans-serif!important;
   color:#ffffff!important;visibility:visible!important;opacity:1!important;
+}
+html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header details[data-ljpc-u-group="Más"] > .ljpc-u-dropdown > .ljpc-rea-more-divider{
+  padding:8px 16px 4px!important;font:800 11px/1.2 Inter,sans-serif!important;color:#00e5ff!important;
+  letter-spacing:.08em!important;text-transform:uppercase!important;border-top:1px solid rgba(255,255,255,.16)!important;margin-top:4px!important;
 }
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-score-wrap{
   width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;
@@ -119,11 +204,11 @@ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body.lj-desktop #screen .u18
   display:none!important;
 }
 
-/* Barra Maestra de Herramientas PC y Modificación de Página (#ljpc-rea-tools-strip) */
+/* Barra Maestra de Herramientas PC y Modificación + Mega-Catálogo APK->PC (#ljpc-rea-tools-strip) */
 html.ljpc-unified-pc body.lj-desktop #ljpc-rea-tools-strip{
   width:100%!important;background:linear-gradient(90deg,#050b38 0%,#091969 50%,#050b38 100%)!important;
-  border-bottom:1px solid rgba(0,229,255,.28)!important;padding:10px 0!important;z-index:1750!important;
-  font-family:Inter,system-ui,sans-serif!important;
+  border-bottom:1px solid rgba(0,229,255,.32)!important;padding:12px 0!important;z-index:1750!important;
+  font-family:Inter,system-ui,sans-serif!important;position:relative!important;
 }
 html.ljpc-unified-pc body.lj-desktop #ljpc-rea-tools-strip .ljpc-rea-tools-inner{
   width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;margin:0 auto!important;
@@ -132,7 +217,7 @@ html.ljpc-unified-pc body.lj-desktop #ljpc-rea-tools-strip .ljpc-rea-tools-inner
 }
 html.ljpc-unified-pc body.lj-desktop #ljpc-rea-tools-strip .ljpc-rea-tools-label{
   display:inline-flex!important;align-items:center!important;gap:8px!important;
-  color:#00e5ff!important;font:800 13px/1.2 Inter,sans-serif!important;letter-spacing:.06em!important;
+  color:#00e5ff!important;font:800 13.5px/1.2 Inter,sans-serif!important;letter-spacing:.06em!important;
   text-transform:uppercase!important;
 }
 html.ljpc-unified-pc body.lj-desktop #ljpc-rea-tools-strip .ljpc-rea-tools-btns{
@@ -140,9 +225,9 @@ html.ljpc-unified-pc body.lj-desktop #ljpc-rea-tools-strip .ljpc-rea-tools-btns{
 }
 html.ljpc-unified-pc body.lj-desktop #ljpc-rea-tools-strip button{
   appearance:none!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;
-  gap:6px!important;min-height:38px!important;height:38px!important;padding:0 16px!important;
+  gap:6px!important;min-height:40px!important;height:40px!important;padding:0 16px!important;
   border-radius:8px!important;border:1px solid rgba(0,229,255,.38)!important;
-  background:rgba(4,56,240,.35)!important;color:#ffffff!important;
+  background:rgba(4,56,240,.38)!important;color:#ffffff!important;
   font:700 13.5px/1.1 Inter,sans-serif!important;cursor:pointer!important;white-space:nowrap!important;
   transition:background .15s,border-color .15s,transform .15s!important;
 }
@@ -152,6 +237,95 @@ html.ljpc-unified-pc body.lj-desktop #ljpc-rea-tools-strip button:hover{
 html.ljpc-unified-pc body.lj-desktop #ljpc-rea-tools-strip button.is-primary{
   background:#00e5ff!important;color:#040836!important;border-color:#00e5ff!important;font-weight:800!important;
 }
+html.ljpc-unified-pc body.lj-desktop #ljpc-rea-tools-strip button.is-catalog{
+  background:linear-gradient(90deg,#0438f0,#00b4d8)!important;color:#ffffff!important;border-color:#00e5ff!important;font-weight:800!important;
+}
+
+/* Mega-Catálogo Desplegable y Hub de las 35 secciones de Móvil/APK en PC (1392px) */
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-hub{
+  width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;margin:18px auto 28px!important;
+  padding:28px 32px!important;border-radius:16px!important;
+  background:linear-gradient(165deg,#071142 0%,#0a1c64 52%,#050b2e 100%)!important;
+  border:1px solid rgba(0,229,255,.32)!important;box-shadow:0 18px 42px rgba(2,8,38,.45)!important;
+  color:#ffffff!important;font-family:Inter,system-ui,sans-serif!important;box-sizing:border-box!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-hub-head{
+  display:flex!important;align-items:flex-end!important;justify-content:space-between!important;
+  flex-wrap:wrap!important;gap:16px!important;padding-bottom:20px!important;margin-bottom:24px!important;
+  border-bottom:1px solid rgba(0,229,255,.22)!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-hub-head small{
+  display:block!important;color:#00e5ff!important;font:800 12px/1.2 Inter,sans-serif!important;letter-spacing:.12em!important;margin-bottom:6px!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-hub-head h2{
+  margin:0!important;color:#ffffff!important;font:800 clamp(26px,2.8vw,34px)/1.15 Inter,sans-serif!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-hub-head p{
+  margin:6px 0 0!important;color:#cbd8ff!important;font:500 15px/1.45 Inter,sans-serif!important;max-width:820px!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-group{
+  margin:0 0 26px!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-group:last-child{margin-bottom:0!important}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-group-title{
+  display:flex!important;align-items:center!important;gap:10px!important;margin:0 0 14px!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-group-title span{
+  padding:4px 10px!important;border-radius:6px!important;background:#00e5ff!important;color:#040836!important;
+  font:800 11.5px/1.1 Inter,sans-serif!important;letter-spacing:.08em!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-group-title h3{
+  margin:0!important;color:#ffffff!important;font:800 20px/1.2 Inter,sans-serif!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-grid{
+  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-card{
+  appearance:none!important;box-sizing:border-box!important;width:100%!important;min-height:88px!important;
+  padding:16px 20px!important;border-radius:12px!important;border:1px solid rgba(0,229,255,.24)!important;
+  background:rgba(12,25,90,.78)!important;color:#ffffff!important;text-align:left!important;
+  display:grid!important;grid-template-columns:46px minmax(0,1fr) auto!important;align-items:center!important;gap:14px!important;
+  cursor:pointer!important;transition:transform .16s ease,border-color .16s ease,background .16s ease!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-card:hover{
+  transform:translateY(-2px)!important;border-color:#00e5ff!important;background:rgba(4,56,240,.52)!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-icon{
+  width:46px!important;height:46px!important;border-radius:10px!important;
+  background:linear-gradient(135deg,#0438f0,#00e5ff)!important;color:#040836!important;
+  display:grid!important;place-items:center!important;font-size:22px!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-copy{min-width:0!important}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-copy b{
+  display:block!important;color:#ffffff!important;font:800 16px/1.25 Inter,sans-serif!important;margin-bottom:4px!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-copy small{
+  display:block!important;color:#bfd0ff!important;font:500 13.5px/1.35 Inter,sans-serif!important;white-space:normal!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-badge{
+  padding:5px 10px!important;border-radius:999px!important;background:rgba(0,229,255,.16)!important;
+  border:1px solid rgba(0,229,255,.4)!important;color:#00e5ff!important;font:800 11px/1 Inter,sans-serif!important;
+  white-space:nowrap!important;
+}
+
+/* En #/leagueTools mostrar SIEMPRE la sección de Administración y todas las tarjetas a escala UEFA 1392px */
+html.ljpc-unified-pc body.lj-desktop #screen .v726-tools-page .v726-admin-section,
+html.ljpc-unified-pc body.lj-desktop #screen .v726-tools-page .v612-admin-only{
+  display:block!important;visibility:visible!important;opacity:1!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .v726-tools-page :is(.v726-quick-grid,.v726-tool-grid){
+  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .v726-tools-page .v726-tool-section{
+  margin:24px 0!important;padding:24px 28px!important;border-radius:16px!important;
+  background:linear-gradient(160deg,#081554,#060e3a)!important;border:1px solid rgba(0,229,255,.24)!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .v726-tools-page .v726-section-head h2{
+  font-size:26px!important;color:#ffffff!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .v726-tools-page .v726-section-head p{
+  font-size:15px!important;color:#c9d7ff!important;
+}
 
 /* Cuando el usuario activa "Modificar / Controles de esta sección", mostrar paneles nativos debajo con tamaño 1392px */
 html.ljpc-unified-pc.ljpc-rea-show-native body.lj-desktop #screen > :not(.u18-root){
@@ -160,9 +334,9 @@ html.ljpc-unified-pc.ljpc-rea-show-native body.lj-desktop #screen > :not(.u18-ro
   width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;margin:20px auto!important;
 }
 
-/* Escalado global UEFA Champions League (1392px) para eliminar cuadros y textos chiquitos en TODAS las secciones */
+/* Escalado global UEFA Champions League (1392px) para TODAS las páginas móviles/APK abiertas en PC */
 html.ljpc-unified-pc body.lj-desktop #screen > :is(.v114-upcoming-slot,#safeHomeExtra,#v100-home-extra,#v105-bottom),
-html.ljpc-unified-pc body.lj-desktop #screen :is(.u18-bound,.ds-wrap,.ljpc-mas-uefa,#ljpc-fantasy-uefa,#ljpc-six-ui .p6-bound,.v60-tool-page,.v726-tools-page,.v562-page,.v28-match,.v26-moments-page){
+html.ljpc-unified-pc body.lj-desktop #screen :is(.u18-bound,.ds-wrap,.ljpc-mas-uefa,#ljpc-fantasy-uefa,#ljpc-six-ui .p6-bound,.v60-tool-page,.v726-tools-page,.v562-page,.v28-match,.v26-moments-page,.v412-search-page,.v66-directory,.v38-page,.v635-page){
   width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;margin-inline:auto!important;
 }
 
@@ -244,13 +418,15 @@ html.ljpc-unified-pc body.lj-desktop #screen :is(.v60-tool-head,.v562-hero,.v726
   font-size:15px!important;line-height:1.5!important;
 }
 html.ljpc-unified-pc body.lj-desktop #screen :is(.v60-tool-card,.v726-tool-card,.v726-quick-card,button.v562-card){
-  min-height:78px!important;padding:14px 18px!important;border-radius:12px!important;gap:14px!important;
+  min-height:82px!important;padding:16px 20px!important;border-radius:12px!important;gap:14px!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen :is(.v60-tool-card,.v726-tool-card,.v726-quick-card,button.v562-card) b{
-  font-size:15.5px!important;line-height:1.28!important;
+html.ljpc-unified-pc body.lj-desktop #screen :is(.v60-tool-card,.v726-tool-card,.v726-quick-card,button.v562-card) b,
+html.ljpc-unified-pc body.lj-desktop #screen .v726-tool-card h3{
+  font-size:16px!important;line-height:1.28!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen :is(.v60-tool-card,.v726-tool-card,.v726-quick-card,button.v562-card) small{
-  font-size:13.5px!important;line-height:1.35!important;
+html.ljpc-unified-pc body.lj-desktop #screen :is(.v60-tool-card,.v726-tool-card,.v726-quick-card,button.v562-card) small,
+html.ljpc-unified-pc body.lj-desktop #screen .v726-tool-card p{
+  font-size:13.5px!important;line-height:1.38!important;
 }
 html.ljpc-unified-pc body.lj-desktop #screen .ljr-cms-entry:has(>button[data-cms-open]){
   width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;
@@ -357,33 +533,127 @@ html.ljpc-embedded-home #root .ucl [data-name="featured hero article card"] img{
 }
 `;
 
+function buildApkHubHtml(id){
+ return '<section id="'+id+'" class="ljpc-rea-apk-hub" aria-label="Todas las secciones y herramientas de Móvil y APK en PC">'+
+  '<header class="ljpc-rea-apk-hub-head"><div><small>CENTRO COMPLETO DE FUNCIONES MÓVIL / APK → WEB PC (1392PX)</small>'+
+  '<h2>Todas las secciones y herramientas de la Liga en tamaño PC</h2>'+
+  '<p>Accede directamente a cualquiera de las 35 secciones de competencia, operación de jornada, documentos oficiales, archivo y administración adaptadas al navegador de escritorio.</p></div></header>'+
+  ALL_APK_SECTIONS.map(sec=>
+   '<div class="ljpc-rea-apk-group"><div class="ljpc-rea-apk-group-title"><span>'+sec.group+'</span><h3>'+sec.title+'</h3></div>'+
+   '<div class="ljpc-rea-apk-grid">'+sec.items.map(([icon,name,desc,to,badge])=>
+    '<button type="button" class="ljpc-rea-apk-card" data-ljpc-u-go="'+to+'">'+
+     '<span class="ljpc-rea-apk-icon" aria-hidden="true">'+icon+'</span>'+
+     '<span class="ljpc-rea-apk-copy"><b>'+name+'</b><small>'+desc+'</small></span>'+
+     '<span class="ljpc-rea-apk-badge">'+badge+'</span>'+
+    '</button>'
+   ).join('')+'</div></div>'
+  ).join('')+
+ '</section>';
+}
+
+function enrichMoreDropdown(){
+ const drop=document.querySelector('#ljpc-unified-pc-header details[data-ljpc-u-group="Más"] > .ljpc-u-dropdown');
+ if(!drop||drop.dataset.reaApkEnriched==='1')return;
+ drop.dataset.reaApkEnriched='1';
+ const extra=[
+  ['divider','Competición y Jornada (APK)'],
+  ['🏃 Jugadores (Plantillas)','players'],
+  ['🔴 Match Center en vivo','v4-matchcenter'],
+  ['🗓️ Preparar mi jornada (Agenda)','agendaBuilder'],
+  ['📐 Tácticas (Pizarra 2D)','tactics'],
+  ['⛅ Clima y estado de campos','v38Weather'],
+  ['📍 Dónde se juega (Sedes)','venues'],
+  ['🎬 Jornada animada','motionHub'],
+  ['⚠️ Aviso de suspensión','suspensionTool'],
+  ['divider','Documentos y Publicaciones'],
+  ['📄 Generar cédula','cedulaBuilder'],
+  ['✅ Permisos y autorizaciones','permissionBuilder'],
+  ['🪪 Generar credencial','credentialBuilder'],
+  ['🎨 Centro de publicaciones PNG','publicationCenter'],
+  ['⏰ Avisos AUTO','v38Alerts'],
+  ['🔍 Buscador general','search'],
+  ['⚖️ Comparar clubes','pc-team-compare'],
+  ['🔔 Notificaciones','pc-notifications'],
+  ['divider','Administración y Control'],
+  ['🛠️ Todas las herramientas (APK)','leagueTools'],
+  ['🎛️ JR Control / Admin','jrControl'],
+  ['📈 Panel de Liga','v38Stats'],
+  ['🟨 Tarjetas y castigados','discipline'],
+  ['➕ Registro de equipos/jugadores','recruitment'],
+  ['🏁 Modo árbitro offline','refereeOffline'],
+  ['📑 Cédulas arbitrales','cedulas'],
+  ['🗞️ Reportes semanales','v38Weekly'],
+  ['📥 Exportar tabla PNG/CSV','tableExport'],
+  ['📲 Descargar / Instalar App QR','ligaQR']
+ ];
+ extra.forEach(([label,to])=>{
+  if(label==='divider'){
+   const div=document.createElement('div');
+   div.className='ljpc-rea-more-divider';
+   div.textContent=to;
+   drop.appendChild(div);
+  }else if(!drop.querySelector('[data-ljpc-u-go="'+to+'"]')){
+   const b=document.createElement('button');
+   b.type='button';
+   b.setAttribute('data-ljpc-u-go',to);
+   b.textContent=label;
+   drop.appendChild(b);
+  }
+ });
+}
+
 function ensureToolsStrip(){
  if(!pc()||!document.body)return;
  const header=document.getElementById('ljpc-unified-pc-header');
  if(!header)return;
+ enrichMoreDropdown();
  let strip=document.getElementById('ljpc-rea-tools-strip');
  if(!strip){
    strip=document.createElement('div');
    strip.id='ljpc-rea-tools-strip';
    strip.setAttribute('role','region');
-   strip.setAttribute('aria-label','Herramientas PC y Modificación de la Liga');
+   strip.setAttribute('aria-label','Herramientas PC y Secciones Móvil/APK');
    strip.innerHTML=
      '<div class="ljpc-rea-tools-inner">'+
-       '<span class="ljpc-rea-tools-label">🛠️ Herramientas PC y Modificación</span>'+
+       '<span class="ljpc-rea-tools-label">🛠️ Herramientas PC y Secciones APK</span>'+
        '<div class="ljpc-rea-tools-btns">'+
+         '<button type="button" class="is-catalog" data-rea-pc-action="toggle-megapanel">📲 Todas las secciones APK (35) ▾</button>'+
          '<button type="button" class="is-primary" data-rea-pc-action="toggle-native">✏️ Modificar / Controles de esta sección</button>'+
-         '<button type="button" data-ljpc-u-go="jrControl">🎛️ JR Control / Admin</button>'+
-         '<button type="button" data-ljpc-u-go="pc-tools">🛠️ Herramientas PC</button>'+
-         '<button type="button" data-ljpc-u-go="bracketBuilder">🏆 Crear / Editar Cuadro</button>'+
-         '<button type="button" data-ljpc-u-go="tableExport">📊 Exportar / Tabla</button>'+
+         '<button type="button" data-ljpc-u-go="leagueTools">🛠️ Centro de Herramientas</button>'+
+         '<button type="button" data-ljpc-u-go="jrControl">🎛️ JR Control</button>'+
+         '<button type="button" data-ljpc-u-go="players">🏃 Jugadores</button>'+
+         '<button type="button" data-ljpc-u-go="v4-matchcenter">🔴 Match Center</button>'+
+         '<button type="button" data-ljpc-u-go="tactics">📐 Tácticas 2D</button>'+
+         '<button type="button" data-ljpc-u-go="agendaBuilder">🗓️ Agenda</button>'+
+         '<button type="button" data-ljpc-u-go="publicationCenter">🎨 Publicar PNG</button>'+
+         '<button type="button" data-ljpc-u-go="permissionBuilder">✅ Permisos</button>'+
+         '<button type="button" data-ljpc-u-go="cedulaBuilder">📄 Cédulas</button>'+
          '<button type="button" data-ljpc-u-go="credentialBuilder">🪪 Credenciales</button>'+
-         '<button type="button" data-ljpc-u-go="cedulas">📋 Cédulas</button>'+
-         '<button type="button" data-ljpc-u-go="pc-calendar">📅 Calendario</button>'+
-         '<button type="button" data-ljpc-u-go="venues">🏟️ Sedes</button>'+
+         '<button type="button" data-ljpc-u-go="discipline">🟨 Disciplina</button>'+
+         '<button type="button" data-ljpc-u-go="recruitment">➕ Registro</button>'+
+         '<button type="button" data-ljpc-u-go="search">🔍 Buscar</button>'+
        '</div>'+
-     '</div>';
+     '</div>'+
+     '<div id="ljpc-rea-megapanel-slot" hidden>'+buildApkHubHtml('ljpc-rea-apk-megapanel')+'</div>';
    header.insertAdjacentElement('afterend',strip);
    strip.addEventListener('click',e=>{
+     const megaBtn=e.target.closest?.('[data-rea-pc-action="toggle-megapanel"]');
+     if(megaBtn){
+       e.preventDefault();
+       megaOpen=!megaOpen;
+       const slot=document.getElementById('ljpc-rea-megapanel-slot');
+       if(slot)slot.hidden=!megaOpen;
+       megaBtn.textContent=megaOpen?'✕ Cerrar catálogo de secciones APK':'📲 Todas las secciones APK (35) ▾';
+       return;
+     }
+     const goBtn=e.target.closest?.('#ljpc-rea-megapanel-slot [data-ljpc-u-go]');
+     if(goBtn){
+       megaOpen=false;
+       const slot=document.getElementById('ljpc-rea-megapanel-slot');
+       if(slot)slot.hidden=true;
+       const toggleBtn=strip.querySelector('[data-rea-pc-action="toggle-megapanel"]');
+       if(toggleBtn)toggleBtn.textContent='📲 Todas las secciones APK (35) ▾';
+     }
      const btn=e.target.closest?.('[data-rea-pc-action="toggle-native"]');
      if(!btn)return;
      e.preventDefault();
@@ -398,15 +668,25 @@ function ensureToolsStrip(){
      btn.textContent=toolsExpanded?'✅ Ocultar controles nativos de edición':'✏️ Modificar / Controles de esta sección';
    });
  }
+ // Also mount the complete APK->PC 35-section hub at the bottom of #/pc-tools and #/more so nothing is missing
+ const r=String(location.hash||'').replace(/^#\/?/,'').split('?')[0]||'home';
+ const screen=document.getElementById('screen');
+ if(screen&&['pc-tools','more'].includes(r)){
+   if(!screen.querySelector('#ljpc-rea-apk-page-hub')){
+     screen.insertAdjacentHTML('beforeend',buildApkHubHtml('ljpc-rea-apk-page-hub'));
+   }
+ }else{
+   document.getElementById('ljpc-rea-apk-page-hub')?.remove();
+ }
 }
 
 function ensureMasterLock(){
  if(!pc()){
    document.getElementById('ljpc-rea-uefa-master-lock')?.remove();
    document.getElementById('ljpc-rea-tools-strip')?.remove();
+   document.getElementById('ljpc-rea-apk-page-hub')?.remove();
    return;
  }
- // Remove handset shrinking class and ensure full 1366px UEFA desktop viewport when in PC mode
  document.documentElement.classList.remove('ljpc-forced-handset');
  const vp=document.querySelector?.('meta[name="viewport"]');
  if(vp&&mode()==='desktop'){
