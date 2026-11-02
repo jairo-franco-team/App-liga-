@@ -102,10 +102,10 @@ if(prod.includes(earlyAnchor)&&!prod.includes('?mode=apk#/more')){
 if(demo.includes(earlyAnchor)&&!demo.includes('?mode=apk#/more')){
  demo=demo.replace(earlyAnchor,apkMoreGuard+earlyAnchor);
 }
-prod=prod.replaceAll('pc-history-hub-20261011.css?v=pc-history-hub-oct11-v2','pc-history-hub-20261011.css?v=pc-history-hub-rea-20261102-v4')
- .replaceAll('pc-history-hub-20261011.js?v=pc-history-hub-oct11-v2','pc-history-hub-20261011.js?v=pc-history-hub-rea-20261102-v4');
-demo=demo.replaceAll('pc-history-hub-20261011.css?v=pc-history-hub-oct11-v2','pc-history-hub-20261011.css?v=pc-history-hub-rea-20261102-v4')
- .replaceAll('pc-history-hub-20261011.js?v=pc-history-hub-oct11-v2','pc-history-hub-20261011.js?v=pc-history-hub-rea-20261102-v4');
+prod=prod.replaceAll('pc-history-hub-20261011.css?v=pc-history-hub-oct11-v2"','pc-history-hub-20261011.css?v=pc-history-hub-oct11-v2&rea=20261102v4"')
+ .replaceAll('pc-history-hub-20261011.js?v=pc-history-hub-oct11-v2"','pc-history-hub-20261011.js?v=pc-history-hub-oct11-v2&rea=20261102v4"');
+demo=demo.replaceAll('pc-history-hub-20261011.css?v=pc-history-hub-oct11-v2"','pc-history-hub-20261011.css?v=pc-history-hub-oct11-v2&rea=20261102v4"')
+ .replaceAll('pc-history-hub-20261011.js?v=pc-history-hub-oct11-v2"','pc-history-hub-20261011.js?v=pc-history-hub-oct11-v2&rea=20261102v4"');
 writeFileSync('index.html',prod);
 
 const lateMobileLink='<link rel="stylesheet" href="./src/v1464-mobile-header-logo-performance.css?v=20261013-v1464-mobile-header-logo-performance" />';
