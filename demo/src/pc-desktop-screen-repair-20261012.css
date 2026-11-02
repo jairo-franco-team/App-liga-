@@ -1,0 +1,77 @@
+/* 2026-10-12 · Geometría y escala real de escritorio UEFA Champions League (1392px).
+   Desktop browser only: jamás se activa en ?mode=mobile ni ?mode=apk. */
+html.ljpc-unified-pc body.lj-desktop{
+  --ljpc-oct12-gap:18px;
+  --uefa-bg-space:#050814;
+  --uefa-surface-card:#0c1228;
+  --uefa-surface-hover:#131b3b;
+  --uefa-blue-cyan:#00f0ff;
+  --uefa-royal-blue:#003399;
+  --uefa-starball-white:#ffffff;
+  --uefa-text-secondary:#90a0c0;
+  --uefa-border-subtle:rgba(255,255,255,0.08);
+  --uefa-border-glow:rgba(0,240,255,0.35);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+}
+html.ljpc-unified-pc body.lj-desktop #ljpc-pc-top > .ljpc-pc-navigation,
+html.ljpc-unified-pc body.lj-desktop #screen > .desk-nav,
+html.ljpc-unified-pc body.lj-desktop #screen > .topbar,
+html.ljpc-unified-pc body.lj-desktop #app > header.topbar{
+  display:none!important;visibility:hidden!important;min-height:0!important;
+  height:0!important;padding:0!important;margin:0!important;pointer-events:none!important;
+}
+html.ljpc-unified-pc body.lj-desktop #ljpc-pc-top > .ljpc-pc-hero{
+  position:relative!important;margin:0!important;padding:0!important;
+}
+html.ljpc-unified-pc body.lj-desktop #ljpc-pc-top .ljpc-pc-hero .ljpc-pc-wide{
+  padding-top:22px!important;padding-bottom:20px!important;
+}
+html.ljpc-unified-pc body.lj-desktop #ljpc-pc-top .ljpc-pc-hero h1{
+  font-size:clamp(28px,2.8vw,36px)!important;line-height:1.14!important;
+  margin:4px 0 8px!important;letter-spacing:-.02em!important;
+}
+html.ljpc-unified-pc body.lj-desktop #ljpc-pc-top .ljpc-pc-hero p{
+  font-size:15px!important;line-height:1.5!important;margin:0!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="moments"] #screen .v26-moments-page{
+  display:block!important;position:relative!important;inset:auto!important;
+  width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;
+  min-width:0!important;height:auto!important;min-height:0!important;
+  padding:20px 0 32px!important;margin:0 auto!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="moments"] #screen .v26-moments-grid{
+  display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:18px!important;align-items:start!important;width:100%!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="moments"] #screen .v26-reference-action{
+  min-height:72px!important;grid-template-columns:44px minmax(0,1fr) 20px!important;
+  gap:14px!important;padding:14px 18px!important;border-radius:12px!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="moments"] #screen .v26-reference-action b{
+  line-height:1.35!important;font-size:15.5px!important;white-space:normal!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="moments"] #screen .v26-reference-action small{
+  line-height:1.4!important;font-size:13.5px!important;white-space:normal!important;
+}
+html.ljpc18-active body.lj-desktop #screen .u18-cat-label{
+  display:inline-flex!important;flex-wrap:nowrap!important;align-items:center!important;
+  gap:10px!important;font-size:14.5px!important;font-weight:700!important;
+}
+html.ljpc18-active body.lj-desktop #screen .u18-cat-label select{
+  height:42px!important;min-height:42px!important;max-height:42px!important;
+  padding:6px 32px 6px 14px!important;border-radius:8px!important;
+  font-size:14.5px!important;font-weight:650!important;
+}
+html.ljpc18-active body.lj-desktop #screen .u18-controls-right button,
+html.ljpc18-active body.lj-desktop #screen .u18-button{
+  min-height:42px!important;padding:8px 20px!important;
+  font-size:14px!important;font-weight:750!important;border-radius:8px!important;
+}
+html.ljpc18-active body.lj-desktop #screen .u18-entrants > div{
+  min-height:54px!important;gap:12px!important;padding:10px 16px!important;font-size:15px!important;
+}
+html.ljpc18-active body.lj-desktop #screen .u18-entrants .u18-crest{
+  width:32px!important;height:32px!important;min-width:32px!important;flex:0 0 32px!important;
+}
