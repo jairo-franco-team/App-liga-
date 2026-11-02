@@ -197,3 +197,80 @@ html.ljpc-unified-pc body.lj-desktop #screen :is(.v105-card,.v6-action-card){
 html.ljpc-unified-pc body.lj-desktop #screen :is(button,a,select,input):focus-visible{
   outline:2px solid #11dbe9!important;outline-offset:2px!important;
 }
+
+/* ==========================================================================
+   REA Reverse Engineering — UEFA Champions League (es.uefa.com) All Sections
+   Tokens, Geometría, Tarjetas Bento, Tablas, Partidos, Sorteos, Stats y Gaming
+   ========================================================================== */
+html.ljpc-unified-pc body.lj-desktop{
+  --uefa-bg-space:#050814;
+  --uefa-surface-card:#0c1228;
+  --uefa-surface-hover:#131b3b;
+  --uefa-blue-cyan:#00f0ff;
+  --uefa-royal-blue:#003399;
+  --uefa-starball-white:#ffffff;
+  --uefa-text-secondary:#90a0c0;
+  --uefa-border-subtle:rgba(255,255,255,0.08);
+  --uefa-border-glow:rgba(0,240,255,0.35);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+}
+
+/* 1. Cabecera Unificada y Subnavegación estilo UEFA.com */
+html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header a,
+html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header button{
+  transition:color .18s ease,border-color .18s ease,background-color .18s ease!important;
+}
+html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header :is(a,button)[aria-current="page"],
+html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header :is(a,button).is-active{
+  text-shadow:0 0 14px rgba(0,240,255,0.28);
+}
+
+/* 2. Inicio / Home, Noticias Bento y Video Hero */
+html.ljpc-unified-pc body.lj-desktop #screen :is(.u18-card,.u18-news-card,.u18-bento-card,.u18-videotile,.v26-moment-card){
+  transition:transform .2s cubic-bezier(.22,.61,.36,1),border-color .2s ease,box-shadow .2s ease!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen :is(.u18-card,.u18-news-card,.u18-bento-card,.u18-videotile,.v26-moment-card):hover{
+  transform:translateY(-2px);
+  border-color:var(--uefa-border-glow)!important;
+  box-shadow:0 10px 26px rgba(2,10,38,0.28),0 0 0 1px rgba(0,240,255,0.16)!important;
+}
+
+/* 3. Partidos / Fixtures y Resultados (números tabulares y tarjetas limpias) */
+html.ljpc-unified-pc body.lj-desktop #screen :is(.u18fx-card,.u18fx-match,.u18-match-row,.ljpc8-scorer-result){
+  font-variant-numeric:tabular-nums;
+  transition:border-color .18s ease,box-shadow .18s ease,background-color .18s ease!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .u18fx-card:hover{
+  border-color:rgba(0,51,153,0.28)!important;
+  box-shadow:0 8px 22px rgba(8,21,64,0.08)!important;
+}
+
+/* 4. Clasificación / Standings (geometría tabular y realce de fila UEFA) */
+html.ljpc-unified-pc body.lj-desktop #screen :is(.u18-table,.u18-standings-table,.ljpc8-table,table){
+  font-variant-numeric:tabular-nums;
+}
+html.ljpc-unified-pc body.lj-desktop #screen :is(.u18-table tbody tr,.u18-standings-table tbody tr,.ljpc8-table tbody tr){
+  transition:background-color .15s ease!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen :is(.u18-table tbody tr:hover,.u18-standings-table tbody tr:hover,.ljpc8-table tbody tr:hover){
+  background-color:rgba(0,240,255,0.055)!important;
+}
+
+/* 5. Estadísticas / Datos, Goleadores, Libro y Performance Zone */
+html.ljr-pc-datos-uefa body.lj-desktop #screen :is(.ljpc8-scorer-hero,.ljpc8-book,.ljpc8-performance-hero,.ljpc8-performance-story,.ljpc8-phase-summary,.ljpc8-phase-chart){
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease!important;
+}
+html.ljr-pc-datos-uefa body.lj-desktop #screen :is(.ljpc8-scorer-hero,.ljpc8-performance-story):hover{
+  transform:translateY(-2px);
+  border-color:var(--uefa-border-glow)!important;
+}
+
+/* 6. Equipos / Clubes, Sorteos / Draws, Quiniela (Predict Six), Fantasy y Historia */
+html.ljpc-unified-pc body.lj-desktop #screen :is(.u18-team-tile,.u18-entrants > div,.ljpc6-card,.ljpcf-card,.ljpc-hist-card){
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen :is(.u18-team-tile,.u18-entrants > div,.ljpc6-card,.ljpcf-card,.ljpc-hist-card):hover{
+  border-color:var(--uefa-border-glow)!important;
+}

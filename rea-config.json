@@ -1,5 +1,5 @@
 {
-  "enabled": true,
+  "enabled": false,
   "mode": "inspect-and-bundle",
   "target_url": "https://es.uefa.com/uefachampionsleague/",
   "target_path": "src"
