@@ -1,0 +1,72 @@
+/* Módulo UEFA de Más: alcance 100% PC y sólo cuando la clase se activa por JS.
+   No se toca ninguna regla global de la vista móvil ni modo APK. */
+html.ljpc-more-uefa-pc .ljpc-mas-uefa{
+ --more-ink:#070e3d;--more-grey:#526080;--more-border:#dce3f0;--more-blue:#0438f0;
+ display:block;width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;margin:18px auto 28px!important;overflow:hidden;
+ box-sizing:border-box;background:#f2f3f8!important;color:var(--more-ink)!important;
+ border:1px solid #d5dfef;border-radius:16px;
+ font-family:Inter,"Segoe UI",Arial,sans-serif;
+ box-shadow:0 12px 32px rgba(7,14,61,.08)
+}
+html.ljpc-more-uefa-pc .ljpc-mas-uefa *,
+html.ljpc-more-uefa-pc .ljpc-mas-uefa *:before,
+html.ljpc-more-uefa-pc .ljpc-mas-uefa *:after{box-sizing:border-box}
+html.ljpc-more-uefa-pc .ljpc-mas-uefa :is(h1,h2,h3,h4,p){margin-top:0}
+html.ljpc-more-uefa-pc .ljpc-mas-uefa button,
+html.ljpc-more-uefa-pc .ljpc-mas-uefa select{font-family:inherit;cursor:pointer}
+html.ljpc-more-uefa-pc .ljpc-mas-top{
+ padding:26px 32px;background:linear-gradient(90deg,#0438f0 0%,#03229c 55%,#010e54 100%);
+ color:#fff;min-height:122px;border-bottom:1px solid rgba(0,229,255,.22)
+}
+html.ljpc-more-uefa-pc .ljpc-mas-top>span{
+ display:block;color:#00e5ff;font-size:12px;font-weight:800;letter-spacing:.12em;margin-bottom:8px
+}
+html.ljpc-more-uefa-pc .ljpc-mas-top h1{
+ color:#fff!important;font:800 clamp(28px,2.8vw,36px)/1.15 Inter,Arial,sans-serif!important;
+ margin:0 0 8px!important
+}
+html.ljpc-more-uefa-pc .ljpc-mas-top p{
+ color:#e0ecff!important;font:500 14.5px/1.45 Inter,Arial,sans-serif;margin:0
+}
+html.ljpc-more-uefa-pc .ljpc-mas-menu{
+ display:flex;gap:4px;align-items:stretch;overflow-x:auto;scrollbar-width:thin;
+ background:#fff;border-bottom:1px solid #dce3f1;padding:0 24px;
+}
+html.ljpc-more-uefa-pc .ljpc-mas-menu button{
+ appearance:none;min-height:54px;flex:0 0 auto;padding:14px 18px!important;
+ border:0!important;border-radius:0!important;border-bottom:3px solid transparent!important;
+ background:#fff!important;color:#39465b!important;
+ font-size:14.5px!important;font-weight:700!important;white-space:nowrap
+}
+html.ljpc-more-uefa-pc .ljpc-mas-menu button:hover,
+html.ljpc-more-uefa-pc .ljpc-mas-menu button.active{
+ border-bottom-color:#0438f0!important;color:#0438f0!important;background:#f5f8ff!important;font-weight:800!important
+}
+html.ljpc-more-uefa-pc .ljpc-mas-main{padding:28px 32px 26px;min-height:340px}
+html.ljpc-more-uefa-pc .ljpc-mas-feature{
+ display:grid!important;grid-template-columns:1.15fr .85fr!important;min-height:260px;overflow:hidden;
+ background:linear-gradient(115deg,#08114d,#0438f0 70%,#080b4c);
+ color:#fff;border-radius:14px;margin-bottom:24px;
+}
+html.ljpc-more-uefa-pc .ljpc-mas-tiles{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important;margin-bottom:26px
+}
+html.ljpc-more-uefa-pc .ljpc-mas-tile{
+ min-width:0;min-height:132px;padding:20px!important;border:1px solid #dce3f0!important;
+ background:#fff!important;color:#070e3d!important;border-radius:12px!important;
+ display:flex;flex-direction:column;align-items:flex-start;position:relative;
+ text-align:left!important;gap:8px;box-shadow:0 4px 14px rgba(7,14,61,.05)!important
+}
+html.ljpc-more-uefa-pc .ljpc-mas-tile strong{color:#070e3d;font-size:16px;font-weight:800;line-height:1.25}
+html.ljpc-more-uefa-pc .ljpc-mas-tile small{color:#526080;font-size:13.5px;line-height:1.4}
+html.ljpc-more-uefa-pc .ljpc-mas-about-grid{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important;margin-bottom:18px
+}
+html.ljpc-more-uefa-pc .ljpc-mas-about{
+ background:#fff!important;color:#070e3d!important;border:1px solid #dce3f0!important;
+ border-radius:12px!important;padding:18px 38px 18px 20px!important;display:flex;align-items:flex-start;
+ flex-direction:column;gap:8px;text-align:left!important;min-width:0;min-height:126px;position:relative
+}
+html.ljpc-more-uefa-pc .ljpc-mas-about b{font-size:15.5px;font-weight:800;color:#070e3d}
+html.ljpc-more-uefa-pc .ljpc-mas-about small{font-size:13.5px;line-height:1.45;color:#526080}
+html.ljpc-more-uefa-pc .ljpc-mas-about em{position:absolute;bottom:16px;right:18px;font-size:22px;color:#0438f0;font-style:normal;font-weight:800}
