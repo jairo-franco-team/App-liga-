@@ -1,6 +1,6 @@
 {
   "enabled": true,
-  "mode": "doctor",
-  "target_url": "https://www.uefa.com/uefachampionsleague/",
-  "target_path": "."
+  "mode": "inspect-and-bundle",
+  "target_url": "https://es.uefa.com/uefachampionsleague/",
+  "target_path": "src"
 }

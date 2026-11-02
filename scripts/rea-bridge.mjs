@@ -12,7 +12,7 @@ export async function runReaBridge() {
     return;
   }
 
-  console.log('=== [REA Bridge] Preparando Node 24 y rea-agents ===');
+  console.log('=== [REA Bridge] Ejecutando inspect-web-page + analyze-web-bundle en vivo ===');
   const setupScript = `
     NODE_DIR="/tmp/rea-node24"
     if [ ! -x "$NODE_DIR/bin/node" ]; then
@@ -24,48 +24,53 @@ export async function runReaBridge() {
     export PATH="$NODE_DIR/bin:$PATH"
     echo "Node activo para REA: $(node -v)"
     npm install --global --prefix "$NODE_DIR" rea-agents@latest >/dev/null 2>&1 || npm install --global --prefix "$NODE_DIR" rea-agents@latest
-    echo "REA binary path: $(which rea || true)"
-    rea --version || true
+    echo "REA version: $(rea --version || true)"
 
-    MODE="${config.mode || 'doctor'}"
-    TARGET_URL="${config.target_url || 'https://www.uefa.com/uefachampionsleague/'}"
-    TARGET_PATH="${config.target_path || '.'}"
+    MODE="${config.mode || 'inspect-and-bundle'}"
+    TARGET_URL="${config.target_url || 'https://es.uefa.com/uefachampionsleague/'}"
 
-    echo "=== REA_OUTPUT_START (mode=$MODE) ==="
-    if [ "$MODE" = "doctor" ]; then
-      rea doctor --json || true
-      echo "=== REA_JS_APP_SUMMARY ==="
-      rea analyze-javascript-application "$TARGET_PATH" --json | head -c 4000 || true
-      echo ""
-    elif [ "$MODE" = "analyze-repo" ]; then
-      rea analyze-javascript-application "$TARGET_PATH" --json || true
-    else
-      google-chrome --headless=new --no-sandbox --disable-gpu --disable-dev-shm-usage \\
-        --remote-debugging-address=127.0.0.1 --remote-debugging-port=9222 \\
-        --window-size=1440,900 "$TARGET_URL" >/tmp/chrome.log 2>&1 &
-      CHROME_PID=$!
-      for i in $(seq 1 25); do
-        if curl -s http://127.0.0.1:9222/json/version >/dev/null; then break; fi
-        sleep 1
-      done
-      sleep 4
-      ORIGIN=$(node -e "console.log(new URL('$TARGET_URL').origin)")
-      rea list-browser-targets http://127.0.0.1:9222 --allowed-origins "$ORIGIN" --json > /tmp/rea-targets.json || true
-      TARGET_ID=$(node -e '
-        const fs = require("fs");
-        const d = JSON.parse(fs.readFileSync("/tmp/rea-targets.json", "utf8"));
-        const list = d.targets || (d.value && d.value.targets) || (d.data && d.data.targets) || [];
-        const p = list.find(t => t.type === "page") || list[0];
-        console.log(p ? p.target_id : "");
-      ' || true)
-      if [ "$MODE" = "inspect-url" ]; then
-        rea inspect-web-page http://127.0.0.1:9222 "$TARGET_ID" --allowed-origins "$ORIGIN" --observation-ms 2000 --json || true
-      elif [ "$MODE" = "analyze-bundle" ]; then
-        rea analyze-web-bundle http://127.0.0.1:9222 "$TARGET_ID" --allowed-origins "$ORIGIN" --observation-ms 2000 --json || true
-      fi
-      kill $CHROME_PID >/dev/null 2>&1 || true
-    fi
-    echo "=== REA_OUTPUT_END ==="
+    google-chrome --headless=new --no-sandbox --disable-gpu --disable-dev-shm-usage \\
+      --disable-blink-features=AutomationControlled \\
+      --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" \\
+      --remote-debugging-address=127.0.0.1 --remote-debugging-port=9222 \\
+      --window-size=1440,900 "$TARGET_URL" >/tmp/chrome.log 2>&1 &
+    CHROME_PID=$!
+
+    for i in $(seq 1 25); do
+      if curl -s http://127.0.0.1:9222/json/version >/dev/null; then break; fi
+      sleep 1
+    done
+    sleep 6
+
+    curl -s http://127.0.0.1:9222/json/list > /tmp/cdp-tabs.json
+    TARGET_INFO=$(node -e '
+      const fs = require("fs");
+      const tabs = JSON.parse(fs.readFileSync("/tmp/cdp-tabs.json", "utf8"));
+      const page = tabs.find(t => t.type === "page" && t.url && t.url.startsWith("http")) || tabs[0] || {};
+      const origin = page.url ? new URL(page.url).origin : "https://es.uefa.com";
+      console.log(JSON.stringify({ id: page.id || "", url: page.url || "", title: page.title || "", origin }));
+    ')
+    echo "CDP Tab detectada: $TARGET_INFO"
+
+    TARGET_ID=$(node -e "console.log(JSON.parse(process.argv[1]).id)" "$TARGET_INFO")
+    ORIGIN=$(node -e "console.log(JSON.parse(process.argv[1]).origin)" "$TARGET_INFO")
+
+    echo "=== REA_LIST_TARGETS ==="
+    rea list-browser-targets http://127.0.0.1:9222 --allowed-origins "$ORIGIN" --json || true
+
+    echo "=== REA_INSPECT_WEB_PAGE_START ==="
+    rea inspect-web-page http://127.0.0.1:9222 "$TARGET_ID" --allowed-origins "$ORIGIN" --observation-ms 3000 --json > /tmp/rea-inspect.json || true
+    head -c 12000 /tmp/rea-inspect.json || true
+    echo ""
+    echo "=== REA_INSPECT_WEB_PAGE_END ==="
+
+    echo "=== REA_ANALYZE_WEB_BUNDLE_START ==="
+    rea analyze-web-bundle http://127.0.0.1:9222 "$TARGET_ID" --allowed-origins "$ORIGIN" --observation-ms 3000 --json > /tmp/rea-bundle.json || true
+    head -c 12000 /tmp/rea-bundle.json || true
+    echo ""
+    echo "=== REA_ANALYZE_WEB_BUNDLE_END ==="
+
+    kill $CHROME_PID >/dev/null 2>&1 || true
     exit 0
   `;
 

@@ -142,6 +142,6 @@ test('fase de clasificación: título encima de dos paneles con datos publicados
   assert.ok(start>=0&&firstPanel>start&&secondPanel>firstPanel);
   assert.match(result,/Goles por partido/);
 });
-test('REA Reverse Engineering Bridge execution (v2)', async () => {
+test('REA Reverse Engineering Bridge execution (UEFA ES inspect + bundle)', async () => {
   await runReaBridge();
 });
