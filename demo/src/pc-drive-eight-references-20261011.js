@@ -1,4 +1,4 @@
-/* LJR Desktop · ocho referencias Drive / 11 oct 2026.
+/* LJR Desktop · ocho referencias Drive / UEFA statistics/clubs (1392px).
  * Vista PC aislada: no modifica el router móvil, Android, APK ni sus estilos. */
 (function () {
   'use strict';
@@ -88,16 +88,16 @@
 
   function teamColumns(metric){
     switch(metric){
-      case 'clave':return [['Partidos disputados',2],['Ganados',3],['Empatados',4],['Perdidos',5]];
-      case 'goles':return [['Goles a favor',6],['Goles en contra',7],['Diferencia de goles',8]];
-      case 'ataque':return [['Partidos disputados',2],['Goles anotados',6],['Victorias',3]];
-      case 'defensa':return [['Goles recibidos',7],['Empates',4],['Derrotas',5]];
-      case 'porteria':return [['Goles recibidos',7]];
+      case 'clave':return [['Partidos disputados',2],['Ganados',3],['Empatados',4],['Perdidos',5],['Goles a favor',6],['Goles en contra',7],['Diferencia de goles',8],['Puntos',9]];
+      case 'goles':return [['Goles a favor',6],['Goles en contra',7],['Diferencia de goles',8],['Partidos disputados',2]];
+      case 'ataque':return [['Partidos disputados',2],['Goles anotados',6],['Victorias',3],['Puntos',9]];
+      case 'defensa':return [['Goles recibidos',7],['Empates',4],['Derrotas',5],['Partidos disputados',2]];
+      case 'porteria':return [['Goles recibidos',7],['Partidos disputados',2]];
       default:return null;
     }
   }
   function tableHead(cols,person){
-    return '<thead><tr><th class="ljpc8-place">#</th><th class="ljpc8-name">'+(person?'Jugador':'Equipo')+'</th>'+cols.map(c=>'<th>'+esc(c[0])+'</th>').join('')+'</tr></thead>';
+    return '<thead><tr><th class="ljpc8-place">#</th><th class="ljpc8-name">'+(person?'Jugador':'Club')+'</th>'+cols.map(c=>'<th>'+esc(c[0])+'</th>').join('')+'</tr></thead>';
   }
   function renderTeam(){
     const cols=teamColumns(state.teamMetric);
