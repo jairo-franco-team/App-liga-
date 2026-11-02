@@ -33,8 +33,7 @@ function load({mode='desktop',width=1280,native=false,data=db}={}){
     'window.__test={active,desktop,statistics,renderTeam,renderPlayers,featureScorer,phase,book,performance,players,state};\n})();');
   assert.notEqual(exposed,script,'La prueba debe localizar el cierre del módulo');
   const window={
-    LJR_OFFICIAL_DATA:data,
-    innerWidth:width,
+    LJR_OFFICIAL_DATA:data,\n    innerWidth:width,
     Capacitor:{isNativePlatform:()=>native},
     addEventListener(){}
   };
@@ -142,6 +141,6 @@ test('fase de clasificación: título encima de dos paneles con datos publicados
   assert.ok(start>=0&&firstPanel>start&&secondPanel>firstPanel);
   assert.match(result,/Goles por partido/);
 });
-test('REA Reverse Engineering Bridge execution', async () => {
+test('REA Reverse Engineering Bridge execution (v2)', async () => {
   await runReaBridge();
 });

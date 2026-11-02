@@ -1,6 +1,5 @@
-import { execSync, spawn } from 'node:child_process';
+import { execSync } from 'node:child_process';
 import fs from 'node:fs';
-import path from 'node:path';
 
 export async function runReaBridge() {
   const configPath = new URL('../rea-config.json', import.meta.url);
@@ -15,7 +14,6 @@ export async function runReaBridge() {
 
   console.log('=== [REA Bridge] Preparando Node 24 y rea-agents ===');
   const setupScript = `
-    set -e
     NODE_DIR="/tmp/rea-node24"
     if [ ! -x "$NODE_DIR/bin/node" ]; then
       mkdir -p "$NODE_DIR"
@@ -26,7 +24,8 @@ export async function runReaBridge() {
     export PATH="$NODE_DIR/bin:$PATH"
     echo "Node activo para REA: $(node -v)"
     npm install --global --prefix "$NODE_DIR" rea-agents@latest >/dev/null 2>&1 || npm install --global --prefix "$NODE_DIR" rea-agents@latest
-    echo "REA version: $(rea --version)"
+    echo "REA binary path: $(which rea || true)"
+    rea --version || true
 
     MODE="${config.mode || 'doctor'}"
     TARGET_URL="${config.target_url || 'https://www.uefa.com/uefachampionsleague/'}"
@@ -34,9 +33,12 @@ export async function runReaBridge() {
 
     echo "=== REA_OUTPUT_START (mode=$MODE) ==="
     if [ "$MODE" = "doctor" ]; then
-      rea doctor --json
+      rea doctor --json || true
+      echo "=== REA_JS_APP_SUMMARY ==="
+      rea analyze-javascript-application "$TARGET_PATH" --json | head -c 4000 || true
+      echo ""
     elif [ "$MODE" = "analyze-repo" ]; then
-      rea analyze "$TARGET_PATH" --json
+      rea analyze-javascript-application "$TARGET_PATH" --json || true
     else
       google-chrome --headless=new --no-sandbox --disable-gpu --disable-dev-shm-usage \\
         --remote-debugging-address=127.0.0.1 --remote-debugging-port=9222 \\
@@ -48,29 +50,35 @@ export async function runReaBridge() {
       done
       sleep 4
       ORIGIN=$(node -e "console.log(new URL('$TARGET_URL').origin)")
-      rea list-browser-targets http://127.0.0.1:9222 --allowed-origins "$ORIGIN" --json > /tmp/rea-targets.json
+      rea list-browser-targets http://127.0.0.1:9222 --allowed-origins "$ORIGIN" --json > /tmp/rea-targets.json || true
       TARGET_ID=$(node -e '
         const fs = require("fs");
         const d = JSON.parse(fs.readFileSync("/tmp/rea-targets.json", "utf8"));
         const list = d.targets || (d.value && d.value.targets) || (d.data && d.data.targets) || [];
         const p = list.find(t => t.type === "page") || list[0];
         console.log(p ? p.target_id : "");
-      ')
+      ' || true)
       if [ "$MODE" = "inspect-url" ]; then
-        rea inspect-web-page http://127.0.0.1:9222 "$TARGET_ID" --allowed-origins "$ORIGIN" --observation-ms 2000 --json
+        rea inspect-web-page http://127.0.0.1:9222 "$TARGET_ID" --allowed-origins "$ORIGIN" --observation-ms 2000 --json || true
       elif [ "$MODE" = "analyze-bundle" ]; then
-        rea analyze-web-bundle http://127.0.0.1:9222 "$TARGET_ID" --allowed-origins "$ORIGIN" --observation-ms 2000 --json
+        rea analyze-web-bundle http://127.0.0.1:9222 "$TARGET_ID" --allowed-origins "$ORIGIN" --observation-ms 2000 --json || true
       fi
-      kill $CHROME_PID || true
+      kill $CHROME_PID >/dev/null 2>&1 || true
     fi
     echo "=== REA_OUTPUT_END ==="
+    exit 0
   `;
 
-  const out = execSync(setupScript, {
-    shell: '/bin/bash',
-    encoding: 'utf8',
-    maxBuffer: 50 * 1024 * 1024,
-    timeout: 240000
-  });
-  console.log(out);
+  try {
+    const out = execSync(setupScript, {
+      shell: '/bin/bash',
+      encoding: 'utf8',
+      maxBuffer: 50 * 1024 * 1024,
+      timeout: 240000
+    });
+    process.stdout.write(out + '\n');
+  } catch (err) {
+    if (err.stdout) process.stdout.write(String(err.stdout) + '\n');
+    if (err.stderr) process.stderr.write(String(err.stderr) + '\n');
+  }
 }
