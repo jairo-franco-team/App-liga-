@@ -1,4 +1,4 @@
-/* Pie unico del modo PC: conserva sus botones y evita superposicion
+/* Pie unico del modo PC (1392px UEFA container): conserva sus botones y evita superposicion
    con la ultima fila de herramientas. NUNCA aplica al movil o APK. */
 html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer{
   display:block!important;position:relative!important;inset:auto!important;
@@ -11,45 +11,45 @@ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-
 }
 html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-sponsor{
   position:relative!important;inset:auto!important;transform:none!important;
-  margin:0!important;clear:both!important;padding:12px 14px!important;
-  line-height:1.35!important;
+  margin:0!important;clear:both!important;padding:16px 18px!important;
+  line-height:1.4!important;font-size:11px!important;
 }
 html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-footer{
   box-sizing:border-box!important;display:block!important;
   width:100%!important;min-height:0!important;overflow:visible!important;
-  padding:18px 0 12px!important;
+  padding:32px 0 18px!important;
 }
 html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-footer-columns{
   box-sizing:border-box!important;display:grid!important;
-  width:min(1120px,calc(100% - 32px))!important;max-width:1120px!important;
+  width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;
   margin:0 auto!important;padding:0!important;
   align-items:start!important;justify-content:stretch!important;
-  grid-auto-rows:max-content!important;gap:14px!important;
+  grid-auto-rows:max-content!important;gap:24px!important;
 }
 html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-footer-columns > section{
   box-sizing:border-box!important;display:flex!important;min-width:0!important;
   max-width:100%!important;align-self:start!important;
   flex-direction:column!important;align-items:flex-start!important;
-  gap:9px!important;padding:0!important;margin:0!important;
+  gap:10px!important;padding:0!important;margin:0!important;
   position:relative!important;inset:auto!important;transform:none!important;
 }
 html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-footer-columns > section h3{
-  margin:0 0 4px!important;line-height:1.3!important;
-  font-size:clamp(10px,1.05vw,12px)!important;
-  letter-spacing:.07em!important;
+  margin:0 0 6px!important;line-height:1.3!important;
+  font-size:12px!important;
+  letter-spacing:.08em!important;
 }
 html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-footer-columns > section button{
-  max-width:100%!important;min-height:24px!important;padding:2px 0!important;
+  max-width:100%!important;min-height:26px!important;padding:3px 0!important;
   overflow-wrap:anywhere!important;white-space:normal!important;
   text-align:left!important;line-height:1.35!important;
-  font-size:clamp(10px,.94vw,12px)!important;
+  font-size:13px!important;
 }
 html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-footer-brand{
-  gap:8px!important;
+  gap:10px!important;
 }
 html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-footer .ljpc-u-footer-brand p{
-  font-size:11px!important;line-height:1.45!important;
-  max-width:230px!important;
+  font-size:12.5px!important;line-height:1.5!important;
+  max-width:250px!important;
 }
 /* En PC ancho, modo escritorio forzado en Android INCLUIDO, son 5
    columnas lado a lado; nunca el falso 2x3 de la captura. */
@@ -94,7 +94,6 @@ html.ljpc-unified-pc body.lj-desktop.ljpc-independent-finish > #ljpc-unified-pc-
   }
 }
 
-
 /* PC footer naturally follows ALL content. Never pinned, never after an empty blue slab. */
 html.ljpc-unified-pc body.lj-desktop > #ljpc-unified-pc-footer{
  position:relative!important;inset:auto!important;top:auto!important;bottom:auto!important;
@@ -117,7 +116,6 @@ html.ljpc-unified-pc body.lj-desktop > #ljpc-unified-pc-footer .ljpc-u-sponsor,
 html.ljpc-unified-pc body.lj-desktop > #ljpc-unified-pc-footer .ljpc-u-footer{
  width:100%!important;max-width:100%!important;
 }
-
 
 /* V3: asegurar que el contenido real de CADA ruta PC determine el final
    del documento; el pie compartido queda después de #screen, no flotando
@@ -159,8 +157,6 @@ html.ljpc-unified-pc body.lj-desktop > #ljpc-unified-pc-footer{
   margin-top:18px!important;
   transform:none!important;
 }
-/* Enrutadores pueden montar el panel final como hijo directo de #screen.
-   Evitar que un layout heredado lo saque del flujo vertical en PC. */
 html.ljpc-unified-pc body.lj-desktop #screen > .ljpc-page-bottom,
 html.ljpc-unified-pc body.lj-desktop #screen > [data-ljpc-bottom-panel]{
   position:relative!important;
