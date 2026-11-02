@@ -1,4 +1,4 @@
-/* Desktop-only Historia & Más hub: clones the 8 Spanish UEFA reference screenshots
+/* Desktop-only Historia & Más hub: clones the Spanish UEFA reference screenshots
    (Temporadas/Destacados, Rankings y estadísticas históricas, Vídeos, Equipos por Categoría y A-Z,
    Más títulos, Noticias Bento Grid y Sobre 2 columnas).
    Never changes the original mobile Historia, routes or styles. */
@@ -481,11 +481,11 @@ function markup(){
 
 function saved(){try{return sessionStorage.getItem(KEY)||'temporadas'}catch(_){return 'temporadas'}}
 function choose(name){
- if(!pc()||route()!=='history')return;
+ if(!pc()||!['history','teams','news','about'].includes(route()))return;
  const hub=document.getElementById('ljpc-pc-history-hub');if(!hub)return;
  const inSub=subs.includes(name),main=inSub?'historia':sections.includes(name)?name:'historia';
  const sub=inSub?name:'temporadas';
- document.getElementById('screen')?.classList.toggle('ljpc-h-show-other',true);
+ document.getElementById('screen')?.classList?.toggle?.('ljpc-h-show-other',true);
  hub.querySelectorAll('[data-ljpc-h-section]').forEach(el=>{
   const active=el.dataset.ljpcHSection===main;el.classList.toggle('active',active);el.setAttribute('aria-selected',String(active));
  });
@@ -494,30 +494,32 @@ function choose(name){
   const active=el.dataset.ljpcHSub===sub;el.classList.toggle('active',active);el.setAttribute('aria-selected',String(active));
  });
  hub.querySelectorAll('[data-ljpc-h-subpanel]').forEach(el=>{el.hidden=el.dataset.ljpcHSubpanel!==sub});
- try{sessionStorage.setItem(KEY,name)}catch(_){}
+ if(route()==='history'){try{sessionStorage.setItem(KEY,name)}catch(_){}}
 }
 
 function mount(){
  const screen=document.getElementById('screen');
  if(!screen||!pc())return;
- if(route()!=='history'){
+ const r=route();
+ if(!['history','teams','news','about'].includes(r)){
   screen.classList.remove('ljpc-h-show-other');
   screen.querySelector(':scope > #ljpc-pc-history-hub')?.remove();
   return;
  }
- const staticWrap=screen.querySelector('.ds-page .ds-content .ds-wrap');
- if(staticWrap){
-  if(!staticWrap.querySelector('#ljpc-pc-history-hub'))staticWrap.innerHTML=markup();
- }else if(!screen.querySelector(':scope > #ljpc-pc-history-hub')){
+ if(!screen.querySelector(':scope > #ljpc-pc-history-hub')){
   screen.insertAdjacentHTML('afterbegin',markup());
  }
- choose(saved());
+ if(r==='teams')choose('equipos');
+ else if(r==='news')choose('noticias');
+ else if(r==='about')choose('sobre');
+ else choose(saved());
 }
 
 function repaintHub(){
  const hub=document.getElementById('ljpc-pc-history-hub');
- if(!hub||!pc()||route()!=='history')return;
- const cur=saved();
+ if(!hub||!pc()||!['history','teams','news','about'].includes(route()))return;
+ const r=route();
+ const cur=r==='teams'?'equipos':r==='news'?'noticias':r==='about'?'sobre':saved();
  hub.outerHTML=markup();
  choose(cur);
 }
@@ -525,7 +527,7 @@ function repaintHub(){
 let pending=false;
 function schedule(){if(pending)return;pending=true;requestAnimationFrame(()=>{pending=false;mount()})}
 document.addEventListener('click',e=>{
- if(!pc()||route()!=='history'||!(e.target instanceof Element))return;
+ if(!pc()||!['history','teams','news','about'].includes(route())||!(e.target instanceof Element))return;
  const vidBtn=e.target.closest('#ljpc-pc-history-hub [data-ljpc-vid-idx]');
  if(vidBtn){
   e.preventDefault();
@@ -552,11 +554,12 @@ document.addEventListener('click',e=>{
  e.preventDefault();choose(tab.dataset.ljpcHSection||tab.dataset.ljpcHSub);
 });
 document.addEventListener('input',e=>{
- if(!pc()||route()!=='history')return;
+ if(!pc()||!['history','teams','news','about'].includes(route()))return;
  if(e.target?.matches?.('[data-ljpc-h-team-search]')){
   const pos=e.target.selectionStart;
   state.teamsQuery=e.target.value;
-  const cur=saved();
+  const r=route();
+  const cur=r==='teams'?'equipos':saved();
   const hub=document.getElementById('ljpc-pc-history-hub');
   if(hub){
    hub.querySelectorAll('[data-ljpc-h-panel="equipos"],[data-ljpc-h-subpanel="historicos"]').forEach(p=>{p.innerHTML=renderEquipos();});
@@ -569,7 +572,7 @@ document.addEventListener('input',e=>{
 window.addEventListener('ljpc:history-select',e=>{if(pc())choose(e.detail?.section||'temporadas')});
 window.addEventListener('hashchange',schedule);
 window.addEventListener('resize',schedule);
-window.addEventListener('ljr:official-data',()=>{if(pc()&&route()==='history')repaintHub()});
+window.addEventListener('ljr:official-data',()=>{if(pc()&&['history','teams','news','about'].includes(route()))repaintHub()});
 function boot(){schedule();const screen=document.getElementById('screen');if(screen)new MutationObserver(schedule).observe(screen,{subtree:false,childList:true})}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();

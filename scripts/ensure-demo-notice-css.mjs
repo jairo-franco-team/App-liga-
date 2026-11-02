@@ -98,11 +98,16 @@ const earlyAnchor="var mode=new URLSearchParams(location.search).get('mode')||''
 const apkMoreGuard="if(typeof history!=='undefined'&&history.replaceState&&!location.search&&location.hash==='#/more'){history.replaceState(null,'',(location.pathname||'/')+'?mode=apk#/more');}\n      ";
 if(prod.includes(earlyAnchor)&&!prod.includes('?mode=apk#/more')){
  prod=prod.replace(earlyAnchor,apkMoreGuard+earlyAnchor);
- writeFileSync('index.html',prod);
 }
 if(demo.includes(earlyAnchor)&&!demo.includes('?mode=apk#/more')){
  demo=demo.replace(earlyAnchor,apkMoreGuard+earlyAnchor);
 }
+prod=prod.replaceAll('pc-history-hub-20261011.css?v=pc-history-hub-oct11-v2','pc-history-hub-20261011.css?v=pc-history-hub-rea-20261102-v4')
+ .replaceAll('pc-history-hub-20261011.js?v=pc-history-hub-oct11-v2','pc-history-hub-20261011.js?v=pc-history-hub-rea-20261102-v4');
+demo=demo.replaceAll('pc-history-hub-20261011.css?v=pc-history-hub-oct11-v2','pc-history-hub-20261011.css?v=pc-history-hub-rea-20261102-v4')
+ .replaceAll('pc-history-hub-20261011.js?v=pc-history-hub-oct11-v2','pc-history-hub-20261011.js?v=pc-history-hub-rea-20261102-v4');
+writeFileSync('index.html',prod);
+
 const lateMobileLink='<link rel="stylesheet" href="./src/v1464-mobile-header-logo-performance.css?v=20261013-v1464-mobile-header-logo-performance" />';
 const profileAnchor='  <link rel="stylesheet" href="./src/profile-first-screenshot-restore.css';
 if(prod.includes(lateMobileLink)&&prod.indexOf(lateMobileLink)>prod.indexOf(profileAnchor)){
