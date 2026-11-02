@@ -115,6 +115,7 @@ html.ljpc-unified-pc body.lj-desktop #screen .ds-game-actions button{
 `;
 
 const IFRAME_HOME_UEFA_CSS=`
+/* REA Home Iframe Lock: preserve 2-column UEFA Hero, 84px Story rings, and 4-column Bento on desktop mode */
 @media(min-width:700px){
   html.ljpc-embedded-home #root .ucl [data-name="stories wrapper"] > a{
     flex:0 0 88px!important;width:88px!important;min-width:88px!important;max-width:88px!important;
@@ -163,12 +164,16 @@ function ensureMasterLock(){
  }catch(_){}
 }
 
+/* Footer is a sibling AFTER all content, not a height spacer. The previous
+   clearance calculation read absolute-positioned panels and created 5000px gaps. */
 function adjust(){
  ensureMasterLock();
  const footer=document.getElementById('ljpc-unified-pc-footer');
  if(!pc()){if(footer)footer.style.removeProperty('--ljpc-footer-clearance');return}
  const screen=document.getElementById('screen');
  if(!footer||!screen)return;
+ // Do not increase the footer margin for detached/hidden cards. Always keep
+ // a small natural separation after the final visible page section.
  footer.style.setProperty('--ljpc-footer-clearance','0px');
  if(footer.parentElement!==document.body||footer!==document.body.lastElementChild){
    document.body.appendChild(footer);
@@ -190,6 +195,7 @@ function start(){
   ro.observe(screen);
   const app=document.getElementById('app');
   if(app)ro.observe(app);
+  // A newly mounted last panel is re-observed by adjust() after the childList event.
  }
  window.addEventListener('resize',schedule);
  window.addEventListener('load',schedule);
