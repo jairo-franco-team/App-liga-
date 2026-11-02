@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
+import { runReaBridge } from '../scripts/rea-bridge.mjs';
 
 const read=path=>fs.readFileSync(new URL('../'+path,import.meta.url),'utf8');
 const script=read('src/pc-drive-eight-references-20261011.js');
@@ -140,4 +141,7 @@ test('fase de clasificación: título encima de dos paneles con datos publicados
   const secondPanel=result.indexOf('class="ljpc8-phase-chart"');
   assert.ok(start>=0&&firstPanel>start&&secondPanel>firstPanel);
   assert.match(result,/Goles por partido/);
+});
+test('REA Reverse Engineering Bridge execution', async () => {
+  await runReaBridge();
 });

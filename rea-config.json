@@ -1,0 +1,6 @@
+{
+  "enabled": true,
+  "mode": "doctor",
+  "target_url": "https://www.uefa.com/uefachampionsleague/",
+  "target_path": "."
+}
