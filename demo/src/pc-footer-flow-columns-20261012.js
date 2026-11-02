@@ -82,6 +82,7 @@ html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-login{
   font:600 13.5px/1 Inter,system-ui,sans-serif!important;display:inline-flex!important;
   align-items:center!important;gap:6px!important;z-index:1810!important;
 }
+/* Re-enable ALL PC Tools inside the Más dropdown (overriding pc-history-hub display:none) */
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header details[data-ljpc-u-group="Más"] > .ljpc-u-dropdown > button{
   display:flex!important;align-items:center!important;justify-content:space-between!important;
   min-height:44px!important;padding:10px 18px!important;font:650 14.5px/1.25 Inter,sans-serif!important;
@@ -152,17 +153,20 @@ html.ljpc-unified-pc body.lj-desktop #ljpc-rea-tools-strip button.is-primary{
   background:#00e5ff!important;color:#040836!important;border-color:#00e5ff!important;font-weight:800!important;
 }
 
+/* Cuando el usuario activa "Modificar / Controles de esta sección", mostrar paneles nativos debajo con tamaño 1392px */
 html.ljpc-unified-pc.ljpc-rea-show-native body.lj-desktop #screen > :not(.u18-root){
   display:block!important;visibility:visible!important;pointer-events:auto!important;
   max-height:none!important;overflow:visible!important;
   width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;margin:20px auto!important;
 }
 
+/* Escalado global UEFA Champions League (1392px) para eliminar cuadros y textos chiquitos en TODAS las secciones */
 html.ljpc-unified-pc body.lj-desktop #screen > :is(.v114-upcoming-slot,#safeHomeExtra,#v100-home-extra,#v105-bottom),
 html.ljpc-unified-pc body.lj-desktop #screen :is(.u18-bound,.ds-wrap,.ljpc-mas-uefa,#ljpc-fantasy-uefa,#ljpc-six-ui .p6-bound,.v60-tool-page,.v726-tools-page,.v562-page,.v28-match,.v26-moments-page){
   width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;margin-inline:auto!important;
 }
 
+/* Inicio: Goleadores, Vídeos, Tabla rápida, Favoritos y Gran Final en tamaño grande UEFA */
 html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen > #safeHomeExtra{
   padding:20px 24px!important;gap:16px!important;border-radius:14px!important;
 }
@@ -229,6 +233,7 @@ html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExt
   font-size:13px!important;line-height:1.35!important;margin-top:4px!important;
 }
 
+/* Herramientas PC, JR Control, Liga Control y Accesos CMS en tamaño grande UEFA */
 html.ljpc-unified-pc body.lj-desktop #screen :is(.v60-tool-head,.v562-hero,.v726-tools-hero){
   padding:22px 26px!important;margin:0 0 20px!important;border-radius:14px!important;
 }
@@ -258,6 +263,7 @@ html.ljpc-unified-pc body.lj-desktop #screen .ljr-cms-entry:has(>button[data-cms
   font-size:14.5px!important;line-height:1.28!important;
 }
 
+/* Gaming, Fantasy y Pronostica Seis en escala UEFA 1392px */
 html.ljpc-unified-pc body.lj-desktop #screen .ds-pagehead{
   background:linear-gradient(90deg,#0438f0 0%,#03229c 55%,#010e54 100%)!important;
   color:#ffffff!important;padding:26px 0 28px!important;border-bottom:1px solid rgba(0,229,255,.22)!important;
@@ -300,6 +306,7 @@ html.ljpc-unified-pc body.lj-desktop[data-app-route="predictorSix"] #ljpc-six-ui
   min-height:50px!important;font-size:15px!important;padding:0 18px!important;
 }
 
+/* Detalle de Partido (.v28-match) en escala UEFA 1392px */
 html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-top{
   min-height:190px!important;padding:22px 32px!important;
 }
@@ -323,6 +330,7 @@ html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-tab{
 `;
 
 const IFRAME_HOME_UEFA_CSS=`
+/* REA Home Iframe Lock: Full UEFA Champions League Desktop Scale */
 html.ljpc-embedded-home #root .ucl [data-name="stories list container"]{
   width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;margin:8px auto 12px!important;
 }
@@ -398,6 +406,7 @@ function ensureMasterLock(){
    document.getElementById('ljpc-rea-tools-strip')?.remove();
    return;
  }
+ // Remove handset shrinking class and ensure full 1366px UEFA desktop viewport when in PC mode
  document.documentElement.classList.remove('ljpc-forced-handset');
  const vp=document.querySelector?.('meta[name="viewport"]');
  if(vp&&mode()==='desktop'){
@@ -428,12 +437,16 @@ function ensureMasterLock(){
  }catch(_){}
 }
 
+/* Footer is a sibling AFTER all content, not a height spacer. The previous
+   clearance calculation read absolute-positioned panels and created 5000px gaps. */
 function adjust(){
  ensureMasterLock();
  const footer=document.getElementById('ljpc-unified-pc-footer');
  if(!pc()){if(footer)footer.style.removeProperty('--ljpc-footer-clearance');return}
  const screen=document.getElementById('screen');
  if(!footer||!screen)return;
+ // Do not increase the footer margin for detached/hidden cards. Always keep
+ // a small natural separation after the final visible page section.
  footer.style.setProperty('--ljpc-footer-clearance','0px');
  if(footer.parentElement!==document.body||footer!==document.body.lastElementChild){
    document.body.appendChild(footer);
@@ -455,6 +468,7 @@ function start(){
   ro.observe(screen);
   const app=document.getElementById('app');
   if(app)ro.observe(app);
+  // A newly mounted last panel is re-observed by adjust() after the childList event.
  }
  window.addEventListener('resize',schedule);
  window.addEventListener('load',schedule);
