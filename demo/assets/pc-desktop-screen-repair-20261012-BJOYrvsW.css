@@ -217,6 +217,7 @@ html.ljpc-unified-pc body.lj-desktop{
   text-rendering:optimizeLegibility;
 }
 
+/* 1. Cabecera Unificada y Subnavegación estilo UEFA.com */
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header a,
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header button{
   transition:color .18s ease,border-color .18s ease,background-color .18s ease!important;
@@ -226,6 +227,7 @@ html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header :is(a,button).is-ac
   text-shadow:0 0 14px rgba(0,240,255,0.28);
 }
 
+/* 2. Inicio / Home, Noticias Bento y Video Hero */
 html.ljpc-unified-pc body.lj-desktop #screen :is(.u18-card,.u18-news-card,.u18-bento-card,.u18-videotile,.v26-moment-card){
   transition:transform .2s cubic-bezier(.22,.61,.36,1),border-color .2s ease,box-shadow .2s ease!important;
 }
@@ -235,6 +237,7 @@ html.ljpc-unified-pc body.lj-desktop #screen :is(.u18-card,.u18-news-card,.u18-b
   box-shadow:0 10px 26px rgba(2,10,38,0.28),0 0 0 1px rgba(0,240,255,0.16)!important;
 }
 
+/* 3. Partidos / Fixtures y Resultados (números tabulares y tarjetas limpias) */
 html.ljpc-unified-pc body.lj-desktop #screen :is(.u18fx-card,.u18fx-match,.u18-match-row,.ljpc8-scorer-result){
   font-variant-numeric:tabular-nums;
   transition:border-color .18s ease,box-shadow .18s ease,background-color .18s ease!important;
@@ -244,6 +247,7 @@ html.ljpc-unified-pc body.lj-desktop #screen .u18fx-card:hover{
   box-shadow:0 8px 22px rgba(8,21,64,0.08)!important;
 }
 
+/* 4. Clasificación / Standings (geometría tabular y realce de fila UEFA) */
 html.ljpc-unified-pc body.lj-desktop #screen :is(.u18-table,.u18-standings-table,.ljpc8-table,table){
   font-variant-numeric:tabular-nums;
 }
@@ -254,6 +258,7 @@ html.ljpc-unified-pc body.lj-desktop #screen :is(.u18-table tbody tr:hover,.u18-
   background-color:rgba(0,240,255,0.055)!important;
 }
 
+/* 5. Estadísticas / Datos, Goleadores, Libro y Performance Zone */
 html.ljr-pc-datos-uefa body.lj-desktop #screen :is(.ljpc8-scorer-hero,.ljpc8-book,.ljpc8-performance-hero,.ljpc8-performance-story,.ljpc8-phase-summary,.ljpc8-phase-chart){
   transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease!important;
 }
@@ -262,6 +267,7 @@ html.ljr-pc-datos-uefa body.lj-desktop #screen :is(.ljpc8-scorer-hero,.ljpc8-per
   border-color:var(--uefa-border-glow)!important;
 }
 
+/* 6. Equipos / Clubes, Sorteos / Draws, Quiniela (Predict Six), Fantasy y Historia */
 html.ljpc-unified-pc body.lj-desktop #screen :is(.u18-team-tile,.u18-entrants > div,.ljpc6-card,.ljpcf-card,.ljpc-hist-card){
   transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease!important;
 }
