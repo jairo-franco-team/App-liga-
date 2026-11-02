@@ -11,79 +11,355 @@ const toolGroups=[
   [
     "Partidos, jornadas y estadísticas",
     [
-      ["⚽","Partidos y resultados","pc-fixtures","Jornadas de las cinco categorías"],
-      ["🏆","Clasificación","pc-standings","Tablas oficiales por categoría"],
-      ["🥅","Máximos goleadores","pc-scorers","Ranking de jugadores"],
-      ["📅","Calendario PC","pc-calendar","Partidos, Google Calendar y compartir"],
-      ["🌐","Reporte semanal","v38Weekly","Horarios, sedes y descarga"],
-      ["🏟️","Centro de Jornada","matchday","Partidos destacados y sedes oficiales"],
-      ["🎥","Match Center","v4-matchcenter","Ficha e información del partido"],
-      ["🧩","Cuadro de liguilla","bracketBuilder","Crear y exportar cuadros"],
-      ["📊","Descargar tablas","tableExport","Exportaciones de competición"],
-      ["🗺️","Sedes y cómo llegar","venues","Campos reales y enlaces de Maps"]
+      [
+        "⚽",
+        "Partidos y resultados",
+        "pc-fixtures",
+        "Jornadas de las cinco categorías"
+      ],
+      [
+        "🏆",
+        "Clasificación",
+        "pc-standings",
+        "Tablas oficiales por categoría"
+      ],
+      [
+        "🥅",
+        "Máximos goleadores",
+        "pc-scorers",
+        "Ranking de jugadores"
+      ],
+      [
+        "📅",
+        "Calendario PC",
+        "pc-calendar",
+        "Partidos, Google Calendar y compartir"
+      ],
+      [
+        "🌐",
+        "Reporte semanal",
+        "v38Weekly",
+        "Horarios, sedes y descarga"
+      ],
+      [
+        "🏟️",
+        "Centro de Jornada",
+        "matchday",
+        "Partidos destacados y sedes oficiales"
+      ],
+      [
+        "🎥",
+        "Match Center",
+        "v4-matchcenter",
+        "Ficha e información del partido"
+      ],
+      [
+        "🧩",
+        "Cuadro de liguilla",
+        "bracketBuilder",
+        "Crear y exportar cuadros"
+      ],
+      [
+        "📊",
+        "Descargar tablas",
+        "tableExport",
+        "Exportaciones de competición"
+      ],
+      [
+        "🗺️",
+        "Sedes y cómo llegar",
+        "venues",
+        "Campos reales y enlaces de Maps"
+      ]
     ]
   ],
   [
     "Equipos, jugadores y comunidad",
     [
-      ["🛡️","Equipos de la liga","teams","Clubes y escudos"],
-      ["⭐","Equipos seguidos","following","Favoritos de equipos"],
-      ["👤","Jugadores","players","Plantillas y perfiles"],
-      ["⚖️","Comparar jugadores","playerCompare","Estadísticas de dos jugadores"],
-      ["↔️","Comparar equipos","pc-team-compare","Análisis entre clubes"],
-      ["🔄","Fichajes","transfers","Altas y movimientos"],
-      ["📋","Reclutamiento","recruitment","Registro y selección de equipos"],
-      ["📈","Estadísticas oficiales","v38Stats","Datos de la temporada"],
-      ["📰","Noticias y avisos","notices","Avisos disponibles públicamente"],
-      ["📚","Historia de la liga","history","Campeones y temporadas"]
+      [
+        "🛡️",
+        "Equipos de la liga",
+        "teams",
+        "Clubes y escudos"
+      ],
+      [
+        "⭐",
+        "Equipos seguidos",
+        "following",
+        "Favoritos de equipos"
+      ],
+      [
+        "👤",
+        "Jugadores",
+        "players",
+        "Plantillas y perfiles"
+      ],
+      [
+        "⚖️",
+        "Comparar jugadores",
+        "playerCompare",
+        "Estadísticas de dos jugadores"
+      ],
+      [
+        "↔️",
+        "Comparar equipos",
+        "pc-team-compare",
+        "Análisis entre clubes"
+      ],
+      [
+        "🔄",
+        "Fichajes",
+        "transfers",
+        "Altas y movimientos"
+      ],
+      [
+        "📋",
+        "Reclutamiento",
+        "recruitment",
+        "Registro y selección de equipos"
+      ],
+      [
+        "📈",
+        "Estadísticas oficiales",
+        "v38Stats",
+        "Datos de la temporada"
+      ],
+      [
+        "📰",
+        "Noticias y avisos",
+        "notices",
+        "Avisos disponibles públicamente"
+      ],
+      [
+        "📚",
+        "Historia de la liga",
+        "history",
+        "Campeones y temporadas"
+      ]
     ]
   ],
   [
     "Multimedia, predicciones y herramientas",
     [
-      ["📺","Liga TV","video","Transmisiones y vídeos"],
-      ["🎬","Momentos","moments","Galería de fútbol"],
-      ["🎮","Fantasy","fantasy","Arma tu equipo"],
-      ["🎯","Quiniela","quiniela","Pronostica partidos"],
-      ["🔮","Pronostica seis","predictorSix","Predicciones de la jornada"],
-      ["🧠","Quiz Arena","quizArena","Preguntas y competición"],
-      ["⚖️","Más o Menos","moreLess","Juego de comparaciones"],
-      ["⭐","Jugador de la semana","vote","Participación de la comunidad"],
-      ["🌦️","Clima y canchas","weatherFields","Pronóstico y campos"],
-      ["☁️","Avisos de clima","v38Weather","Información meteorológica"],
-      ["🔔","Notificaciones","pc-notifications","Preferencias de avisos"],
-      ["📖","Reglamento","rulebook","Consultar las reglas"],
-      ["📲","Instalar la aplicación","appInstall","Acceso directo, Android e iPhone"],
-      ["🛍️","Tienda de clubes","club-store","Productos y clubes"]
+      [
+        "📺",
+        "Liga TV",
+        "video",
+        "Transmisiones y vídeos"
+      ],
+      [
+        "🎬",
+        "Momentos",
+        "moments",
+        "Galería de fútbol"
+      ],
+      [
+        "🎮",
+        "Fantasy",
+        "fantasy",
+        "Arma tu equipo"
+      ],
+      [
+        "🎯",
+        "Quiniela",
+        "quiniela",
+        "Pronostica partidos"
+      ],
+      [
+        "🔮",
+        "Pronostica seis",
+        "predictorSix",
+        "Predicciones de la jornada"
+      ],
+      [
+        "🧠",
+        "Quiz Arena",
+        "quizArena",
+        "Preguntas y competición"
+      ],
+      [
+        "⚖️",
+        "Más o Menos",
+        "moreLess",
+        "Juego de comparaciones"
+      ],
+      [
+        "⭐",
+        "Jugador de la semana",
+        "vote",
+        "Participación de la comunidad"
+      ],
+      [
+        "🌦️",
+        "Clima y canchas",
+        "weatherFields",
+        "Pronóstico y campos"
+      ],
+      [
+        "☁️",
+        "Avisos de clima",
+        "v38Weather",
+        "Información meteorológica"
+      ],
+      [
+        "🔔",
+        "Notificaciones",
+        "pc-notifications",
+        "Preferencias de avisos"
+      ],
+      [
+        "📖",
+        "Reglamento",
+        "rulebook",
+        "Consultar las reglas"
+      ],
+      [
+        "📲",
+        "Instalar la aplicación",
+        "appInstall",
+        "Acceso directo, Android e iPhone"
+      ],
+      [
+        "🛍️",
+        "Tienda de clubes",
+        "club-store",
+        "Productos y clubes"
+      ]
     ]
   ],
   [
     "Administración y documentos · acceso autorizado",
     [
-      ["🛠️","JR Control","jrControl","Panel de administración"],
-      ["📋","Administración de Liga","ligaControl","Controles de la liga"],
-      ["📑","Cédulas oficiales","cedulas","Consultar documentos y partidos"],
-      ["🪪","Constructor de credenciales","credentialBuilder","Vista previa y exportación"],
-      ["🧾","Crear cédula","cedulaBuilder","Herramienta de cédulas"],
-      ["📚","Archivo arbitral","refereeOffline","Cédulas sin conexión"],
-      ["👥","Juntas y acuerdos","tool:meeting","Asistencia, votaciones y seguimiento"],
-      ["🤝","Patrocinadores","tool:sponsors","Contratos y administración local"],
-      ["🚩","Incidencias","tool:incidents","Bitácora por partido"],
-      ["👨‍⚖️","Árbitros y oficiales","tool:officials","Designaciones y directorio"],
-      ["🟥","Sanciones y expedientes","tool:new-sanction","Borradores disciplinarios"],
-      ["🏅","Estudio de MVP","tool:motm","Jugador del partido"],
-      ["🧑‍💼","Delegados","tool:delegates","Encargados de equipos"],
-      ["🗓️","Cambios de jornada","scheduleChanges","Horarios y sedes"],
-      ["🔔","Avisos oficiales","publicationCenter","Publicaciones con permisos"],
-      ["📁","Permisos y archivos","permissionBuilder","Gestión documentaria"],
-      ["📅","Agenda administrativa","agendaBuilder","Juntas y recordatorios"],
-      ["🗳️","Encuestas","tool:poll","Participación y acuerdos"],
-      ["💾","Respaldo de registros","tool:backup-export","Descarga manual autorizada"],
-      ["🔎","Auditoría","tool:audit","Revisión de cambios"],
-      ["👤","Mi cuenta","accountLogin","Acceso real a la cuenta"]
+      [
+        "🛠️",
+        "JR Control",
+        "jrControl",
+        "Panel de administración"
+      ],
+      [
+        "📋",
+        "Administración de Liga",
+        "ligaControl",
+        "Controles de la liga"
+      ],
+      [
+        "📑",
+        "Cédulas oficiales",
+        "cedulas",
+        "Consultar documentos y partidos"
+      ],
+      [
+        "🪪",
+        "Constructor de credenciales",
+        "credentialBuilder",
+        "Vista previa y exportación"
+      ],
+      [
+        "🧾",
+        "Crear cédula",
+        "cedulaBuilder",
+        "Herramienta de cédulas"
+      ],
+      [
+        "📚",
+        "Archivo arbitral",
+        "refereeOffline",
+        "Cédulas sin conexión"
+      ],
+      [
+        "👥",
+        "Juntas y acuerdos",
+        "tool:meeting",
+        "Asistencia, votaciones y seguimiento"
+      ],
+      [
+        "🤝",
+        "Patrocinadores",
+        "tool:sponsors",
+        "Contratos y administración local"
+      ],
+      [
+        "🚩",
+        "Incidencias",
+        "tool:incidents",
+        "Bitácora por partido"
+      ],
+      [
+        "👨‍⚖️",
+        "Árbitros y oficiales",
+        "tool:officials",
+        "Designaciones y directorio"
+      ],
+      [
+        "🟥",
+        "Sanciones y expedientes",
+        "tool:new-sanction",
+        "Borradores disciplinarios"
+      ],
+      [
+        "🏅",
+        "Estudio de MVP",
+        "tool:motm",
+        "Jugador del partido"
+      ],
+      [
+        "🧑‍💼",
+        "Delegados",
+        "tool:delegates",
+        "Encargados de equipos"
+      ],
+      [
+        "🗓️",
+        "Cambios de jornada",
+        "scheduleChanges",
+        "Horarios y sedes"
+      ],
+      [
+        "🔔",
+        "Avisos oficiales",
+        "publicationCenter",
+        "Publicaciones con permisos"
+      ],
+      [
+        "📁",
+        "Permisos y archivos",
+        "permissionBuilder",
+        "Gestión documentaria"
+      ],
+      [
+        "📅",
+        "Agenda administrativa",
+        "agendaBuilder",
+        "Juntas y recordatorios"
+      ],
+      [
+        "🗳️",
+        "Encuestas",
+        "tool:poll",
+        "Participación y acuerdos"
+      ],
+      [
+        "💾",
+        "Respaldo de registros",
+        "tool:backup-export",
+        "Descarga manual autorizada"
+      ],
+      [
+        "🔎",
+        "Auditoría",
+        "tool:audit",
+        "Revisión de cambios"
+      ],
+      [
+        "👤",
+        "Mi cuenta",
+        "accountLogin",
+        "Acceso real a la cuenta"
+      ]
     ]
   ]
 ];
+/* Funciones incorporadas al móvil: catálogo enlazado sin copiar pantallas ni estilos móviles. */
 const parityAdditions=[
  ["Herramientas recientes de móvil · también en navegador",[
   ["🛠️","Centro de Herramientas APK","leagueTools","Todas las funciones de móvil y APK por categoría"],
@@ -177,6 +453,15 @@ body.ljpc-native-route #screen{box-sizing:border-box!important;width:min(1392px,
 body.ljpc-native-route{background:radial-gradient(circle at 55% -220px,#0c448b 0%,#081b47 450px,#06132e 100%) fixed!important;color:#eaf5ff!important}
 body.ljpc-native-route #app>.topbar,body.ljpc-native-route #app>.bottom-nav{display:none!important}
 body.ljpc-native-route #screen *{box-sizing:border-box}
+body.ljpc-native-route #screen img{max-width:100%}
+body.ljpc-native-route #screen table{max-width:100%}
+body.ljpc-native-route #screen .v64-table-wrap,body.ljpc-native-route #screen .table-wrap,body.ljpc-native-route #screen [class*="table-scroll"]{max-width:100%;overflow-x:auto}
+#ljpc-native-toolbar{position:sticky;top:0;z-index:900;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px max(24px,calc((100vw - 1392px)/2));min-height:58px;background:linear-gradient(100deg,#061431,#07418b,#09255b);color:#fff;box-shadow:0 4px 24px #030d2680;border-bottom:1px solid #49adfa50;font-family:Inter,system-ui,sans-serif}
+#ljpc-native-toolbar strong{font-size:15px;line-height:1.25;white-space:nowrap}
+#ljpc-native-toolbar .ljpc-native-links{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#ljpc-native-toolbar button{min-height:38px;border:1px solid #ffffff2d;border-radius:8px;background:#ffffff12;color:#f7fbff;padding:8px 14px;font:700 13px Inter,system-ui;cursor:pointer}
+#ljpc-native-toolbar button:hover,#ljpc-native-toolbar button.active{background:#2379e4;border-color:#68b8ff}
+body.lj-desktop .ds-menu>[data-ljpc-desktop-tools],body.lj-desktop .desk-menu>[data-ljpc-desktop-tools]{border-radius:7px;padding:8px 11px;background:linear-gradient(135deg,#0055a5,#1977d4);color:#fff}
 .ljpc-toolhub{width:min(1392px,calc(100% - 48px));max-width:1392px;margin:18px auto 28px;padding:24px 28px;background:#ffffff;border:1px solid #dce3f0;border-radius:16px;box-shadow:0 12px 32px rgba(7,14,61,.08)}
 .ljpc-hub-head{background:linear-gradient(110deg,#0438f0 0%,#03229c 55%,#010e54 100%);color:#fff;border:1px solid rgba(0,229,255,.28);padding:24px 28px;border-radius:14px;margin:0 0 22px}
 .ljpc-hub-head>span{font-size:12px;letter-spacing:.12em;font-weight:900;color:#00e5ff}
@@ -193,6 +478,14 @@ body.ljpc-native-route #screen *{box-sizing:border-box}
 .ljpc-hub-controls [data-ljpc-tools-counter]{font:800 13.5px Inter,system-ui;color:#0438f0}
 .ljpc-hub-empty{font:650 14.5px Inter,system-ui;color:#597597;padding:20px}
 .ljpc-hub-group[hidden],.ljpc-hub-btn[hidden],.ljpc-hub-empty[hidden]{display:none!important}
+body.lj-desktop :is(button,input,select,textarea,a):focus-visible{outline:2px solid #00e5ff!important;outline-offset:2px!important}
+body.lj-desktop #screen :is(.ds-wrap,.desk-wrap){max-width:min(100%,1392px);box-sizing:border-box}
+body.lj-desktop :is(.ds-page,.ds-content,.ds-wrap,.desk-wrap,.desk-main,.desk-page-shell,.desktop-liga){min-width:0}
+body.lj-desktop #screen .ljpc-function-root{max-width:100%;min-width:0}
+body.lj-desktop #screen .ljpc-match{min-width:0}
+body.lj-desktop #screen .ljpc-team span{min-width:0;overflow-wrap:anywhere}
+body.lj-desktop #screen .ljpc-data-tablebox,body.lj-desktop #screen .ljpc-panel{max-width:100%}
+body.lj-desktop #screen button{touch-action:manipulation}
 `;
 function injectCss(){
  if(document.getElementById('ljpc-runtime-css'))return;
