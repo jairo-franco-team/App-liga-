@@ -274,6 +274,11 @@ function standingsPage(){
 }
 function drawsPage(){
  const rows=tableRows(),squads=rows.filter(r=>r[1]).map(r=>r[1]);
+ const potSize=Math.max(1,Math.ceil(squads.length/4));
+ const potsSection=squads.length?'<section class="u18-draw-pots-section" aria-label="Bombos de clasificación"><div class="u18-draw-pots-head"><h2>Bombos oficiales por clasificación ('+escape(CAT[state.cat])+')</h2><button type="button" class="u18-button" data-u18-go="bracketBuilder">Simular cruces</button></div><div class="u18-draw-pots-grid">'+[0,1,2,3].map(p=>{
+  const slice=squads.slice(p*potSize,(p+1)*potSize);
+  return '<div class="u18-draw-pot-card"><div class="u18-draw-pot-title"><span>Bombo '+(p+1)+'</span><small>'+slice.length+' clubes</small></div><div class="u18-draw-pot-list">'+(slice.length?slice.map((n,idx)=>'<div class="u18-draw-pot-item"><b>#'+(p*potSize+idx+1)+'</b>'+crest(n)+'<span>'+escape(n)+'</span></div>').join(''):'<div class="u18-draw-pot-item"><span>Por definir</span></div>')+'</div></div>';
+ }).join('')+'</div></section>':'';
  const tabs='<div class="u18-drawtabs" role="group" aria-label="Apartados del sorteo">'+
    pills([['results','Resultados'],['updates','Actualizaciones'],['pots','Bombos'],['procedure','Procedimiento']],state.drawTab,'data-u18-draw-tab')+'</div>';
  let detail='';
@@ -301,7 +306,7 @@ function drawsPage(){
  const official='<div class="u18-drawofficial"><span>COMPETICIONES DE LA LIGA</span><div>'+
   '<span>Primera Fuerza</span><span>Intermedia</span><span>Segunda Fuerza</span><span>Veteranos 35+</span><span>Veteranos 50+</span></div></div>';
  return shell('Sorteo de la fase liga','Liga Juventino Rosas · '+CAT[state.cat],
-  controls+promo+stage+recommended+official).replace(
+  controls+promo+stage+potsSection+bracket()+recommended+official).replace(
     '<p>Los controles originales siguen disponibles debajo de la nueva presentación.</p>',
     '<p>El diseño clásico se conserva para administración.</p><button type="button" data-u18-open-draw-original>Mostrar herramientas anteriores</button>');
 }

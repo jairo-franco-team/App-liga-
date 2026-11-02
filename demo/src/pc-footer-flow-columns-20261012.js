@@ -11,7 +11,7 @@ const pc=()=>!['mobile','apk'].includes(mode())&&
 let queued=false,watching=false,ro=null,observedBottom=null;
 
 const MASTER_LOCK_CSS=`
-/* REA Master Lock: 100% identical UEFA Champions League header & geometry across all PC routes */
+/* REA Master Lock: 100% identical UEFA Champions League header & geometry across ALL PC sections */
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header{
   display:block!important;visibility:visible!important;opacity:1!important;
   width:100%!important;max-width:none!important;background:#0a1061!important;z-index:1800!important;
@@ -86,6 +86,55 @@ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body.lj-desktop #screen .u18
 html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body.lj-desktop #screen .u18fx-nav{
   display:none!important;
 }
+/* All sections unified UEFA 1392px geometry: Gaming, Datos, Más, Historia, Equipos, Noticias, TV, Momentos */
+html.ljpc-unified-pc body.lj-desktop #screen :is(.u18-bound,.ds-wrap,.ljpc-mas-uefa){
+  width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;margin-inline:auto!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .ds-pagehead{
+  background:linear-gradient(90deg,#0438f0 0%,#03229c 55%,#010e54 100%)!important;
+  color:#ffffff!important;padding:24px 0 26px!important;border-bottom:1px solid rgba(0,229,255,.22)!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .ds-pagehead .eyebrow{
+  color:#00e5ff!important;font:800 11px/1.2 Inter,sans-serif!important;letter-spacing:.12em!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .ds-pagehead h1{
+  color:#ffffff!important;font:800 clamp(26px,2.8vw,36px)/1.12 Inter,sans-serif!important;margin:4px 0 6px!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .ds-pagehead p{
+  color:rgba(255,255,255,.84)!important;font:500 13.5px/1.4 Inter,sans-serif!important;margin:0!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .ds-game-panel,
+html.ljpc-unified-pc body.lj-desktop #screen .ds-card{
+  border-radius:14px!important;border:1px solid rgba(0,229,255,.22)!important;
+  box-shadow:0 10px 28px rgba(4,10,45,.18)!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .ds-game-actions button{
+  background:#00e5ff!important;color:#040836!important;font-weight:800!important;
+  border-radius:8px!important;min-height:38px!important;padding:0 18px!important;border:0!important;
+}
+`;
+
+const IFRAME_HOME_UEFA_CSS=`
+@media(min-width:700px){
+  html.ljpc-embedded-home #root .ucl [data-name="stories wrapper"] > a{
+    flex:0 0 88px!important;width:88px!important;min-width:88px!important;max-width:88px!important;
+  }
+  html.ljpc-embedded-home #root .ucl [data-name="story ring"]{
+    width:78px!important;height:78px!important;min-width:78px!important;min-height:78px!important;
+    max-width:78px!important;max-height:78px!important;
+  }
+  html.ljpc-embedded-home #root .ucl [data-name="hero section container"]{
+    display:grid!important;grid-template-columns:minmax(0,2fr) minmax(280px,1fr)!important;
+    gap:20px!important;width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;
+    margin:10px auto!important;padding:8px 0 16px!important;
+  }
+  html.ljpc-embedded-home #root .ucl [data-name="featured hero article card"]{
+    height:420px!important;min-height:420px!important;max-height:420px!important;border-radius:14px!important;
+  }
+  html.ljpc-embedded-home #root .ucl [data-name="featured hero article card"] img{
+    height:100%!important;max-height:420px!important;object-fit:cover!important;
+  }
+}
 `;
 
 function ensureMasterLock(){
@@ -102,18 +151,24 @@ function ensureMasterLock(){
  }else if(style!==document.head?.lastElementChild){
    document.head?.appendChild(style);
  }
+ const frame=document.getElementById('ljpc-exact-html-home');
+ try{
+   const doc=frame?.contentDocument;
+   if(doc?.head&&!doc.getElementById('ljpc-rea-iframe-home-lock')){
+     const s=doc.createElement('style');
+     s.id='ljpc-rea-iframe-home-lock';
+     s.textContent=IFRAME_HOME_UEFA_CSS;
+     doc.head.appendChild(s);
+   }
+ }catch(_){}
 }
 
-/* Footer is a sibling AFTER all content, not a height spacer. The previous
-   clearance calculation read absolute-positioned panels and created 5000px gaps. */
 function adjust(){
  ensureMasterLock();
  const footer=document.getElementById('ljpc-unified-pc-footer');
  if(!pc()){if(footer)footer.style.removeProperty('--ljpc-footer-clearance');return}
  const screen=document.getElementById('screen');
  if(!footer||!screen)return;
- // Do not increase the footer margin for detached/hidden cards. Always keep
- // a small natural separation after the final visible page section.
  footer.style.setProperty('--ljpc-footer-clearance','0px');
  if(footer.parentElement!==document.body||footer!==document.body.lastElementChild){
    document.body.appendChild(footer);
@@ -135,11 +190,11 @@ function start(){
   ro.observe(screen);
   const app=document.getElementById('app');
   if(app)ro.observe(app);
-  // A newly mounted last panel is re-observed by adjust() after the childList event.
  }
  window.addEventListener('resize',schedule);
  window.addEventListener('load',schedule);
  window.addEventListener('hashchange',schedule);
+ document.addEventListener('load',e=>{if(e.target?.id==='ljpc-exact-html-home')schedule()},true);
  schedule();
  setTimeout(schedule,600);setTimeout(schedule,1800);
 }
