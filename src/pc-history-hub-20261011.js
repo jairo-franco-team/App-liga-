@@ -1,4 +1,4 @@
-/* Desktop-only Historia & Más hub + UEFA statistics/clubs exact clone (1392px).
+/* Desktop-only Historia & Más hub + statistics/clubs (1392px).
    Never changes the original mobile Historia, routes or styles. */
 (function(){
 'use strict';
@@ -159,7 +159,6 @@ function abbr(name){
  return words.slice(0,3).map(w=>w[0]).join('').toUpperCase();
 }
 
-/* Barra horizontal secundaria UEFA (1392px) para navegar todas las secciones */
 function renderSubnavBar(){
  const items=[
   ['temporadas','Temporadas','sub'],
@@ -178,7 +177,6 @@ function renderSubnavBar(){
  +'</nav>';
 }
 
-/* Clon exacto de https://es.uefa.com/uefachampionsleague/statistics/clubs/ */
 function getClubRowsForCategory(catId){
  const d=db();
  if(catId==='all'){
@@ -218,7 +216,7 @@ function renderClubesStats(){
   +'<div class="ljpc-uh-club-head">'
    +'<div>'
     +'<h2 class="ljpc-uh-page-title">Estadísticas de clubes</h2>'
-    +'<p class="ljpc-uh-subnote">Rendimiento oficial por club · Geometría UEFA Champions League Statistics (1392px)</p>'
+    +'<p class="ljpc-uh-subnote">Rendimiento oficial por club · Liga Juventino Rosas · Guanajuato</p>'
    +'</div>'
    +'<div class="ljpc-uh-club-cats" role="tablist" aria-label="Categorías oficiales">'
     +catTabs.map(([cid,cname])=>'<button type="button" class="ljpc-uh-cat-pill'+(state.clubCat===cid?' is-active':'')+'" data-ljpc-club-cat="'+cid+'">'+esc(cname)+'</button>').join('')
@@ -253,7 +251,6 @@ function renderClubesStats(){
  +'</div>';
 }
 
-/* 1. CAPTURA 1 (061749): Temporadas / Destacados */
 function renderTemporadas(){
  const topSeasons=seasons.slice(0,7);
  const h2hPairs=[
@@ -324,7 +321,7 @@ function renderTemporadas(){
     +'<div class="ljpc-uh-card-head"><h3>Libro de estadísticas</h3></div>'
     +'<div class="ljpc-uh-book-banner"><img src="./deportiva-sur-partido.jpg" alt="" loading="lazy"><span>ARCHIVO OFICIAL<br>LIGA JUVENTINO ROSAS</span></div>'
     +'<div class="ljpc-uh-book-links">'
-     +'<button type="button" data-ljpc-h-sub="clubes">Estadísticas de clubes (UEFA) ↗</button>'
+     +'<button type="button" data-ljpc-h-sub="clubes">Estadísticas de clubes oficiales ↗</button>'
      +'<button type="button" data-ljpc-h-sub="titulos">Campeones y finales históricas ↗</button>'
      +'<button type="button" data-ds-route="pc-data">Récords y centro de datos ↗</button>'
     +'</div>'
@@ -333,7 +330,6 @@ function renderTemporadas(){
  +'</div>';
 }
 
-/* 2. CAPTURA 2 (061757): Rankings y estadísticas históricas + Tabla UEFA de clubes */
 function renderEstadisticas(){
  const teamCards=[
   {title:'Más títulos',unit:'Títulos',rows:[
@@ -409,7 +405,6 @@ function renderEstadisticas(){
  +renderClubesStats();
 }
 
-/* 3. CAPTURA 3 (061804): Vídeos */
 function renderVideos(){
  const playlist=[
   {title:'Resumen y mejores jugadas de la jornada · Liga Juventino Rosas',time:'hace 4 horas',desc:'Revive las mejores acciones, goles y atajadas en los campos de Juventino Rosas.',img:'./deportiva-sur-partido.jpg',dur:'03:42'},
@@ -467,7 +462,6 @@ function renderVideos(){
  +'</div>';
 }
 
-/* 4. CAPTURAS 4 y 8 (061812 y 061845): Equipos por Categoría (10-col) y A-Z (10-col) */
 function collectTeamsByCategory(){
  const d=db(),byCat=new Map(),all=new Map();
  for(const [cid,cname] of Object.entries(CAT)){
@@ -529,7 +523,6 @@ function renderEquipos(){
  +'</div>';
 }
 
-/* 5. CAPTURA 5 (061819): Más títulos (Acordeón blanco con trofeo) */
 function renderTitulos(){
  return '<div class="ljpc-uh-bound ljpc-uh-pad-page">'
   +'<h2 class="ljpc-uh-page-title">Más títulos</h2>'
@@ -547,7 +540,6 @@ function renderTitulos(){
  +'</div>';
 }
 
-/* 6. CAPTURA 6 (061828): Noticias (Bento Grid 4 columnas alternadas) */
 function renderNoticias(){
  const rows=[
   {leadLeft:true,
@@ -587,7 +579,6 @@ function renderNoticias(){
  +'</div>';
 }
 
-/* 7. CAPTURA 7 (061834): Sobre (Grilla de 2 columnas de tarjetas horizontales 46% img / 54% texto) */
 function renderSobre(){
  const cards=[
   ['Guía de campos y sedes oficiales','./deportiva-sur-partido.jpg','venues'],

@@ -90,14 +90,14 @@ const ALL_APK_SECTIONS=[
 
 const CORE_RULES=`
 /* ==========================================================================
-   REA UEFA Champions League Master Desktop Scale, White Login & Anti-Overlap
+   Liga Juventino Rosas Master Desktop Scale, White Login & Anti-Overlap
    ========================================================================== */
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header{
   display:block!important;visibility:visible!important;opacity:1!important;
   width:100%!important;max-width:none!important;background:#0a1061!important;z-index:1800!important;
 }
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header::before{
-  content:"UEFA.com  ▾"!important;display:flex!important;align-items:center!important;
+  content:"Liga Juventino Rosas  ▾"!important;display:flex!important;align-items:center!important;
   justify-content:flex-start!important;height:38px!important;min-height:38px!important;
   padding:0 max(20px,calc((100% - 1392px)/2))!important;background:#000000!important;
   color:#ffffff!important;font:700 13.5px/1 Inter,system-ui,sans-serif!important;
@@ -283,7 +283,7 @@ html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-badge{
 }
 
 /* ==========================================================================
-   INICIAR SESIÓN Y MI CUENTA EN MODO PC — DISEÑO BLANCO OFICIAL UEFA (CAPTURA 2)
+   INICIAR SESIÓN Y MI CUENTA EN MODO PC — DISEÑO BLANCO OFICIAL (CAPTURA 2)
    ========================================================================== */
 html.ljpc-unified-pc body.lj-desktop:is([data-app-route^="account"],[data-app-route="accountLogin"],[data-app-route="accountRegister"]) #screen#screen{
   --ljr1420-page:#f4f6fb!important;

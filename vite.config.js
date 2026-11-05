@@ -8,10 +8,8 @@ function copyStaticReferences() {
     closeBundle() {
       const files = [
         ['src/v606-control-registro-tools.js', 'dist/src/v606-control-registro-tools.js'],
-        // Reglamento oficial: conservar el PDF publicado por la actualización paralela.
         ['docs/Reglamento_Liga_Juventino_Rosas_2026_2027.pdf', 'dist/docs/Reglamento_Liga_Juventino_Rosas_2026_2027.pdf'],
         ['src/v606-control-registro-tools.css', 'dist/src/v606-control-registro-tools.css'],
-        // Fuentes CSS de la barra de jornada: deben sobrevivir al build demo/APK.
         ['src/v1153-matchday-fullwidth-safe-crests.css', 'dist/src/v1153-matchday-fullwidth-safe-crests.css'],
         ['src/v1167-matchday-centered-official-crests.css', 'dist/src/v1167-matchday-centered-official-crests.css'],
         ['src/v1166-meeting-officers.css', 'dist/src/v1166-meeting-officers.css'],
@@ -23,14 +21,9 @@ function copyStaticReferences() {
         ['assets/reference/predictor-v36/liga-crest-white.webp', 'dist/assets/reference/predictor-v36/liga-crest-white.webp'],
         ['assets/moments/moments-original-a.png', 'dist/assets/moments/moments-original-a.png'],
         ['assets/moments/moments-original-b.png', 'dist/assets/moments/moments-original-b.png'],
-        // CSS propio de la portada PC independiente: index se empaqueta, pero el iframe necesita su URL literal.
         ['src/desktop-browser-editorial-20261011.css', 'dist/src/desktop-browser-editorial-20261011.css'],
-        // CORRECCIÓN: este CSS se enlaza desde pc-exact-original-20261011.html,
-        // Vite no lo agrega automáticamente porque el HTML del iframe se copia literal.
         ['src/pc-home-uefa-colors-scroll-fast-20261012.css', 'dist/src/pc-home-uefa-colors-scroll-fast-20261012.css'],
-        // Portada PC original: los HTML fuera de index no son emitidos por Vite.
         ['pc-exact-original-20261011.html', 'dist/pc-exact-original-20261011.html'],
-        // Fotografías de Liga Juventino usadas solo dentro del HTML PC.
         ['assets/home-players-user.png', 'dist/assets/home-players-user.png'],
         ['assets/home-players-fictional.jpg', 'dist/assets/home-players-fictional.jpg'],
       ];
@@ -45,16 +38,13 @@ function copyStaticReferences() {
       }
       const rulebookPdf = resolve('dist/docs/Reglamento_Liga_Juventino_Rosas_2026_2027.pdf');
       if (!existsSync(rulebookPdf) || readFileSync(rulebookPdf).subarray(0,5).toString('ascii') !== '%PDF-') throw new Error('Falta el Reglamento PDF válido en el paquete publicado');
-      // Native edge-to-edge uses measured system insets; web retains env() fallback.
       for (const name of readdirSync(resolve('dist/assets')).filter(n=>n.endsWith('.css'))) {
         const file=resolve('dist/assets',name);
         writeFileSync(file,readFileSync(file,'utf8').replace(/env\(safe-area-inset-(top|bottom|left|right)(?:,[^)]*)?\)/g,(value,side)=>'var(--ljr-native-'+side+', '+value+')'));
       }
-      // Fail the build instead of publishing a PC link that silently returns 404.
       const pcHTML = resolve('dist/pc-exact-original-20261011.html');
       if (!existsSync(pcHTML)) throw new Error('Falta portada PC en dist: pc-exact-original-20261011.html');
       const pcMarkup = readFileSync(pcHTML,'utf8');
-      // Comprobar también hojas externas enlazadas por el iframe antes de publicar.
       const pcStyles = [...pcMarkup.matchAll(/<link\b[^>]*href="\.\/([^"?]+\.css)(?:\?[^"]*)?"/gi)].map(m => m[1]);
       for (const css of new Set(pcStyles)) {
         if (!existsSync(resolve('dist',css))) throw new Error('CSS faltante en Inicio PC publicado: '+css);
@@ -144,8 +134,8 @@ function copyStaticReferences() {
       const indexBuilt = resolve('dist/index.html');
       if (existsSync(indexBuilt)) {
         let html = readFileSync(indexBuilt, 'utf8');
-        html = html.replace(/(src=["']\.\/src\/[^"'?]+\.js\?v=[^"']+)(["'])/g, '$1-rea20261105v10$2');
-        const swPurge = `<script id="ljpc-sw-cache-purge-20261105">(function(){try{if('caches'in window){caches.keys().then(function(ks){ks.forEach(function(k){if(k.indexOf('20261105-rea-pc-v10')<0)caches.delete(k);});});}if('serviceWorker'in navigator){navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){r.update();});});}}catch(_){}})();</script>\n`;
+        html = html.replace(/(src=["']\.\/src\/[^"'?]+\.js\?v=[^"']+)(["'])/g, '$1-rea20261105v11$2');
+        const swPurge = `<script id="ljpc-sw-cache-purge-20261105">(function(){try{if('caches'in window){caches.keys().then(function(ks){ks.forEach(function(k){if(k.indexOf('20261105-rea-pc-v11')<0)caches.delete(k);});});}if('serviceWorker'in navigator){navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){r.update();});});}}catch(_){}})();</script>\n`;
         if (!html.includes('v1166-meeting-officers.css')) {
           html = html.replace('</head>', '  <link rel="stylesheet" href="./src/v1166-meeting-officers.css" />\n' + swPurge + '</head>');
         } else {
