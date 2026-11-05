@@ -2,8 +2,8 @@
    PWA / Web Push: HTML y datos oficiales siempre intentan la red;
    solamente assets versionados (JS/CSS) usan cache-first.
    No intercepta endpoints API, peticiones privadas ni otros dominios. */
-const CACHE='liga-juventino-v1231-mobile-fast';
-const DATA_CACHE='liga-juventino-v1231-official-offline';
+const CACHE='liga-juventino-v20261105-rea-pc-v10';
+const DATA_CACHE='liga-juventino-v20261105-official-offline';
 const CORE=['./','./index.html','./manifest.webmanifest','./brand-neon-header.svg','./profile-reference.svg'];
 const LIMIT=250,MAX_SIZE=750000;
 let writes=0;

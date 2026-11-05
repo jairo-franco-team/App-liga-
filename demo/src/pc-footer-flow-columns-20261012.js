@@ -216,6 +216,72 @@ html.ljpc-unified-pc body.lj-desktop #ljpc-rea-tools-strip button.is-catalog{
   background:linear-gradient(90deg,#0438f0,#00b4d8)!important;color:#ffffff!important;border-color:#00e5ff!important;font-weight:800!important;
 }
 
+/* Mega-Catálogo Desplegable de las 35 secciones de Móvil/APK en PC (1392px) */
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-hub{
+  width:min(1392px,calc(100% - 40px))!important;max-width:1392px!important;margin:18px auto 28px!important;
+  padding:28px 32px!important;border-radius:16px!important;
+  background:linear-gradient(165deg,#071142 0%,#0a1c64 52%,#050b2e 100%)!important;
+  border:1px solid rgba(0,229,255,.32)!important;box-shadow:0 18px 42px rgba(2,8,38,.45)!important;
+  color:#ffffff!important;font-family:Inter,system-ui,sans-serif!important;box-sizing:border-box!important;
+  position:relative!important;clear:both!important;height:auto!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-hub-head{
+  display:flex!important;align-items:flex-end!important;justify-content:space-between!important;
+  flex-wrap:wrap!important;gap:16px!important;padding-bottom:20px!important;margin-bottom:24px!important;
+  border-bottom:1px solid rgba(0,229,255,.22)!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-hub-head small{
+  display:block!important;color:#00e5ff!important;font:800 12px/1.2 Inter,sans-serif!important;letter-spacing:.12em!important;margin-bottom:6px!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-hub-head h2{
+  margin:0!important;color:#ffffff!important;font:800 clamp(26px,2.8vw,34px)/1.15 Inter,sans-serif!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-hub-head p{
+  margin:6px 0 0!important;color:#cbd8ff!important;font:500 15px/1.45 Inter,sans-serif!important;max-width:820px!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-group{margin:0 0 26px!important}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-group:last-child{margin-bottom:0!important}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-group-title{
+  display:flex!important;align-items:center!important;gap:10px!important;margin:0 0 14px!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-group-title span{
+  padding:4px 10px!important;border-radius:6px!important;background:#00e5ff!important;color:#040836!important;
+  font:800 11.5px/1.1 Inter,sans-serif!important;letter-spacing:.08em!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-group-title h3{
+  margin:0!important;color:#ffffff!important;font:800 20px/1.2 Inter,sans-serif!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-grid{
+  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-card{
+  appearance:none!important;box-sizing:border-box!important;width:100%!important;min-height:88px!important;
+  padding:16px 20px!important;border-radius:12px!important;border:1px solid rgba(0,229,255,.24)!important;
+  background:rgba(12,25,90,.78)!important;color:#ffffff!important;text-align:left!important;
+  display:grid!important;grid-template-columns:46px minmax(0,1fr) auto!important;align-items:center!important;gap:14px!important;
+  cursor:pointer!important;transition:transform .16s ease,border-color .16s ease,background .16s ease!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-card:hover{
+  transform:translateY(-2px)!important;border-color:#00e5ff!important;background:rgba(4,56,240,.52)!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-icon{
+  width:46px!important;height:46px!important;border-radius:10px!important;
+  background:linear-gradient(135deg,#0438f0,#00e5ff)!important;color:#040836!important;
+  display:grid!important;place-items:center!important;font-size:22px!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-copy{min-width:0!important}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-copy b{
+  display:block!important;color:#ffffff!important;font:800 16px/1.25 Inter,sans-serif!important;margin-bottom:4px!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-copy small{
+  display:block!important;color:#bfd0ff!important;font:500 13.5px/1.35 Inter,sans-serif!important;white-space:normal!important;
+}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-badge{
+  padding:5px 10px!important;border-radius:999px!important;background:rgba(0,229,255,.16)!important;
+  border:1px solid rgba(0,229,255,.4)!important;color:#00e5ff!important;font:800 11px/1 Inter,sans-serif!important;
+  white-space:nowrap!important;
+}
+
 /* ==========================================================================
    INICIAR SESIÓN Y MI CUENTA EN MODO PC — DISEÑO BLANCO OFICIAL UEFA (CAPTURA 2)
    ========================================================================== */
@@ -272,17 +338,69 @@ html.ljpc-unified-pc body.lj-desktop:is([data-app-route^="account"],[data-app-ro
 }
 
 /* ==========================================================================
-   CORRECCIÓN GLOBAL ANTI-SOLAPAMIENTO (CUADROS ENCIMADOS ABAJO) Y ANCHO 1392PX
+   CORRECCIÓN GLOBAL ANTI-SOLAPAMIENTO (CUADROS ENCIMADOS EN HERRAMIENTAS Y ABAJO)
    ========================================================================== */
+html.ljpc-unified-pc body.lj-desktop #screen#screen{
+  display:flex!important;flex-direction:column!important;align-items:stretch!important;
+  justify-content:flex-start!important;gap:20px!important;height:auto!important;
+  min-height:0!important;max-height:none!important;overflow:visible!important;
+}
 html.ljpc-unified-pc body.lj-desktop #screen#screen > *{
-  position:relative!important;inset:auto!important;float:none!important;clear:both!important;
-  height:auto!important;max-height:none!important;
+  position:relative!important;inset:auto!important;transform:none!important;
+  float:none!important;clear:both!important;flex:0 0 auto!important;
+  grid-column:auto!important;grid-row:auto!important;
+  height:auto!important;min-height:0!important;max-height:none!important;
 }
 html.ljpc-unified-pc body.lj-desktop #screen#screen > :is(.v114-upcoming-slot,#safeHomeExtra,#v100-home-extra,#v105-bottom),
 html.ljpc-unified-pc body.lj-desktop #screen#screen :is(.u18-bound,.ds-wrap,.ljpc-mas-uefa,.ljpc-toolhub,#ljpc-fantasy-uefa,#ljpc-six-ui .p6-bound,.v60-tool-page,.v726-tools-page,.v562-page,.v562-page[data-v563-control],.v28-match,.v26-moments-page,.v412-search-page,.v66-directory,.v38-page,.v635-page){
   width:min(1392px,calc(100% - 40px))!important;max-width:1392px!important;margin-inline:auto!important;
   position:relative!important;clear:both!important;height:auto!important;max-height:none!important;
 }
+
+/* Tarjetas de herramientas (.v726-tool-card, .v562-card, .ljpc-hub-btn, .v60-tool-card) sin etiquetas ni botones encimados */
+html.ljpc-unified-pc body.lj-desktop #screen#screen .v726-tool-card{
+  position:relative!important;inset:auto!important;transform:none!important;
+  display:flex!important;flex-direction:column!important;justify-content:space-between!important;
+  width:100%!important;height:auto!important;min-height:112px!important;max-height:none!important;
+  padding:0!important;margin:0!important;border-radius:14px!important;overflow:hidden!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen#screen .v726-tool-card .v734-tool-open{
+  position:relative!important;inset:auto!important;transform:none!important;
+  display:grid!important;grid-template-columns:44px minmax(0,1fr) 18px!important;
+  align-items:center!important;gap:14px!important;width:100%!important;
+  min-height:76px!important;height:auto!important;padding:16px 18px!important;margin:0!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen#screen .v726-tool-card .v726-tool-copy{
+  position:relative!important;inset:auto!important;transform:none!important;
+  display:flex!important;flex-direction:column!important;align-items:flex-start!important;
+  gap:4px!important;min-width:0!important;max-width:100%!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen#screen .v726-tool-card .v726-tool-tag{
+  position:static!important;inset:auto!important;transform:none!important;
+  display:inline-flex!important;align-self:flex-start!important;width:auto!important;
+  padding:3px 9px!important;border-radius:999px!important;font-size:11px!important;font-weight:800!important;
+  margin:0 0 2px!important;line-height:1.2!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen#screen .v726-tool-card .v734-tool-details{
+  position:relative!important;inset:auto!important;transform:none!important;
+  display:flex!important;align-items:center!important;justify-content:space-between!important;
+  width:100%!important;min-height:38px!important;height:auto!important;
+  padding:8px 18px!important;margin:0!important;font-size:13px!important;font-weight:700!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen#screen :is(.v562-card,.ljpc-hub-btn,.v60-tool-card,.v726-quick-card){
+  position:relative!important;inset:auto!important;transform:none!important;
+  height:auto!important;min-height:84px!important;max-height:none!important;
+  padding:16px 20px!important;border-radius:14px!important;overflow:visible!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen#screen :is(.v562-card,.ljpc-hub-btn,.v60-tool-card,.v726-quick-card,.v726-tool-card) b{
+  font-size:16px!important;font-weight:800!important;line-height:1.28!important;
+  position:static!important;white-space:normal!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen#screen :is(.v562-card,.ljpc-hub-btn,.v60-tool-card,.v726-quick-card,.v726-tool-card) small{
+  font-size:13.5px!important;line-height:1.38!important;
+  position:static!important;white-space:normal!important;
+}
+
 html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen#screen > #v100-home-extra{
   display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
   grid-auto-rows:max-content!important;gap:16px!important;padding:22px 26px!important;
