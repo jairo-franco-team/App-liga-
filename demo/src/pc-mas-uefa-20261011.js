@@ -1,70 +1,43 @@
-/* Más en PC: estructura inspirada en las capturas UEFA compartidas por el usuario.
-   Complementa las herramientas existentes; nunca modifica vista móvil o APK. */
+/* Más en PC: ordenado como en APK / navegador móvil.
+   Solo muestra las secciones informativas, de archivo y comunidad que pertenecen a Más
+   (sin amontonar las de otras pestañas y sin herramientas de modificación). */
 (function(){
 'use strict';
 if(window.__LJR_PC_MAS_UEFA_OCT11__)return;
 window.__LJR_PC_MAS_UEFA_OCT11__=true;
 const CAT_NAMES={'3':'Primera Fuerza','5':'Intermedia','4':'Segunda Fuerza','2':'Veteranos 35+','1':'Veteranos 50+'};
 const TABS=[
- ['inicio','Resumen'],['herramientas','🛠️ Herramientas y Secciones'],['estadisticas','Estadísticas'],['rankings','Rankings'],
+ ['inicio','Resumen'],['estadisticas','Estadísticas'],['rankings','Rankings'],
  ['equipos','Equipos'],['videos','Vídeos'],['titulos','Palmarés'],
- ['sobre','Sobre'],['tienda','Tienda']
+ ['sobre','Información y Sedes'],['tienda','Tienda']
 ];
 const LINKS=[
- ['🛠️','Herramientas y Secciones APK','Las 35+ herramientas de competencia, jornada, documentos y admin','leagueTools','herramientas'],
- ['▥','Estadísticas históricas','Datos, goleadores y temporadas','pc-data','estadisticas'],
- ['▤','Rankings y récords','Clasificaciones oficiales de jugadores y equipos','pc-scorers','rankings'],
- ['♜','Equipos','Escudos y clubes de la Liga Juventino Rosas','teams','equipos'],
- ['▶','Vídeos','Clásicos, recuerdos y transmisiones','video','videos'],
- ['🏆','Más títulos','Campeones, copas y finales','history','titulos'],
- ['◉','Sobre la liga','Reglamento, historia e información','about','sobre'],
- ['◈','Comparar clubes','Estadísticas y comparación de equipos','pc-team-compare','estadisticas'],
- ['♢','Tienda de clubes','Artículos y personalización de clubes','club-store','tienda']
+ ['🏛️','Historia y Palmarés','Temporadas, campeones, finales y archivo oficial','history','titulos'],
+ ['🛡️','Equipos de la Liga','Escudos y clubes oficiales de las 5 categorías','teams','equipos'],
+ ['📰','Noticias y Avisos','Comunicados oficiales y actualidad de la jornada','news','sobre'],
+ ['📖','Reglamento Oficial','Consulta y descarga el reglamento vigente en PDF','rulebook','sobre'],
+ ['📍','Dónde se Juega (Sedes)','Directorio de campos, comunidades y cómo llegar','venues','sobre'],
+ ['⛅','Clima en Canchas','Pronóstico meteorológico y estado de los campos','weatherFields','sobre'],
+ ['🔍','Buscador General','Encuentra equipos, jugadores, partidos y campos','search','sobre'],
+ ['🔔','Notificaciones','Configura tus alertas de goles, inicio y resultados','pc-notifications','sobre'],
+ ['🛍️','Tienda de Clubes','Artículos y personalización de clubes de la Liga','club-store','tienda']
 ];
-const APK_SECTIONS_GROUPS=[
- ['ACCESOS RÁPIDOS Y COMPETICIÓN',[
-  ['⚽','Partidos y Jornadas','Calendario, resultados y próximos encuentros','pc-fixtures'],
-  ['📊','Tabla de Posiciones','Clasificación oficial por categoría','pc-standings'],
-  ['🥅','Goleadores','Ranking de goleo individual por categoría','pc-scorers'],
-  ['🔴','Match Center en Vivo','Marcador, alineaciones y cronología','v4-matchcenter'],
-  ['🛡️','Equipos Oficiales','Directorio de clubes y escudos','teams'],
-  ['🏃','Jugadores y Plantillas','Registros y perfiles de jugadores','players'],
-  ['🏆','Cuadro y Liguilla','Generador y vista de eliminatorias','bracketBuilder'],
-  ['📥','Exportar Tabla PNG/CSV','Descargar tabla de posiciones','tableExport'],
-  ['🎯','Quiniela y Pronósticos','Juego oficial de pronósticos','quiniela']
+const MAS_SECTIONS_GROUPS=[
+ ['HISTORIA, COMUNIDAD Y CLUBES',[
+  ['🏛️','Historia de la Liga','Temporadas, campeones, finales y palmarés histórico','history'],
+  ['🛡️','Directorio de Equipos','Todos los clubes registrados por categoría y orden A–Z','teams'],
+  ['🏃','Jugadores y Plantillas','Consulta plantillas registradas por club y categoría','players'],
+  ['📰','Noticias y Comunicados','Avisos oficiales y cobertura de la jornada','news'],
+  ['⚖️','Comparar Clubes','Estadísticas frente a frente entre dos equipos','pc-team-compare'],
+  ['🛍️','Tienda de Clubes','Artículos e identidad de los equipos de la Liga','club-store']
  ]],
- ['OPERACIÓN DE JORNADA Y CAMPO',[
-  ['📋','Match Day','Checklist de preparación de jornada','matchday'],
-  ['🗓️','Preparar mi Jornada (Agenda)','Organizar cruces, horarios y programación','agendaBuilder'],
-  ['📐','Tácticas (Pizarra 2D)','Pizarra táctica para formaciones y alineaciones','tactics'],
-  ['⛅','Clima y Estado de Campos','Pronóstico meteorológico y estado de canchas','v38Weather'],
-  ['📍','Dónde se Juega (Sedes)','Directorio de campos y ubicación en mapa','venues'],
-  ['🎬','Jornada Animada','Presentación visual dinámica de la jornada','motionHub'],
-  ['⚠️','Aviso de Suspensión','Generador de avisos de jornada o partido suspendido','suspensionTool'],
-  ['📆','Calendario Mensual PC','Vista mensual por categoría y Google Calendar','pc-calendar'],
-  ['⚖️','Comparar Equipos','Comparativa frente a frente entre dos clubes','pc-team-compare']
- ]],
- ['DOCUMENTOS, PUBLICACIONES Y ARCHIVO',[
-  ['📄','Generar Cédula','Crear cédula arbitral y plantilla para imprimir','cedulaBuilder'],
-  ['✅','Permisos y Autorizaciones','Generar permisos en PDF, PNG, JPG o SVG','permissionBuilder'],
-  ['🪪','Constructor de Credenciales','Crear credencial con foto, equipo y categoría','credentialBuilder'],
-  ['📖','Reglamento Oficial PDF','Consultar y descargar el reglamento vigente','rulebook'],
-  ['🎨','Centro de Publicaciones PNG','Diseños PNG HD, resultados y avisos','publicationCenter'],
-  ['⏰','Avisos AUTO','Programar avisos automáticos con fecha y hora','v38Alerts'],
-  ['🏛️','Historia y Palmarés','Temporadas, campeones, finales y récords','history'],
-  ['🔍','Buscador General','Buscar equipos, jugadores, partidos y sedes','search'],
-  ['🔔','Notificaciones','Configurar alertas del navegador','pc-notifications']
- ]],
- ['ADMINISTRACIÓN Y CONTROL DE LA LIGA',[
-  ['🎛️','JR Control (Panel Admin)','Centro operativo y administración de la Liga','jrControl'],
-  ['🛠️','Centro de Herramientas APK','Vista completa de todas las herramientas','leagueTools'],
-  ['📈','Panel de Liga','Resumen operativo de tabla y actividad','v38Stats'],
-  ['🟨','Tarjetas y Castigados','Disciplina, amarillas, rojas y sanciones','discipline'],
-  ['➕','Registro (Altas)','Inscripción y altas de equipos y jugadores','recruitment'],
-  ['🏁','Modo Árbitro Offline','Captura de partidos y cédulas sin conexión','refereeOffline'],
-  ['📑','Cédulas Arbitrales','Consulta y revisión de actas y cédulas','cedulas'],
-  ['🗞️','Reportes Semanales','Reporte oficial semanal de la Liga','v38Weekly'],
-  ['📲','Descargar / Instalar App QR','Código QR e instalación de la aplicación','ligaQR']
+ ['INFORMACIÓN OFICIAL, SEDES Y SERVICIOS',[
+  ['📖','Reglamento Oficial 2026-2027','Consulta y descarga el reglamento vigente en PDF','rulebook'],
+  ['📍','Dónde se Juega (Sedes)','Ubicación de los campos y enlace directo a mapas','venues'],
+  ['⛅','Clima y Estado de Campos','Condiciones meteorológicas para la jornada dominical','weatherFields'],
+  ['🔍','Buscador General','Busca rápidamente clubes, jugadores, partidos y sedes','search'],
+  ['🔔','Notificaciones','Preferencias de avisos de partidos y marcadores','pc-notifications'],
+  ['📲','Descargar / Instalar App','Código QR y acceso directo para móvil y APK','ligaQR']
  ]]
 ];
 const route=()=>String(location.hash||'').replace(/^#\/?/,'').split('?')[0];
@@ -118,25 +91,20 @@ function heading(kicker,title,detail){
 function link(label,destination,cls){
  return '<button class="'+(cls||'ljpc-mas-button')+'" type="button" data-ljpc-mas-go="'+esc(destination)+'">'+esc(label)+' <span aria-hidden="true">›</span></button>';
 }
-function toolsCatalogHTML(){
- return APK_SECTIONS_GROUPS.map(([groupTitle,items])=>
+function masInfoCatalogHTML(){
+ return MAS_SECTIONS_GROUPS.map(([groupTitle,items])=>
   '<h3 class="ljpc-mas-subheading">'+esc(groupTitle)+'</h3>'+
   '<div class="ljpc-mas-about-grid">'+items.map(([i,t,d,r])=>
    '<button type="button" class="ljpc-mas-about" data-ljpc-mas-go="'+esc(r)+'"><span>'+i+'</span><b>'+esc(t)+'</b><small>'+esc(d)+'</small><em>›</em></button>'
   ).join('')+'</div>'
  ).join('');
 }
-function toolsPanel(){
- return heading('CENTRO COMPLETO DE HERRAMIENTAS MÓVIL / APK Y PC','Todas las secciones y herramientas de la Liga','Selecciona cualquier herramienta de competencia, operación de jornada, documentos oficiales, archivo o administración adaptada a pantalla horizontal de PC.')+
- toolsCatalogHTML();
-}
 function intro(){
- return heading('DESCUBRE · LIGA JUVENTINO ROSAS','Explora la liga y todas sus herramientas','Toda la información, secciones del APK, herramientas de modificación y recuerdos del fútbol de Juventino Rosas en formato horizontal UEFA PC.')+
- '<div class="ljpc-mas-feature"><div><small>PALMARÉS E HISTORIA</small><h3>La historia y herramientas de nuestra Liga</h3><p>Campeonatos, equipos, finales, temporadas y las 36 herramientas operativas del fútbol de Juventino Rosas.</p>'+
- '<div style="display:flex;gap:12px;flex-wrap:wrap">'+link('Explorar historia','history')+link('Abrir Centro de Herramientas APK','leagueTools')+'</div></div><div class="ljpc-mas-feature-art" aria-hidden="true"><span>🏆</span><b>LIGA<br>JUVENTINO ROSAS</b></div></div>'+
- '<div class="ljpc-mas-tiles">'+LINKS.map(([icon,title,detail,destination,tab])=>
- '<button type="button" class="ljpc-mas-tile" data-ljpc-mas-tab="'+tab+'" aria-label="'+esc(title)+'"><span class="ljpc-mas-tile-icon" aria-hidden="true">'+icon+'</span><strong>'+esc(title)+'</strong><small>'+esc(detail)+'</small><span class="ljpc-mas-tile-arrow" aria-hidden="true">↗</span></button>').join('')+'</div>'+
- toolsCatalogHTML();
+ return heading('DESCUBRE · LIGA JUVENTINO ROSAS','Explora la historia, clubes e información oficial','Consulta el archivo histórico, directorio de clubes, reglamento, sedes, clima y servicios de la Liga Juventino Rosas.')+
+ '<div class="ljpc-mas-feature"><div><small>PALMARÉS E HISTORIA</small><h3>La historia de nuestra Liga</h3><p>Campeonatos, equipos históricos, finales, temporadas, reglamento y directorio oficial de campos de Juventino Rosas.</p>'+
+ '<div style="display:flex;gap:12px;flex-wrap:wrap">'+link('Explorar historia','history')+link('Ver equipos oficiales','teams')+'</div></div><div class="ljpc-mas-feature-art" aria-hidden="true"><span>🏆</span><b>LIGA<br>JUVENTINO ROSAS</b></div></div>'+
+ '<div class="ljpc-mas-tiles">'+LINKS.map(([icon,title,detail,destination])=>
+ '<button type="button" class="ljpc-mas-tile" data-ljpc-mas-go="'+esc(destination)+'" aria-label="'+esc(title)+'"><span class="ljpc-mas-tile-icon" aria-hidden="true">'+icon+'</span><strong>'+esc(title)+'</strong><small>'+esc(detail)+'</small><span class="ljpc-mas-tile-arrow" aria-hidden="true">↗</span></button>').join('')+'</div>';
 }
 function filters(){
  return '<label class="ljpc-mas-category-label" for="ljpc-mas-category">Categoría</label>'+
@@ -194,7 +162,7 @@ function videos(){
  ['▶','Vídeos destacados','video','Partidos y transmisiones de Liga TV'],
  ['◉','Clásicos de la Liga','history','Archivo de partidos y recuerdos históricos'],
  ['▷','Momentos de la Liga','moments','Goles, celebraciones y momentos destacados'],
- ['▹','Transmisiones','video','Contenido audiovisual disponible']
+ ['▹','Jornada animada','motionHub','Presentación visual dinámica de la jornada']
  ];
  return heading('MULTIMEDIA','Vídeos','Los vídeos se abren en las secciones originales de la Liga; no se muestran partidos inventados.')+
  '<div class="ljpc-mas-video-feature"><span aria-hidden="true">▶</span><div><small>LIGA TV</small><h3>Vive los partidos y los mejores momentos</h3>'+
@@ -214,22 +182,21 @@ function titles(){
  ].map(([i,n,r,d])=>'<button type="button" data-ljpc-mas-go="'+r+'"><span>'+i+'</span><strong>'+n+'</strong><small>'+d+'</small></button>').join('')+'</div>';
 }
 function about(){
- return heading('INFORMACIÓN','Sobre la Liga','Conoce la historia, la organización y las herramientas de la Liga Juventino Rosas.')+
- toolsCatalogHTML();
+ return heading('INFORMACIÓN Y SERVICIOS','Sobre la Liga Juventino Rosas','Consulta el reglamento oficial, ubicación de campos, pronóstico del clima, buscador y notificaciones.')+
+ masInfoCatalogHTML();
 }
 function shop(){
  return heading('TIENDA','Tienda de clubes','Explora la sección existente de artículos de clubes de la Liga Juventino Rosas.')+
  '<div class="ljpc-mas-shop"><div><span>TIENDA DE LA LIGA</span><h3>Tu equipo. Tu pasión.</h3><p>Explora camisetas, productos y clubes disponibles en el apartado de tienda.</p>'+
  link('Entrar a la tienda','club-store')+'</div><span class="ljpc-mas-shop-icon" aria-hidden="true">⚽</span></div>';
 }
-const panels={inicio:intro,herramientas:toolsPanel,estadisticas:statistics,rankings,equipos:clubs,videos,titulos:titles,sobre:about,tienda:shop};
+const panels={inicio:intro,estadisticas:statistics,rankings,equipos:clubs,videos,titulos:titles,sobre:about,tienda:shop};
 function baseHTML(){
  return '<section class="ljpc-mas-uefa" data-ljpc-more-uefa aria-label="Más apartados para PC">'+
- '<div class="ljpc-mas-top"><span>MÁS · PORTAL PC Y HERRAMIENTAS DE LA LIGA</span><h1>Descubre más de la Liga y sus Herramientas</h1><p>Todas las secciones de móvil, APK y escritorio adaptadas a formato horizontal UEFA Champions League (1392px).</p></div>'+
+ '<div class="ljpc-mas-top"><span>MÁS · LIGA JUVENTINO ROSAS</span><h1>Descubre más de la Liga</h1><p>Historia, clubes, noticias, reglamento oficial, sedes, clima y servicios de la Liga Juventino Rosas.</p></div>'+
  '<div class="ljpc-mas-menu" role="tablist" aria-label="Secciones de Más">'+
  TABS.map(([id,label])=>'<button role="tab" type="button" data-ljpc-mas-tab="'+id+'" aria-selected="'+(state.tab===id)+'" class="'+(state.tab===id?'active':'')+'">'+label+'</button>').join('')+'</div>'+
  '<div class="ljpc-mas-main" role="tabpanel" data-ljpc-mas-panel></div>'+
- '<div class="ljpc-mas-original"><b>Catálogo completo de funciones y buscador de herramientas</b><p>Debajo tienes el buscador interactivo con los 65+ accesos directos de la Liga para PC.</p></div>'+
  '</section>';
 }
 function paint(root){
