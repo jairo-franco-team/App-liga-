@@ -151,10 +151,10 @@ function footerMarkup(){
  '<div class="ljpc-u-sponsor">INFORMACIÓN Y COLABORADORES DE LA LIGA<br><span>LIGA JUVENTINO ROSAS · EQUIPOS PARTICIPANTES · AFICIÓN</span></div>'+
  '<footer class="ljpc-u-footer"><div class="ljpc-u-wrap ljpc-u-footer-columns">'+
  '<section class="ljpc-u-footer-brand"><img src="'+logo+'" alt="Escudo Liga Juventino Rosas"><strong>LIGA JUVENTINO ROSAS</strong><p>Resultados, clasificación, equipos, noticias y juegos de la liga.</p></section>'+
- group('PARTIDOS Y JORNADA',[['Partidos y resultados','pc-fixtures'],['Match Center','v4-matchcenter'],['Match Day','matchday'],['Calendario mensual','pc-calendar'],['Sedes y campos','venues'],['Clima en canchas','weatherFields']])+
- group('COMPETICIÓN Y DATOS',[['Clasificación','pc-standings'],['Goleadores','pc-scorers'],['Jugadores y plantillas','players'],['Estadísticas','pc-data'],['Comparar clubes','pc-team-compare'],['Sorteos y Liguilla','pc-draws']])+
- group('GAMING Y MULTIMEDIA',[['Fantasy Football','fantasy'],['Pronostica Seis','predictorSix'],['Quiniela','quiniela'],['Quiz Arena','quizArena'],['Liga TV','video'],['Momentos','moments']])+
- group('MÁS E INFORMACIÓN',[['Historia y palmarés','history'],['Equipos','teams'],['Noticias','news'],['Reglamento oficial','rulebook'],['Buscador general','search'],['Descargar App / QR','ligaQR']])+
+ group('DESCUBRE',[['Partidos','pc-fixtures'],['Clasificación','pc-standings'],['Liga TV','video'],['Sorteos','pc-draws']])+
+ group('COMPETICIÓN',[['Equipos','teams'],['Jugadores','players'],['Datos','pc-data'],['Fantasy','fantasy'],['Historia','history']])+
+ group('INFORMACIÓN',[['Noticias','news'],['Reglamento','rulebook'],['Sedes y campos','venues'],['Clima en canchas','weatherFields']])+
+ group('HERRAMIENTAS',[['Calendario','pc-calendar'],['Match Day','matchday'],['Buscador','search'],['Descargar App','ligaQR']])+
  '</div><div class="ljpc-u-wrap ljpc-u-footnote">© 2026 Liga Juventino Rosas · Sitio en español</div></footer></div>';
 }
 let previousRoute=null;
@@ -228,7 +228,8 @@ function hideIframeHeader(frame){
     'background:linear-gradient(180deg,#0a1061 0%,#05187d 54%,#041e91 100%)!important}'+
     'html.ljpc-embedded-home #root .ucl [data-name="stories list container"]{'+
     'width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;'+
-    'margin:0 auto!important;padding:6px 0 8px!important;gap:12px!important;'+
+    'margin:0 auto!important;margin-top:0!important;margin-bottom:0!important;'+
+    'padding:0!important;padding-top:2px!important;padding-bottom:4px!important;gap:12px!important;'+
     'position:relative!important;transform:none!important;clear:none!important;justify-content:space-between!important}'+
     'html.ljpc-embedded-home #root .ucl [data-name="stories wrapper"]{'+
     'max-width:1296px!important;width:100%!important;gap:14px!important;'+
