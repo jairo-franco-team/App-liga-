@@ -90,9 +90,7 @@ const ALL_APK_SECTIONS=[
 
 const MASTER_LOCK_CSS=`
 /* ==========================================================================
-   REA UEFA Champions League Master Desktop Scale & Complete APK->PC Sections
-   Applies to ALL PC sections: Home, Fixtures, Standings, Draws, Liga TV,
-   Moments, Gaming, Fantasy, Predictor Six, Stats/Data, History, More & Tools
+   REA UEFA Champions League Master Desktop Scale, White Login & Anti-Overlap
    ========================================================================== */
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header{
   display:block!important;visibility:visible!important;opacity:1!important;
@@ -101,7 +99,7 @@ html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header{
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header::before{
   content:"UEFA.com  ▾"!important;display:flex!important;align-items:center!important;
   justify-content:flex-start!important;height:38px!important;min-height:38px!important;
-  padding:0 max(24px,calc((100% - 1392px)/2))!important;background:#000000!important;
+  padding:0 max(20px,calc((100% - 1392px)/2))!important;background:#000000!important;
   color:#ffffff!important;font:700 13.5px/1 Inter,system-ui,sans-serif!important;
 }
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-nav{
@@ -111,9 +109,9 @@ html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-nav{
 }
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-nav > .ljpc-u-wrap{
   display:flex!important;flex-direction:row!important;align-items:center!important;
-  justify-content:flex-start!important;width:min(1392px,calc(100% - 48px))!important;
+  justify-content:flex-start!important;width:min(1392px,calc(100% - 40px))!important;
   max-width:1392px!important;height:82px!important;min-height:82px!important;
-  padding:0!important;margin:0 auto!important;gap:36px!important;
+  padding:0!important;margin:0 auto!important;gap:32px!important;
 }
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-brand{
   display:inline-flex!important;align-items:center!important;gap:12px!important;
@@ -128,7 +126,7 @@ html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-brand span{
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-links{
   display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;
   align-items:center!important;justify-content:flex-start!important;flex:1 1 auto!important;
-  gap:24px!important;min-width:0!important;overflow-x:auto!important;overflow-y:visible!important;
+  gap:22px!important;min-width:0!important;overflow-x:auto!important;overflow-y:visible!important;
   scrollbar-width:none!important;padding:0 12px 0 0!important;margin:0!important;
 }
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-links::-webkit-scrollbar{display:none!important}
@@ -154,13 +152,12 @@ html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-links > det
   height:40px!important;min-height:40px!important;padding:0 22px!important;border-radius:9999px!important;
 }
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-login{
-  position:absolute!important;top:0!important;right:max(24px,calc((100% - 1392px)/2))!important;
+  position:absolute!important;top:0!important;right:max(20px,calc((100% - 1392px)/2))!important;
   height:38px!important;min-height:38px!important;padding:0 8px!important;
   border:0!important;background:transparent!important;color:#ffffff!important;
   font:600 13.5px/1 Inter,system-ui,sans-serif!important;display:inline-flex!important;
   align-items:center!important;gap:6px!important;z-index:1810!important;
 }
-/* Re-enable ALL PC Tools inside the Más dropdown (overriding pc-history-hub display:none) */
 html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header details[data-ljpc-u-group="Más"] > .ljpc-u-dropdown{
   width:310px!important;max-height:78vh!important;overflow-y:auto!important;
 }
@@ -173,28 +170,6 @@ html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header details[data-ljpc-u
   padding:8px 16px 4px!important;font:800 11px/1.2 Inter,sans-serif!important;color:#00e5ff!important;
   letter-spacing:.08em!important;text-transform:uppercase!important;border-top:1px solid rgba(255,255,255,.16)!important;margin-top:4px!important;
 }
-html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-score-wrap{
-  width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;
-  min-height:118px!important;padding:14px 0!important;gap:16px!important;
-}
-html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-match{
-  flex:0 0 196px!important;width:196px!important;min-height:92px!important;height:auto!important;
-  padding:12px 16px!important;gap:6px!important;border-radius:10px!important;
-}
-html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-match small{
-  font-size:12px!important;color:#a8b6df!important;font-weight:600!important;
-}
-html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-match > span > b{
-  font-size:14px!important;font-weight:750!important;color:#ffffff!important;
-}
-html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-team-logo,
-html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-team-fallback{
-  width:24px!important;height:24px!important;flex:0 0 24px!important;
-}
-html.ljpc-unified-pc body.lj-desktop #ljpc-unified-pc-header .ljpc-u-all{
-  min-width:190px!important;min-height:46px!important;height:46px!important;
-  padding:0 20px!important;font-size:14px!important;font-weight:750!important;
-}
 html.ljpc-unified-pc body.lj-desktop:not([data-app-route="home"]) #ljpc-unified-pc-header .ljpc-u-scorebar,
 html.ljpc18-active body.lj-desktop #ljpc-unified-pc-header .ljpc-u-scorebar{
   display:none!important;
@@ -204,14 +179,14 @@ html.ljpc18-active[data-ljpc18-route="pc-fixtures"] body.lj-desktop #screen .u18
   display:none!important;
 }
 
-/* Barra Maestra de Herramientas PC y Modificación + Mega-Catálogo APK->PC (#ljpc-rea-tools-strip) */
+/* Barra Maestra de Herramientas PC y Modificación (#ljpc-rea-tools-strip) */
 html.ljpc-unified-pc body.lj-desktop #ljpc-rea-tools-strip{
   width:100%!important;background:linear-gradient(90deg,#050b38 0%,#091969 50%,#050b38 100%)!important;
   border-bottom:1px solid rgba(0,229,255,.32)!important;padding:12px 0!important;z-index:1750!important;
-  font-family:Inter,system-ui,sans-serif!important;position:relative!important;
+  font-family:Inter,system-ui,sans-serif!important;position:relative!important;clear:both!important;
 }
 html.ljpc-unified-pc body.lj-desktop #ljpc-rea-tools-strip .ljpc-rea-tools-inner{
-  width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;margin:0 auto!important;
+  width:min(1392px,calc(100% - 40px))!important;max-width:1392px!important;margin:0 auto!important;
   display:flex!important;align-items:center!important;justify-content:space-between!important;
   flex-wrap:wrap!important;gap:10px 14px!important;
 }
@@ -241,13 +216,14 @@ html.ljpc-unified-pc body.lj-desktop #ljpc-rea-tools-strip button.is-catalog{
   background:linear-gradient(90deg,#0438f0,#00b4d8)!important;color:#ffffff!important;border-color:#00e5ff!important;font-weight:800!important;
 }
 
-/* Mega-Catálogo Desplegable y Hub de las 35 secciones de Móvil/APK en PC (1392px) */
+/* Mega-Catálogo Desplegable de las 35 secciones de Móvil/APK en PC (1392px) */
 html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-hub{
-  width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;margin:18px auto 28px!important;
+  width:min(1392px,calc(100% - 40px))!important;max-width:1392px!important;margin:18px auto 28px!important;
   padding:28px 32px!important;border-radius:16px!important;
   background:linear-gradient(165deg,#071142 0%,#0a1c64 52%,#050b2e 100%)!important;
   border:1px solid rgba(0,229,255,.32)!important;box-shadow:0 18px 42px rgba(2,8,38,.45)!important;
   color:#ffffff!important;font-family:Inter,system-ui,sans-serif!important;box-sizing:border-box!important;
+  position:relative!important;clear:both!important;height:auto!important;
 }
 html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-hub-head{
   display:flex!important;align-items:flex-end!important;justify-content:space-between!important;
@@ -263,9 +239,7 @@ html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-hub-head h2{
 html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-hub-head p{
   margin:6px 0 0!important;color:#cbd8ff!important;font:500 15px/1.45 Inter,sans-serif!important;max-width:820px!important;
 }
-html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-group{
-  margin:0 0 26px!important;
-}
+html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-group{margin:0 0 26px!important}
 html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-group:last-child{margin-bottom:0!important}
 html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-group-title{
   display:flex!important;align-items:center!important;gap:10px!important;margin:0 0 14px!important;
@@ -308,207 +282,135 @@ html.ljpc-unified-pc body.lj-desktop .ljpc-rea-apk-badge{
   white-space:nowrap!important;
 }
 
+/* ==========================================================================
+   CORRECCIÓN GLOBAL ANTI-SOLAPAMIENTO (CUADROS ENCIMADOS ABAJO) Y ANCHO 1392PX
+   ========================================================================== */
+html.ljpc-unified-pc body.lj-desktop #screen > *{
+  position:relative!important;inset:auto!important;float:none!important;clear:both!important;
+  height:auto!important;max-height:none!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen > :is(.v114-upcoming-slot,#safeHomeExtra,#v100-home-extra,#v105-bottom),
+html.ljpc-unified-pc body.lj-desktop #screen :is(.u18-bound,.ds-wrap,.ljpc-mas-uefa,.ljpc-toolhub,#ljpc-fantasy-uefa,#ljpc-six-ui .p6-bound,.v60-tool-page,.v726-tools-page,.v562-page,.v28-match,.v26-moments-page,.v412-search-page,.v66-directory,.v38-page,.v635-page){
+  width:min(1392px,calc(100% - 40px))!important;max-width:1392px!important;margin-inline:auto!important;
+  position:relative!important;clear:both!important;height:auto!important;max-height:none!important;
+}
+
+/* Fix #v100-home-extra grid-row overlap where .v100-pulse (row 3) overlapped .v100-fav-card (row 2 / span 2) */
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen > #v100-home-extra{
+  display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  grid-auto-rows:max-content!important;gap:16px!important;padding:22px 26px!important;
+  margin:18px auto!important;height:auto!important;max-height:none!important;overflow:visible!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #v100-home-extra > .v100-head{
+  grid-column:1/-1!important;grid-row:1!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #v100-home-extra > .v100-fav-card{
+  grid-column:1!important;grid-row:2!important;height:auto!important;padding:18px!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #v100-home-extra > .v100-quick-grid{
+  grid-column:2!important;grid-row:2!important;height:auto!important;gap:12px!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #v100-home-extra > .v100-pulse{
+  grid-column:1/-1!important;grid-row:3!important;position:relative!important;height:auto!important;padding:16px 20px!important;margin:0!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #v100-home-extra > .v100-status{
+  grid-column:1/-1!important;grid-row:4!important;position:relative!important;height:auto!important;padding:14px 18px!important;margin:0!important;
+}
+
+/* Fix #v105-bottom & .v105-motion fixed 82px height overlap at the bottom of the page */
+html.ljpc-unified-pc body.lj-desktop #screen > #v105-bottom,
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen > #v105-bottom[data-v105-route="home"]{
+  position:relative!important;inset:auto!important;transform:none!important;clear:both!important;
+  display:block!important;height:auto!important;min-height:0!important;max-height:none!important;
+  overflow:visible!important;padding:22px 26px!important;margin:20px auto 28px!important;border-radius:16px!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen #v105-bottom .v105-motion,
+html.ljpc-unified-pc body.lj-desktop #screen #v105-bottom .v105-motion-copy{
+  position:relative!important;height:auto!important;min-height:132px!important;max-height:none!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen #v105-bottom .v105-final{
+  position:relative!important;height:auto!important;min-height:0!important;max-height:none!important;
+  padding:18px 22px!important;gap:22px!important;margin:0 0 20px!important;border-radius:14px!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen #v105-bottom .v105-grid{
+  position:relative!important;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:14px!important;height:auto!important;min-height:0!important;max-height:none!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen #v105-bottom .v105-grid .v105-card{
+  position:relative!important;min-height:80px!important;height:auto!important;max-height:none!important;
+  padding:14px 18px!important;border-radius:12px!important;gap:12px!important;
+  grid-template-columns:36px minmax(0,1fr) 14px!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen #v105-bottom .v105-icon{
+  width:34px!important;height:34px!important;border-radius:8px!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen #v105-bottom .v105-icon svg{
+  width:20px!important;height:20px!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen #v105-bottom .v105-copy b{
+  font-size:15.5px!important;font-weight:800!important;line-height:1.25!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen #v105-bottom .v105-copy small{
+  font-size:13px!important;line-height:1.35!important;margin-top:4px!important;
+}
+
+/* Inicio: Goleadores, Vídeos, Tabla rápida y Tarjetas sin solapamientos */
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen > #safeHomeExtra{
+  padding:22px 26px!important;gap:18px!important;border-radius:16px!important;margin:18px auto!important;
+  height:auto!important;max-height:none!important;overflow:visible!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra > :is(.v6-section,.v73-home-interleaved){
+  position:relative!important;height:auto!important;min-height:0!important;max-height:none!important;
+  padding:20px 24px!important;border-radius:14px!important;overflow:visible!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-scorers > button{
+  min-height:66px!important;height:auto!important;padding:12px 16px!important;border-radius:12px!important;gap:12px!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-scorers b{
+  font-size:15.5px!important;font-weight:800!important;line-height:1.25!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-scorers small{
+  font-size:13.5px!important;line-height:1.3!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-video-card{
+  min-height:78px!important;height:auto!important;padding:14px 18px!important;border-radius:12px!important;
+  grid-template-columns:42px minmax(0,1fr)!important;gap:12px!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-video-card b{
+  font-size:15.5px!important;font-weight:800!important;line-height:1.28!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-video-card small{
+  font-size:13px!important;line-height:1.35!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-table-row{
+  min-height:48px!important;height:auto!important;padding:10px 14px!important;font-size:14.5px!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-action-card{
+  min-height:80px!important;height:auto!important;padding:14px 18px!important;border-radius:12px!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-action-card b{
+  font-size:15.5px!important;font-weight:800!important;line-height:1.25!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-action-card small{
+  font-size:13px!important;line-height:1.35!important;
+}
+
 /* En #/leagueTools mostrar SIEMPRE la sección de Administración y todas las tarjetas a escala UEFA 1392px */
 html.ljpc-unified-pc body.lj-desktop #screen .v726-tools-page .v726-admin-section,
 html.ljpc-unified-pc body.lj-desktop #screen .v726-tools-page .v612-admin-only{
   display:block!important;visibility:visible!important;opacity:1!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen .v726-tools-page :is(.v726-quick-grid,.v726-tool-grid){
-  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important;
-}
-html.ljpc-unified-pc body.lj-desktop #screen .v726-tools-page .v726-tool-section{
-  margin:24px 0!important;padding:24px 28px!important;border-radius:16px!important;
-  background:linear-gradient(160deg,#081554,#060e3a)!important;border:1px solid rgba(0,229,255,.24)!important;
-}
-html.ljpc-unified-pc body.lj-desktop #screen .v726-tools-page .v726-section-head h2{
-  font-size:26px!important;color:#ffffff!important;
-}
-html.ljpc-unified-pc body.lj-desktop #screen .v726-tools-page .v726-section-head p{
-  font-size:15px!important;color:#c9d7ff!important;
-}
-
-/* Cuando el usuario activa "Modificar / Controles de esta sección", mostrar paneles nativos debajo con tamaño 1392px */
 html.ljpc-unified-pc.ljpc-rea-show-native body.lj-desktop #screen > :not(.u18-root){
   display:block!important;visibility:visible!important;pointer-events:auto!important;
   max-height:none!important;overflow:visible!important;
-  width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;margin:20px auto!important;
-}
-
-/* Escalado global UEFA Champions League (1392px) para TODAS las páginas móviles/APK abiertas en PC */
-html.ljpc-unified-pc body.lj-desktop #screen > :is(.v114-upcoming-slot,#safeHomeExtra,#v100-home-extra,#v105-bottom),
-html.ljpc-unified-pc body.lj-desktop #screen :is(.u18-bound,.ds-wrap,.ljpc-mas-uefa,#ljpc-fantasy-uefa,#ljpc-six-ui .p6-bound,.v60-tool-page,.v726-tools-page,.v562-page,.v28-match,.v26-moments-page,.v412-search-page,.v66-directory,.v38-page,.v635-page){
-  width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;margin-inline:auto!important;
-}
-
-/* Inicio: Goleadores, Vídeos, Tabla rápida, Favoritos y Gran Final en tamaño grande UEFA */
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen > #safeHomeExtra{
-  padding:20px 24px!important;gap:16px!important;border-radius:14px!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra > :is(.v6-section,.v73-home-interleaved){
-  padding:18px 22px!important;border-radius:12px!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-scorers{
-  grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px 16px!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-scorers > button{
-  min-height:64px!important;padding:12px 16px!important;border-radius:10px!important;gap:12px!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-scorers b{
-  font-size:15.5px!important;line-height:1.25!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-scorers small{
-  font-size:13.5px!important;line-height:1.3!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-video-list{
-  grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-video-card{
-  min-height:76px!important;padding:12px 16px!important;border-radius:10px!important;
-  grid-template-columns:40px minmax(0,1fr)!important;gap:12px!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-video-card .v6-play{
-  width:40px!important;height:40px!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-video-card b{
-  font-size:15px!important;line-height:1.28!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-video-card small{
-  font-size:13px!important;line-height:1.3!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-table-row{
-  min-height:48px!important;padding:10px 14px!important;font-size:14.5px!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #v105-bottom .v105-final{
-  padding:16px 20px!important;gap:20px!important;border-radius:14px!important;margin:0 0 16px!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #v105-bottom .v105-final > .v977-player,
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #v105-bottom .v105-final > video{
-  max-height:340px!important;border-radius:10px!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #v105-bottom .v105-final-copy b{
-  font-size:clamp(20px,2.2vw,26px)!important;line-height:1.22!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #v105-bottom .v105-final-copy p{
-  font-size:15px!important;line-height:1.5!important;margin:8px 0 0!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #v105-bottom .v105-grid{
-  gap:14px!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #v105-bottom .v105-grid .v105-card,
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-action-card{
-  min-height:78px!important;padding:14px 18px!important;border-radius:12px!important;gap:12px!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #v105-bottom .v105-grid .v105-copy b,
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-action-card b{
-  font-size:15.5px!important;line-height:1.25!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #v105-bottom .v105-grid .v105-copy small,
-html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen #safeHomeExtra .v6-action-card small{
-  font-size:13px!important;line-height:1.35!important;margin-top:4px!important;
-}
-
-/* Herramientas PC, JR Control, Liga Control y Accesos CMS en tamaño grande UEFA */
-html.ljpc-unified-pc body.lj-desktop #screen :is(.v60-tool-head,.v562-hero,.v726-tools-hero){
-  padding:22px 26px!important;margin:0 0 20px!important;border-radius:14px!important;
-}
-html.ljpc-unified-pc body.lj-desktop #screen :is(.v60-tool-head,.v562-hero,.v726-tools-hero) h1{
-  font-size:clamp(26px,2.6vw,34px)!important;
-}
-html.ljpc-unified-pc body.lj-desktop #screen :is(.v60-tool-head,.v562-hero,.v726-tools-hero) p{
-  font-size:15px!important;line-height:1.5!important;
-}
-html.ljpc-unified-pc body.lj-desktop #screen :is(.v60-tool-card,.v726-tool-card,.v726-quick-card,button.v562-card){
-  min-height:82px!important;padding:16px 20px!important;border-radius:12px!important;gap:14px!important;
-}
-html.ljpc-unified-pc body.lj-desktop #screen :is(.v60-tool-card,.v726-tool-card,.v726-quick-card,button.v562-card) b,
-html.ljpc-unified-pc body.lj-desktop #screen .v726-tool-card h3{
-  font-size:16px!important;line-height:1.28!important;
-}
-html.ljpc-unified-pc body.lj-desktop #screen :is(.v60-tool-card,.v726-tool-card,.v726-quick-card,button.v562-card) small,
-html.ljpc-unified-pc body.lj-desktop #screen .v726-tool-card p{
-  font-size:13.5px!important;line-height:1.38!important;
-}
-html.ljpc-unified-pc body.lj-desktop #screen .ljr-cms-entry:has(>button[data-cms-open]){
-  width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;
-  grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px!important;padding:12px!important;
-}
-html.ljpc-unified-pc body.lj-desktop #screen .ljr-cms-entry:has(>button[data-cms-open]) > :is(button,a){
-  min-height:62px!important;padding:12px 16px!important;border-radius:12px!important;font-size:14.5px!important;
-}
-html.ljpc-unified-pc body.lj-desktop #screen .ljr-cms-entry:has(>button[data-cms-open]) :is(.ljr-cms-quick-title,.v1108-cms-title){
-  font-size:14.5px!important;line-height:1.28!important;
-}
-
-/* Gaming, Fantasy y Pronostica Seis en escala UEFA 1392px */
-html.ljpc-unified-pc body.lj-desktop #screen .ds-pagehead{
-  background:linear-gradient(90deg,#0438f0 0%,#03229c 55%,#010e54 100%)!important;
-  color:#ffffff!important;padding:26px 0 28px!important;border-bottom:1px solid rgba(0,229,255,.22)!important;
-}
-html.ljpc-unified-pc body.lj-desktop #screen .ds-pagehead .eyebrow{
-  color:#00e5ff!important;font:800 12px/1.2 Inter,sans-serif!important;letter-spacing:.12em!important;
-}
-html.ljpc-unified-pc body.lj-desktop #screen .ds-pagehead h1{
-  color:#ffffff!important;font:800 clamp(28px,3vw,38px)/1.12 Inter,sans-serif!important;margin:4px 0 8px!important;
-}
-html.ljpc-unified-pc body.lj-desktop #screen .ds-pagehead p{
-  color:rgba(255,255,255,.88)!important;font:500 15px/1.45 Inter,sans-serif!important;margin:0!important;
-}
-html.ljpc-unified-pc body.lj-desktop #screen .ds-game-panel,
-html.ljpc-unified-pc body.lj-desktop #screen .ds-card{
-  border-radius:14px!important;border:1px solid rgba(0,229,255,.24)!important;
-  padding:22px 24px!important;box-shadow:0 10px 28px rgba(4,10,45,.18)!important;
-}
-html.ljpc-unified-pc body.lj-desktop #screen .ds-game-panel h3{
-  font-size:20px!important;margin:0 0 8px!important;
-}
-html.ljpc-unified-pc body.lj-desktop #screen .ds-game-panel p{
-  font-size:14.5px!important;line-height:1.5!important;
-}
-html.ljpc-unified-pc body.lj-desktop #screen .ds-game-actions button{
-  background:#00e5ff!important;color:#040836!important;font-weight:800!important;
-  border-radius:8px!important;min-height:42px!important;padding:0 22px!important;font-size:14.5px!important;border:0!important;
-}
-html.ljpc-fantasy-uefa-active body.lj-desktop #ljpc-fantasy-uefa .pcfy-heading h1,
-html.ljpc-unified-pc body.lj-desktop[data-app-route="predictorSix"] #ljpc-six-ui h1{
-  font-size:32px!important;
-}
-html.ljpc-fantasy-uefa-active body.lj-desktop #ljpc-fantasy-uefa .pcfy-heading p,
-html.ljpc-fantasy-uefa-active body.lj-desktop #ljpc-fantasy-uefa .pcfy-team-toolbar p,
-html.ljpc-unified-pc body.lj-desktop[data-app-route="predictorSix"] #ljpc-six-ui .p6-heading p{
-  font-size:14px!important;
-}
-html.ljpc-fantasy-uefa-active body.lj-desktop #ljpc-fantasy-uefa .pcfy-tabs button,
-html.ljpc-unified-pc body.lj-desktop[data-app-route="predictorSix"] #ljpc-six-ui .p6-navrow button{
-  min-height:50px!important;font-size:15px!important;padding:0 18px!important;
-}
-
-/* Detalle de Partido (.v28-match) en escala UEFA 1392px */
-html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-top{
-  min-height:190px!important;padding:22px 32px!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-meta,
-html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-venue{
-  font-size:14px!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-side{
-  font-size:18px!important;font-weight:800!important;gap:12px!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-team-logo{
-  width:46px!important;height:46px!important;max-width:46px!important;max-height:46px!important;flex:0 0 46px!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-time{
-  font-size:22px!important;font-weight:800!important;
-}
-html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-tabs,
-html.ljpc-unified-pc body.lj-desktop[data-app-route="match"] #screen .v28-tab{
-  height:48px!important;min-height:48px!important;font-size:15px!important;font-weight:700!important;
+  width:min(1392px,calc(100% - 40px))!important;max-width:1392px!important;margin:20px auto!important;
 }
 `;
 
 const IFRAME_HOME_UEFA_CSS=`
-/* REA Home Iframe Lock: Full UEFA Champions League Desktop Scale */
+/* REA Home Iframe Lock: Full UEFA Champions League Desktop Scale without fixed-height overlaps */
 html.ljpc-embedded-home #root .ucl [data-name="stories list container"]{
-  width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;margin:8px auto 12px!important;
+  width:min(1392px,calc(100% - 40px))!important;max-width:1392px!important;margin:8px auto 12px!important;
 }
 html.ljpc-embedded-home #root .ucl [data-name="stories wrapper"]{
   gap:16px!important;justify-content:space-between!important;
@@ -522,14 +424,18 @@ html.ljpc-embedded-home #root .ucl [data-name="story ring"]{
 }
 html.ljpc-embedded-home #root .ucl [data-name="hero section container"]{
   display:grid!important;grid-template-columns:minmax(0,2fr) minmax(320px,1fr)!important;
-  gap:22px!important;width:min(1392px,calc(100% - 48px))!important;max-width:1392px!important;
-  margin:12px auto!important;padding:8px 0 18px!important;
+  gap:22px!important;width:min(1392px,calc(100% - 40px))!important;max-width:1392px!important;
+  height:auto!important;min-height:0!important;max-height:none!important;
+  margin:12px auto!important;padding:8px 0 18px!important;position:relative!important;clear:both!important;
 }
 html.ljpc-embedded-home #root .ucl [data-name="featured hero article card"]{
-  height:440px!important;min-height:440px!important;max-height:440px!important;border-radius:14px!important;
+  height:420px!important;min-height:420px!important;max-height:420px!important;border-radius:14px!important;
 }
 html.ljpc-embedded-home #root .ucl [data-name="featured hero article card"] img{
-  height:100%!important;max-height:440px!important;object-fit:cover!important;
+  height:100%!important;max-height:420px!important;object-fit:cover!important;
+}
+html.ljpc-embedded-home #root .ucl :is([data-name="moments section container"],[data-name="news section container"],[data-name="video section container"]){
+  position:relative!important;clear:both!important;height:auto!important;min-height:0!important;max-height:none!important;
 }
 `;
 
@@ -668,16 +574,7 @@ function ensureToolsStrip(){
      btn.textContent=toolsExpanded?'✅ Ocultar controles nativos de edición':'✏️ Modificar / Controles de esta sección';
    });
  }
- // Also mount the complete APK->PC 35-section hub at the bottom of #/pc-tools and #/more so nothing is missing
- const r=String(location.hash||'').replace(/^#\/?/,'').split('?')[0]||'home';
- const screen=document.getElementById('screen');
- if(screen&&['pc-tools','more'].includes(r)){
-   if(!screen.querySelector('#ljpc-rea-apk-page-hub')){
-     screen.insertAdjacentHTML('beforeend',buildApkHubHtml('ljpc-rea-apk-page-hub'));
-   }
- }else{
-   document.getElementById('ljpc-rea-apk-page-hub')?.remove();
- }
+ document.getElementById('ljpc-rea-apk-page-hub')?.remove();
 }
 
 function ensureMasterLock(){
@@ -690,7 +587,7 @@ function ensureMasterLock(){
  document.documentElement.classList.remove('ljpc-forced-handset');
  const vp=document.querySelector?.('meta[name="viewport"]');
  if(vp&&mode()==='desktop'){
-   vp.setAttribute('content','width=1366,initial-scale=0.28,minimum-scale=0.15,maximum-scale=5,user-scalable=yes');
+   vp.setAttribute('content','width=1280');
  }
  let style=document.getElementById('ljpc-rea-uefa-master-lock');
  if(!style){
@@ -707,11 +604,14 @@ function ensureMasterLock(){
    const doc=frame?.contentDocument;
    if(doc?.head){
      doc.getElementById('ljpc-forced-handset-iframe-style')?.remove();
+     doc.getElementById('ljpc-handset-iframe-styles')?.remove();
      if(!doc.getElementById('ljpc-rea-iframe-home-lock')){
        const s=doc.createElement('style');
        s.id='ljpc-rea-iframe-home-lock';
        s.textContent=IFRAME_HOME_UEFA_CSS;
        doc.head.appendChild(s);
+       const inner=doc.defaultView;
+       inner?.requestAnimationFrame?.(()=>inner.dispatchEvent(new inner.Event('resize')));
      }
    }
  }catch(_){}
