@@ -66,14 +66,7 @@ function copyStaticReferences() {
         }
       }
 
-
-      // Historia usa rutas dinámicas en JS, por eso Vite no las detecta como assets importados.
-      // Copiamos completa la carpeta para que las fotos reales de campeones/trofeos
-      // sí existan tanto en GitHub Pages como dentro del build Android.
-      // Image URLs from the reusable resource catalog are resolved dynamically.
       for(const directory of ['assets/content-studio','assets/branding']){if(existsSync(resolve(directory)))cpSync(resolve(directory),resolve('dist',directory),{recursive:true,force:true})}
-      // Gaming UEFA-reference 6-page PC site: publish static HTML/CSS and real league crests.
-      // Independent from index.html, mobile APK and the original games' JavaScript.
       const gamingSource = resolve('gaming');
       if (existsSync(gamingSource)) {
         cpSync(gamingSource, resolve('dist/gaming'), { recursive: true, force: true });
@@ -97,7 +90,6 @@ function copyStaticReferences() {
         'assets/season-2026/galacticos.webp',
         'assets/season-2026/lobos-cdg.webp',
       ];
-      // Existing history copy below; verification is done after history files are copied.
       const historyFrom = resolve('assets/history');
       const historyTo = resolve('dist/assets/history');
       if (existsSync(historyFrom)) {
@@ -105,17 +97,10 @@ function copyStaticReferences() {
         cpSync(historyFrom, historyTo, { recursive: true, force: true });
       }
 
-      // Block deploy if any of the new Gaming photo/crest assets is missing.
       for (const asset of gamingAssets) {
         if (!existsSync(resolve('dist', asset))) throw new Error('Asset Gaming ausente en dist: ' + asset);
       }
 
-      // The source index still contains a small set of classic, non-module
-      // <script src="./src/..."> tags for History photo payloads/hardfixes.
-      // Vite does not bundle or copy those files automatically. Missing them in
-      // GitHub Pages leaves dozens of parser-blocking 404 requests and can make
-      // the app look permanently blank on mobile. Copy exactly the classic
-      // scripts referenced by the source index into dist/src.
       const sourceIndex = readFileSync(resolve('index.html'), 'utf8');
       const classicScriptRefs = [...sourceIndex.matchAll(/<script(?![^>]*type=["']module["'])[^>]*src=["']\.\/src\/([^"'?]+\.js)(?:\?[^"']*)?["'][^>]*><\/script>/g)]
         .map(match => match[1]);
@@ -128,15 +113,11 @@ function copyStaticReferences() {
         }
         mkdirSync(dirname(to), { recursive: true });
         if (relativeScript === 'main.js') {
-          // Keep the public Maps key that Vite previously substituted, while
-          // letting the independent core remain valid as a classic script.
           const mapsKey = JSON.stringify(process.env.VITE_GOOGLE_STREETVIEW_API_KEY || '');
           writeFileSync(to, 'window.LJR_STREETVIEW_API_KEY=' + mapsKey + ';\n' + readFileSync(from, 'utf8'));
         } else copyFileSync(from, to);
       }
 
-      // V230 — reconstruir como archivo binario real la foto de La Esperanza.
-      // Los scripts clásicos de src no se copian a dist por Vite.
       const esperanzaParts = [
         'src/v214-esperanza-photo-1.js',
         'src/v214-esperanza-photo-2.js',
@@ -159,15 +140,18 @@ function copyStaticReferences() {
         writeFileSync(target, bytes);
       }
 
-      // La suite de juntas y el demo necesitan una ruta CSS literal además
-      // del CSS que Vite agrupa: el demo se regenera automáticamente.
+      // Bust stale Service Worker cache for classic scripts in dist/index.html
       const indexBuilt = resolve('dist/index.html');
       if (existsSync(indexBuilt)) {
         let html = readFileSync(indexBuilt, 'utf8');
+        html = html.replace(/(src=["']\.\/src\/[^"'?]+\.js\?v=[^"']+)(["'])/g, '$1-rea20261105v10$2');
+        const swPurge = `<script id="ljpc-sw-cache-purge-20261105">(function(){try{if('caches'in window){caches.keys().then(function(ks){ks.forEach(function(k){if(k.indexOf('20261105-rea-pc-v10')<0)caches.delete(k);});});}if('serviceWorker'in navigator){navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){r.update();});});}}catch(_){}})();</script>\n`;
         if (!html.includes('v1166-meeting-officers.css')) {
-          html = html.replace('</head>', '  <link rel="stylesheet" href="./src/v1166-meeting-officers.css" />\n</head>');
-          writeFileSync(indexBuilt, html);
+          html = html.replace('</head>', '  <link rel="stylesheet" href="./src/v1166-meeting-officers.css" />\n' + swPurge + '</head>');
+        } else {
+          html = html.replace('</head>', swPurge + '</head>');
         }
+        writeFileSync(indexBuilt, html);
       }
     },
   };
