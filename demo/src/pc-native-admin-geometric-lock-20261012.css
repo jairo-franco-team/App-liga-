@@ -1,0 +1,29 @@
+/* PC-only native tools layout — Full 1392px UEFA Champions League Scale. */
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen :is(.v60-tool-page,.v726-tools-page,.v562-page[data-v563-control]){
+ box-sizing:border-box!important;
+ width:min(1392px,calc(100% - 40px))!important;
+ max-width:1392px!important;min-width:0!important;
+ height:auto!important;min-height:0!important;
+ margin:0 auto!important;padding:20px 0 34px!important;
+}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop) body.ljpc-native-route #screen :is(.v60-tool-grid,.v726-tool-grid,.v726-quick-grid,.v562-page[data-v563-control] .v562-list){
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ width:100%!important;gap:14px!important;
+}
+:is(html.ljpc-unified-pc,html.ljpc-forced-desktop) body #screen .ljpc-toolhub{
+ box-sizing:border-box!important;
+ width:min(1392px,calc(100% - 40px))!important;
+ max-width:1392px!important;min-width:0!important;
+ margin:18px auto 28px!important;padding:24px 28px!important;
+}
+:is(html.ljpc-unified-pc,html.ljpc-forced-desktop) body #screen .ljpc-toolhub .ljpc-hub-grid{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important;
+}
+:is(html.ljpc-unified-pc,html.ljpc-forced-desktop) body #screen .ljpc-toolhub .ljpc-hub-btn{
+ min-height:82px!important;padding:14px 18px!important;border-radius:12px!important;gap:14px!important;
+}
+:is(html.ljpc-unified-pc,html.ljpc-forced-desktop) body #screen .ljpc-toolhub .ljpc-hub-btn b{font-size:15.5px!important;font-weight:800!important}
+:is(html.ljpc-unified-pc,html.ljpc-forced-desktop) body #screen .ljpc-toolhub .ljpc-hub-btn small{font-size:13px!important}
+:is(html.ljpc-pc-native-mode,html.ljpc-forced-desktop,html.ljpc-unified-pc) body #screen [hidden]{
+ display:none!important;
+}

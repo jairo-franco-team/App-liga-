@@ -1,0 +1,64 @@
+/* 2026-10-12 · Mobile components faithfully reflowed as FULL-WIDTH 1392px UEFA DESKTOP content. */
+html.ljpc-unified-pc body.lj-desktop{
+ --pc-adapt-width:1392px;
+ --pc-adapt-radius:14px;
+ --pc-adapt-gap:16px;
+ --pc-adapt-outline:rgba(0,229,255,.28);
+}
+html.ljpc-unified-pc body.lj-desktop #screen :is(.v60-tool-page,.v726-tools-page,.v562-page){
+ box-sizing:border-box!important;
+ width:min(1392px,calc(100% - 40px))!important;
+ max-width:1392px!important;
+ min-width:0!important;
+ min-height:0!important;
+ height:auto!important;
+ margin-inline:auto!important;
+ padding:22px 0 36px!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen :is(.v60-tool-head,.v562-hero,.v726-tools-hero){
+ box-sizing:border-box!important;
+ margin:0 0 22px!important;
+ padding:24px 28px!important;
+ border-radius:14px!important;
+ background:linear-gradient(90deg,#0438f0 0%,#03229c 55%,#010e54 100%)!important;
+ border:1px solid rgba(0,229,255,.28)!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen :is(.v60-tool-head,.v562-hero,.v726-tools-hero) h1{
+ font-size:clamp(28px,2.8vw,36px)!important;color:#ffffff!important;font-weight:800!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen :is(.v60-tool-head,.v562-hero,.v726-tools-hero) p{
+ font-size:15px!important;line-height:1.5!important;color:#dce8ff!important;
+}
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control]{
+ width:min(1392px,calc(100% - 40px))!important;max-width:1392px!important;
+ padding:20px 0 36px!important;margin:0 auto!important;
+}
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-list{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important;
+}
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-list > button.v562-card{
+ display:grid!important;grid-template-columns:42px minmax(0,1fr) 16px!important;
+ min-height:82px!important;padding:14px 18px!important;border-radius:12px!important;gap:14px!important;
+}
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-card-copy b{
+ font-size:15.5px!important;font-weight:800!important;
+}
+html.ljpc-unified-pc body.lj-desktop:is([data-app-route="ligaControl"],[data-app-route="adminFut"],[data-app-route="jrControl"],[data-app-route="jr-control"]) #screen#screen .v562-page[data-v563-control] .v562-card-copy small{
+ font-size:13px!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .ljpc-toolhub{
+ width:min(1392px,calc(100% - 40px))!important;max-width:1392px!important;
+ margin:18px auto 28px!important;padding:24px 28px!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .ljpc-toolhub .ljpc-hub-grid{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .ljpc-toolhub .ljpc-hub-btn{
+ min-height:82px!important;padding:14px 18px!important;border-radius:12px!important;gap:14px!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .ljpc-toolhub .ljpc-hub-btn b{
+ font-size:15.5px!important;font-weight:800!important;
+}
+html.ljpc-unified-pc body.lj-desktop #screen .ljpc-toolhub .ljpc-hub-btn small{
+ font-size:13px!important;
+}
