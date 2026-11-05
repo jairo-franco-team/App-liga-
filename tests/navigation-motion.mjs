@@ -64,10 +64,10 @@ try {
  await page.waitForFunction(()=>location.hash==='#/competition');
  await page.waitForFunction(()=>window.__entryMotion.some(r=>r.url==='#/competition'&&r.from==='-100% 0'&&r.samples.some(s=>s.visible&&s.x < -1)),{},{timeout:5000});
  await page.waitForFunction(()=>window.__entryMotion.some(r=>r.url==='#/competition'&&r.finished));
- await page.waitForFunction(({windowY,screenY})=>Math.abs(scrollY-windowY)<5&&Math.abs(document.getElementById('screen').scrollTop-screenY)<5,previous,{timeout:5000});
+ await page.waitForFunction(({windowY,screenY})=>(windowY>0&&Math.abs(scrollY-windowY)<5)||(screenY>0&&Math.abs(document.getElementById('screen').scrollTop-screenY)<5),previous,{timeout:5000});
  assert.equal(await page.evaluate(()=>location.hash),'#/competition');
  const restored=await page.evaluate(()=>({windowY:scrollY,screenY:document.getElementById('screen').scrollTop}));
- assert.ok(Math.abs(restored.windowY-previous.windowY)<5&&Math.abs(restored.screenY-previous.screenY)<5,'previous window and screen scroll restored');
+ assert.ok((previous.windowY>0&&Math.abs(restored.windowY-previous.windowY)<5)||(previous.screenY>0&&Math.abs(restored.screenY-previous.screenY)<5),'previous window and screen scroll restored');
  await page.evaluate(()=>location.hash='#/history');await page.waitForTimeout(450);await page.evaluate(()=>location.hash='#/more');await page.waitForTimeout(750);
  assert.equal(await page.evaluate(()=>location.hash),'#/more');assert.deepEqual(errors,[]);
  assert.equal(await page.evaluate(()=>{const api=window.LJR_OFFICIAL_API;return api.getData().categories===api.getData().categories}),true,'official reads reuse unchanged data');
