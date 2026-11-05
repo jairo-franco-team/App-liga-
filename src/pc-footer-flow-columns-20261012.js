@@ -292,18 +292,30 @@ html.ljpc-unified-pc body.lj-desktop:is([data-app-route^="account"],[data-app-ro
 }
 
 /* ==========================================================================
-   CORRECCIÓN GLOBAL ANTI-SOLAPAMIENTO Y ESCALA PC 1392PX EN TODAS LAS SECCIONES
+   CORRECCIÓN GLOBAL ANTI-SOLAPAMIENTO Y PORTADA UEFA COMPLETA EN INICIO (1392PX)
    ========================================================================== */
-html.ljpc-unified-pc body.lj-desktop #screen#screen{
+html.ljpc-unified-pc body.lj-desktop:not([data-app-route="home"]) #screen#screen{
   display:flex!important;flex-direction:column!important;align-items:stretch!important;
   justify-content:flex-start!important;gap:20px!important;height:auto!important;
   min-height:0!important;max-height:none!important;overflow:visible!important;
 }
-html.ljpc-unified-pc body.lj-desktop #screen#screen > *{
+html.ljpc-unified-pc body.lj-desktop #screen#screen > :not(#ljpc-exact-html-home){
   position:relative!important;inset:auto!important;transform:none!important;
   float:none!important;clear:both!important;flex:0 0 auto!important;
   grid-column:auto!important;grid-row:auto!important;
   height:auto!important;min-height:0!important;max-height:none!important;
+}
+html.ljpc-unified-pc body.lj-desktop[data-app-route="home"] #screen#screen > #ljpc-exact-html-home{
+  grid-column:1/-1!important;
+  width:100%!important;
+  min-height:3300px!important;
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  border:0!important;
+  outline:0!important;
+  box-shadow:none!important;
+  background:#040c1c!important;
 }
 html.ljpc-unified-pc body.lj-desktop #screen#screen > :is(.v114-upcoming-slot,#safeHomeExtra,#v100-home-extra,#v105-bottom),
 html.ljpc-unified-pc body.lj-desktop #screen#screen :is(.u18-bound,.ds-wrap,.ljpc-mas-uefa,.ljpc-toolhub,#ljpc-fantasy-uefa,#ljpc-six-ui .p6-bound,.v60-tool-page,.v726-tools-page,.v562-page,.v562-page[data-v563-control],.v28-match,.v26-moments-page,.v412-search-page,.v66-directory,.v38-page,.v635-page){
