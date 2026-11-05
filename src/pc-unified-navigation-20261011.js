@@ -15,17 +15,21 @@ const MENUS={
   ['Todos los juegos','gamingPortal'],
   ['Fantasy Football','fantasy'],
   ['Pronostica Seis','predictorSix'],
-  ['Bracket','bracketBuilder'],
-  ['Gol del Día','moments'],
   ['Quiniela','quiniela'],
+  ['Cuadro de Liguilla','bracketBuilder'],
   ['Quiz Arena','quizArena'],
   ['Más o menos','moreLess'],
+  ['Gol del Día','moments'],
+  ['Jugador de la semana','vote'],
   ['Mi perfil de juegos','accountLogin']
  ],
  Datos:[
   ['Estadísticas de equipo','pc-data','data-team'],
   ['Estadísticas de jugador','pc-data','data-player'],
+  ['Jugadores y plantillas','players'],
   ['Máximo goleador','pc-scorers'],
+  ['Comparar clubes','pc-team-compare'],
+  ['Comparar jugadores','playerCompare'],
   ['Fase de clasificación','pc-standings'],
   ['Estadísticas históricas','history','history-link'],
   ['Performance Zone','safe-performance']
@@ -36,9 +40,14 @@ const MENUS={
  ['Temporadas','temporadas','history-child'],['Estadísticas históricas','estadisticas','history-child'],
  ['Vídeos','videos','history-child'],['Equipos históricos','historicos','history-child'],
  ['Más títulos','titulos','history-child'],['Sobre','sobre','history-child'],
+ ['Reglamento oficial','rulebook'],
+ ['Sedes y campos','venues'],
+ ['Clima en canchas','weatherFields'],
+ ['Buscador general','search'],
+ ['Notificaciones','pc-notifications'],
  ['Tienda (clubes)','club-store'],
- ['Herramientas PC','pc-tools'],['Match Day','matchday'],['Calendario','pc-calendar'],
- ['Credenciales','credentialBuilder'],['Reglamento','rulebook']]
+ ['Descargar App / QR','ligaQR'],
+ ['Explorar Más','pc-tools']]
 };
 const logo='./assets/branding/escudo-liga-azul-sin-fondo-v1007.png';
 const mode=()=>new URLSearchParams(location.search).get('mode')||'';
@@ -47,13 +56,13 @@ const route=()=>String(location.hash||'').replace(/^#\/?/,'').split('?')[0]||'ho
 const go=r=>{location.hash='#/'+r;};
 const escapeHtml=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const active=r=>{
- if(['pc-fixtures','competition','match','matchCenter','matchday'].includes(r))return 'pc-fixtures';
- if(['pc-standings','standings','positions'].includes(r))return 'pc-standings';
+ if(['pc-fixtures','competition','match','matchCenter','v4-matchcenter','matchday','pc-calendar','venues','weatherFields','v38Weather','motionHub','v38Weekly'].includes(r))return 'pc-fixtures';
+ if(['pc-standings','standings','positions','tableExport','discipline'].includes(r))return 'pc-standings';
  if(['video','moments'].includes(r))return 'video';
- if(['pc-draws','draws','pc-bracket','bracket'].includes(r))return 'pc-draws';
- if(['gamingPortal','fantasy','fantasyTeam','fantasyLeagues','quiniela','predictor','predictorSix','gaming','quizArena','quiz','moreLess','moreLessHub','moreLessGallery'].includes(r))return 'predictorSix';
- if(['safe-data','pc-data','pc-scorers','pc-notifications','scorers','stats','v38Stats','rankings'].includes(r))return 'pc-data';
- if(['teams','following','teamDetail','compareTeams','teamCompare','playerCompare','news','newsDetail','about','history','club-store'].includes(r))return 'pc-tools';
+ if(['pc-draws','draws','pc-bracket','bracket','bracketBuilder','tactics'].includes(r))return 'pc-draws';
+ if(['gamingPortal','fantasy','fantasyTeam','fantasyLeagues','quiniela','predictor','predictorSix','gaming','quizArena','quiz','moreLess','moreLessHub','moreLessGallery','vote'].includes(r))return 'gamingPortal';
+ if(['safe-data','pc-data','pc-scorers','scorers','stats','v38Stats','rankings','players','pc-team-compare','playerCompare','safe-performance'].includes(r))return 'pc-data';
+ if(['teams','following','teamDetail','compareTeams','teamCompare','news','newsDetail','about','history','club-store','rulebook','pc-notifications','search','ligaQR','appInstall','pc-tools','more'].includes(r))return 'pc-tools';
  if(r==='home')return 'home';
  return 'pc-tools';
 };
@@ -142,10 +151,10 @@ function footerMarkup(){
  '<div class="ljpc-u-sponsor">INFORMACIÓN Y COLABORADORES DE LA LIGA<br><span>LIGA JUVENTINO ROSAS · EQUIPOS PARTICIPANTES · AFICIÓN</span></div>'+
  '<footer class="ljpc-u-footer"><div class="ljpc-u-wrap ljpc-u-footer-columns">'+
  '<section class="ljpc-u-footer-brand"><img src="'+logo+'" alt="Escudo Liga Juventino Rosas"><strong>LIGA JUVENTINO ROSAS</strong><p>Resultados, clasificación, equipos, noticias y juegos de la liga.</p></section>'+
- group('DESCUBRE',[['Partidos','pc-fixtures'],['Clasificación','pc-standings'],['Liga TV','video'],['Sorteos','pc-draws']])+
- group('COMPETICIÓN',[['Equipos','teams'],['Datos','pc-data'],['Fantasy','fantasy'],['Historia','history']])+
- group('INFORMACIÓN',[['Noticias','news'],['Reglamento','rulebook'],['Más','more'],['Sobre la liga','about']])+
- group('HERRAMIENTAS',[['Calendario','pc-calendar'],['Credenciales','credentialBuilder'],['Match Day','matchday'],['Herramientas PC','pc-tools']])+
+ group('PARTIDOS Y JORNADA',[['Partidos y resultados','pc-fixtures'],['Match Center','v4-matchcenter'],['Match Day','matchday'],['Calendario mensual','pc-calendar'],['Sedes y campos','venues'],['Clima en canchas','weatherFields']])+
+ group('COMPETICIÓN Y DATOS',[['Clasificación','pc-standings'],['Goleadores','pc-scorers'],['Jugadores y plantillas','players'],['Estadísticas','pc-data'],['Comparar clubes','pc-team-compare'],['Sorteos y Liguilla','pc-draws']])+
+ group('GAMING Y MULTIMEDIA',[['Fantasy Football','fantasy'],['Pronostica Seis','predictorSix'],['Quiniela','quiniela'],['Quiz Arena','quizArena'],['Liga TV','video'],['Momentos','moments']])+
+ group('MÁS E INFORMACIÓN',[['Historia y palmarés','history'],['Equipos','teams'],['Noticias','news'],['Reglamento oficial','rulebook'],['Buscador general','search'],['Descargar App / QR','ligaQR']])+
  '</div><div class="ljpc-u-wrap ljpc-u-footnote">© 2026 Liga Juventino Rosas · Sitio en español</div></footer></div>';
 }
 let previousRoute=null;

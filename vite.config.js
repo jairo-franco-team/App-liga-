@@ -134,8 +134,8 @@ function copyStaticReferences() {
       const indexBuilt = resolve('dist/index.html');
       if (existsSync(indexBuilt)) {
         let html = readFileSync(indexBuilt, 'utf8');
-        html = html.replace(/(src=["']\.\/src\/[^"'?]+\.js\?v=[^"']+)(["'])/g, '$1-rea20261105v11$2');
-        const swPurge = `<script id="ljpc-sw-cache-purge-20261105">(function(){try{if('caches'in window){caches.keys().then(function(ks){ks.forEach(function(k){if(k.indexOf('20261105-rea-pc-v11')<0)caches.delete(k);});});}if('serviceWorker'in navigator){navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){r.update();});});}}catch(_){}})();</script>\n`;
+        html = html.replace(/(src=["']\.\/src\/[^"'?]+\.js\?v=[^"']+)(["'])/g, '$1-rea20261105v12$2');
+        const swPurge = `<script id="ljpc-sw-cache-purge-20261105">(function(){try{if('caches'in window){caches.keys().then(function(ks){ks.forEach(function(k){if(k.indexOf('20261105-rea-pc-v12')<0)caches.delete(k);});});}if('serviceWorker'in navigator){navigator.serviceWorker.getRegistrations().then(function(rs){rs.forEach(function(r){r.update();});});}}catch(_){}})();</script>\n`;
         if (!html.includes('v1166-meeting-officers.css')) {
           html = html.replace('</head>', '  <link rel="stylesheet" href="./src/v1166-meeting-officers.css" />\n' + swPurge + '</head>');
         } else {
